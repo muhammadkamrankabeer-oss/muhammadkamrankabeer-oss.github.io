@@ -1,86 +1,466 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Muhammad Kamran Kabeer | DevOps Portfolio</title>
-  <link rel="stylesheet" href="style.css">
-</head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Devriston — DevOps. Linux. Cloud. Simplified.</title>
+<meta name="description" content="Devriston — DevOps engineering, Linux migration, AWS cloud, Ansible automation and IT training in Pakistan. Based in Lahore.">
+<meta name="keywords" content="DevOps Pakistan, Linux training Lahore, AWS cloud Pakistan, Ansible automation, Koha library system, IT training Pakistan">
+<meta property="og:title" content="Devriston — DevOps. Linux. Cloud. Simplified.">
+<meta property="og:description" content="Open source IT solutions and training. Linux migration, AWS cloud, Docker, Ansible. Based in Lahore, Pakistan.">
+<meta property="og:url" content="https://devriston.com.pk">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:       #0d1421;
+  --surface:  #131c2e;
+  --surface2: #1a2640;
+  --border:   #1e3054;
+  --accent:   #00c2cb;
+  --accent2:  #58a6ff;
+  --accent3:  #f0883e;
+  --text:     #f0f6ff;
+  --muted:    #8ba4c8;
+  --syne:     'Syne', sans-serif;
+  --mono:     'JetBrains Mono', monospace;
+}
 
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--syne);overflow-x:hidden;cursor:default}
+
+/* Grid pattern */
+body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(0,194,203,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(0,194,203,.04) 1px,transparent 1px);background-size:40px 40px;pointer-events:none;z-index:0}
+
+/* Glow orbs */
+.orb{position:fixed;border-radius:50%;filter:blur(120px);pointer-events:none;z-index:0}
+.orb1{width:500px;height:500px;background:rgba(0,194,203,.06);top:-100px;left:-100px}
+.orb2{width:400px;height:400px;background:rgba(88,166,255,.05);bottom:-50px;right:-50px}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:.9rem 2rem;background:rgba(13,20,33,.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}
+.logo{font-family:var(--syne);font-size:18px;font-weight:800;color:var(--text);text-decoration:none;letter-spacing:-.3px;display:flex;align-items:center;gap:.5rem}
+.logo-dot{width:8px;height:8px;background:#00c2cb;border-radius:50%;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.8)}}
+.nav-links{display:flex;gap:2rem;list-style:none;align-items:center}
+.nav-links a{font-family:var(--mono);font-size:12px;color:var(--muted);text-decoration:none;letter-spacing:.08em;transition:color .2s}
+.nav-links a:hover,.nav-links a.active{color:var(--accent)}
+.nav-wa{background:rgba(37,211,102,.15)!important;color:#25d366!important;border:1px solid rgba(37,211,102,.3);padding:5px 14px;border-radius:4px!important}
+.nav-wa:hover{background:rgba(37,211,102,.25)!important}
+
+/* HERO */
+.hero{position:relative;z-index:1;min-height:100vh;display:flex;align-items:center;padding:7rem 2rem 4rem;max-width:1200px;margin:0 auto}
+.hero-inner{max-width:800px}
+.hero-tag{font-family:var(--mono);font-size:11px;color:var(--accent);letter-spacing:.2em;text-transform:uppercase;margin-bottom:1.5rem;display:flex;align-items:center;gap:.75rem;opacity:0;animation:fadeUp .6s .1s ease both}
+.hero-tag::before{content:'';width:24px;height:1px;background:var(--accent)}
+.hero-tag::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,var(--accent),transparent);max-width:120px}
+h1{font-family:var(--syne);font-size:clamp(2.8rem,7vw,5.5rem);font-weight:800;line-height:1.05;margin-bottom:1.5rem;letter-spacing:-1px;opacity:0;animation:fadeUp .6s .2s ease both}
+h1 .line2{color:var(--accent);display:block}
+h1 .line3{color:var(--accent2);display:block}
+.hero-desc{font-family:var(--syne);font-size:1.1rem;color:var(--muted);max-width:580px;margin-bottom:2.5rem;line-height:1.8;font-weight:400;opacity:0;animation:fadeUp .6s .3s ease both}
+.hero-btns{display:flex;gap:.85rem;flex-wrap:wrap;opacity:0;animation:fadeUp .6s .4s ease both}
+
+/* BUTTONS */
+.btn{font-family:var(--mono);font-size:12px;padding:.8rem 1.75rem;text-decoration:none;letter-spacing:.08em;transition:all .2s;display:inline-flex;align-items:center;gap:.5rem;font-weight:500;border:none;cursor:pointer}
+.btn-p{background:var(--accent);color:#0d1421;font-weight:700}
+.btn-p:hover{background:#00e8f2;transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,194,203,.3)}
+.btn-o{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.btn-o:hover{background:rgba(0,194,203,.08);transform:translateY(-2px)}
+.btn-wa{background:rgba(37,211,102,.12);color:#25d366;border:1px solid rgba(37,211,102,.3)}
+.btn-wa:hover{background:rgba(37,211,102,.2);transform:translateY(-2px)}
+
+/* TERMINAL WIDGET */
+.terminal{position:absolute;right:2rem;top:50%;transform:translateY(-50%);width:380px;background:var(--surface);border:1px solid var(--border);border-radius:8px;overflow:hidden;opacity:0;animation:fadeLeft .8s .5s ease both;display:none}
+@media(min-width:1100px){.terminal{display:block}}
+.term-bar{background:var(--surface2);padding:.6rem 1rem;display:flex;align-items:center;gap:.5rem;border-bottom:1px solid var(--border)}
+.term-dot{width:10px;height:10px;border-radius:50%}
+.term-title{font-family:var(--mono);font-size:11px;color:var(--muted);margin-left:.5rem}
+.term-body{padding:1rem;font-family:var(--mono);font-size:12px;line-height:2}
+.tc{color:var(--muted)}
+.tg{color:var(--accent)}
+.tb{color:var(--accent2)}
+.ty{color:var(--accent3)}
+.tw{color:var(--text)}
+.cursor-blink{display:inline-block;width:8px;height:14px;background:var(--accent);vertical-align:text-bottom;animation:blink 1s step-end infinite;margin-left:2px}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+
+/* STATS */
+.stats-bar{position:relative;z-index:1;border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:var(--surface);padding:2rem}
+.stats-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:2rem;text-align:center}
+.stat-n{font-family:var(--syne);font-size:2.2rem;font-weight:800;color:var(--accent);display:block;letter-spacing:-1px}
+.stat-l{font-family:var(--mono);font-size:11px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase}
+
+/* SECTIONS */
+.section{position:relative;z-index:1;padding:5rem 2rem;max-width:1200px;margin:0 auto}
+.sl{font-family:var(--mono);font-size:10px;color:var(--accent);letter-spacing:.25em;text-transform:uppercase;margin-bottom:.6rem;display:flex;align-items:center;gap:.75rem}
+.sl::before{content:'';width:16px;height:1px;background:var(--accent)}
+h2{font-family:var(--syne);font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:800;margin-bottom:2.5rem;letter-spacing:-.5px}
+
+/* SERVICE CARDS */
+.svc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:1px;background:var(--border);border:1px solid var(--border)}
+.svc{background:var(--bg);padding:2rem;transition:all .3s;position:relative;overflow:hidden}
+.svc::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--accent);transform:scaleX(0);transform-origin:left;transition:transform .3s}
+.svc:hover{background:var(--surface)}
+.svc:hover::after{transform:scaleX(1)}
+.svc-id{font-family:var(--mono);font-size:10px;color:var(--accent);letter-spacing:.2em;margin-bottom:1rem;opacity:.6}
+.svc h3{font-family:var(--syne);font-size:1.1rem;font-weight:700;margin-bottom:.65rem}
+.svc p{font-family:var(--syne);font-size:.88rem;color:var(--muted);line-height:1.75}
+.tags{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:1rem}
+.tag{font-family:var(--mono);font-size:10px;padding:2px 8px;border:1px solid var(--border);color:var(--muted);letter-spacing:.05em}
+
+/* PROJECTS */
+.proj-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1rem}
+.proj{background:var(--surface);border:1px solid var(--border);padding:1.5rem;transition:all .25s;position:relative;overflow:hidden}
+.proj::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--accent2),transparent);opacity:0;transition:opacity .3s}
+.proj:hover{border-color:rgba(88,166,255,.3);transform:translateY(-3px)}
+.proj:hover::before{opacity:1}
+.proj-lang{font-family:var(--mono);font-size:10px;color:var(--accent2);letter-spacing:.1em;text-transform:uppercase;margin-bottom:.6rem}
+.proj h3{font-family:var(--syne);font-size:.95rem;font-weight:700;margin-bottom:.5rem}
+.proj p{font-size:.84rem;color:var(--muted);line-height:1.65;font-family:var(--syne)}
+.proj-link{font-family:var(--mono);font-size:11px;color:var(--accent2);text-decoration:none;display:inline-block;margin-top:.85rem;transition:color .2s}
+.proj-link:hover{color:var(--accent)}
+
+/* SKILLS */
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.5rem}
+.sg{background:var(--surface);border:1px solid var(--border);padding:1.5rem}
+.sg h4{font-family:var(--mono);font-size:11px;color:var(--accent);letter-spacing:.15em;text-transform:uppercase;margin-bottom:1rem;padding-bottom:.5rem;border-bottom:1px solid var(--border)}
+.si{font-family:var(--mono);font-size:12px;color:var(--muted);padding:.3rem 0;display:flex;align-items:center;gap:.6rem}
+.si::before{content:'›';color:var(--accent);font-size:1rem;flex-shrink:0}
+
+/* CONTACT */
+.contact-wrap{position:relative;z-index:1;background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:5rem 2rem}
+.contact-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1.4fr;gap:4rem;align-items:start}
+.contact-info h2{margin-bottom:.85rem}
+.contact-info p{font-family:var(--syne);color:var(--muted);font-size:.95rem;line-height:1.8;margin-bottom:2rem}
+.cmethods{display:flex;flex-direction:column;gap:.6rem}
+.cm{display:flex;align-items:center;gap:1rem;padding:.9rem 1rem;background:var(--bg);border:1px solid var(--border);text-decoration:none;transition:border-color .2s}
+.cm:hover{border-color:var(--accent)}
+.cm-ico{font-size:1.1rem;width:32px;text-align:center;flex-shrink:0}
+.cm-lbl{font-family:var(--mono);font-size:10px;color:var(--muted);letter-spacing:.1em;text-transform:uppercase}
+.cm-val{font-family:var(--mono);font-size:12px;color:var(--text)}
+
+/* FORM */
+.form-wrap h3{font-family:var(--mono);font-size:11px;color:var(--accent);letter-spacing:.2em;text-transform:uppercase;margin-bottom:1.5rem}
+.fg{margin-bottom:1rem}
+.fg label{font-family:var(--mono);font-size:10px;color:var(--muted);letter-spacing:.12em;text-transform:uppercase;display:block;margin-bottom:.4rem}
+.fg input,.fg select,.fg textarea{width:100%;background:var(--bg);border:1px solid var(--border);color:var(--text);font-family:var(--syne);font-size:14px;padding:.75rem 1rem;outline:none;transition:border-color .2s;resize:vertical;border-radius:0;appearance:none}
+.fg input:focus,.fg select:focus,.fg textarea:focus{border-color:var(--accent)}
+.fg select option{background:var(--bg)}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.submit-btn{width:100%;padding:.9rem;background:var(--accent);color:#0d1421;font-family:var(--mono);font-size:12px;letter-spacing:.1em;font-weight:700;border:none;cursor:pointer;transition:all .2s;text-transform:uppercase}
+.submit-btn:hover{background:#00e8f2;transform:translateY(-1px);box-shadow:0 8px 24px rgba(0,194,203,.3)}
+.submit-btn:disabled{opacity:.6;cursor:not-allowed;transform:none}
+.form-note{font-family:var(--mono);font-size:10px;color:var(--muted);margin-top:.6rem;text-align:center}
+#success-msg{display:none;background:rgba(0,194,203,.08);border:1px solid var(--accent);padding:1.25rem;text-align:center;margin-top:1rem}
+#success-msg p{font-family:var(--mono);font-size:13px;color:var(--accent)}
+
+/* FOOTER */
+footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:2rem}
+.footer-inner{max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
+.footer-links{display:flex;gap:1.5rem}
+.footer-links a{font-family:var(--mono);font-size:11px;color:var(--muted);text-decoration:none;transition:color .2s}
+.footer-links a:hover{color:var(--accent)}
+.footer-copy{font-family:var(--mono);font-size:11px;color:var(--muted)}
+
+/* WHATSAPP FLOAT */
+.wa-float{position:fixed;bottom:2rem;right:2rem;z-index:999;background:#25d366;width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;text-decoration:none;box-shadow:0 4px 20px rgba(37,211,102,.4);transition:all .3s}
+.wa-float:hover{background:#1fbc5a;transform:scale(1.1);box-shadow:0 8px 30px rgba(37,211,102,.6)}
+.wa-float svg{width:28px;height:28px;fill:#fff}
+.wa-tip{position:absolute;right:66px;background:var(--surface);border:1px solid var(--border);color:var(--text);font-family:var(--mono);font-size:11px;padding:6px 12px;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .2s;border-radius:4px}
+.wa-float:hover .wa-tip{opacity:1}
+
+/* SECTION DIVIDER */
+.full-border{border-top:1px solid var(--border);position:relative;z-index:1}
+
+/* ANIMATIONS */
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeLeft{from{opacity:0;transform:translate(20px,-50%)}to{opacity:1;transform:translate(0,-50%)}}
+
+@media(max-width:900px){
+  .contact-inner{grid-template-columns:1fr;gap:2.5rem}
+  .form-row{grid-template-columns:1fr}
+  nav{padding:.9rem 1.25rem}
+  .nav-links{gap:1rem}
+  .nav-wa{display:none}
+  .hero{padding:6rem 1.25rem 3rem}
+  .section{padding:3.5rem 1.25rem}
+  .contact-wrap{padding:3.5rem 1.25rem}
+  .footer-inner{flex-direction:column;text-align:center}
+}
+</style>
+</head>
 <body>
 
-<header>
-<h1>Muhammad Kamran Kabeer</h1>
-<p>DevOps Engineer | Automation Specialist | Linux Infrastructure</p>
-<p><strong>I build self-healing, automated systems that reduce manual work and improve reliability.</strong></p>
-</header>
+<div class="orb orb1"></div>
+<div class="orb orb2"></div>
 
-<section class="about">
-<h2>About Me</h2>
-<p>
-DevOps Engineer with a strong focus on automation, reliability, and real-world infrastructure design.
-I specialize in building systems that are not just functional — but resilient, scalable, and self-healing.
-</p>
+<nav>
+  <a href="index.html" class="logo">
+    <div class="logo-dot"></div>
+    Devriston
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html" class="active">Home</a></li>
+    <li><a href="solutions.html">Solutions</a></li>
+    <li><a href="training.html">Training</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="https://wa.me/923557408956?text=Hi%20Kamran%2C%20I%20found%20Devriston%20and%20I%27d%20like%20to%20discuss%20a%20project." target="_blank" class="nav-wa">💬 WhatsApp</a></li>
+  </ul>
+</nav>
 
-<p>
-With a background as a Lecturer and Lab Manager, I design practical DevOps environments that simulate real production scenarios using limited hardware.
-</p>
-</section>
-<h2>Skills</h2>
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-tag">Lahore, Pakistan · Open Source First</div>
+    <h1>
+      Devriston
+      <span class="line2">DevOps. Linux.</span>
+      <span class="line3">Cloud. Simplified.</span>
+    </h1>
+    <p class="hero-desc">
+      We help organizations switch from Windows to open-source Linux, deploy to AWS cloud with Terraform, automate infrastructure with Docker &amp; Ansible — and train IT teams and students with real, hands-on labs.
+    </p>
+    <div class="hero-btns">
+      <a href="solutions.html" class="btn btn-p">Our Solutions →</a>
+      <a href="training.html" class="btn btn-o">IT Training</a>
+      <a href="https://wa.me/923557408956?text=Hi%20Kamran%2C%20I%20found%20Devriston%20and%20I%27d%20like%20to%20discuss%20a%20project." target="_blank" class="btn btn-wa">💬 WhatsApp Now</a>
+    </div>
+  </div>
 
-<ul>
-<li><strong>Operating Systems:</strong> Linux (Ubuntu, Debian)</li>
-<li><strong>Containers:</strong> Docker</li>
-<li><strong>Automation:</strong> Ansible</li>
-<li><strong>CI/CD:</strong> GitHub Actions</li>
-<li><strong>Infrastructure:</strong> Terraform (Basics), VirtualBox, Vagrant</li>
-<li><strong>Networking & Security:</strong> UFW, Fail2Ban</li>
-</ul>
-</section>
-
-<section class="projects">
- <h2>Projects</h2>
-
-<div class="card">
-  <h3>🚀 DevOps Workstation Automation</h3>
-  <p>
-  One-command automated DevOps environment setup using Ansible.
-  Installs Terraform, VirtualBox, AWS CLI and development tools automatically.
-  </p>
-  <p><strong>Impact:</strong> Reduced manual setup time from hours to minutes.</p>
-  <a href="https://github.com/muhammadkamrankabeer-oss/devops-workstation-automation">View on GitHub</a>
+  <!-- Terminal widget -->
+  <div class="terminal">
+    <div class="term-bar">
+      <div class="term-dot" style="background:#ff5f57"></div>
+      <div class="term-dot" style="background:#febc2e"></div>
+      <div class="term-dot" style="background:#28c840"></div>
+      <span class="term-title">devriston@server:~</span>
+    </div>
+    <div class="term-body">
+      <div><span class="tc">$</span> <span class="tg">ansible-playbook</span> <span class="tw">setup_koha.yml</span></div>
+      <div><span class="tg">PLAY</span> <span class="tc">[Devriston | Koha ILS Deploy]</span></div>
+      <div><span class="tb">TASK</span> <span class="tc">[Install packages] .........</span> <span class="tg">ok</span></div>
+      <div><span class="tb">TASK</span> <span class="tc">[Configure MariaDB] ........</span> <span class="tg">ok</span></div>
+      <div><span class="tb">TASK</span> <span class="tc">[Deploy Apache vhost] ......</span> <span class="tg">ok</span></div>
+      <div><span class="tb">TASK</span> <span class="tc">[Enable Plack + Zebra] .....</span> <span class="tg">ok</span></div>
+      <div><span class="tb">TASK</span> <span class="tc">[Setup cron backup] ........</span> <span class="tg">ok</span></div>
+      <div><span class="tg">PLAY RECAP</span> <span class="tc">·····················</span></div>
+      <div><span class="tw">server</span> <span class="tc">:</span> <span class="tg">ok=12</span> <span class="tc">changed=8</span> <span class="ty">failed=0</span></div>
+      <div><span class="tc">$</span> <span class="cursor-blink"></span></div>
+    </div>
+  </div>
 </div>
 
-<div class="card">
-  <h3>⚡ Self-Healing Docker System</h3>
-  <p>
-  Designed a container monitoring system that detects failures and automatically restarts services.
-  </p>
-  <p><strong>Impact:</strong> Improved system reliability with automated recovery.</p>
-  <a href="https://github.com/muhammadkamrankabeer-oss/self-healing-docker">View on GitHub</a>
+<div class="stats-bar">
+  <div class="stats-inner">
+    <div><span class="stat-n">10+</span><span class="stat-l">Years Experience</span></div>
+    <div><span class="stat-n">8+</span><span class="stat-l">GitHub Projects</span></div>
+    <div><span class="stat-n">AWS</span><span class="stat-l">Cloud & Terraform</span></div>
+    <div><span class="stat-n">100%</span><span class="stat-l">Open Source</span></div>
+    
+  </div>
 </div>
+
+<section class="section">
+  <div class="sl">// what_we_do</div>
+  <h2>Solutions &amp; Services</h2>
+  <div class="svc-grid">
+    <div class="svc">
+      <div class="svc-id">SRV_01</div>
+      <h3>Windows → Linux Migration</h3>
+      <p>Full migration from expensive Windows to stable, free Linux for schools, colleges &amp; businesses. Ansible-automated — consistent every time.</p>
+      <div class="tags"><span class="tag">Ubuntu</span><span class="tag">Xubuntu</span><span class="tag">Ansible</span><span class="tag">Samba</span></div>
+    </div>
+    <div class="svc">
+      <div class="svc-id">SRV_02</div>
+      <h3>Koha Library Management</h3>
+      <p>Deploy the world's leading open-source library system on Linux. Full setup, cataloguing, OPAC, staff training. Zero licensing cost.</p>
+      <div class="tags"><span class="tag">Koha ILS</span><span class="tag">MySQL</span><span class="tag">Apache</span><span class="tag">Linux</span></div>
+    </div>
+    <div class="svc">
+      <div class="svc-id">SRV_03</div>
+      <h3>Linux Server Setup &amp; Hardening</h3>
+      <p>Configure and secure Linux servers from scratch. UFW firewall, Fail2Ban, SSH hardening — automated with Ansible playbooks.</p>
+      <div class="tags"><span class="tag">UFW</span><span class="tag">Fail2Ban</span><span class="tag">Ansible</span><span class="tag">SSH</span></div>
+    </div>
+    <div class="svc">
+      <div class="svc-id">SRV_04</div>
+      <h3>AWS &amp; Cloud Migration</h3>
+      <p>Move local infrastructure to AWS with Terraform IaC. EC2, S3, VPC — version-controlled, cost-optimized from day one.</p>
+      <div class="tags"><span class="tag">AWS</span><span class="tag">Terraform</span><span class="tag">EC2</span><span class="tag">S3</span></div>
+    </div>
+    <div class="svc">
+      <div class="svc-id">SRV_05</div>
+      <h3>Docker &amp; Container Deployment</h3>
+      <p>Containerize applications for lightweight, consistent deployments. Self-healing systems, CI/CD pipelines. Up to 16× image size reduction.</p>
+      <div class="tags"><span class="tag">Docker</span><span class="tag">Alpine</span><span class="tag">GitHub Actions</span></div>
+    </div>
+    <div class="svc">
+      <div class="svc-id">SRV_06</div>
+      <h3>IT Training — Students &amp; Teams</h3>
+      <p>Hands-on Linux, DevOps, Docker, Ansible &amp; AWS training with real lab environments. Students leave with GitHub portfolios.</p>
+      <div class="tags"><span class="tag">Linux</span><span class="tag">Docker</span><span class="tag">Ansible</span><span class="tag">AWS</span></div>
+    </div>
+  </div>
+  <div style="margin-top:2rem;text-align:center;display:flex;gap:1rem;justify-content:center;flex-wrap:wrap">
+    <a href="solutions.html" class="btn btn-p">Full Solutions →</a>
+    <a href="training.html" class="btn btn-o">Training Programs →</a>
+  </div>
 </section>
 
-<section class="contact">
-  <h2>Contact</h2>
+<div class="full-border"></div>
 
-  <p>Email: muhammadkamrankabeergmail.com</p>
-
-  <p>
-    <a href="https://www.linkedin.com/in/muhammad-kamran-kabeer-b64740a4/">LinkedIn</a> |
-    <a href="https://github.com/muhammadkamrankabeer-oss">GitHub</a>
-  </p>
-<h2>Work With Me</h2>
-
-<p>
-I am open to freelance DevOps projects, lab setup, and automation solutions.
-Let’s build reliable infrastructure together.
-</p>
-<a href="assets/resume.pdf" download>Download Resume</a>
+<section class="section">
+  <div class="sl">// github_projects</div>
+  <h2>Featured Projects</h2>
+  <div class="proj-grid">
+    <div class="proj">
+      <div class="proj-lang">Shell · Ansible</div>
+      <h3>Self-Healing Docker System</h3>
+      <p>Auto-detects container failures and rebuilds. Primary/replica failover on an 8GB, 10-year-old laptop.</p>
+      <a href="https://github.com/muhammadkamrankabeer-oss/self-healing-docker" target="_blank" class="proj-link">→ View on GitHub</a>
+    </div>
+    <div class="proj">
+      <div class="proj-lang">HCL · Terraform</div>
+      <h3>AWS Terraform Lab</h3>
+      <p>Full AWS cloud environment: EC2, S3, VPC — provisioned with a single Terraform command.</p>
+      <a href="https://github.com/muhammadkamrankabeer-oss/aws-terraform-lab" target="_blank" class="proj-link">→ View on GitHub</a>
+    </div>
+    <div class="proj">
+      <div class="proj-lang">Ansible · Docker</div>
+      <h3>Monitoring Stack Automation</h3>
+      <p>Prometheus + Grafana + Node Exporter via Ansible. Real-time CPU, RAM, disk dashboards.</p>
+      <a href="https://github.com/muhammadkamrankabeer-oss/monitoring-stack-automation" target="_blank" class="proj-link">→ View on GitHub</a>
+    </div>
+    <div class="proj">
+      <div class="proj-lang">Python · Docker</div>
+      <h3>Docker Image Optimization</h3>
+      <p>16× container size reduction (1.6GB → 97MB) using Alpine Linux. Faster deploys, lower costs.</p>
+      <a href="https://github.com/muhammadkamrankabeer-oss/docker-image-optimization" target="_blank" class="proj-link">→ View on GitHub</a>
+    </div>
+    <div class="proj">
+      <div class="proj-lang">Python · GitHub Actions</div>
+      <h3>CI/CD Docker Deployment</h3>
+      <p>Full CI/CD pipeline: automated tests, Docker build and push using GitHub Actions.</p>
+      <a href="https://github.com/muhammadkamrankabeer-oss/cicd-docker-deployment" target="_blank" class="proj-link">→ View on GitHub</a>
+    </div>
+    <div class="proj">
+      <div class="proj-lang">Ansible · Bash</div>
+      <h3>Samba4 AD Domain Controller</h3>
+      <p>Automated Samba4 Active Directory deployment. Zero-click domain join for Linux clients via Ansible.</p>
+      <a href="https://github.com/muhammadkamrankabeer-oss/samba4-automated-infrastructure" target="_blank" class="proj-link">→ View on GitHub</a>
+    </div>
+  </div>
+  <div style="margin-top:2rem;text-align:center">
+    <a href="https://github.com/muhammadkamrankabeer-oss" target="_blank" class="btn btn-o">All GitHub Repos →</a>
+  </div>
 </section>
+
+<div class="full-border"></div>
+
+<section class="section">
+  <div class="sl">// core_skills</div>
+  <h2>Technical Skills</h2>
+  <div class="skills-grid">
+    <div class="sg"><h4>Linux &amp; Servers</h4><div class="si">Ubuntu / Debian / Xubuntu</div><div class="si">Linux Administration</div><div class="si">Server Setup &amp; Hardening</div><div class="si">UFW · Fail2Ban · SSH</div><div class="si">Bash Scripting</div></div>
+    <div class="sg"><h4>DevOps &amp; Automation</h4><div class="si">Ansible Playbooks</div><div class="si">Docker &amp; Containers</div><div class="si">GitHub Actions CI/CD</div><div class="si">Vagrant · VirtualBox</div><div class="si">Infrastructure as Code</div></div>
+    <div class="sg"><h4>Cloud &amp; IaC</h4><div class="si">AWS (EC2, S3, VPC, IAM)</div><div class="si">Terraform</div><div class="si">Cloud Migration</div><div class="si">Local → Cloud</div></div>
+    <div class="sg"><h4>Open Source &amp; More</h4><div class="si">Prometheus + Grafana</div><div class="si">Koha Library System</div><div class="si">Nginx · Apache · MySQL</div><div class="si">Samba4 Active Directory</div></div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<div class="contact-wrap" id="contact">
+  <div class="contact-inner">
+    <div class="contact-info">
+      <div class="sl">// get_in_touch</div>
+      <h2>Let's Work Together</h2>
+      <p>Have a project? Need training for your team? Based in Lahore — available on-site and remote across Pakistan.</p>
+      <div class="cmethods">
+        <a href="https://wa.me/923557408956?text=Hi%20Kamran%2C%20I%20found%20Devriston%20and%20I%27d%20like%20to%20discuss%20a%20project." target="_blank" class="cm">
+          <div class="cm-ico">💬</div><div><div class="cm-lbl">WhatsApp (Fastest)</div><div class="cm-val">+92 355 740 8956</div></div>
+        </a>
+        <a href="mailto:info@devriston.com.pk" class="cm">
+          <div class="cm-ico">✉️</div><div><div class="cm-lbl">Email</div><div class="cm-val">info@devriston.com.pk</div></div>
+        </a>
+        <a href="https://www.linkedin.com/in/muhammad-kamran-kabeer-b64740a4/" target="_blank" class="cm">
+          <div class="cm-ico">🔗</div><div><div class="cm-lbl">LinkedIn</div><div class="cm-val">Muhammad Kamran Kabeer</div></div>
+        </a>
+        <a href="https://github.com/muhammadkamrankabeer-oss" target="_blank" class="cm">
+          <div class="cm-ico">⌨️</div><div><div class="cm-lbl">GitHub</div><div class="cm-val">muhammadkamrankabeer-oss</div></div>
+        </a>
+      </div>
+    </div>
+    <div class="form-wrap">
+      <h3>// Send a Message</h3>
+      <!--
+        FORMSPREE SETUP (free — 50 msgs/month):
+        1. Go to formspree.io → sign up free
+        2. New Form → enter info@devriston.com.pk
+        3. Copy your Form ID (e.g. xrgvwkab)
+        4. Replace YOUR_FORM_ID below with your actual ID
+      -->
+      <form id="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+        <div class="form-row">
+          <div class="fg"><label>Your Name</label><input type="text" name="name" placeholder="Ahmad Khan" required></div>
+          <div class="fg"><label>Email Address</label><input type="email" name="email" placeholder="ahmad@example.com" required></div>
+        </div>
+        <div class="fg"><label>WhatsApp / Phone (optional)</label><input type="text" name="phone" placeholder="03XX XXXXXXX"></div>
+        <div class="fg">
+          <label>What do you need?</label>
+          <select name="service" required>
+            <option value="" disabled selected>Select a service...</option>
+            <option>Windows → Linux Migration</option>
+            <option>Koha Library System</option>
+            <option>Linux Server Setup &amp; Hardening</option>
+            <option>AWS / Cloud Migration (Terraform)</option>
+            <option>Docker &amp; Container Setup</option>
+            <option>Monitoring Stack (Prometheus/Grafana)</option>
+            <option>IT Training — Students</option>
+            <option>IT Training — Teams / Organizations</option>
+            <option>Other / Not Sure Yet</option>
+          </select>
+        </div>
+        <div class="fg"><label>Tell me about your project</label><textarea name="message" rows="4" placeholder="Describe your setup, what you need, and any details..." required></textarea></div>
+        <input type="text" name="_gotcha" style="display:none">
+        <input type="hidden" name="_subject" value="New inquiry — Devriston.com.pk">
+        <button type="submit" class="submit-btn" id="submit-btn">Send Message →</button>
+        <p class="form-note">Goes to info@devriston.com.pk · Reply within a few hours</p>
+      </form>
+      <div id="success-msg"><p>✓ Message sent! I'll reply within a few hours. Or WhatsApp: +92 355 740 8956</p></div>
+    </div>
+  </div>
+</div>
 
 <footer>
-  <p>© 2026 Muhammad Kamran Kabeer | DevOps Portfolio</p>
+  <div class="footer-inner">
+    <div class="footer-copy">© 2026 Devriston · Muhammad Kamran Kabeer · Lahore, Pakistan</div>
+    <div class="footer-links">
+      <a href="solutions.html">Solutions</a>
+      <a href="training.html">Training</a>
+      <a href="https://github.com/muhammadkamrankabeer-oss" target="_blank">GitHub</a>
+      <a href="https://linkedin.com/in/muhammad-kamran-kabeer-b64740a4" target="_blank">LinkedIn</a>
+    </div>
+  </div>
 </footer>
 
+<a href="https://wa.me/923557408956?text=Hi%20Kamran%2C%20I%20found%20Devriston%20and%20I%27d%20like%20to%20discuss%20a%20project." class="wa-float" target="_blank">
+  <span class="wa-tip">Chat on WhatsApp</span>
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<script>
+const form=document.getElementById('contact-form');
+const btn=document.getElementById('submit-btn');
+const success=document.getElementById('success-msg');
+form.addEventListener('submit',async function(e){
+  e.preventDefault();
+  btn.textContent='Sending...';btn.disabled=true;
+  try{
+    const res=await fetch(form.action,{method:'POST',body:new FormData(form),headers:{'Accept':'application/json'}});
+    if(res.ok){form.style.display='none';success.style.display='block';}
+    else{btn.textContent='Send Message →';btn.disabled=false;alert('Error. Please WhatsApp or email directly.');}
+  }catch{btn.textContent='Send Message →';btn.disabled=false;alert('Network error. Please WhatsApp or email directly.');}
+});
+</script>
 </body>
 </html>
