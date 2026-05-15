@@ -1,289 +1,326 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Hands-on IT training — Linux, Docker, DevOps, AWS, Ansible. Lab-driven, GitHub portfolio-backed programs by Muhammad Kamran Kabeer at Devriston." />
-  <title>Training | Devriston — Linux, DevOps & Cloud Training</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Devriston Mini Labs — hands-on DevOps training: Linux, Docker, AWS Terraform, CI/CD, and Monitoring labs with real GitHub portfolio projects."/>
+  <title>Mini Labs | Devriston — Hands-On DevOps Training</title>
+  <link rel="icon" type="image/svg+xml" href="icon.svg"/>
+  <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
 
-<!-- ══════════ NAV ══════════ -->
+<!-- NAV -->
 <nav id="nav">
   <div class="container nav-inner">
-    <a href="index.html" class="nav-logo">
-      <div class="logo-icon">DR</div>
-      Devri<span>ston</span>
+    <a href="index.html" class="nav-logo" aria-label="Devriston home">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 48" fill="none" aria-hidden="true">
+        <defs><linearGradient id="nl3" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#2563eb"/><stop offset="100%" stop-color="#1d4ed8"/></linearGradient></defs>
+        <rect x="0" y="2" width="44" height="44" rx="10" fill="#1e293b"/>
+        <rect x="9" y="10" width="5" height="26" rx="2.5" transform="rotate(-18 11.5 23)" fill="url(#nl3)"/>
+        <rect x="30" y="10" width="5" height="26" rx="2.5" transform="rotate(18 32.5 23)" fill="url(#nl3)"/>
+        <circle cx="22" cy="36" r="2.5" fill="#22c55e"/>
+        <text x="56" y="32" font-family="'Plus Jakarta Sans','Poppins',sans-serif" font-weight="800" font-size="21" fill="#f8fafc" letter-spacing="-0.5">Devri<tspan fill="#2563eb">ston</tspan></text>
+      </svg>
     </a>
     <div class="nav-links">
       <a href="index.html">Home</a>
       <a href="solutions.html">Solutions</a>
-      <a href="training.html" class="active">Training</a>
+      <a href="training.html" class="active">Mini Labs</a>
       <a href="index.html#projects">Projects</a>
-      <a href="index.html#cta" class="nav-cta">Contact</a>
+      <a href="mailto:info@devriston.com.pk" class="nav-cta">Get in Touch</a>
     </div>
-    <div class="nav-ham" id="ham" onclick="toggleMenu()">
-      <span></span><span></span><span></span>
-    </div>
+    <div class="nav-ham" id="ham" onclick="toggleDrawer()"><span></span><span></span><span></span></div>
   </div>
 </nav>
-<div class="nav-mobile" id="mobileMenu" style="display:none">
-  <a href="index.html" onclick="toggleMenu()">Home</a>
-  <a href="solutions.html" onclick="toggleMenu()">Solutions</a>
-  <a href="training.html" onclick="toggleMenu()">Training</a>
-  <a href="index.html#cta" onclick="toggleMenu()">Contact</a>
+<div class="nav-drawer" id="drawer">
+  <a href="index.html" onclick="toggleDrawer()">Home</a>
+  <a href="solutions.html" onclick="toggleDrawer()">Solutions</a>
+  <a href="training.html" onclick="toggleDrawer()">Mini Labs</a>
+  <a href="mailto:info@devriston.com.pk" onclick="toggleDrawer()">Contact</a>
 </div>
 
-<!-- ══════════ PAGE HERO ══════════ -->
-<section class="page-hero">
+<!-- PAGE HERO -->
+<section class="pg-hero">
   <div class="container">
-    <p class="section-label">IT Training</p>
+    <p class="label">DevOps Mini Labs</p>
     <h1>Lab-driven learning.<br>Real GitHub portfolios.</h1>
-    <p style="margin-top:16px">Practical, hands-on training programs for developers and sysadmins who want skills that transfer directly to production environments — not certifications with no context.</p>
-    <div style="margin-top:32px;display:flex;flex-wrap:wrap;gap:12px">
-      <a href="index.html#cta" class="btn btn-primary">Inquire About Training</a>
+    <p>Practical, hands-on labs for developers and sysadmins who want skills that transfer directly to production environments — not certifications with no context.</p>
+    <div style="display:flex;gap:12px;flex-wrap:wrap">
+      <a href="mailto:info@devriston.com.pk" class="btn btn-blue">Enroll Now</a>
       <a href="https://github.com/muhammadkamrankabeer-oss" target="_blank" class="btn btn-outline">View Lab Repos</a>
     </div>
 
-    <!-- Stats bar -->
-    <div style="display:flex;flex-wrap:wrap;gap:40px;margin-top:52px;padding-top:40px;border-top:1px solid var(--border)">
-      <div class="stat-item">
-        <span class="stat-num">100<span>%</span></span>
-        <span class="stat-label">Hands-on labs</span>
+    <!-- Hero stats -->
+    <div style="display:flex;flex-wrap:wrap;gap:36px;margin-top:48px;padding-top:36px;border-top:1px solid var(--border)">
+      <div class="stat">
+        <span class="stat-val">100<em>%</em></span>
+        <span class="stat-lbl">Hands-on Labs</span>
       </div>
-      <div class="stat-item">
-        <span class="stat-num">5<span>+</span></span>
-        <span class="stat-label">Programs</span>
+      <div class="stat">
+        <span class="stat-val">5</span>
+        <span class="stat-lbl">Lab Tracks</span>
       </div>
-      <div class="stat-item">
-        <span class="stat-num">GH</span>
-        <span class="stat-label">Portfolio on GitHub</span>
+      <div class="stat">
+        <span class="stat-val">GH</span>
+        <span class="stat-lbl">Portfolio on GitHub</span>
       </div>
-      <div class="stat-item">
-        <span class="stat-num">1:1</span>
-        <span class="stat-label">Mentoring sessions</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ══════════ APPROACH ══════════ -->
-<section style="background:var(--bg-1);padding:60px 0;border-bottom:1px solid var(--border)">
-  <div class="container">
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px">
-      <div class="about-card">
-        <h4>// No Slides-Only Theory</h4>
-        <p>Every concept is backed by a lab. Students run real commands in real environments — not click-through simulations.</p>
-      </div>
-      <div class="about-card">
-        <h4>// GitHub from Day 1</h4>
-        <p>Training starts with Git basics and ends with a personal GitHub repository that employers can review immediately.</p>
-      </div>
-      <div class="about-card">
-        <h4>// Production Patterns</h4>
-        <p>We follow the same practices used in production: idempotent scripts, structured directories, meaningful commit messages.</p>
-      </div>
-      <div class="about-card">
-        <h4>// Small Batches</h4>
-        <p>Training is delivered in small groups or 1-on-1. No crowded classes. Mentoring happens in real time during labs.</p>
+      <div class="stat">
+        <span class="stat-val">1:1</span>
+        <span class="stat-lbl">Mentoring</span>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ══════════ PROGRAMS ══════════ -->
-<section id="programs">
+<!-- APPROACH -->
+<section style="padding:56px 0;background:var(--bg-white);border-bottom:1px solid var(--border)">
   <div class="container">
-    <p class="section-label">Training Programs</p>
-    <h2 class="section-title">Five focused tracks.</h2>
-    <p class="section-sub">Each program is a structured, lab-heavy track with a clear outcome: working skills and GitHub-documented projects you built yourself.</p>
-
-    <div class="training-grid">
-
-      <!-- 1 Linux -->
-      <div class="training-card">
-        <div class="tc-num">01</div>
-        <span class="tc-level">Beginner → Intermediate</span>
-        <h3>Linux Fundamentals</h3>
-        <p>The foundation of every DevOps and cloud career. This program covers the Linux command line, file system, process management, networking, and scripting — from absolute scratch to confident daily use.</p>
-        <ul class="tc-modules">
-          <li>Filesystem hierarchy and navigation</li>
-          <li>User and permission management</li>
-          <li>Process control, services, systemd</li>
-          <li>Networking: ip, ss, netstat, firewall</li>
-          <li>Bash scripting for automation</li>
-          <li>SSH, SCP, rsync — remote work</li>
-          <li>Package management: apt, yum, dnf</li>
-          <li>Final lab: automated server setup script</li>
-        </ul>
+    <div class="why-grid">
+      <div class="why-card">
+        <h4><span>🚫</span> No Slides-Only Theory</h4>
+        <p>Every concept is backed by a real lab. Students run actual commands in real environments — not click-through simulations.</p>
       </div>
-
-      <!-- 2 Docker -->
-      <div class="training-card">
-        <div class="tc-num">02</div>
-        <span class="tc-level">Intermediate</span>
-        <h3>Docker &amp; DevOps Bootcamp</h3>
-        <p>From containers to composed multi-service applications. This bootcamp teaches Docker from the ground up — images, containers, Compose, networking, volumes — and places it in the DevOps workflow.</p>
-        <ul class="tc-modules">
-          <li>Container vs VM fundamentals</li>
-          <li>Building custom Docker images</li>
-          <li>Docker Compose for multi-service apps</li>
-          <li>Volume management and persistence</li>
-          <li>Container networking deep-dive</li>
-          <li>Health checks and restart policies</li>
-          <li>Private registry setup</li>
-          <li>Final lab: containerized full-stack app</li>
-        </ul>
+      <div class="why-card">
+        <h4><span>📁</span> GitHub from Day 1</h4>
+        <p>Training starts with Git and ends with a personal GitHub repository that recruiters and employers can inspect immediately.</p>
       </div>
-
-      <!-- 3 AWS -->
-      <div class="training-card">
-        <div class="tc-num">03</div>
-        <span class="tc-level">Beginner → Advanced</span>
-        <h3>AWS Cloud — Basics to Advanced</h3>
-        <p>Practical AWS training with real account labs. Learn to provision EC2 instances, configure VPCs, manage IAM roles, store data in S3, set up RDS, and monitor with CloudWatch — all through live hands-on labs.</p>
-        <ul class="tc-modules">
-          <li>AWS account setup and IAM best practices</li>
-          <li>EC2: launch, connect, configure, harden</li>
-          <li>VPC design: subnets, routing, security groups</li>
-          <li>S3: storage, policies, lifecycle rules</li>
-          <li>RDS: managed databases in production</li>
-          <li>CloudWatch: metrics, alarms, dashboards</li>
-          <li>Cost optimization patterns</li>
-          <li>Final lab: 3-tier AWS architecture</li>
-        </ul>
+      <div class="why-card">
+        <h4><span>🏭</span> Production Patterns</h4>
+        <p>We follow the same practices used in production: structured directories, idempotent scripts, meaningful commit messages.</p>
       </div>
-
-      <!-- 4 Ansible -->
-      <div class="training-card">
-        <div class="tc-num">04</div>
-        <span class="tc-level">Intermediate → Advanced</span>
-        <h3>Ansible Automation Labs</h3>
-        <p>Server automation with Ansible — the tool that turns manual processes into repeatable, documented, version-controlled playbooks. This program teaches everything needed to automate real infrastructure.</p>
-        <ul class="tc-modules">
-          <li>Inventory management (static and dynamic)</li>
-          <li>Ad-hoc commands vs playbooks</li>
-          <li>Variables, facts, and Jinja2 templating</li>
-          <li>Roles: organizing automation at scale</li>
-          <li>Handlers, tags, and conditional logic</li>
-          <li>Vault for secrets management</li>
-          <li>Ansible Galaxy: using community roles</li>
-          <li>Final lab: full server hardening playbook</li>
-        </ul>
+      <div class="why-card">
+        <h4><span>👤</span> Small Batches</h4>
+        <p>Delivered in small groups or 1-on-1. No crowded classes. Mentoring happens in real time during lab sessions.</p>
       </div>
-
-      <!-- 5 DevOps Lab -->
-      <div class="training-card">
-        <div class="tc-num">05</div>
-        <span class="tc-level">Advanced</span>
-        <h3>Real-World DevOps Lab Environments</h3>
-        <p>A capstone program where students build a full DevOps environment from scratch — combining Linux, Docker, Terraform, Ansible, GitHub Actions, and a monitoring stack into one cohesive, documented system.</p>
-        <ul class="tc-modules">
-          <li>Git workflow: branching, PRs, releases</li>
-          <li>CI/CD with GitHub Actions end-to-end</li>
-          <li>Terraform for cloud provisioning</li>
-          <li>Ansible for configuration management</li>
-          <li>Docker Compose application deployment</li>
-          <li>Prometheus + Grafana monitoring</li>
-          <li>Infrastructure documentation standards</li>
-          <li>Final lab: full lab documented on GitHub</li>
-        </ul>
-      </div>
-
     </div>
   </div>
 </section>
 
-<div class="divider"></div>
-
-<!-- ══════════ PORTFOLIO BANNER ══════════ -->
-<section style="background:var(--bg-1)">
+<!-- MINI LABS GRID -->
+<section style="padding:80px 0;background:var(--bg)">
   <div class="container">
-    <div class="portfolio-banner">
-      <p class="section-label" style="text-align:center">The Outcome</p>
+    <p class="label">Lab Tracks</p>
+    <h2 style="margin-bottom:12px">Five focused Mini Labs.</h2>
+    <p class="section-lead">Each lab is a structured, hands-on track with one clear outcome: working skills and a GitHub-documented project you built yourself.</p>
+
+    <div class="labs-grid">
+
+      <!-- Lab 01 -->
+      <div class="lab-card">
+        <div class="lab-card-header">
+          <div class="lab-num">LAB · 01</div>
+          <h3>Linux Mini Lab</h3>
+          <div class="lab-badge">Beginner → Intermediate</div>
+        </div>
+        <div class="lab-card-body">
+          <p class="lab-desc">The foundation of every DevOps and cloud career. This lab covers the Linux command line, filesystem, user management, networking, and bash scripting — from absolute scratch to confident daily use.</p>
+          <ul class="lab-modules">
+            <li>Filesystem hierarchy and navigation</li>
+            <li>User &amp; permission management</li>
+            <li>Process control and systemd services</li>
+            <li>Networking: ip, ss, ufw, firewall rules</li>
+            <li>Bash scripting for automation</li>
+            <li>SSH, SCP, rsync for remote work</li>
+            <li>Final project: automated server setup script</li>
+          </ul>
+          <div class="lab-footer">
+            <span class="lab-env-pill">🖥 Hands-on Practice</span>
+            <a href="https://github.com/muhammadkamrankabeer-oss" target="_blank" class="btn btn-ghost">GitHub Repo <span class="arr">→</span></a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Lab 02 -->
+      <div class="lab-card">
+        <div class="lab-card-header">
+          <div class="lab-num">LAB · 02</div>
+          <h3>Docker Deployment Lab</h3>
+          <div class="lab-badge">Intermediate</div>
+        </div>
+        <div class="lab-card-body">
+          <p class="lab-desc">From containers to composed multi-service applications. This lab teaches Docker from the ground up — images, containers, Compose, networking, volumes — placing it directly in the DevOps workflow.</p>
+          <ul class="lab-modules">
+            <li>Container vs VM fundamentals</li>
+            <li>Building and optimizing Docker images</li>
+            <li>Docker Compose for multi-service apps</li>
+            <li>Volume management and data persistence</li>
+            <li>Container networking deep-dive</li>
+            <li>Health checks and self-healing stacks</li>
+            <li>Final project: containerized full-stack app</li>
+          </ul>
+          <div class="lab-footer">
+            <span class="lab-env-pill">🐳 Hands-on Practice</span>
+            <a href="https://github.com/muhammadkamrankabeer-oss" target="_blank" class="btn btn-ghost">GitHub Repo <span class="arr">→</span></a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Lab 03 -->
+      <div class="lab-card">
+        <div class="lab-card-header">
+          <div class="lab-num">LAB · 03</div>
+          <h3>Terraform AWS Lab</h3>
+          <div class="lab-badge">Intermediate → Advanced</div>
+        </div>
+        <div class="lab-card-body">
+          <p class="lab-desc">Infrastructure-as-Code with Terraform on real AWS accounts. Provision EC2 instances, configure VPCs, manage IAM, set up S3 backends, and deploy a complete 3-tier architecture from code.</p>
+          <ul class="lab-modules">
+            <li>AWS account setup and IAM best practices</li>
+            <li>EC2: launch, connect, configure</li>
+            <li>VPC design: subnets, routing, security groups</li>
+            <li>Terraform state and remote S3 backend</li>
+            <li>Modular Terraform structure</li>
+            <li>Multi-environment deployment (dev/prod)</li>
+            <li>Final project: full 3-tier AWS architecture</li>
+          </ul>
+          <div class="lab-footer">
+            <span class="lab-env-pill">☁️ Hands-on Practice</span>
+            <a href="https://github.com/muhammadkamrankabeer-oss" target="_blank" class="btn btn-ghost">GitHub Repo <span class="arr">→</span></a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Lab 04 -->
+      <div class="lab-card">
+        <div class="lab-card-header">
+          <div class="lab-num">LAB · 04</div>
+          <h3>CI/CD GitHub Actions Lab</h3>
+          <div class="lab-badge">Intermediate → Advanced</div>
+        </div>
+        <div class="lab-card-body">
+          <p class="lab-desc">Build a complete CI/CD pipeline using GitHub Actions. From writing your first workflow to multi-stage pipelines with Docker builds, AWS deployments, environment promotion, and automated rollbacks.</p>
+          <ul class="lab-modules">
+            <li>GitHub Actions workflow basics</li>
+            <li>Build and test automation</li>
+            <li>Docker image builds and ECR push</li>
+            <li>Secrets management best practices</li>
+            <li>Multi-environment deployment (staging/prod)</li>
+            <li>Rollback triggers and safety gates</li>
+            <li>Final project: end-to-end deploy pipeline</li>
+          </ul>
+          <div class="lab-footer">
+            <span class="lab-env-pill">🔄 Hands-on Practice</span>
+            <a href="https://github.com/muhammadkamrankabeer-oss" target="_blank" class="btn btn-ghost">GitHub Repo <span class="arr">→</span></a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Lab 05 -->
+      <div class="lab-card">
+        <div class="lab-card-header">
+          <div class="lab-num">LAB · 05</div>
+          <h3>Monitoring Stack Lab</h3>
+          <div class="lab-badge">Intermediate → Advanced</div>
+        </div>
+        <div class="lab-card-body">
+          <p class="lab-desc">Deploy a complete observability stack from scratch. Prometheus scrapes metrics from Linux nodes and Docker containers. Grafana surfaces dashboards. AlertManager fires real notifications.</p>
+          <ul class="lab-modules">
+            <li>Prometheus architecture and config</li>
+            <li>Node Exporter and cAdvisor setup</li>
+            <li>Scrape configs and label management</li>
+            <li>Grafana dashboard design from scratch</li>
+            <li>AlertManager rules and routing</li>
+            <li>Slack and email alert channels</li>
+            <li>Final project: full monitoring stack on GitHub</li>
+          </ul>
+          <div class="lab-footer">
+            <span class="lab-env-pill">📊 Hands-on Practice</span>
+            <a href="https://github.com/muhammadkamrankabeer-oss" target="_blank" class="btn btn-ghost">GitHub Repo <span class="arr">→</span></a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Outcome banner -->
+    <div class="outcome-banner">
+      <p class="label" style="color:rgba(96,165,250,1);justify-content:center">The Outcome</p>
       <h3>Students leave with GitHub portfolio projects.</h3>
-      <p>Every program ends with a personal GitHub repository containing your lab work, automation scripts, and documentation. That's not homework — that's evidence of capability you can show any employer or client.</p>
+      <p>Every lab ends with a personal GitHub repository containing your work — automation scripts, configs, and documentation. That's not homework, that's proof of capability you can show any recruiter or client.</p>
       <div style="display:flex;flex-wrap:wrap;gap:12px;justify-content:center">
-        <a href="https://github.com/muhammadkamrankabeer-oss" target="_blank" class="btn btn-primary">See Example GitHub Portfolio</a>
-        <a href="index.html#cta" class="btn btn-outline">Enroll or Inquire</a>
+        <a href="https://github.com/muhammadkamrankabeer-oss" target="_blank" class="btn btn-white">View Example Portfolio</a>
+        <a href="mailto:info@devriston.com.pk" class="btn btn-outline" style="border-color:rgba(255,255,255,.2);color:rgba(248,250,252,.8)">Enroll or Inquire</a>
       </div>
     </div>
 
-    <!-- Format & delivery -->
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin-top:40px">
-      <div class="about-card">
-        <h4>// Format</h4>
-        <p>Online (Zoom / Meet) or in-person in Lahore. Flexible scheduling around work hours.</p>
+    <!-- Format info -->
+    <div class="format-grid">
+      <div class="fmt-card">
+        <h4>Format</h4>
+        <p>Online (Zoom / Google Meet) or in-person in Lahore. Flexible scheduling around work hours.</p>
       </div>
-      <div class="about-card">
-        <h4>// Duration</h4>
-        <p>Programs range from 4 to 12 weeks depending on track. Intensive or part-time available.</p>
+      <div class="fmt-card">
+        <h4>Duration</h4>
+        <p>Labs range from 2 to 8 weeks depending on track. Intensive or part-time options available.</p>
       </div>
-      <div class="about-card">
-        <h4>// Who It's For</h4>
+      <div class="fmt-card">
+        <h4>Who It's For</h4>
         <p>Developers transitioning to DevOps, junior sysadmins, and teams upskilling for cloud migration.</p>
       </div>
-      <div class="about-card">
-        <h4>// Corporate Training</h4>
-        <p>Custom programs for teams. Tailored content, on-site delivery, and group lab environments available.</p>
+      <div class="fmt-card">
+        <h4>Corporate Training</h4>
+        <p>Custom lab programs for teams. Tailored content, group environments, on-site delivery available.</p>
       </div>
     </div>
   </div>
 </section>
 
-<div class="divider"></div>
-
-<!-- ══════════ CTA ══════════ -->
-<section style="text-align:center;padding:80px 0">
+<!-- CTA -->
+<section id="cta">
+  <div class="cta-glow"></div>
   <div class="container">
-    <div class="cta-box">
-      <p class="section-label" style="text-align:center">Enroll</p>
+    <div class="cta-inner">
+      <p class="label">Enroll</p>
       <h2>Ready to start building?</h2>
-      <p>Reach out to discuss which program fits your background and goals. Corporate team training enquiries are also welcome.</p>
-      <div class="cta-contacts" style="margin-top:32px">
-        <a href="https://wa.me/923001234567" target="_blank" class="contact-chip">
-          <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.122 1.532 5.856L.057 23.617a.75.75 0 00.908.98l5.963-1.562A11.943 11.943 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.886 0-3.655-.52-5.168-1.424l-.37-.22-3.539.927.943-3.443-.24-.381A9.96 9.96 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
-          WhatsApp
+      <p>Reach out to discuss which lab fits your background and goals. Corporate team training enquiries are also welcome.</p>
+      <div class="cta-links">
+        <a href="mailto:info@devriston.com.pk" class="cta-link">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg>
+          info@devriston.com.pk
         </a>
-        <a href="mailto:kamran@devriston.com.pk" class="contact-chip">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="16" height="16"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg>
-          kamran@devriston.com.pk
-        </a>
-        <a href="https://www.linkedin.com/in/kamrankabeer/" target="_blank" class="contact-chip">
-          <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        <a href="https://www.linkedin.com/in/kamrankabeer/" target="_blank" class="cta-link">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
           LinkedIn
         </a>
+        <a href="https://github.com/muhammadkamrankabeer-oss" target="_blank" class="cta-link">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+          GitHub
+        </a>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ══════════ FOOTER ══════════ -->
+<!-- FOOTER -->
 <footer>
   <div class="container">
-    <div class="footer-inner">
+    <div class="footer-grid">
       <div class="footer-brand">
-        <div class="nav-logo" style="margin-bottom:10px">
-          <div class="logo-icon">DR</div>
-          Devri<span>ston</span>
-        </div>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 48" fill="none" height="32">
+          <defs><linearGradient id="flt" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#2563eb"/><stop offset="100%" stop-color="#1d4ed8"/></linearGradient></defs>
+          <rect x="0" y="2" width="44" height="44" rx="10" fill="#1e293b"/>
+          <rect x="9" y="10" width="5" height="26" rx="2.5" transform="rotate(-18 11.5 23)" fill="url(#flt)"/>
+          <rect x="30" y="10" width="5" height="26" rx="2.5" transform="rotate(18 32.5 23)" fill="url(#flt)"/>
+          <circle cx="22" cy="36" r="2.5" fill="#22c55e"/>
+          <text x="56" y="32" font-family="'Plus Jakarta Sans','Poppins',sans-serif" font-weight="800" font-size="21" fill="#f8fafc" letter-spacing="-0.5">Devri<tspan fill="#2563eb">ston</tspan></text>
+        </svg>
         <p>DevOps · Linux · Cloud infrastructure consulting and training. Lahore, Pakistan.</p>
       </div>
-      <div class="footer-links">
+      <div class="footer-col">
         <h4>Pages</h4>
         <ul>
           <li><a href="index.html">Home</a></li>
           <li><a href="solutions.html">Solutions</a></li>
-          <li><a href="training.html">Training</a></li>
+          <li><a href="training.html">Mini Labs</a></li>
         </ul>
       </div>
-      <div class="footer-links">
+      <div class="footer-col">
         <h4>Connect</h4>
         <ul>
+          <li><a href="mailto:info@devriston.com.pk">info@devriston.com.pk</a></li>
           <li><a href="https://github.com/muhammadkamrankabeer-oss" target="_blank">GitHub</a></li>
           <li><a href="https://www.linkedin.com/in/kamrankabeer/" target="_blank">LinkedIn</a></li>
-          <li><a href="https://devriston.com.pk">devriston.com.pk</a></li>
         </ul>
       </div>
     </div>
@@ -299,12 +336,10 @@
 
 <script>
   const nav = document.getElementById('nav');
-  window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 40); });
-  function toggleMenu() {
-    const m = document.getElementById('mobileMenu');
-    m.style.display = m.style.display === 'none' ? 'flex' : 'none';
-  }
-  nav.classList.add('scrolled');
+  window.addEventListener('scroll', () => nav.classList.toggle('elevated', window.scrollY > 20), { passive: true });
+  nav.classList.add('elevated');
+  const drawer = document.getElementById('drawer');
+  function toggleDrawer() { drawer.classList.toggle('open'); }
 </script>
 </body>
 </html>

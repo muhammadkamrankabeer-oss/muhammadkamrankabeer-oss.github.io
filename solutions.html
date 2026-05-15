@@ -1,304 +1,231 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="DevOps consulting services — Linux migration, AWS infrastructure, Terraform, Docker, CI/CD, Monitoring, Samba4. Devriston by Muhammad Kamran Kabeer." />
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Devriston Solutions — DevOps consulting services: Linux migration, AWS infrastructure, Terraform, Docker, CI/CD, monitoring, and Samba4 AD."/>
   <title>Solutions | Devriston — DevOps Consulting Services</title>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" type="image/svg+xml" href="icon.svg"/>
+  <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
 
-<!-- ══════════ NAV ══════════ -->
+<!-- NAV -->
 <nav id="nav">
   <div class="container nav-inner">
-    <a href="index.html" class="nav-logo">
-      <div class="logo-icon">DR</div>
-      Devri<span>ston</span>
+    <a href="index.html" class="nav-logo" aria-label="Devriston home">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 48" fill="none" aria-hidden="true">
+        <defs><linearGradient id="nl2" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#2563eb"/><stop offset="100%" stop-color="#1d4ed8"/></linearGradient></defs>
+        <rect x="0" y="2" width="44" height="44" rx="10" fill="#1e293b"/>
+        <rect x="9" y="10" width="5" height="26" rx="2.5" transform="rotate(-18 11.5 23)" fill="url(#nl2)"/>
+        <rect x="30" y="10" width="5" height="26" rx="2.5" transform="rotate(18 32.5 23)" fill="url(#nl2)"/>
+        <circle cx="22" cy="36" r="2.5" fill="#22c55e"/>
+        <text x="56" y="32" font-family="'Plus Jakarta Sans','Poppins',sans-serif" font-weight="800" font-size="21" fill="#f8fafc" letter-spacing="-0.5">Devri<tspan fill="#2563eb">ston</tspan></text>
+      </svg>
     </a>
     <div class="nav-links">
       <a href="index.html">Home</a>
       <a href="solutions.html" class="active">Solutions</a>
-      <a href="training.html">Training</a>
+      <a href="training.html">Mini Labs</a>
       <a href="index.html#projects">Projects</a>
-      <a href="index.html#cta" class="nav-cta">Contact</a>
+      <a href="mailto:info@devriston.com.pk" class="nav-cta">Get in Touch</a>
     </div>
-    <div class="nav-ham" id="ham" onclick="toggleMenu()">
-      <span></span><span></span><span></span>
-    </div>
+    <div class="nav-ham" id="ham" onclick="toggleDrawer()"><span></span><span></span><span></span></div>
   </div>
 </nav>
-<div class="nav-mobile" id="mobileMenu" style="display:none">
-  <a href="index.html" onclick="toggleMenu()">Home</a>
-  <a href="solutions.html" onclick="toggleMenu()">Solutions</a>
-  <a href="training.html" onclick="toggleMenu()">Training</a>
-  <a href="index.html#cta" onclick="toggleMenu()">Contact</a>
+<div class="nav-drawer" id="drawer">
+  <a href="index.html" onclick="toggleDrawer()">Home</a>
+  <a href="solutions.html" onclick="toggleDrawer()">Solutions</a>
+  <a href="training.html" onclick="toggleDrawer()">Mini Labs</a>
+  <a href="mailto:info@devriston.com.pk" onclick="toggleDrawer()">Contact</a>
 </div>
 
-<!-- ══════════ PAGE HERO ══════════ -->
-<section class="page-hero">
+<!-- PAGE HERO -->
+<section class="pg-hero">
   <div class="container">
-    <p class="section-label">DevOps Consulting</p>
-    <h1>Infrastructure Solutions<br>built for production.</h1>
-    <p style="margin-top:16px">End-to-end DevOps and cloud services for businesses that need reliable, automated, and scalable infrastructure — without the overhead of a full in-house team.</p>
-    <div style="margin-top:32px;display:flex;gap:12px;flex-wrap:wrap">
-      <a href="index.html#cta" class="btn btn-primary">Start a Conversation</a>
-      <a href="index.html#projects" class="btn btn-outline">See Projects</a>
+    <p class="label">DevOps Consulting</p>
+    <h1>Infrastructure solutions<br>built for production.</h1>
+    <p>End-to-end DevOps and cloud services for businesses that need reliable, automated, and scalable infrastructure — without the overhead of a full in-house team.</p>
+    <div style="display:flex;gap:12px;flex-wrap:wrap">
+      <a href="mailto:info@devriston.com.pk" class="btn btn-blue">Start a Conversation</a>
+      <a href="index.html#projects" class="btn btn-outline">View Projects</a>
     </div>
   </div>
 </section>
 
-<!-- ══════════ PROCESS BAR ══════════ -->
-<section style="padding:40px 0;background:var(--bg-1);border-bottom:1px solid var(--border)">
+<!-- PROCESS -->
+<section style="padding:48px 0;background:var(--bg)">
   <div class="container">
-    <div style="display:flex;flex-wrap:wrap;gap:0;align-items:stretch">
-      <div style="flex:1;min-width:160px;padding:20px 28px;border-right:1px solid var(--border)">
-        <div class="section-label" style="margin-bottom:6px">01</div>
-        <div style="font-family:var(--display);font-weight:700;color:var(--text-h);font-size:.95rem">Discover</div>
-        <div style="font-size:.8rem;color:var(--text-dim);margin-top:4px">Audit current infrastructure</div>
+    <div class="process-bar">
+      <div class="ps">
+        <div class="ps-n">01</div>
+        <div class="ps-name">Discover</div>
+        <div class="ps-desc">Audit current infrastructure</div>
       </div>
-      <div style="flex:1;min-width:160px;padding:20px 28px;border-right:1px solid var(--border)">
-        <div class="section-label" style="margin-bottom:6px">02</div>
-        <div style="font-family:var(--display);font-weight:700;color:var(--text-h);font-size:.95rem">Design</div>
-        <div style="font-size:.8rem;color:var(--text-dim);margin-top:4px">Architecture &amp; automation plan</div>
+      <div class="ps">
+        <div class="ps-n">02</div>
+        <div class="ps-name">Design</div>
+        <div class="ps-desc">Architecture &amp; automation plan</div>
       </div>
-      <div style="flex:1;min-width:160px;padding:20px 28px;border-right:1px solid var(--border)">
-        <div class="section-label" style="margin-bottom:6px">03</div>
-        <div style="font-family:var(--display);font-weight:700;color:var(--text-h);font-size:.95rem">Deploy</div>
-        <div style="font-size:.8rem;color:var(--text-dim);margin-top:4px">Implement &amp; automate</div>
+      <div class="ps">
+        <div class="ps-n">03</div>
+        <div class="ps-name">Deploy</div>
+        <div class="ps-desc">Implement &amp; automate</div>
       </div>
-      <div style="flex:1;min-width:160px;padding:20px 28px">
-        <div class="section-label" style="margin-bottom:6px">04</div>
-        <div style="font-family:var(--display);font-weight:700;color:var(--text-h);font-size:.95rem">Handoff</div>
-        <div style="font-size:.8rem;color:var(--text-dim);margin-top:4px">Docs, training &amp; support</div>
+      <div class="ps">
+        <div class="ps-n">04</div>
+        <div class="ps-name">Handoff</div>
+        <div class="ps-desc">Docs, training &amp; support</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ══════════ SOLUTIONS ══════════ -->
-<section id="solutions">
+<!-- SOLUTIONS GRID -->
+<section style="padding:72px 0;background:var(--bg-white)">
   <div class="container">
-    <p class="section-label">Services Catalog</p>
-    <h2 class="section-title">What I deliver.</h2>
-    <p class="section-sub">Each service is scoped for real business outcomes — not just technical deliverables.</p>
+    <p class="label">Services Catalog</p>
+    <h2 style="margin-bottom:12px">What I deliver.</h2>
+    <p class="section-lead">Each service is scoped for real business outcomes — not just technical deliverables.</p>
 
     <div class="solutions-grid">
 
-      <!-- 1 -->
-      <div class="solution-card">
-        <div class="solution-num">// 01</div>
-        <div class="solution-icon">🔀</div>
-        <div class="solution-title">Windows → Linux Migration</div>
-        <p class="solution-desc">
-          Full server migration from Windows environments to Linux. Planning, execution, user migration, app porting, and DNS/network reconfiguration. Zero-downtime migration strategies with rollback plans.
-        </p>
-        <div class="solution-tech">
-          <span class="tech-pill">Ubuntu / RHEL</span>
-          <span class="tech-pill">Ansible</span>
-          <span class="tech-pill">Samba4</span>
-          <span class="tech-pill">Active Directory</span>
-          <span class="tech-pill">DNS</span>
+      <div class="sol-card">
+        <div class="sol-num">01</div>
+        <div class="sol-icon">🔀</div>
+        <div class="sol-title">Windows → Linux Migration</div>
+        <p class="sol-desc">Full server migration from Windows to Linux. Planning, execution, user migration, app porting, DNS and network reconfiguration. Zero-downtime strategies with rollback plans.</p>
+        <div class="sol-techs">
+          <span class="chip">Ubuntu / RHEL</span><span class="chip">Ansible</span><span class="chip">Samba4</span><span class="chip">DNS</span>
         </div>
-        <div class="solution-value">
-          Eliminate Windows licensing costs. Gain control over your server environment with open, auditable infrastructure.
-        </div>
+        <div class="sol-value">Eliminate Windows licensing costs. Gain full control over your server environment with open, auditable infrastructure.</div>
       </div>
 
-      <!-- 2 -->
-      <div class="solution-card">
-        <div class="solution-num">// 02</div>
-        <div class="solution-icon">☁️</div>
-        <div class="solution-title">AWS Infrastructure Setup</div>
-        <p class="solution-desc">
-          End-to-end AWS cloud architecture: VPC design, EC2 provisioning, IAM policy configuration, S3 storage setup, RDS databases, CloudWatch alerting, and cost-optimized architecture reviews.
-        </p>
-        <div class="solution-tech">
-          <span class="tech-pill">AWS EC2</span>
-          <span class="tech-pill">VPC</span>
-          <span class="tech-pill">IAM</span>
-          <span class="tech-pill">S3</span>
-          <span class="tech-pill">RDS</span>
-          <span class="tech-pill">CloudWatch</span>
+      <div class="sol-card">
+        <div class="sol-num">02</div>
+        <div class="sol-icon">☁️</div>
+        <div class="sol-title">AWS Infrastructure Setup</div>
+        <p class="sol-desc">End-to-end AWS architecture: VPC design, EC2 provisioning, IAM policies, S3 storage, RDS databases, CloudWatch alerting, and cost-optimized architecture reviews.</p>
+        <div class="sol-techs">
+          <span class="chip">EC2</span><span class="chip">VPC</span><span class="chip">IAM</span><span class="chip">S3</span><span class="chip">RDS</span><span class="chip">CloudWatch</span>
         </div>
-        <div class="solution-value">
-          Production-ready AWS environments with security best practices, least-privilege access, and built-in observability.
-        </div>
+        <div class="sol-value">Production-ready AWS with security best practices, least-privilege access, and built-in observability from day one.</div>
       </div>
 
-      <!-- 3 -->
-      <div class="solution-card">
-        <div class="solution-num">// 03</div>
-        <div class="solution-icon">⚙️</div>
-        <div class="solution-title">Terraform Cloud Automation</div>
-        <p class="solution-desc">
-          Infrastructure-as-code with Terraform. Modular, reusable configurations for multi-environment setups (dev/staging/prod). State management, remote backends, and drift detection built in.
-        </p>
-        <div class="solution-tech">
-          <span class="tech-pill">Terraform</span>
-          <span class="tech-pill">AWS</span>
-          <span class="tech-pill">Terraform Cloud</span>
-          <span class="tech-pill">S3 Backend</span>
-          <span class="tech-pill">Modules</span>
+      <div class="sol-card">
+        <div class="sol-num">03</div>
+        <div class="sol-icon">⚙️</div>
+        <div class="sol-title">Terraform Cloud Automation</div>
+        <p class="sol-desc">Infrastructure-as-code with Terraform. Modular, reusable configurations for multi-environment setups (dev/staging/prod). State management, remote backends, and drift detection built in.</p>
+        <div class="sol-techs">
+          <span class="chip">Terraform</span><span class="chip">AWS</span><span class="chip">Modules</span><span class="chip">S3 Backend</span>
         </div>
-        <div class="solution-value">
-          Your entire infrastructure becomes version-controlled, repeatable, and deployable in minutes — not days.
-        </div>
+        <div class="sol-value">Your entire infrastructure becomes version-controlled, repeatable, and deployable in minutes — not days.</div>
       </div>
 
-      <!-- 4 -->
-      <div class="solution-card">
-        <div class="solution-num">// 04</div>
-        <div class="solution-icon">🐳</div>
-        <div class="solution-title">Docker Containerization</div>
-        <p class="solution-desc">
-          Migrate applications from bare-metal or VM setups to Docker containers. Compose files for multi-service stacks, self-healing configurations, volume management, and private registry setup.
-        </p>
-        <div class="solution-tech">
-          <span class="tech-pill">Docker</span>
-          <span class="tech-pill">Docker Compose</span>
-          <span class="tech-pill">Registry</span>
-          <span class="tech-pill">Healthchecks</span>
-          <span class="tech-pill">Networking</span>
+      <div class="sol-card">
+        <div class="sol-num">04</div>
+        <div class="sol-icon">🐳</div>
+        <div class="sol-title">Docker Containerization</div>
+        <p class="sol-desc">Migrate applications from bare-metal or VM setups to Docker. Compose files for multi-service stacks, self-healing configurations, volume management, and private registry setup.</p>
+        <div class="sol-techs">
+          <span class="chip">Docker</span><span class="chip">Compose</span><span class="chip">Registry</span><span class="chip">Networking</span>
         </div>
-        <div class="solution-value">
-          Consistent, portable environments that eliminate "works on my machine" problems and reduce deployment friction.
-        </div>
+        <div class="sol-value">Consistent, portable environments that eliminate "works on my machine" problems and reduce deployment friction.</div>
       </div>
 
-      <!-- 5 -->
-      <div class="solution-card">
-        <div class="solution-num">// 05</div>
-        <div class="solution-icon">🔄</div>
-        <div class="solution-title">CI/CD Pipeline Setup</div>
-        <p class="solution-desc">
-          Automated build, test, and deployment pipelines using GitHub Actions. Multi-stage pipelines with environment promotion, secrets management, Docker image builds, AWS deployments, and rollback triggers.
-        </p>
-        <div class="solution-tech">
-          <span class="tech-pill">GitHub Actions</span>
-          <span class="tech-pill">Docker</span>
-          <span class="tech-pill">AWS ECR</span>
-          <span class="tech-pill">Environments</span>
-          <span class="tech-pill">Secrets</span>
+      <div class="sol-card">
+        <div class="sol-num">05</div>
+        <div class="sol-icon">🔄</div>
+        <div class="sol-title">CI/CD Pipeline Setup</div>
+        <p class="sol-desc">Automated build, test, and deployment pipelines using GitHub Actions. Multi-stage pipelines with environment promotion, secrets management, Docker image builds, and rollback triggers.</p>
+        <div class="sol-techs">
+          <span class="chip">GitHub Actions</span><span class="chip">Docker</span><span class="chip">AWS ECR</span><span class="chip">Environments</span>
         </div>
-        <div class="solution-value">
-          Ship code faster and with confidence. Every push goes through automated quality gates before reaching production.
-        </div>
+        <div class="sol-value">Ship code faster and with confidence. Every push runs through automated quality gates before reaching production.</div>
       </div>
 
-      <!-- 6 -->
-      <div class="solution-card">
-        <div class="solution-num">// 06</div>
-        <div class="solution-icon">📊</div>
-        <div class="solution-title">Monitoring — Prometheus + Grafana</div>
-        <p class="solution-desc">
-          Complete observability stack deployment: Prometheus metrics collection from nodes, containers, and apps; Grafana dashboards for visualization; AlertManager rules for incident notification via email, Slack, or PagerDuty.
-        </p>
-        <div class="solution-tech">
-          <span class="tech-pill">Prometheus</span>
-          <span class="tech-pill">Grafana</span>
-          <span class="tech-pill">Node Exporter</span>
-          <span class="tech-pill">AlertManager</span>
-          <span class="tech-pill">Loki</span>
+      <div class="sol-card">
+        <div class="sol-num">06</div>
+        <div class="sol-icon">📊</div>
+        <div class="sol-title">Monitoring — Prometheus + Grafana</div>
+        <p class="sol-desc">Complete observability stack: Prometheus metrics from nodes, containers, and apps; Grafana dashboards; AlertManager with notifications via email, Slack, or PagerDuty.</p>
+        <div class="sol-techs">
+          <span class="chip">Prometheus</span><span class="chip">Grafana</span><span class="chip">Node Exporter</span><span class="chip">AlertManager</span>
         </div>
-        <div class="solution-value">
-          Know what's happening in your infrastructure before your users report a problem. Real-time visibility into every layer.
-        </div>
+        <div class="sol-value">Know what's happening before your users report it. Real-time visibility into every layer of your infrastructure.</div>
       </div>
 
-      <!-- 7 -->
-      <div class="solution-card">
-        <div class="solution-num">// 07</div>
-        <div class="solution-icon">🔐</div>
-        <div class="solution-title">Samba4 Linux Domain Controller</div>
-        <p class="solution-desc">
-          Active Directory-compatible domain controller on Linux using Samba4. Replaces Windows Server AD for organizations migrating to Linux. Full user/group management, DNS, Kerberos auth, and Windows client domain join.
-        </p>
-        <div class="solution-tech">
-          <span class="tech-pill">Samba4</span>
-          <span class="tech-pill">Kerberos</span>
-          <span class="tech-pill">LDAP</span>
-          <span class="tech-pill">DNS</span>
-          <span class="tech-pill">Ansible</span>
+      <div class="sol-card">
+        <div class="sol-num">07</div>
+        <div class="sol-icon">🔐</div>
+        <div class="sol-title">Samba4 Linux Domain Controller</div>
+        <p class="sol-desc">Active Directory-compatible domain controller on Linux using Samba4. Replaces Windows Server AD — full user/group management, DNS, Kerberos auth, and Windows client domain join.</p>
+        <div class="sol-techs">
+          <span class="chip">Samba4</span><span class="chip">Kerberos</span><span class="chip">LDAP</span><span class="chip">DNS</span><span class="chip">Ansible</span>
         </div>
-        <div class="solution-value">
-          Enterprise directory services on Linux — no Windows Server licensing, no vendor lock-in, full control.
-        </div>
+        <div class="sol-value">Enterprise directory services on Linux — no Windows Server licensing, no vendor lock-in, full operational control.</div>
       </div>
 
-      <!-- 8 -->
-      <div class="solution-card">
-        <div class="solution-num">// 08</div>
-        <div class="solution-icon">🛡️</div>
-        <div class="solution-title">Linux Server Hardening</div>
-        <p class="solution-desc">
-          Systematic security hardening for Linux servers using CIS Benchmark-aligned Ansible playbooks. SSH hardening, firewall configuration, fail2ban, unnecessary service removal, and security audit reporting.
-        </p>
-        <div class="solution-tech">
-          <span class="tech-pill">Ansible</span>
-          <span class="tech-pill">UFW / iptables</span>
-          <span class="tech-pill">fail2ban</span>
-          <span class="tech-pill">CIS Benchmark</span>
-          <span class="tech-pill">SSH</span>
+      <div class="sol-card">
+        <div class="sol-num">08</div>
+        <div class="sol-icon">🛡️</div>
+        <div class="sol-title">Linux Server Hardening</div>
+        <p class="sol-desc">Systematic security hardening using CIS Benchmark-aligned Ansible playbooks. SSH hardening, firewall configuration, fail2ban, unnecessary service removal, and security audit reporting.</p>
+        <div class="sol-techs">
+          <span class="chip">Ansible</span><span class="chip">UFW</span><span class="chip">fail2ban</span><span class="chip">CIS Benchmark</span><span class="chip">SSH</span>
         </div>
-        <div class="solution-value">
-          Reduce attack surface and meet security compliance requirements without manual, error-prone configuration.
-        </div>
+        <div class="sol-value">Reduce attack surface and meet compliance requirements without manual, error-prone configuration drift.</div>
       </div>
 
     </div>
   </div>
 </section>
 
-<div class="divider"></div>
+<hr class="divider"/>
 
-<!-- ══════════ WHY ME ══════════ -->
-<section style="background:var(--bg-1)">
+<!-- WHY DEVRISTON -->
+<section style="padding:72px 0;background:var(--bg)">
   <div class="container">
-    <p class="section-label">Why Devriston</p>
-    <h2 class="section-title">Not a freelancer. A systems engineer.</h2>
-    <p class="section-sub">The difference between someone who installs tools and someone who builds infrastructure that operates reliably at scale.</p>
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px">
-      <div class="about-card">
-        <h4>// Production-First</h4>
+    <p class="label">Why Devriston</p>
+    <h2 style="margin-bottom:12px">Not a freelancer. A systems engineer.</h2>
+    <p class="section-lead">The difference between someone who installs tools and someone who builds infrastructure that operates reliably at scale.</p>
+    <div class="why-grid">
+      <div class="why-card">
+        <h4><span>🏭</span> Production-First</h4>
         <p>Every configuration follows production patterns — documented, version-controlled, and repeatable. No cowboy scripting.</p>
       </div>
-      <div class="about-card">
-        <h4>// Infrastructure as Code</h4>
-        <p>Your infrastructure is code. That means it can be reviewed, tested, versioned, and rebuilt from scratch in minutes.</p>
+      <div class="why-card">
+        <h4><span>📝</span> Infrastructure as Code</h4>
+        <p>Your infrastructure is code. It can be reviewed, tested, versioned, and rebuilt from scratch in minutes.</p>
       </div>
-      <div class="about-card">
-        <h4>// Automation-Driven</h4>
-        <p>Manual steps are a liability. Everything that can be automated, will be — from provisioning to deployment to alerting.</p>
+      <div class="why-card">
+        <h4><span>⚡</span> Automation-Driven</h4>
+        <p>Manual steps are a liability. Everything that can be automated will be — from provisioning to deployment to alerting.</p>
       </div>
-      <div class="about-card">
-        <h4>// Documented Handoffs</h4>
-        <p>Every engagement ends with proper documentation. Your team can understand, maintain, and extend what was built.</p>
+      <div class="why-card">
+        <h4><span>📖</span> Documented Handoffs</h4>
+        <p>Every engagement ends with proper documentation so your team can maintain and extend what was built.</p>
       </div>
     </div>
   </div>
 </section>
 
-<div class="divider"></div>
-
-<!-- ══════════ CTA ══════════ -->
-<section id="cta" style="background:var(--bg);text-align:center;padding:80px 0">
+<!-- CTA -->
+<section id="cta">
+  <div class="cta-glow"></div>
   <div class="container">
-    <div class="cta-box">
-      <p class="section-label" style="text-align:center">Contact</p>
+    <div class="cta-inner">
+      <p class="label">Contact</p>
       <h2>Let's scope your project.</h2>
       <p>Share what you're working on and I'll respond within 24 hours with a clear next step.</p>
-      <div class="cta-contacts" style="margin-top:32px">
-        <a href="https://wa.me/923001234567" target="_blank" class="contact-chip">
-          <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.122 1.532 5.856L.057 23.617a.75.75 0 00.908.98l5.963-1.562A11.943 11.943 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.886 0-3.655-.52-5.168-1.424l-.37-.22-3.539.927.943-3.443-.24-.381A9.96 9.96 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
-          WhatsApp
+      <div class="cta-links">
+        <a href="mailto:info@devriston.com.pk" class="cta-link">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg>
+          info@devriston.com.pk
         </a>
-        <a href="mailto:kamran@devriston.com.pk" class="contact-chip">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="16" height="16"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg>
-          Email
-        </a>
-        <a href="https://www.linkedin.com/in/kamrankabeer/" target="_blank" class="contact-chip">
-          <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        <a href="https://www.linkedin.com/in/kamrankabeer/" target="_blank" class="cta-link">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
           LinkedIn
         </a>
       </div>
@@ -306,31 +233,35 @@
   </div>
 </section>
 
-<!-- ══════════ FOOTER ══════════ -->
+<!-- FOOTER -->
 <footer>
   <div class="container">
-    <div class="footer-inner">
+    <div class="footer-grid">
       <div class="footer-brand">
-        <div class="nav-logo" style="margin-bottom:10px">
-          <div class="logo-icon">DR</div>
-          Devri<span>ston</span>
-        </div>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 48" fill="none" height="32">
+          <defs><linearGradient id="fls" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#2563eb"/><stop offset="100%" stop-color="#1d4ed8"/></linearGradient></defs>
+          <rect x="0" y="2" width="44" height="44" rx="10" fill="#1e293b"/>
+          <rect x="9" y="10" width="5" height="26" rx="2.5" transform="rotate(-18 11.5 23)" fill="url(#fls)"/>
+          <rect x="30" y="10" width="5" height="26" rx="2.5" transform="rotate(18 32.5 23)" fill="url(#fls)"/>
+          <circle cx="22" cy="36" r="2.5" fill="#22c55e"/>
+          <text x="56" y="32" font-family="'Plus Jakarta Sans','Poppins',sans-serif" font-weight="800" font-size="21" fill="#f8fafc" letter-spacing="-0.5">Devri<tspan fill="#2563eb">ston</tspan></text>
+        </svg>
         <p>DevOps · Linux · Cloud infrastructure consulting and training. Lahore, Pakistan.</p>
       </div>
-      <div class="footer-links">
+      <div class="footer-col">
         <h4>Pages</h4>
         <ul>
           <li><a href="index.html">Home</a></li>
           <li><a href="solutions.html">Solutions</a></li>
-          <li><a href="training.html">Training</a></li>
+          <li><a href="training.html">Mini Labs</a></li>
         </ul>
       </div>
-      <div class="footer-links">
+      <div class="footer-col">
         <h4>Connect</h4>
         <ul>
+          <li><a href="mailto:info@devriston.com.pk">info@devriston.com.pk</a></li>
           <li><a href="https://github.com/muhammadkamrankabeer-oss" target="_blank">GitHub</a></li>
           <li><a href="https://www.linkedin.com/in/kamrankabeer/" target="_blank">LinkedIn</a></li>
-          <li><a href="https://devriston.com.pk">devriston.com.pk</a></li>
         </ul>
       </div>
     </div>
@@ -346,13 +277,10 @@
 
 <script>
   const nav = document.getElementById('nav');
-  window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 40); });
-  function toggleMenu() {
-    const m = document.getElementById('mobileMenu');
-    m.style.display = m.style.display === 'none' ? 'flex' : 'none';
-  }
-  // Mark nav scrolled on load for inner pages
-  nav.classList.add('scrolled');
+  window.addEventListener('scroll', () => nav.classList.toggle('elevated', window.scrollY > 20), { passive: true });
+  nav.classList.add('elevated');
+  const drawer = document.getElementById('drawer');
+  function toggleDrawer() { drawer.classList.toggle('open'); }
 </script>
 </body>
 </html>
