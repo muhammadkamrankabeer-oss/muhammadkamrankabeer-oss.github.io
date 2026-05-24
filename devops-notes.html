@@ -7,6 +7,15 @@
   <meta property="og:title" content="DevOps Notes | Devriston"/>
   <meta property="og:description" content="30 practical DevOps concepts — production-oriented, beginner-friendly, engineer-written."/>
   <title>DevOps Notes | Devriston — Practical DevOps Knowledge Base</title>
+
+  <!-- SEO + OG for devops-notes page -->
+  <meta name="description" content="30 practical DevOps notes by Muhammad Kamran Kabeer — Linux, Docker, AWS, Terraform, CI/CD, Monitoring. Each card shareable via direct link."/>
+  <meta property="og:title" content="DevOps Notes | Devriston — 30 Practical DevOps Concepts"/>
+  <meta property="og:description" content="30 practical DevOps notes covering Linux, Docker, AWS, Terraform, CI/CD and Monitoring. Share individual cards directly to LinkedIn."/>
+  <meta property="og:url" content="https://www.devriston.com.pk/devops-notes.html"/>
+  <meta property="og:type" content="website"/>
+  <meta name="google-site-verification" content="wAaiTAPySebPceM4Bux5hwxIT3hy6BDj_NlLq4aDj5Y" />
+  <meta name="robots" content="index, follow"/>
   <link rel="icon" type="image/svg+xml" href="icon.svg"/>
   <link rel="stylesheet" href="style.css"/>
 
@@ -323,6 +332,47 @@
     }
     .note-expanded strong { color: var(--text-primary); font-weight: 600; }
 
+
+    /* ── Share button on cards ── */
+    .note-share-bar {
+      display: flex; align-items: center; gap: 8px;
+      padding: 10px 22px;
+      border-top: 1px solid var(--border);
+      background: var(--bg-subtle);
+    }
+    .share-label {
+      font-family: var(--f-mono); font-size: .66rem;
+      letter-spacing: .08em; color: var(--text-muted); flex: 1;
+    }
+    .share-btn {
+      display: inline-flex; align-items: center; gap: 5px;
+      font-family: var(--f-display); font-size: .72rem; font-weight: 600;
+      padding: 5px 12px; border-radius: var(--r-full);
+      border: 1.5px solid var(--border);
+      background: var(--bg-white); color: var(--text-secondary);
+      cursor: pointer; transition: all .15s ease; text-decoration: none;
+    }
+    .share-btn:hover { border-color: var(--blue); color: var(--blue); }
+    .share-btn.copied { border-color: #22c55e; color: #22c55e; }
+
+    /* WhatsApp float on notes page */
+    .wa-float {
+      position: fixed; bottom: 28px; right: 28px; z-index: 9999;
+      display: flex; align-items: center; gap: 10px;
+      background: #25d366; color: #fff;
+      padding: 13px 20px 13px 16px; border-radius: 50px;
+      box-shadow: 0 6px 28px rgba(37,211,102,.45);
+      font-family: var(--f-display); font-size: .88rem; font-weight: 700;
+      text-decoration: none; transition: all .2s ease;
+    }
+    .wa-float:hover { background: #20ba5a; color: #fff; transform: translateY(-3px); }
+    .wa-float::before {
+      content: ''; position: absolute; inset: -4px; border-radius: 50px;
+      background: #25d366; opacity: 0;
+      animation: wa-pulse 2.5s ease-out infinite;
+    }
+    @keyframes wa-pulse { 0%{transform:scale(1);opacity:.5} 100%{transform:scale(1.18);opacity:0} }
+
     /* ── No results state ── */
     #noResults {
       display: none; text-align: center;
@@ -356,6 +406,18 @@
   </style>
 </head>
 <body>
+
+<!-- WhatsApp Float -->
+<a class="wa-float"
+   href="https://wa.me/923231450045?text=Hi%20Kamran%2C%20I%20visited%20Devriston%20and%20I%27d%20like%20to%20discuss%20a%20project."
+   target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+    <path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.122 1.532 5.856L.057 23.617a.75.75 0 00.908.98l5.963-1.562A11.943 11.943 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.886 0-3.655-.52-5.168-1.424l-.37-.22-3.539.927.943-3.443-.24-.381A9.96 9.96 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/>
+  </svg>
+  <span class="wa-text">Chat on WhatsApp</span>
+</a>
+
 
 <!-- ═══════════════════════════════════
      NAV
@@ -395,6 +457,7 @@
   <a href="solutions.html" onclick="toggleDrawer()">Solutions</a>
   <a href="training.html" onclick="toggleDrawer()">Mini Labs</a>
   <a href="devops-notes.html" onclick="toggleDrawer()">DevOps Notes</a>
+  <a href="blog.html" onclick="toggleDrawer()">Blog</a>
   <a href="mailto:info@devriston.com.pk" onclick="toggleDrawer()">Contact</a>
 </div>
 
@@ -473,7 +536,7 @@
       <div class="notes-grid">
 
         <!-- Note 01 -->
-        <article class="note-card" data-cat="linux" data-title="Linux vs Windows Server" data-tags="linux server os">
+        <article class="note-card" data-cat="linux" data-title="Linux vs Windows Server" data-tags="linux server os" id="note-linux-vs-windows-server">
           <div class="note-card-accent"></div>
           <div class="note-card-body">
             <div class="note-meta">
@@ -509,7 +572,7 @@
         </article>
 
         <!-- Note 24 -->
-        <article class="note-card" data-cat="linux" data-title="Why Linux Matters in DevOps" data-tags="linux devops foundation">
+        <article class="note-card" data-cat="linux" data-title="Why Linux Matters in DevOps" data-tags="linux devops foundation" id="note-why-linux-matters-in-devops">
           <div class="note-card-accent"></div>
           <div class="note-card-body">
             <div class="note-meta">
@@ -548,7 +611,7 @@
         </article>
 
         <!-- Note 25 -->
-        <article class="note-card" data-cat="linux" data-title="Automating DevOps Workstations" data-tags="linux automation ansible bash">
+        <article class="note-card" data-cat="linux" data-title="Automating DevOps Workstations" data-tags="linux automation ansible bash" id="note-automating-devops-workstations">
           <div class="note-card-accent"></div>
           <div class="note-card-body">
             <div class="note-meta">
@@ -588,7 +651,7 @@ TOOLS=(<span class="st">"git"</span> <span class="st">"curl"</span> <span class=
         </article>
 
         <!-- Note 26 -->
-        <article class="note-card" data-cat="linux" data-title="Building Labs on Old Hardware" data-tags="linux homelab hardware">
+        <article class="note-card" data-cat="linux" data-title="Building Labs on Old Hardware" data-tags="linux homelab hardware" id="note-building-labs-on-old-hardware">
           <div class="note-card-accent"></div>
           <div class="note-card-body">
             <div class="note-meta">
@@ -624,7 +687,7 @@ TOOLS=(<span class="st">"git"</span> <span class="st">"curl"</span> <span class=
         </article>
 
         <!-- Note 08 (Homelab Architecture) -->
-        <article class="note-card" data-cat="linux" data-title="DevOps Homelab Architecture" data-tags="linux homelab architecture lab">
+        <article class="note-card" data-cat="linux" data-title="DevOps Homelab Architecture" data-tags="linux homelab architecture lab" id="note-devops-homelab-architecture">
           <div class="note-card-accent"></div>
           <div class="note-card-body">
             <div class="note-meta">
@@ -677,7 +740,7 @@ TOOLS=(<span class="st">"git"</span> <span class="st">"curl"</span> <span class=
       <div class="notes-grid">
 
         <!-- Note 02 -->
-        <article class="note-card" data-cat="docker" data-title="What is Docker?" data-tags="docker containers basics">
+        <article class="note-card" data-cat="docker" data-title="What is Docker?" data-tags="docker containers basics" id="note-what-is-docker">
           <div class="note-card-accent"></div>
           <div class="note-card-body">
             <div class="note-meta">
@@ -715,7 +778,7 @@ TOOLS=(<span class="st">"git"</span> <span class="st">"curl"</span> <span class=
         </article>
 
         <!-- Note 03 -->
-        <article class="note-card" data-cat="docker" data-title="Docker vs Virtual Machines" data-tags="docker vm containers comparison">
+        <article class="note-card" data-cat="docker" data-title="Docker vs Virtual Machines" data-tags="docker vm containers comparison" id="note-docker-vs-virtual-machines">
           <div class="note-card-accent"></div>
           <div class="note-card-body">
             <div class="note-meta">
@@ -752,7 +815,7 @@ TOOLS=(<span class="st">"git"</span> <span class="st">"curl"</span> <span class=
         </article>
 
         <!-- Note 08 Docker Volumes -->
-        <article class="note-card" data-cat="docker" data-title="Docker Volumes" data-tags="docker volumes storage persistence">
+        <article class="note-card" data-cat="docker" data-title="Docker Volumes" data-tags="docker volumes storage persistence" id="note-docker-volumes">
           <div class="note-card-accent"></div>
           <div class="note-card-body">
             <div class="note-meta">
@@ -790,7 +853,7 @@ TOOLS=(<span class="st">"git"</span> <span class="st">"curl"</span> <span class=
         </article>
 
         <!-- Note 09 Docker Networking -->
-        <article class="note-card" data-cat="docker" data-title="Docker Networking" data-tags="docker network bridge overlay">
+        <article class="note-card" data-cat="docker" data-title="Docker Networking" data-tags="docker network bridge overlay" id="note-docker-networking">
           <div class="note-card-accent"></div>
           <div class="note-card-body">
             <div class="note-meta">
@@ -827,7 +890,7 @@ TOOLS=(<span class="st">"git"</span> <span class="st">"curl"</span> <span class=
         </article>
 
         <!-- Note 23 Docker Mistakes -->
-        <article class="note-card" data-cat="docker" data-title="Docker Mistakes Beginners Make" data-tags="docker mistakes best-practices">
+        <article class="note-card" data-cat="docker" data-title="Docker Mistakes Beginners Make" data-tags="docker mistakes best-practices" id="note-docker-mistakes-beginners-make">
           <div class="note-card-accent"></div>
           <div class="note-card-body">
             <div class="note-meta">
@@ -880,7 +943,7 @@ TOOLS=(<span class="st">"git"</span> <span class="st">"curl"</span> <span class=
       <div class="notes-grid">
 
         <!-- Note 16 EC2 -->
-        <article class="note-card" data-cat="cloud" data-title="What is AWS EC2?" data-tags="aws cloud ec2 compute">
+        <article class="note-card" data-cat="cloud" data-title="What is AWS EC2?" data-tags="aws cloud ec2 compute" id="note-what-is-aws-ec2">
           <div class="note-card-accent"></div>
           <div class="note-card-body">
             <div class="note-meta">
@@ -917,7 +980,7 @@ TOOLS=(<span class="st">"git"</span> <span class="st">"curl"</span> <span class=
         </article>
 
         <!-- Note 17 VPC -->
-        <article class="note-card" data-cat="cloud" data-title="What is a VPC?" data-tags="aws cloud vpc networking">
+        <article class="note-card" data-cat="cloud" data-title="What is a VPC?" data-tags="aws cloud vpc networking" id="note-what-is-a-vpc">
           <div class="note-card-accent"></div>
           <div class="note-card-body">
             <div class="note-meta">
@@ -954,7 +1017,7 @@ TOOLS=(<span class="st">"git"</span> <span class="st">"curl"</span> <span class=
         </article>
 
         <!-- Note 18 Load Balancer -->
-        <article class="note-card" data-cat="cloud" data-title="Load Balancer Explained" data-tags="aws cloud load-balancer alb networking">
+        <article class="note-card" data-cat="cloud" data-title="Load Balancer Explained" data-tags="aws cloud load-balancer alb networking" id="note-load-balancer-explained">
           <div class="note-card-accent"></div>
           <div class="note-card-body">
             <div class="note-meta">
@@ -991,7 +1054,7 @@ Client
         </article>
 
         <!-- Note 19 Reverse Proxy -->
-        <article class="note-card" data-cat="cloud" data-title="Reverse Proxy vs Load Balancer" data-tags="cloud nginx proxy networking">
+        <article class="note-card" data-cat="cloud" data-title="Reverse Proxy vs Load Balancer" data-tags="cloud nginx proxy networking" id="note-reverse-proxy-vs-load-balancer">
           <div class="note-card-accent"></div>
           <div class="note-card-body">
             <div class="note-meta">
@@ -1028,7 +1091,7 @@ Client
         </article>
 
         <!-- Note 20 High Availability -->
-        <article class="note-card" data-cat="cloud" data-title="High Availability Basics" data-tags="cloud aws ha redundancy">
+        <article class="note-card" data-cat="cloud" data-title="High Availability Basics" data-tags="cloud aws ha redundancy" id="note-high-availability-basics">
           <div class="note-card-accent"></div>
           <div class="note-card-body">
             <div class="note-meta">
@@ -1077,7 +1140,7 @@ Client
       <div class="notes-grid">
 
         <!-- Note 05 IaC -->
-        <article class="note-card" data-cat="terraform" data-title="Infrastructure as Code" data-tags="terraform iac devops automation">
+        <article class="note-card" data-cat="terraform" data-title="Infrastructure as Code" data-tags="terraform iac devops automation" id="note-infrastructure-as-code">
           <div class="note-card-accent"></div>
           <div class="note-card-body">
             <div class="note-meta">
@@ -1114,7 +1177,7 @@ Client
         </article>
 
         <!-- Note 04 Ansible -->
-        <article class="note-card" data-cat="terraform" data-title="What is Ansible?" data-tags="ansible automation iac configuration">
+        <article class="note-card" data-cat="terraform" data-title="What is Ansible?" data-tags="ansible automation iac configuration" id="note-what-is-ansible">
           <div class="note-card-accent"></div>
           <div class="note-card-body">
             <div class="note-meta">
@@ -1155,7 +1218,7 @@ Client
         </article>
 
         <!-- Note 11 Terraform State -->
-        <article class="note-card" data-cat="terraform" data-title="Terraform State" data-tags="terraform state remote backend">
+        <article class="note-card" data-cat="terraform" data-title="Terraform State" data-tags="terraform state remote backend" id="note-terraform-state">
           <div class="note-card-accent"></div>
           <div class="note-card-body">
             <div class="note-meta">
@@ -1192,7 +1255,7 @@ Client
         </article>
 
         <!-- Note 10 Why Terraform -->
-        <article class="note-card" data-cat="terraform" data-title="Why Terraform Matters" data-tags="terraform iac cloud multi-provider">
+        <article class="note-card" data-cat="terraform" data-title="Why Terraform Matters" data-tags="terraform iac cloud multi-provider" id="note-why-terraform-matters">
           <div class="note-card-accent"></div>
           <div class="note-card-body">
             <div class="note-meta">
@@ -1239,7 +1302,7 @@ Client
       <div class="notes-grid">
 
         <!-- Note 06 CI/CD -->
-        <article class="note-card" data-cat="cicd" data-title="CI/CD Pipeline Basics" data-tags="cicd pipeline github-actions automation">
+        <article class="note-card" data-cat="cicd" data-title="CI/CD Pipeline Basics" data-tags="cicd pipeline github-actions automation" id="note-cicd-pipeline-basics">
           <div class="note-card-accent"></div>
           <div class="note-card-body">
             <div class="note-meta">
@@ -1284,7 +1347,7 @@ Client
         </article>
 
         <!-- Note 12 Git Branching -->
-        <article class="note-card" data-cat="cicd" data-title="Git Branching Strategy" data-tags="git cicd branching gitflow">
+        <article class="note-card" data-cat="cicd" data-title="Git Branching Strategy" data-tags="git cicd branching gitflow" id="note-git-branching-strategy">
           <div class="note-card-accent"></div>
           <div class="note-card-body">
             <div class="note-meta">
@@ -1319,7 +1382,7 @@ Client
         </article>
 
         <!-- Note 13 GitHub Actions vs Jenkins -->
-        <article class="note-card" data-cat="cicd" data-title="GitHub Actions vs Jenkins" data-tags="cicd github-actions jenkins comparison">
+        <article class="note-card" data-cat="cicd" data-title="GitHub Actions vs Jenkins" data-tags="cicd github-actions jenkins comparison" id="note-github-actions-vs-jenkins">
           <div class="note-card-accent"></div>
           <div class="note-card-body">
             <div class="note-meta">
@@ -1353,7 +1416,7 @@ Scaling             <span class="gr">Automatic</span>       Manual</pre>
         </article>
 
         <!-- Note 21 Self-Healing -->
-        <article class="note-card" data-cat="cicd" data-title="Self-Healing Infrastructure" data-tags="cicd docker automation self-healing">
+        <article class="note-card" data-cat="cicd" data-title="Self-Healing Infrastructure" data-tags="cicd docker automation self-healing" id="note-selfhealing-infrastructure">
           <div class="note-card-accent"></div>
           <div class="note-card-body">
             <div class="note-meta">
@@ -1403,7 +1466,7 @@ Scaling             <span class="gr">Automatic</span>       Manual</pre>
       <div class="notes-grid">
 
         <!-- Note 14 Monitoring Stack -->
-        <article class="note-card" data-cat="monitoring" data-title="Monitoring Stack Architecture" data-tags="monitoring prometheus grafana alertmanager">
+        <article class="note-card" data-cat="monitoring" data-title="Monitoring Stack Architecture" data-tags="monitoring prometheus grafana alertmanager" id="note-monitoring-stack-architecture">
           <div class="note-card-accent"></div>
           <div class="note-card-body">
             <div class="note-meta">
@@ -1439,7 +1502,7 @@ Scaling             <span class="gr">Automatic</span>       Manual</pre>
         </article>
 
         <!-- Note 22 Prometheus + Grafana -->
-        <article class="note-card" data-cat="monitoring" data-title="Prometheus + Grafana Workflow" data-tags="monitoring prometheus grafana promql">
+        <article class="note-card" data-cat="monitoring" data-title="Prometheus + Grafana Workflow" data-tags="monitoring prometheus grafana promql" id="note-prometheus-grafana-workflow">
           <div class="note-card-accent"></div>
           <div class="note-card-body">
             <div class="note-meta">
@@ -1479,7 +1542,7 @@ Scaling             <span class="gr">Automatic</span>       Manual</pre>
         </article>
 
         <!-- Note 30 Lessons From Labs -->
-        <article class="note-card" data-cat="monitoring" data-title="Lessons From Production-Style Labs" data-tags="monitoring devops labs lessons production">
+        <article class="note-card" data-cat="monitoring" data-title="Lessons From Production-Style Labs" data-tags="monitoring devops labs lessons production" id="note-lessons-from-productionstyle-labs">
           <div class="note-card-accent"></div>
           <div class="note-card-body">
             <div class="note-meta">
@@ -1528,7 +1591,7 @@ Scaling             <span class="gr">Automatic</span>       Manual</pre>
       <div class="notes-grid">
 
         <!-- Note 27 Most Important Skills -->
-        <article class="note-card" data-cat="devops" data-title="Most Important DevOps Skills" data-tags="devops career skills roadmap">
+        <article class="note-card" data-cat="devops" data-title="Most Important DevOps Skills" data-tags="devops career skills roadmap" id="note-most-important-devops-skills">
           <div class="note-card-accent"></div>
           <div class="note-card-body">
             <div class="note-meta">
@@ -1569,7 +1632,7 @@ Scaling             <span class="gr">Automatic</span>       Manual</pre>
         </article>
 
         <!-- Note 28 How to Learn -->
-        <article class="note-card" data-cat="devops" data-title="How to Learn DevOps Effectively" data-tags="devops learning career education">
+        <article class="note-card" data-cat="devops" data-title="How to Learn DevOps Effectively" data-tags="devops learning career education" id="note-how-to-learn-devops-effectively">
           <div class="note-card-accent"></div>
           <div class="note-card-body">
             <div class="note-meta">
@@ -1604,7 +1667,7 @@ Scaling             <span class="gr">Automatic</span>       Manual</pre>
         </article>
 
         <!-- Note 29 Roadmap 2026 -->
-        <article class="note-card" data-cat="devops" data-title="DevOps Roadmap 2026" data-tags="devops roadmap 2026 career path">
+        <article class="note-card" data-cat="devops" data-title="DevOps Roadmap 2026" data-tags="devops roadmap 2026 career path" id="note-devops-roadmap-2026">
           <div class="note-card-accent"></div>
           <div class="note-card-body">
             <div class="note-meta">
@@ -1646,7 +1709,7 @@ Scaling             <span class="gr">Automatic</span>       Manual</pre>
         </article>
 
         <!-- Note 30 Infra Automation Workflow -->
-        <article class="note-card" data-cat="devops" data-title="Infrastructure Automation Workflow" data-tags="devops automation terraform ansible workflow">
+        <article class="note-card" data-cat="devops" data-title="Infrastructure Automation Workflow" data-tags="devops automation terraform ansible workflow" id="note-infrastructure-automation-workflow">
           <div class="note-card-accent"></div>
           <div class="note-card-body">
             <div class="note-meta">
@@ -1685,7 +1748,7 @@ Scaling             <span class="gr">Automatic</span>       Manual</pre>
         </article>
 
         <!-- Note remaining: DevOps career notes -->
-        <article class="note-card" data-cat="devops" data-title="DevOps Homelab Architecture" data-tags="devops homelab lab architecture">
+        <article class="note-card" data-cat="devops" data-title="DevOps Homelab Architecture" data-tags="devops homelab lab architecture" id="note-devops-homelab-architecture">
           <div class="note-card-accent"></div>
           <div class="note-card-body">
             <div class="note-meta">
@@ -1723,7 +1786,7 @@ Scaling             <span class="gr">Automatic</span>       Manual</pre>
         </article>
 
         <!-- Note: Ansible -->
-        <article class="note-card" data-cat="devops" data-title="Ansible Roles and Best Practices" data-tags="devops ansible roles best-practices">
+        <article class="note-card" data-cat="devops" data-title="Ansible Roles and Best Practices" data-tags="devops ansible roles best-practices" id="note-ansible-roles-and-best-practices">
           <div class="note-card-accent"></div>
           <div class="note-card-body">
             <div class="note-meta">
@@ -1757,7 +1820,7 @@ Scaling             <span class="gr">Automatic</span>       Manual</pre>
         </article>
 
         <!-- CI/CD Infrastructure Pipeline -->
-        <article class="note-card" data-cat="devops" data-title="Infrastructure Automation Workflow Full" data-tags="devops automation pipeline end-to-end">
+        <article class="note-card" data-cat="devops" data-title="Infrastructure Automation Workflow Full" data-tags="devops automation pipeline end-to-end" id="note-infrastructure-automation-workflow-full">
           <div class="note-card-accent"></div>
           <div class="note-card-body">
             <div class="note-meta">
@@ -1799,7 +1862,7 @@ Scaling             <span class="gr">Automatic</span>       Manual</pre>
           </div>
         </article>
 
-        <article class="note-card" data-cat="devops" data-title="Terraform Modules and Reuse" data-tags="devops terraform modules reuse">
+        <article class="note-card" data-cat="devops" data-title="Terraform Modules and Reuse" data-tags="devops terraform modules reuse" id="note-terraform-modules-and-reuse">
           <div class="note-card-accent"></div>
           <div class="note-card-body">
             <div class="note-meta">
@@ -1839,7 +1902,7 @@ Scaling             <span class="gr">Automatic</span>       Manual</pre>
           </div>
         </article>
 
-        <article class="note-card" data-cat="devops" data-title="Docker Compose Production Tips" data-tags="devops docker compose production">
+        <article class="note-card" data-cat="devops" data-title="Docker Compose Production Tips" data-tags="devops docker compose production" id="note-docker-compose-production-tips">
           <div class="note-card-accent"></div>
           <div class="note-card-body">
             <div class="note-meta">
@@ -1911,7 +1974,8 @@ Scaling             <span class="gr">Automatic</span>       Manual</pre>
           <li><a href="index.html">Home</a></li>
           <li><a href="solutions.html">Solutions</a></li>
           <li><a href="training.html">Mini Labs</a></li>
-          <li><a href="devops-notes.html">DevOps Notes</a></li>
+          <li><a href="devops-notes.html">DevOps Notes</a>
+      <a href="blog.html">Blog</a></li>
         </ul>
       </div>
       <div class="footer-col">
@@ -2023,6 +2087,53 @@ Scaling             <span class="gr">Automatic</span>       Manual</pre>
       if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
   });
+
+  /* ── Auto-inject share bars and anchor links ── */
+  document.querySelectorAll('.note-card[id]').forEach(card => {
+    const id    = card.id;
+    const title = card.dataset.title || '';
+    const url   = `${window.location.origin}${window.location.pathname}#${id}`;
+    const liUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`;
+
+    const bar = document.createElement('div');
+    bar.className = 'note-share-bar';
+    bar.innerHTML = `
+      <span class="share-label">🔗 devriston.com.pk/devops-notes.html#${id}</span>
+      <button class="share-btn" onclick="copyLink('${url}', this)" title="Copy direct link">📋 Copy Link</button>
+      <a class="share-btn" href="${liUrl}" target="_blank" rel="noopener" title="Share on LinkedIn">🔗 LinkedIn</a>
+    `;
+    card.appendChild(bar);
+  });
+
+  function copyLink(url, btn) {
+    navigator.clipboard.writeText(url).then(() => {
+      const orig = btn.innerHTML;
+      btn.innerHTML = '✅ Copied!';
+      btn.classList.add('copied');
+      setTimeout(() => { btn.innerHTML = orig; btn.classList.remove('copied'); }, 2000);
+    });
+  }
+
+  /* ── Auto-scroll and highlight if URL has anchor ── */
+  window.addEventListener('load', () => {
+    const hash = window.location.hash;
+    if (hash) {
+      const target = document.querySelector(hash);
+      if (target) {
+        setTimeout(() => {
+          target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          target.style.boxShadow = '0 0 0 3px #2563eb, 0 20px 60px rgba(37,99,235,.2)';
+          target.style.borderColor = '#2563eb';
+          setTimeout(() => {
+            target.style.boxShadow = '';
+            target.style.borderColor = '';
+            target.style.transition = 'box-shadow .6s ease, border-color .6s ease';
+          }, 2500);
+        }, 300);
+      }
+    }
+  });
+
 </script>
 </body>
 </html>

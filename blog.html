@@ -1,0 +1,1209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="google-site-verification" content="wAaiTAPySebPceM4Bux5hwxIT3hy6BDj_NlLq4aDj5Y"/>
+  <meta name="description" content="Devriston DevOps Blog — 30 practical articles covering Linux, Docker, AWS, Terraform, CI/CD and Monitoring by Muhammad Kamran Kabeer."/>
+  <meta name="author" content="Muhammad Kamran Kabeer"/>
+  <meta name="robots" content="index, follow"/>
+  <meta property="og:title" content="DevOps Blog | Devriston"/>
+  <meta property="og:description" content="30 practical DevOps articles — production-oriented, engineer-written by Muhammad Kamran Kabeer."/>
+  <meta property="og:url" content="https://www.devriston.com.pk/blog.html"/>
+  <meta property="og:type" content="website"/>
+  <link rel="canonical" href="https://www.devriston.com.pk/blog.html"/>
+  <title>DevOps Blog | Devriston — Practical DevOps Articles</title>
+  <link rel="icon" type="image/svg+xml" href="icon.svg"/>
+  <link rel="stylesheet" href="style.css"/>
+  <style>
+    /* ── Blog hero ── */
+    .blog-hero {
+      background: var(--navy);
+      padding: 130px 0 72px;
+      position: relative; overflow: hidden;
+      border-bottom: 1px solid rgba(255,255,255,.06);
+    }
+    .blog-hero::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(ellipse 55% 60% at 80% 30%, rgba(37,99,235,.18) 0%, transparent 60%),
+                  radial-gradient(ellipse 40% 50% at 10% 80%, rgba(34,197,94,.08) 0%, transparent 55%);
+    }
+    .blog-hero::after {
+      content: ''; position: absolute; inset: 0;
+      background-image: radial-gradient(circle, rgba(255,255,255,.06) 1px, transparent 1px);
+      background-size: 28px 28px;
+      mask-image: radial-gradient(ellipse 80% 80% at 60% 40%, black 0%, transparent 75%);
+    }
+    .blog-hero .container { position: relative; z-index: 1; }
+    .blog-hero h1 { color: #f8fafc; margin-bottom: 14px; }
+    .blog-hero h1 span { color: var(--blue); }
+    .blog-hero p { color: rgba(248,250,252,.6); max-width: 560px; font-size: 1.05rem; line-height: 1.8; margin-bottom: 32px; }
+
+    .blog-hero-stats {
+      display: flex; flex-wrap: wrap; gap: 32px;
+      padding-top: 32px; border-top: 1px solid rgba(255,255,255,.08);
+      margin-top: 32px;
+    }
+    .bhs { display: flex; flex-direction: column; gap: 2px; }
+    .bhs-val { font-family: var(--f-display); font-size: 1.7rem; font-weight: 800; color: #f8fafc; line-height: 1; }
+    .bhs-val span { color: var(--blue); }
+    .bhs-lbl { font-family: var(--f-mono); font-size: .68rem; letter-spacing: .08em; color: rgba(248,250,252,.35); }
+
+    /* ── Filter + Search bar ── */
+    .blog-controls {
+      background: var(--bg-white);
+      border-bottom: 1px solid var(--border);
+      padding: 18px 0;
+      position: sticky; top: 64px; z-index: 90;
+      box-shadow: var(--shadow-sm);
+    }
+    .blog-controls-inner { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+
+    .blog-search-wrap { position: relative; flex: 1; min-width: 220px; }
+    .blog-search-wrap svg { position: absolute; left: 13px; top: 50%; transform: translateY(-50%); width: 15px; height: 15px; color: var(--text-muted); pointer-events: none; }
+    #blogSearch {
+      width: 100%; padding: 10px 14px 10px 38px;
+      border: 1.5px solid var(--border); border-radius: var(--r);
+      font-family: var(--f-body); font-size: .87rem;
+      color: var(--text-primary); background: var(--bg); outline: none;
+      transition: border-color .2s, box-shadow .2s;
+    }
+    #blogSearch:focus { border-color: var(--blue); box-shadow: 0 0 0 3px var(--blue-glow); background: var(--bg-white); }
+    #blogSearch::placeholder { color: var(--text-muted); }
+
+    .cat-pills { display: flex; gap: 7px; flex-wrap: wrap; }
+    .cpill {
+      font-family: var(--f-display); font-size: .75rem; font-weight: 600;
+      padding: 6px 15px; border-radius: var(--r-full);
+      border: 1.5px solid var(--border); background: var(--bg);
+      color: var(--text-secondary); cursor: pointer;
+      transition: all .15s ease; user-select: none;
+    }
+    .cpill:hover { border-color: var(--blue); color: var(--blue); }
+    .cpill.active { background: var(--blue); color: #fff; border-color: var(--blue); }
+    .cpill[data-cat="linux"].active    { background:#7c3aed; border-color:#7c3aed; }
+    .cpill[data-cat="docker"].active   { background:#0891b2; border-color:#0891b2; }
+    .cpill[data-cat="cloud"].active    { background:#ea580c; border-color:#ea580c; }
+    .cpill[data-cat="terraform"].active{ background:#7c5af0; border-color:#7c5af0; }
+    .cpill[data-cat="cicd"].active     { background:#16a34a; border-color:#16a34a; }
+    .cpill[data-cat="monitoring"].active{ background:#d97706; border-color:#d97706; }
+    .cpill[data-cat="devops"].active   { background:var(--blue); border-color:var(--blue); }
+
+    #blogCount { font-family: var(--f-mono); font-size: .75rem; color: var(--text-muted); white-space: nowrap; margin-left: auto; }
+
+    /* ── Featured post (first/largest) ── */
+    .blog-featured {
+      padding: 56px 0 0;
+    }
+    .feat-card {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 0;
+      background: var(--bg-white);
+      border: 1.5px solid var(--border); border-radius: var(--r-xl);
+      overflow: hidden; box-shadow: var(--shadow-md);
+      margin-bottom: 48px;
+      transition: box-shadow .2s, transform .2s;
+      text-decoration: none;
+    }
+    .feat-card:hover { box-shadow: var(--shadow-xl); transform: translateY(-3px); }
+    .feat-visual {
+      background: linear-gradient(135deg, var(--navy) 0%, #1e3a6e 100%);
+      padding: 48px 40px;
+      display: flex; flex-direction: column; justify-content: center;
+      position: relative; overflow: hidden; min-height: 280px;
+    }
+    .feat-visual::before {
+      content: ''; position: absolute; top: -40px; right: -40px;
+      width: 160px; height: 160px; border-radius: 50%;
+      background: rgba(37,99,235,.15);
+    }
+    .feat-num { font-family: var(--f-mono); font-size: .68rem; letter-spacing: .12em; color: rgba(248,250,252,.3); margin-bottom: 16px; }
+    .feat-cat-badge {
+      display: inline-flex; font-family: var(--f-display); font-size: .7rem; font-weight: 700;
+      letter-spacing: .08em; text-transform: uppercase;
+      padding: 4px 12px; border-radius: var(--r-full); margin-bottom: 16px;
+    }
+    .feat-title-vis { font-family: var(--f-display); font-size: 1.6rem; font-weight: 800; color: #f8fafc; line-height: 1.2; }
+    .feat-body { padding: 40px; display: flex; flex-direction: column; justify-content: center; }
+    .feat-body .post-cat { margin-bottom: 10px; }
+    .feat-body h2 { font-size: 1.5rem; margin-bottom: 14px; }
+    .feat-body p { color: var(--text-secondary); line-height: 1.8; margin-bottom: 20px; font-size: .95rem; }
+    .feat-meta { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; margin-bottom: 20px; }
+    .feat-meta span { font-family: var(--f-mono); font-size: .72rem; color: var(--text-muted); display: flex; align-items: center; gap: 5px; }
+
+    /* ── Blog grid ── */
+    .blog-main { padding: 0 0 96px; }
+    .blog-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 22px;
+    }
+
+    /* ── Blog card ── */
+    .blog-card {
+      background: var(--bg-white);
+      border: 1.5px solid var(--border);
+      border-radius: var(--r-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      display: flex; flex-direction: column;
+      transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+      text-decoration: none;
+      position: relative;
+    }
+    .blog-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-lg); }
+    .blog-card[data-cat="linux"]:hover    { border-color: #7c3aed; }
+    .blog-card[data-cat="docker"]:hover   { border-color: #0891b2; }
+    .blog-card[data-cat="cloud"]:hover    { border-color: #ea580c; }
+    .blog-card[data-cat="terraform"]:hover{ border-color: #7c5af0; }
+    .blog-card[data-cat="cicd"]:hover     { border-color: #16a34a; }
+    .blog-card[data-cat="monitoring"]:hover{ border-color: #d97706; }
+    .blog-card[data-cat="devops"]:hover   { border-color: var(--blue); }
+
+    .blog-card-top {
+      height: 5px;
+      background: var(--border);
+    }
+    .blog-card[data-cat="linux"]     .blog-card-top { background: linear-gradient(90deg,#7c3aed,#a78bfa); }
+    .blog-card[data-cat="docker"]    .blog-card-top { background: linear-gradient(90deg,#0891b2,#22d3ee); }
+    .blog-card[data-cat="cloud"]     .blog-card-top { background: linear-gradient(90deg,#ea580c,#fb923c); }
+    .blog-card[data-cat="terraform"] .blog-card-top { background: linear-gradient(90deg,#7c5af0,#a78bfa); }
+    .blog-card[data-cat="cicd"]      .blog-card-top { background: linear-gradient(90deg,#16a34a,#4ade80); }
+    .blog-card[data-cat="monitoring"].blog-card-top { background: linear-gradient(90deg,#d97706,#fbbf24); }
+    .blog-card[data-cat="devops"]    .blog-card-top { background: linear-gradient(90deg,#2563eb,#60a5fa); }
+
+    .blog-card-body { padding: 22px; flex: 1; display: flex; flex-direction: column; }
+
+    .post-cat {
+      display: inline-flex; align-items: center; gap: 5px;
+      font-family: var(--f-display); font-size: .67rem; font-weight: 700;
+      letter-spacing: .09em; text-transform: uppercase;
+      padding: 4px 11px; border-radius: var(--r-full); margin-bottom: 12px;
+    }
+    .blog-card[data-cat="linux"]     .post-cat { background:#f5f3ff; color:#7c3aed; }
+    .blog-card[data-cat="docker"]    .post-cat { background:#ecfeff; color:#0891b2; }
+    .blog-card[data-cat="cloud"]     .post-cat { background:#fff7ed; color:#ea580c; }
+    .blog-card[data-cat="terraform"] .post-cat { background:#f5f3ff; color:#7c5af0; }
+    .blog-card[data-cat="cicd"]      .post-cat { background:#f0fdf4; color:#16a34a; }
+    .blog-card[data-cat="monitoring"].post-cat { background:#fffbeb; color:#d97706; }
+    .blog-card[data-cat="devops"]    .post-cat { background:var(--blue-light); color:var(--blue); }
+
+    .blog-card-title {
+      font-family: var(--f-display); font-size: 1.02rem; font-weight: 700;
+      color: var(--text-primary); letter-spacing: -.015em;
+      margin-bottom: 8px; line-height: 1.35;
+    }
+    .blog-card-excerpt {
+      font-size: .84rem; color: var(--text-secondary);
+      line-height: 1.7; flex: 1; margin-bottom: 16px;
+    }
+    .blog-card-code {
+      background: var(--navy); border-radius: var(--r-sm);
+      padding: 12px 14px; margin-bottom: 14px;
+      font-family: var(--f-mono); font-size: .72rem;
+      color: #e2e8f0; line-height: 1.7; overflow-x: auto;
+      white-space: pre;
+    }
+    .blog-card-code .kw  { color:#93c5fd; }
+    .blog-card-code .cm  { color:#6b7280; }
+    .blog-card-code .st  { color:#86efac; }
+    .blog-card-code .fn  { color:#fcd34d; }
+    .blog-card-code .gr  { color:#4ade80; }
+    .blog-card-code .nm  { color:#f9a8d4; }
+
+    .blog-card-footer {
+      display: flex; align-items: center; justify-content: space-between;
+      padding-top: 14px; border-top: 1px solid var(--border);
+      margin-top: auto;
+    }
+    .blog-card-tags { display: flex; gap: 5px; flex-wrap: wrap; }
+    .btag {
+      font-family: var(--f-mono); font-size: .63rem; color: var(--text-muted);
+      background: var(--bg-subtle); border: 1px solid var(--border);
+      padding: 2px 7px; border-radius: 4px;
+    }
+    .blog-card-read {
+      font-family: var(--f-display); font-size: .78rem; font-weight: 700;
+      color: var(--blue); white-space: nowrap;
+      display: flex; align-items: center; gap: 4px;
+      transition: gap .15s ease;
+    }
+    .blog-card:hover .blog-card-read { gap: 8px; }
+
+    .blog-read-time {
+      font-family: var(--f-mono); font-size: .68rem; color: var(--text-muted);
+      margin-top: 6px;
+    }
+
+    /* No results */
+    #blogNoResults {
+      display: none; text-align: center; padding: 80px 24px;
+    }
+    #blogNoResults h3 { margin-bottom: 8px; }
+    #blogNoResults p  { color: var(--text-muted); }
+
+    /* Section labels */
+    .blog-section-label {
+      display: flex; align-items: center; gap: 12px;
+      margin: 48px 0 22px; padding-bottom: 14px;
+      border-bottom: 2px solid var(--border);
+    }
+    .bsl-icon { font-size: 1.3rem; }
+    .bsl-title { font-family: var(--f-display); font-size: 1.1rem; font-weight: 800; color: var(--text-primary); }
+    .bsl-count { font-family: var(--f-mono); font-size: .72rem; color: var(--text-muted); background: var(--bg-subtle); border: 1px solid var(--border); padding: 3px 10px; border-radius: var(--r-full); margin-left: auto; }
+
+    /* WhatsApp float */
+    .wa-float {
+      position: fixed; bottom: 28px; right: 28px; z-index: 9999;
+      display: flex; align-items: center; gap: 10px;
+      background: #25d366; color: #fff;
+      padding: 13px 20px 13px 16px; border-radius: 50px;
+      box-shadow: 0 6px 28px rgba(37,211,102,.45);
+      font-family: var(--f-display); font-size: .88rem; font-weight: 700;
+      text-decoration: none; transition: all .2s ease;
+    }
+    .wa-float:hover { background: #20ba5a; color: #fff; transform: translateY(-3px); }
+    .wa-float::before {
+      content: ''; position: absolute; inset: -4px; border-radius: 50px;
+      background: #25d366; opacity: 0;
+      animation: wap 2.5s ease-out infinite;
+    }
+    @keyframes wap { 0%{transform:scale(1);opacity:.5}100%{transform:scale(1.18);opacity:0} }
+
+    /* CTA banner */
+    .blog-cta {
+      background: var(--navy);
+      border-radius: var(--r-xl); padding: 52px 56px;
+      text-align: center; margin-top: 64px;
+      position: relative; overflow: hidden;
+    }
+    .blog-cta::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(ellipse 60% 70% at 50% 110%, rgba(37,99,235,.4) 0%, transparent 55%);
+    }
+    .blog-cta > * { position: relative; z-index: 1; }
+    .blog-cta h2 { color: #f8fafc; margin-bottom: 12px; }
+    .blog-cta p  { color: rgba(248,250,252,.6); max-width: 480px; margin: 0 auto 28px; }
+
+    @media(max-width:768px) {
+      .feat-card { grid-template-columns: 1fr; }
+      .feat-visual { min-height: 180px; padding: 28px; }
+      .feat-body { padding: 24px; }
+      .blog-cta { padding: 32px 22px; }
+    }
+    @media(max-width:600px) {
+      .blog-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- WhatsApp Float -->
+<a class="wa-float" href="https://wa.me/923231450045?text=Hi%20Kamran%2C%20I%20visited%20your%20blog%20on%20Devriston%20and%20I%27d%20like%20to%20discuss%20a%20project." target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.122 1.532 5.856L.057 23.617a.75.75 0 00.908.98l5.963-1.562A11.943 11.943 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.886 0-3.655-.52-5.168-1.424l-.37-.22-3.539.927.943-3.443-.24-.381A9.96 9.96 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+  <span>Chat on WhatsApp</span>
+</a>
+
+<!-- NAV -->
+<nav id="nav" class="elevated">
+  <div class="container nav-inner">
+    <a href="index.html" class="nav-logo" aria-label="Devriston home">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 48" fill="none" aria-hidden="true">
+        <defs><linearGradient id="nl" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#2563eb"/><stop offset="100%" stop-color="#1d4ed8"/></linearGradient></defs>
+        <rect x="0" y="2" width="44" height="44" rx="10" fill="#1e293b"/>
+        <rect x="9" y="10" width="5" height="26" rx="2.5" transform="rotate(-18 11.5 23)" fill="url(#nl)"/>
+        <rect x="30" y="10" width="5" height="26" rx="2.5" transform="rotate(18 32.5 23)" fill="url(#nl)"/>
+        <circle cx="22" cy="36" r="2.5" fill="#22c55e"/>
+        <text x="56" y="32" font-family="'Plus Jakarta Sans','Poppins',sans-serif" font-weight="800" font-size="21" fill="#f8fafc" letter-spacing="-0.5">Devri<tspan fill="#2563eb">ston</tspan></text>
+      </svg>
+    </a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="solutions.html">Solutions</a>
+      <a href="training.html">Mini Labs</a>
+      <a href="devops-notes.html">DevOps Notes</a>
+      <a href="blog.html" class="active">Blog</a>
+      <a href="index.html#contact" class="nav-cta">Get in Touch</a>
+    </div>
+    <div class="nav-ham" id="ham" onclick="toggleDrawer()"><span></span><span></span><span></span></div>
+  </div>
+</nav>
+<div class="nav-drawer" id="drawer">
+  <a href="index.html" onclick="toggleDrawer()">Home</a>
+  <a href="solutions.html" onclick="toggleDrawer()">Solutions</a>
+  <a href="training.html" onclick="toggleDrawer()">Mini Labs</a>
+  <a href="devops-notes.html" onclick="toggleDrawer()">DevOps Notes</a>
+  <a href="blog.html" onclick="toggleDrawer()">Blog</a>
+  <a href="index.html#contact" onclick="toggleDrawer()">Contact</a>
+</div>
+
+<!-- HERO -->
+<section class="blog-hero">
+  <div class="container">
+    <p class="label" style="color:rgba(96,165,250,1)">Knowledge Hub</p>
+    <h1>DevOps <span>Blog</span></h1>
+    <p>30 practical articles covering Linux, Docker, AWS, Terraform, CI/CD and Monitoring — written from real production experience, not textbooks.</p>
+    <div style="display:flex;gap:12px;flex-wrap:wrap">
+      <a href="#blog-grid" class="btn btn-blue">Browse Articles</a>
+      <a href="devops-notes.html" class="btn btn-outline" style="border-color:rgba(255,255,255,.18);color:rgba(248,250,252,.8)">Quick Notes →</a>
+    </div>
+    <div class="blog-hero-stats">
+      <div class="bhs"><span class="bhs-val">30</span><span class="bhs-lbl">Articles</span></div>
+      <div class="bhs"><span class="bhs-val">7</span><span class="bhs-lbl">Categories</span></div>
+      <div class="bhs"><span class="bhs-val">100<span>%</span></span><span class="bhs-lbl">Production-Based</span></div>
+      <div class="bhs"><span class="bhs-val">Free</span><span class="bhs-lbl">Always</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTROLS -->
+<div class="blog-controls" id="blog-controls">
+  <div class="container">
+    <div class="blog-controls-inner">
+      <div class="blog-search-wrap">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        <input type="text" id="blogSearch" placeholder="Search articles — Docker, Terraform, Linux…" autocomplete="off"/>
+      </div>
+      <div class="cat-pills">
+        <button class="cpill active" data-cat="all">All</button>
+        <button class="cpill" data-cat="linux">Linux</button>
+        <button class="cpill" data-cat="docker">Docker</button>
+        <button class="cpill" data-cat="cloud">Cloud</button>
+        <button class="cpill" data-cat="terraform">Terraform</button>
+        <button class="cpill" data-cat="cicd">CI/CD</button>
+        <button class="cpill" data-cat="monitoring">Monitoring</button>
+        <button class="cpill" data-cat="devops">DevOps</button>
+      </div>
+      <span id="blogCount">30 articles</span>
+    </div>
+  </div>
+</div>
+
+<!-- MAIN BLOG CONTENT -->
+<main id="blog-grid" style="background:var(--bg);padding-bottom:80px">
+  <div class="container">
+
+    <div id="blogNoResults"><h3>No articles found</h3><p>Try a different search term or clear the category filter.</p></div>
+
+    <!-- ══ LINUX ══ -->
+    <div class="blog-section-label" data-section="linux"><span class="bsl-icon">🐧</span><span class="bsl-title">Linux</span><span class="bsl-count">5 articles</span></div>
+    <div class="blog-grid" id="grid-linux">
+
+      <a class="blog-card" data-cat="linux" data-title="Linux vs Windows Server" data-tags="linux server os windows" href="devops-notes.html#note-linux-vs-windows-server">
+        <div class="blog-card-top"></div>
+        <div class="blog-card-body">
+          <span class="post-cat">🐧 Linux</span>
+          <h3 class="blog-card-title">Linux vs Windows Server — Why DevOps Chose Linux</h3>
+          <p class="blog-card-excerpt">Linux dominates production infrastructure because it's open, auditable, lightweight, and fully scriptable. Every major cloud VM, Docker container, and CI runner runs Linux. Here's why it matters for your career.</p>
+          <div class="blog-card-code"><span class="cm"># Check OS and kernel version</span>
+<span class="fn">uname</span> -a && <span class="fn">cat</span> /etc/os-release
+<span class="gr">✔ Linux — the foundation of all DevOps</span></div>
+          <div class="blog-card-footer">
+            <div class="blog-card-tags"><span class="btag">linux</span><span class="btag">server</span><span class="btag">windows</span></div>
+            <span class="blog-card-read">Read <span>→</span></span>
+          </div>
+          <div class="blog-read-time" style="padding:0 22px 16px;font-family:var(--f-mono);font-size:.68rem;color:var(--text-muted)">⏱ 5 min read</div>
+        </div>
+      </a>
+
+      <a class="blog-card" data-cat="linux" data-title="Why Linux Matters in DevOps" data-tags="linux devops foundation" href="devops-notes.html#note-why-linux-matters-in-devops">
+        <div class="blog-card-top"></div>
+        <div class="blog-card-body">
+          <span class="post-cat">🐧 Linux</span>
+          <h3 class="blog-card-title">Why Linux Matters in DevOps — The Non-Negotiable Skill</h3>
+          <p class="blog-card-excerpt">Every cloud VM, every Docker container, every CI runner, every Kubernetes node — they all run Linux. Linux fluency is the baseline that unlocks the entire DevOps stack. No shortcuts here.</p>
+          <div class="blog-card-code"><span class="cm"># Essential daily commands</span>
+<span class="fn">systemctl</span> status nginx
+<span class="fn">journalctl</span> -u nginx --since <span class="kw">"1 hour ago"</span>
+<span class="fn">ss</span> -tlnp | <span class="fn">grep</span> :80</div>
+          <div class="blog-card-footer">
+            <div class="blog-card-tags"><span class="btag">linux</span><span class="btag">devops</span><span class="btag">career</span></div>
+            <span class="blog-card-read">Read <span>→</span></span>
+          </div>
+          <div class="blog-read-time" style="padding:0 22px 16px;font-family:var(--f-mono);font-size:.68rem;color:var(--text-muted)">⏱ 6 min read</div>
+        </div>
+      </a>
+
+      <a class="blog-card" data-cat="linux" data-title="Automating DevOps Workstations" data-tags="linux automation ansible bash" href="devops-notes.html#note-automating-devops-workstations">
+        <div class="blog-card-top"></div>
+        <div class="blog-card-body">
+          <span class="post-cat">🐧 Linux</span>
+          <h3 class="blog-card-title">Automating Your DevOps Workstation with Bash and Ansible</h3>
+          <p class="blog-card-excerpt">A fully automated workstation setup means you can rebuild your entire environment in under 10 minutes on any machine. Never manually install tools again — script it once, version-control it, run it anywhere.</p>
+          <div class="blog-card-code"><span class="kw">#!/bin/bash</span>
+TOOLS=(<span class="st">"git"</span> <span class="st">"docker.io"</span> <span class="st">"ansible"</span> <span class="st">"terraform"</span>)
+<span class="kw">for</span> pkg <span class="kw">in</span> <span class="nm">"${TOOLS[@]}"</span>; <span class="kw">do</span>
+  apt-get install -y <span class="nm">$pkg</span> && <span class="fn">echo</span> <span class="st">"✓ $pkg"</span>
+<span class="kw">done</span></div>
+          <div class="blog-card-footer">
+            <div class="blog-card-tags"><span class="btag">linux</span><span class="btag">automation</span><span class="btag">bash</span></div>
+            <span class="blog-card-read">Read <span>→</span></span>
+          </div>
+          <div class="blog-read-time" style="padding:0 22px 16px;font-family:var(--f-mono);font-size:.68rem;color:var(--text-muted)">⏱ 7 min read</div>
+        </div>
+      </a>
+
+      <a class="blog-card" data-cat="linux" data-title="Building Labs on Old Hardware" data-tags="linux homelab hardware lab" href="devops-notes.html#note-building-labs-on-old-hardware">
+        <div class="blog-card-top"></div>
+        <div class="blog-card-body">
+          <span class="post-cat">🐧 Linux</span>
+          <h3 class="blog-card-title">Building a Full DevOps Lab on Old Hardware</h3>
+          <p class="blog-card-excerpt">You don't need expensive servers. An old laptop or refurbished Dell Optiplex with 8–16GB RAM can run a complete DevOps lab — Linux, Docker, Ansible, and a full monitoring stack running simultaneously.</p>
+          <div class="blog-card-code"><span class="cm"># Check what resources you have</span>
+<span class="fn">free</span> -h    <span class="cm"># RAM</span>
+<span class="fn">nproc</span>      <span class="cm"># CPU cores</span>
+<span class="fn">df</span> -h /    <span class="cm"># Disk space</span>
+<span class="gr"># 8GB RAM = full DevOps lab</span></div>
+          <div class="blog-card-footer">
+            <div class="blog-card-tags"><span class="btag">linux</span><span class="btag">homelab</span><span class="btag">hardware</span></div>
+            <span class="blog-card-read">Read <span>→</span></span>
+          </div>
+          <div class="blog-read-time" style="padding:0 22px 16px;font-family:var(--f-mono);font-size:.68rem;color:var(--text-muted)">⏱ 6 min read</div>
+        </div>
+      </a>
+
+      <a class="blog-card" data-cat="linux" data-title="DevOps Homelab Architecture" data-tags="linux homelab architecture" href="devops-notes.html#note-devops-homelab-architecture">
+        <div class="blog-card-top"></div>
+        <div class="blog-card-body">
+          <span class="post-cat">🐧 Linux</span>
+          <h3 class="blog-card-title">DevOps Homelab Architecture — Build It Right From Day One</h3>
+          <p class="blog-card-excerpt">A well-designed homelab mirrors production. A control node runs Ansible, target VMs simulate servers, Docker runs services, and a monitoring stack watches everything. Same tools, smaller scale.</p>
+          <div class="blog-card-code"><span class="gr">Homelab Topology</span>
+control-node  192.168.1.10  ← Ansible + Terraform
+server-01     192.168.1.11  ← Docker apps
+monitor-01    192.168.1.12  ← Prometheus + Grafana</div>
+          <div class="blog-card-footer">
+            <div class="blog-card-tags"><span class="btag">linux</span><span class="btag">homelab</span><span class="btag">architecture</span></div>
+            <span class="blog-card-read">Read <span>→</span></span>
+          </div>
+          <div class="blog-read-time" style="padding:0 22px 16px;font-family:var(--f-mono);font-size:.68rem;color:var(--text-muted)">⏱ 8 min read</div>
+        </div>
+      </a>
+
+    </div><!-- /grid-linux -->
+
+    <!-- ══ DOCKER ══ -->
+    <div class="blog-section-label" data-section="docker"><span class="bsl-icon">🐳</span><span class="bsl-title">Docker</span><span class="bsl-count">5 articles</span></div>
+    <div class="blog-grid" id="grid-docker">
+
+      <a class="blog-card" data-cat="docker" data-title="What is Docker?" data-tags="docker containers basics intro" href="devops-notes.html#note-what-is-docker">
+        <div class="blog-card-top"></div>
+        <div class="blog-card-body">
+          <span class="post-cat">🐳 Docker</span>
+          <h3 class="blog-card-title">What is Docker? A Complete Beginner's Guide</h3>
+          <p class="blog-card-excerpt">Docker packages your application and all its dependencies into a container — a lightweight, portable unit that runs identically on any machine. No more "works on my laptop". Here's everything you need to know.</p>
+          <div class="blog-card-code"><span class="fn">docker</span> run -d -p 80:80 --name web nginx
+<span class="fn">docker</span> ps
+<span class="fn">docker</span> logs web --follow
+<span class="fn">docker</span> exec -it web bash</div>
+          <div class="blog-card-footer">
+            <div class="blog-card-tags"><span class="btag">docker</span><span class="btag">containers</span><span class="btag">beginner</span></div>
+            <span class="blog-card-read">Read <span>→</span></span>
+          </div>
+          <div class="blog-read-time" style="padding:0 22px 16px;font-family:var(--f-mono);font-size:.68rem;color:var(--text-muted)">⏱ 7 min read</div>
+        </div>
+      </a>
+
+      <a class="blog-card" data-cat="docker" data-title="Docker vs Virtual Machines" data-tags="docker vm containers comparison" href="devops-notes.html#note-docker-vs-virtual-machines">
+        <div class="blog-card-top"></div>
+        <div class="blog-card-body">
+          <span class="post-cat">🐳 Docker</span>
+          <h3 class="blog-card-title">Docker vs Virtual Machines — The Real Difference Explained</h3>
+          <p class="blog-card-excerpt">VMs virtualise hardware — each gets its own OS kernel eating GBs of RAM. Docker containers share the host kernel and start in milliseconds. For microservices and modern DevOps, containers win on density and speed.</p>
+          <div class="blog-card-code"><span class="cm">Startup: VM=60s  Container=&lt;1s</span>
+<span class="cm">RAM:     VM=2GB  Container=50MB</span>
+<span class="gr">Containers win for microservices</span></div>
+          <div class="blog-card-footer">
+            <div class="blog-card-tags"><span class="btag">docker</span><span class="btag">vm</span><span class="btag">comparison</span></div>
+            <span class="blog-card-read">Read <span>→</span></span>
+          </div>
+          <div class="blog-read-time" style="padding:0 22px 16px;font-family:var(--f-mono);font-size:.68rem;color:var(--text-muted)">⏱ 6 min read</div>
+        </div>
+      </a>
+
+      <a class="blog-card" data-cat="docker" data-title="Docker Volumes" data-tags="docker volumes storage persistence" href="devops-notes.html#note-docker-volumes">
+        <div class="blog-card-top"></div>
+        <div class="blog-card-body">
+          <span class="post-cat">🐳 Docker</span>
+          <h3 class="blog-card-title">Docker Volumes — Persistent Storage That Survives Container Restarts</h3>
+          <p class="blog-card-excerpt">Containers are ephemeral — kill one and its filesystem is gone. Volumes are the solution: persistent storage managed by Docker that survives container restarts, removals, and full recreations.</p>
+          <div class="blog-card-code"><span class="kw">volumes:</span>
+  <span class="nm">pgdata:</span>    <span class="cm"># named volume — Docker managed</span>
+<span class="kw">services:</span>
+  db:
+    <span class="kw">volumes:</span>
+      - <span class="st">pgdata:/var/lib/postgresql/data</span></div>
+          <div class="blog-card-footer">
+            <div class="blog-card-tags"><span class="btag">docker</span><span class="btag">volumes</span><span class="btag">storage</span></div>
+            <span class="blog-card-read">Read <span>→</span></span>
+          </div>
+          <div class="blog-read-time" style="padding:0 22px 16px;font-family:var(--f-mono);font-size:.68rem;color:var(--text-muted)">⏱ 5 min read</div>
+        </div>
+      </a>
+
+      <a class="blog-card" data-cat="docker" data-title="Docker Networking" data-tags="docker network bridge overlay" href="devops-notes.html#note-docker-networking">
+        <div class="blog-card-top"></div>
+        <div class="blog-card-body">
+          <span class="post-cat">🐳 Docker</span>
+          <h3 class="blog-card-title">Docker Networking Deep Dive — Bridge, Host, Overlay Explained</h3>
+          <p class="blog-card-excerpt">Containers need to communicate — with each other, with the host, and with the internet. Docker provides network drivers for each use case. Understanding these is essential for production deployments.</p>
+          <div class="blog-card-code"><span class="fn">docker</span> network create app-net
+<span class="fn">docker</span> run -d --network app-net --name api myapi
+<span class="fn">docker</span> run -d --network app-net --name db postgres
+<span class="cm"># api resolves db by name: db:5432</span></div>
+          <div class="blog-card-footer">
+            <div class="blog-card-tags"><span class="btag">docker</span><span class="btag">networking</span><span class="btag">bridge</span></div>
+            <span class="blog-card-read">Read <span>→</span></span>
+          </div>
+          <div class="blog-read-time" style="padding:0 22px 16px;font-family:var(--f-mono);font-size:.68rem;color:var(--text-muted)">⏱ 6 min read</div>
+        </div>
+      </a>
+
+      <a class="blog-card" data-cat="docker" data-title="Docker Mistakes Beginners Make" data-tags="docker mistakes best-practices" href="devops-notes.html#note-docker-mistakes-beginners-make">
+        <div class="blog-card-top"></div>
+        <div class="blog-card-body">
+          <span class="post-cat">🐳 Docker</span>
+          <h3 class="blog-card-title">5 Docker Mistakes Beginners Make (And How to Fix Them)</h3>
+          <p class="blog-card-excerpt">Most Docker problems in production come from the same repeated mistakes: running as root, using :latest tags, ignoring .dockerignore, storing state in containers, and fat images. Here's how to fix all five.</p>
+          <div class="blog-card-code"><span class="cm"># ❌ Bad</span>
+<span class="kw">FROM</span> ubuntu:latest
+<span class="cm"># ✅ Good</span>
+<span class="kw">FROM</span> python:3.11-slim
+<span class="kw">USER</span> appuser   <span class="cm"># non-root!</span></div>
+          <div class="blog-card-footer">
+            <div class="blog-card-tags"><span class="btag">docker</span><span class="btag">mistakes</span><span class="btag">production</span></div>
+            <span class="blog-card-read">Read <span>→</span></span>
+          </div>
+          <div class="blog-read-time" style="padding:0 22px 16px;font-family:var(--f-mono);font-size:.68rem;color:var(--text-muted)">⏱ 8 min read</div>
+        </div>
+      </a>
+
+    </div><!-- /grid-docker -->
+
+    <!-- ══ CLOUD ══ -->
+    <div class="blog-section-label" data-section="cloud"><span class="bsl-icon">☁️</span><span class="bsl-title">Cloud / AWS</span><span class="bsl-count">5 articles</span></div>
+    <div class="blog-grid" id="grid-cloud">
+
+      <a class="blog-card" data-cat="cloud" data-title="What is AWS EC2?" data-tags="aws ec2 cloud compute" href="devops-notes.html#note-what-is-aws-ec2">
+        <div class="blog-card-top"></div>
+        <div class="blog-card-body">
+          <span class="post-cat">☁️ Cloud</span>
+          <h3 class="blog-card-title">What is AWS EC2? Virtual Servers in the Cloud Explained</h3>
+          <p class="blog-card-excerpt">EC2 is AWS's virtual server service. You pick CPU, RAM, and OS — AWS runs it. Pay per second. Scale from one instance to thousands in minutes. Here's everything you need to get started on EC2.</p>
+          <div class="blog-card-code"><span class="fn">aws</span> ec2 run-instances \
+  --image-id ami-0c55b159cbfafe1f0 \
+  --instance-type t3.micro \
+  --key-name my-key
+<span class="fn">ssh</span> -i my-key.pem ubuntu@PUBLIC_IP</div>
+          <div class="blog-card-footer">
+            <div class="blog-card-tags"><span class="btag">aws</span><span class="btag">ec2</span><span class="btag">cloud</span></div>
+            <span class="blog-card-read">Read <span>→</span></span>
+          </div>
+          <div class="blog-read-time" style="padding:0 22px 16px;font-family:var(--f-mono);font-size:.68rem;color:var(--text-muted)">⏱ 7 min read</div>
+        </div>
+      </a>
+
+      <a class="blog-card" data-cat="cloud" data-title="What is a VPC?" data-tags="aws vpc networking cloud" href="devops-notes.html#note-what-is-a-vpc">
+        <div class="blog-card-top"></div>
+        <div class="blog-card-body">
+          <span class="post-cat">☁️ Cloud</span>
+          <h3 class="blog-card-title">What is a VPC? Your Private Network Inside AWS Explained</h3>
+          <p class="blog-card-excerpt">A Virtual Private Cloud is your own isolated network inside AWS. You define IP ranges, subnets, routing tables, and internet access. Think of it as your private data centre in the cloud — fully under your control.</p>
+          <div class="blog-card-code"><span class="gr">VPC: 10.0.0.0/16</span>
+├── Public Subnet:  10.0.1.0/24  ← web servers
+└── Private Subnet: 10.0.2.0/24  ← databases
+    <span class="cm">No direct internet access</span></div>
+          <div class="blog-card-footer">
+            <div class="blog-card-tags"><span class="btag">aws</span><span class="btag">vpc</span><span class="btag">networking</span></div>
+            <span class="blog-card-read">Read <span>→</span></span>
+          </div>
+          <div class="blog-read-time" style="padding:0 22px 16px;font-family:var(--f-mono);font-size:.68rem;color:var(--text-muted)">⏱ 6 min read</div>
+        </div>
+      </a>
+
+      <a class="blog-card" data-cat="cloud" data-title="Load Balancer Explained" data-tags="aws alb load-balancer cloud" href="devops-notes.html#note-load-balancer-explained">
+        <div class="blog-card-top"></div>
+        <div class="blog-card-body">
+          <span class="post-cat">☁️ Cloud</span>
+          <h3 class="blog-card-title">Load Balancer Explained — ALB vs NLB vs CLB on AWS</h3>
+          <p class="blog-card-excerpt">A load balancer distributes incoming traffic across multiple servers so no single instance gets overwhelmed. AWS ALB works at Layer 7 — routing by URL path, headers, and hostnames for microservices.</p>
+          <div class="blog-card-code"><span class="gr">Client → ALB (port 443)</span>
+├── /api/*  → API servers  (Target Group A)
+├── /app/*  → App servers  (Target Group B)
+└── /*      → Web servers  (Target Group C)</div>
+          <div class="blog-card-footer">
+            <div class="blog-card-tags"><span class="btag">aws</span><span class="btag">alb</span><span class="btag">networking</span></div>
+            <span class="blog-card-read">Read <span>→</span></span>
+          </div>
+          <div class="blog-read-time" style="padding:0 22px 16px;font-family:var(--f-mono);font-size:.68rem;color:var(--text-muted)">⏱ 5 min read</div>
+        </div>
+      </a>
+
+      <a class="blog-card" data-cat="cloud" data-title="Reverse Proxy vs Load Balancer" data-tags="nginx proxy cloud networking" href="devops-notes.html#note-reverse-proxy-vs-load-balancer">
+        <div class="blog-card-top"></div>
+        <div class="blog-card-body">
+          <span class="post-cat">☁️ Cloud</span>
+          <h3 class="blog-card-title">Reverse Proxy vs Load Balancer — Key Differences Explained</h3>
+          <p class="blog-card-excerpt">Both sit in front of your servers but serve different roles. A reverse proxy handles SSL termination, caching, and request routing. A load balancer distributes traffic across multiple backend instances.</p>
+          <div class="blog-card-code"><span class="cm"># nginx as reverse proxy</span>
+location / {
+  proxy_pass http://localhost:3000;
+  proxy_set_header Host $host;
+  proxy_set_header X-Real-IP $remote_addr;
+}</div>
+          <div class="blog-card-footer">
+            <div class="blog-card-tags"><span class="btag">nginx</span><span class="btag">proxy</span><span class="btag">networking</span></div>
+            <span class="blog-card-read">Read <span>→</span></span>
+          </div>
+          <div class="blog-read-time" style="padding:0 22px 16px;font-family:var(--f-mono);font-size:.68rem;color:var(--text-muted)">⏱ 5 min read</div>
+        </div>
+      </a>
+
+      <a class="blog-card" data-cat="cloud" data-title="High Availability Basics" data-tags="aws ha cloud architecture" href="devops-notes.html#note-high-availability-basics">
+        <div class="blog-card-top"></div>
+        <div class="blog-card-body">
+          <span class="post-cat">☁️ Cloud</span>
+          <h3 class="blog-card-title">High Availability on AWS — Eliminate Single Points of Failure</h3>
+          <p class="blog-card-excerpt">HA means your system keeps running even when individual components fail. The core principle: eliminate single points of failure. Deploy across multiple Availability Zones, use health checks, enable auto-recovery.</p>
+          <div class="blog-card-code"><span class="gr">HA Architecture — 2 AZ Setup</span>
+         ALB
+        /   \
+    AZ-1     AZ-2
+     EC2       EC2
+     RDS  ←→  RDS (standby)
+<span class="cm">Failover: automatic. RTO: ~60s</span></div>
+          <div class="blog-card-footer">
+            <div class="blog-card-tags"><span class="btag">aws</span><span class="btag">ha</span><span class="btag">architecture</span></div>
+            <span class="blog-card-read">Read <span>→</span></span>
+          </div>
+          <div class="blog-read-time" style="padding:0 22px 16px;font-family:var(--f-mono);font-size:.68rem;color:var(--text-muted)">⏱ 7 min read</div>
+        </div>
+      </a>
+
+    </div><!-- /grid-cloud -->
+
+    <!-- ══ TERRAFORM ══ -->
+    <div class="blog-section-label" data-section="terraform"><span class="bsl-icon">⚙️</span><span class="bsl-title">Terraform / IaC</span><span class="bsl-count">4 articles</span></div>
+    <div class="blog-grid" id="grid-terraform">
+
+      <a class="blog-card" data-cat="terraform" data-title="Infrastructure as Code" data-tags="terraform iac devops" href="devops-notes.html#note-infrastructure-as-code">
+        <div class="blog-card-top"></div>
+        <div class="blog-card-body">
+          <span class="post-cat">⚙️ Terraform</span>
+          <h3 class="blog-card-title">Infrastructure as Code — Why Your Servers Should Be Version-Controlled</h3>
+          <p class="blog-card-excerpt">IaC means your servers, networks, and cloud resources are defined in code files — not manually configured. This makes infrastructure reproducible, reviewable in Git, and deployable in minutes, not days.</p>
+          <div class="blog-card-code"><span class="kw">resource</span> <span class="st">"aws_instance"</span> <span class="st">"web"</span> {
+  <span class="nm">ami</span>           = <span class="st">"ami-0c55b159cbfafe1f0"</span>
+  <span class="nm">instance_type</span> = <span class="st">"t3.micro"</span>
+  <span class="nm">tags</span> = { Name = <span class="st">"devriston-web"</span> }
+}</div>
+          <div class="blog-card-footer">
+            <div class="blog-card-tags"><span class="btag">terraform</span><span class="btag">iac</span><span class="btag">aws</span></div>
+            <span class="blog-card-read">Read <span>→</span></span>
+          </div>
+          <div class="blog-read-time" style="padding:0 22px 16px;font-family:var(--f-mono);font-size:.68rem;color:var(--text-muted)">⏱ 7 min read</div>
+        </div>
+      </a>
+
+      <a class="blog-card" data-cat="terraform" data-title="What is Ansible?" data-tags="ansible automation iac" href="devops-notes.html#note-what-is-ansible">
+        <div class="blog-card-top"></div>
+        <div class="blog-card-body">
+          <span class="post-cat">⚙️ Terraform</span>
+          <h3 class="blog-card-title">What is Ansible? Server Automation Without Agents</h3>
+          <p class="blog-card-excerpt">Ansible automates server configuration over SSH — no agent required. Write a playbook in YAML, run it against 1 or 1000 servers, get the same result every time. Idempotent by design.</p>
+          <div class="blog-card-code">- <span class="kw">name:</span> <span class="st">Install and start Nginx</span>
+  <span class="kw">hosts:</span> webservers
+  <span class="kw">tasks:</span>
+    - <span class="kw">apt:</span> name=nginx state=present
+    - <span class="kw">service:</span> name=nginx state=started</div>
+          <div class="blog-card-footer">
+            <div class="blog-card-tags"><span class="btag">ansible</span><span class="btag">automation</span><span class="btag">iac</span></div>
+            <span class="blog-card-read">Read <span>→</span></span>
+          </div>
+          <div class="blog-read-time" style="padding:0 22px 16px;font-family:var(--f-mono);font-size:.68rem;color:var(--text-muted)">⏱ 6 min read</div>
+        </div>
+      </a>
+
+      <a class="blog-card" data-cat="terraform" data-title="Terraform State" data-tags="terraform state remote backend" href="devops-notes.html#note-terraform-state">
+        <div class="blog-card-top"></div>
+        <div class="blog-card-body">
+          <span class="post-cat">⚙️ Terraform</span>
+          <h3 class="blog-card-title">Terraform State — What It Is and How to Manage It Safely</h3>
+          <p class="blog-card-excerpt">Terraform tracks everything it has built in a state file. This is how it knows what exists, what changed, and what to destroy. Never commit state to Git — use remote backends like S3 with DynamoDB locking.</p>
+          <div class="blog-card-code"><span class="kw">terraform</span> {
+  <span class="kw">backend</span> <span class="st">"s3"</span> {
+    <span class="nm">bucket</span>         = <span class="st">"devriston-tf-state"</span>
+    <span class="nm">dynamodb_table</span> = <span class="st">"tf-lock"</span>
+    <span class="nm">encrypt</span>        = <span class="kw">true</span>
+  }
+}</div>
+          <div class="blog-card-footer">
+            <div class="blog-card-tags"><span class="btag">terraform</span><span class="btag">state</span><span class="btag">s3</span></div>
+            <span class="blog-card-read">Read <span>→</span></span>
+          </div>
+          <div class="blog-read-time" style="padding:0 22px 16px;font-family:var(--f-mono);font-size:.68rem;color:var(--text-muted)">⏱ 8 min read</div>
+        </div>
+      </a>
+
+      <a class="blog-card" data-cat="terraform" data-title="Why Terraform Matters" data-tags="terraform iac multi-cloud" href="devops-notes.html#note-why-terraform-matters">
+        <div class="blog-card-top"></div>
+        <div class="blog-card-body">
+          <span class="post-cat">⚙️ Terraform</span>
+          <h3 class="blog-card-title">Why Terraform Matters — The Cloud-Agnostic IaC Standard</h3>
+          <p class="blog-card-excerpt">Terraform is cloud-agnostic. Write infrastructure for AWS today, replicate it on GCP or Azure tomorrow with minimal changes. 3000+ providers cover everything from DNS to Kubernetes to GitHub repos.</p>
+          <div class="blog-card-code"><span class="fn">terraform</span> init    <span class="cm"># download providers</span>
+<span class="fn">terraform</span> plan    <span class="cm"># preview changes</span>
+<span class="fn">terraform</span> apply   <span class="cm"># execute changes</span>
+<span class="gr">+ 2 resources to add, 0 to destroy</span></div>
+          <div class="blog-card-footer">
+            <div class="blog-card-tags"><span class="btag">terraform</span><span class="btag">iac</span><span class="btag">multi-cloud</span></div>
+            <span class="blog-card-read">Read <span>→</span></span>
+          </div>
+          <div class="blog-read-time" style="padding:0 22px 16px;font-family:var(--f-mono);font-size:.68rem;color:var(--text-muted)">⏱ 6 min read</div>
+        </div>
+      </a>
+
+    </div><!-- /grid-terraform -->
+
+    <!-- ══ CI/CD ══ -->
+    <div class="blog-section-label" data-section="cicd"><span class="bsl-icon">🔄</span><span class="bsl-title">CI/CD</span><span class="bsl-count">4 articles</span></div>
+    <div class="blog-grid" id="grid-cicd">
+
+      <a class="blog-card" data-cat="cicd" data-title="CI/CD Pipeline Basics" data-tags="cicd pipeline github-actions" href="devops-notes.html#note-cicd-pipeline-basics">
+        <div class="blog-card-top"></div>
+        <div class="blog-card-body">
+          <span class="post-cat">🔄 CI/CD</span>
+          <h3 class="blog-card-title">CI/CD Pipeline Basics — From Code Commit to Production Deploy</h3>
+          <p class="blog-card-excerpt">CI automatically builds and tests code on every commit. CD automatically ships passing builds to staging or production. Together they give you faster, safer shipping — without manual deployment steps.</p>
+          <div class="blog-card-code"><span class="kw">on:</span>
+  <span class="kw">push:</span> { <span class="kw">branches:</span> [main] }
+<span class="kw">jobs:</span>
+  deploy:
+    <span class="kw">steps:</span>
+      - docker build → test → push → deploy
+<span class="gr">✔ Deployed to production automatically</span></div>
+          <div class="blog-card-footer">
+            <div class="blog-card-tags"><span class="btag">cicd</span><span class="btag">github-actions</span><span class="btag">devops</span></div>
+            <span class="blog-card-read">Read <span>→</span></span>
+          </div>
+          <div class="blog-read-time" style="padding:0 22px 16px;font-family:var(--f-mono);font-size:.68rem;color:var(--text-muted)">⏱ 8 min read</div>
+        </div>
+      </a>
+
+      <a class="blog-card" data-cat="cicd" data-title="Git Branching Strategy" data-tags="git cicd branching gitflow" href="devops-notes.html#note-git-branching-strategy">
+        <div class="blog-card-top"></div>
+        <div class="blog-card-body">
+          <span class="post-cat">🔄 CI/CD</span>
+          <h3 class="blog-card-title">Git Branching Strategy — GitFlow vs Trunk-Based Development</h3>
+          <p class="blog-card-excerpt">A branching strategy defines how teams collaborate in Git. GitFlow uses long-lived branches. Trunk-based development uses short-lived feature branches merged to main frequently. For CI/CD, trunk-based wins.</p>
+          <div class="blog-card-code"><span class="fn">git</span> checkout -b feature/add-monitoring
+<span class="cm"># ... make changes ...</span>
+<span class="fn">git</span> commit -m <span class="st">"feat: add prometheus"</span>
+<span class="fn">git</span> push origin feature/add-monitoring
+<span class="cm"># PR → review → merge → CI/CD triggers</span></div>
+          <div class="blog-card-footer">
+            <div class="blog-card-tags"><span class="btag">git</span><span class="btag">branching</span><span class="btag">cicd</span></div>
+            <span class="blog-card-read">Read <span>→</span></span>
+          </div>
+          <div class="blog-read-time" style="padding:0 22px 16px;font-family:var(--f-mono);font-size:.68rem;color:var(--text-muted)">⏱ 6 min read</div>
+        </div>
+      </a>
+
+      <a class="blog-card" data-cat="cicd" data-title="GitHub Actions vs Jenkins" data-tags="cicd github-actions jenkins" href="devops-notes.html#note-github-actions-vs-jenkins">
+        <div class="blog-card-top"></div>
+        <div class="blog-card-body">
+          <span class="post-cat">🔄 CI/CD</span>
+          <h3 class="blog-card-title">GitHub Actions vs Jenkins — Which CI/CD Tool Should You Use?</h3>
+          <p class="blog-card-excerpt">Jenkins is powerful and self-hosted but requires maintenance, plugins, and a team to operate. GitHub Actions is managed, YAML-driven, and integrates natively with your repo. For most teams, Actions wins on simplicity.</p>
+          <div class="blog-card-code"><span class="gr">GitHub Actions:</span> setup=minutes, managed
+<span class="cm">Jenkins:        </span> setup=days, self-hosted
+<span class="gr">Actions marketplace: 10,000+ actions</span>
+<span class="cm">Jenkins plugins:     1,800+ plugins</span></div>
+          <div class="blog-card-footer">
+            <div class="blog-card-tags"><span class="btag">github-actions</span><span class="btag">jenkins</span><span class="btag">cicd</span></div>
+            <span class="blog-card-read">Read <span>→</span></span>
+          </div>
+          <div class="blog-read-time" style="padding:0 22px 16px;font-family:var(--f-mono);font-size:.68rem;color:var(--text-muted)">⏱ 7 min read</div>
+        </div>
+      </a>
+
+      <a class="blog-card" data-cat="cicd" data-title="Self-Healing Infrastructure" data-tags="cicd docker automation reliability" href="devops-notes.html#note-self-healing-infrastructure">
+        <div class="blog-card-top"></div>
+        <div class="blog-card-body">
+          <span class="post-cat">🔄 CI/CD</span>
+          <h3 class="blog-card-title">Self-Healing Infrastructure — Systems That Fix Themselves</h3>
+          <p class="blog-card-excerpt">Self-healing means your infrastructure automatically detects and recovers from failures without human intervention. Docker health checks, restart policies, and AWS Auto Scaling are the building blocks.</p>
+          <div class="blog-card-code"><span class="kw">healthcheck:</span>
+  test: [<span class="st">"CMD"</span>,<span class="st">"curl"</span>,<span class="st">"-f"</span>,<span class="st">"http://localhost/health"</span>]
+  <span class="kw">interval:</span> 30s
+  <span class="kw">retries:</span> 3
+<span class="kw">restart:</span> unless-stopped</div>
+          <div class="blog-card-footer">
+            <div class="blog-card-tags"><span class="btag">docker</span><span class="btag">self-healing</span><span class="btag">reliability</span></div>
+            <span class="blog-card-read">Read <span>→</span></span>
+          </div>
+          <div class="blog-read-time" style="padding:0 22px 16px;font-family:var(--f-mono);font-size:.68rem;color:var(--text-muted)">⏱ 7 min read</div>
+        </div>
+      </a>
+
+    </div><!-- /grid-cicd -->
+
+    <!-- ══ MONITORING ══ -->
+    <div class="blog-section-label" data-section="monitoring"><span class="bsl-icon">📊</span><span class="bsl-title">Monitoring</span><span class="bsl-count">3 articles</span></div>
+    <div class="blog-grid" id="grid-monitoring">
+
+      <a class="blog-card" data-cat="monitoring" data-title="Monitoring Stack Architecture" data-tags="monitoring prometheus grafana alertmanager" href="devops-notes.html#note-monitoring-stack-architecture">
+        <div class="blog-card-top"></div>
+        <div class="blog-card-body">
+          <span class="post-cat">📊 Monitoring</span>
+          <h3 class="blog-card-title">Monitoring Stack Architecture — Prometheus + Grafana + AlertManager</h3>
+          <p class="blog-card-excerpt">A production monitoring stack has three jobs: collect metrics (Prometheus), visualise them (Grafana), and alert on anomalies (AlertManager). Each component is purpose-built, composable, and open-source.</p>
+          <div class="blog-card-code"><span class="gr">Targets → Prometheus → Grafana (dashboards)</span>
+                          ↓
+                    AlertManager
+                          ↓
+             Slack / Email / PagerDuty</div>
+          <div class="blog-card-footer">
+            <div class="blog-card-tags"><span class="btag">prometheus</span><span class="btag">grafana</span><span class="btag">monitoring</span></div>
+            <span class="blog-card-read">Read <span>→</span></span>
+          </div>
+          <div class="blog-read-time" style="padding:0 22px 16px;font-family:var(--f-mono);font-size:.68rem;color:var(--text-muted)">⏱ 8 min read</div>
+        </div>
+      </a>
+
+      <a class="blog-card" data-cat="monitoring" data-title="Prometheus + Grafana Workflow" data-tags="prometheus grafana promql monitoring" href="devops-notes.html#note-prometheus--grafana-workflow">
+        <div class="blog-card-top"></div>
+        <div class="blog-card-body">
+          <span class="post-cat">📊 Monitoring</span>
+          <h3 class="blog-card-title">Prometheus + Grafana Workflow — PromQL Queries That Actually Matter</h3>
+          <p class="blog-card-excerpt">Prometheus stores time-series metrics and lets you query them with PromQL. Grafana renders the queries as actionable dashboards. Here are the queries you'll use every single day in production.</p>
+          <div class="blog-card-code"><span class="cm"># CPU usage %</span>
+100 - (avg by(instance)(
+  rate(node_cpu_seconds_total{mode=<span class="st">"idle"</span>}[5m])) * 100)
+<span class="cm"># RAM used %</span>
+(MemTotal - MemAvailable) / MemTotal * 100</div>
+          <div class="blog-card-footer">
+            <div class="blog-card-tags"><span class="btag">prometheus</span><span class="btag">promql</span><span class="btag">grafana</span></div>
+            <span class="blog-card-read">Read <span>→</span></span>
+          </div>
+          <div class="blog-read-time" style="padding:0 22px 16px;font-family:var(--f-mono);font-size:.68rem;color:var(--text-muted)">⏱ 9 min read</div>
+        </div>
+      </a>
+
+      <a class="blog-card" data-cat="monitoring" data-title="Lessons From Production-Style Labs" data-tags="monitoring devops labs production" href="devops-notes.html#note-lessons-from-production-style-labs">
+        <div class="blog-card-top"></div>
+        <div class="blog-card-body">
+          <span class="post-cat">📊 Monitoring</span>
+          <h3 class="blog-card-title">Lessons From Production-Style Labs — What Tutorials Don't Teach You</h3>
+          <p class="blog-card-excerpt">Real production experience teaches things no tutorial can. These are hard-won lessons from running actual services, debugging systems at 2am, and learning what monitoring should have caught earlier.</p>
+          <div class="blog-card-code"><span class="cm"># First checks when something breaks</span>
+<span class="fn">df</span> -h                          <span class="cm"># disk space</span>
+<span class="fn">free</span> -h                        <span class="cm"># memory</span>
+<span class="fn">journalctl</span> -xe --since <span class="st">"10m"</span>  <span class="cm"># logs</span>
+<span class="fn">ss</span> -tlnp                       <span class="cm"># ports</span></div>
+          <div class="blog-card-footer">
+            <div class="blog-card-tags"><span class="btag">production</span><span class="btag">debugging</span><span class="btag">devops</span></div>
+            <span class="blog-card-read">Read <span>→</span></span>
+          </div>
+          <div class="blog-read-time" style="padding:0 22px 16px;font-family:var(--f-mono);font-size:.68rem;color:var(--text-muted)">⏱ 10 min read</div>
+        </div>
+      </a>
+
+    </div><!-- /grid-monitoring -->
+
+    <!-- ══ DEVOPS ══ -->
+    <div class="blog-section-label" data-section="devops"><span class="bsl-icon">🚀</span><span class="bsl-title">DevOps Career & Mindset</span><span class="bsl-count">9 articles</span></div>
+    <div class="blog-grid" id="grid-devops">
+
+      <a class="blog-card" data-cat="devops" data-title="Most Important DevOps Skills" data-tags="devops career skills" href="devops-notes.html#note-most-important-devops-skills">
+        <div class="blog-card-top"></div>
+        <div class="blog-card-body">
+          <span class="post-cat">🚀 DevOps</span>
+          <h3 class="blog-card-title">The Most Important DevOps Skills in 2025 — Ranked by Employers</h3>
+          <p class="blog-card-excerpt">The DevOps job market is flooded with tool names but short on engineers who understand systems. The skills that actually get you hired go deeper than any single tool. Here's the honest priority list.</p>
+          <div class="blog-card-code"><span class="gr">Tier 1 — Non-negotiable</span>
+  Linux + bash + networking + Git
+<span class="gr">Tier 2 — Core DevOps</span>
+  Docker + AWS + Terraform + CI/CD
+<span class="gr">Tier 3 — Differentiators</span>
+  Observability + Security (DevSecOps)</div>
+          <div class="blog-card-footer">
+            <div class="blog-card-tags"><span class="btag">devops</span><span class="btag">career</span><span class="btag">skills</span></div>
+            <span class="blog-card-read">Read <span>→</span></span>
+          </div>
+          <div class="blog-read-time" style="padding:0 22px 16px;font-family:var(--f-mono);font-size:.68rem;color:var(--text-muted)">⏱ 8 min read</div>
+        </div>
+      </a>
+
+      <a class="blog-card" data-cat="devops" data-title="How to Learn DevOps Effectively" data-tags="devops learning career" href="devops-notes.html#note-how-to-learn-devops-effectively">
+        <div class="blog-card-top"></div>
+        <div class="blog-card-body">
+          <span class="post-cat">🚀 DevOps</span>
+          <h3 class="blog-card-title">How to Learn DevOps Effectively — Stop Watching, Start Building</h3>
+          <p class="blog-card-excerpt">Most people learn DevOps wrong — they watch tutorials and feel productive but can't do anything without the video paused. The only path that works: build real things, break them, fix them, document them on GitHub.</p>
+          <div class="blog-card-code"><span class="gr">Effective Learning Loop</span>
+1. Pick one concept (Docker networking)
+2. Read the official docs
+3. Build a lab — hands-on
+4. Break something intentionally
+5. Fix it and document on GitHub
+6. Repeat next concept</div>
+          <div class="blog-card-footer">
+            <div class="blog-card-tags"><span class="btag">devops</span><span class="btag">learning</span><span class="btag">labs</span></div>
+            <span class="blog-card-read">Read <span>→</span></span>
+          </div>
+          <div class="blog-read-time" style="padding:0 22px 16px;font-family:var(--f-mono);font-size:.68rem;color:var(--text-muted)">⏱ 7 min read</div>
+        </div>
+      </a>
+
+      <a class="blog-card" data-cat="devops" data-title="DevOps Roadmap 2026" data-tags="devops roadmap 2026 career" href="devops-notes.html#note-devops-roadmap-2026">
+        <div class="blog-card-top"></div>
+        <div class="blog-card-body">
+          <span class="post-cat">🚀 DevOps</span>
+          <h3 class="blog-card-title">DevOps Roadmap 2026 — The Complete Learning Path</h3>
+          <p class="blog-card-excerpt">The fundamentals haven't changed — Linux, networking, Git, CI/CD. What's shifted is the expectation around security (DevSecOps), observability, and platform engineering replacing pure ops roles.</p>
+          <div class="blog-card-code"><span class="gr">Phase 1:</span> Linux + bash + networking + Git
+<span class="gr">Phase 2:</span> Docker + AWS + Terraform
+<span class="gr">Phase 3:</span> Ansible + GitHub Actions
+<span class="gr">Phase 4:</span> Prometheus + Grafana + Loki
+<span class="gr">Phase 5:</span> Kubernetes + Helm + ArgoCD</div>
+          <div class="blog-card-footer">
+            <div class="blog-card-tags"><span class="btag">devops</span><span class="btag">roadmap</span><span class="btag">2026</span></div>
+            <span class="blog-card-read">Read <span>→</span></span>
+          </div>
+          <div class="blog-read-time" style="padding:0 22px 16px;font-family:var(--f-mono);font-size:.68rem;color:var(--text-muted)">⏱ 9 min read</div>
+        </div>
+      </a>
+
+      <a class="blog-card" data-cat="devops" data-title="Infrastructure Automation Workflow" data-tags="devops automation terraform ansible" href="devops-notes.html#note-infrastructure-automation-workflow">
+        <div class="blog-card-top"></div>
+        <div class="blog-card-body">
+          <span class="post-cat">🚀 DevOps</span>
+          <h3 class="blog-card-title">Infrastructure Automation Workflow — Terraform + Ansible + GitHub Actions</h3>
+          <p class="blog-card-excerpt">A complete infrastructure automation workflow uses Terraform to provision resources, Ansible to configure them, GitHub Actions to orchestrate both, and Prometheus to watch the result. Each tool has one job.</p>
+          <div class="blog-card-code"><span class="gr">Git push → GitHub Actions</span>
+  ├── terraform plan + apply
+  ├── ansible-playbook configure
+  └── smoke tests verify
+<span class="gr">→ Production + Prometheus watching</span></div>
+          <div class="blog-card-footer">
+            <div class="blog-card-tags"><span class="btag">terraform</span><span class="btag">ansible</span><span class="btag">automation</span></div>
+            <span class="blog-card-read">Read <span>→</span></span>
+          </div>
+          <div class="blog-read-time" style="padding:0 22px 16px;font-family:var(--f-mono);font-size:.68rem;color:var(--text-muted)">⏱ 8 min read</div>
+        </div>
+      </a>
+
+      <a class="blog-card" data-cat="devops" data-title="Structuring Your DevOps GitHub" data-tags="devops github portfolio career" href="devops-notes.html#note-structuring-your-devops-github">
+        <div class="blog-card-top"></div>
+        <div class="blog-card-body">
+          <span class="post-cat">🚀 DevOps</span>
+          <h3 class="blog-card-title">Structuring Your DevOps GitHub — Build a Portfolio That Gets You Hired</h3>
+          <p class="blog-card-excerpt">Your GitHub profile is your engineering résumé. A well-structured DevOps GitHub with documented labs, proper READMEs, and real code beats any certificate. Here's exactly how to structure it.</p>
+          <div class="blog-card-code"><span class="gr">your-username/</span>
+  ├── 01-linux-lab/       ← README + scripts
+  ├── 02-docker-lab/
+  ├── 03-terraform-aws/
+  ├── 04-ansible-playbooks/
+  └── 05-monitoring-stack/</div>
+          <div class="blog-card-footer">
+            <div class="blog-card-tags"><span class="btag">github</span><span class="btag">portfolio</span><span class="btag">career</span></div>
+            <span class="blog-card-read">Read <span>→</span></span>
+          </div>
+          <div class="blog-read-time" style="padding:0 22px 16px;font-family:var(--f-mono);font-size:.68rem;color:var(--text-muted)">⏱ 6 min read</div>
+        </div>
+      </a>
+
+      <a class="blog-card" data-cat="devops" data-title="Ansible Roles and Structure" data-tags="devops ansible roles" href="devops-notes.html#note-ansible-roles-and-structure">
+        <div class="blog-card-top"></div>
+        <div class="blog-card-body">
+          <span class="post-cat">🚀 DevOps</span>
+          <h3 class="blog-card-title">Ansible Roles and Structure — Organise Automation at Scale</h3>
+          <p class="blog-card-excerpt">Ansible roles are reusable, self-contained units of automation. Instead of one giant playbook, roles separate tasks, templates, handlers, and variables — making automation maintainable at real scale.</p>
+          <div class="blog-card-code"><span class="gr">roles/nginx/</span>
+  ├── tasks/main.yml     ← what to do
+  ├── handlers/main.yml  ← restart triggers
+  ├── templates/         ← Jinja2 configs
+  └── defaults/main.yml  ← default vars</div>
+          <div class="blog-card-footer">
+            <div class="blog-card-tags"><span class="btag">ansible</span><span class="btag">roles</span><span class="btag">automation</span></div>
+            <span class="blog-card-read">Read <span>→</span></span>
+          </div>
+          <div class="blog-read-time" style="padding:0 22px 16px;font-family:var(--f-mono);font-size:.68rem;color:var(--text-muted)">⏱ 6 min read</div>
+        </div>
+      </a>
+
+      <a class="blog-card" data-cat="devops" data-title="DevOps Interview Preparation" data-tags="devops interview career" href="devops-notes.html#note-devops-interview-preparation">
+        <div class="blog-card-top"></div>
+        <div class="blog-card-body">
+          <span class="post-cat">🚀 DevOps</span>
+          <h3 class="blog-card-title">DevOps Interview Preparation — How to Answer Every Question Type</h3>
+          <p class="blog-card-excerpt">DevOps interviews test both tool knowledge and systems thinking. Interviewers want to see that you understand why tools exist, not just how to run commands. Here's the framework that works every time.</p>
+          <div class="blog-card-code"><span class="gr">Scenario:</span> "Walk me through debugging a prod issue"
+<span class="gr">Design:</span>   "Design a CI/CD for a Node.js app"
+<span class="gr">Concept:</span>  "Container vs VM — explain it"
+<span class="gr">Practical:</span>"Write an Ansible task for nginx"</div>
+          <div class="blog-card-footer">
+            <div class="blog-card-tags"><span class="btag">devops</span><span class="btag">interview</span><span class="btag">career</span></div>
+            <span class="blog-card-read">Read <span>→</span></span>
+          </div>
+          <div class="blog-read-time" style="padding:0 22px 16px;font-family:var(--f-mono);font-size:.68rem;color:var(--text-muted)">⏱ 9 min read</div>
+        </div>
+      </a>
+
+      <a class="blog-card" data-cat="devops" data-title="Terraform Modules and Reuse" data-tags="devops terraform modules" href="devops-notes.html#note-terraform-modules-and-reuse">
+        <div class="blog-card-top"></div>
+        <div class="blog-card-body">
+          <span class="post-cat">🚀 DevOps</span>
+          <h3 class="blog-card-title">Terraform Modules — Write Once, Reuse Everywhere</h3>
+          <p class="blog-card-excerpt">Terraform modules are reusable IaC components. Instead of copy-pasting VPC code across projects, write a module once and call it everywhere with different inputs. Same pattern as functions in programming.</p>
+          <div class="blog-card-code"><span class="kw">module</span> <span class="st">"vpc"</span> {
+  <span class="nm">source</span>      = <span class="st">"./modules/vpc"</span>
+  <span class="nm">vpc_cidr</span>    = <span class="st">"10.0.0.0/16"</span>
+  <span class="nm">environment</span> = <span class="st">"production"</span>
+}</div>
+          <div class="blog-card-footer">
+            <div class="blog-card-tags"><span class="btag">terraform</span><span class="btag">modules</span><span class="btag">iac</span></div>
+            <span class="blog-card-read">Read <span>→</span></span>
+          </div>
+          <div class="blog-read-time" style="padding:0 22px 16px;font-family:var(--f-mono);font-size:.68rem;color:var(--text-muted)">⏱ 7 min read</div>
+        </div>
+      </a>
+
+      <a class="blog-card" data-cat="devops" data-title="Docker Compose Production Tips" data-tags="devops docker compose production" href="devops-notes.html#note-docker-compose-production-tips">
+        <div class="blog-card-top"></div>
+        <div class="blog-card-body">
+          <span class="post-cat">🚀 DevOps</span>
+          <h3 class="blog-card-title">Docker Compose in Production — Tips Most Guides Don't Tell You</h3>
+          <p class="blog-card-excerpt">Docker Compose is often dismissed as "just for dev" — but with the right configuration it runs production workloads reliably. Key: pinned versions, health checks, restart policies, and log rotation.</p>
+          <div class="blog-card-code"><span class="kw">image:</span> <span class="st">myapp:1.4.2</span>        <span class="cm"># pinned</span>
+<span class="kw">restart:</span> unless-stopped
+<span class="kw">env_file:</span> .env.production  <span class="cm"># no inline secrets</span>
+<span class="kw">logging:</span>
+  <span class="kw">driver:</span> json-file
+  <span class="kw">options:</span> { max-size: <span class="st">"10m"</span> }</div>
+          <div class="blog-card-footer">
+            <div class="blog-card-tags"><span class="btag">docker</span><span class="btag">compose</span><span class="btag">production</span></div>
+            <span class="blog-card-read">Read <span>→</span></span>
+          </div>
+          <div class="blog-read-time" style="padding:0 22px 16px;font-family:var(--f-mono);font-size:.68rem;color:var(--text-muted)">⏱ 7 min read</div>
+        </div>
+      </a>
+
+    </div><!-- /grid-devops -->
+
+    <!-- CTA banner -->
+    <div class="blog-cta">
+      <p class="label" style="color:rgba(96,165,250,1);justify-content:center">Work With Me</p>
+      <h2>Need DevOps help for your project?</h2>
+      <p>I offer consulting services for Linux migration, AWS infrastructure, CI/CD pipelines, Docker containerization, and monitoring setup. Let's talk.</p>
+      <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+        <a href="index.html#contact" class="btn btn-blue">Get in Touch</a>
+        <a href="https://wa.me/923231450045?text=Hi%20Kamran%2C%20I%20read%20your%20blog%20and%20need%20DevOps%20help." target="_blank" class="btn btn-outline" style="border-color:rgba(255,255,255,.2);color:rgba(248,250,252,.85)">WhatsApp →</a>
+      </div>
+    </div>
+
+  </div><!-- /container -->
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 48" fill="none" height="34">
+          <defs><linearGradient id="fl" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#2563eb"/><stop offset="100%" stop-color="#1d4ed8"/></linearGradient></defs>
+          <rect x="0" y="2" width="44" height="44" rx="10" fill="#1e293b"/>
+          <rect x="9" y="10" width="5" height="26" rx="2.5" transform="rotate(-18 11.5 23)" fill="url(#fl)"/>
+          <rect x="30" y="10" width="5" height="26" rx="2.5" transform="rotate(18 32.5 23)" fill="url(#fl)"/>
+          <circle cx="22" cy="36" r="2.5" fill="#22c55e"/>
+          <text x="56" y="32" font-family="'Plus Jakarta Sans','Poppins',sans-serif" font-weight="800" font-size="21" fill="#f8fafc" letter-spacing="-0.5">Devri<tspan fill="#2563eb">ston</tspan></text>
+        </svg>
+        <p>DevOps · Linux · Cloud infrastructure consulting and training. Lahore, Pakistan.</p>
+      </div>
+      <div class="footer-col"><h4>Pages</h4><ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="solutions.html">Solutions</a></li>
+        <li><a href="training.html">Mini Labs</a></li>
+        <li><a href="devops-notes.html">DevOps Notes</a></li>
+        <li><a href="blog.html">Blog</a></li>
+      </ul></div>
+      <div class="footer-col"><h4>Blog Topics</h4><ul>
+        <li><a href="#grid-linux">Linux</a></li>
+        <li><a href="#grid-docker">Docker</a></li>
+        <li><a href="#grid-cloud">AWS / Cloud</a></li>
+        <li><a href="#grid-terraform">Terraform</a></li>
+        <li><a href="#grid-cicd">CI/CD</a></li>
+        <li><a href="#grid-monitoring">Monitoring</a></li>
+      </ul></div>
+      <div class="footer-col"><h4>Connect</h4><ul>
+        <li><a href="mailto:info@devriston.com.pk">info@devriston.com.pk</a></li>
+        <li><a href="https://wa.me/923231450045" target="_blank">WhatsApp</a></li>
+        <li><a href="https://github.com/muhammadkamrankabeer-oss" target="_blank">GitHub</a></li>
+        <li><a href="https://www.linkedin.com/in/kamrankabeer/" target="_blank">LinkedIn</a></li>
+      </ul></div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 Devriston · Muhammad Kamran Kabeer · Lahore, Pakistan</p>
+      <div class="footer-socials">
+        <a href="https://github.com/muhammadkamrankabeer-oss" target="_blank">GH</a>
+        <a href="https://www.linkedin.com/in/kamrankabeer/" target="_blank">IN</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  /* Nav */
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => nav.classList.toggle('elevated', window.scrollY > 20), {passive:true});
+  const drawer = document.getElementById('drawer');
+  function toggleDrawer() { drawer.classList.toggle('open'); }
+
+  /* Search + Filter */
+  const search  = document.getElementById('blogSearch');
+  const pills   = document.querySelectorAll('.cpill');
+  const cards   = document.querySelectorAll('.blog-card');
+  const sections= document.querySelectorAll('.blog-section-label, .blog-grid');
+  const countEl = document.getElementById('blogCount');
+  const noRes   = document.getElementById('blogNoResults');
+  let activeCat = 'all';
+
+  function update() {
+    const q = search.value.trim().toLowerCase();
+    let vis = 0;
+    cards.forEach(c => {
+      const catMatch  = activeCat === 'all' || c.dataset.cat === activeCat;
+      const textMatch = !q ||
+        c.dataset.title.toLowerCase().includes(q) ||
+        c.dataset.tags.toLowerCase().includes(q)  ||
+        c.querySelector('.blog-card-excerpt').textContent.toLowerCase().includes(q);
+      const show = catMatch && textMatch;
+      c.style.display = show ? '' : 'none';
+      if (show) vis++;
+    });
+
+    /* Hide empty section labels + grids */
+    document.querySelectorAll('[id^="grid-"]').forEach(grid => {
+      const anyVis = [...grid.querySelectorAll('.blog-card')].some(c => c.style.display !== 'none');
+      const label  = grid.previousElementSibling;
+      grid.style.display  = anyVis ? '' : 'none';
+      if (label && label.classList.contains('blog-section-label'))
+        label.style.display = anyVis ? '' : 'none';
+    });
+
+    countEl.textContent = vis === 1 ? '1 article' : `${vis} articles`;
+    noRes.style.display = vis === 0 ? 'block' : 'none';
+  }
+
+  search.addEventListener('input', update);
+  pills.forEach(p => {
+    p.addEventListener('click', () => {
+      pills.forEach(x => x.classList.remove('active'));
+      p.classList.add('active');
+      activeCat = p.dataset.cat;
+      update();
+    });
+  });
+</script>
+</body>
+</html>
