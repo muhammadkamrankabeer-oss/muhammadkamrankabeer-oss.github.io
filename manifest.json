@@ -1,0 +1,13 @@
+{
+  "name": "Devriston — DevOps & Cloud Infrastructure",
+  "short_name": "Devriston",
+  "description": "DevOps consulting, Linux administration, cloud infrastructure and training. Solutions that drive tomorrow.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#040d1c",
+  "theme_color": "#1a6aff",
+  "icons": [
+    { "src": "assets/logos/dv-logo.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "assets/logos/dv-logo.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}

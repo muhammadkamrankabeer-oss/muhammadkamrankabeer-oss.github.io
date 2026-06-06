@@ -1,869 +1,564 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-
-  <!-- ═══ SEO META TAGS ═══ -->
-  <title>Muhammad Kamran Kabeer | DevOps Engineer — Devriston</title>
-  <meta name="description" content="Muhammad Kamran Kabeer — DevOps Engineer in Lahore, Pakistan. AWS, Terraform, Docker, Ansible, Linux automation. Devriston DevOps consulting and training."/>
-  <meta name="keywords" content="DevOps Engineer Lahore, Muhammad Kamran Kabeer, Devriston, AWS Terraform Docker Ansible, Linux migration Pakistan, DevOps consulting"/>
-  <meta name="author" content="Muhammad Kamran Kabeer"/>
-  <meta name="robots" content="index, follow"/>
-  <link rel="canonical" href="https://www.devriston.com.pk/"/>
-
-  <!-- ═══ OPEN GRAPH (LinkedIn / WhatsApp / Facebook previews) ═══ -->
-  <meta property="og:type" content="website"/>
-  <meta property="og:url" content="https://www.devriston.com.pk/"/>
-  <meta property="og:title" content="Muhammad Kamran Kabeer | DevOps Engineer — Devriston"/>
-  <meta property="og:description" content="Building efficient, automated and scalable infrastructure systems with Linux, Cloud, and modern DevOps practices. Based in Lahore, Pakistan."/>
-  <meta property="og:image" content="https://www.devriston.com.pk/og-image.png"/>
-  <meta property="og:site_name" content="Devriston"/>
-  <meta property="og:locale" content="en_US"/>
-
-  <!-- ═══ TWITTER CARD ═══ -->
-  <meta name="twitter:card" content="summary_large_image"/>
-  <meta name="twitter:title" content="Muhammad Kamran Kabeer | DevOps Engineer — Devriston"/>
-  <meta name="twitter:description" content="DevOps consulting, Linux migration, AWS infrastructure, CI/CD, monitoring. Lahore, Pakistan."/>
-  <meta name="twitter:image" content="https://www.devriston.com.pk/og-image.png"/>
-
-  <!-- ═══ GOOGLE SEARCH CONSOLE — replace with your actual code ═══ -->
-  <meta name="google-site-verification: google9e1136e9fa564773.html" />
-
-  <!-- ═══ STRUCTURED DATA — helps Google rank you over LinkedIn ═══ -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    "name": "Muhammad Kamran Kabeer",
-    "url": "https://www.devriston.com.pk",
-    "image": "https://www.devriston.com.pk/og-image.png",
-    "jobTitle": "DevOps Engineer",
-    "description": "DevOps Engineer specialising in Linux, AWS, Terraform, Docker, Ansible and CI/CD automation.",
-    "worksFor": {
-      "@type": "Organization",
-      "name": "Devriston",
-      "url": "https://www.devriston.com.pk"
-    },
-    "address": {
-      "@type": "PostalAddress",
-      "addressLocality": "Lahore",
-      "addressCountry": "PK"
-    },
-    "email": "info@devriston.com.pk",
-    "sameAs": [
-      "https://www.linkedin.com/in/kamrankabeer/",
-      "https://github.com/muhammadkamrankabeer-oss"
-    ]
-  }
-  </script>
-
-  <!-- ═══ GOOGLE ANALYTICS 4 — replace G-XXXXXXXXXX with your real ID ═══ -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-XXXXXXXXXX');
-  </script>
-
-  <link rel="icon" type="image/svg+xml" href="icon.svg"/>
-  <link rel="stylesheet" href="style.css"/>
-
-  <style>
-    /* ═══ WHATSAPP FLOATING BUTTON ═══ */
-    .wa-float {
-      position: fixed;
-      bottom: 28px;
-      right: 28px;
-      z-index: 9999;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      background: #25d366;
-      color: #fff;
-      padding: 13px 20px 13px 16px;
-      border-radius: 50px;
-      box-shadow: 0 6px 28px rgba(37,211,102,.45);
-      font-family: var(--f-display);
-      font-size: .88rem;
-      font-weight: 700;
-      text-decoration: none;
-      transition: all .2s ease;
-      border: none;
-      cursor: pointer;
-    }
-    .wa-float:hover {
-      background: #20ba5a;
-      color: #fff;
-      transform: translateY(-3px);
-      box-shadow: 0 10px 36px rgba(37,211,102,.55);
-    }
-    .wa-float svg { width: 22px; height: 22px; flex-shrink: 0; }
-    .wa-float .wa-text { white-space: nowrap; }
-
-    /* Pulse ring on WhatsApp button */
-    .wa-float::before {
-      content: '';
-      position: absolute;
-      inset: -4px;
-      border-radius: 50px;
-      background: #25d366;
-      opacity: 0;
-      animation: wa-pulse 2.5s ease-out infinite;
-    }
-    @keyframes wa-pulse {
-      0%   { transform: scale(1);   opacity: .5; }
-      100% { transform: scale(1.18); opacity: 0; }
-    }
-
-    /* ═══ CONTACT FORM SECTION ═══ */
-    #contact { background: var(--bg-white); }
-    .contact-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 72px;
-      align-items: start;
-    }
-    .contact-info h2 { margin-bottom: 16px; }
-    .contact-info p  { margin-bottom: 28px; color: var(--text-secondary); }
-    .contact-methods { display: flex; flex-direction: column; gap: 14px; }
-    .cm-item {
-      display: flex; align-items: center; gap: 14px;
-      padding: 16px 20px;
-      background: var(--bg);
-      border: 1.5px solid var(--border);
-      border-radius: var(--r);
-      text-decoration: none;
-      transition: all .2s ease;
-    }
-    .cm-item:hover { border-color: var(--blue); background: var(--blue-tint); }
-    .cm-item .cm-icon {
-      width: 40px; height: 40px; border-radius: var(--r-sm);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1.1rem; flex-shrink: 0;
-    }
-    .cm-item .cm-icon.wa  { background: #dcfce7; }
-    .cm-item .cm-icon.em  { background: var(--blue-light); }
-    .cm-item .cm-icon.li  { background: #dbeafe; }
-    .cm-item .cm-label { font-family: var(--f-display); font-size: .75rem; font-weight: 700; text-transform: uppercase; letter-spacing: .07em; color: var(--text-muted); }
-    .cm-item .cm-val   { font-size: .9rem; font-weight: 600; color: var(--text-primary); margin-top: 2px; }
-
-    /* Form */
-    .contact-form-wrap {
-      background: var(--bg);
-      border: 1.5px solid var(--border);
-      border-radius: var(--r-xl);
-      padding: 36px;
-    }
-    .contact-form-wrap h3 {
-      font-size: 1.2rem; margin-bottom: 6px; color: var(--text-primary);
-    }
-    .contact-form-wrap .form-sub {
-      font-size: .85rem; color: var(--text-muted); margin-bottom: 28px;
-    }
-    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-    .form-group { display: flex; flex-direction: column; gap: 6px; margin-bottom: 14px; }
-    .form-group label {
-      font-family: var(--f-display); font-size: .76rem; font-weight: 700;
-      color: var(--text-secondary); letter-spacing: .04em;
-    }
-    .form-group input,
-    .form-group select,
-    .form-group textarea {
-      width: 100%;
-      padding: 11px 14px;
-      border: 1.5px solid var(--border);
-      border-radius: var(--r);
-      font-family: var(--f-body); font-size: .88rem;
-      color: var(--text-primary);
-      background: var(--bg-white);
-      outline: none;
-      transition: border-color .2s ease, box-shadow .2s ease;
-      -webkit-appearance: none;
-    }
-    .form-group input:focus,
-    .form-group select:focus,
-    .form-group textarea:focus {
-      border-color: var(--blue);
-      box-shadow: 0 0 0 3px var(--blue-glow);
-    }
-    .form-group textarea { resize: vertical; min-height: 110px; }
-    .form-group select { cursor: pointer; }
-
-    .form-submit {
-      width: 100%; padding: 14px;
-      background: var(--blue); color: #fff;
-      border: none; border-radius: var(--r);
-      font-family: var(--f-display); font-size: .92rem; font-weight: 700;
-      cursor: pointer; transition: all .2s ease;
-      display: flex; align-items: center; justify-content: center; gap: 8px;
-      margin-top: 6px;
-    }
-    .form-submit:hover { background: var(--blue-dark); transform: translateY(-2px); box-shadow: 0 8px 28px var(--blue-glow); }
-    .form-submit:disabled { opacity: .7; cursor: not-allowed; transform: none; }
-
-    .form-success {
-      display: none; text-align: center; padding: 28px;
-    }
-    .form-success .fs-icon { font-size: 3rem; margin-bottom: 12px; }
-    .form-success h4 { color: var(--text-primary); margin-bottom: 8px; }
-    .form-success p  { color: var(--text-secondary); font-size: .9rem; }
-
-    @media (max-width: 768px) {
-      .contact-grid { grid-template-columns: 1fr; gap: 40px; }
-      .form-row { grid-template-columns: 1fr; }
-    }
-
-    /* ═══ GITHUB PROJECTS LIVE FEED ═══ */
-    #github-projects { background: var(--bg); }
-    .gh-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 18px;
-    }
-    .gh-card {
-      background: var(--bg-white);
-      border: 1.5px solid var(--border);
-      border-radius: var(--r-lg);
-      padding: 22px;
-      display: flex; flex-direction: column;
-      box-shadow: var(--shadow-sm);
-      transition: box-shadow .2s ease, transform .2s ease, border-color .2s ease;
-      text-decoration: none;
-      position: relative; overflow: hidden;
-    }
-    .gh-card::before {
-      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
-      background: linear-gradient(90deg, #2563eb, #60a5fa);
-      transform: scaleX(0); transform-origin: left;
-      transition: transform .2s ease;
-    }
-    .gh-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-4px); border-color: var(--blue); }
-    .gh-card:hover::before { transform: scaleX(1); }
-
-    .gh-card-top { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 10px; gap: 10px; }
-    .gh-repo-name {
-      font-family: var(--f-display); font-size: .95rem; font-weight: 700;
-      color: var(--blue); word-break: break-word;
-    }
-    .gh-repo-icon { font-size: 1.1rem; flex-shrink: 0; }
-    .gh-desc {
-      font-size: .83rem; color: var(--text-secondary);
-      line-height: 1.65; flex: 1; margin-bottom: 16px;
-    }
-    .gh-meta {
-      display: flex; align-items: center; gap: 14px; flex-wrap: wrap;
-      border-top: 1px solid var(--border); padding-top: 12px; margin-top: auto;
-    }
-    .gh-lang {
-      display: flex; align-items: center; gap: 5px;
-      font-family: var(--f-mono); font-size: .72rem; color: var(--text-muted);
-    }
-    .lang-dot { width: 10px; height: 10px; border-radius: 50%; }
-    .gh-stars, .gh-updated {
-      display: flex; align-items: center; gap: 4px;
-      font-family: var(--f-mono); font-size: .72rem; color: var(--text-muted);
-    }
-    .gh-topics { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 14px; }
-    .gh-topic {
-      font-family: var(--f-mono); font-size: .64rem;
-      padding: 2px 8px; border-radius: 20px;
-      background: var(--blue-light); color: var(--blue);
-      border: 1px solid #bfdbfe;
-    }
-    .gh-loading {
-      text-align: center; padding: 48px;
-      color: var(--text-muted); font-size: .9rem;
-    }
-    .gh-loading .spin {
-      display: inline-block; width: 24px; height: 24px;
-      border: 2px solid var(--border); border-top-color: var(--blue);
-      border-radius: 50%; animation: spin .8s linear infinite;
-      margin-bottom: 12px;
-    }
-    @keyframes spin { to { transform: rotate(360deg); } }
-    .gh-error { text-align: center; padding: 32px; color: var(--text-muted); }
-    .gh-view-all {
-      display: flex; align-items: center; justify-content: center;
-      gap: 8px; margin-top: 32px;
-    }
-  </style>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<meta name="google-site-verification" content="wAaiTAPySebPceM4Bux5hwxIT3hy6BDj_NlLq4aDj5Y"/>
+<title>Devriston | DevOps & Cloud Infrastructure Solutions</title>
+<meta name="description" content="Devriston provides DevOps consulting, Linux administration, cloud infrastructure, Terraform automation, AWS solutions, Docker and Kubernetes services. Based in Lahore, Pakistan."/>
+<meta name="keywords" content="DevOps consulting, cloud infrastructure, Linux administration, Terraform, AWS, Docker, Kubernetes, CI/CD, Ansible, Prometheus, Grafana, Lahore Pakistan"/>
+<meta name="author" content="Muhammad Kamran Kabeer"/>
+<meta name="robots" content="index,follow"/>
+<link rel="canonical" href="https://www.devriston.com.pk/"/>
+<meta property="og:type" content="website"/>
+<meta property="og:url" content="https://www.devriston.com.pk/"/>
+<meta property="og:title" content="Devriston | DevOps & Cloud Infrastructure Solutions"/>
+<meta property="og:description" content="Helping businesses automate deployments, reduce cloud costs, modernize infrastructure and build reliable production systems."/>
+<meta property="og:image" content="https://www.devriston.com.pk/assets/images/banner.png"/>
+<meta property="og:site_name" content="Devriston"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:site" content="@Devristonhq"/>
+<meta name="twitter:title" content="Devriston | DevOps & Cloud Infrastructure"/>
+<meta name="twitter:description" content="DevOps consulting, Linux, AWS, Terraform, Docker, Kubernetes. Solutions that drive tomorrow."/>
+<meta name="twitter:image" content="https://www.devriston.com.pk/assets/images/banner.png"/>
+<link rel="icon" type="image/png" href="assets/logos/dv-logo.png"/>
+<link rel="apple-touch-icon" href="assets/logos/dv-logo.png"/>
+<link rel="manifest" href="manifest.json"/>
+<link rel="stylesheet" href="assets/css/main.css"/>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+{"@type":"Organization","@id":"https://www.devriston.com.pk/#org","name":"Devriston","url":"https://www.devriston.com.pk","logo":"https://www.devriston.com.pk/assets/logos/dv-logo.png","description":"DevOps consulting, cloud infrastructure, and Linux administration services.","sameAs":["https://www.youtube.com/@Devriston","https://www.facebook.com/profile.php?id=61590452186174","https://www.instagram.com/devristonhq/","https://x.com/Devristonhq","https://www.linkedin.com/in/kamrankabeer/","https://github.com/muhammadkamrankabeer-oss","https://dev.to/muhammadkamrankabeeross"],"contactPoint":{"@type":"ContactPoint","email":"info@devriston.com.pk","contactType":"customer service"},"address":{"@type":"PostalAddress","addressLocality":"Lahore","addressCountry":"PK"}},
+{"@type":"Person","@id":"https://www.devriston.com.pk/#founder","name":"Muhammad Kamran Kabeer","jobTitle":"Founder & Lead DevOps Engineer","worksFor":{"@id":"https://www.devriston.com.pk/#org"},"url":"https://www.devriston.com.pk/about.html","sameAs":["https://www.linkedin.com/in/kamrankabeer/","https://github.com/muhammadkamrankabeer-oss","https://dev.to/muhammadkamrankabeeross"]},
+{"@type":"WebSite","@id":"https://www.devriston.com.pk/#website","url":"https://www.devriston.com.pk","name":"Devriston","publisher":{"@id":"https://www.devriston.com.pk/#org"}}
+]}
+</script>
 </head>
 <body>
 
-<!-- ═══════════════════════════════════
-     WHATSAPP FLOATING BUTTON
-═══════════════════════════════════ -->
-<a class="wa-float"
-   href="https://wa.me/923231450045?text=Hi%20Kamran%2C%20I%20visited%20Devriston%20and%20I%27d%20like%20to%20discuss%20a%20project."
-   target="_blank"
-   rel="noopener noreferrer"
-   aria-label="Chat on WhatsApp">
-  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
-    <path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.122 1.532 5.856L.057 23.617a.75.75 0 00.908.98l5.963-1.562A11.943 11.943 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.886 0-3.655-.52-5.168-1.424l-.37-.22-3.539.927.943-3.443-.24-.381A9.96 9.96 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/>
-  </svg>
-  <span class="wa-text">Chat on WhatsApp</span>
+<!-- WhatsApp -->
+<a class="wa-btn" href="https://wa.me/923231450045?text=Hi%20Kamran%2C%20I%20visited%20Devriston%20and%20I%27d%20like%20to%20discuss%20a%20project." target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
+  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.122 1.532 5.856L.057 23.617a.75.75 0 00.908.98l5.963-1.562A11.943 11.943 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.886 0-3.655-.52-5.168-1.424l-.37-.22-3.539.927.943-3.443-.24-.381A9.96 9.96 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+  WhatsApp
 </a>
 
-<!-- ═══════════════════════════════════
-     NAV
-═══════════════════════════════════ -->
+<!-- NAV -->
 <nav id="nav">
   <div class="container nav-inner">
-    <a href="index.html" class="nav-logo" aria-label="Devriston home">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 48" fill="none" aria-hidden="true">
-        <defs>
-          <linearGradient id="nl" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stop-color="#2563eb"/><stop offset="100%" stop-color="#1d4ed8"/>
-          </linearGradient>
-        </defs>
-        <rect x="0" y="2" width="44" height="44" rx="10" fill="#1e293b"/>
-        <rect x="9" y="10" width="5" height="26" rx="2.5" transform="rotate(-18 11.5 23)" fill="url(#nl)"/>
-        <rect x="30" y="10" width="5" height="26" rx="2.5" transform="rotate(18 32.5 23)" fill="url(#nl)"/>
-        <circle cx="22" cy="36" r="2.5" fill="#22c55e"/>
-        <line x1="9" y1="14" x2="6" y2="14" stroke="#2563eb" stroke-width="1.5" stroke-linecap="round" opacity=".5"/>
-        <line x1="35" y1="14" x2="38" y2="14" stroke="#2563eb" stroke-width="1.5" stroke-linecap="round" opacity=".5"/>
-        <text x="56" y="32" font-family="'Plus Jakarta Sans','Poppins',sans-serif" font-weight="800" font-size="21" fill="#f8fafc" letter-spacing="-0.5">Devri<tspan fill="#2563eb">ston</tspan></text>
-      </svg>
+    <a href="index.html" class="nav-logo">
+      <img src="assets/logos/dv-logo.png" alt="Devriston logo"/>
+      <span class="nav-brand">Devri<span>ston</span></span>
     </a>
     <div class="nav-links">
       <a href="index.html" class="active">Home</a>
       <a href="solutions.html">Solutions</a>
-      <a href="training.html">Mini Labs</a>
-      <a href="devops-notes.html">DevOps Notes</a>
+      <a href="case-studies.html">Case Studies</a>
       <a href="blog.html">Blog</a>
-      <a href="#contact" class="nav-cta">Get in Touch</a>
+      <a href="devops-notes.html">Notes</a>
+      <a href="about.html">About</a>
+      <a href="contact.html" class="nav-cta">Book Consultation</a>
     </div>
-    <div class="nav-ham" id="ham" onclick="toggleDrawer()" aria-label="Open menu">
+    <button class="ham" id="nav-ham" onclick="toggleDrawer()" aria-label="Menu">
       <span></span><span></span><span></span>
-    </div>
+    </button>
   </div>
 </nav>
-
-<div class="nav-drawer" id="drawer">
-  <a href="index.html"         onclick="toggleDrawer()">Home</a>
-  <a href="solutions.html"     onclick="toggleDrawer()">Solutions</a>
-  <a href="training.html"      onclick="toggleDrawer()">Mini Labs</a>
-  <a href="devops-notes.html"  onclick="toggleDrawer()">DevOps Notes</a>
-  <a href="blog.html"           onclick="toggleDrawer()">Blog</a>
-  <a href="#contact"           onclick="toggleDrawer()">Contact</a>
+<div class="drawer" id="nav-drawer">
+  <a href="index.html">Home</a>
+  <a href="solutions.html">Solutions</a>
+  <a href="case-studies.html">Case Studies</a>
+  <a href="blog.html">Blog</a>
+  <a href="devops-notes.html">DevOps Notes</a>
+  <a href="about.html">About</a>
+  <a href="contact.html">Contact</a>
 </div>
 
-<!-- ═══════════════════════════════════
-     HERO
-═══════════════════════════════════ -->
+<!-- HERO -->
 <section id="hero">
-  <div class="hero-mesh"></div>
-  <div class="hero-grid-bg"></div>
+  <div class="hero-bg">
+    <div class="hero-gradient"></div>
+    <div class="hero-dots"></div>
+  </div>
   <div class="container">
     <div class="hero-inner">
       <div class="hero-left">
         <div class="hero-badge fade-up d1">
-          <span class="badge-dot"></span>
-          Available for Consulting &amp; Projects
+          <span class="dot"></span>Available for Consulting & Projects
         </div>
         <h1 class="hero-h1 fade-up d2">
-          Muhammad Kamran<br>
-          <span>Kabeer</span>
+          <span class="grad">DevOps & Cloud</span><br>Infrastructure Engineering
         </h1>
-        <div class="hero-role fade-up d3">
-          <span>DevOps Engineer</span>
-          <span class="role-sep">/</span>
-          <span>AWS</span><span class="role-sep">·</span>
-          <span>Terraform</span><span class="role-sep">·</span>
-          <span>Docker</span><span class="role-sep">·</span>
-          <span>Ansible</span>
-        </div>
-        <p class="hero-desc fade-up d3">
-          Building efficient, automated and scalable infrastructure systems with Linux, Cloud, and modern DevOps practices. Based in Lahore, Pakistan.
-        </p>
+        <p class="hero-sub fade-up d3">Helping businesses automate deployments, reduce cloud costs, modernize infrastructure and build reliable production systems.</p>
         <div class="hero-actions fade-up d4">
-          <a href="solutions.html" class="btn btn-blue">View Solutions</a>
-          <a href="training.html"  class="btn btn-outline">View Mini Labs</a>
-          <a href="#contact"       class="btn btn-outline">Contact</a>
+          <a href="contact.html" class="btn btn-primary btn-lg">Book Consultation</a>
+          <a href="solutions.html" class="btn btn-white-outline btn-lg">Explore Solutions</a>
         </div>
         <div class="hero-stats fade-up d5">
-          <div class="stat">
-            <span class="stat-val">7<em>+</em></span>
-            <span class="stat-lbl">Real Projects</span>
-          </div>
-          <div class="stat">
-            <span class="stat-val">3<em>+</em></span>
-            <span class="stat-lbl">Years DevOps</span>
-          </div>
-          <div class="stat">
-            <span class="stat-val">8</span>
-            <span class="stat-lbl">Services</span>
-          </div>
-          <div class="stat">
-            <span class="stat-val">5</span>
-            <span class="stat-lbl">Mini Labs</span>
-          </div>
+          <div class="h-stat"><span class="h-stat-val">7<em>+</em></span><span class="h-stat-lbl">Production Projects</span></div>
+          <div class="h-stat"><span class="h-stat-val">8</span><span class="h-stat-lbl">Core Services</span></div>
+          <div class="h-stat"><span class="h-stat-val">3<em>+</em></span><span class="h-stat-lbl">Years DevOps</span></div>
+          <div class="h-stat"><span class="h-stat-val">100<em>%</em></span><span class="h-stat-lbl">Open Source</span></div>
         </div>
       </div>
-
       <div class="hero-right fade-up d4">
-        <div class="hero-card-stack">
-          <div class="float-chip fc1">
-            <span class="chip-icon">✅</span>
-            <div><div class="chip-val">24/7</div><div class="chip-lbl">Monitoring Active</div></div>
-          </div>
-          <div class="float-chip fc2">
-            <span class="chip-icon">🚀</span>
-            <div><div class="chip-val">100%</div><div class="chip-lbl">Automated Deploy</div></div>
-          </div>
-          <div class="hero-card">
-            <div class="card-header">
-              <div class="card-dots">
-                <span class="cd1"></span><span class="cd2"></span><span class="cd3"></span>
-              </div>
-              <span class="card-title">kamran@devriston:~</span>
-              <span></span>
-            </div>
-            <div class="card-body">
-              <div class="cmd-line"><span class="cmd-prompt">$</span><span class="cmd-text">terraform apply -auto-approve</span></div>
-              <div class="cmd-out">✔ 23 resources provisioned on AWS</div>
-              <div class="cmd-line" style="margin-top:8px"><span class="cmd-prompt">$</span><span class="cmd-text">ansible-playbook hardening.yml</span></div>
-              <div class="cmd-out">✔ 32 tasks · 0 failed · 0 unreachable</div>
-              <div class="cmd-line" style="margin-top:8px"><span class="cmd-prompt">$</span><span class="cmd-text">docker compose up -d --build</span></div>
-              <div class="cmd-out">✔ 9 containers healthy · self-healing ON</div>
-              <div class="cmd-line" style="margin-top:8px"><span class="cmd-prompt">$</span><span class="cmd-text">gh workflow run deploy.yml</span></div>
-              <div class="cmd-out">✔ Pipeline passed · deployed to production</div>
-              <div class="cmd-comment" style="margin-top:10px"># Devriston — infrastructure that just works</div>
-              <div class="cmd-line" style="margin-top:2px"><span class="cmd-prompt">$</span><span class="cmd-cursor"></span></div>
-            </div>
-          </div>
+        <div class="hero-img-wrap">
+          <img src="assets/images/banner.png" alt="Devriston — DevOps & Cloud Infrastructure" loading="eager"/>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- Tech strip -->
-<div class="logo-strip">
-  <div class="container logo-strip-inner">
-    <span class="strip-label">Core technology stack</span>
-    <div class="strip-techs">
-      <span class="strip-tech"><span class="ti">🐧</span> Linux</span>
-      <span class="strip-tech"><span class="ti">☁️</span> AWS</span>
-      <span class="strip-tech"><span class="ti">⚙️</span> Terraform</span>
-      <span class="strip-tech"><span class="ti">🐳</span> Docker</span>
-      <span class="strip-tech"><span class="ti">📦</span> Ansible</span>
-      <span class="strip-tech"><span class="ti">🔄</span> GitHub Actions</span>
-      <span class="strip-tech"><span class="ti">📊</span> Prometheus</span>
+<!-- TECH STRIP -->
+<div class="tech-strip">
+  <div class="container tech-strip-inner">
+    <span class="tech-strip-label">Core Stack</span>
+    <div class="tech-pills">
+      <span class="tech-pill">🐧 Linux</span>
+      <span class="tech-pill">🐳 Docker</span>
+      <span class="tech-pill">☁️ AWS</span>
+      <span class="tech-pill">⚙️ Terraform</span>
+      <span class="tech-pill">☸️ Kubernetes</span>
+      <span class="tech-pill">🔄 GitHub Actions</span>
+      <span class="tech-pill">📦 Ansible</span>
+      <span class="tech-pill">📊 Prometheus</span>
+      <span class="tech-pill">📈 Grafana</span>
     </div>
   </div>
 </div>
 
-<!-- ═══════════════════════════════════
-     ABOUT
-═══════════════════════════════════ -->
-<section id="about">
+<!-- SERVICES -->
+<section class="services-section">
   <div class="container">
-    <div class="about-grid">
-      <div class="about-text">
-        <p class="label">About</p>
-        <h2 style="margin-bottom:22px">Infrastructure engineer.<br>Automation-first mindset.</h2>
-        <p>I'm a DevOps Engineer specialising in <strong>Linux systems</strong>, <strong>cloud infrastructure</strong>, and <strong>end-to-end automation</strong>. Through <strong>Devriston</strong>, I help businesses eliminate manual overhead, migrate from Windows to Linux, and build cloud-native systems on AWS that scale without friction.</p>
-        <p style="margin-top:16px">Every engagement is production-first — version-controlled, documented, and designed to be maintained by your team long after handoff.</p>
-        <p style="margin-top:16px">Beyond consulting, I run hands-on <strong>DevOps Mini Labs</strong> where students build real GitHub portfolio projects using the same tools used in production environments.</p>
-        <div style="margin-top:30px;display:flex;gap:16px;flex-wrap:wrap">
-          <a href="https://github.com/muhammadkamrankabeer-oss" target="_blank" class="btn btn-ghost">GitHub <span class="arr">→</span></a>
-          <a href="https://www.linkedin.com/in/kamrankabeer/"     target="_blank" class="btn btn-ghost">LinkedIn <span class="arr">→</span></a>
+    <p class="eyebrow fade-up">What We Do</p>
+    <h2 class="fade-up d1">Engineering services built<br>for production.</h2>
+    <p class="section-sub fade-up d2">End-to-end DevOps and cloud consulting — from Linux migrations to full cloud-native architecture. Every engagement is production-first.</p>
+    <div class="services-grid">
+      <div class="svc-card fade-up d1">
+        <div class="svc-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"/></svg>
+        </div>
+        <div class="svc-name">Cloud Infrastructure</div>
+        <p class="svc-desc">End-to-end AWS architecture — VPC, EC2, IAM, RDS, S3, CloudWatch, Auto Scaling. Cost-optimized and production-hardened.</p>
+        <div class="svc-tags"><span class="svc-tag">AWS</span><span class="svc-tag">VPC</span><span class="svc-tag">IAM</span><span class="svc-tag">EC2</span></div>
+      </div>
+      <div class="svc-card fade-up d2">
+        <div class="svc-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
+        </div>
+        <div class="svc-name">DevOps Automation</div>
+        <p class="svc-desc">CI/CD pipelines, GitHub Actions, automated testing, deployment automation, and infrastructure workflows that eliminate manual steps.</p>
+        <div class="svc-tags"><span class="svc-tag">CI/CD</span><span class="svc-tag">GitHub Actions</span><span class="svc-tag">Automation</span></div>
+      </div>
+      <div class="svc-card fade-up d3">
+        <div class="svc-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+        </div>
+        <div class="svc-name">Linux Administration</div>
+        <p class="svc-desc">Ubuntu, RHEL, Debian — server hardening, user management, systemd, networking, and Windows-to-Linux enterprise migrations.</p>
+        <div class="svc-tags"><span class="svc-tag">Ubuntu</span><span class="svc-tag">RHEL</span><span class="svc-tag">Samba4</span><span class="svc-tag">Migration</span></div>
+      </div>
+      <div class="svc-card fade-up d4">
+        <div class="svc-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg>
+        </div>
+        <div class="svc-name">Infrastructure as Code</div>
+        <p class="svc-desc">Terraform and Ansible — modular IaC for multi-environment provisioning with remote state, drift detection, and version control.</p>
+        <div class="svc-tags"><span class="svc-tag">Terraform</span><span class="svc-tag">Ansible</span><span class="svc-tag">IaC</span><span class="svc-tag">HCL</span></div>
+      </div>
+      <div class="svc-card fade-up d1">
+        <div class="svc-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+        </div>
+        <div class="svc-name">Monitoring & Observability</div>
+        <p class="svc-desc">Full observability stack — Prometheus, Grafana, AlertManager, Loki. Real-time dashboards and alert routing for production systems.</p>
+        <div class="svc-tags"><span class="svc-tag">Prometheus</span><span class="svc-tag">Grafana</span><span class="svc-tag">Loki</span></div>
+      </div>
+      <div class="svc-card fade-up d2">
+        <div class="svc-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+        </div>
+        <div class="svc-name">Security Hardening</div>
+        <p class="svc-desc">CIS-benchmark Ansible playbooks, SSH hardening, firewall configuration, fail2ban, and security audit reporting for production servers.</p>
+        <div class="svc-tags"><span class="svc-tag">CIS</span><span class="svc-tag">Ansible</span><span class="svc-tag">UFW</span><span class="svc-tag">fail2ban</span></div>
+      </div>
+      <div class="svc-card fade-up d3">
+        <div class="svc-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
+        </div>
+        <div class="svc-name">Containers & Kubernetes</div>
+        <p class="svc-desc">Docker containerization, Compose stacks, self-healing systems, and Kubernetes deployments for scalable microservice architectures.</p>
+        <div class="svc-tags"><span class="svc-tag">Docker</span><span class="svc-tag">Kubernetes</span><span class="svc-tag">Helm</span></div>
+      </div>
+      <div class="svc-card fade-up d4">
+        <div class="svc-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+        </div>
+        <div class="svc-name">Open Source Consulting</div>
+        <p class="svc-desc">Guidance on open-source infrastructure tools, GitOps practices, self-hosted alternatives, and open-source DevOps lab environments.</p>
+        <div class="svc-tags"><span class="svc-tag">GitOps</span><span class="svc-tag">ArgoCD</span><span class="svc-tag">Open Source</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="div"/>
+
+<!-- WHY DEVRISTON -->
+<section class="why-section">
+  <div class="container">
+    <div class="why-inner">
+      <div class="why-text">
+        <p class="eyebrow fade-up" style="color:rgba(77,143,255,1)">Why Devriston</p>
+        <h2 class="fade-up d1">Production-first engineering.<br>Business-focused results.</h2>
+        <p class="lead fade-up d2">We don't just install tools — we build infrastructure that runs reliably, scales under load, and makes sense to the team maintaining it.</p>
+        <div class="why-list">
+          <div class="why-item fade-up d2">
+            <div class="why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M5 13l4 4L19 7"/></svg></div>
+            <div><h4>Production-first engineering</h4><p>Every configuration follows real production patterns — version-controlled, documented, and reproducible from scratch.</p></div>
+          </div>
+          <div class="why-item fade-up d3">
+            <div class="why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M5 13l4 4L19 7"/></svg></div>
+            <div><h4>Cloud cost optimization</h4><p>Right-sized instances, reserved capacity strategies, and architecture reviews that cut AWS bills without sacrificing reliability.</p></div>
+          </div>
+          <div class="why-item fade-up d4">
+            <div class="why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M5 13l4 4L19 7"/></svg></div>
+            <div><h4>Automation at every layer</h4><p>From server provisioning to deployment pipelines — manual steps are a liability. Everything automatable gets automated.</p></div>
+          </div>
+          <div class="why-item fade-up d5">
+            <div class="why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M5 13l4 4L19 7"/></svg></div>
+            <div><h4>Open-source by default</h4><p>No vendor lock-in. We build on open, auditable tools that your team can understand, modify, and own long-term.</p></div>
+          </div>
+          <div class="why-item fade-up d6">
+            <div class="why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M5 13l4 4L19 7"/></svg></div>
+            <div><h4>Documented handoffs</h4><p>Every project ends with clear documentation so your team can maintain and extend the infrastructure we built together.</p></div>
+          </div>
         </div>
       </div>
-      <div class="info-card-grid">
-        <div class="info-card"><div class="ic-label">Location</div><div class="ic-val">Lahore, Pakistan · Remote worldwide</div></div>
-        <div class="info-card"><div class="ic-label">Core Stack</div><div class="ic-val">Linux · AWS · Terraform · Docker · Ansible · GitHub Actions · Prometheus · Grafana</div></div>
-        <div class="info-card"><div class="ic-label">Brand</div><div class="ic-val">Devriston — DevOps + Linux + Cloud automation &amp; training</div></div>
-        <div class="info-card"><div class="ic-label">Email</div><div class="ic-val"><a href="mailto:info@devriston.com.pk">info@devriston.com.pk</a></div></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<hr class="divider"/>
-
-<!-- ═══════════════════════════════════
-     SKILLS
-═══════════════════════════════════ -->
-<section id="skills">
-  <div class="container">
-    <p class="label">Technical Skills</p>
-    <h2 style="margin-bottom:12px">The stack behind production.</h2>
-    <p class="section-lead">Built across real systems — not sandboxes. Every tool listed here has solved a real production problem.</p>
-    <div class="skills-grid">
-      <div class="skill-card"><div class="sk-icon">🐧</div><div class="sk-name">Linux</div><div class="sk-info">RHEL · Ubuntu · Debian — server hardening, bash scripting, systemd</div><div class="sk-bar"><div class="sk-fill" style="width:96%"></div></div></div>
-      <div class="skill-card"><div class="sk-icon">🐳</div><div class="sk-name">Docker</div><div class="sk-info">Images · Compose · self-healing stacks · private registry</div><div class="sk-bar"><div class="sk-fill" style="width:91%"></div></div></div>
-      <div class="skill-card"><div class="sk-icon">☁️</div><div class="sk-name">AWS</div><div class="sk-info">EC2 · VPC · IAM · S3 · RDS · CloudWatch · Auto Scaling</div><div class="sk-bar"><div class="sk-fill" style="width:86%"></div></div></div>
-      <div class="skill-card"><div class="sk-icon">⚙️</div><div class="sk-name">Terraform</div><div class="sk-info">IaC · modules · state management · multi-env provisioning</div><div class="sk-bar"><div class="sk-fill" style="width:89%"></div></div></div>
-      <div class="skill-card"><div class="sk-icon">📦</div><div class="sk-name">Ansible</div><div class="sk-info">Playbooks · roles · Vault · idempotent server automation</div><div class="sk-bar"><div class="sk-fill" style="width:93%"></div></div></div>
-      <div class="skill-card"><div class="sk-icon">🔄</div><div class="sk-name">CI/CD</div><div class="sk-info">GitHub Actions · multi-stage pipelines · secrets · rollback</div><div class="sk-bar"><div class="sk-fill" style="width:88%"></div></div></div>
-      <div class="skill-card"><div class="sk-icon">📊</div><div class="sk-name">Monitoring</div><div class="sk-info">Prometheus · Grafana · AlertManager · Loki · dashboards</div><div class="sk-bar"><div class="sk-fill" style="width:84%"></div></div></div>
-      <div class="skill-card"><div class="sk-icon">🛡️</div><div class="sk-name">Security</div><div class="sk-info">CIS hardening · SSH · firewall · Samba4 AD · fail2ban</div><div class="sk-bar"><div class="sk-fill" style="width:81%"></div></div></div>
-    </div>
-  </div>
-</section>
-
-<hr class="divider"/>
-
-<!-- ═══════════════════════════════════
-     GITHUB LIVE PROJECTS FEED
-═══════════════════════════════════ -->
-<section id="github-projects">
-  <div class="container">
-    <p class="label">GitHub Projects</p>
-    <h2 style="margin-bottom:12px">Live from GitHub — auto-updated.</h2>
-    <p class="section-lead">These projects load directly from my GitHub profile in real time. Every new repo appears here automatically — no manual updates needed.</p>
-
-    <div id="gh-container">
-      <div class="gh-loading">
-        <div class="spin"></div>
-        <p>Loading GitHub projects…</p>
-      </div>
-    </div>
-
-    <div class="gh-view-all">
-      <a href="https://github.com/muhammadkamrankabeer-oss" target="_blank" class="btn btn-outline">
-        View All Repositories on GitHub <span style="margin-left:4px">→</span>
-      </a>
-    </div>
-  </div>
-</section>
-
-<hr class="divider"/>
-
-<!-- ═══════════════════════════════════
-     CONTACT SECTION (replaces old CTA)
-═══════════════════════════════════ -->
-<section id="contact">
-  <div class="container">
-    <div class="contact-grid">
-
-      <!-- Left: info -->
-      <div class="contact-info">
-        <p class="label">Get In Touch</p>
-        <h2>Let's build something together.</h2>
-        <p>Whether you need a cloud setup, Linux migration, CI/CD pipeline, DevOps training, or just want to talk infrastructure — reach out. I respond within 24 hours.</p>
-
-        <div class="contact-methods">
-          <a href="https://wa.me/923231450045?text=Hi%20Kamran%2C%20I%27d%20like%20to%20discuss%20a%20project."
-             target="_blank" class="cm-item">
-            <div class="cm-icon wa">💬</div>
-            <div>
-              <div class="cm-label">WhatsApp</div>
-              <div class="cm-val">Chat directly — fastest response</div>
-            </div>
-          </a>
-          <a href="mailto:info@devriston.com.pk" class="cm-item">
-            <div class="cm-icon em">✉️</div>
-            <div>
-              <div class="cm-label">Email</div>
-              <div class="cm-val">info@devriston.com.pk</div>
-            </div>
-          </a>
-          <a href="https://www.linkedin.com/in/kamrankabeer/" target="_blank" class="cm-item">
-            <div class="cm-icon li">💼</div>
-            <div>
-              <div class="cm-label">LinkedIn</div>
-              <div class="cm-val">linkedin.com/in/kamrankabeer</div>
-            </div>
-          </a>
+      <div class="why-visual fade-up d3">
+        <div class="metrics-card">
+          <div class="metrics-grid">
+            <div class="metric-box"><div class="metric-val">99<span>%</span></div><div class="metric-lbl">Uptime Target</div></div>
+            <div class="metric-box"><div class="metric-val">40<span>%</span></div><div class="metric-lbl">Avg Cost Reduction</div></div>
+            <div class="metric-box"><div class="metric-val">10<span>x</span></div><div class="metric-lbl">Deploy Speed</div></div>
+            <div class="metric-box"><div class="metric-val">0</div><div class="metric-lbl">Manual Steps</div></div>
+          </div>
+          <div class="stack-badges">
+            <span class="s-badge">Linux</span><span class="s-badge">AWS</span><span class="s-badge">Terraform</span>
+            <span class="s-badge">Docker</span><span class="s-badge">Ansible</span><span class="s-badge">K8s</span>
+            <span class="s-badge">Prometheus</span><span class="s-badge">Grafana</span><span class="s-badge">GitHub Actions</span>
+          </div>
         </div>
       </div>
-
-      <!-- Right: form (Formspree — free, works on GitHub Pages) -->
-      <div class="contact-form-wrap">
-        <h3>Send a Message</h3>
-        <p class="form-sub">Fill in the details and I'll get back to you within 24 hours.</p>
-
-        <form id="contactForm"
-              action="https://formspree.io/f/mwvzlywk"
-              method="POST">
-
-          <div class="form-row">
-            <div class="form-group">
-              <label for="fname">Your Name *</label>
-              <input type="text" id="fname" name="name" placeholder="Muhammad Ali" required/>
-            </div>
-            <div class="form-group">
-              <label for="femail">Email Address *</label>
-              <input type="email" id="femail" name="email" placeholder="ali@company.com" required/>
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label for="fservice">Service Needed</label>
-            <select id="fservice" name="service">
-              <option value="">— Select a service —</option>
-              <option value="linux-migration">Windows → Linux Migration</option>
-              <option value="aws-setup">AWS Infrastructure Setup</option>
-              <option value="terraform">Terraform / IaC</option>
-              <option value="docker">Docker Containerization</option>
-              <option value="cicd">CI/CD Pipeline Setup</option>
-              <option value="monitoring">Monitoring Stack</option>
-              <option value="training">DevOps Training / Mini Labs</option>
-              <option value="other">Other / General Inquiry</option>
-            </select>
-          </div>
-
-          <div class="form-group">
-            <label for="fmessage">Message *</label>
-            <textarea id="fmessage" name="message"
-                      placeholder="Tell me about your project, current setup, and what you need…"
-                      required></textarea>
-          </div>
-
-          <!-- Honeypot spam protection -->
-          <input type="text" name="_gotcha" style="display:none"/>
-          <input type="hidden" name="_subject" value="New contact from Devriston website"/>
-
-          <button type="submit" class="form-submit" id="submitBtn">
-            <span id="submitText">Send Message</span>
-            <span id="submitIcon">→</span>
-          </button>
-        </form>
-
-        <div class="form-success" id="formSuccess">
-          <div class="fs-icon">✅</div>
-          <h4>Message sent!</h4>
-          <p>Thanks for reaching out. I'll reply to your email within 24 hours.</p>
-        </div>
-      </div>
-
     </div>
   </div>
 </section>
 
-<!-- ═══════════════════════════════════
-     FOOTER
-═══════════════════════════════════ -->
+<hr class="div"/>
+
+<!-- FOUNDER -->
+<section class="founder-section">
+  <div class="container">
+    <p class="eyebrow fade-up">The Engineer Behind Devriston</p>
+    <h2 class="fade-up d1" style="margin-bottom:48px">Built by someone who<br>runs production systems.</h2>
+    <div class="founder-inner">
+      <div class="founder-card fade-up d2">
+        <div class="f-avatar">MK</div>
+        <div class="f-name">Muhammad Kamran Kabeer</div>
+        <div class="f-title">Founder & Lead DevOps Engineer</div>
+        <div class="f-socials">
+          <a href="https://github.com/muhammadkamrankabeer-oss" target="_blank" class="f-soc" title="GitHub"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg></a>
+          <a href="https://www.linkedin.com/in/kamrankabeer/" target="_blank" class="f-soc" title="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+          <a href="https://dev.to/muhammadkamrankabeeross" target="_blank" class="f-soc" title="Dev.to"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7.42 10.05c-.18-.16-.46-.23-.84-.23H6l.02 2.44.04 2.45.56-.02c.41 0 .63-.07.83-.26.24-.24.26-.36.26-2.2 0-1.91-.02-1.96-.29-2.18zM0 4.94v14.12h24V4.94H0zM8.56 15.3c-.44.58-1.06.77-2.53.77H4.71V8.53h1.4c1.67 0 2.16.18 2.6.9.27.43.29.6.32 2.57.05 2.23-.02 2.73-.47 3.3zm5.09-5.47h-2.47v1.77h1.52v1.28l-.72.04-.75.03v1.77l1.22.03 1.2.04v1.28h-1.6c-1.53 0-1.6-.01-1.87-.3l-.3-.28v-3.16c0-3.02.01-3.18.25-3.48.23-.31.25-.31 1.88-.31h1.64v1.29zm4.68 5.45c-.17.43-.64.79-1 .79-.18 0-.45-.15-.67-.39-.32-.32-.45-.63-.82-2.08l-.9-3.39-.45-1.67h.76c.4 0 .75.02.75.05 0 .06 1.16 4.54 1.26 4.83.04.15.32-.7.73-2.3l.66-2.52.74-.04c.4-.02.73 0 .73.04 0 .14-1.67 5.99-1.8 6.19z"/></svg></a>
+          <a href="https://www.youtube.com/@Devriston" target="_blank" class="f-soc" title="YouTube"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+        </div>
+        <div class="f-badges">
+          <span class="f-badge">DevOps</span><span class="f-badge">Cloud</span><span class="f-badge">Linux</span>
+          <span class="f-badge">IaC</span><span class="f-badge">Automation</span><span class="f-badge">Open Source</span>
+        </div>
+      </div>
+      <div class="founder-bio fade-up d3">
+        <h2 style="margin-bottom:16px">Muhammad Kamran Kabeer</h2>
+        <p class="bio-p">I'm a DevOps Engineer and infrastructure specialist based in Lahore, Pakistan. I founded Devriston to deliver production-grade DevOps consulting to businesses that need reliable, automated, and scalable infrastructure — without the overhead of a full in-house team.</p>
+        <p class="bio-p">My work spans Linux server administration, AWS cloud architecture, Terraform and Ansible automation, Docker containerization, CI/CD pipeline design, and full observability stack deployment. Every project I take on follows the same principle: <strong>build it right, document it well, and make sure the team can own it.</strong></p>
+        <p class="bio-p">I also run hands-on DevOps Mini Labs and training programs where engineers build real GitHub portfolio projects using the same tools used in production environments.</p>
+        <div class="founder-stack">
+          <div class="fs-item"><div class="fs-label">Primary Cloud</div><div class="fs-val">AWS (EC2, VPC, IAM, RDS)</div></div>
+          <div class="fs-item"><div class="fs-label">Provisioning</div><div class="fs-val">Terraform + Ansible</div></div>
+          <div class="fs-item"><div class="fs-label">Containers</div><div class="fs-val">Docker + Kubernetes</div></div>
+          <div class="fs-item"><div class="fs-label">CI/CD</div><div class="fs-val">GitHub Actions</div></div>
+          <div class="fs-item"><div class="fs-label">Monitoring</div><div class="fs-val">Prometheus + Grafana</div></div>
+          <div class="fs-item"><div class="fs-label">OS</div><div class="fs-val">Linux (Ubuntu / RHEL)</div></div>
+        </div>
+        <div style="margin-top:24px;display:flex;gap:12px;flex-wrap:wrap">
+          <a href="about.html" class="btn btn-primary">Full Story →</a>
+          <a href="https://github.com/muhammadkamrankabeer-oss" target="_blank" class="btn btn-outline">GitHub Profile</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="div"/>
+
+<!-- CASE STUDIES PREVIEW -->
+<section style="background:var(--bg-2)">
+  <div class="container">
+    <p class="eyebrow fade-up">Case Studies</p>
+    <h2 class="fade-up d1">Real projects. Real results.</h2>
+    <p class="section-sub fade-up d2">Production-grade systems built from scratch — every one documented, version-controlled, and reproducible.</p>
+    <div class="cases-grid">
+      <div class="case-card fade-up d1">
+        <div class="case-header">
+          <div class="case-num">01 · Linux Migration</div>
+          <div class="case-title">Windows Server → Linux Enterprise Migration</div>
+          <span class="case-badge">✓ Zero Downtime</span>
+        </div>
+        <div class="case-body">
+          <p class="case-desc">Full migration from Windows Server 2019 to Ubuntu 22.04 LTS for a 50-user organisation. Included Samba4 Active Directory, user migration, DNS reconfiguration, and application porting.</p>
+          <div class="case-techs"><span class="c-tech">Ubuntu</span><span class="c-tech">Samba4</span><span class="c-tech">Ansible</span><span class="c-tech">DNS</span><span class="c-tech">Kerberos</span></div>
+          <div class="case-footer">
+            <span style="font-family:var(--f-mono);font-size:.7rem;color:var(--text-3)">60% cost reduction</span>
+            <a href="case-studies.html#linux-migration" class="btn-ghost">Read more <span class="arr">→</span></a>
+          </div>
+        </div>
+      </div>
+      <div class="case-card fade-up d2">
+        <div class="case-header">
+          <div class="case-num">02 · AWS Infrastructure</div>
+          <div class="case-title">AWS Multi-Tier Infrastructure with Terraform</div>
+          <span class="case-badge">✓ Production Live</span>
+        </div>
+        <div class="case-body">
+          <p class="case-desc">Complete AWS cloud architecture provisioned with Terraform — VPC with public/private subnets, EC2 Auto Scaling, ALB, RDS Multi-AZ, S3 backend, CloudWatch alerting, and IAM least-privilege.</p>
+          <div class="case-techs"><span class="c-tech">Terraform</span><span class="c-tech">AWS EC2</span><span class="c-tech">VPC</span><span class="c-tech">RDS</span><span class="c-tech">ALB</span></div>
+          <div class="case-footer">
+            <span style="font-family:var(--f-mono);font-size:.7rem;color:var(--text-3)">99.9% uptime SLA</span>
+            <a href="case-studies.html#aws-infrastructure" class="btn-ghost">Read more <span class="arr">→</span></a>
+          </div>
+        </div>
+      </div>
+      <div class="case-card fade-up d3">
+        <div class="case-header">
+          <div class="case-num">03 · CI/CD Pipeline</div>
+          <div class="case-title">End-to-End CI/CD Automation — GitHub Actions</div>
+          <span class="case-badge">✓ Automated</span>
+        </div>
+        <div class="case-body">
+          <p class="case-desc">Multi-stage GitHub Actions pipeline — build, test, Docker image push to AWS ECR, staging deployment, production promotion with approval gates and automatic rollback on failure.</p>
+          <div class="case-techs"><span class="c-tech">GitHub Actions</span><span class="c-tech">Docker</span><span class="c-tech">AWS ECR</span><span class="c-tech">Secrets</span></div>
+          <div class="case-footer">
+            <span style="font-family:var(--f-mono);font-size:.7rem;color:var(--text-3)">10× faster deploys</span>
+            <a href="case-studies.html#cicd-pipeline" class="btn-ghost">Read more <span class="arr">→</span></a>
+          </div>
+        </div>
+      </div>
+      <div class="case-card fade-up d4">
+        <div class="case-header">
+          <div class="case-num">04 · Monitoring</div>
+          <div class="case-title">Full Observability Stack — Prometheus + Grafana</div>
+          <span class="case-badge">✓ Live Alerts</span>
+        </div>
+        <div class="case-body">
+          <p class="case-desc">Complete observability deployment — Prometheus scraping Linux nodes and Docker containers, Grafana dashboards, AlertManager with Slack and email routing, Loki for log aggregation.</p>
+          <div class="case-techs"><span class="c-tech">Prometheus</span><span class="c-tech">Grafana</span><span class="c-tech">AlertManager</span><span class="c-tech">Loki</span></div>
+          <div class="case-footer">
+            <span style="font-family:var(--f-mono);font-size:.7rem;color:var(--text-3)">MTTR reduced 80%</span>
+            <a href="case-studies.html#monitoring" class="btn-ghost">Read more <span class="arr">→</span></a>
+          </div>
+        </div>
+      </div>
+      <div class="case-card fade-up d5">
+        <div class="case-header">
+          <div class="case-num">05 · Security</div>
+          <div class="case-title">Linux Server Hardening — Ansible Automation</div>
+          <span class="case-badge">✓ CIS Compliant</span>
+        </div>
+        <div class="case-body">
+          <p class="case-desc">CIS-benchmark Ansible playbook for systematic Linux hardening — SSH config, UFW rules, fail2ban, unnecessary service removal, audit logging, and automated compliance reporting.</p>
+          <div class="case-techs"><span class="c-tech">Ansible</span><span class="c-tech">UFW</span><span class="c-tech">fail2ban</span><span class="c-tech">CIS</span><span class="c-tech">Auditd</span></div>
+          <div class="case-footer">
+            <span style="font-family:var(--f-mono);font-size:.7rem;color:var(--text-3)">Attack surface −90%</span>
+            <a href="case-studies.html#security" class="btn-ghost">Read more <span class="arr">→</span></a>
+          </div>
+        </div>
+      </div>
+      <div class="case-card fade-up d6">
+        <div class="case-header">
+          <div class="case-num">06 · Self-Healing</div>
+          <div class="case-title">Self-Healing Docker System</div>
+          <span class="case-badge">✓ Zero Downtime</span>
+        </div>
+        <div class="case-body">
+          <p class="case-desc">Multi-container Docker Compose system with health checks, restart policies, watchdog scripts, and automated failure recovery. 9 services running with zero manual intervention required.</p>
+          <div class="case-techs"><span class="c-tech">Docker</span><span class="c-tech">Compose</span><span class="c-tech">Bash</span><span class="c-tech">Healthchecks</span></div>
+          <div class="case-footer">
+            <span style="font-family:var(--f-mono);font-size:.7rem;color:var(--text-3)">99.8% uptime achieved</span>
+            <a href="case-studies.html#self-healing" class="btn-ghost">Read more <span class="arr">→</span></a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:36px">
+      <a href="case-studies.html" class="btn btn-outline">View All Case Studies →</a>
+    </div>
+  </div>
+</section>
+
+<hr class="div"/>
+
+<!-- GITHUB LIVE -->
+<section style="background:var(--bg)">
+  <div class="container">
+    <p class="eyebrow fade-up">Open Source</p>
+    <h2 class="fade-up d1">Live GitHub repositories.</h2>
+    <p class="section-sub fade-up d2">Auto-loaded from GitHub. Every new project appears here automatically — no manual updates needed.</p>
+    <div id="gh-repos">
+      <div style="text-align:center;padding:48px;color:var(--text-3)">
+        <div style="display:inline-block;width:24px;height:24px;border:2px solid var(--border);border-top-color:var(--blue);border-radius:50%;animation:spin .8s linear infinite;margin-bottom:12px"></div>
+        <style>@keyframes spin{to{transform:rotate(360deg)}}</style>
+        <p>Loading repositories…</p>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:32px">
+      <a href="https://github.com/muhammadkamrankabeer-oss" target="_blank" class="btn btn-outline">View All on GitHub →</a>
+    </div>
+  </div>
+</section>
+
+<hr class="div"/>
+
+<!-- KNOWLEDGE HUB -->
+<section style="background:var(--bg-2)">
+  <div class="container">
+    <p class="eyebrow fade-up">Knowledge Hub</p>
+    <h2 class="fade-up d1">Learn from the field.</h2>
+    <p class="section-sub fade-up d2">Practical articles and DevOps notes written from real production experience — not textbooks.</p>
+    <div class="hub-grid fade-up d2">
+      <div class="hub-panel">
+        <h3>Latest Blog Articles</h3>
+        <p class="hp-sub">In-depth tutorials and guides for DevOps engineers.</p>
+        <div class="hub-list">
+          <a class="hub-item" href="blog.html"><span class="hub-cat" style="background:#f0fdf4;color:#16a34a">Linux</span><span class="hub-title">Linux vs Windows Server — Why DevOps Chose Linux</span></a>
+          <a class="hub-item" href="blog.html"><span class="hub-cat" style="background:#ecfeff;color:#0891b2">Docker</span><span class="hub-title">5 Docker Mistakes Beginners Make in Production</span></a>
+          <a class="hub-item" href="blog.html"><span class="hub-cat" style="background:#eff6ff;color:#1d4ed8">AWS</span><span class="hub-title">High Availability on AWS — Eliminate Single Points of Failure</span></a>
+          <a class="hub-item" href="blog.html"><span class="hub-cat" style="background:#f5f3ff;color:#7c3aed">Terraform</span><span class="hub-title">Terraform State — What It Is and How to Manage It Safely</span></a>
+          <a class="hub-item" href="blog.html"><span class="hub-cat" style="background:#f0fdf4;color:#16a34a">CI/CD</span><span class="hub-title">CI/CD Pipeline Basics — From Commit to Production</span></a>
+        </div>
+        <a href="blog.html" class="btn-ghost">All Articles <span class="arr">→</span></a>
+      </div>
+      <div class="hub-panel">
+        <h3>DevOps Quick Notes</h3>
+        <p class="hp-sub">30 practical concept cards — shareable, searchable, filterable.</p>
+        <div class="hub-list">
+          <a class="hub-item" href="devops-notes.html"><span class="hub-cat" style="background:#ecfeff;color:#0891b2">Docker</span><span class="hub-title">What is Docker? Complete Beginner's Guide</span></a>
+          <a class="hub-item" href="devops-notes.html"><span class="hub-cat" style="background:#f5f3ff;color:#7c3aed">Terraform</span><span class="hub-title">Infrastructure as Code — Why Version-Control Your Servers</span></a>
+          <a class="hub-item" href="devops-notes.html"><span class="hub-cat" style="background:#fffbeb;color:#d97706">Monitoring</span><span class="hub-title">Prometheus + Grafana Workflow — PromQL Queries That Matter</span></a>
+          <a class="hub-item" href="devops-notes.html"><span class="hub-cat" style="background:#eff6ff;color:#1d4ed8">DevOps</span><span class="hub-title">DevOps Roadmap 2026 — The Complete Learning Path</span></a>
+          <a class="hub-item" href="devops-notes.html"><span class="hub-cat" style="background:#f0fdf4;color:#16a34a">Linux</span><span class="hub-title">Why Linux Matters — The Non-Negotiable DevOps Skill</span></a>
+        </div>
+        <a href="devops-notes.html" class="btn-ghost">All Notes <span class="arr">→</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="cta-section">
+  <div class="container">
+    <div class="cta-inner">
+      <p class="eyebrow fade-up" style="color:rgba(77,143,255,1);justify-content:center">Get Started</p>
+      <h2 class="fade-up d1">Ready to modernize<br>your infrastructure?</h2>
+      <p class="cta-sub fade-up d2">Book a free 30-minute discovery call. We'll audit your current setup and outline exactly what needs to be fixed, automated, or rebuilt.</p>
+      <div class="cta-btns fade-up d3">
+        <a href="contact.html" class="btn btn-primary btn-lg">Book Free Consultation</a>
+        <a href="solutions.html" class="btn btn-white-outline btn-lg">View Solutions</a>
+      </div>
+      <div class="cta-links fade-up d4">
+        <a href="mailto:info@devriston.com.pk" class="cta-link">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg>info@devriston.com.pk
+        </a>
+        <a href="https://wa.me/923231450045" target="_blank" class="cta-link">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.122 1.532 5.856L.057 23.617a.75.75 0 00.908.98l5.963-1.562A11.943 11.943 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.886 0-3.655-.52-5.168-1.424l-.37-.22-3.539.927.943-3.443-.24-.381A9.96 9.96 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>WhatsApp
+        </a>
+        <a href="https://www.linkedin.com/in/kamrankabeer/" target="_blank" class="cta-link">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>LinkedIn
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
 <footer>
   <div class="container">
-    <div class="footer-grid">
-      <div class="footer-brand">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 48" fill="none" height="34">
-          <defs><linearGradient id="fl" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#2563eb"/><stop offset="100%" stop-color="#1d4ed8"/></linearGradient></defs>
-          <rect x="0" y="2" width="44" height="44" rx="10" fill="#1e293b"/>
-          <rect x="9" y="10" width="5" height="26" rx="2.5" transform="rotate(-18 11.5 23)" fill="url(#fl)"/>
-          <rect x="30" y="10" width="5" height="26" rx="2.5" transform="rotate(18 32.5 23)" fill="url(#fl)"/>
-          <circle cx="22" cy="36" r="2.5" fill="#22c55e"/>
-          <text x="56" y="32" font-family="'Plus Jakarta Sans','Poppins',sans-serif" font-weight="800" font-size="21" fill="#f8fafc" letter-spacing="-0.5">Devri<tspan fill="#2563eb">ston</tspan></text>
-        </svg>
-        <p>DevOps · Linux · Cloud infrastructure consulting and training. Lahore, Pakistan.</p>
+    <div class="ft-grid">
+      <div class="ft-brand">
+        <div class="ft-logo">
+          <img src="assets/logos/dv-logo.png" alt="Devriston"/>
+          <span class="ft-logo-name">Devri<span>ston</span></span>
+        </div>
+        <p>DevOps consulting, Linux administration, cloud infrastructure and training. Solutions that drive tomorrow.</p>
+        <div class="ft-socials">
+          <a href="https://github.com/muhammadkamrankabeer-oss" target="_blank" class="ft-soc" title="GitHub"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg></a>
+          <a href="https://www.linkedin.com/in/kamrankabeer/" target="_blank" class="ft-soc" title="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+          <a href="https://www.youtube.com/@Devriston" target="_blank" class="ft-soc" title="YouTube"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+          <a href="https://x.com/Devristonhq" target="_blank" class="ft-soc" title="X / Twitter"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+          <a href="https://www.facebook.com/profile.php?id=61590452186174" target="_blank" class="ft-soc" title="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+          <a href="https://www.instagram.com/devristonhq/" target="_blank" class="ft-soc" title="Instagram"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
+          <a href="https://dev.to/muhammadkamrankabeeross" target="_blank" class="ft-soc" title="Dev.to"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7.42 10.05c-.18-.16-.46-.23-.84-.23H6l.02 2.44.04 2.45.56-.02c.41 0 .63-.07.83-.26.24-.24.26-.36.26-2.2 0-1.91-.02-1.96-.29-2.18zM0 4.94v14.12h24V4.94H0zM8.56 15.3c-.44.58-1.06.77-2.53.77H4.71V8.53h1.4c1.67 0 2.16.18 2.6.9.27.43.29.6.32 2.57.05 2.23-.02 2.73-.47 3.3zm5.09-5.47h-2.47v1.77h1.52v1.28l-.72.04-.75.03v1.77l1.22.03 1.2.04v1.28h-1.6c-1.53 0-1.6-.01-1.87-.3l-.3-.28v-3.16c0-3.02.01-3.18.25-3.48.23-.31.25-.31 1.88-.31h1.64v1.29zm4.68 5.45c-.17.43-.64.79-1 .79-.18 0-.45-.15-.67-.39-.32-.32-.45-.63-.82-2.08l-.9-3.39-.45-1.67h.76c.4 0 .75.02.75.05 0 .06 1.16 4.54 1.26 4.83.04.15.32-.7.73-2.3l.66-2.52.74-.04c.4-.02.73 0 .73.04 0 .14-1.67 5.99-1.8 6.19z"/></svg></a>
+        </div>
       </div>
-      <div class="footer-col">
+      <div class="ft-col">
         <h4>Pages</h4>
         <ul>
           <li><a href="index.html">Home</a></li>
           <li><a href="solutions.html">Solutions</a></li>
-          <li><a href="training.html">Mini Labs</a></li>
-          <li><a href="devops-notes.html">DevOps Notes</a></li>
-          <li><a href="blog.html">Blog</a></li>
+          <li><a href="case-studies.html">Case Studies</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
         </ul>
       </div>
-      <div class="footer-col">
+      <div class="ft-col">
         <h4>Services</h4>
         <ul>
+          <li><a href="solutions.html">Cloud Infrastructure</a></li>
           <li><a href="solutions.html">Linux Migration</a></li>
-          <li><a href="solutions.html">AWS Infrastructure</a></li>
+          <li><a href="solutions.html">Terraform & IaC</a></li>
           <li><a href="solutions.html">CI/CD Pipelines</a></li>
           <li><a href="solutions.html">Monitoring Stack</a></li>
+          <li><a href="solutions.html">Security Hardening</a></li>
         </ul>
       </div>
-      <div class="footer-col">
-        <h4>Connect</h4>
+      <div class="ft-col">
+        <h4>Learn</h4>
+        <ul>
+          <li><a href="blog.html">Blog Articles</a></li>
+          <li><a href="devops-notes.html">DevOps Notes</a></li>
+          <li><a href="https://github.com/muhammadkamrankabeer-oss" target="_blank">GitHub Labs</a></li>
+          <li><a href="https://www.youtube.com/@Devriston" target="_blank">YouTube</a></li>
+          <li><a href="https://dev.to/muhammadkamrankabeeross" target="_blank">Dev.to</a></li>
+        </ul>
+      </div>
+      <div class="ft-col">
+        <h4>Contact</h4>
         <ul>
           <li><a href="mailto:info@devriston.com.pk">info@devriston.com.pk</a></li>
           <li><a href="https://wa.me/923231450045" target="_blank">WhatsApp</a></li>
-          <li><a href="https://github.com/muhammadkamrankabeer-oss" target="_blank">GitHub</a></li>
+          <li><a href="contact.html">Book Consultation</a></li>
           <li><a href="https://www.linkedin.com/in/kamrankabeer/" target="_blank">LinkedIn</a></li>
         </ul>
       </div>
     </div>
-    <div class="footer-bottom">
+    <div class="ft-bottom">
       <p>© 2025 Devriston · Muhammad Kamran Kabeer · Lahore, Pakistan</p>
-      <div class="footer-socials">
-        <a href="https://github.com/muhammadkamrankabeer-oss" target="_blank" title="GitHub">GH</a>
-        <a href="https://www.linkedin.com/in/kamrankabeer/"   target="_blank" title="LinkedIn">IN</a>
+      <div class="ft-bottom-links">
+        <a href="sitemap.xml">Sitemap</a>
+        <a href="robots.txt">Robots</a>
       </div>
     </div>
   </div>
 </footer>
 
-<!-- ═══════════════════════════════════
-     JAVASCRIPT
-═══════════════════════════════════ -->
-<script>
-/* ── Nav ── */
-const nav = document.getElementById('nav');
-window.addEventListener('scroll', () =>
-  nav.classList.toggle('elevated', window.scrollY > 20), { passive: true });
-const drawer = document.getElementById('drawer');
-function toggleDrawer() { drawer.classList.toggle('open'); }
-
-/* ══════════════════════════════════════════════
-   GITHUB LIVE PROJECTS FEED
-   Fetches your public repos from GitHub API
-   New repos appear automatically — no code change needed
-══════════════════════════════════════════════ */
-const GH_USERNAME = 'muhammadkamrankabeer-oss';
-const GH_MAX      = 9;  // max repos to show
-
-/* Language colour map */
-const LANG_COLORS = {
-  'Shell':          '#89e051',
-  'Python':         '#3572A5',
-  'HCL':            '#844FBA',
-  'Dockerfile':     '#384d54',
-  'JavaScript':     '#f1e05a',
-  'YAML':           '#cb171e',
-  'HTML':           '#e34c26',
-  'CSS':            '#563d7c',
-  'Ansible':        '#1A1918',
-  'Go':             '#00ADD8',
-  'TypeScript':     '#2b7489',
-};
-
-function langColor(lang) {
-  return LANG_COLORS[lang] || '#64748b';
-}
-
-function timeAgo(dateStr) {
-  const diff = Date.now() - new Date(dateStr);
-  const days = Math.floor(diff / 86400000);
-  if (days === 0)   return 'today';
-  if (days === 1)   return 'yesterday';
-  if (days < 30)    return `${days}d ago`;
-  if (days < 365)   return `${Math.floor(days/30)}mo ago`;
-  return `${Math.floor(days/365)}y ago`;
-}
-
-function renderRepos(repos) {
-  const container = document.getElementById('gh-container');
-  if (!repos.length) {
-    container.innerHTML = '<div class="gh-error">No public repositories found.</div>';
-    return;
-  }
-
-  const grid = document.createElement('div');
-  grid.className = 'gh-grid';
-
-  repos.forEach(repo => {
-    const topics = repo.topics?.slice(0, 4) || [];
-    const desc   = repo.description || 'No description provided.';
-
-    const card = document.createElement('a');
-    card.className   = 'gh-card';
-    card.href        = repo.html_url;
-    card.target      = '_blank';
-    card.rel         = 'noopener noreferrer';
-    card.setAttribute('aria-label', `GitHub repo: ${repo.name}`);
-
-    card.innerHTML = `
-      <div class="gh-card-top">
-        <span class="gh-repo-name">${repo.name}</span>
-        <span class="gh-repo-icon">📁</span>
-      </div>
-      <p class="gh-desc">${desc.length > 120 ? desc.slice(0,120)+'…' : desc}</p>
-      ${topics.length ? `<div class="gh-topics">${topics.map(t=>`<span class="gh-topic">${t}</span>`).join('')}</div>` : ''}
-      <div class="gh-meta">
-        ${repo.language ? `
-        <span class="gh-lang">
-          <span class="lang-dot" style="background:${langColor(repo.language)}"></span>
-          ${repo.language}
-        </span>` : ''}
-        ${repo.stargazers_count > 0 ? `
-        <span class="gh-stars">⭐ ${repo.stargazers_count}</span>` : ''}
-        <span class="gh-updated">🕐 ${timeAgo(repo.updated_at)}</span>
-      </div>`;
-
-    grid.appendChild(card);
-  });
-
-  container.innerHTML = '';
-  container.appendChild(grid);
-}
-
-async function loadGitHubRepos() {
-  try {
-    const res = await fetch(
-      `https://api.github.com/users/${GH_USERNAME}/repos?sort=updated&direction=desc&per_page=${GH_MAX}&type=public`,
-      { headers: { 'Accept': 'application/vnd.github.mercy-preview+json' } }
-    );
-    if (!res.ok) throw new Error(`GitHub API: ${res.status}`);
-    const repos = await res.json();
-    /* Filter out the profile readme repo */
-    const filtered = repos.filter(r =>
-      r.name !== `${GH_USERNAME}` && !r.fork
-    ).slice(0, GH_MAX);
-    renderRepos(filtered);
-  } catch (err) {
-    document.getElementById('gh-container').innerHTML =
-      `<div class="gh-error">
-        <p>⚠️ Could not load GitHub projects right now.</p>
-        <a href="https://github.com/${GH_USERNAME}" target="_blank" class="btn btn-outline" style="margin-top:12px">
-          View on GitHub directly →
-        </a>
-      </div>`;
-    console.warn('GitHub API error:', err);
-  }
-}
-
-loadGitHubRepos();
-
-/* ══════════════════════════════════════════════
-   CONTACT FORM — Formspree handler
-   Setup: go to formspree.io, create form,
-   replace YOUR_FORM_ID in the form action URL
-══════════════════════════════════════════════ */
-const contactForm  = document.getElementById('contactForm');
-const submitBtn    = document.getElementById('submitBtn');
-const submitText   = document.getElementById('submitText');
-const submitIcon   = document.getElementById('submitIcon');
-const formSuccess  = document.getElementById('formSuccess');
-
-if (contactForm) {
-  contactForm.addEventListener('submit', async function(e) {
-    e.preventDefault();
-
-    /* Loading state */
-    submitBtn.disabled = true;
-    submitText.textContent = 'Sending…';
-    submitIcon.textContent = '⏳';
-
-    try {
-      const data   = new FormData(contactForm);
-      const res    = await fetch(contactForm.action, {
-        method:  'POST',
-        body:    data,
-        headers: { 'Accept': 'application/json' }
-      });
-
-      if (res.ok) {
-        /* Success */
-        contactForm.style.display  = 'none';
-        formSuccess.style.display  = 'block';
-        /* GA4 event */
-        if (typeof gtag !== 'undefined') {
-          gtag('event', 'form_submit', { event_category: 'contact', event_label: 'contact_form' });
-        }
-      } else {
-        throw new Error('Form submission failed');
-      }
-    } catch {
-      submitText.textContent = 'Failed — try email instead';
-      submitIcon.textContent = '❌';
-      submitBtn.disabled = false;
-      setTimeout(() => {
-        submitText.textContent = 'Send Message';
-        submitIcon.textContent = '→';
-      }, 3000);
-    }
-  });
-}
-</script>
+<script src="assets/js/main.js" defer></script>
 </body>
 </html>

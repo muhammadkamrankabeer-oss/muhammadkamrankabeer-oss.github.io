@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
-
+Disallow: /assets/js/
 Sitemap: https://www.devriston.com.pk/sitemap.xml

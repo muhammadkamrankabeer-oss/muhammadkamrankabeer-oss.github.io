@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>404 — Page Not Found | Devriston</title>
+<meta name="robots" content="noindex,follow"/>
+<link rel="icon" type="image/png" href="assets/logos/dv-logo.png"/>
+<link rel="stylesheet" href="assets/css/main.css"/>
+</head>
+<body>
+<nav id="nav" class="scrolled">
+  <div class="container nav-inner">
+    <a href="index.html" class="nav-logo"><img src="assets/logos/dv-logo.png" alt="Devriston"/><span class="nav-brand">Devri<span>ston</span></span></a>
+    <div class="nav-links">
+      <a href="index.html">Home</a><a href="solutions.html">Solutions</a>
+      <a href="blog.html">Blog</a><a href="contact.html" class="nav-cta">Contact</a>
+    </div>
+    <button class="ham" onclick="toggleDrawer()" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<div class="drawer" id="nav-drawer">
+  <a href="index.html">Home</a><a href="solutions.html">Solutions</a>
+  <a href="blog.html">Blog</a><a href="contact.html">Contact</a>
+</div>
+
+<section style="min-height:100vh;background:var(--navy);display:flex;align-items:center;justify-content:center;text-align:center;padding:40px 20px;flex-direction:column">
+  <div style="position:absolute;inset:0;background:radial-gradient(ellipse 60% 50% at 50% 60%,rgba(26,106,255,.12) 0%,transparent 60%);pointer-events:none"></div>
+  <div style="position:relative;z-index:1">
+    <div style="font-size:7rem;font-weight:900;color:rgba(26,106,255,.18);line-height:1;margin-bottom:16px;font-family:var(--f-sans)">404</div>
+    <h1 style="color:var(--white);font-size:2rem;margin-bottom:12px">Page not found.</h1>
+    <p style="color:var(--white-2);margin-bottom:32px;max-width:400px">The page you're looking for doesn't exist or has been moved. Let's get you back on track.</p>
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+      <a href="index.html" class="btn btn-primary">Go to Homepage</a>
+      <a href="solutions.html" class="btn btn-white-outline">View Solutions</a>
+    </div>
+    <div style="margin-top:40px;display:flex;gap:20px;justify-content:center;flex-wrap:wrap">
+      <a href="blog.html" style="color:var(--white-2);font-size:.86rem;transition:color .15s">Blog →</a>
+      <a href="devops-notes.html" style="color:var(--white-2);font-size:.86rem;transition:color .15s">DevOps Notes →</a>
+      <a href="contact.html" style="color:var(--white-2);font-size:.86rem;transition:color .15s">Contact →</a>
+      <a href="case-studies.html" style="color:var(--white-2);font-size:.86rem;transition:color .15s">Case Studies →</a>
+    </div>
+    <div style="margin-top:48px;font-family:var(--f-mono);font-size:.78rem;color:rgba(240,246,255,.2)">
+      Error 404 · devriston.com.pk
+    </div>
+  </div>
+</section>
+<script src="assets/js/main.js" defer></script>
+</body>
+</html>

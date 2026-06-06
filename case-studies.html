@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<meta name="google-site-verification" content="wAaiTAPySebPceM4Bux5hwxIT3hy6BDj_NlLq4aDj5Y"/>
+<title>Case Studies | Devriston — Real DevOps Projects & Results</title>
+<meta name="description" content="Real DevOps case studies: Linux migration, AWS infrastructure, CI/CD automation, monitoring stack, and security hardening. Results from production-grade projects."/>
+<meta name="robots" content="index,follow"/>
+<link rel="canonical" href="https://www.devriston.com.pk/case-studies.html"/>
+<meta property="og:title" content="Case Studies | Devriston — Real DevOps Results"/>
+<meta property="og:description" content="Production-grade DevOps projects with real results: Linux migration, AWS, CI/CD, Monitoring, Security hardening."/>
+<meta property="og:url" content="https://www.devriston.com.pk/case-studies.html"/>
+<meta property="og:image" content="https://www.devriston.com.pk/assets/images/banner.png"/>
+<link rel="icon" type="image/png" href="assets/logos/dv-logo.png"/>
+<link rel="stylesheet" href="assets/css/main.css"/>
+<style>
+.cs-card{background:var(--bg);border:1.5px solid var(--border);border-radius:var(--r-xl);overflow:hidden;box-shadow:var(--shadow-md);margin-bottom:36px}
+.cs-header{background:linear-gradient(135deg,var(--navy),var(--navy-3));display:grid;grid-template-columns:1fr 220px}
+.cs-title-block{padding:38px}
+.cs-title-block h2{color:var(--white);font-size:1.55rem;margin-bottom:10px}
+.cs-title-block .cs-intro{color:var(--white-2);font-size:.9rem;max-width:440px;line-height:1.75}
+.cs-meta-block{padding:32px;border-left:1px solid rgba(255,255,255,.07);display:flex;flex-direction:column;gap:14px}
+.cs-meta-item .cs-ml{font-family:var(--f-mono);font-size:.66rem;letter-spacing:.1em;color:rgba(240,246,255,.3);margin-bottom:3px;text-transform:uppercase}
+.cs-meta-item .cs-mv{font-size:.88rem;font-weight:600;color:var(--white)}
+.cs-body{padding:38px;display:grid;grid-template-columns:1fr 1fr;gap:32px}
+.cs-section h4{font-size:.74rem;font-weight:700;text-transform:uppercase;letter-spacing:.09em;color:var(--blue);margin-bottom:9px}
+.cs-section p{font-size:.88rem;color:var(--text-2);line-height:1.8}
+.cs-section ul{padding-left:16px;display:flex;flex-direction:column;gap:6px}
+.cs-section li{font-size:.88rem;color:var(--text-2);line-height:1.7}
+.cs-tech-row{display:flex;flex-wrap:wrap;gap:6px}
+.cs-tech{font-family:var(--f-mono);font-size:.7rem;color:var(--blue);background:var(--blue-tint);border:1px solid rgba(26,106,255,.2);padding:3px 9px;border-radius:var(--r-full)}
+.cs-results{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:11px;margin-top:8px}
+.cs-result{background:var(--bg-2);border:1.5px solid var(--border);border-radius:var(--r-lg);padding:16px;text-align:center}
+.cs-result-val{font-size:1.65rem;font-weight:800;color:var(--blue);line-height:1}
+.cs-result-lbl{font-size:.72rem;color:var(--text-3);margin-top:4px}
+.cs-badge{display:inline-flex;align-items:center;gap:5px;font-size:.68rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#4ade80;background:rgba(74,222,128,.1);border:1px solid rgba(74,222,128,.22);padding:4px 10px;border-radius:var(--r-full);margin-top:10px}
+@media(max-width:960px){.cs-header{grid-template-columns:1fr}.cs-meta-block{border-left:none;border-top:1px solid rgba(255,255,255,.07)}.cs-body{grid-template-columns:1fr;padding:24px}}
+@media(max-width:680px){.cs-title-block,.cs-meta-block{padding:22px}}
+</style>
+</head>
+<body>
+
+<a class="wa-btn" href="https://wa.me/923231450045?text=Hi%20Kamran%2C%20I%20saw%20your%20case%20studies%20and%20I%27d%20like%20to%20discuss%20a%20project." target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.122 1.532 5.856L.057 23.617a.75.75 0 00.908.98l5.963-1.562A11.943 11.943 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.886 0-3.655-.52-5.168-1.424l-.37-.22-3.539.927.943-3.443-.24-.381A9.96 9.96 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+  WhatsApp
+</a>
+
+<nav id="nav" class="scrolled">
+  <div class="container nav-inner">
+    <a href="index.html" class="nav-logo"><img src="assets/logos/dv-logo.png" alt="Devriston"/><span class="nav-brand">Devri<span>ston</span></span></a>
+    <div class="nav-links">
+      <a href="index.html">Home</a><a href="solutions.html">Solutions</a>
+      <a href="case-studies.html" class="active">Case Studies</a>
+      <a href="blog.html">Blog</a><a href="devops-notes.html">Notes</a>
+      <a href="about.html">About</a><a href="contact.html" class="nav-cta">Book Consultation</a>
+    </div>
+    <button class="ham" onclick="toggleDrawer()" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<div class="drawer" id="nav-drawer">
+  <a href="index.html">Home</a><a href="solutions.html">Solutions</a><a href="case-studies.html">Case Studies</a>
+  <a href="blog.html">Blog</a><a href="devops-notes.html">DevOps Notes</a><a href="about.html">About</a><a href="contact.html">Contact</a>
+</div>
+
+<section class="pg-hero">
+  <div class="container">
+    <div class="breadcrumb"><a href="index.html">Home</a><span class="sep">/</span><span class="cur">Case Studies</span></div>
+    <p class="eyebrow" style="color:rgba(77,143,255,1)">Real Projects</p>
+    <h1 class="fade-up">Production-grade engineering.<br>Documented results.</h1>
+    <p class="pg-desc fade-up d2">Every project here is a real system built from scratch — version-controlled, reproducible, and documented. Not demos. Not sandboxes.</p>
+    <div style="display:flex;gap:12px;flex-wrap:wrap" class="fade-up d3">
+      <a href="contact.html" class="btn btn-primary">Start a Project</a>
+      <a href="solutions.html" class="btn btn-white-outline">View Services</a>
+    </div>
+  </div>
+</section>
+
+<section style="background:var(--bg-2)">
+  <div class="container">
+
+    <!-- CS 1 -->
+    <div class="cs-card fade-up d1" id="linux-migration">
+      <div class="cs-header">
+        <div class="cs-title-block">
+          <div style="font-family:var(--f-mono);font-size:.66rem;letter-spacing:.12em;color:rgba(240,246,255,.25);margin-bottom:7px">01 — LINUX MIGRATION</div>
+          <h2>Windows Server → Linux Enterprise Migration</h2>
+          <p class="cs-intro">Full migration of a 50-user organisation from Windows Server 2019 to Ubuntu 22.04 LTS — including Active Directory, email, file shares, and all business applications.</p>
+          <span class="cs-badge">✓ Zero Downtime · Production Live</span>
+        </div>
+        <div class="cs-meta-block">
+          <div class="cs-meta-item"><div class="cs-ml">Duration</div><div class="cs-mv">3 weeks</div></div>
+          <div class="cs-meta-item"><div class="cs-ml">Users Migrated</div><div class="cs-mv">50+</div></div>
+          <div class="cs-meta-item"><div class="cs-ml">Downtime</div><div class="cs-mv">Zero</div></div>
+          <div class="cs-meta-item"><div class="cs-ml">Cost Saved</div><div class="cs-mv">~60%</div></div>
+        </div>
+      </div>
+      <div class="cs-body">
+        <div class="cs-section">
+          <h4>The Challenge</h4>
+          <p>The client was running expensive Windows Server licenses across 3 servers for file sharing, Active Directory, and print services. Licensing costs were unsustainable and the IT team had no in-house Linux expertise.</p>
+        </div>
+        <div class="cs-section">
+          <h4>The Solution</h4>
+          <ul>
+            <li>Deployed Samba4 as Active Directory Domain Controller on Ubuntu 22.04</li>
+            <li>Migrated all user accounts, groups, and group policies</li>
+            <li>Configured DNS, Kerberos authentication, and Windows client domain join</li>
+            <li>Migrated file shares with identical permissions using rsync</li>
+            <li>Full Ansible automation for repeatable configuration</li>
+          </ul>
+        </div>
+        <div class="cs-section">
+          <h4>Technology Stack</h4>
+          <div class="cs-tech-row">
+            <span class="cs-tech">Ubuntu 22.04 LTS</span><span class="cs-tech">Samba4 AD</span><span class="cs-tech">Ansible</span>
+            <span class="cs-tech">Kerberos</span><span class="cs-tech">LDAP</span><span class="cs-tech">DNS</span><span class="cs-tech">rsync</span>
+          </div>
+        </div>
+        <div class="cs-section">
+          <h4>Results</h4>
+          <div class="cs-results">
+            <div class="cs-result"><div class="cs-result-val">60%</div><div class="cs-result-lbl">Cost reduction</div></div>
+            <div class="cs-result"><div class="cs-result-val">0</div><div class="cs-result-lbl">Downtime hours</div></div>
+            <div class="cs-result"><div class="cs-result-val">50+</div><div class="cs-result-lbl">Users migrated</div></div>
+            <div class="cs-result"><div class="cs-result-val">3</div><div class="cs-result-lbl">Servers replaced</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CS 2 -->
+    <div class="cs-card fade-up d2" id="aws-infrastructure">
+      <div class="cs-header">
+        <div class="cs-title-block">
+          <div style="font-family:var(--f-mono);font-size:.66rem;letter-spacing:.12em;color:rgba(240,246,255,.25);margin-bottom:7px">02 — AWS INFRASTRUCTURE</div>
+          <h2>AWS Multi-Tier Infrastructure with Terraform IaC</h2>
+          <p class="cs-intro">Complete AWS cloud architecture provisioned entirely with Terraform — HA, multi-AZ, least-privilege IAM, auto-scaling, and full observability built in from day one.</p>
+          <span class="cs-badge">✓ Production Live · 99.9% Uptime</span>
+        </div>
+        <div class="cs-meta-block">
+          <div class="cs-meta-item"><div class="cs-ml">Duration</div><div class="cs-mv">4 weeks</div></div>
+          <div class="cs-meta-item"><div class="cs-ml">Uptime SLA</div><div class="cs-mv">99.9%</div></div>
+          <div class="cs-meta-item"><div class="cs-ml">Resources</div><div class="cs-mv">23 AWS resources</div></div>
+          <div class="cs-meta-item"><div class="cs-ml">Deploy Time</div><div class="cs-mv">&lt; 5 minutes</div></div>
+        </div>
+      </div>
+      <div class="cs-body">
+        <div class="cs-section">
+          <h4>The Challenge</h4>
+          <p>The client had manually configured AWS resources with no IaC, no consistent tagging, over-permissive IAM roles, and no disaster recovery plan. Infrastructure was undocumented and impossible to reproduce.</p>
+        </div>
+        <div class="cs-section">
+          <h4>The Solution</h4>
+          <ul>
+            <li>VPC with public/private subnets across 2 Availability Zones</li>
+            <li>EC2 Auto Scaling Group behind Application Load Balancer</li>
+            <li>RDS PostgreSQL Multi-AZ with automated backups</li>
+            <li>S3 remote Terraform backend with DynamoDB state locking</li>
+            <li>CloudWatch alarms, SNS notifications, and Cost Explorer budgets</li>
+          </ul>
+        </div>
+        <div class="cs-section">
+          <h4>Technology Stack</h4>
+          <div class="cs-tech-row">
+            <span class="cs-tech">Terraform</span><span class="cs-tech">AWS VPC</span><span class="cs-tech">EC2 ASG</span>
+            <span class="cs-tech">ALB</span><span class="cs-tech">RDS Multi-AZ</span><span class="cs-tech">S3</span>
+            <span class="cs-tech">IAM</span><span class="cs-tech">CloudWatch</span>
+          </div>
+        </div>
+        <div class="cs-section">
+          <h4>Results</h4>
+          <div class="cs-results">
+            <div class="cs-result"><div class="cs-result-val">99.9%</div><div class="cs-result-lbl">Uptime SLA</div></div>
+            <div class="cs-result"><div class="cs-result-val">35%</div><div class="cs-result-lbl">Cost reduction</div></div>
+            <div class="cs-result"><div class="cs-result-val">&lt;5m</div><div class="cs-result-lbl">Full redeploy</div></div>
+            <div class="cs-result"><div class="cs-result-val">100%</div><div class="cs-result-lbl">IaC coverage</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CS 3 -->
+    <div class="cs-card fade-up d3" id="cicd-pipeline">
+      <div class="cs-header">
+        <div class="cs-title-block">
+          <div style="font-family:var(--f-mono);font-size:.66rem;letter-spacing:.12em;color:rgba(240,246,255,.25);margin-bottom:7px">03 — CI/CD AUTOMATION</div>
+          <h2>End-to-End CI/CD Pipeline — GitHub Actions</h2>
+          <p class="cs-intro">Multi-stage automated deployment pipeline that eliminated manual deployments entirely — from code commit to production in under 8 minutes with automatic rollback.</p>
+          <span class="cs-badge">✓ Fully Automated · Zero Manual Steps</span>
+        </div>
+        <div class="cs-meta-block">
+          <div class="cs-meta-item"><div class="cs-ml">Duration</div><div class="cs-mv">2 weeks</div></div>
+          <div class="cs-meta-item"><div class="cs-ml">Deploy Time</div><div class="cs-mv">8 minutes</div></div>
+          <div class="cs-meta-item"><div class="cs-ml">Before</div><div class="cs-mv">2–3 hours manual</div></div>
+          <div class="cs-meta-item"><div class="cs-ml">Environments</div><div class="cs-mv">Dev/Staging/Prod</div></div>
+        </div>
+      </div>
+      <div class="cs-body">
+        <div class="cs-section">
+          <h4>The Challenge</h4>
+          <p>The development team was manually deploying via SSH — a 2–3 hour process prone to human error. Failed deployments required manual rollback. No staging environment existed. Production was always a risk.</p>
+        </div>
+        <div class="cs-section">
+          <h4>The Solution</h4>
+          <ul>
+            <li>GitHub Actions workflow: build → test → Docker image → push to AWS ECR</li>
+            <li>Staging auto-deploy on PR merge, production requires approval gate</li>
+            <li>Automatic rollback to previous image on health check failure</li>
+            <li>GitHub Environments with secrets scoped per environment</li>
+            <li>Slack notifications for deploy status and alerts</li>
+          </ul>
+        </div>
+        <div class="cs-section">
+          <h4>Technology Stack</h4>
+          <div class="cs-tech-row">
+            <span class="cs-tech">GitHub Actions</span><span class="cs-tech">Docker</span><span class="cs-tech">AWS ECR</span>
+            <span class="cs-tech">EC2</span><span class="cs-tech">Environments</span><span class="cs-tech">Secrets</span><span class="cs-tech">Slack</span>
+          </div>
+        </div>
+        <div class="cs-section">
+          <h4>Results</h4>
+          <div class="cs-results">
+            <div class="cs-result"><div class="cs-result-val">10×</div><div class="cs-result-lbl">Faster deploys</div></div>
+            <div class="cs-result"><div class="cs-result-val">0</div><div class="cs-result-lbl">Manual steps</div></div>
+            <div class="cs-result"><div class="cs-result-val">100%</div><div class="cs-result-lbl">Test coverage gate</div></div>
+            <div class="cs-result"><div class="cs-result-val">&lt;60s</div><div class="cs-result-lbl">Auto rollback</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CS 4 -->
+    <div class="cs-card fade-up d4" id="monitoring">
+      <div class="cs-header">
+        <div class="cs-title-block">
+          <div style="font-family:var(--f-mono);font-size:.66rem;letter-spacing:.12em;color:rgba(240,246,255,.25);margin-bottom:7px">04 — MONITORING PLATFORM</div>
+          <h2>Full Observability Stack — Prometheus + Grafana + Loki</h2>
+          <p class="cs-intro">Complete observability platform for a multi-server Linux environment — metrics, logs, dashboards, and alert routing all deployed from Ansible in under 30 minutes.</p>
+          <span class="cs-badge">✓ Live Alerts · 24/7 Monitoring</span>
+        </div>
+        <div class="cs-meta-block">
+          <div class="cs-meta-item"><div class="cs-ml">Duration</div><div class="cs-mv">1 week</div></div>
+          <div class="cs-meta-item"><div class="cs-ml">MTTR Reduction</div><div class="cs-mv">80%</div></div>
+          <div class="cs-meta-item"><div class="cs-ml">Dashboards</div><div class="cs-mv">12 custom</div></div>
+          <div class="cs-meta-item"><div class="cs-ml">Alert Rules</div><div class="cs-mv">34 configured</div></div>
+        </div>
+      </div>
+      <div class="cs-body">
+        <div class="cs-section">
+          <h4>The Challenge</h4>
+          <p>The client had no visibility into their infrastructure. Outages were discovered by users, not by the engineering team. Logs were spread across multiple servers with no central aggregation or search capability.</p>
+        </div>
+        <div class="cs-section">
+          <h4>The Solution</h4>
+          <ul>
+            <li>Prometheus with Node Exporter on all Linux servers</li>
+            <li>cAdvisor for per-container Docker metrics</li>
+            <li>Grafana with 12 custom dashboards (infra, docker, app)</li>
+            <li>AlertManager routing to Slack and email with severity tiers</li>
+            <li>Loki + Promtail for centralised log aggregation and search</li>
+          </ul>
+        </div>
+        <div class="cs-section">
+          <h4>Technology Stack</h4>
+          <div class="cs-tech-row">
+            <span class="cs-tech">Prometheus</span><span class="cs-tech">Grafana</span><span class="cs-tech">AlertManager</span>
+            <span class="cs-tech">Node Exporter</span><span class="cs-tech">cAdvisor</span><span class="cs-tech">Loki</span><span class="cs-tech">Promtail</span>
+          </div>
+        </div>
+        <div class="cs-section">
+          <h4>Results</h4>
+          <div class="cs-results">
+            <div class="cs-result"><div class="cs-result-val">80%</div><div class="cs-result-lbl">MTTR reduction</div></div>
+            <div class="cs-result"><div class="cs-result-val">34</div><div class="cs-result-lbl">Alert rules</div></div>
+            <div class="cs-result"><div class="cs-result-val">12</div><div class="cs-result-lbl">Dashboards</div></div>
+            <div class="cs-result"><div class="cs-result-val">24/7</div><div class="cs-result-lbl">Visibility</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CS 5 -->
+    <div class="cs-card fade-up d5" id="security">
+      <div class="cs-header">
+        <div class="cs-title-block">
+          <div style="font-family:var(--f-mono);font-size:.66rem;letter-spacing:.12em;color:rgba(240,246,255,.25);margin-bottom:7px">05 — SECURITY HARDENING</div>
+          <h2>Linux Server Hardening — CIS Benchmark Automation</h2>
+          <p class="cs-intro">Systematic CIS-aligned hardening of 8 production Linux servers using Ansible — automated, repeatable, and producing compliance reports for audit.</p>
+          <span class="cs-badge">✓ CIS Compliant · Attack Surface −90%</span>
+        </div>
+        <div class="cs-meta-block">
+          <div class="cs-meta-item"><div class="cs-ml">Duration</div><div class="cs-mv">1 week</div></div>
+          <div class="cs-meta-item"><div class="cs-ml">Servers Hardened</div><div class="cs-mv">8</div></div>
+          <div class="cs-meta-item"><div class="cs-ml">Attack Surface</div><div class="cs-mv">−90%</div></div>
+          <div class="cs-meta-item"><div class="cs-ml">Compliance</div><div class="cs-mv">CIS Level 2</div></div>
+        </div>
+      </div>
+      <div class="cs-body">
+        <div class="cs-section">
+          <h4>The Challenge</h4>
+          <p>Default Ubuntu installations with root SSH enabled, no firewall rules, unnecessary services running, and no intrusion detection. Multiple servers — inconsistent configuration. One compromised server away from full breach.</p>
+        </div>
+        <div class="cs-section">
+          <h4>The Solution</h4>
+          <ul>
+            <li>SSH hardening — key-only auth, non-default port, AllowUsers restriction</li>
+            <li>UFW firewall with explicit deny-all, allow-specific rules</li>
+            <li>fail2ban with custom jail rules for SSH and web services</li>
+            <li>Removal of 23 unnecessary packages and disabled services</li>
+            <li>Auditd and syslog centralization for compliance reporting</li>
+          </ul>
+        </div>
+        <div class="cs-section">
+          <h4>Technology Stack</h4>
+          <div class="cs-tech-row">
+            <span class="cs-tech">Ansible</span><span class="cs-tech">UFW</span><span class="cs-tech">fail2ban</span>
+            <span class="cs-tech">OpenSSH</span><span class="cs-tech">Auditd</span><span class="cs-tech">CIS Benchmark</span><span class="cs-tech">Lynis</span>
+          </div>
+        </div>
+        <div class="cs-section">
+          <h4>Results</h4>
+          <div class="cs-results">
+            <div class="cs-result"><div class="cs-result-val">−90%</div><div class="cs-result-lbl">Attack surface</div></div>
+            <div class="cs-result"><div class="cs-result-val">8</div><div class="cs-result-lbl">Servers hardened</div></div>
+            <div class="cs-result"><div class="cs-result-val">100%</div><div class="cs-result-lbl">Automated</div></div>
+            <div class="cs-result"><div class="cs-result-val">CIS L2</div><div class="cs-result-lbl">Compliance level</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CS 6 -->
+    <div class="cs-card fade-up d6" id="self-healing">
+      <div class="cs-header">
+        <div class="cs-title-block">
+          <div style="font-family:var(--f-mono);font-size:.66rem;letter-spacing:.12em;color:rgba(240,246,255,.25);margin-bottom:7px">06 — SELF-HEALING SYSTEM</div>
+          <h2>Self-Healing Docker Infrastructure</h2>
+          <p class="cs-intro">Multi-container Docker system with automated failure detection, health checks, and recovery — 9 services running continuously with zero manual intervention.</p>
+          <span class="cs-badge">✓ 99.8% Uptime · Zero Intervention</span>
+        </div>
+        <div class="cs-meta-block">
+          <div class="cs-meta-item"><div class="cs-ml">Duration</div><div class="cs-mv">2 weeks</div></div>
+          <div class="cs-meta-item"><div class="cs-ml">Uptime</div><div class="cs-mv">99.8%</div></div>
+          <div class="cs-meta-item"><div class="cs-ml">Containers</div><div class="cs-mv">9 services</div></div>
+          <div class="cs-meta-item"><div class="cs-ml">Manual ops</div><div class="cs-mv">Zero</div></div>
+        </div>
+      </div>
+      <div class="cs-body">
+        <div class="cs-section">
+          <h4>The Challenge</h4>
+          <p>Client ran 9 Docker containers with no health checks, no restart policies, and containers frequently crashing silently — requiring manual intervention to restart. Engineers were paged at night regularly.</p>
+        </div>
+        <div class="cs-section">
+          <h4>The Solution</h4>
+          <ul>
+            <li>Docker health checks on every container with appropriate thresholds</li>
+            <li>Restart policies (unless-stopped) with exponential backoff</li>
+            <li>Watchdog bash script monitoring container health every 60 seconds</li>
+            <li>Alerting integration: Prometheus cAdvisor → AlertManager → Slack</li>
+            <li>Pinned image versions, log rotation, and resource limits per service</li>
+          </ul>
+        </div>
+        <div class="cs-section">
+          <h4>Technology Stack</h4>
+          <div class="cs-tech-row">
+            <span class="cs-tech">Docker</span><span class="cs-tech">Compose</span><span class="cs-tech">Bash</span>
+            <span class="cs-tech">Healthchecks</span><span class="cs-tech">cAdvisor</span><span class="cs-tech">Prometheus</span><span class="cs-tech">Slack</span>
+          </div>
+        </div>
+        <div class="cs-section">
+          <h4>Results</h4>
+          <div class="cs-results">
+            <div class="cs-result"><div class="cs-result-val">99.8%</div><div class="cs-result-lbl">Uptime</div></div>
+            <div class="cs-result"><div class="cs-result-val">0</div><div class="cs-result-lbl">Night pages</div></div>
+            <div class="cs-result"><div class="cs-result-val">&lt;30s</div><div class="cs-result-lbl">Auto recovery</div></div>
+            <div class="cs-result"><div class="cs-result-val">9</div><div class="cs-result-lbl">Services monitored</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="container">
+    <div class="cta-inner">
+      <p class="eyebrow" style="color:rgba(77,143,255,1);justify-content:center">Next Project</p>
+      <h2>Want results like these?</h2>
+      <p class="cta-sub">Every engagement starts with a free discovery call. No obligation — just a clear picture of what needs to be fixed and what it will take.</p>
+      <div class="cta-btns">
+        <a href="contact.html" class="btn btn-primary btn-lg">Book Free Consultation</a>
+        <a href="solutions.html" class="btn btn-white-outline btn-lg">Explore Services</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="ft-grid">
+      <div class="ft-brand"><div class="ft-logo"><img src="assets/logos/dv-logo.png" alt="Devriston"/><span class="ft-logo-name">Devri<span>ston</span></span></div><p>DevOps consulting, Linux administration, cloud infrastructure. Solutions that drive tomorrow.</p>
+        <div class="ft-socials">
+          <a href="https://github.com/muhammadkamrankabeer-oss" target="_blank" class="ft-soc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg></a>
+          <a href="https://www.linkedin.com/in/kamrankabeer/" target="_blank" class="ft-soc"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+          <a href="https://www.youtube.com/@Devriston" target="_blank" class="ft-soc"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+          <a href="https://x.com/Devristonhq" target="_blank" class="ft-soc"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+          <a href="https://dev.to/muhammadkamrankabeeross" target="_blank" class="ft-soc"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7.42 10.05c-.18-.16-.46-.23-.84-.23H6l.02 2.44.04 2.45.56-.02c.41 0 .63-.07.83-.26.24-.24.26-.36.26-2.2 0-1.91-.02-1.96-.29-2.18zM0 4.94v14.12h24V4.94H0zM8.56 15.3c-.44.58-1.06.77-2.53.77H4.71V8.53h1.4c1.67 0 2.16.18 2.6.9.27.43.29.6.32 2.57.05 2.23-.02 2.73-.47 3.3zm5.09-5.47h-2.47v1.77h1.52v1.28l-.72.04-.75.03v1.77l1.22.03 1.2.04v1.28h-1.6c-1.53 0-1.6-.01-1.87-.3l-.3-.28v-3.16c0-3.02.01-3.18.25-3.48.23-.31.25-.31 1.88-.31h1.64v1.29zm4.68 5.45c-.17.43-.64.79-1 .79-.18 0-.45-.15-.67-.39-.32-.32-.45-.63-.82-2.08l-.9-3.39-.45-1.67h.76c.4 0 .75.02.75.05 0 .06 1.16 4.54 1.26 4.83.04.15.32-.7.73-2.3l.66-2.52.74-.04c.4-.02.73 0 .73.04 0 .14-1.67 5.99-1.8 6.19z"/></svg></a>
+        </div>
+      </div>
+      <div class="ft-col"><h4>Case Studies</h4><ul><li><a href="#linux-migration">Linux Migration</a></li><li><a href="#aws-infrastructure">AWS Infrastructure</a></li><li><a href="#cicd-pipeline">CI/CD Pipeline</a></li><li><a href="#monitoring">Monitoring Stack</a></li><li><a href="#security">Security Hardening</a></li><li><a href="#self-healing">Self-Healing Docker</a></li></ul></div>
+      <div class="ft-col"><h4>Services</h4><ul><li><a href="solutions.html">All Services</a></li><li><a href="solutions.html#linux-migration">Linux Migration</a></li><li><a href="solutions.html#aws-infrastructure">AWS Setup</a></li><li><a href="solutions.html#cicd">CI/CD Pipelines</a></li></ul></div>
+      <div class="ft-col"><h4>Contact</h4><ul><li><a href="mailto:info@devriston.com.pk">info@devriston.com.pk</a></li><li><a href="https://wa.me/923231450045" target="_blank">WhatsApp</a></li><li><a href="contact.html">Book Consultation</a></li></ul></div>
+    </div>
+    <div class="ft-bottom"><p>© 2025 Devriston · Muhammad Kamran Kabeer · Lahore, Pakistan</p><div class="ft-bottom-links"><a href="sitemap.xml">Sitemap</a></div></div>
+  </div>
+</footer>
+<script src="assets/js/main.js" defer></script>
+</body>
+</html>
