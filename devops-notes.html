@@ -1,346 +1,320 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-<meta name="google-site-verification" content="wAaiTAPySebPceM4Bux5hwxIT3hy6BDj_NlLq4aDj5Y"/>
-<title>DevOps Notes | Devriston — 30 Practical Concept Cards</title>
-<meta name="description" content="30 practical DevOps concept cards covering Linux, Docker, AWS, Terraform, CI/CD and Monitoring. Searchable, filterable, shareable. By Muhammad Kamran Kabeer."/>
-<meta name="robots" content="index,follow"/>
-<link rel="canonical" href="https://www.devriston.com.pk/devops-notes.html"/>
-<meta property="og:title" content="DevOps Notes | Devriston — 30 Practical Concept Cards"/>
-<meta property="og:description" content="30 practical DevOps notes — searchable, filterable, shareable. Linux, Docker, AWS, Terraform, CI/CD, Monitoring."/>
-<meta property="og:url" content="https://www.devriston.com.pk/devops-notes.html"/>
-<meta property="og:image" content="https://www.devriston.com.pk/assets/images/banner.png"/>
-<link rel="icon" type="image/png" href="assets/logos/dv-logo.png"/>
-<link rel="stylesheet" href="assets/css/main.css"/>
-<style>
-/* Note card specifics */
-.n-card{background:var(--bg);border:1.5px solid var(--border);border-radius:var(--r-xl);overflow:hidden;box-shadow:var(--shadow-sm);display:flex;flex-direction:column;transition:transform .2s,box-shadow .2s,border-color .2s}
-.n-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
-.n-card[data-cat="linux"]:hover    {border-color:#16a34a}
-.n-card[data-cat="docker"]:hover   {border-color:#0891b2}
-.n-card[data-cat="cloud"]:hover    {border-color:#ea580c}
-.n-card[data-cat="terraform"]:hover{border-color:#7c3aed}
-.n-card[data-cat="cicd"]:hover     {border-color:#16a34a}
-.n-card[data-cat="monitoring"]:hover{border-color:#d97706}
-.n-card[data-cat="devops"]:hover   {border-color:var(--blue)}
-.n-accent{height:4px}
-.n-card[data-cat="linux"]     .n-accent{background:linear-gradient(90deg,#16a34a,#4ade80)}
-.n-card[data-cat="docker"]    .n-accent{background:linear-gradient(90deg,#0891b2,#22d3ee)}
-.n-card[data-cat="cloud"]     .n-accent{background:linear-gradient(90deg,#ea580c,#fb923c)}
-.n-card[data-cat="terraform"] .n-accent{background:linear-gradient(90deg,#7c3aed,#a78bfa)}
-.n-card[data-cat="cicd"]      .n-accent{background:linear-gradient(90deg,#16a34a,#4ade80)}
-.n-card[data-cat="monitoring"].n-accent{background:linear-gradient(90deg,#d97706,#fbbf24)}
-.n-card[data-cat="devops"]    .n-accent{background:linear-gradient(90deg,var(--blue),#60a5fa)}
-.n-body{padding:20px;flex:1;display:flex;flex-direction:column}
-.n-meta{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
-.n-num{font-family:var(--f-mono);font-size:.66rem;letter-spacing:.08em;color:var(--text-3)}
-.n-tags{display:flex;gap:5px;flex-wrap:wrap}
-.n-tag{font-size:.63rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;padding:2px 8px;border-radius:var(--r-full)}
-.n-card[data-cat="linux"]     .n-tag{background:#f0fdf4;color:#16a34a}
-.n-card[data-cat="docker"]    .n-tag{background:#ecfeff;color:#0891b2}
-.n-card[data-cat="cloud"]     .n-tag{background:#fff7ed;color:#ea580c}
-.n-card[data-cat="terraform"] .n-tag{background:#f5f3ff;color:#7c3aed}
-.n-card[data-cat="cicd"]      .n-tag{background:#f0fdf4;color:#16a34a}
-.n-card[data-cat="monitoring"].n-tag{background:#fffbeb;color:#d97706}
-.n-card[data-cat="devops"]    .n-tag{background:var(--blue-tint);color:var(--blue)}
-.n-title{font-size:.98rem;font-weight:700;color:var(--text);margin-bottom:8px;line-height:1.35;letter-spacing:-.01em}
-.n-desc{font-size:.83rem;color:var(--text-2);line-height:1.72;margin-bottom:12px;flex:1}
-.n-code{background:var(--navy);border-radius:var(--r);padding:11px 13px;margin-bottom:12px;font-family:var(--f-mono);font-size:.7rem;color:#e2e8f0;line-height:1.7;overflow-x:auto;white-space:pre}
-.n-code .kw{color:#93c5fd}.n-code .cm{color:#6b7280}.n-code .st{color:#86efac}
-.n-code .fn{color:#fcd34d}.n-code .gr{color:#4ade80}.n-code .nm{color:#f9a8d4}
-/* Expand section */
-.n-expand-btn{display:flex;align-items:center;gap:6px;width:100%;background:none;border:none;padding:11px 20px;font-family:var(--f-sans);font-size:.79rem;font-weight:600;color:var(--text-3);cursor:pointer;border-top:1px solid var(--border);transition:all .14s;text-align:left}
-.n-expand-btn:hover{color:var(--blue);background:var(--blue-tint)}
-.n-expand-btn[aria-expanded="true"]{color:var(--blue)}
-.n-expand-btn .earr{margin-left:auto;font-size:.7rem;transition:transform .14s}
-.n-expand-btn[aria-expanded="true"] .earr{transform:rotate(180deg)}
-.n-expanded{display:none;padding:14px 20px 18px;background:var(--bg-2);border-top:1px solid var(--border)}
-.n-expanded.open{display:block}
-.n-expanded p{font-size:.83rem;color:var(--text-2);line-height:1.75;margin-bottom:10px}
-.n-expanded ul{padding-left:15px;display:flex;flex-direction:column;gap:5px}
-.n-expanded li{font-size:.82rem;color:var(--text-2);line-height:1.7}
-.n-expanded strong{color:var(--text);font-weight:600}
-/* Share bar */
-.n-share{display:flex;align-items:center;gap:7px;padding:9px 20px;border-top:1px solid var(--border);background:var(--bg-2)}
-.n-share-url{font-family:var(--f-mono);font-size:.62rem;color:var(--text-3);flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.n-copy-btn{font-family:var(--f-sans);font-size:.7rem;font-weight:600;color:var(--text-3);background:var(--bg);border:1px solid var(--border);border-radius:4px;padding:3px 9px;cursor:pointer;transition:all .14s;white-space:nowrap}
-.n-copy-btn:hover{border-color:var(--blue);color:var(--blue)}
-
-/* Python additions */
-.n-card[data-cat="python"]:hover{border-color:#3776ab}
-.n-card[data-cat="python"] .n-accent{background:linear-gradient(90deg,#3776ab,#ffd343)}
-.n-card[data-cat="python"] .n-tag{background:#eff6ff;color:#3776ab}
-.python-lab{margin:40px 0;padding:24px;background:var(--bg);border:1.5px solid var(--border);border-radius:var(--r-xl);box-shadow:var(--shadow-sm)}
-.python-lab h2{margin-bottom:8px}
-.python-editor{width:100%;min-height:180px;background:var(--navy);color:#e2e8f0;border:0;border-radius:var(--r);padding:16px;font-family:var(--f-mono);resize:vertical}
-.python-run{margin-top:12px;background:var(--blue);color:white;border:0;border-radius:var(--r-full);padding:10px 18px;cursor:pointer;font-weight:700}
-.python-output{margin-top:15px;background:#020617;color:#e2e8f0;padding:15px;border-radius:var(--r);min-height:60px;white-space:pre-wrap;font-family:var(--f-mono)}
-</style>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1.0" name="viewport"/>
+<meta content="wAaiTAPySebPceM4Bux5hwxIT3hy6BDj_NlLq4aDj5Y" name="google-site-verification"/>
+<title>Technology Learning Hub | Devriston — Quick Notes &amp; Cheat Sheets</title>
+<meta content="Quick technical learning notes covering Linux, Python, Git, Docker, Kubernetes, Cloud, Networking and DevOps concepts. Searchable cheat sheets and interview revision cards by Devriston." name="description"/>
+<meta content="index,follow" name="robots"/>
+<link href="https://www.devriston.com.pk/devops-notes.html" rel="canonical"/>
+<meta content="Technology Learning Hub | Devriston — 43 Practical Concept Cards" property="og:title"/>
+<meta content="43 practical DevOps &amp; Python notes — searchable, filterable, shareable. Linux, Docker, AWS, Terraform, CI/CD, Monitoring, Git, Networking, Kubernetes." property="og:description"/>
+<meta content="https://www.devriston.com.pk/devops-notes.html" property="og:url"/>
+<meta content="https://www.devriston.com.pk/assets/images/banner.png" property="og:image"/>
+<link href="assets/logos/dv-logo.png" rel="icon" type="image/png"/>
+<link href="assets/css/main.css" rel="stylesheet"/>
+<script type="application/ld+json">
+{
+ "@context":"https://schema.org",
+ "@type":"EducationalResource",
+ "name":"Devriston Technology Learning Hub",
+ "description":"Quick technical notes, cheat sheets and interview revision cards covering Linux, Docker, Cloud, Terraform, CI/CD, Monitoring, Python, Git, Networking and Kubernetes."
+}
+</script>
 </head>
 <body>
 
-<a class="wa-btn" href="https://wa.me/923231450045?text=Hi%20Kamran%2C%20I%20found%20your%20DevOps%20notes%20helpful%20and%20I%27d%20like%20to%20discuss%20a%20project." target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
-  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.122 1.532 5.856L.057 23.617a.75.75 0 00.908.98l5.963-1.562A11.943 11.943 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.886 0-3.655-.52-5.168-1.424l-.37-.22-3.539.927.943-3.443-.24-.381A9.96 9.96 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
-  WhatsApp
+<a aria-label="WhatsApp" class="wa-btn" href="https://wa.me/923231450045?text=Hi%20Kamran%2C%20I%20found%20your%20DevOps%20notes%20helpful%20and%20I%27d%20like%20to%20discuss%20a%20project." rel="noopener noreferrer" target="_blank">
+<svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.122 1.532 5.856L.057 23.617a.75.75 0 00.908.98l5.963-1.562A11.943 11.943 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.886 0-3.655-.52-5.168-1.424l-.37-.22-3.539.927.943-3.443-.24-.381A9.96 9.96 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+WhatsApp
 </a>
 
-<nav id="nav" class="scrolled">
-  <div class="container nav-inner">
-    <a href="index.html" class="nav-logo"><img src="assets/logos/dv-logo.png" alt="Devriston"/><span class="nav-brand">Devri<span>ston</span></span></a>
-    <div class="nav-links">
-      <a href="index.html">Home</a><a href="solutions.html">Solutions</a>
-      <a href="case-studies.html">Case Studies</a><a href="blog.html">Blog</a>
-      <a href="devops-notes.html" class="active">Notes</a><a href="about.html">About</a>
-      <a href="contact.html" class="nav-cta">Book Consultation</a>
-    </div>
-    <button class="ham" onclick="toggleDrawer()" aria-label="Menu"><span></span><span></span><span></span></button>
-  </div>
+<nav class="scrolled" id="nav">
+<div class="container nav-inner">
+<a class="nav-logo" href="index.html"><img alt="Devriston" src="assets/logos/dv-logo.png"/><span class="nav-brand">Devri<span>ston</span></span></a>
+<div class="nav-links">
+<a href="index.html">Home</a>
+<a href="solutions.html">Solutions</a>
+<a href="case-studies.html">Case Studies</a>
+<a href="blog.html">Blog</a>
+<a class="active" href="devops-notes.html">Notes</a>
+<a href="about.html">About</a>
+<a class="nav-cta" href="contact.html">Book Consultation</a>
+</div>
+<button aria-label="Menu" class="ham" onclick="toggleDrawer()"><span></span><span></span><span></span></button>
+</div>
 </nav>
+
 <div class="drawer" id="nav-drawer">
-  <a href="index.html">Home</a><a href="solutions.html">Solutions</a><a href="case-studies.html">Case Studies</a>
-  <a href="blog.html">Blog</a><a href="devops-notes.html">DevOps Notes</a><a href="about.html">About</a><a href="contact.html">Contact</a>
+<a href="index.html">Home</a>
+<a href="solutions.html">Solutions</a>
+<a href="case-studies.html">Case Studies</a>
+<a href="blog.html">Blog</a>
+<a href="devops-notes.html">Technology Learning Hub</a>
+<a href="about.html">About</a>
+<a href="contact.html">Contact</a>
 </div>
 
+<!-- HERO -->
 <section class="pg-hero">
-  <div class="container">
-    <div class="breadcrumb"><a href="index.html">Home</a><span class="sep">/</span><span class="cur">DevOps Notes</span></div>
-    <p class="eyebrow" style="color:rgba(77,143,255,1)">Quick Reference</p>
-    <h1 class="fade-up">DevOps Notes</h1>
-    <p class="pg-desc fade-up d2">40 practical concept cards — searchable, filterable, and shareable with direct links. Each card has a code example and expandable deep-dive. Use these for LinkedIn posts, interview prep, or daily reference.</p>
-    <div style="display:flex;flex-wrap:wrap;gap:28px;margin-top:28px" class="fade-up d3">
-      <div class="h-stat"><span class="h-stat-val">30</span><span class="h-stat-lbl">Note Cards</span></div>
-      <div class="h-stat"><span class="h-stat-val">8</span><span class="h-stat-lbl">Categories</span></div>
-      <div class="h-stat"><span class="h-stat-val">🔗</span><span class="h-stat-lbl">Deep Links</span></div>
-    </div>
-  </div>
+<div class="container">
+<div class="breadcrumb"><a href="index.html">Home</a><span class="sep">/</span><span class="cur">Technology Learning Hub</span></div>
+<p class="eyebrow" style="color:rgba(77,143,255,1)">Quick Reference</p>
+<h1 class="fade-up">Technology Learning Hub</h1>
+<p class="pg-desc fade-up d2">Quick technical notes, cheat sheets, concept cards and practical examples for students, beginners and engineers.</p>
+<div class="fade-up d3" style="display:flex;flex-wrap:wrap;gap:28px;margin-top:28px">
+<div class="h-stat"><span class="h-stat-val">43+</span><span class="h-stat-lbl">Learning Cards</span></div>
+<div class="h-stat"><span class="h-stat-val">10+</span><span class="h-stat-lbl">Categories</span></div>
+<div class="h-stat"><span class="h-stat-val">🔗</span><span class="h-stat-lbl">Deep Links</span></div>
+</div>
+</div>
 </section>
 
 <!-- SEARCH + FILTER -->
 <div class="search-bar">
-  <div class="container" style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;width:100%">
-    <div class="sw" style="flex:1;min-width:200px">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-      <input type="text" id="noteSearch" class="search-input" placeholder="Search notes — Docker, Terraform, Linux…" autocomplete="off"/>
-    </div>
-    <div class="filter-pills">
-      <button class="fpill active" data-cat="all">All</button>
-      <button class="fpill" data-cat="linux">Linux</button>
-      <button class="fpill" data-cat="docker">Docker</button>
-      <button class="fpill" data-cat="cloud">Cloud</button>
-      <button class="fpill" data-cat="terraform">Terraform</button>
-      <button class="fpill" data-cat="cicd">CI/CD</button>
-      <button class="fpill" data-cat="monitoring">Monitoring</button>
-      <button class="fpill" data-cat="devops">DevOps</button><button class="fpill" data-cat="python">Python</button>
-    </div>
-    <span class="result-count" id="resultCount">30 notes</span>
-  </div>
+<div class="container" style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;width:100%">
+<div class="sw" style="flex:1;min-width:200px">
+<svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.35-4.35"></path></svg>
+<input autocomplete="off" class="search-input" id="noteSearch" placeholder="Search notes — Docker, Terraform, Linux, Python…" type="text"/>
+</div>
+<div class="filter-pills">
+<button class="fpill active" data-cat="all">All</button>
+<button class="fpill" data-cat="linux">Linux</button>
+<button class="fpill" data-cat="docker">Docker</button>
+<button class="fpill" data-cat="cloud">Cloud</button>
+<button class="fpill" data-cat="terraform">Terraform</button>
+<button class="fpill" data-cat="cicd">CI/CD</button>
+<button class="fpill" data-cat="monitoring">Monitoring</button>
+<button class="fpill" data-cat="devops">DevOps</button>
+<button class="fpill" data-cat="python">Python</button>
+<button class="fpill" data-cat="networking">Networking</button>
+<button class="fpill" data-cat="git">Git</button>
+<button class="fpill" data-cat="kubernetes">Kubernetes</button>
+</div>
+<span class="result-count" id="resultCount">43 notes</span>
+</div>
 </div>
 
 <main style="background:var(--bg-2);padding-bottom:80px">
-  <div class="container">
-    <div id="noResults" style="display:none;text-align:center;padding:72px 24px"><h3>No notes found</h3><p style="color:var(--text-3)">Try a different search term or clear the filter.</p></div>
+<div class="container">
+<div id="noResults" style="display:none;text-align:center;padding:72px 24px"><h3>No notes found</h3><p style="color:var(--text-3)">Try a different search term or clear the filter.</p></div>
 
-    <!-- LINUX -->
-    <div class="cat-hdr" data-section="linux"><span class="cat-hdr-icon">🐧</span><span class="cat-hdr-title">Linux</span><span class="cat-hdr-count">5 notes</span></div>
-    <div class="content-grid" data-section="linux">
+<!-- ═══ LINUX ═══ -->
+<div class="cat-hdr" data-section="linux"><span class="cat-hdr-icon">🐧</span><span class="cat-hdr-title">Linux</span><span class="cat-hdr-count">5 notes</span></div>
+<div class="content-grid" data-section="linux">
 
-      <article class="n-card c-card" data-cat="linux" data-title="Linux vs Windows Server" data-tags="linux server os windows" id="note-linux-vs-windows-server">
-        <div class="n-accent"></div><div class="n-body">
-        <div class="n-meta"><span class="n-num">#01</span><div class="n-tags"><span class="n-tag">Linux</span><span class="n-tag">Server</span></div></div>
-        <h3 class="n-title">Linux vs Windows Server</h3>
-        <p class="n-desc">Linux dominates production because it's open, auditable, lightweight, and fully scriptable. Windows Server costs licensing fees and hides complexity behind GUIs that can't be automated at scale.</p>
-        <div class="n-code"><span class="cm"># Check OS and kernel</span>
+<article class="n-card c-card" data-cat="linux" data-tags="linux server os windows" data-title="Linux vs Windows Server" id="note-linux-vs-windows-server">
+<div class="n-accent"></div><div class="n-body">
+<div class="n-meta"><span class="n-num">#01</span><div class="n-tags"><span class="n-tag">Linux</span><span class="n-tag">Server</span></div></div>
+<h3 class="n-title">Linux vs Windows Server</h3>
+<p class="n-desc">Linux dominates production because it's open, auditable, lightweight, and fully scriptable. Windows Server costs licensing fees and hides complexity behind GUIs that can't be automated at scale.</p>
+<div class="n-code"><span class="cm"># Check OS and kernel</span>
 <span class="fn">uname</span> -a
 <span class="fn">cat</span> /etc/os-release
 <span class="cm"># Linux process list — clean, scriptable</span>
 <span class="fn">ps</span> aux | <span class="fn">grep</span> nginx</div>
-        </div>
-        <button class="n-expand-btn" aria-expanded="false" onclick="toggleExpand(this)">Key Differences <span class="earr">▼</span></button>
-        <div class="n-expanded"><ul>
-          <li><strong>Cost:</strong> Linux is free. Windows Server requires CALs + OS licensing.</li>
-          <li><strong>Automation:</strong> Linux is shell-native. Everything is a file or a process.</li>
-          <li><strong>Performance:</strong> Linux runs faster on the same hardware with lower memory overhead.</li>
-          <li><strong>DevOps fit:</strong> Docker, Ansible, Terraform are all Linux-first tools.</li>
-          <li><strong>Security:</strong> Linux has fewer vulnerabilities and a much smaller attack surface.</li>
-        </ul></div>
-      </article>
+</div>
+<button aria-expanded="false" class="n-expand-btn" onclick="toggleExpand(this)">Key Differences <span class="earr">▼</span></button>
+<div class="n-expanded"><div>
+<p><strong>📘 Definition</strong><br/>Linux is an open-source operating system kernel. Linux Server refers to running Linux distributions like Ubuntu or Debian to serve applications, websites, and databases in production environments.</p>
+<p><strong>💡 Why It Matters</strong><br/>Over 90% of cloud servers run Linux. Knowing Linux means you can manage any cloud VM, container, or CI runner — it's the foundation of every DevOps role.</p>
+<p><strong>🌍 Real Example</strong><br/>A DevOps engineer SSHs into an Ubuntu EC2 instance, checks nginx logs with <code>journalctl</code>, and restarts the service with <code>systemctl restart nginx</code> — all from the terminal.</p>
+<p><strong>💻 Code/Command/Example</strong><br/><code>uname -r</code> — shows the running kernel version. <code>cat /etc/os-release</code> — shows distro info.</p>
+<p><strong>🎯 Interview Tip</strong><br/>Be ready to compare Linux vs Windows Server on licensing cost, automation capability, performance overhead, and community support.</p>
+<p><strong>📝 Practice Exercise</strong><br/>Boot a Linux VM, run <code>uname -a</code> and <code>df -h</code>, then compare the output with Windows Task Manager equivalents.</p>
+</div></div>
+</article>
 
-      <article class="n-card c-card" data-cat="linux" data-title="Why Linux Matters in DevOps" data-tags="linux devops foundation career" id="note-why-linux-matters-in-devops">
-        <div class="n-accent"></div><div class="n-body">
-        <div class="n-meta"><span class="n-num">#02</span><div class="n-tags"><span class="n-tag">Linux</span><span class="n-tag">Foundation</span></div></div>
-        <h3 class="n-title">Why Linux Matters in DevOps</h3>
-        <p class="n-desc">Every cloud VM, Docker container, CI runner, and Kubernetes node runs Linux. Linux fluency is the baseline that unlocks the entire DevOps stack. No shortcuts — this is the foundation.</p>
-        <div class="n-code"><span class="fn">systemctl</span> status nginx
+<article class="n-card c-card" data-cat="linux" data-tags="linux devops foundation career" data-title="Why Linux Matters in DevOps" id="note-why-linux-matters-in-devops">
+<div class="n-accent"></div><div class="n-body">
+<div class="n-meta"><span class="n-num">#02</span><div class="n-tags"><span class="n-tag">Linux</span><span class="n-tag">Foundation</span></div></div>
+<h3 class="n-title">Why Linux Matters in DevOps</h3>
+<p class="n-desc">Every cloud VM, Docker container, CI runner, and Kubernetes node runs Linux. Linux fluency is the baseline that unlocks the entire DevOps stack. No shortcuts — this is the foundation.</p>
+<div class="n-code"><span class="fn">systemctl</span> status nginx
 <span class="fn">journalctl</span> -u nginx --since <span class="st">"1 hour ago"</span>
 <span class="fn">ss</span> -tlnp | <span class="fn">grep</span> :80
 <span class="fn">chmod</span> 640 /etc/nginx/nginx.conf</div>
-        </div>
-        <button class="n-expand-btn" aria-expanded="false" onclick="toggleExpand(this)">Essential Commands <span class="earr">▼</span></button>
-        <div class="n-expanded"><ul>
-          <li><strong>chmod/chown:</strong> Control who can read, write, and execute files.</li>
-          <li><strong>systemctl:</strong> Start, stop, enable, and inspect services.</li>
-          <li><strong>journalctl:</strong> Read structured system logs — your first debugging tool.</li>
-          <li><strong>ss / netstat:</strong> See what ports are open and what's listening.</li>
-          <li><strong>cron:</strong> Schedule tasks without any orchestration tool.</li>
-        </ul></div>
-      </article>
+</div>
+<button aria-expanded="false" class="n-expand-btn" onclick="toggleExpand(this)">Essential Commands <span class="earr">▼</span></button>
+<div class="n-expanded"><div>
+<p><strong>📘 Definition</strong><br/>Linux is the OS that runs Docker containers, Kubernetes pods, CI/CD agents, and virtually every cloud server. Without Linux skills, you can't operate any modern DevOps toolchain effectively.</p>
+<p><strong>💡 Why It Matters</strong><br/>When a deployment fails at 2 AM, you need to SSH in, read logs, check processes, and fix config files — all from a terminal. Linux is the language of production systems.</p>
+<p><strong>🌍 Real Example</strong><br/>A junior DevOps engineer uses <code>ss -tlnp</code> to verify nginx is listening on port 80, then <code>journalctl -u nginx</code> to trace a 502 error back to a misconfigured upstream.</p>
+<p><strong>💻 Code/Command/Example</strong><br/><code>systemctl restart nginx</code> — restart a service. <code>tail -f /var/log/syslog</code> — live log watching.</p>
+<p><strong>🎯 Interview Tip</strong><br/>Be ready to demonstrate: checking service status, reading logs, modifying file permissions, and managing processes without a GUI.</p>
+<p><strong>📝 Practice Exercise</strong><br/>Install nginx on a Linux VM. Stop it, start it, check its logs, and change its port — using only the terminal.</p>
+</div></div>
+</article>
 
-      <article class="n-card c-card" data-cat="linux" data-title="Automating DevOps Workstations" data-tags="linux automation ansible bash workstation" id="note-automating-devops-workstations">
-        <div class="n-accent"></div><div class="n-body">
-        <div class="n-meta"><span class="n-num">#03</span><div class="n-tags"><span class="n-tag">Linux</span><span class="n-tag">Automation</span></div></div>
-        <h3 class="n-title">Automating DevOps Workstations</h3>
-        <p class="n-desc">A fully automated workstation setup means rebuilding your entire dev environment in under 10 minutes. Script once, version-control it, run it anywhere. Never manually install tools again.</p>
-        <div class="n-code"><span class="kw">#!/bin/bash</span>
+<article class="n-card c-card" data-cat="linux" data-tags="linux automation ansible bash workstation" data-title="Automating DevOps Workstations" id="note-automating-devops-workstations">
+<div class="n-accent"></div><div class="n-body">
+<div class="n-meta"><span class="n-num">#03</span><div class="n-tags"><span class="n-tag">Linux</span><span class="n-tag">Automation</span></div></div>
+<h3 class="n-title">Automating DevOps Workstations</h3>
+<p class="n-desc">A fully automated workstation setup means rebuilding your entire dev environment in under 10 minutes on any machine. Script it once, version-control it, run it anywhere.</p>
+<div class="n-code"><span class="kw">#!/bin/bash</span>
 TOOLS=(<span class="st">"git"</span> <span class="st">"docker.io"</span> <span class="st">"ansible"</span> <span class="st">"terraform"</span>)
 <span class="kw">for</span> pkg <span class="kw">in</span> <span class="nm">"${TOOLS[@]}"</span>; <span class="kw">do</span>
-  apt-get install -y <span class="nm">$pkg</span> && <span class="fn">echo</span> <span class="st">"✓ $pkg"</span>
+  apt-get install -y <span class="nm">$pkg</span> &amp;&amp; <span class="fn">echo</span> <span class="st">"✓ $pkg"</span>
 <span class="kw">done</span></div>
-        </div>
-        <button class="n-expand-btn" aria-expanded="false" onclick="toggleExpand(this)">Ansible Approach <span class="earr">▼</span></button>
-        <div class="n-expanded"><ul>
-          <li><strong>Store dotfiles in Git:</strong> .bashrc, .vimrc, .gitconfig — all version-controlled.</li>
-          <li><strong>Use roles:</strong> Separate roles for tools, terminal config, SSH setup.</li>
-          <li><strong>Vault for secrets:</strong> SSH keys, tokens — encrypted in the repo.</li>
-          <li><strong>Result:</strong> New machine fully configured in under 10 minutes.</li>
-        </ul></div>
-      </article>
+</div>
+<button aria-expanded="false" class="n-expand-btn" onclick="toggleExpand(this)">Ansible Approach <span class="earr">▼</span></button>
+<div class="n-expanded"><div>
+<p><strong>📘 Definition</strong><br/>Workstation automation means using Bash scripts or Ansible playbooks to install and configure all required DevOps tools — git, Docker, Ansible, Terraform, VS Code, etc. — automatically and repeatably.</p>
+<p><strong>💡 Why It Matters</strong><br/>Manual tool installation wastes time, introduces inconsistencies, and can't be reviewed or version-controlled. An automated setup is reproducible and shareable across a team.</p>
+<p><strong>🌍 Real Example</strong><br/>Kamran keeps a <code>setup.sh</code> script in Git. On a fresh Xubuntu install, one command provisions his entire DevOps workstation in minutes.</p>
+<p><strong>💻 Code/Command/Example</strong><br/><code>chmod +x setup.sh &amp;&amp; ./setup.sh</code> — run your workstation bootstrap script.</p>
+<p><strong>🎯 Interview Tip</strong><br/>Mention idempotency — your script should be safe to run multiple times without breaking anything. This is where Ansible shines over raw bash.</p>
+<p><strong>📝 Practice Exercise</strong><br/>Write a Bash script that installs git, docker, and ansible on a fresh Ubuntu VM, then verify each tool is available with <code>--version</code>.</p>
+</div></div>
+</article>
 
-      <article class="n-card c-card" data-cat="linux" data-title="Building Labs on Old Hardware" data-tags="linux homelab hardware lab" id="note-building-labs-on-old-hardware">
-        <div class="n-accent"></div><div class="n-body">
-        <div class="n-meta"><span class="n-num">#04</span><div class="n-tags"><span class="n-tag">Linux</span><span class="n-tag">Homelab</span></div></div>
-        <h3 class="n-title">Building Labs on Old Hardware</h3>
-        <p class="n-desc">You don't need expensive servers. An old laptop or refurbished Dell with 8–16GB RAM runs a full DevOps lab — Linux, Docker, Ansible, and a monitoring stack simultaneously.</p>
-        <div class="n-code"><span class="fn">free</span> -h          <span class="cm"># RAM available</span>
+<article class="n-card c-card" data-cat="linux" data-tags="linux homelab hardware lab" data-title="Building Labs on Old Hardware" id="note-building-labs-on-old-hardware">
+<div class="n-accent"></div><div class="n-body">
+<div class="n-meta"><span class="n-num">#04</span><div class="n-tags"><span class="n-tag">Linux</span><span class="n-tag">Homelab</span></div></div>
+<h3 class="n-title">Building Labs on Old Hardware</h3>
+<p class="n-desc">You don't need expensive servers. An old laptop or refurbished Dell with 8–16GB RAM runs a full DevOps lab — Linux, Docker, Ansible, and a monitoring stack simultaneously.</p>
+<div class="n-code"><span class="fn">free</span> -h          <span class="cm"># RAM available</span>
 <span class="fn">nproc</span>            <span class="cm"># CPU cores</span>
 <span class="fn">df</span> -h /          <span class="cm"># Disk space</span>
 <span class="gr"># 8GB RAM = full DevOps lab possible</span></div>
-        </div>
-        <button class="n-expand-btn" aria-expanded="false" onclick="toggleExpand(this)">Recommended Lab Stack <span class="earr">▼</span></button>
-        <div class="n-expanded"><ul>
-          <li><strong>OS:</strong> Ubuntu Server 22.04 LTS — stable, well-documented, free.</li>
-          <li><strong>Virtualization:</strong> KVM + libvirt for running multiple VMs on one machine.</li>
-          <li><strong>Containers:</strong> Docker Compose for multi-service lab environments.</li>
-          <li><strong>RAM target:</strong> 8GB minimum. 16GB for a comfortable multi-VM setup.</li>
-          <li><strong>Networking:</strong> Use static IPs for consistent lab addressing.</li>
-        </ul></div>
-      </article>
+</div>
+<button aria-expanded="false" class="n-expand-btn" onclick="toggleExpand(this)">Recommended Lab Stack <span class="earr">▼</span></button>
+<div class="n-expanded"><div>
+<p><strong>📘 Definition</strong><br/>A homelab is a personal server environment built on consumer or refurbished hardware where you practice real infrastructure skills without cloud costs.</p>
+<p><strong>💡 Why It Matters</strong><br/>Hands-on lab experience is what separates engineers who understand tools from those who've only read about them. Old hardware gives you unlimited practice time.</p>
+<p><strong>🌍 Real Example</strong><br/>A Dell Latitude E7440 with 8GB RAM runs Xubuntu + Docker + Ansible control node + Prometheus stack — a full working DevOps environment at zero cloud cost.</p>
+<p><strong>💻 Code/Command/Example</strong><br/><code>free -h</code> — check available RAM. <code>nproc</code> — count logical CPUs.</p>
+<p><strong>🎯 Interview Tip</strong><br/>Mentioning homelab experience signals genuine hands-on initiative. Describe what you built, what broke, and what you learned from fixing it.</p>
+<p><strong>📝 Practice Exercise</strong><br/>Check your current machine specs with <code>free -h</code>, <code>nproc</code>, and <code>df -h</code>. Plan which services you could run given those constraints.</p>
+</div></div>
+</article>
 
-      <article class="n-card c-card" data-cat="linux" data-title="DevOps Homelab Architecture" data-tags="linux homelab architecture lab design" id="note-devops-homelab-architecture">
-        <div class="n-accent"></div><div class="n-body">
-        <div class="n-meta"><span class="n-num">#05</span><div class="n-tags"><span class="n-tag">Linux</span><span class="n-tag">Homelab</span></div></div>
-        <h3 class="n-title">DevOps Homelab Architecture</h3>
-        <p class="n-desc">A well-designed homelab mirrors production: a control node runs Ansible, target VMs simulate servers, Docker runs services, monitoring watches everything. Same tools, smaller scale.</p>
-        <div class="n-code"><span class="gr">control-node  192.168.1.10</span>
+<article class="n-card c-card" data-cat="linux" data-tags="linux homelab architecture lab design" data-title="DevOps Homelab Architecture" id="note-devops-homelab-architecture">
+<div class="n-accent"></div><div class="n-body">
+<div class="n-meta"><span class="n-num">#05</span><div class="n-tags"><span class="n-tag">Linux</span><span class="n-tag">Homelab</span></div></div>
+<h3 class="n-title">DevOps Homelab Architecture</h3>
+<p class="n-desc">A well-designed homelab mirrors production: a control node runs Ansible, target VMs simulate servers, Docker runs services, monitoring watches everything. Same tools, smaller scale.</p>
+<div class="n-code"><span class="gr">control-node  192.168.1.10</span>
   ├── Ansible + Terraform
 server-01     192.168.1.11
   └── Docker + Compose apps
 monitor-01    192.168.1.12
   └── Prometheus + Grafana</div>
-        </div>
-        <button class="n-expand-btn" aria-expanded="false" onclick="toggleExpand(this)">Why Build a Homelab <span class="earr">▼</span></button>
-        <div class="n-expanded"><ul>
-          <li><strong>Safe failure:</strong> Break things without consequences. Learn from real errors.</li>
-          <li><strong>GitHub portfolio:</strong> Every lab becomes a documented repo employers can see.</li>
-          <li><strong>Cost:</strong> AWS charges by the hour. Your homelab charges once (electricity).</li>
-          <li><strong>Speed:</strong> No cloud latency. Instant feedback loops for Ansible and Docker.</li>
-        </ul></div>
-      </article>
+</div>
+<button aria-expanded="false" class="n-expand-btn" onclick="toggleExpand(this)">Why Build a Homelab <span class="earr">▼</span></button>
+<div class="n-expanded"><div>
+<p><strong>📘 Definition</strong><br/>A homelab architecture is the deliberate design of your practice environment — assigning roles to machines and networking them together so they mirror how real production infrastructure is organised.</p>
+<p><strong>💡 Why It Matters</strong><br/>Random experimentation teaches less than structured practice. A designed homelab forces you to think about networking, separation of concerns, and monitoring — just like a real job.</p>
+<p><strong>🌍 Real Example</strong><br/>Control node runs <code>ansible-playbook</code> over SSH to configure server-01, while monitor-01 scrapes metrics from both. This is exactly how production Ansible + Prometheus works.</p>
+<p><strong>💻 Code/Command/Example</strong><br/><code>ansible -i inventory all -m ping</code> — verify all lab nodes are reachable from your control node.</p>
+<p><strong>🎯 Interview Tip</strong><br/>Be ready to draw your homelab architecture from memory and explain each component's role and how they communicate.</p>
+<p><strong>📝 Practice Exercise</strong><br/>Create an Ansible inventory file listing 2 VMs, then run a ping module to verify connectivity from your control node.</p>
+</div></div>
+</article>
 
-    </div>
+</div><!-- end linux grid -->
 
-    <!-- DOCKER -->
-    <div class="cat-hdr" data-section="docker"><span class="cat-hdr-icon">🐳</span><span class="cat-hdr-title">Docker</span><span class="cat-hdr-count">5 notes</span></div>
-    <div class="content-grid" data-section="docker">
+<!-- ═══ DOCKER ═══ -->
+<div class="cat-hdr" data-section="docker"><span class="cat-hdr-icon">🐳</span><span class="cat-hdr-title">Docker</span><span class="cat-hdr-count">5 notes</span></div>
+<div class="content-grid" data-section="docker">
 
-      <article class="n-card c-card" data-cat="docker" data-title="What is Docker?" data-tags="docker containers basics intro" id="note-what-is-docker">
-        <div class="n-accent"></div><div class="n-body">
-        <div class="n-meta"><span class="n-num">#06</span><div class="n-tags"><span class="n-tag">Docker</span><span class="n-tag">Basics</span></div></div>
-        <h3 class="n-title">What is Docker?</h3>
-        <p class="n-desc">Docker packages your application and all its dependencies into a container — a lightweight, portable unit that runs identically on any machine. No more "works on my laptop".</p>
-        <div class="n-code"><span class="fn">docker</span> run -d -p 80:80 --name web nginx
+<article class="n-card c-card" data-cat="docker" data-tags="docker containers basics intro" data-title="What is Docker?" id="note-what-is-docker">
+<div class="n-accent"></div><div class="n-body">
+<div class="n-meta"><span class="n-num">#06</span><div class="n-tags"><span class="n-tag">Docker</span><span class="n-tag">Basics</span></div></div>
+<h3 class="n-title">What is Docker?</h3>
+<p class="n-desc">Docker packages your application and all its dependencies into a container — a lightweight, portable unit that runs identically on any machine. No more "works on my laptop".</p>
+<div class="n-code"><span class="fn">docker</span> run -d -p 80:80 --name web nginx
 <span class="fn">docker</span> ps
 <span class="fn">docker</span> logs web --follow
 <span class="fn">docker</span> exec -it web bash</div>
-        </div>
-        <button class="n-expand-btn" aria-expanded="false" onclick="toggleExpand(this)">Core Concepts <span class="earr">▼</span></button>
-        <div class="n-expanded"><ul>
-          <li><strong>Image:</strong> Read-only template built from a Dockerfile. Stored in a registry.</li>
-          <li><strong>Container:</strong> A running instance of an image. Ephemeral by default.</li>
-          <li><strong>Registry:</strong> Docker Hub, AWS ECR, GHCR — where images are stored.</li>
-          <li><strong>Volume:</strong> Persistent storage that survives container restarts.</li>
-          <li><strong>Network:</strong> How containers talk to each other and the outside world.</li>
-        </ul></div>
-      </article>
+</div>
+<button aria-expanded="false" class="n-expand-btn" onclick="toggleExpand(this)">Core Concepts <span class="earr">▼</span></button>
+<div class="n-expanded"><div>
+<p><strong>📘 Definition</strong><br/>Docker is a containerisation platform that bundles an application with its runtime, libraries, and config into a single portable image. Containers are isolated processes sharing the host OS kernel.</p>
+<p><strong>💡 Why It Matters</strong><br/>Containers eliminate environment inconsistencies. The same image runs on your laptop, a CI server, and a Kubernetes cluster — making deployments predictable and repeatable.</p>
+<p><strong>🌍 Real Example</strong><br/>A team ships a Node.js app as a Docker image. The same <code>docker run</code> command works on a developer's Mac, Ubuntu CI runner, and AWS EC2 instance without any environment changes.</p>
+<p><strong>💻 Code/Command/Example</strong><br/><code>docker ps</code> — list running containers. <code>docker images</code> — list local images. <code>docker stop web</code> — stop a container.</p>
+<p><strong>🎯 Interview Tip</strong><br/>Explain the difference between an image (read-only template) and a container (running instance of an image). This is a common first Docker question.</p>
+<p><strong>📝 Practice Exercise</strong><br/>Run <code>docker run -d -p 8080:80 nginx</code>, open http://localhost:8080 in a browser, then use <code>docker logs</code> and <code>docker exec</code> to explore the running container.</p>
+</div></div>
+</article>
 
-      <article class="n-card c-card" data-cat="docker" data-title="Docker vs Virtual Machines" data-tags="docker vm containers comparison" id="note-docker-vs-virtual-machines">
-        <div class="n-accent"></div><div class="n-body">
-        <div class="n-meta"><span class="n-num">#07</span><div class="n-tags"><span class="n-tag">Docker</span><span class="n-tag">VMs</span></div></div>
-        <h3 class="n-title">Docker vs Virtual Machines</h3>
-        <p class="n-desc">VMs virtualise hardware — each gets its own OS kernel eating GBs of RAM. Docker containers share the host kernel and start in milliseconds. For microservices, Docker wins on density and speed.</p>
-        <div class="n-code"><span class="cm">VM:  App → Guest OS → Hypervisor → Host OS</span>
+<article class="n-card c-card" data-cat="docker" data-tags="docker vm containers comparison" data-title="Docker vs Virtual Machines" id="note-docker-vs-virtual-machines">
+<div class="n-accent"></div><div class="n-body">
+<div class="n-meta"><span class="n-num">#07</span><div class="n-tags"><span class="n-tag">Docker</span><span class="n-tag">VMs</span></div></div>
+<h3 class="n-title">Docker vs Virtual Machines</h3>
+<p class="n-desc">VMs virtualise hardware — each gets its own OS kernel eating GBs of RAM. Docker containers share the host kernel and start in milliseconds. For microservices, Docker wins on density and speed.</p>
+<div class="n-code"><span class="cm">VM:  App → Guest OS → Hypervisor → Host OS</span>
 <span class="cm">Con: App → Docker Engine → Host OS</span>
 
 Startup: VM=60s  <span class="gr">Container=&lt;1s</span>
 RAM:     VM=2GB  <span class="gr">Container=50MB</span></div>
-        </div>
-        <button class="n-expand-btn" aria-expanded="false" onclick="toggleExpand(this)">When to Use Each <span class="earr">▼</span></button>
-        <div class="n-expanded"><ul>
-          <li><strong>Use VMs when:</strong> You need full OS isolation, different kernels, or legacy apps requiring a specific OS.</li>
-          <li><strong>Use Containers when:</strong> Running microservices, needing fast scaling, or wanting consistent dev/prod environments.</li>
-          <li><strong>Use both:</strong> In Kubernetes — VMs (nodes) run container workloads.</li>
-        </ul></div>
-      </article>
+</div>
+<button aria-expanded="false" class="n-expand-btn" onclick="toggleExpand(this)">When to Use Each <span class="earr">▼</span></button>
+<div class="n-expanded"><div>
+<p><strong>📘 Definition</strong><br/>A VM runs a full guest OS on top of a hypervisor. A container shares the host kernel and only packages the app and its dependencies — much lighter and faster to start.</p>
+<p><strong>💡 Why It Matters</strong><br/>Choosing between VMs and containers impacts cost, boot time, density, and isolation. Most modern workloads run containers inside VMs — combining both strengths.</p>
+<p><strong>🌍 Real Example</strong><br/>An AWS EC2 instance (VM) hosts 20 Docker containers serving different microservices. The VM provides isolation from other tenants; containers provide fast, dense app deployment.</p>
+<p><strong>💻 Code/Command/Example</strong><br/><code>docker stats</code> — see real-time CPU/RAM usage per container, demonstrating how lightweight they are versus a full VM.</p>
+<p><strong>🎯 Interview Tip</strong><br/>Know when VMs are still preferred: strong security isolation, running different OS kernels, or legacy applications that don't containerise easily.</p>
+<p><strong>📝 Practice Exercise</strong><br/>Run 5 nginx containers with <code>docker run</code> and check total RAM usage with <code>docker stats</code>. Compare to what 5 VMs would cost in RAM.</p>
+</div></div>
+</article>
 
-      <article class="n-card c-card" data-cat="docker" data-title="Docker Volumes" data-tags="docker volumes storage persistence" id="note-docker-volumes">
-        <div class="n-accent"></div><div class="n-body">
-        <div class="n-meta"><span class="n-num">#08</span><div class="n-tags"><span class="n-tag">Docker</span><span class="n-tag">Storage</span></div></div>
-        <h3 class="n-title">Docker Volumes</h3>
-        <p class="n-desc">Containers are ephemeral — kill one and its filesystem is gone. Volumes are persistent storage managed by Docker, surviving container restarts, removals, and recreations.</p>
-        <div class="n-code"><span class="kw">version:</span> <span class="st">'3.9'</span>
+<article class="n-card c-card" data-cat="docker" data-tags="docker volumes storage persistence" data-title="Docker Volumes" id="note-docker-volumes">
+<div class="n-accent"></div><div class="n-body">
+<div class="n-meta"><span class="n-num">#08</span><div class="n-tags"><span class="n-tag">Docker</span><span class="n-tag">Storage</span></div></div>
+<h3 class="n-title">Docker Volumes</h3>
+<p class="n-desc">Containers are ephemeral — kill one and its filesystem is gone. Volumes are persistent storage managed by Docker, surviving container restarts, removals, and recreations.</p>
+<div class="n-code"><span class="kw">version:</span> <span class="st">'3.9'</span>
 <span class="kw">services:</span>
   <span class="nm">postgres:</span>
     <span class="kw">image:</span> postgres:15
     <span class="kw">volumes:</span>
       - <span class="st">pgdata:/var/lib/postgresql/data</span>
 <span class="kw">volumes:</span>
-  <span class="nm">pgdata:</span>  <span class="cm"># named — Docker managed</span></div>
-        </div>
-        <button class="n-expand-btn" aria-expanded="false" onclick="toggleExpand(this)">Volume Types <span class="earr">▼</span></button>
-        <div class="n-expanded"><ul>
-          <li><strong>Named volumes:</strong> Docker manages the path. Best for databases.</li>
-          <li><strong>Bind mounts:</strong> Map a host path directly. Good for dev (live reload). Risky in prod.</li>
-          <li><strong>tmpfs:</strong> In-memory only. Fast, non-persistent. Good for secrets or temp data.</li>
-        </ul></div>
-      </article>
+  <span class="nm">pgdata:</span> <span class="cm"># named — Docker managed</span></div>
+</div>
+<button aria-expanded="false" class="n-expand-btn" onclick="toggleExpand(this)">Volume Types <span class="earr">▼</span></button>
+<div class="n-expanded"><div>
+<p><strong>📘 Definition</strong><br/>Docker volumes are persistent storage areas outside the container filesystem. They survive container deletion and can be shared between containers. Types: named volumes (Docker-managed), bind mounts (host paths), tmpfs (memory-only).</p>
+<p><strong>💡 Why It Matters</strong><br/>Without volumes, database data, uploaded files, and log outputs are lost every time a container is removed or updated. Volumes are essential for stateful workloads.</p>
+<p><strong>🌍 Real Example</strong><br/>A PostgreSQL container uses a named volume for <code>/var/lib/postgresql/data</code>. When the container is upgraded to a newer Postgres version, the data volume remains intact.</p>
+<p><strong>💻 Code/Command/Example</strong><br/><code>docker volume ls</code> — list all volumes. <code>docker volume inspect pgdata</code> — see volume details and mount path.</p>
+<p><strong>🎯 Interview Tip</strong><br/>Know the difference: named volumes are managed by Docker (preferred for databases), bind mounts map a specific host directory (useful for development).</p>
+<p><strong>📝 Practice Exercise</strong><br/>Run a Postgres container with a named volume, insert data, remove the container, start a new one with the same volume, and verify the data persists.</p>
+</div></div>
+</article>
 
-      <article class="n-card c-card" data-cat="docker" data-title="Docker Networking" data-tags="docker network bridge overlay" id="note-docker-networking">
-        <div class="n-accent"></div><div class="n-body">
-        <div class="n-meta"><span class="n-num">#09</span><div class="n-tags"><span class="n-tag">Docker</span><span class="n-tag">Networking</span></div></div>
-        <h3 class="n-title">Docker Networking</h3>
-        <p class="n-desc">Containers need to communicate — with each other, the host, and the internet. Docker provides network drivers for each use case: bridge, host, overlay, and none.</p>
-        <div class="n-code"><span class="fn">docker</span> network create app-net
+<article class="n-card c-card" data-cat="docker" data-tags="docker network bridge overlay" data-title="Docker Networking" id="note-docker-networking">
+<div class="n-accent"></div><div class="n-body">
+<div class="n-meta"><span class="n-num">#09</span><div class="n-tags"><span class="n-tag">Docker</span><span class="n-tag">Networking</span></div></div>
+<h3 class="n-title">Docker Networking</h3>
+<p class="n-desc">Containers need to communicate — with each other, the host, and the internet. Docker provides network drivers for each use case: bridge, host, overlay, and none.</p>
+<div class="n-code"><span class="fn">docker</span> network create app-net
 <span class="fn">docker</span> run -d --network app-net --name api  myapi
 <span class="fn">docker</span> run -d --network app-net --name db   postgres
-<span class="cm"># api resolves db by name: db:5432</span>
+<span class="cm"># api resolves db by container name: db:5432</span>
 <span class="fn">docker</span> network inspect app-net</div>
-        </div>
-        <button class="n-expand-btn" aria-expanded="false" onclick="toggleExpand(this)">Network Driver Types <span class="earr">▼</span></button>
-        <div class="n-expanded"><ul>
-          <li><strong>bridge (default):</strong> Isolated network on the host. Containers resolve each other by name.</li>
-          <li><strong>host:</strong> Container shares host's network stack. Fastest performance, no isolation.</li>
-          <li><strong>overlay:</strong> Multi-host networking for Docker Swarm.</li>
-          <li><strong>none:</strong> No networking. Fully isolated container for security-critical workloads.</li>
-        </ul></div>
-      </article>
+</div>
+<button aria-expanded="false" class="n-expand-btn" onclick="toggleExpand(this)">Network Driver Types <span class="earr">▼</span></button>
+<div class="n-expanded"><div>
+<p><strong>📘 Definition</strong><br/>Docker networking allows containers to communicate. <strong>bridge</strong> — default isolated network for containers on one host. <strong>host</strong> — shares host network stack. <strong>overlay</strong> — spans multiple Docker hosts (Swarm/Kubernetes). <strong>none</strong> — no network.</p>
+<p><strong>💡 Why It Matters</strong><br/>Proper networking keeps services isolated (security) while letting them communicate (functionality). Misconfigurations expose services to the internet or break inter-container communication.</p>
+<p><strong>🌍 Real Example</strong><br/>An API container and a Postgres container are on the same bridge network called <code>app-net</code>. The API connects to Postgres using the hostname <code>db</code> — no IP address needed.</p>
+<p><strong>💻 Code/Command/Example</strong><br/><code>docker network ls</code> — list all networks. <code>docker network inspect bridge</code> — see which containers are connected.</p>
+<p><strong>🎯 Interview Tip</strong><br/>Explain DNS resolution in Docker networks — containers on the same user-defined bridge network can reach each other by container name. This is a common interview scenario.</p>
+<p><strong>📝 Practice Exercise</strong><br/>Create a custom bridge network, run two containers on it, exec into one, and ping the other by name to confirm DNS resolution works.</p>
+</div></div>
+</article>
 
-      <article class="n-card c-card" data-cat="docker" data-title="Docker Mistakes Beginners Make" data-tags="docker mistakes best-practices production" id="note-docker-mistakes-beginners-make">
-        <div class="n-accent"></div><div class="n-body">
-        <div class="n-meta"><span class="n-num">#10</span><div class="n-tags"><span class="n-tag">Docker</span><span class="n-tag">Best Practices</span></div></div>
-        <h3 class="n-title">Docker Mistakes Beginners Make</h3>
-        <p class="n-desc">Most Docker production problems come from the same repeated mistakes: running as root, using :latest tags, ignoring .dockerignore, storing state in containers, and fat images.</p>
-        <div class="n-code"><span class="cm"># ❌ Bad</span>
+<article class="n-card c-card" data-cat="docker" data-tags="docker mistakes best-practices production" data-title="Docker Mistakes Beginners Make" id="note-docker-mistakes-beginners-make">
+<div class="n-accent"></div><div class="n-body">
+<div class="n-meta"><span class="n-num">#10</span><div class="n-tags"><span class="n-tag">Docker</span><span class="n-tag">Best Practices</span></div></div>
+<h3 class="n-title">Docker Mistakes Beginners Make</h3>
+<p class="n-desc">Most Docker production problems come from the same repeated mistakes: running as root, using :latest tags, ignoring .dockerignore, storing state in containers, and fat images.</p>
+<div class="n-code"><span class="cm"># ❌ Bad</span>
 <span class="kw">FROM</span> ubuntu:latest
 <span class="kw">COPY</span> . .
 <span class="cm"># ✅ Good</span>
@@ -348,93 +322,99 @@ RAM:     VM=2GB  <span class="gr">Container=50MB</span></div>
 <span class="kw">COPY</span> requirements.txt .
 <span class="kw">RUN</span> pip install -r requirements.txt
 <span class="kw">USER</span> appuser</div>
-        </div>
-        <button class="n-expand-btn" aria-expanded="false" onclick="toggleExpand(this)">Top 5 Mistakes <span class="earr">▼</span></button>
-        <div class="n-expanded"><ul>
-          <li><strong>:latest tags:</strong> Unpredictable builds. Always pin image versions.</li>
-          <li><strong>Running as root:</strong> Major security risk. Add a non-root USER in your Dockerfile.</li>
-          <li><strong>No .dockerignore:</strong> Copies node_modules, .git, secrets into the image.</li>
-          <li><strong>Fat images:</strong> Use slim/alpine base images. Multi-stage builds for compiled apps.</li>
-          <li><strong>State in containers:</strong> Use volumes for databases and persistent data.</li>
-        </ul></div>
-      </article>
+</div>
+<button aria-expanded="false" class="n-expand-btn" onclick="toggleExpand(this)">Top 5 Mistakes <span class="earr">▼</span></button>
+<div class="n-expanded"><div>
+<p><strong>📘 Definition</strong><br/>Common Docker mistakes that cause security vulnerabilities, bloated images, and production instability — all avoidable with a few best practices.</p>
+<p><strong>💡 Why It Matters</strong><br/>Running containers as root, using <code>:latest</code> tags, or storing data inside containers are the three most common causes of Docker security incidents and deployment failures.</p>
+<p><strong>🌍 Real Example</strong><br/>A team's pipeline breaks because <code>:latest</code> pulled a new base image with a breaking change. Pinning to <code>python:3.11.9-slim</code> would have prevented it entirely.</p>
+<p><strong>💻 Code/Command/Example</strong><br/><code>docker scan myimage</code> or <code>trivy image myimage</code> — scan your image for known CVEs before shipping.</p>
+<p><strong>🎯 Interview Tip</strong><br/>Top 5 mistakes: (1) using root user, (2) <code>:latest</code> tags, (3) no <code>.dockerignore</code>, (4) storing data in containers, (5) single-stage builds with dev dependencies included.</p>
+<p><strong>📝 Practice Exercise</strong><br/>Take an existing Dockerfile, apply multi-stage build, add a non-root USER, pin the base image tag, and add a <code>.dockerignore</code>. Compare image sizes before and after.</p>
+</div></div>
+</article>
 
-    </div>
+</div><!-- end docker grid -->
 
-    <!-- CLOUD / AWS -->
-    <div class="cat-hdr" data-section="cloud"><span class="cat-hdr-icon">☁️</span><span class="cat-hdr-title">Cloud / AWS</span><span class="cat-hdr-count">5 notes</span></div>
-    <div class="content-grid" data-section="cloud">
+<!-- ═══ CLOUD / AWS ═══ -->
+<div class="cat-hdr" data-section="cloud"><span class="cat-hdr-icon">☁️</span><span class="cat-hdr-title">Cloud / AWS</span><span class="cat-hdr-count">5 notes</span></div>
+<div class="content-grid" data-section="cloud">
 
-      <article class="n-card c-card" data-cat="cloud" data-title="What is AWS EC2?" data-tags="aws ec2 cloud compute" id="note-what-is-aws-ec2">
-        <div class="n-accent"></div><div class="n-body">
-        <div class="n-meta"><span class="n-num">#11</span><div class="n-tags"><span class="n-tag">AWS</span><span class="n-tag">Compute</span></div></div>
-        <h3 class="n-title">What is AWS EC2?</h3>
-        <p class="n-desc">EC2 (Elastic Compute Cloud) is AWS's virtual server service. Pick the CPU, RAM, and OS — AWS runs it. Pay per second. Scale from one instance to thousands in minutes.</p>
-        <div class="n-code"><span class="fn">aws</span> ec2 run-instances \
+<article class="n-card c-card" data-cat="cloud" data-tags="aws ec2 cloud compute" data-title="What is AWS EC2?" id="note-what-is-aws-ec2">
+<div class="n-accent"></div><div class="n-body">
+<div class="n-meta"><span class="n-num">#11</span><div class="n-tags"><span class="n-tag">AWS</span><span class="n-tag">Compute</span></div></div>
+<h3 class="n-title">What is AWS EC2?</h3>
+<p class="n-desc">EC2 (Elastic Compute Cloud) is AWS's virtual server service. Pick the CPU, RAM, and OS — AWS runs it. Pay per second. Scale from one instance to thousands in minutes.</p>
+<div class="n-code"><span class="fn">aws</span> ec2 run-instances \
   --image-id ami-0c55b159cbfafe1f0 \
   --instance-type t3.micro \
   --key-name my-key \
   --security-group-ids sg-12345
 <span class="fn">ssh</span> -i my-key.pem ubuntu@PUBLIC_IP</div>
-        </div>
-        <button class="n-expand-btn" aria-expanded="false" onclick="toggleExpand(this)">EC2 Key Concepts <span class="earr">▼</span></button>
-        <div class="n-expanded"><ul>
-          <li><strong>AMI:</strong> Amazon Machine Image — the OS template. Choose Ubuntu, RHEL, Amazon Linux.</li>
-          <li><strong>Instance types:</strong> t3.micro (cheap, burstable), m5.large (balanced), c5 (CPU).</li>
-          <li><strong>Elastic IP:</strong> Static public IP that persists across instance restarts.</li>
-          <li><strong>Security Groups:</strong> Stateful firewall. Define inbound/outbound rules per instance.</li>
-          <li><strong>User Data:</strong> Bootstrap script that runs on first launch — install packages, configure services.</li>
-        </ul></div>
-      </article>
+</div>
+<button aria-expanded="false" class="n-expand-btn" onclick="toggleExpand(this)">EC2 Key Concepts <span class="earr">▼</span></button>
+<div class="n-expanded"><div>
+<p><strong>📘 Definition</strong><br/>EC2 (Elastic Compute Cloud) provides resizable virtual machines in AWS. You choose the instance type (CPU/RAM ratio), OS AMI, storage, and network settings. You pay per second of usage.</p>
+<p><strong>💡 Why It Matters</strong><br/>EC2 is the foundation of most AWS architectures. Understanding instance types, AMIs, security groups, and key pairs is required for any cloud role.</p>
+<p><strong>🌍 Real Example</strong><br/>A startup hosts their Django app on a <code>t3.medium</code> EC2 instance with an Elastic IP. When traffic spikes, they launch additional instances behind an ALB using an Auto Scaling Group.</p>
+<p><strong>💻 Code/Command/Example</strong><br/><code>aws ec2 describe-instances --query "Reservations[*].Instances[*].PublicIpAddress"</code> — list all public IPs of running instances.</p>
+<p><strong>🎯 Interview Tip</strong><br/>Know the difference between On-Demand (pay per second), Reserved (1-3 year discount), Spot (up to 90% cheaper, can be interrupted), and Savings Plans.</p>
+<p><strong>📝 Practice Exercise</strong><br/>Launch a free-tier t3.micro EC2 instance, SSH into it, install nginx, and access it via the public IP. Terminate it when done.</p>
+</div></div>
+</article>
 
-      <article class="n-card c-card" data-cat="cloud" data-title="What is a VPC?" data-tags="aws vpc networking subnets" id="note-what-is-a-vpc">
-        <div class="n-accent"></div><div class="n-body">
-        <div class="n-meta"><span class="n-num">#12</span><div class="n-tags"><span class="n-tag">AWS</span><span class="n-tag">Networking</span></div></div>
-        <h3 class="n-title">What is a VPC?</h3>
-        <p class="n-desc">A Virtual Private Cloud is your own isolated network inside AWS. You define IP ranges, subnets, routing tables, and internet access. Think of it as your private data centre in the cloud.</p>
-        <div class="n-code"><span class="gr">VPC: 10.0.0.0/16</span>
+<article class="n-card c-card" data-cat="cloud" data-tags="aws vpc networking subnets" data-title="What is a VPC?" id="note-what-is-a-vpc">
+<div class="n-accent"></div><div class="n-body">
+<div class="n-meta"><span class="n-num">#12</span><div class="n-tags"><span class="n-tag">AWS</span><span class="n-tag">Networking</span></div></div>
+<h3 class="n-title">What is a VPC?</h3>
+<p class="n-desc">A VPC (Virtual Private Cloud) is your private network inside AWS. You define the IP range, create public and private subnets, control routing, and decide what reaches the internet.</p>
+<div class="n-code"><span class="gr">VPC: 10.0.0.0/16</span>
 ├── Public:  10.0.1.0/24  <span class="cm">← web+NAT</span>
 │     ├── EC2 (web server)
 │     └── NAT Gateway
 └── Private: 10.0.2.0/24  <span class="cm">← app+db</span>
       ├── EC2 (app server)
       └── RDS (database)</div>
-        </div>
-        <button class="n-expand-btn" aria-expanded="false" onclick="toggleExpand(this)">VPC Components <span class="earr">▼</span></button>
-        <div class="n-expanded"><ul>
-          <li><strong>Subnet:</strong> Public subnets have routes to the internet. Private do not.</li>
-          <li><strong>Internet Gateway (IGW):</strong> The door between your VPC and the internet.</li>
-          <li><strong>NAT Gateway:</strong> Lets private instances reach the internet without being reachable from it.</li>
-          <li><strong>Route Table:</strong> Rules for where traffic goes. Associate with subnets.</li>
-          <li><strong>NACL vs Security Group:</strong> NACLs are stateless subnet-level rules; SGs are stateful instance-level.</li>
-        </ul></div>
-      </article>
+</div>
+<button aria-expanded="false" class="n-expand-btn" onclick="toggleExpand(this)">VPC Components <span class="earr">▼</span></button>
+<div class="n-expanded"><div>
+<p><strong>📘 Definition</strong><br/>A VPC is an isolated virtual network in AWS. Key components: subnets (public/private), Internet Gateway (public internet access), NAT Gateway (private subnet outbound), Route Tables, and Security Groups.</p>
+<p><strong>💡 Why It Matters</strong><br/>Every production AWS workload lives inside a VPC. Understanding VPC architecture is essential for security — databases should always be in private subnets, unreachable from the internet.</p>
+<p><strong>🌍 Real Example</strong><br/>A 3-tier app: web servers in public subnets (reachable via ALB), app servers and RDS in private subnets (reachable only from web tier), with a NAT Gateway for outbound updates.</p>
+<p><strong>💻 Code/Command/Example</strong><br/><code>aws ec2 describe-vpcs</code> — list your VPCs. <code>aws ec2 describe-subnets</code> — list subnets and their availability zones.</p>
+<p><strong>🎯 Interview Tip</strong><br/>Be ready to design a VPC from scratch on a whiteboard: CIDR block, public/private subnets across 2 AZs, IGW, NAT Gateway, and Security Group rules.</p>
+<p><strong>📝 Practice Exercise</strong><br/>Using Terraform or the AWS console, create a VPC with one public and one private subnet. Launch an EC2 in each. Verify only the public one is internet-reachable.</p>
+</div></div>
+</article>
 
-      <article class="n-card c-card" data-cat="cloud" data-title="Load Balancer Explained" data-tags="aws alb nlb load-balancer" id="note-load-balancer-explained">
-        <div class="n-accent"></div><div class="n-body">
-        <div class="n-meta"><span class="n-num">#13</span><div class="n-tags"><span class="n-tag">AWS</span><span class="n-tag">Load Balancer</span></div></div>
-        <h3 class="n-title">Load Balancer Explained</h3>
-        <p class="n-desc">A load balancer distributes incoming traffic across multiple servers so no single instance gets overwhelmed. AWS ALB (Application Load Balancer) works at Layer 7 — routing by URL path, headers, and hostnames.</p>
-        <div class="n-code"><span class="gr">Client → ALB (port 443)</span>
+<article class="n-card c-card" data-cat="cloud" data-tags="aws alb nlb load-balancer" data-title="Load Balancer Explained" id="note-load-balancer-explained">
+<div class="n-accent"></div><div class="n-body">
+<div class="n-meta"><span class="n-num">#13</span><div class="n-tags"><span class="n-tag">AWS</span><span class="n-tag">Load Balancer</span></div></div>
+<h3 class="n-title">Load Balancer Explained</h3>
+<p class="n-desc">A load balancer distributes incoming traffic across multiple servers so no single instance gets overwhelmed. AWS ALB (Application Load Balancer) works at Layer 7 — routing by URL path, headers, and hostnames.</p>
+<div class="n-code"><span class="gr">Client → ALB (port 443)</span>
   ├── /api/*   → Target Group A
   ├── /app/*   → Target Group B
   └── /*       → Target Group C
 <span class="cm">Health Check: GET /health → 200 OK</span></div>
-        </div>
-        <button class="n-expand-btn" aria-expanded="false" onclick="toggleExpand(this)">ALB vs NLB vs CLB <span class="earr">▼</span></button>
-        <div class="n-expanded"><ul>
-          <li><strong>ALB (Application):</strong> Layer 7. HTTP/HTTPS. Path and host-based routing. Best for web apps.</li>
-          <li><strong>NLB (Network):</strong> Layer 4. TCP/UDP. Ultra-low latency. Best for high-throughput workloads.</li>
-          <li><strong>CLB (Classic):</strong> Legacy. Don't use for new projects.</li>
-        </ul></div>
-      </article>
+</div>
+<button aria-expanded="false" class="n-expand-btn" onclick="toggleExpand(this)">ALB vs NLB vs CLB <span class="earr">▼</span></button>
+<div class="n-expanded"><div>
+<p><strong>📘 Definition</strong><br/>Load balancers distribute traffic across healthy backend targets. AWS offers: ALB (Layer 7, HTTP/HTTPS, path-based routing), NLB (Layer 4, TCP/UDP, ultra-low latency), and CLB (legacy, avoid for new projects).</p>
+<p><strong>💡 Why It Matters</strong><br/>Without a load balancer, one EC2 instance handles all traffic. A single failure takes down your entire application. Load balancers enable high availability and horizontal scaling.</p>
+<p><strong>🌍 Real Example</strong><br/>An e-commerce site uses an ALB to route <code>/api/*</code> to backend EC2s and <code>/static/*</code> to an S3 origin via CloudFront — all managed from one DNS entry.</p>
+<p><strong>💻 Code/Command/Example</strong><br/><code>aws elbv2 describe-load-balancers</code> — list all load balancers. <code>aws elbv2 describe-target-health</code> — check target health status.</p>
+<p><strong>🎯 Interview Tip</strong><br/>ALB = Layer 7 (HTTP routing, SSL termination, WAF). NLB = Layer 4 (TCP, static IPs, extreme throughput). Know when to use each.</p>
+<p><strong>📝 Practice Exercise</strong><br/>Create an ALB with two target groups. Route <code>/api</code> requests to one group and all other requests to another. Test with curl.</p>
+</div></div>
+</article>
 
-      <article class="n-card c-card" data-cat="cloud" data-title="Reverse Proxy vs Load Balancer" data-tags="nginx proxy load-balancer networking" id="note-reverse-proxy-vs-load-balancer">
-        <div class="n-accent"></div><div class="n-body">
-        <div class="n-meta"><span class="n-num">#14</span><div class="n-tags"><span class="n-tag">Cloud</span><span class="n-tag">Nginx</span></div></div>
-        <h3 class="n-title">Reverse Proxy vs Load Balancer</h3>
-        <p class="n-desc">Both sit in front of your servers — but serve different roles. A reverse proxy handles SSL termination, caching, and routing. A load balancer distributes traffic across backend instances.</p>
-        <div class="n-code"><span class="cm"># nginx as reverse proxy</span>
+<article class="n-card c-card" data-cat="cloud" data-tags="nginx proxy load-balancer networking" data-title="Reverse Proxy vs Load Balancer" id="note-reverse-proxy-vs-load-balancer">
+<div class="n-accent"></div><div class="n-body">
+<div class="n-meta"><span class="n-num">#14</span><div class="n-tags"><span class="n-tag">Cloud</span><span class="n-tag">Nginx</span></div></div>
+<h3 class="n-title">Reverse Proxy vs Load Balancer</h3>
+<p class="n-desc">Both sit in front of your servers — but serve different roles. A reverse proxy handles SSL termination, caching, and routing. A load balancer distributes traffic across backend instances.</p>
+<div class="n-code"><span class="cm"># nginx as reverse proxy</span>
 server {
   listen 443 ssl;
   server_name api.devriston.com.pk;
@@ -443,21 +423,24 @@ server {
     proxy_set_header Host $host;
   }
 }</div>
-        </div>
-        <button class="n-expand-btn" aria-expanded="false" onclick="toggleExpand(this)">Key Differences <span class="earr">▼</span></button>
-        <div class="n-expanded"><ul>
-          <li><strong>Reverse Proxy:</strong> Terminates client connections. Handles SSL, caching, compression, auth.</li>
-          <li><strong>Load Balancer:</strong> Distributes connections across multiple backend targets.</li>
-          <li><strong>AWS combo:</strong> ALB (LB) → EC2s running Nginx (reverse proxy) → application.</li>
-        </ul></div>
-      </article>
+</div>
+<button aria-expanded="false" class="n-expand-btn" onclick="toggleExpand(this)">Key Differences <span class="earr">▼</span></button>
+<div class="n-expanded"><div>
+<p><strong>📘 Definition</strong><br/>A <strong>reverse proxy</strong> sits in front of one or more servers and forwards client requests — handling SSL, caching, compression, and request routing. A <strong>load balancer</strong> distributes traffic across multiple identical backend instances for scalability.</p>
+<p><strong>💡 Why It Matters</strong><br/>Nginx is often both simultaneously — acting as a reverse proxy for SSL termination while also load-balancing across upstream app servers. Understanding both roles clarifies why nginx config looks the way it does.</p>
+<p><strong>🌍 Real Example</strong><br/>Nginx terminates SSL for <code>devriston.com.pk</code>, then proxies requests to a Node.js backend on port 3000. If multiple Node instances run, nginx upstream block distributes load.</p>
+<p><strong>💻 Code/Command/Example</strong><br/><code>nginx -t</code> — test config syntax. <code>systemctl reload nginx</code> — apply config changes without downtime.</p>
+<p><strong>🎯 Interview Tip</strong><br/>Key distinction: reverse proxy is about content transformation and forwarding (one backend); load balancer is about traffic distribution (multiple identical backends).</p>
+<p><strong>📝 Practice Exercise</strong><br/>Configure nginx as a reverse proxy for a local Node.js app. Add SSL using a self-signed cert. Verify HTTPS works in the browser.</p>
+</div></div>
+</article>
 
-      <article class="n-card c-card" data-cat="cloud" data-title="High Availability Basics" data-tags="aws ha cloud architecture redundancy" id="note-high-availability-basics">
-        <div class="n-accent"></div><div class="n-body">
-        <div class="n-meta"><span class="n-num">#15</span><div class="n-tags"><span class="n-tag">AWS</span><span class="n-tag">Architecture</span></div></div>
-        <h3 class="n-title">High Availability Basics</h3>
-        <p class="n-desc">HA means your system keeps running even when individual components fail. The core principle: eliminate single points of failure. Deploy across multiple AZs. Use health checks and auto-recovery.</p>
-        <div class="n-code"><span class="gr">HA Architecture — 2 AZ</span>
+<article class="n-card c-card" data-cat="cloud" data-tags="aws ha cloud architecture redundancy" data-title="High Availability Basics" id="note-high-availability-basics">
+<div class="n-accent"></div><div class="n-body">
+<div class="n-meta"><span class="n-num">#15</span><div class="n-tags"><span class="n-tag">AWS</span><span class="n-tag">Architecture</span></div></div>
+<h3 class="n-title">High Availability Basics</h3>
+<p class="n-desc">HA means your system keeps running even when individual components fail. The core principle: eliminate single points of failure. Deploy across multiple AZs. Use health checks and auto-recovery.</p>
+<div class="n-code"><span class="gr">HA Architecture — 2 AZ</span>
          ALB
         /   \
     AZ-1     AZ-2
@@ -465,28 +448,30 @@ server {
      RDS  ←→  RDS
   (primary)  (standby)
 <span class="cm">Failover: automatic. RTO: ~60s</span></div>
-        </div>
-        <button class="n-expand-btn" aria-expanded="false" onclick="toggleExpand(this)">HA Checklist <span class="earr">▼</span></button>
-        <div class="n-expanded"><ul>
-          <li><strong>Multi-AZ:</strong> Deploy app servers in at least 2 Availability Zones behind a load balancer.</li>
-          <li><strong>RDS Multi-AZ:</strong> AWS automatically maintains a standby replica. Failover in ~60 seconds.</li>
-          <li><strong>Auto Scaling Groups:</strong> Replace failed instances automatically based on health checks.</li>
-          <li><strong>Stateless apps:</strong> Store session data in Redis/ElastiCache, not in-memory.</li>
-        </ul></div>
-      </article>
+</div>
+<button aria-expanded="false" class="n-expand-btn" onclick="toggleExpand(this)">HA Checklist <span class="earr">▼</span></button>
+<div class="n-expanded"><div>
+<p><strong>📘 Definition</strong><br/>High Availability (HA) is the design principle of building systems that continue operating despite component failures. Measured as uptime percentage — 99.9% = ~8.7 hours downtime/year; 99.99% = ~52 minutes/year.</p>
+<p><strong>💡 Why It Matters</strong><br/>Every single-server deployment is a single point of failure. HA architecture means a failed EC2, AZ outage, or database crash doesn't bring down the whole service.</p>
+<p><strong>🌍 Real Example</strong><br/>RDS Multi-AZ keeps a standby replica in a second AZ. If the primary fails, AWS automatically promotes the standby — applications reconnect within ~60 seconds.</p>
+<p><strong>💻 Code/Command/Example</strong><br/><code>aws rds describe-db-instances --query "DBInstances[*].MultiAZ"</code> — verify Multi-AZ is enabled on your RDS instances.</p>
+<p><strong>🎯 Interview Tip</strong><br/>HA checklist: multi-AZ deployment, load balancer with health checks, auto-scaling group, read replicas/Multi-AZ for DB, S3 for static assets, Route53 health checks.</p>
+<p><strong>📝 Practice Exercise</strong><br/>Design on paper a 2-AZ HA architecture for a Django app on AWS. Include ALB, EC2 Auto Scaling Group, RDS Multi-AZ, and S3 for static files.</p>
+</div></div>
+</article>
 
-    </div>
+</div><!-- end cloud grid -->
 
-    <!-- TERRAFORM / IaC -->
-    <div class="cat-hdr" data-section="terraform"><span class="cat-hdr-icon">⚙️</span><span class="cat-hdr-title">Terraform / IaC</span><span class="cat-hdr-count">4 notes</span></div>
-    <div class="content-grid" data-section="terraform">
+<!-- ═══ TERRAFORM / IaC ═══ -->
+<div class="cat-hdr" data-section="terraform"><span class="cat-hdr-icon">⚙️</span><span class="cat-hdr-title">Terraform / IaC</span><span class="cat-hdr-count">4 notes</span></div>
+<div class="content-grid" data-section="terraform">
 
-      <article class="n-card c-card" data-cat="terraform" data-title="Infrastructure as Code" data-tags="terraform iac devops automation" id="note-infrastructure-as-code">
-        <div class="n-accent"></div><div class="n-body">
-        <div class="n-meta"><span class="n-num">#16</span><div class="n-tags"><span class="n-tag">Terraform</span><span class="n-tag">IaC</span></div></div>
-        <h3 class="n-title">Infrastructure as Code</h3>
-        <p class="n-desc">IaC means your servers, networks, and cloud resources are defined in code files — not manually configured. Reproducible, reviewable in Git, and deployable in minutes — not days.</p>
-        <div class="n-code"><span class="kw">resource</span> <span class="st">"aws_instance"</span> <span class="st">"web"</span> {
+<article class="n-card c-card" data-cat="terraform" data-tags="terraform iac devops automation" data-title="Infrastructure as Code" id="note-infrastructure-as-code">
+<div class="n-accent"></div><div class="n-body">
+<div class="n-meta"><span class="n-num">#16</span><div class="n-tags"><span class="n-tag">Terraform</span><span class="n-tag">IaC</span></div></div>
+<h3 class="n-title">Infrastructure as Code</h3>
+<p class="n-desc">IaC means your servers, networks, and cloud resources are defined in code files — not manually configured. Reproducible, reviewable in Git, and deployable in minutes — not days.</p>
+<div class="n-code"><span class="kw">resource</span> <span class="st">"aws_instance"</span> <span class="st">"web"</span> {
   <span class="nm">ami</span>           = <span class="st">"ami-0c55b159cbfafe1f0"</span>
   <span class="nm">instance_type</span> = <span class="st">"t3.micro"</span>
   <span class="nm">tags</span> = {
@@ -494,42 +479,46 @@ server {
     ManagedBy = <span class="st">"terraform"</span>
   }
 }</div>
-        </div>
-        <button class="n-expand-btn" aria-expanded="false" onclick="toggleExpand(this)">IaC Benefits <span class="earr">▼</span></button>
-        <div class="n-expanded"><ul>
-          <li><strong>Reproducibility:</strong> Run the same code in dev, staging, and prod — identical infrastructure every time.</li>
-          <li><strong>Version control:</strong> Infrastructure changes go through Git PRs, code review, and audit history.</li>
-          <li><strong>Disaster recovery:</strong> Rebuild your entire environment from code in minutes, not days.</li>
-          <li><strong>Drift detection:</strong> Terraform detects when real infrastructure diverges from declared state.</li>
-        </ul></div>
-      </article>
+</div>
+<button aria-expanded="false" class="n-expand-btn" onclick="toggleExpand(this)">IaC Benefits <span class="earr">▼</span></button>
+<div class="n-expanded"><div>
+<p><strong>📘 Definition</strong><br/>Infrastructure as Code (IaC) is the practice of managing and provisioning infrastructure through machine-readable config files rather than manual processes. Terraform is the most widely used IaC tool.</p>
+<p><strong>💡 Why It Matters</strong><br/>Manual infrastructure is error-prone, slow, and undocumented. IaC means your entire cloud environment is version-controlled, peer-reviewed, and can be rebuilt in minutes after a disaster.</p>
+<p><strong>🌍 Real Example</strong><br/>Instead of clicking through the AWS console to create a VPC, EC2, RDS, and ALB, a DevOps engineer runs <code>terraform apply</code> and the full 3-tier environment is ready in 4 minutes.</p>
+<p><strong>💻 Code/Command/Example</strong><br/><code>terraform init</code> → <code>terraform plan</code> → <code>terraform apply</code> — the standard Terraform workflow for every infrastructure change.</p>
+<p><strong>🎯 Interview Tip</strong><br/>IaC benefits: consistency, speed, disaster recovery, code review for infra changes, environment replication (dev/staging/prod from same code).</p>
+<p><strong>📝 Practice Exercise</strong><br/>Write a Terraform config that creates an S3 bucket with versioning enabled. Run <code>terraform plan</code> to preview, <code>terraform apply</code> to create, then <code>terraform destroy</code> to clean up.</p>
+</div></div>
+</article>
 
-      <article class="n-card c-card" data-cat="terraform" data-title="Why Terraform Matters" data-tags="terraform iac cloud multi-provider" id="note-why-terraform-matters">
-        <div class="n-accent"></div><div class="n-body">
-        <div class="n-meta"><span class="n-num">#17</span><div class="n-tags"><span class="n-tag">Terraform</span><span class="n-tag">Multi-Cloud</span></div></div>
-        <h3 class="n-title">Why Terraform Matters</h3>
-        <p class="n-desc">Terraform is cloud-agnostic. Write infrastructure for AWS today, replicate on GCP or Azure tomorrow with minimal changes. 3000+ providers cover everything from DNS to Kubernetes to GitHub.</p>
-        <div class="n-code"><span class="fn">terraform</span> init     <span class="cm"># download providers + modules</span>
+<article class="n-card c-card" data-cat="terraform" data-tags="terraform iac cloud multi-provider" data-title="Why Terraform Matters" id="note-why-terraform-matters">
+<div class="n-accent"></div><div class="n-body">
+<div class="n-meta"><span class="n-num">#17</span><div class="n-tags"><span class="n-tag">Terraform</span><span class="n-tag">Multi-Cloud</span></div></div>
+<h3 class="n-title">Why Terraform Matters</h3>
+<p class="n-desc">Terraform is cloud-agnostic. Write infrastructure for AWS today, replicate on GCP or Azure tomorrow with minimal changes. 3000+ providers cover everything from DNS to Kubernetes to GitHub.</p>
+<div class="n-code"><span class="fn">terraform</span> init     <span class="cm"># download providers + modules</span>
 <span class="fn">terraform</span> plan     <span class="cm"># show what will change</span>
 <span class="fn">terraform</span> apply    <span class="cm"># execute the changes</span>
-
 <span class="gr">+ aws_instance.web will be created</span>
 <span class="gr">Plan: 2 to add, 0 to change, 0 to destroy.</span></div>
-        </div>
-        <button class="n-expand-btn" aria-expanded="false" onclick="toggleExpand(this)">Terraform vs CloudFormation <span class="earr">▼</span></button>
-        <div class="n-expanded"><ul>
-          <li><strong>Terraform:</strong> HCL language. Multi-cloud. 3000+ providers. The industry standard.</li>
-          <li><strong>CloudFormation:</strong> AWS-only. YAML/JSON. Good if you're 100% AWS forever.</li>
-          <li><strong>Pulumi:</strong> Write IaC in Python/TypeScript/Go. Great for developers who dislike HCL.</li>
-        </ul></div>
-      </article>
+</div>
+<button aria-expanded="false" class="n-expand-btn" onclick="toggleExpand(this)">Terraform vs CloudFormation <span class="earr">▼</span></button>
+<div class="n-expanded"><div>
+<p><strong>📘 Definition</strong><br/>Terraform uses a declarative HCL (HashiCorp Configuration Language) to describe desired infrastructure state. It works across AWS, GCP, Azure, and 3000+ other providers via a plugin system.</p>
+<p><strong>💡 Why It Matters</strong><br/>Unlike CloudFormation (AWS-only), Terraform lets you manage multi-cloud and hybrid environments with one tool and one skill set — making it the industry standard for IaC.</p>
+<p><strong>🌍 Real Example</strong><br/>A company uses Terraform to manage AWS infrastructure, Cloudflare DNS, and GitHub repo settings — all from the same codebase and workflow.</p>
+<p><strong>💻 Code/Command/Example</strong><br/><code>terraform show</code> — display current state. <code>terraform state list</code> — list all managed resources. <code>terraform output</code> — show output values.</p>
+<p><strong>🎯 Interview Tip</strong><br/>Terraform vs CloudFormation: Terraform = multi-cloud, HCL, open-source, large community. CloudFormation = AWS-only, JSON/YAML, native AWS integration, no state management needed.</p>
+<p><strong>📝 Practice Exercise</strong><br/>Create a Terraform config with an AWS and a Cloudflare provider. Provision one resource from each. Observe how <code>terraform plan</code> handles both in one run.</p>
+</div></div>
+</article>
 
-      <article class="n-card c-card" data-cat="terraform" data-title="Terraform State" data-tags="terraform state remote backend s3" id="note-terraform-state">
-        <div class="n-accent"></div><div class="n-body">
-        <div class="n-meta"><span class="n-num">#18</span><div class="n-tags"><span class="n-tag">Terraform</span><span class="n-tag">State</span></div></div>
-        <h3 class="n-title">Terraform State</h3>
-        <p class="n-desc">Terraform tracks what it has built in a state file. This is how it knows what exists, what changed, and what to destroy. Never commit state to Git — use remote backends like S3 with DynamoDB locking.</p>
-        <div class="n-code"><span class="kw">terraform</span> {
+<article class="n-card c-card" data-cat="terraform" data-tags="terraform state remote backend s3" data-title="Terraform State" id="note-terraform-state">
+<div class="n-accent"></div><div class="n-body">
+<div class="n-meta"><span class="n-num">#18</span><div class="n-tags"><span class="n-tag">Terraform</span><span class="n-tag">State</span></div></div>
+<h3 class="n-title">Terraform State</h3>
+<p class="n-desc">Terraform tracks what it has built in a state file. This is how it knows what exists, what changed, and what to destroy. Never commit state to Git — use remote backends like S3 with DynamoDB locking.</p>
+<div class="n-code"><span class="kw">terraform</span> {
   <span class="kw">backend</span> <span class="st">"s3"</span> {
     <span class="nm">bucket</span>         = <span class="st">"devriston-tf-state"</span>
     <span class="nm">key</span>            = <span class="st">"prod/terraform.tfstate"</span>
@@ -538,253 +527,275 @@ server {
     <span class="nm">encrypt</span>        = <span class="kw">true</span>
   }
 }</div>
-        </div>
-        <button class="n-expand-btn" aria-expanded="false" onclick="toggleExpand(this)">State Best Practices <span class="earr">▼</span></button>
-        <div class="n-expanded"><ul>
-          <li><strong>Remote backend:</strong> Store state in S3. Never local files in a team environment.</li>
-          <li><strong>State locking:</strong> Use DynamoDB to prevent simultaneous terraform apply runs.</li>
-          <li><strong>Encryption:</strong> State files contain secrets. Always encrypt at rest and in transit.</li>
-          <li><strong>Never edit manually:</strong> Direct state edits corrupt tracking. Use CLI commands instead.</li>
-        </ul></div>
-      </article>
+</div>
+<button aria-expanded="false" class="n-expand-btn" onclick="toggleExpand(this)">State Best Practices <span class="earr">▼</span></button>
+<div class="n-expanded"><div>
+<p><strong>📘 Definition</strong><br/>Terraform state is a JSON file (<code>terraform.tfstate</code>) that maps your HCL config to real cloud resources. It's Terraform's source of truth for what exists, what changed, and what needs updating.</p>
+<p><strong>💡 Why It Matters</strong><br/>Without proper state management, two engineers running <code>terraform apply</code> simultaneously can corrupt infrastructure. Remote state with locking prevents this.</p>
+<p><strong>🌍 Real Example</strong><br/>A team stores state in S3 with encryption and uses DynamoDB for state locking. When one engineer runs <code>terraform apply</code>, the lock prevents anyone else from modifying state simultaneously.</p>
+<p><strong>💻 Code/Command/Example</strong><br/><code>terraform state list</code> — view all tracked resources. <code>terraform state show aws_instance.web</code> — inspect a specific resource in state.</p>
+<p><strong>🎯 Interview Tip</strong><br/>Never commit <code>terraform.tfstate</code> to Git — it contains sensitive data (passwords, keys). Always use remote backends (S3/GCS/Terraform Cloud) with encryption and state locking.</p>
+<p><strong>📝 Practice Exercise</strong><br/>Set up an S3 backend for your Terraform state. Run <code>terraform init</code> to migrate local state to S3, then verify the state file appears in the bucket.</p>
+</div></div>
+</article>
 
-      <article class="n-card c-card" data-cat="terraform" data-title="What is Ansible?" data-tags="ansible automation iac configuration" id="note-what-is-ansible">
-        <div class="n-accent"></div><div class="n-body">
-        <div class="n-meta"><span class="n-num">#19</span><div class="n-tags"><span class="n-tag">Ansible</span><span class="n-tag">Automation</span></div></div>
-        <h3 class="n-title">What is Ansible?</h3>
-        <p class="n-desc">Ansible automates server configuration over SSH — no agent required. Write a playbook in YAML, run it against 1 or 1000 servers, get the same result every time. Idempotent by design.</p>
-        <div class="n-code">- <span class="kw">name:</span> <span class="st">Install and start Nginx</span>
+<article class="n-card c-card" data-cat="terraform" data-tags="ansible automation iac configuration" data-title="What is Ansible?" id="note-what-is-ansible">
+<div class="n-accent"></div><div class="n-body">
+<div class="n-meta"><span class="n-num">#19</span><div class="n-tags"><span class="n-tag">Ansible</span><span class="n-tag">Automation</span></div></div>
+<h3 class="n-title">What is Ansible?</h3>
+<p class="n-desc">Ansible automates server configuration over SSH — no agent required. Write a playbook in YAML, run it against 1 or 1000 servers, get the same result every time. Idempotent by design.</p>
+<div class="n-code">- <span class="kw">name:</span> <span class="st">Install and start Nginx</span>
   <span class="kw">hosts:</span> webservers
   <span class="kw">become:</span> <span class="kw">true</span>
   <span class="kw">tasks:</span>
     - <span class="kw">apt:</span>     name=nginx state=present
     - <span class="kw">service:</span> name=nginx state=started
                   enabled=yes</div>
-        </div>
-        <button class="n-expand-btn" aria-expanded="false" onclick="toggleExpand(this)">Ansible vs Terraform <span class="earr">▼</span></button>
-        <div class="n-expanded"><ul>
-          <li><strong>Terraform:</strong> Provisions infrastructure (creates servers, networks, databases). Declarative.</li>
-          <li><strong>Ansible:</strong> Configures what's inside servers (installs software, manages users). Procedural YAML.</li>
-          <li><strong>Together:</strong> Terraform builds the VM, Ansible configures it. Perfect combination.</li>
-          <li><strong>Ansible strength:</strong> No agent. Works with any SSH-accessible machine.</li>
-        </ul></div>
-      </article>
+</div>
+<button aria-expanded="false" class="n-expand-btn" onclick="toggleExpand(this)">Ansible vs Terraform <span class="earr">▼</span></button>
+<div class="n-expanded"><div>
+<p><strong>📘 Definition</strong><br/>Ansible is an agentless automation tool that uses SSH to configure servers, deploy applications, and orchestrate tasks. Playbooks are written in YAML and executed sequentially against inventory hosts.</p>
+<p><strong>💡 Why It Matters</strong><br/>Terraform provisions infrastructure; Ansible configures it. After <code>terraform apply</code> creates your EC2 instances, Ansible installs packages, writes config files, and starts services — automatically.</p>
+<p><strong>🌍 Real Example</strong><br/>A playbook installs nginx, copies a config template with Jinja2 variables, enables the service, and reloads it — all in one idempotent run that's safe to re-execute any time.</p>
+<p><strong>💻 Code/Command/Example</strong><br/><code>ansible-playbook -i inventory site.yml</code> — run a playbook. <code>ansible all -m ping -i inventory</code> — test connectivity to all hosts.</p>
+<p><strong>🎯 Interview Tip</strong><br/>Key distinction: Terraform = infrastructure provisioning (VMs, networks, S3). Ansible = configuration management (install packages, manage files, start services). They complement each other.</p>
+<p><strong>📝 Practice Exercise</strong><br/>Write an Ansible playbook that installs nginx, copies an <code>index.html</code> file, and starts the service. Run it against a VM and verify nginx serves your file.</p>
+</div></div>
+</article>
 
-    </div>
+</div><!-- end terraform grid -->
 
-    <!-- CI/CD -->
-    <div class="cat-hdr" data-section="cicd"><span class="cat-hdr-icon">🔄</span><span class="cat-hdr-title">CI/CD</span><span class="cat-hdr-count">4 notes</span></div>
-    <div class="content-grid" data-section="cicd">
+<!-- ═══ CI/CD ═══ -->
+<div class="cat-hdr" data-section="cicd"><span class="cat-hdr-icon">🔄</span><span class="cat-hdr-title">CI/CD</span><span class="cat-hdr-count">3 notes</span></div>
+<div class="content-grid" data-section="cicd">
 
-      <article class="n-card c-card" data-cat="cicd" data-title="CI/CD Pipeline Basics" data-tags="cicd pipeline github-actions automation" id="note-cicd-pipeline-basics">
-        <div class="n-accent"></div><div class="n-body">
-        <div class="n-meta"><span class="n-num">#20</span><div class="n-tags"><span class="n-tag">CI/CD</span><span class="n-tag">Pipelines</span></div></div>
-        <h3 class="n-title">CI/CD Pipeline Basics</h3>
-        <p class="n-desc">CI automatically builds and tests code on every commit. CD ships passing builds to staging or production. Together: faster, safer shipping — zero manual deployment steps.</p>
-        <div class="n-code"><span class="kw">name:</span> CI/CD Pipeline
-<span class="kw">on:</span>
-  <span class="kw">push:</span>
-    <span class="kw">branches:</span> [main]
+<article class="n-card c-card" data-cat="cicd" data-tags="cicd pipeline github-actions automation" data-title="What is CI/CD?" id="note-what-is-cicd">
+<div class="n-accent"></div><div class="n-body">
+<div class="n-meta"><span class="n-num">#20</span><div class="n-tags"><span class="n-tag">CI/CD</span><span class="n-tag">GitHub Actions</span></div></div>
+<h3 class="n-title">What is CI/CD?</h3>
+<p class="n-desc">CI (Continuous Integration) automatically tests every code push. CD (Continuous Delivery/Deployment) automatically deploys passing builds. Together they eliminate manual releases and catch bugs early.</p>
+<div class="n-code"><span class="kw">on:</span> [push]
 <span class="kw">jobs:</span>
-  <span class="nm">build-test-deploy:</span>
+  <span class="kw">build:</span>
     <span class="kw">runs-on:</span> ubuntu-latest
     <span class="kw">steps:</span>
-      - docker build → test → push → deploy</div>
-        </div>
-        <button class="n-expand-btn" aria-expanded="false" onclick="toggleExpand(this)">Pipeline Stages <span class="earr">▼</span></button>
-        <div class="n-expanded"><ul>
-          <li><strong>Source:</strong> Git push triggers the pipeline.</li>
-          <li><strong>Build:</strong> Compile code, build Docker image, resolve dependencies.</li>
-          <li><strong>Test:</strong> Unit tests, integration tests, security scans, linting.</li>
-          <li><strong>Staging deploy:</strong> Deploy to pre-production for final verification.</li>
-          <li><strong>Production deploy:</strong> Blue/green, canary, or rolling deployment.</li>
-        </ul></div>
-      </article>
+      - <span class="kw">uses:</span> actions/checkout@v4
+      - <span class="kw">run:</span> <span class="st">npm install &amp;&amp; npm test</span>
+      - <span class="kw">run:</span> <span class="st">docker build -t myapp .</span></div>
+</div>
+<button aria-expanded="false" class="n-expand-btn" onclick="toggleExpand(this)">CI vs CD Explained <span class="earr">▼</span></button>
+<div class="n-expanded"><div>
+<p><strong>📘 Definition</strong><br/><strong>CI</strong> — every code commit triggers automated tests, lint, and build checks. Catches integration bugs immediately. <strong>CD</strong> — passing CI builds are automatically deployed to staging or production without manual steps.</p>
+<p><strong>💡 Why It Matters</strong><br/>Manual deployments are slow, error-prone, and undocumented. CI/CD means every merge to main is automatically tested and shipped — with a full audit trail in Git.</p>
+<p><strong>🌍 Real Example</strong><br/>Developer pushes to GitHub → Actions runs tests → builds Docker image → pushes to ECR → deploys to ECS. Total time: 4 minutes. Zero manual steps.</p>
+<p><strong>💻 Code/Command/Example</strong><br/><code>gh run list</code> — list recent GitHub Actions runs. <code>gh run view RUN_ID</code> — inspect a specific pipeline run.</p>
+<p><strong>🎯 Interview Tip</strong><br/>CI = detect problems fast (tests, lint, security scan on every push). CD = ship fast (auto-deploy to staging, manual gate to production). Know the difference and when each applies.</p>
+<p><strong>📝 Practice Exercise</strong><br/>Create a GitHub Actions workflow that runs on push, executes a test command, and builds a Docker image. Push a bad commit and watch the pipeline fail.</p>
+</div></div>
+</article>
 
-      <article class="n-card c-card" data-cat="cicd" data-title="GitHub Actions vs Jenkins" data-tags="cicd github-actions jenkins comparison" id="note-github-actions-vs-jenkins">
-        <div class="n-accent"></div><div class="n-body">
-        <div class="n-meta"><span class="n-num">#21</span><div class="n-tags"><span class="n-tag">CI/CD</span><span class="n-tag">GitHub Actions</span></div></div>
-        <h3 class="n-title">GitHub Actions vs Jenkins</h3>
-        <p class="n-desc">Jenkins is powerful, self-hosted CI — but requires maintenance and plugins. GitHub Actions is managed, YAML-driven, and integrates natively with your repo. For most teams, Actions wins.</p>
-        <div class="n-code"><span class="cm">Feature        GH Actions    Jenkins</span>
-Setup time      <span class="gr">Minutes</span>       Hours/Days
-Infrastructure  <span class="gr">Managed</span>       Self-hosted
-Config          <span class="gr">YAML</span>          Groovy DSL
-Cost            <span class="gr">Free tier</span>     Server cost
-Marketplace     <span class="gr">10,000+</span>       1,800 plugins</div>
-        </div>
-        <button class="n-expand-btn" aria-expanded="false" onclick="toggleExpand(this)">When to Choose Each <span class="earr">▼</span></button>
-        <div class="n-expanded"><ul>
-          <li><strong>GitHub Actions:</strong> Code is on GitHub, want zero infra overhead, don't need deep customisation.</li>
-          <li><strong>Jenkins:</strong> Complex multi-team pipelines, self-hosted runners for compliance, existing investment.</li>
-        </ul></div>
-      </article>
+<article class="n-card c-card" data-cat="cicd" data-tags="cicd github-actions docker ecr deployment" data-title="GitHub Actions CI/CD Pipeline" id="note-github-actions-pipeline">
+<div class="n-accent"></div><div class="n-body">
+<div class="n-meta"><span class="n-num">#21</span><div class="n-tags"><span class="n-tag">CI/CD</span><span class="n-tag">Docker</span></div></div>
+<h3 class="n-title">GitHub Actions CI/CD Pipeline</h3>
+<p class="n-desc">GitHub Actions is the most popular CI/CD tool today — it's free for public repos, deeply integrated with GitHub, and has thousands of community actions for every task.</p>
+<div class="n-code"><span class="kw">- name:</span> <span class="st">Build and push Docker image</span>
+  <span class="kw">run:</span> |
+    <span class="fn">docker</span> build -t $ECR_REPO:$SHA .
+    <span class="fn">docker</span> push $ECR_REPO:$SHA
+<span class="kw">- name:</span> <span class="st">Deploy to ECS</span>
+  <span class="kw">uses:</span> aws-actions/amazon-ecs-deploy-task-definition@v1</div>
+</div>
+<button aria-expanded="false" class="n-expand-btn" onclick="toggleExpand(this)">Pipeline Stages <span class="earr">▼</span></button>
+<div class="n-expanded"><div>
+<p><strong>📘 Definition</strong><br/>GitHub Actions workflows are YAML files in <code>.github/workflows/</code> that run on triggers (push, PR, schedule). Jobs contain steps that run commands or reuse published Actions.</p>
+<p><strong>💡 Why It Matters</strong><br/>GitHub Actions is tightly integrated with your code — no separate CI server to manage. It's the standard for open-source DevOps portfolios and increasingly for enterprise workloads.</p>
+<p><strong>🌍 Real Example</strong><br/>Devriston's Samba4 project uses GitHub Actions to run YAML lint, Ansible lint, syntax check, and Checkov security scan on every pull request before merge.</p>
+<p><strong>💻 Code/Command/Example</strong><br/><code>act</code> — run GitHub Actions locally for testing before pushing. Install with <code>brew install act</code> or download the binary.</p>
+<p><strong>🎯 Interview Tip</strong><br/>Know the structure: <code>on</code> (triggers), <code>jobs</code> (parallel groups), <code>steps</code> (sequential commands/actions), <code>env</code> (variables), <code>secrets</code> (sensitive values).</p>
+<p><strong>📝 Practice Exercise</strong><br/>Add a GitHub Actions workflow to an existing repo that runs <code>ansible-lint</code> and <code>yamllint</code> on every push to main. Check the Actions tab to see the results.</p>
+</div></div>
+</article>
 
-      <article class="n-card c-card" data-cat="cicd" data-title="Self-Healing Infrastructure" data-tags="cicd docker self-healing automation reliability" id="note-self-healing-infrastructure">
-        <div class="n-accent"></div><div class="n-body">
-        <div class="n-meta"><span class="n-num">#22</span><div class="n-tags"><span class="n-tag">Docker</span><span class="n-tag">Reliability</span></div></div>
-        <h3 class="n-title">Self-Healing Infrastructure</h3>
-        <p class="n-desc">Self-healing means your infrastructure automatically detects and recovers from failures without human intervention. Docker health checks, restart policies, and AWS Auto Scaling are the building blocks.</p>
-        <div class="n-code"><span class="kw">healthcheck:</span>
-  test: [<span class="st">"CMD"</span>,<span class="st">"curl"</span>,<span class="st">"-f"</span>,
-         <span class="st">"http://localhost:3000/health"</span>]
-  <span class="kw">interval:</span> 30s
-  <span class="kw">timeout:</span>  10s
-  <span class="kw">retries:</span>  3
-<span class="kw">restart:</span> unless-stopped</div>
-        </div>
-        <button class="n-expand-btn" aria-expanded="false" onclick="toggleExpand(this)">Self-Healing Layers <span class="earr">▼</span></button>
-        <div class="n-expanded"><ul>
-          <li><strong>Process level:</strong> systemd restarts services; Docker restart policies restart containers.</li>
-          <li><strong>Container level:</strong> Health checks detect failed containers; Compose replaces them.</li>
-          <li><strong>Instance level:</strong> AWS Auto Scaling replaces unhealthy EC2s; ALB stops routing to them.</li>
-        </ul></div>
-      </article>
+<article class="n-card c-card" data-cat="cicd" data-tags="cicd ansible roles structure automation" data-title="Ansible Roles Structure" id="note-ansible-roles-structure">
+<div class="n-accent"></div><div class="n-body">
+<div class="n-meta"><span class="n-num">#22</span><div class="n-tags"><span class="n-tag">CI/CD</span><span class="n-tag">Ansible</span></div></div>
+<h3 class="n-title">Ansible Roles Structure</h3>
+<p class="n-desc">Ansible roles are the standard way to organise complex playbooks. Each role has a fixed directory structure — tasks, handlers, templates, defaults, and vars — making automation modular and reusable.</p>
+<div class="n-code">roles/nginx/
+  ├── tasks/main.yml    <span class="cm"># what to do</span>
+  ├── handlers/main.yml <span class="cm"># restart triggers</span>
+  ├── templates/        <span class="cm"># Jinja2 configs</span>
+  └── defaults/main.yml <span class="cm"># default vars</span></div>
+</div>
+<button aria-expanded="false" class="n-expand-btn" onclick="toggleExpand(this)">Role Best Practices <span class="earr">▼</span></button>
+<div class="n-expanded"><div>
+<p><strong>📘 Definition</strong><br/>An Ansible role is a self-contained unit of automation with a standardised directory structure. Roles can be shared across projects, published to Ansible Galaxy, and composed together in a playbook.</p>
+<p><strong>💡 Why It Matters</strong><br/>Without roles, playbooks become monolithic YAML files that are hard to maintain. Roles enforce separation of concerns — one role per service (nginx, postgres, docker, etc.).</p>
+<p><strong>🌍 Real Example</strong><br/>An enterprise playbook calls roles: <code>common</code> (base packages), <code>nginx</code> (web server), <code>app</code> (application), <code>monitoring</code> (node exporter). Each role is independently testable and reusable.</p>
+<p><strong>💻 Code/Command/Example</strong><br/><code>ansible-galaxy init my-role</code> — scaffold a new role with the correct directory structure automatically.</p>
+<p><strong>🎯 Interview Tip</strong><br/>Key role directories: <code>tasks/</code> (main logic), <code>handlers/</code> (triggered actions like service restart), <code>templates/</code> (Jinja2 config files), <code>defaults/</code> (overridable default vars), <code>vars/</code> (non-overridable vars).</p>
+<p><strong>📝 Practice Exercise</strong><br/>Run <code>ansible-galaxy init nginx</code>, fill in the tasks/main.yml to install and start nginx, add a handler to reload on config change, then call the role from a playbook.</p>
+</div></div>
+</article>
 
-      <article class="n-card c-card" data-cat="cicd" data-title="Git Branching Strategy" data-tags="git cicd branching gitflow trunk" id="note-git-branching-strategy">
-        <div class="n-accent"></div><div class="n-body">
-        <div class="n-meta"><span class="n-num">#23</span><div class="n-tags"><span class="n-tag">Git</span><span class="n-tag">CI/CD</span></div></div>
-        <h3 class="n-title">Git Branching Strategy</h3>
-        <p class="n-desc">A branching strategy defines how teams collaborate in Git. GitFlow uses long-lived branches. Trunk-based development uses short-lived feature branches merged to main frequently. For CI/CD, trunk-based wins.</p>
-        <div class="n-code"><span class="fn">git</span> checkout -b feature/add-monitoring
-<span class="cm"># ... make changes ...</span>
-<span class="fn">git</span> add . && <span class="fn">git</span> commit -m <span class="st">"feat: prometheus"</span>
-<span class="fn">git</span> push origin feature/add-monitoring
-<span class="cm"># PR → review → merge → CI/CD triggers</span></div>
-        </div>
-        <button class="n-expand-btn" aria-expanded="false" onclick="toggleExpand(this)">Strategies Compared <span class="earr">▼</span></button>
-        <div class="n-expanded"><ul>
-          <li><strong>Trunk-based:</strong> All developers commit to main (or short branches). CI runs on every commit. Fast, clean.</li>
-          <li><strong>GitFlow:</strong> main + develop + feature + release + hotfix. Heavyweight but structured.</li>
-          <li><strong>GitHub Flow:</strong> main + feature branches + PRs. Simple. Good for small teams.</li>
-        </ul></div>
-      </article>
+</div><!-- end cicd grid -->
 
-    </div>
+<!-- ═══ MONITORING ═══ -->
+<div class="cat-hdr" data-section="monitoring"><span class="cat-hdr-icon">📊</span><span class="cat-hdr-title">Monitoring</span><span class="cat-hdr-count">3 notes</span></div>
+<div class="content-grid" data-section="monitoring">
 
-    <!-- MONITORING -->
-    <div class="cat-hdr" data-section="monitoring"><span class="cat-hdr-icon">📊</span><span class="cat-hdr-title">Monitoring</span><span class="cat-hdr-count">3 notes</span></div>
-    <div class="content-grid" data-section="monitoring">
+<article class="n-card c-card" data-cat="monitoring" data-tags="monitoring prometheus grafana metrics" data-title="Prometheus and Grafana" id="note-prometheus-and-grafana">
+<div class="n-accent"></div><div class="n-body">
+<div class="n-meta"><span class="n-num">#23</span><div class="n-tags"><span class="n-tag">Monitoring</span><span class="n-tag">Prometheus</span></div></div>
+<h3 class="n-title">Prometheus and Grafana</h3>
+<p class="n-desc">Prometheus scrapes metrics from your services every 15s. Grafana queries Prometheus and turns numbers into dashboards. Together they give you full visibility into system health.</p>
+<div class="n-code"><span class="cm"># prometheus.yml</span>
+scrape_configs:
+  - job_name: <span class="st">'node'</span>
+    static_configs:
+      - targets: [<span class="st">'192.168.1.11:9100'</span>]
+<span class="cm"># node_exporter exposes CPU, RAM, disk</span></div>
+</div>
+<button aria-expanded="false" class="n-expand-btn" onclick="toggleExpand(this)">Key Metrics to Watch <span class="earr">▼</span></button>
+<div class="n-expanded"><div>
+<p><strong>📘 Definition</strong><br/>Prometheus is a time-series database that scrapes metrics endpoints (exposed by exporters or apps) at regular intervals. Grafana is a visualisation platform that queries Prometheus to build dashboards and alerts.</p>
+<p><strong>💡 Why It Matters</strong><br/>Without monitoring, production issues are invisible until users complain. Prometheus + Grafana gives you CPU, memory, disk, network, and application-specific metrics in real time.</p>
+<p><strong>🌍 Real Example</strong><br/>A node_exporter on each server exposes 800+ OS metrics. Prometheus scrapes them every 15s. Grafana Node Exporter dashboard shows CPU/RAM/disk for all servers in one view.</p>
+<p><strong>💻 Code/Command/Example</strong><br/><code>curl http://localhost:9090/metrics</code> — view raw Prometheus metrics. <code>up</code> — PromQL query to see which targets are being scraped successfully.</p>
+<p><strong>🎯 Interview Tip</strong><br/>Key metrics: CPU utilisation, memory usage %, disk I/O wait, network bandwidth, HTTP request rate, and error rate (5xx responses). Know how to alert on each.</p>
+<p><strong>📝 Practice Exercise</strong><br/>Run Prometheus and Grafana via Docker Compose. Add node_exporter as a scrape target. Import the Node Exporter Full dashboard (ID 1860) and explore the metrics.</p>
+</div></div>
+</article>
 
-      <article class="n-card c-card" data-cat="monitoring" data-title="Monitoring Stack Architecture" data-tags="monitoring prometheus grafana alertmanager" id="note-monitoring-stack-architecture">
-        <div class="n-accent"></div><div class="n-body">
-        <div class="n-meta"><span class="n-num">#24</span><div class="n-tags"><span class="n-tag">Monitoring</span><span class="n-tag">Architecture</span></div></div>
-        <h3 class="n-title">Monitoring Stack Architecture</h3>
-        <p class="n-desc">A production monitoring stack has three jobs: collect metrics (Prometheus), visualise them (Grafana), and alert on anomalies (AlertManager). Each component is purpose-built, composable, and open-source.</p>
-        <div class="n-code"><span class="gr">Targets</span> (EC2, Docker, Apps)
-  ↓ expose /metrics endpoint
-<span class="gr">Prometheus</span> ← scrapes every 15s
-  ├──→ <span class="gr">Grafana</span>      (dashboards)
-  └──→ <span class="gr">AlertManager</span> (alerts)
-            ↓
-     Slack / Email / PagerDuty</div>
-        </div>
-        <button class="n-expand-btn" aria-expanded="false" onclick="toggleExpand(this)">Key Exporters <span class="earr">▼</span></button>
-        <div class="n-expanded"><ul>
-          <li><strong>Node Exporter:</strong> Linux system metrics — CPU, RAM, disk, network. Run on every server.</li>
-          <li><strong>cAdvisor:</strong> Container metrics — per-container CPU, memory from Docker.</li>
-          <li><strong>Blackbox Exporter:</strong> HTTP/TCP probing — check if endpoints respond correctly.</li>
-          <li><strong>Postgres Exporter:</strong> Database metrics — queries, connections, cache hit rates.</li>
-        </ul></div>
-      </article>
+<article class="n-card c-card" data-cat="monitoring" data-tags="monitoring alerting on-call incident" data-title="Alerting and On-Call" id="note-alerting-and-oncall">
+<div class="n-accent"></div><div class="n-body">
+<div class="n-meta"><span class="n-num">#24</span><div class="n-tags"><span class="n-tag">Monitoring</span><span class="n-tag">Alerting</span></div></div>
+<h3 class="n-title">Alerting and On-Call</h3>
+<p class="n-desc">Good alerts fire when action is needed — not for every blip. Alert on symptoms (user-facing impact), not causes (CPU spike). Alertmanager routes alerts to Slack, PagerDuty, or email.</p>
+<div class="n-code"><span class="kw">groups:</span>
+- <span class="kw">name:</span> <span class="st">critical</span>
+  <span class="kw">rules:</span>
+  - <span class="kw">alert:</span> <span class="st">HighErrorRate</span>
+    <span class="kw">expr:</span> rate(http_errors[5m]) &gt; 0.05
+    <span class="kw">for:</span> <span class="st">2m</span>
+    <span class="kw">labels:</span>
+      <span class="kw">severity:</span> <span class="st">critical</span></div>
+</div>
+<button aria-expanded="false" class="n-expand-btn" onclick="toggleExpand(this)">Alert Design Tips <span class="earr">▼</span></button>
+<div class="n-expanded"><div>
+<p><strong>📘 Definition</strong><br/>Alerting in Prometheus uses AlertManager with alerting rules defined in YAML. Rules fire when PromQL expressions are true for a sustained period (the <code>for</code> duration prevents flapping).</p>
+<p><strong>💡 Why It Matters</strong><br/>Alert fatigue is real — too many noisy alerts and engineers stop responding. Well-designed alerts are actionable, accurate, and fire at the right severity level.</p>
+<p><strong>🌍 Real Example</strong><br/>An alert fires when HTTP 5xx error rate exceeds 5% for 2 consecutive minutes. Alertmanager routes it to a Slack <code>#alerts-critical</code> channel with a link to the Grafana dashboard.</p>
+<p><strong>💻 Code/Command/Example</strong><br/><code>amtool alert query</code> — list active alerts. <code>amtool silence add</code> — mute an alert during planned maintenance.</p>
+<p><strong>🎯 Interview Tip</strong><br/>Alert on SLO breaches (error rate, latency, availability), not raw metrics. "CPU at 80%" is noise; "users experiencing 2s+ response times" is a real alert.</p>
+<p><strong>📝 Practice Exercise</strong><br/>Write a Prometheus alert rule that fires when disk usage exceeds 85%. Configure Alertmanager to send it to a Slack webhook. Test by filling a temporary test partition.</p>
+</div></div>
+</article>
 
-      <article class="n-card c-card" data-cat="monitoring" data-title="Prometheus Grafana Workflow" data-tags="prometheus grafana promql monitoring" id="note-prometheus-grafana-workflow">
-        <div class="n-accent"></div><div class="n-body">
-        <div class="n-meta"><span class="n-num">#25</span><div class="n-tags"><span class="n-tag">Prometheus</span><span class="n-tag">PromQL</span></div></div>
-        <h3 class="n-title">Prometheus + Grafana Workflow</h3>
-        <p class="n-desc">Prometheus stores time-series metrics and lets you query them with PromQL. Grafana connects to Prometheus as a data source and renders the queries as actionable dashboards.</p>
-        <div class="n-code"><span class="cm"># CPU usage % across all cores</span>
-100 - (avg by(instance)(rate(
-  node_cpu_seconds_total{mode=<span class="st">"idle"</span>}[5m]
-)) * 100)
+<article class="n-card c-card" data-cat="monitoring" data-tags="monitoring logs elk stack log aggregation" data-title="Log Aggregation with ELK" id="note-log-aggregation-elk">
+<div class="n-accent"></div><div class="n-body">
+<div class="n-meta"><span class="n-num">#25</span><div class="n-tags"><span class="n-tag">Monitoring</span><span class="n-tag">Logs</span></div></div>
+<h3 class="n-title">Log Aggregation with ELK</h3>
+<p class="n-desc">Logs scattered across 10 servers are useless. ELK (Elasticsearch, Logstash, Kibana) or the lightweight Loki stack centralises logs so you can search and correlate events across your entire infrastructure.</p>
+<div class="n-code"><span class="gr">App/Server → Filebeat/Promtail</span>
+          ↓
+<span class="gr">Logstash / Loki (aggregate)</span>
+          ↓
+<span class="gr">Elasticsearch / Grafana (search)</span>
+<span class="cm"># grep in Kibana across all servers</span></div>
+</div>
+<button aria-expanded="false" class="n-expand-btn" onclick="toggleExpand(this)">ELK vs Loki <span class="earr">▼</span></button>
+<div class="n-expanded"><div>
+<p><strong>📘 Definition</strong><br/>Log aggregation collects logs from multiple sources into a centralised searchable system. ELK (Elasticsearch + Logstash + Kibana) is powerful but resource-heavy. Grafana Loki is lightweight and integrates with Prometheus dashboards.</p>
+<p><strong>💡 Why It Matters</strong><br/>When a 500 error hits your app at 3 AM, you need to correlate logs across web, app, and database servers instantly. Without centralised logs, debugging distributed systems is nearly impossible.</p>
+<p><strong>🌍 Real Example</strong><br/>Filebeat ships nginx access logs and system logs from all servers to Elasticsearch. A Kibana dashboard shows all 5xx errors across the fleet, filterable by server, time, and URL.</p>
+<p><strong>💻 Code/Command/Example</strong><br/><code>journalctl -u nginx --since "1 hour ago" -o json</code> — export structured logs for ingestion into ELK or Loki.</p>
+<p><strong>🎯 Interview Tip</strong><br/>ELK is full-text search with complex queries; Loki indexes only labels and streams log lines — much cheaper at scale. For homelab/small teams, Loki + Grafana is the practical choice.</p>
+<p><strong>📝 Practice Exercise</strong><br/>Run Loki and Grafana via Docker Compose. Install Promtail on a VM, configure it to ship <code>/var/log/syslog</code>, then query the logs in Grafana Explore.</p>
+</div></div>
+</article>
 
-<span class="cm"># RAM used %</span>
-(node_memory_MemTotal_bytes -
- node_memory_MemAvailable_bytes) /
- node_memory_MemTotal_bytes * 100</div>
-        </div>
-        <button class="n-expand-btn" aria-expanded="false" onclick="toggleExpand(this)">Setup Tips <span class="earr">▼</span></button>
-        <div class="n-expanded"><ul>
-          <li><strong>Grafana provisioning:</strong> Use YAML to auto-load datasources and dashboards — no manual clicking.</li>
-          <li><strong>AlertManager:</strong> Define alert rules in Prometheus, route to AlertManager, configure Slack/email receivers.</li>
-          <li><strong>Dashboard import:</strong> Grafana dashboard #1860 = Node Exporter Full. Import by ID.</li>
-        </ul></div>
-      </article>
+</div><!-- end monitoring grid -->
 
-      <article class="n-card c-card" data-cat="monitoring" data-title="Lessons From Production Style Labs" data-tags="monitoring devops production lessons labs" id="note-lessons-from-production-style-labs">
-        <div class="n-accent"></div><div class="n-body">
-        <div class="n-meta"><span class="n-num">#26</span><div class="n-tags"><span class="n-tag">Production</span><span class="n-tag">Lessons</span></div></div>
-        <h3 class="n-title">Lessons From Production-Style Labs</h3>
-        <p class="n-desc">Real production experience teaches things no tutorial can. These are hard-won lessons from running actual services, debugging systems at 2am, and learning what monitoring should have caught earlier.</p>
-        <div class="n-code"><span class="cm"># First checks when something breaks</span>
-<span class="fn">df</span> -h                          <span class="cm"># disk space</span>
-<span class="fn">free</span> -h                        <span class="cm"># memory</span>
-<span class="fn">journalctl</span> -xe --since <span class="st">"10m"</span>  <span class="cm"># logs</span>
-<span class="fn">ss</span> -tlnp                       <span class="cm"># open ports</span></div>
-        </div>
-        <button class="n-expand-btn" aria-expanded="false" onclick="toggleExpand(this)">Top 5 Production Lessons <span class="earr">▼</span></button>
-        <div class="n-expanded"><ul>
-          <li><strong>Monitoring before deployment:</strong> If you can't observe it, you can't debug it. Set up metrics before launch.</li>
-          <li><strong>Idempotency matters:</strong> Scripts that break if run twice cause more problems than they solve.</li>
-          <li><strong>Document the fix:</strong> Post-mortems that only describe what broke are useless. Capture root cause and remediation.</li>
-          <li><strong>Smallest change wins:</strong> Change one thing at a time when debugging.</li>
-        </ul></div>
-      </article>
+<!-- ═══ DEVOPS ═══ -->
+<div class="cat-hdr" data-section="devops"><span class="cat-hdr-icon">🚀</span><span class="cat-hdr-title">DevOps Concepts</span><span class="cat-hdr-count">5 notes</span></div>
+<div class="content-grid" data-section="devops">
 
-    </div>
+<article class="n-card c-card" data-cat="devops" data-tags="devops culture philosophy definition" data-title="What is DevOps?" id="note-what-is-devops">
+<div class="n-accent"></div><div class="n-body">
+<div class="n-meta"><span class="n-num">#26</span><div class="n-tags"><span class="n-tag">DevOps</span><span class="n-tag">Culture</span></div></div>
+<h3 class="n-title">What is DevOps?</h3>
+<p class="n-desc">DevOps is a culture and set of practices that unifies software development and IT operations. The goal: ship faster, break less, recover quickly. Tools enable it — culture makes it work.</p>
+<div class="n-code"><span class="gr">Dev: write code → push to Git</span>
+<span class="gr">CI:  test + build automatically</span>
+<span class="gr">CD:  deploy to staging/prod</span>
+<span class="gr">Ops: monitor + alert + recover</span>
+<span class="cm">Feedback loop: minutes, not weeks</span></div>
+</div>
+<button aria-expanded="false" class="n-expand-btn" onclick="toggleExpand(this)">DevOps Principles <span class="earr">▼</span></button>
+<div class="n-expanded"><div>
+<p><strong>📘 Definition</strong><br/>DevOps combines development, operations, security, and quality assurance into a unified workflow with shared responsibility for the entire software lifecycle — from code commit to production monitoring.</p>
+<p><strong>💡 Why It Matters</strong><br/>Traditional siloed Dev and Ops teams hand off work over "the wall" — causing slow releases and blame-shifting when things break. DevOps removes the wall through automation, shared tooling, and ownership.</p>
+<p><strong>🌍 Real Example</strong><br/>At a DevOps-mature company, a developer can push a feature, watch it tested by CI, deployed to staging, and promoted to production — with full observability — in under an hour.</p>
+<p><strong>💻 Code/Command/Example</strong><br/>The "three ways" of DevOps: Flow (left to right, fast delivery), Feedback (right to left, fast learning), and Continual Learning (experiment and improve).</p>
+<p><strong>🎯 Interview Tip</strong><br/>DevOps is not a job title — it's a philosophy. You can be "a DevOps engineer" but the real meaning is enabling fast, reliable software delivery through culture + automation + measurement.</p>
+<p><strong>📝 Practice Exercise</strong><br/>Map your current (or a past) project's deployment process. Identify: how long from code to production? How many manual steps? Where would automation shorten that time?</p>
+</div></div>
+</article>
 
-    <!-- DEVOPS CAREER -->
-    <div class="cat-hdr" data-section="devops"><span class="cat-hdr-icon">🚀</span><span class="cat-hdr-title">DevOps Career & Mindset</span><span class="cat-hdr-count">4 notes</span></div>
-    <div class="content-grid" data-section="devops">
+<article class="n-card c-card" data-cat="devops" data-tags="devops sre reliability incident production" data-title="SRE vs DevOps" id="note-sre-vs-devops">
+<div class="n-accent"></div><div class="n-body">
+<div class="n-meta"><span class="n-num">#27</span><div class="n-tags"><span class="n-tag">DevOps</span><span class="n-tag">SRE</span></div></div>
+<h3 class="n-title">SRE vs DevOps</h3>
+<p class="n-desc">SRE (Site Reliability Engineering) is Google's implementation of DevOps principles. SREs manage reliability with error budgets, SLOs, and SLAs — using software engineering to solve ops problems.</p>
+<div class="n-code"><span class="gr">SLI:</span> actual measurement (e.g. error rate)
+<span class="gr">SLO:</span> target (e.g. error rate &lt; 0.1%)
+<span class="gr">SLA:</span> contractual commitment to clients
+<span class="cm">Error budget = 100% - SLO target</span>
+<span class="cm">Spent budget → freeze new features</span></div>
+</div>
+<button aria-expanded="false" class="n-expand-btn" onclick="toggleExpand(this)">Error Budget Explained <span class="earr">▼</span></button>
+<div class="n-expanded"><div>
+<p><strong>📘 Definition</strong><br/>SRE applies software engineering to operations problems. Core concepts: SLI (what you measure), SLO (your target), SLA (your contractual promise), and error budget (acceptable downtime before slowing releases).</p>
+<p><strong>💡 Why It Matters</strong><br/>Error budgets give teams a data-driven way to balance reliability vs velocity. If the error budget is spent, you stop shipping features and focus on stability. If budget remains, you can ship faster.</p>
+<p><strong>🌍 Real Example</strong><br/>A team has a 99.9% SLO (8.7 hours downtime allowed per year). After a 4-hour outage, they've spent 46% of their annual error budget — triggering a reliability sprint before new features.</p>
+<p><strong>💻 Code/Command/Example</strong><br/>Error budget formula: <code>(1 - SLO) × time_period</code>. For 99.9% over 30 days: <code>(1-0.999) × 43200 min = 43.2 minutes</code> allowed downtime.</p>
+<p><strong>🎯 Interview Tip</strong><br/>SRE = DevOps with formal reliability engineering. The key contribution: error budgets that create shared accountability between Dev (velocity) and Ops (reliability).</p>
+<p><strong>📝 Practice Exercise</strong><br/>For a service you use daily, estimate its SLO. Calculate the allowed downtime per month. Would you notice if it were down that long?</p>
+</div></div>
+</article>
 
-      <article class="n-card c-card" data-cat="devops" data-title="DevOps Roadmap 2026" data-tags="devops roadmap 2026 career learning" id="note-devops-roadmap-2026">
-        <div class="n-accent"></div><div class="n-body">
-        <div class="n-meta"><span class="n-num">#27</span><div class="n-tags"><span class="n-tag">DevOps</span><span class="n-tag">Roadmap</span></div></div>
-        <h3 class="n-title">DevOps Roadmap 2026</h3>
-        <p class="n-desc">The fundamentals haven't changed — Linux, networking, Git, CI/CD. What's shifted is the expectation around security (DevSecOps), observability, and platform engineering replacing pure ops roles.</p>
-        <div class="n-code"><span class="gr">Phase 1:</span> Linux + bash + networking + Git
-<span class="gr">Phase 2:</span> Docker + AWS + Terraform
-<span class="gr">Phase 3:</span> Ansible + GitHub Actions
-<span class="gr">Phase 4:</span> Prometheus + Grafana + Loki
-<span class="gr">Phase 5:</span> Kubernetes + Helm + ArgoCD</div>
-        </div>
-        <button class="n-expand-btn" aria-expanded="false" onclick="toggleExpand(this)">Trends Worth Watching <span class="earr">▼</span></button>
-        <div class="n-expanded"><ul>
-          <li><strong>Platform Engineering:</strong> Building internal developer platforms using Backstage, Port, Crossplane.</li>
-          <li><strong>GitOps:</strong> ArgoCD and Flux becoming the standard for Kubernetes deployment automation.</li>
-          <li><strong>DevSecOps:</strong> Security shifting left — SAST/DAST in pipelines, container scanning (Trivy).</li>
-          <li><strong>FinOps:</strong> Cloud cost optimisation is now a required skill, not optional.</li>
-        </ul></div>
-      </article>
+<article class="n-card c-card" data-cat="devops" data-tags="devops security devsecops shift-left" data-title="DevSecOps Basics" id="note-devsecops-basics">
+<div class="n-accent"></div><div class="n-body">
+<div class="n-meta"><span class="n-num">#28</span><div class="n-tags"><span class="n-tag">DevOps</span><span class="n-tag">Security</span></div></div>
+<h3 class="n-title">DevSecOps Basics</h3>
+<p class="n-desc">DevSecOps embeds security into every stage of the pipeline — not as a final gate, but as automated checks throughout. Scan dependencies, container images, and IaC in CI before anything ships.</p>
+<div class="n-code"><span class="cm"># In your CI pipeline</span>
+- <span class="kw">name:</span> <span class="st">Trivy container scan</span>
+  <span class="kw">run:</span> trivy image myapp:latest
+- <span class="kw">name:</span> <span class="st">Checkov IaC scan</span>
+  <span class="kw">run:</span> checkov -d terraform/
+- <span class="kw">name:</span> <span class="st">Dependency audit</span>
+  <span class="kw">run:</span> npm audit --audit-level=high</div>
+</div>
+<button aria-expanded="false" class="n-expand-btn" onclick="toggleExpand(this)">Key Security Tools <span class="earr">▼</span></button>
+<div class="n-expanded"><div>
+<p><strong>📘 Definition</strong><br/>DevSecOps integrates security practices into DevOps workflows. "Shift left" means catching security issues during development (cheap) rather than post-deployment (expensive). Tools automate what was previously manual security reviews.</p>
+<p><strong>💡 Why It Matters</strong><br/>A security vulnerability found in CI costs minutes to fix. The same vulnerability found after production deployment can cost weeks of remediation and potential data breach liability.</p>
+<p><strong>🌍 Real Example</strong><br/>Checkov scans Terraform configs in CI. It flags an S3 bucket with public read access before <code>terraform apply</code> runs — preventing a data exposure before it ever exists in production.</p>
+<p><strong>💻 Code/Command/Example</strong><br/><code>trivy image ubuntu:22.04</code> — scan an image. <code>checkov -d . --framework terraform</code> — scan all Terraform files. <code>semgrep --config auto .</code> — SAST scan.</p>
+<p><strong>🎯 Interview Tip</strong><br/>Four layers of DevSecOps: (1) SAST — static code analysis, (2) dependency scanning — known CVEs in libraries, (3) container scanning — image vulnerabilities, (4) IaC scanning — misconfigurations in Terraform/K8s.</p>
+<p><strong>📝 Practice Exercise</strong><br/>Add Checkov to a GitHub Actions workflow on your Terraform repository. Push a config with a security misconfiguration (e.g., unrestricted security group) and watch Checkov catch it.</p>
+</div></div>
+</article>
 
-      <article class="n-card c-card" data-cat="devops" data-title="How to Learn DevOps Effectively" data-tags="devops learning career education" id="note-how-to-learn-devops-effectively">
-        <div class="n-accent"></div><div class="n-body">
-        <div class="n-meta"><span class="n-num">#28</span><div class="n-tags"><span class="n-tag">DevOps</span><span class="n-tag">Learning</span></div></div>
-        <h3 class="n-title">How to Learn DevOps Effectively</h3>
-        <p class="n-desc">Most people learn DevOps wrong — watching tutorials and feeling productive but unable to do anything without the video paused. The only path: build real things, break them, fix them, document on GitHub.</p>
-        <div class="n-code"><span class="gr">Effective Learning Loop</span>
-1. Pick one concept   (Docker networking)
-2. Read the docs      (not a tutorial)
-3. Build a lab        (hands-on)
-4. Break something    (intentionally)
-5. Fix it             (debug the error)
-6. Document on GitHub (portfolio + learning)</div>
-        </div>
-        <button class="n-expand-btn" aria-expanded="false" onclick="toggleExpand(this)">Resources Worth Your Time <span class="earr">▼</span></button>
-        <div class="n-expanded"><ul>
-          <li><strong>Official docs first:</strong> Docker docs, Terraform registry, AWS docs. Written by the people who built the tools.</li>
-          <li><strong>Read real codebases:</strong> Real Ansible roles, Terraform modules on GitHub teach more than any course.</li>
-          <li><strong>Avoid tutorial hell:</strong> If you've watched 5 videos and written 0 code, you're consuming — not learning.</li>
-          <li><strong>Time-box theory:</strong> 20% reading, 80% building. Most DevOps concepts click in 2 hours of hands-on work.</li>
-        </ul></div>
-      </article>
-
-      <article class="n-card c-card" data-cat="devops" data-title="Most Important DevOps Skills" data-tags="devops career skills employers" id="note-most-important-devops-skills">
-        <div class="n-accent"></div><div class="n-body">
-        <div class="n-meta"><span class="n-num">#29</span><div class="n-tags"><span class="n-tag">DevOps</span><span class="n-tag">Career</span></div></div>
-        <h3 class="n-title">Most Important DevOps Skills</h3>
-        <p class="n-desc">The DevOps job market is flooded with tool names but short on engineers who understand systems. The skills that get you hired — and keep you employed — go deeper than any single tool.</p>
-        <div class="n-code"><span class="gr">Tier 1 — Non-negotiable</span>
+<article class="n-card c-card" data-cat="devops" data-tags="devops skills career learning roadmap" data-title="Most Important DevOps Skills" id="note-most-important-devops-skills">
+<div class="n-accent"></div><div class="n-body">
+<div class="n-meta"><span class="n-num">#29</span><div class="n-tags"><span class="n-tag">DevOps</span><span class="n-tag">Career</span></div></div>
+<h3 class="n-title">Most Important DevOps Skills</h3>
+<p class="n-desc">DevOps has a broad toolset — but not all skills are equal. Focus on the non-negotiables first, then layer the differentiators. Most engineers fail by collecting tools instead of building depth.</p>
+<div class="n-code"><span class="gr">Tier 1 — Non-negotiable</span>
   Linux fundamentals + bash scripting
   Networking (TCP/IP, DNS, HTTP, TLS)
   Git + version control workflows
@@ -794,22 +805,24 @@ Marketplace     <span class="gr">10,000+</span>       1,800 plugins</div>
 
 <span class="gr">Tier 3 — Differentiators</span>
   Observability + DevSecOps</div>
-        </div>
-        <button class="n-expand-btn" aria-expanded="false" onclick="toggleExpand(this)">Skill-Building Advice <span class="earr">▼</span></button>
-        <div class="n-expanded"><ul>
-          <li><strong>Go deep before wide:</strong> Master Linux before jumping to Kubernetes. Foundation skills compound.</li>
-          <li><strong>Build, don't watch:</strong> A working homelab beats 50 YouTube tutorials.</li>
-          <li><strong>Document everything:</strong> A well-documented GitHub repo is a portfolio that speaks for you.</li>
-          <li><strong>Read error messages:</strong> The ability to interpret logs and stack traces is the most underrated DevOps skill.</li>
-        </ul></div>
-      </article>
+</div>
+<button aria-expanded="false" class="n-expand-btn" onclick="toggleExpand(this)">Skill-Building Advice <span class="earr">▼</span></button>
+<div class="n-expanded"><div>
+<p><strong>📘 Definition</strong><br/>The DevOps skill hierarchy: Linux + Networking + Git form the non-negotiable foundation. Docker, CI/CD, a major cloud, and Terraform are the core differentiators. Kubernetes, observability, and security are senior-level additions.</p>
+<p><strong>💡 Why It Matters</strong><br/>Many beginners jump to Kubernetes without Linux fundamentals — then struggle to debug even basic issues. Build the foundation first. Every tool you use runs on Linux, uses networking, and deploys via Git.</p>
+<p><strong>🌍 Real Example</strong><br/>A DevOps engineer debugging a Kubernetes pod networking issue must understand TCP/IP, DNS resolution, and Linux network namespaces — all Tier 1 skills that underpin the Tier 3 tool.</p>
+<p><strong>💻 Code/Command/Example</strong><br/>Start with: <code>bash</code>, <code>ssh</code>, <code>git</code>, <code>docker</code>, <code>terraform</code>, one cloud CLI (<code>aws</code>/<code>az</code>/<code>gcloud</code>), and one CI/CD tool (GitHub Actions).</p>
+<p><strong>🎯 Interview Tip</strong><br/>Interviewers test depth, not breadth. "I've worked extensively with Linux, Docker, and Terraform on real projects" beats "I've touched 20 tools superficially."</p>
+<p><strong>📝 Practice Exercise</strong><br/>Audit your current skills against this hierarchy. Pick one Tier 1 gap and spend 2 weeks building it through a hands-on project, not just tutorials.</p>
+</div></div>
+</article>
 
-      <article class="n-card c-card" data-cat="devops" data-title="Infrastructure Automation Workflow" data-tags="devops automation terraform ansible workflow" id="note-infrastructure-automation-workflow">
-        <div class="n-accent"></div><div class="n-body">
-        <div class="n-meta"><span class="n-num">#30</span><div class="n-tags"><span class="n-tag">DevOps</span><span class="n-tag">Automation</span></div></div>
-        <h3 class="n-title">Infrastructure Automation Workflow</h3>
-        <p class="n-desc">A complete infrastructure automation workflow: Terraform provisions resources, Ansible configures them, GitHub Actions orchestrates both, and Prometheus watches the result. Each tool has one job.</p>
-        <div class="n-code"><span class="gr">Git push → GitHub Actions</span>
+<article class="n-card c-card" data-cat="devops" data-tags="devops automation terraform ansible workflow" data-title="Infrastructure Automation Workflow" id="note-infrastructure-automation-workflow">
+<div class="n-accent"></div><div class="n-body">
+<div class="n-meta"><span class="n-num">#30</span><div class="n-tags"><span class="n-tag">DevOps</span><span class="n-tag">Automation</span></div></div>
+<h3 class="n-title">Infrastructure Automation Workflow</h3>
+<p class="n-desc">A complete infrastructure automation workflow: Terraform provisions resources, Ansible configures them, GitHub Actions orchestrates both, and Prometheus watches the result. Each tool has one job.</p>
+<div class="n-code"><span class="gr">Git push → GitHub Actions</span>
   ├── terraform plan  (review)
   ├── terraform apply (provision)
   ├── ansible-playbook (configure)
@@ -818,199 +831,391 @@ Marketplace     <span class="gr">10,000+</span>       1,800 plugins</div>
 <span class="gr">Production</span>
   ↓
 Prometheus → Grafana (observe)</div>
-        </div>
-        <button class="n-expand-btn" aria-expanded="false" onclick="toggleExpand(this)">Workflow Best Practices <span class="earr">▼</span></button>
-        <div class="n-expanded"><ul>
-          <li><strong>Plan before apply:</strong> Always run terraform plan in CI and require approval before prod apply.</li>
-          <li><strong>Separate provision and config:</strong> Terraform provisions the VM; Ansible configures it.</li>
-          <li><strong>Smoke tests post-deploy:</strong> Run a health check before marking a deployment as successful.</li>
-          <li><strong>Rollback plan:</strong> Know before you deploy how to revert. Terraform can destroy and recreate.</li>
-        </ul></div>
-      </article>
+</div>
+<button aria-expanded="false" class="n-expand-btn" onclick="toggleExpand(this)">Workflow Best Practices <span class="earr">▼</span></button>
+<div class="n-expanded"><div>
+<p><strong>📘 Definition</strong><br/>A complete infrastructure automation workflow chains multiple tools: Terraform (provision), Ansible (configure), CI/CD (orchestrate), and observability stack (monitor). Each tool does one job well.</p>
+<p><strong>💡 Why It Matters</strong><br/>Manual steps in the deploy pipeline are reliability risks. A fully automated workflow means every change is tested, applied consistently, verified, and monitored — with zero manual intervention.</p>
+<p><strong>🌍 Real Example</strong><br/>A GitHub Actions workflow runs <code>terraform apply</code> on infra changes, then triggers an Ansible playbook to configure new servers, then runs smoke tests — all gated by a PR review.</p>
+<p><strong>💻 Code/Command/Example</strong><br/><code>ansible-playbook -i terraform-inventory.yml site.yml</code> — use Terraform outputs as Ansible inventory for seamless provisioning-to-configuration handoff.</p>
+<p><strong>🎯 Interview Tip</strong><br/>Know the handoff between Terraform and Ansible: Terraform creates infrastructure and outputs IPs, Ansible uses those IPs as inventory to configure. This pattern is used in most mature DevOps setups.</p>
+<p><strong>📝 Practice Exercise</strong><br/>Build a 2-step pipeline: Terraform creates an EC2 instance, outputs its IP, and a GitHub Actions step passes that IP to an Ansible playbook to install nginx. Verify in a browser.</p>
+</div></div>
+</article>
 
-    </div>
-  </div>
+</div><!-- end devops grid -->
 
-    <div class="container python-lab"><h2>🐍 Try Python Online</h2><p>Run Python directly in your browser.</p><textarea id="pythonCode" class="python-editor">print("Hello Devriston")
-</textarea><br><button class="python-run" onclick="runPython()">Run Code</button><pre id="pythonOutput" class="python-output">Output will appear here...</pre></div>
+<!-- ═══ PYTHON ═══ -->
+<div class="cat-hdr" data-section="python"><span class="cat-hdr-icon">🐍</span><span class="cat-hdr-title">Python Programming</span><span class="cat-hdr-count">10 notes</span></div>
+<div class="content-grid" data-section="python">
+
+<article class="n-card c-card" data-cat="python" data-tags="python programming beginner intro" data-title="Introduction to Python" id="note-python-31">
+<div class="n-accent"></div><div class="n-body">
+<div class="n-meta"><span class="n-num">#31</span><div class="n-tags"><span class="n-tag">Python</span></div></div>
+<h3 class="n-title">Introduction to Python</h3>
+<p class="n-desc">Python is a high-level, interpreted programming language known for its readable syntax. Widely used in automation, scripting, data science, web development, and DevOps tooling.</p>
+<div class="n-code">print("Hello Python")</div>
+</div>
+<button aria-expanded="false" class="n-expand-btn" onclick="toggleExpand(this)">Why Learn Python <span class="earr">▼</span></button>
+<div class="n-expanded"><div>
+<p><strong>📘 Definition</strong><br/>Python is an interpreted, dynamically typed, general-purpose language created by Guido van Rossum. It emphasises readability and simplicity — making it the most beginner-friendly language and the dominant language in DevOps, data science, and automation.</p>
+<p><strong>💡 Why It Matters</strong><br/>Python powers tools you use daily: Ansible is Python, AWS CLI is Python, most DevOps scripts are Python. It's also the language of AI/ML (TensorFlow, PyTorch) and data analysis (pandas, numpy).</p>
+<p><strong>🌍 Real Example</strong><br/>A DevOps engineer writes a Python script to parse CloudWatch logs, extract error patterns, and post a summary to Slack — replacing a manual daily review task.</p>
+<p><strong>💻 Code/Command/Example</strong><br/><code>python3 --version</code> — check installed Python version. <code>python3 script.py</code> — run a Python script.</p>
+<p><strong>🎯 Interview Tip</strong><br/>Python strengths: readable, huge standard library, massive ecosystem (pip), cross-platform. Weaknesses: slower than compiled languages, GIL limits true multithreading.</p>
+<p><strong>📝 Practice Exercise</strong><br/>Write a Python script that reads a file line by line, counts the number of lines, and prints the result. Run it against any text file on your system.</p>
+</div></div>
+</article>
+
+<article class="n-card c-card" data-cat="python" data-tags="python programming beginner setup install" data-title="Installing Python &amp; Setup" id="note-python-32">
+<div class="n-accent"></div><div class="n-body">
+<div class="n-meta"><span class="n-num">#32</span><div class="n-tags"><span class="n-tag">Python</span></div></div>
+<h3 class="n-title">Installing Python &amp; Setup</h3>
+<p class="n-desc">Installing Python on Linux is usually one command. Best practice: use virtual environments to isolate project dependencies and avoid conflicts between projects.</p>
+<div class="n-code">sudo apt install python3 python3-pip python3-venv
+python3 --version
+python3 -m venv .venv
+source .venv/bin/activate</div>
+</div>
+<button aria-expanded="false" class="n-expand-btn" onclick="toggleExpand(this)">Virtual Environments <span class="earr">▼</span></button>
+<div class="n-expanded"><div>
+<p><strong>📘 Definition</strong><br/>A Python virtual environment is an isolated directory containing a specific Python version and its installed packages. It prevents package version conflicts between different projects on the same machine.</p>
+<p><strong>💡 Why It Matters</strong><br/>Without virtual environments, installing a package for one project can break another. <code>venv</code> or <code>conda</code> isolates each project's dependencies — essential for professional Python development.</p>
+<p><strong>🌍 Real Example</strong><br/>Project A needs Django 3.2; Project B needs Django 4.2. With virtual environments, each has its own isolated packages and both work perfectly on the same machine.</p>
+<p><strong>💻 Code/Command/Example</strong><br/><code>python3 -m venv .venv</code> — create venv. <code>source .venv/bin/activate</code> — activate it. <code>pip install requests</code> — install only in this venv. <code>deactivate</code> — exit.</p>
+<p><strong>🎯 Interview Tip</strong><br/>Always use virtual environments for Python projects. Always add <code>.venv/</code> to <code>.gitignore</code>. Always use <code>pip freeze &gt; requirements.txt</code> to capture dependencies.</p>
+<p><strong>📝 Practice Exercise</strong><br/>Create a virtual environment, activate it, install the <code>requests</code> library, write a script that fetches a URL, then deactivate the venv. Verify <code>requests</code> is gone after deactivation.</p>
+</div></div>
+</article>
+
+<article class="n-card c-card" data-cat="python" data-tags="python programming beginner syntax indentation" data-title="Python Syntax Basics" id="note-python-33">
+<div class="n-accent"></div><div class="n-body">
+<div class="n-meta"><span class="n-num">#33</span><div class="n-tags"><span class="n-tag">Python</span></div></div>
+<h3 class="n-title">Python Syntax Basics</h3>
+<p class="n-desc">Python uses indentation (4 spaces) instead of braces to define code blocks. This forces readable code structure. Comments start with <code>#</code>. No semicolons needed.</p>
+<div class="n-code"># This is a comment
+name = "Devriston"   # inline comment
+if name:
+    print("Hello,", name)  # 4-space indent
+# No braces, no semicolons</div>
+</div>
+<button aria-expanded="false" class="n-expand-btn" onclick="toggleExpand(this)">Syntax Rules <span class="earr">▼</span></button>
+<div class="n-expanded"><div>
+<p><strong>📘 Definition</strong><br/>Python syntax uses indentation to define code blocks — a block begins with a colon (<code>:</code>) and every line in the block must be consistently indented. Mixing tabs and spaces causes an <code>IndentationError</code>.</p>
+<p><strong>💡 Why It Matters</strong><br/>Proper indentation isn't just style — it's the language itself. Incorrect indentation causes runtime errors or logic bugs. Python enforces the readability that other languages merely suggest.</p>
+<p><strong>🌍 Real Example</strong><br/>An Ansible developer writing a Python helper script uses 4-space indentation throughout, keeping the code consistent with Python community standards (PEP 8).</p>
+<p><strong>💻 Code/Command/Example</strong><br/><code>python3 -m py_compile script.py</code> — check syntax without running. <code>flake8 script.py</code> — check style and syntax with PEP 8 linting.</p>
+<p><strong>🎯 Interview Tip</strong><br/>Key syntax rules: 4-space indentation (never tabs), <code>:</code> ends every block-starting statement, <code>#</code> for comments, <code>"""</code> for docstrings, <code>pass</code> as a placeholder body.</p>
+<p><strong>📝 Practice Exercise</strong><br/>Write a Python script with at least 3 levels of indentation (e.g., a function containing an if statement containing a for loop). Run it and verify it produces the expected output.</p>
+</div></div>
+</article>
+
+<article class="n-card c-card" data-cat="python" data-tags="python programming beginner variables types" data-title="Variables &amp; Data Types" id="note-python-34">
+<div class="n-accent"></div><div class="n-body">
+<div class="n-meta"><span class="n-num">#34</span><div class="n-tags"><span class="n-tag">Python</span></div></div>
+<h3 class="n-title">Variables &amp; Data Types</h3>
+<p class="n-desc">Python is dynamically typed — no type declarations needed. Core types: str, int, float, bool, NoneType. Use <code>type()</code> to inspect, <code>isinstance()</code> to check.</p>
+<div class="n-code">name  = "Devriston"   # str
+age   = 5             # int
+score = 99.9          # float
+flag  = True          # bool
+empty = None          # NoneType
+print(type(name))     # &lt;class 'str'&gt;</div>
+</div>
+<button aria-expanded="false" class="n-expand-btn" onclick="toggleExpand(this)">Type Conversion <span class="earr">▼</span></button>
+<div class="n-expanded"><div>
+<p><strong>📘 Definition</strong><br/>Python variables are labels pointing to objects. The type follows the value, not the variable — you can reassign <code>x = 5</code> then <code>x = "hello"</code> freely. Core types: <code>str</code>, <code>int</code>, <code>float</code>, <code>bool</code>, <code>None</code>.</p>
+<p><strong>💡 Why It Matters</strong><br/>Type mismatches cause TypeErrors at runtime. Understanding implicit vs explicit type conversion prevents common bugs like <code>"5" + 5</code> raising a TypeError instead of returning 10.</p>
+<p><strong>🌍 Real Example</strong><br/>A DevOps script reads port numbers from a config file as strings. The developer converts them with <code>int(port)</code> before passing to a socket connection — preventing a TypeError.</p>
+<p><strong>💻 Code/Command/Example</strong><br/><code>str(42)</code> → "42". <code>int("99")</code> → 99. <code>float("3.14")</code> → 3.14. <code>bool(0)</code> → False. <code>bool("hello")</code> → True.</p>
+<p><strong>🎯 Interview Tip</strong><br/>Python's truthiness: <code>0</code>, <code>""</code>, <code>[]</code>, <code>{}</code>, <code>None</code> are all falsy. Everything else is truthy. Know this to predict <code>if</code> behaviour without explicit comparisons.</p>
+<p><strong>📝 Practice Exercise</strong><br/>Write a script that reads user input with <code>input()</code>, converts it to int with <code>int()</code>, and handles the <code>ValueError</code> if non-numeric input is entered using a <code>try/except</code> block.</p>
+</div></div>
+</article>
+
+<article class="n-card c-card" data-cat="python" data-tags="python programming beginner input output print" data-title="Input and Output" id="note-python-35">
+<div class="n-accent"></div><div class="n-body">
+<div class="n-meta"><span class="n-num">#35</span><div class="n-tags"><span class="n-tag">Python</span></div></div>
+<h3 class="n-title">Input and Output</h3>
+<p class="n-desc">Python's <code>print()</code> outputs to stdout. <code>input()</code> reads from stdin. f-strings (Python 3.6+) are the cleanest way to format output with variable values.</p>
+<div class="n-code">name = input("Enter your name: ")
+age  = input("Enter your age:  ")
+print(f"Hello {name}, you are {age} years old.")
+# f-string: fastest + most readable</div>
+</div>
+<button aria-expanded="false" class="n-expand-btn" onclick="toggleExpand(this)">String Formatting <span class="earr">▼</span></button>
+<div class="n-expanded"><div>
+<p><strong>📘 Definition</strong><br/><code>print()</code> writes to standard output. <code>input(prompt)</code> displays a prompt and waits for keyboard input, returning a string. f-strings (<code>f"Hello {name}"</code>) embed expressions directly in string literals.</p>
+<p><strong>💡 Why It Matters</strong><br/>Input/output is the foundation of any interactive script. DevOps scripts use print for logging status and input (or <code>argparse</code>) for accepting parameters from the user or shell.</p>
+<p><strong>🌍 Real Example</strong><br/>A backup script prints progress: <code>print(f"Backing up {source} → {dest}... ", end="")</code>, then <code>print("✓ done")</code> after completion — giving the operator real-time feedback.</p>
+<p><strong>💻 Code/Command/Example</strong><br/><code>print(f"CPU: {cpu:.1f}%")</code> — format a float to 1 decimal. <code>print("Done", end="\n\n")</code> — custom line ending. <code>sys.stderr.write("Error\n")</code> — write to stderr.</p>
+<p><strong>🎯 Interview Tip</strong><br/>Know the 3 formatting styles: <code>%s</code> (old), <code>.format()</code> (Python 3), <code>f""</code> (modern, preferred). Always use f-strings in new code — they're faster and more readable.</p>
+<p><strong>📝 Practice Exercise</strong><br/>Write a script that asks for name and birth year, calculates age using <code>datetime.date.today().year</code>, and prints a formatted greeting with the calculated age.</p>
+</div></div>
+</article>
+
+<article class="n-card c-card" data-cat="python" data-tags="python programming operators arithmetic comparison" data-title="Python Operators" id="note-python-36">
+<div class="n-accent"></div><div class="n-body">
+<div class="n-meta"><span class="n-num">#36</span><div class="n-tags"><span class="n-tag">Python</span></div></div>
+<h3 class="n-title">Python Operators</h3>
+<p class="n-desc">Python operators: arithmetic (<code>+ - * / // % **</code>), comparison (<code>== != &gt; &lt; &gt;= &lt;=</code>), logical (<code>and or not</code>), and assignment (<code>= += -= *=</code>).</p>
+<div class="n-code">x = 10
+print(x ** 2)    # 100  — power
+print(x // 3)    # 3    — floor division
+print(x % 3)     # 1    — modulo
+print(x &gt; 5 and x &lt; 20)  # True</div>
+</div>
+<button aria-expanded="false" class="n-expand-btn" onclick="toggleExpand(this)">Operator Precedence <span class="earr">▼</span></button>
+<div class="n-expanded"><div>
+<p><strong>📘 Definition</strong><br/>Python operators perform operations on values. Arithmetic (<code>+</code>, <code>-</code>, <code>*</code>, <code>/</code>, <code>//</code> floor div, <code>%</code> modulo, <code>**</code> power). Comparison return booleans. Logical (<code>and</code>, <code>or</code>, <code>not</code>) combine conditions.</p>
+<p><strong>💡 Why It Matters</strong><br/>Operator errors cause subtle bugs. Knowing that <code>/</code> returns a float (e.g., <code>7/2 = 3.5</code>) but <code>//</code> returns an int (<code>7//2 = 3</code>) prevents unexpected type issues in calculations.</p>
+<p><strong>🌍 Real Example</strong><br/>A monitoring script calculates error percentage: <code>error_rate = (errors / total) * 100</code>. Using <code>//</code> instead of <code>/</code> would silently truncate and report wrong percentages.</p>
+<p><strong>💻 Code/Command/Example</strong><br/><code>10 % 3</code> → 1 (remainder). <code>2 ** 8</code> → 256. <code>not True</code> → False. <code>"a" in "ansible"</code> → True (membership operator).</p>
+<p><strong>🎯 Interview Tip</strong><br/>Precedence order (high to low): <code>**</code> → <code>* / // %</code> → <code>+ -</code> → comparisons → <code>not</code> → <code>and</code> → <code>or</code>. Use parentheses to make intent clear.</p>
+<p><strong>📝 Practice Exercise</strong><br/>Write a script that takes two numbers as input and prints all operator results: sum, difference, product, float division, floor division, modulo, and power.</p>
+</div></div>
+</article>
+
+<article class="n-card c-card" data-cat="python" data-tags="python programming conditional if elif else" data-title="Conditional Statements" id="note-python-37">
+<div class="n-accent"></div><div class="n-body">
+<div class="n-meta"><span class="n-num">#37</span><div class="n-tags"><span class="n-tag">Python</span></div></div>
+<h3 class="n-title">Conditional Statements</h3>
+<p class="n-desc">Python conditionals use <code>if</code>, <code>elif</code>, and <code>else</code> to branch logic. Conditions are any expression that evaluates to True or False.</p>
+<div class="n-code">score = 85
+if score &gt;= 90:
+    print("A grade")
+elif score &gt;= 75:
+    print("B grade")   # ← this runs
+else:
+    print("C or below")</div>
+</div>
+<button aria-expanded="false" class="n-expand-btn" onclick="toggleExpand(this)">Nested Conditions <span class="earr">▼</span></button>
+<div class="n-expanded"><div>
+<p><strong>📘 Definition</strong><br/>Conditional statements evaluate boolean expressions and execute different code paths. Python supports <code>if</code>, <code>elif</code> (else-if), and <code>else</code>. Conditions can use comparison, logical, and membership operators.</p>
+<p><strong>💡 Why It Matters</strong><br/>Every real-world script needs decision logic: "if the connection fails, retry; if retries exhausted, alert; else proceed." Conditionals are the foundation of all programming logic.</p>
+<p><strong>🌍 Real Example</strong><br/>A deployment script checks HTTP response: <code>if status == 200: print("Deploy OK") elif status == 503: rollback() else: alert_team()</code> — three possible outcomes handled cleanly.</p>
+<p><strong>💻 Code/Command/Example</strong><br/>Ternary / one-liner: <code>result = "pass" if score &gt;= 50 else "fail"</code> — concise single-line conditional assignment.</p>
+<p><strong>🎯 Interview Tip</strong><br/>Avoid deeply nested conditions — use early returns and guard clauses instead. Flat code is more readable and easier to test. Each <code>elif</code> should be mutually exclusive from the others.</p>
+<p><strong>📝 Practice Exercise</strong><br/>Write a grade calculator: read a score (0-100) with <code>input()</code>, classify it as A/B/C/D/F using if/elif/else, and handle invalid input (negative or &gt;100) with an appropriate message.</p>
+</div></div>
+</article>
+
+<article class="n-card c-card" data-cat="python" data-tags="python programming loops for while iteration" data-title="Loops in Python" id="note-python-38">
+<div class="n-accent"></div><div class="n-body">
+<div class="n-meta"><span class="n-num">#38</span><div class="n-tags"><span class="n-tag">Python</span></div></div>
+<h3 class="n-title">Loops in Python</h3>
+<p class="n-desc"><code>for</code> loops iterate over any sequence. <code>while</code> loops run until a condition is False. Use <code>break</code> to exit, <code>continue</code> to skip, <code>range()</code> to generate number sequences.</p>
+<div class="n-code">servers = ["web-01", "web-02", "web-03"]
+for server in servers:
+    print(f"Pinging {server}...")
+
+for i in range(1, 4):
+    print(f"Retry {i}/3")</div>
+</div>
+<button aria-expanded="false" class="n-expand-btn" onclick="toggleExpand(this)">Loop Patterns <span class="earr">▼</span></button>
+<div class="n-expanded"><div>
+<p><strong>📘 Definition</strong><br/><code>for</code> loops iterate over iterables (lists, strings, dicts, files). <code>while</code> loops run as long as a condition is True. <code>break</code> exits the loop immediately. <code>continue</code> skips to the next iteration.</p>
+<p><strong>💡 Why It Matters</strong><br/>Loops are how scripts process multiple items — a list of servers, lines in a log file, rows in a CSV. Without loops, you'd write the same code N times for N items.</p>
+<p><strong>🌍 Real Example</strong><br/>A DevOps automation script loops over a list of 50 server IPs, runs an SSH command on each, collects the output, and writes results to a report file — all in a <code>for</code> loop with 5 lines.</p>
+<p><strong>💻 Code/Command/Example</strong><br/><code>enumerate(servers)</code> — get index + value. <code>zip(list_a, list_b)</code> — iterate two lists together. <code>reversed(items)</code> — iterate backwards.</p>
+<p><strong>🎯 Interview Tip</strong><br/>Common loop patterns: <code>for item in list</code>, <code>for i, item in enumerate(list)</code>, <code>for k, v in dict.items()</code>, <code>while True: ... if condition: break</code>. Know them all.</p>
+<p><strong>📝 Practice Exercise</strong><br/>Write a loop that prints the multiplication table for 1–10. Then write a while loop that keeps asking for input until the user types "quit". Use <code>break</code> to exit.</p>
+</div></div>
+</article>
+
+<article class="n-card c-card" data-cat="python" data-tags="python programming functions def parameters return" data-title="Functions in Python" id="note-python-39">
+<div class="n-accent"></div><div class="n-body">
+<div class="n-meta"><span class="n-num">#39</span><div class="n-tags"><span class="n-tag">Python</span></div></div>
+<h3 class="n-title">Functions in Python</h3>
+<p class="n-desc">Functions are reusable blocks of code defined with <code>def</code>. They accept parameters, execute logic, and return values. Good functions do one thing and do it well.</p>
+<div class="n-code">def check_port(host, port=80):
+    """Check if a host:port is open."""
+    import socket
+    s = socket.socket()
+    try:
+        s.connect((host, port))
+        return True
+    except:
+        return False</div>
+</div>
+<button aria-expanded="false" class="n-expand-btn" onclick="toggleExpand(this)">Function Best Practices <span class="earr">▼</span></button>
+<div class="n-expanded"><div>
+<p><strong>📘 Definition</strong><br/>A function is defined with <code>def name(params): body</code>. Parameters can have defaults (<code>port=80</code>). <code>return</code> sends a value back. Functions without <code>return</code> implicitly return <code>None</code>.</p>
+<p><strong>💡 Why It Matters</strong><br/>Functions eliminate code duplication (DRY principle). A well-named function makes code self-documenting. In DevOps scripts, functions let you test individual components independently.</p>
+<p><strong>🌍 Real Example</strong><br/>A monitoring script has functions: <code>get_cpu_usage()</code>, <code>get_disk_usage(path)</code>, <code>send_alert(message)</code>. Each does one job — making the script readable and each function independently testable.</p>
+<p><strong>💻 Code/Command/Example</strong><br/><code>def greet(name, greeting="Hello")</code> — default parameter. <code>def add(*args)</code> — variable positional args. <code>def config(**kwargs)</code> — variable keyword args.</p>
+<p><strong>🎯 Interview Tip</strong><br/>Good function design: single responsibility, descriptive name (verb + noun), type hints in Python 3.5+, docstring explaining what it does, input validation where appropriate.</p>
+<p><strong>📝 Practice Exercise</strong><br/>Write a function <code>ping_host(host)</code> that runs <code>ping -c 1 host</code> using <code>subprocess</code> and returns True/False based on exit code. Test it against <code>google.com</code> and an invalid host.</p>
+</div></div>
+</article>
+
+<article class="n-card c-card" data-cat="python" data-tags="python programming collections list dict tuple set" data-title="Python Collections" id="note-python-40">
+<div class="n-accent"></div><div class="n-body">
+<div class="n-meta"><span class="n-num">#40</span><div class="n-tags"><span class="n-tag">Python</span></div></div>
+<h3 class="n-title">Python Collections</h3>
+<p class="n-desc">Python's four core collections: <code>list</code> (ordered, mutable), <code>tuple</code> (ordered, immutable), <code>dict</code> (key-value), <code>set</code> (unique values, unordered).</p>
+<div class="n-code">servers  = ["web", "db", "cache"]   # list
+coords   = (10.4, 74.2)             # tuple — immutable
+config   = {"host": "db", "port": 5432} # dict
+tags     = {"linux", "docker"}      # set
+print(config["host"])  # db</div>
+</div>
+<button aria-expanded="false" class="n-expand-btn" onclick="toggleExpand(this)">When to Use Each <span class="earr">▼</span></button>
+<div class="n-expanded"><div>
+<p><strong>📘 Definition</strong><br/><strong>list</strong>: ordered, mutable sequence — use for ordered collections you'll modify. <strong>tuple</strong>: ordered, immutable — use for fixed data like coordinates or function return pairs. <strong>dict</strong>: key-value map — use for structured config data. <strong>set</strong>: unique values — use for deduplication or membership tests.</p>
+<p><strong>💡 Why It Matters</strong><br/>Using the right collection avoids bugs: using a list when you need unique values silently allows duplicates. Using a dict for config data makes fields accessible by name instead of by index.</p>
+<p><strong>🌍 Real Example</strong><br/>A server inventory script stores hostnames in a <code>list</code> (ordered, loop over them), tags in a <code>set</code> (no duplicates), and per-server config in a <code>dict</code> (named fields: ip, port, role).</p>
+<p><strong>💻 Code/Command/Example</strong><br/>List comprehension: <code>[s.upper() for s in servers if s.startswith("w")]</code> — powerful one-liner to transform and filter lists.</p>
+<p><strong>🎯 Interview Tip</strong><br/>Dict access: <code>d["key"]</code> raises KeyError if missing; <code>d.get("key", default)</code> returns default safely. Always use <code>.get()</code> when the key might not exist.</p>
+<p><strong>📝 Practice Exercise</strong><br/>Create a dict of 5 servers with their IPs. Write a loop that prints each server name and IP. Add a new server with <code>d["new"] = "1.2.3.4"</code> and remove one with <code>del d["name"]</code>.</p>
+</div></div>
+</article>
+
+</div><!-- end python grid -->
+
+<!-- ═══ NETWORKING ═══ -->
+<div class="cat-hdr" data-section="networking"><span class="cat-hdr-icon">🌐</span><span class="cat-hdr-title">Networking</span><span class="cat-hdr-count">1 note</span></div>
+<div class="content-grid" data-section="networking">
+
+<article class="n-card c-card" data-cat="networking" data-tags="networking dns domain resolution" data-title="DNS Fundamentals" id="note-dns">
+<div class="n-accent"></div><div class="n-body">
+<div class="n-meta"><span class="n-num">#41</span><div class="n-tags"><span class="n-tag">Networking</span></div></div>
+<h3 class="n-title">DNS Fundamentals</h3>
+<p class="n-desc">DNS (Domain Name System) converts human-friendly domain names like <code>devriston.com.pk</code> into IP addresses. It's the internet's phonebook — every network connection starts with a DNS lookup.</p>
+<div class="n-code"><span class="fn">nslookup</span> devriston.com.pk
+<span class="fn">dig</span> devriston.com.pk A        <span class="cm"># A record</span>
+<span class="fn">dig</span> devriston.com.pk MX       <span class="cm"># mail records</span>
+<span class="fn">dig</span> @8.8.8.8 devriston.com.pk <span class="cm"># use Google DNS</span></div>
+</div>
+<button aria-expanded="false" class="n-expand-btn" onclick="toggleExpand(this)">DNS Record Types <span class="earr">▼</span></button>
+<div class="n-expanded"><div>
+<p><strong>📘 Definition</strong><br/>DNS maps domain names to IP addresses via a distributed hierarchy. Resolvers query root servers → TLD servers → authoritative nameservers to find the IP for any domain. Results are cached per TTL.</p>
+<p><strong>💡 Why It Matters</strong><br/>DNS is involved in every network connection your infrastructure makes. Misconfigured DNS breaks deployments, email, SSL certificates, and inter-service communication.</p>
+<p><strong>🌍 Real Example</strong><br/>Devriston's website uses Cloudflare DNS. The <code>A</code> record points <code>www</code> to GitHub Pages IP. The <code>MX</code> record routes email to Gmail. All managed as code in Cloudflare's dashboard.</p>
+<p><strong>💻 Code/Command/Example</strong><br/><code>dig +trace devriston.com.pk</code> — trace the full DNS resolution path from root servers. <code>host -a devriston.com.pk</code> — show all DNS records.</p>
+<p><strong>🎯 Interview Tip</strong><br/>Key record types: <code>A</code> (domain → IPv4), <code>AAAA</code> (domain → IPv6), <code>CNAME</code> (alias), <code>MX</code> (mail), <code>TXT</code> (verification, SPF), <code>NS</code> (nameservers). Know all 6.</p>
+<p><strong>📝 Practice Exercise</strong><br/>Run <code>dig devriston.com.pk A</code> and <code>dig devriston.com.pk MX</code>. Record the TTL values. Run again 60 seconds later and note if the TTL changed.</p>
+</div></div>
+</article>
+
+</div><!-- end networking grid -->
+
+<!-- ═══ GIT ═══ -->
+<div class="cat-hdr" data-section="git"><span class="cat-hdr-icon">🔀</span><span class="cat-hdr-title">Git</span><span class="cat-hdr-count">1 note</span></div>
+<div class="content-grid" data-section="git">
+
+<article class="n-card c-card" data-cat="git" data-tags="git commit version control workflow" data-title="Git Commit Workflow" id="note-git-commit">
+<div class="n-accent"></div><div class="n-body">
+<div class="n-meta"><span class="n-num">#42</span><div class="n-tags"><span class="n-tag">Git</span></div></div>
+<h3 class="n-title">Git Commit Workflow</h3>
+<p class="n-desc">Git tracks code changes through a 3-stage workflow: working directory → staging area → repository. Every commit is a permanent snapshot you can return to or share with others.</p>
+<div class="n-code"><span class="fn">git</span> status                   <span class="cm"># see changes</span>
+<span class="fn">git</span> add .                    <span class="cm"># stage all changes</span>
+<span class="fn">git</span> commit -m <span class="st">"feat: add nginx role"</span>
+<span class="fn">git</span> push origin main         <span class="cm"># send to remote</span>
+<span class="fn">git</span> log --oneline            <span class="cm"># view history</span></div>
+</div>
+<button aria-expanded="false" class="n-expand-btn" onclick="toggleExpand(this)">Commit Best Practices <span class="earr">▼</span></button>
+<div class="n-expanded"><div>
+<p><strong>📘 Definition</strong><br/>Git is a distributed version control system. The workflow: <code>git add</code> stages changes, <code>git commit</code> saves a snapshot to the local repo, <code>git push</code> sends commits to a remote like GitHub.</p>
+<p><strong>💡 Why It Matters</strong><br/>Every professional DevOps project lives in Git. Commit history is documentation. Meaningful commit messages explain why a change was made — invaluable when debugging production issues 6 months later.</p>
+<p><strong>🌍 Real Example</strong><br/>A commit message <code>"fix: increase ECS task memory from 512 to 1024 — was OOMKilled during traffic spikes"</code> tells the whole story in one line — context, cause, and fix together.</p>
+<p><strong>💻 Code/Command/Example</strong><br/><code>git log --oneline --graph</code> — visualise branch history. <code>git diff HEAD~1</code> — see what changed in the last commit. <code>git stash</code> — temporarily shelve uncommitted changes.</p>
+<p><strong>🎯 Interview Tip</strong><br/>Conventional Commits format: <code>type(scope): description</code>. Types: <code>feat</code>, <code>fix</code>, <code>docs</code>, <code>chore</code>, <code>refactor</code>, <code>test</code>. This format enables automated changelogs and semantic versioning.</p>
+<p><strong>📝 Practice Exercise</strong><br/>Create a new Git repo, make 3 commits with meaningful messages using Conventional Commits format, push to GitHub, then use <code>git log --oneline</code> to review the clean history.</p>
+</div></div>
+</article>
+
+</div><!-- end git grid -->
+
+<!-- ═══ KUBERNETES ═══ -->
+<div class="cat-hdr" data-section="kubernetes"><span class="cat-hdr-icon">☸️</span><span class="cat-hdr-title">Kubernetes</span><span class="cat-hdr-count">1 note</span></div>
+<div class="content-grid" data-section="kubernetes">
+
+<article class="n-card c-card" data-cat="kubernetes" data-tags="kubernetes pod container orchestration basics" data-title="Kubernetes Pods Basics" id="note-kubernetes-pod">
+<div class="n-accent"></div><div class="n-body">
+<div class="n-meta"><span class="n-num">#43</span><div class="n-tags"><span class="n-tag">Kubernetes</span></div></div>
+<h3 class="n-title">Kubernetes Pod</h3>
+<p class="n-desc">A Pod is the smallest deployable unit in Kubernetes. It wraps one or more containers that share network and storage. Pods are ephemeral — controllers (Deployments) manage their lifecycle.</p>
+<div class="n-code"><span class="fn">kubectl</span> get pods -A            <span class="cm"># all namespaces</span>
+<span class="fn">kubectl</span> describe pod web-xyz    <span class="cm"># pod details</span>
+<span class="fn">kubectl</span> logs web-xyz --follow   <span class="cm"># live logs</span>
+<span class="fn">kubectl</span> exec -it web-xyz -- bash <span class="cm"># shell</span></div>
+</div>
+<button aria-expanded="false" class="n-expand-btn" onclick="toggleExpand(this)">Pods vs Deployments <span class="earr">▼</span></button>
+<div class="n-expanded"><div>
+<p><strong>📘 Definition</strong><br/>A Pod is a group of one or more containers sharing the same network namespace (IP address) and storage volumes. Kubernetes doesn't manage containers directly — it manages Pods. Deployments manage Pod replicas and rolling updates.</p>
+<p><strong>💡 Why It Matters</strong><br/>You rarely create Pods directly in production — you create Deployments that manage Pods for you. Understanding Pods is essential for debugging: <code>kubectl describe pod</code> and <code>kubectl logs</code> are your primary debugging tools.</p>
+<p><strong>🌍 Real Example</strong><br/>A web app Deployment maintains 3 Pod replicas. When one Pod crashes, the Deployment controller automatically schedules a replacement on a healthy node — zero manual intervention needed.</p>
+<p><strong>💻 Code/Command/Example</strong><br/><code>kubectl get pods -o wide</code> — see which node each Pod runs on. <code>kubectl delete pod web-xyz</code> — delete a Pod (Deployment will restart it). <code>kubectl top pod</code> — CPU/memory usage.</p>
+<p><strong>🎯 Interview Tip</strong><br/>Pod lifecycle states: Pending (scheduling), Running (at least one container running), Succeeded (all containers completed), Failed (all containers exited non-zero), CrashLoopBackOff (container keeps crashing).</p>
+<p><strong>📝 Practice Exercise</strong><br/>On a minikube or kind cluster, create a Deployment with 2 replicas of nginx. Delete one Pod and watch Kubernetes recreate it. Use <code>kubectl get pods -w</code> to watch in real-time.</p>
+</div></div>
+</article>
+
+</div><!-- end kubernetes grid -->
+
+</div><!-- end container -->
 </main>
 
+<!-- CTA -->
 <section class="cta-section">
-  <div class="container">
-    <div class="cta-inner">
-      <p class="eyebrow" style="color:rgba(77,143,255,1);justify-content:center">Work With Me</p>
-      <h2>Need help implementing any of this?</h2>
-      <p class="cta-sub">Consulting for Linux, AWS, Terraform, Docker, CI/CD, and monitoring. Free 30-minute discovery call.</p>
-      <div class="cta-btns">
-        <a href="contact.html" class="btn btn-primary btn-lg">Book Free Consultation</a>
-        <a href="blog.html" class="btn btn-white-outline btn-lg">Read Full Articles</a>
-      </div>
-    </div>
-  </div>
+<div class="container">
+<div class="cta-inner">
+<p class="eyebrow" style="color:rgba(77,143,255,1);justify-content:center">Work With Me</p>
+<h2>Need help implementing any of this?</h2>
+<p class="cta-sub">Consulting for Linux, AWS, Terraform, Docker, CI/CD, and monitoring. Free 30-minute discovery call.</p>
+<div class="cta-btns">
+<a class="btn btn-primary btn-lg" href="contact.html">Book Free Consultation</a>
+<a class="btn btn-white-outline btn-lg" href="blog.html">Read Full Articles</a>
+</div>
+</div>
+</div>
 </section>
 
 <footer>
-  <div class="container">
-    <div class="ft-grid">
-      <div class="ft-brand"><div class="ft-logo"><img src="assets/logos/dv-logo.png" alt="Devriston"/><span class="ft-logo-name">Devri<span>ston</span></span></div><p>DevOps consulting, Linux, cloud infrastructure and training. Solutions that drive tomorrow.</p>
-        <div class="ft-socials">
-          <a href="https://github.com/muhammadkamrankabeer-oss" target="_blank" class="ft-soc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg></a>
-          <a href="https://www.linkedin.com/in/kamrankabeer/" target="_blank" class="ft-soc"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
-          <a href="https://x.com/Devristonhq" target="_blank" class="ft-soc"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
-          <a href="https://dev.to/muhammadkamrankabeeross" target="_blank" class="ft-soc"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7.42 10.05c-.18-.16-.46-.23-.84-.23H6l.02 2.44.04 2.45.56-.02c.41 0 .63-.07.83-.26.24-.24.26-.36.26-2.2 0-1.91-.02-1.96-.29-2.18zM0 4.94v14.12h24V4.94H0zM8.56 15.3c-.44.58-1.06.77-2.53.77H4.71V8.53h1.4c1.67 0 2.16.18 2.6.9.27.43.29.6.32 2.57.05 2.23-.02 2.73-.47 3.3zm5.09-5.47h-2.47v1.77h1.52v1.28l-.72.04-.75.03v1.77l1.22.03 1.2.04v1.28h-1.6c-1.53 0-1.6-.01-1.87-.3l-.3-.28v-3.16c0-3.02.01-3.18.25-3.48.23-.31.25-.31 1.88-.31h1.64v1.29zm4.68 5.45c-.17.43-.64.79-1 .79-.18 0-.45-.15-.67-.39-.32-.32-.45-.63-.82-2.08l-.9-3.39-.45-1.67h.76c.4 0 .75.02.75.05 0 .06 1.16 4.54 1.26 4.83.04.15.32-.7.73-2.3l.66-2.52.74-.04c.4-.02.73 0 .73.04 0 .14-1.67 5.99-1.8 6.19z"/></svg></a>
-        </div>
-      </div>
-      <div class="ft-col"><h4>Categories</h4><ul><li><a href="#" onclick="document.querySelector('.fpill[data-cat=linux]').click()">Linux</a></li><li><a href="#" onclick="document.querySelector('.fpill[data-cat=docker]').click()">Docker</a></li><li><a href="#" onclick="document.querySelector('.fpill[data-cat=cloud]').click()">Cloud / AWS</a></li><li><a href="#" onclick="document.querySelector('.fpill[data-cat=terraform]').click()">Terraform</a></li><li><a href="#" onclick="document.querySelector('.fpill[data-cat=cicd]').click()">CI/CD</a></li><li><a href="#" onclick="document.querySelector('.fpill[data-cat=monitoring]').click()">Monitoring</a></li></ul></div>
-      <div class="ft-col"><h4>Also Explore</h4><ul><li><a href="blog.html">Blog Articles</a></li><li><a href="case-studies.html">Case Studies</a></li><li><a href="solutions.html">Services</a></li><li><a href="contact.html">Book Consultation</a></li></ul></div>
-      <div class="ft-col"><h4>Contact</h4><ul><li><a href="mailto:info@devriston.com.pk">info@devriston.com.pk</a></li><li><a href="https://wa.me/923231450045" target="_blank">WhatsApp</a></li><li><a href="contact.html">Book Consultation</a></li></ul></div>
-    </div>
-    <div class="ft-bottom"><p>© 2025 Devriston · Muhammad Kamran Kabeer · Lahore, Pakistan</p><div class="ft-bottom-links"><a href="sitemap.xml">Sitemap</a></div></div>
-  </div>
+<div class="container">
+<div class="ft-grid">
+<div class="ft-brand">
+<div class="ft-logo"><img alt="Devriston" src="assets/logos/dv-logo.png"/><span class="ft-logo-name">Devri<span>ston</span></span></div>
+<p>DevOps consulting, Linux, cloud infrastructure and training. Solutions that drive tomorrow.</p>
+<div class="ft-socials">
+<a class="ft-soc" href="https://github.com/muhammadkamrankabeer-oss" target="_blank"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"></path></svg></a>
+<a class="ft-soc" href="https://www.linkedin.com/in/kamrankabeer/" target="_blank"><svg fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"></path></svg></a>
+<a class="ft-soc" href="https://x.com/Devristonhq" target="_blank"><svg fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path></svg></a>
+<a class="ft-soc" href="https://dev.to/muhammadkamrankabeeross" target="_blank"><svg fill="currentColor" viewBox="0 0 24 24"><path d="M7.42 10.05c-.18-.16-.46-.23-.84-.23H6l.02 2.44.04 2.45.56-.02c.41 0 .63-.07.83-.26.24-.24.26-.36.26-2.2 0-1.91-.02-1.96-.29-2.18zM0 4.94v14.12h24V4.94H0zM8.56 15.3c-.44.58-1.06.77-2.53.77H4.71V8.53h1.4c1.67 0 2.16.18 2.6.9.27.43.29.6.32 2.57.05 2.23-.02 2.73-.47 3.3zm5.09-5.47h-2.47v1.77h1.52v1.28l-.72.04-.75.03v1.77l1.22.03 1.2.04v1.28h-1.6c-1.53 0-1.6-.01-1.87-.3l-.3-.28v-3.16c0-3.02.01-3.18.25-3.48.23-.31.25-.31 1.88-.31h1.64v1.29zm4.68 5.45c-.17.43-.64.79-1 .79-.18 0-.45-.15-.67-.39-.32-.32-.45-.63-.82-2.08l-.9-3.39-.45-1.67h.76c.4 0 .75.02.75.05 0 .06 1.16 4.54 1.26 4.83.04.15.32-.7.73-2.3l.66-2.52.74-.04c.4-.02.73 0 .73.04 0 .14-1.67 5.99-1.8 6.19z"></path></svg></a>
+</div>
+</div>
+<div class="ft-col"><h4>Categories</h4>
+<ul>
+<li><a href="javascript:void(0)" onclick="document.querySelector('.fpill[data-cat=linux]').click();window.scrollTo(0,document.querySelector('.search-bar').offsetTop-80)">Linux</a></li>
+<li><a href="javascript:void(0)" onclick="document.querySelector('.fpill[data-cat=docker]').click();window.scrollTo(0,document.querySelector('.search-bar').offsetTop-80)">Docker</a></li>
+<li><a href="javascript:void(0)" onclick="document.querySelector('.fpill[data-cat=cloud]').click();window.scrollTo(0,document.querySelector('.search-bar').offsetTop-80)">Cloud / AWS</a></li>
+<li><a href="javascript:void(0)" onclick="document.querySelector('.fpill[data-cat=terraform]').click();window.scrollTo(0,document.querySelector('.search-bar').offsetTop-80)">Terraform</a></li>
+<li><a href="javascript:void(0)" onclick="document.querySelector('.fpill[data-cat=python]').click();window.scrollTo(0,document.querySelector('.search-bar').offsetTop-80)">Python</a></li>
+<li><a href="javascript:void(0)" onclick="document.querySelector('.fpill[data-cat=monitoring]').click();window.scrollTo(0,document.querySelector('.search-bar').offsetTop-80)">Monitoring</a></li>
+</ul>
+</div>
+<div class="ft-col"><h4>Also Explore</h4>
+<ul>
+<li><a href="blog.html">Blog Articles</a></li>
+<li><a href="case-studies.html">Case Studies</a></li>
+<li><a href="solutions.html">Services</a></li>
+<li><a href="contact.html">Book Consultation</a></li>
+</ul>
+</div>
+<div class="ft-col"><h4>Contact</h4>
+<ul>
+<li><a href="mailto:info@devriston.com.pk">info@devriston.com.pk</a></li>
+<li><a href="https://wa.me/923231450045" target="_blank">WhatsApp</a></li>
+<li><a href="contact.html">Book Consultation</a></li>
+</ul>
+</div>
+</div>
+<div class="ft-bottom"><p>© 2025 Devriston · Muhammad Kamran Kabeer · Lahore, Pakistan</p><div class="ft-bottom-links"><a href="sitemap.xml">Sitemap</a></div></div>
+</div>
 </footer>
 
-<script src="https://cdn.jsdelivr.net/pyodide/v0.27.0/full/pyodide.js"></script>
-<script>
-let pyodideReady;
-async function loadPy(){
-  pyodideReady = pyodideReady || loadPyodide();
-  return await pyodideReady;
-}
-async function runPython(){
- const output=document.getElementById("pythonOutput");
- output.textContent="Running...";
- try{
-   const py=await loadPy();
-   let code=document.getElementById("pythonCode").value;
-   let result=await py.runPythonAsync(code);
-   output.textContent=result===undefined ? "Program finished." : result;
- }catch(e){output.textContent=e}
-}
-</script>
 <script src="assets/js/main.js" defer></script>
 </body>
 </html>
-    <!-- PYTHON PROGRAMMING -->
-    <div class="cat-hdr" data-section="python"><span class="cat-hdr-icon">🐍</span><span class="cat-hdr-title">Python Programming</span><span class="cat-hdr-count">10 notes</span></div>
-    <div class="content-grid" data-section="python">
-
-      <article class="n-card c-card" data-cat="python" data-title="Introduction to Python" data-tags="python programming beginner" id="note-python-31">
-        <div class="n-accent"></div><div class="n-body">
-        <div class="n-meta"><span class="n-num">#31</span><div class="n-tags"><span class="n-tag">Python</span></div></div>
-        <h3 class="n-title">Introduction to Python</h3>
-        <p class="n-desc">Python overview, why Python is popular, features, and real-world applications.</p>
-        <div class="n-code">print("Hello Python")</div>
-        </div>
-        <button class="n-expand-btn" aria-expanded="false" onclick="toggleExpand(this)">Learn More <span class="earr">▼</span></button>
-        <div class="n-expanded"><ul><li><strong>Practice:</strong> Try the examples and modify the code to learn.</li><li><strong>Goal:</strong> Build strong Python programming fundamentals.</li></ul></div>
-      </article>
-
-      <article class="n-card c-card" data-cat="python" data-title="Installing Python & Setup" data-tags="python programming beginner" id="note-python-32">
-        <div class="n-accent"></div><div class="n-body">
-        <div class="n-meta"><span class="n-num">#32</span><div class="n-tags"><span class="n-tag">Python</span></div></div>
-        <h3 class="n-title">Installing Python & Setup</h3>
-        <p class="n-desc">Installing Python, setting up environment, and choosing an IDE.</p>
-        <div class="n-code">python --version</div>
-        </div>
-        <button class="n-expand-btn" aria-expanded="false" onclick="toggleExpand(this)">Learn More <span class="earr">▼</span></button>
-        <div class="n-expanded"><ul><li><strong>Practice:</strong> Try the examples and modify the code to learn.</li><li><strong>Goal:</strong> Build strong Python programming fundamentals.</li></ul></div>
-      </article>
-
-      <article class="n-card c-card" data-cat="python" data-title="Python Syntax Basics" data-tags="python programming beginner" id="note-python-33">
-        <div class="n-accent"></div><div class="n-body">
-        <div class="n-meta"><span class="n-num">#33</span><div class="n-tags"><span class="n-tag">Python</span></div></div>
-        <h3 class="n-title">Python Syntax Basics</h3>
-        <p class="n-desc">Indentation, comments, statements, and basic Python program structure.</p>
-        <div class="n-code"># Python code
-print("Start")</div>
-        </div>
-        <button class="n-expand-btn" aria-expanded="false" onclick="toggleExpand(this)">Learn More <span class="earr">▼</span></button>
-        <div class="n-expanded"><ul><li><strong>Practice:</strong> Try the examples and modify the code to learn.</li><li><strong>Goal:</strong> Build strong Python programming fundamentals.</li></ul></div>
-      </article>
-
-      <article class="n-card c-card" data-cat="python" data-title="Variables & Data Types" data-tags="python programming beginner" id="note-python-34">
-        <div class="n-accent"></div><div class="n-body">
-        <div class="n-meta"><span class="n-num">#34</span><div class="n-tags"><span class="n-tag">Python</span></div></div>
-        <h3 class="n-title">Variables & Data Types</h3>
-        <p class="n-desc">Variables, strings, numbers, booleans, and type conversion.</p>
-        <div class="n-code">name="Devriston"
-print(name)</div>
-        </div>
-        <button class="n-expand-btn" aria-expanded="false" onclick="toggleExpand(this)">Learn More <span class="earr">▼</span></button>
-        <div class="n-expanded"><ul><li><strong>Practice:</strong> Try the examples and modify the code to learn.</li><li><strong>Goal:</strong> Build strong Python programming fundamentals.</li></ul></div>
-      </article>
-
-      <article class="n-card c-card" data-cat="python" data-title="Input and Output" data-tags="python programming beginner" id="note-python-35">
-        <div class="n-accent"></div><div class="n-body">
-        <div class="n-meta"><span class="n-num">#35</span><div class="n-tags"><span class="n-tag">Python</span></div></div>
-        <h3 class="n-title">Input and Output</h3>
-        <p class="n-desc">Using input(), print(), and formatting output.</p>
-        <div class="n-code">name=input("Name: ")
-print(name)</div>
-        </div>
-        <button class="n-expand-btn" aria-expanded="false" onclick="toggleExpand(this)">Learn More <span class="earr">▼</span></button>
-        <div class="n-expanded"><ul><li><strong>Practice:</strong> Try the examples and modify the code to learn.</li><li><strong>Goal:</strong> Build strong Python programming fundamentals.</li></ul></div>
-      </article>
-
-      <article class="n-card c-card" data-cat="python" data-title="Python Operators" data-tags="python programming beginner" id="note-python-36">
-        <div class="n-accent"></div><div class="n-body">
-        <div class="n-meta"><span class="n-num">#36</span><div class="n-tags"><span class="n-tag">Python</span></div></div>
-        <h3 class="n-title">Python Operators</h3>
-        <p class="n-desc">Arithmetic, comparison, assignment, and logical operators.</p>
-        <div class="n-code">x=10+5
-print(x)</div>
-        </div>
-        <button class="n-expand-btn" aria-expanded="false" onclick="toggleExpand(this)">Learn More <span class="earr">▼</span></button>
-        <div class="n-expanded"><ul><li><strong>Practice:</strong> Try the examples and modify the code to learn.</li><li><strong>Goal:</strong> Build strong Python programming fundamentals.</li></ul></div>
-      </article>
-
-      <article class="n-card c-card" data-cat="python" data-title="Conditional Statements" data-tags="python programming beginner" id="note-python-37">
-        <div class="n-accent"></div><div class="n-body">
-        <div class="n-meta"><span class="n-num">#37</span><div class="n-tags"><span class="n-tag">Python</span></div></div>
-        <h3 class="n-title">Conditional Statements</h3>
-        <p class="n-desc">if, elif, else, nested conditions, and decision making.</p>
-        <div class="n-code">if x>5:
- print("Yes")</div>
-        </div>
-        <button class="n-expand-btn" aria-expanded="false" onclick="toggleExpand(this)">Learn More <span class="earr">▼</span></button>
-        <div class="n-expanded"><ul><li><strong>Practice:</strong> Try the examples and modify the code to learn.</li><li><strong>Goal:</strong> Build strong Python programming fundamentals.</li></ul></div>
-      </article>
-
-      <article class="n-card c-card" data-cat="python" data-title="Loops in Python" data-tags="python programming beginner" id="note-python-38">
-        <div class="n-accent"></div><div class="n-body">
-        <div class="n-meta"><span class="n-num">#38</span><div class="n-tags"><span class="n-tag">Python</span></div></div>
-        <h3 class="n-title">Loops in Python</h3>
-        <p class="n-desc">for loops, while loops, break, continue, and repetition.</p>
-        <div class="n-code">for i in range(3):
- print(i)</div>
-        </div>
-        <button class="n-expand-btn" aria-expanded="false" onclick="toggleExpand(this)">Learn More <span class="earr">▼</span></button>
-        <div class="n-expanded"><ul><li><strong>Practice:</strong> Try the examples and modify the code to learn.</li><li><strong>Goal:</strong> Build strong Python programming fundamentals.</li></ul></div>
-      </article>
-
-      <article class="n-card c-card" data-cat="python" data-title="Functions in Python" data-tags="python programming beginner" id="note-python-39">
-        <div class="n-accent"></div><div class="n-body">
-        <div class="n-meta"><span class="n-num">#39</span><div class="n-tags"><span class="n-tag">Python</span></div></div>
-        <h3 class="n-title">Functions in Python</h3>
-        <p class="n-desc">Creating functions, parameters, arguments, and return values.</p>
-        <div class="n-code">def hello():
- print("Hi")</div>
-        </div>
-        <button class="n-expand-btn" aria-expanded="false" onclick="toggleExpand(this)">Learn More <span class="earr">▼</span></button>
-        <div class="n-expanded"><ul><li><strong>Practice:</strong> Try the examples and modify the code to learn.</li><li><strong>Goal:</strong> Build strong Python programming fundamentals.</li></ul></div>
-      </article>
-
-      <article class="n-card c-card" data-cat="python" data-title="Python Collections" data-tags="python programming beginner" id="note-python-40">
-        <div class="n-accent"></div><div class="n-body">
-        <div class="n-meta"><span class="n-num">#40</span><div class="n-tags"><span class="n-tag">Python</span></div></div>
-        <h3 class="n-title">Python Collections</h3>
-        <p class="n-desc">Lists, tuples, dictionaries, and sets.</p>
-        <div class="n-code">items=[1,2,3]
-print(items)</div>
-        </div>
-        <button class="n-expand-btn" aria-expanded="false" onclick="toggleExpand(this)">Learn More <span class="earr">▼</span></button>
-        <div class="n-expanded"><ul><li><strong>Practice:</strong> Try the examples and modify the code to learn.</li><li><strong>Goal:</strong> Build strong Python programming fundamentals.</li></ul></div>
-      </article>
-
-    </div>
-
-
