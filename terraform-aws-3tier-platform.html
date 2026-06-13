@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Building a Terraform AWS 3-Tier Platform — DevOps Project Walkthrough | Devriston</title>
+<meta name="description" content="How I built a modular Terraform AWS 3-tier platform — VPC, public/private subnets, Dockerized EC2 tiers, security groups and IaC best practices. A real DevOps project breakdown by Muhammad Kamran Kabeer."/>
+<meta name="robots" content="index,follow"/>
+<link rel="canonical" href="https://www.devriston.com.pk/terraform-aws-3tier-platform.html"/>
+<meta property="og:type" content="article"/>
+<meta property="og:title" content="Building a Terraform AWS 3-Tier Platform — DevOps Project Walkthrough"/>
+<meta property="og:description" content="A practical breakdown of a Terraform-built AWS 3-tier platform: modular VPC, public/private subnets, EC2 + Docker, security groups, and IaC best practices."/>
+<meta property="og:url" content="https://www.devriston.com.pk/terraform-aws-3tier-platform.html"/>
+<meta property="og:image" content="https://www.devriston.com.pk/assets/images/banner.png"/>
+<meta property="article:published_time" content="2026-06-13"/>
+<meta property="article:author" content="Muhammad Kamran Kabeer"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="Building a Terraform AWS 3-Tier Platform — DevOps Project Walkthrough"/>
+<meta name="twitter:description" content="A practical breakdown of a Terraform-built AWS 3-tier platform: modular VPC, EC2 + Docker tiers, security groups and IaC best practices."/>
+<meta name="twitter:image" content="https://www.devriston.com.pk/assets/images/banner.png"/>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {"@type": "WebPage", "@id": "https://www.devriston.com.pk/terraform-aws-3tier-platform.html"},
+  "headline": "Building a Terraform AWS 3-Tier Platform: A Practical DevOps Infrastructure Project",
+  "description": "How a modular Terraform AWS 3-tier platform was built — VPC, public/private subnets, Dockerized EC2 tiers, security groups, and IaC best practices.",
+  "image": "https://www.devriston.com.pk/assets/images/banner.png",
+  "author": {"@type": "Person", "name": "Muhammad Kamran Kabeer", "url": "https://www.devriston.com.pk/about.html"},
+  "publisher": {"@type": "Organization", "name": "Devriston", "logo": {"@type": "ImageObject", "url": "https://www.devriston.com.pk/assets/logos/dv-logo.png"}},
+  "datePublished": "2026-06-13",
+  "dateModified": "2026-06-13",
+  "keywords": "terraform, aws, vpc, iac, devops, 3-tier architecture, ec2, docker"
+}
+</script>
+<link rel="icon" type="image/png" href="assets/logos/dv-logo.png"/>
+<link rel="stylesheet" href="assets/css/main.css"/>
+<!-- styles consolidated into assets/css/main.css -->
+<style>
+  /* Page-specific article typography — scoped to .post-shell, does not touch global styles */
+  .post-shell{max-width:760px;margin:0 auto;padding:0 24px}
+  .post-meta{display:flex;gap:14px;align-items:center;flex-wrap:wrap;font-size:.9rem;color:var(--text-3);margin:14px 0 22px}
+  .post-title{font-size:clamp(1.8rem,4vw,2.6rem);line-height:1.2;margin:0 0 6px}
+  .post-body h2{margin-top:2.2em;font-size:1.4rem;border-left:3px solid rgba(0,200,150,1);padding-left:12px}
+  .post-body h3{margin-top:1.6em;font-size:1.15rem;color:rgba(0,200,150,1)}
+  .post-body p,.post-body li{line-height:1.75;font-size:1.02rem;color:var(--text-2)}
+  .post-body ul{padding-left:1.3em}
+  .post-body pre{background:#0D1117;color:#c9d1d9;padding:16px;border-radius:8px;overflow-x:auto;font-size:.9rem;line-height:1.55;margin:1.2em 0}
+  .post-body code{font-family:"Fira Code",ui-monospace,monospace}
+  .post-tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:2.5em}
+  .post-tags span{background:var(--surface-2);padding:4px 10px;border-radius:6px;font-size:.8rem;color:var(--text-3)}
+  .related-links{margin-top:2.5em;padding-top:1.5em;border-top:1px solid var(--border)}
+  .related-links a{display:block;margin:8px 0;color:rgba(0,200,150,1);text-decoration:none;font-size:.95rem}
+  .related-links a:hover{text-decoration:underline}
+</style>
+</head>
+<body>
+
+<a class="wa-btn" href="https://wa.me/923231450045?text=Hi%20Kamran%2C%20I%20read%20your%20blog%20and%20I%27d%20like%20to%20discuss%20a%20project." target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.122 1.532 5.856L.057 23.617a.75.75 0 00.908.98l5.963-1.562A11.943 11.943 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.886 0-3.655-.52-5.168-1.424l-.37-.22-3.539.927.943-3.443-.24-.381A9.96 9.96 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+  WhatsApp
+</a>
+
+<nav id="nav" class="scrolled">
+  <div class="container nav-inner">
+    <a href="index.html" class="nav-logo"><img src="assets/logos/dv-logo.png" alt="Devriston"/><span class="nav-brand">Devri<span>ston</span></span></a>
+    <div class="nav-links">
+      <a href="index.html">Home</a><a href="solutions.html">Solutions</a>
+      <a href="case-studies.html">Case Studies</a><a href="blog.html" class="active">Blog</a>
+      <a href="devops-notes.html">Notes</a><a href="about.html">About</a>
+      <a href="contact.html" class="nav-cta">Book Consultation</a>
+    </div>
+    <button class="ham" onclick="toggleDrawer()" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<div class="drawer" id="nav-drawer">
+  <a href="index.html">Home</a><a href="solutions.html">Solutions</a><a href="case-studies.html">Case Studies</a>
+  <a href="blog.html">Blog</a><a href="devops-notes.html">DevOps Notes</a><a href="about.html">About</a><a href="contact.html">Contact</a>
+</div>
+
+<!-- HERO -->
+<section class="pg-hero">
+  <div class="container">
+    <div class="breadcrumb"><a href="index.html">Home</a><span class="sep">/</span><a href="blog.html">Blog</a><span class="sep">/</span><span class="cur">Terraform AWS 3-Tier Platform</span></div>
+    <p class="eyebrow" style="color:rgba(77,143,255,1)">⚙️ Terraform / IaC</p>
+    <h1 class="fade-up">Building a Terraform AWS 3-Tier Platform: A Practical DevOps Infrastructure Project</h1>
+    <div class="post-meta fade-up d2">
+      <span>Jun 13, 2026</span><span>·</span><span>⏱ 8 min read</span><span>·</span><span>By Muhammad Kamran Kabeer</span>
+    </div>
+  </div>
+</section>
+
+<main style="background:var(--bg);padding-bottom:80px">
+  <div class="post-shell post-body">
+
+    <p>Infrastructure as Code (IaC) is one of the most important skills for a modern DevOps engineer. Instead of clicking through cloud consoles, you define your entire environment in code — making it repeatable, reviewable, and easy to tear down and rebuild on demand.</p>
+
+    <p>To strengthen my Terraform and AWS skills, I built a <strong>Terraform AWS 3-Tier Platform</strong> that provisions a complete cloud environment using reusable modules and core AWS networking components. The project focuses on modular infrastructure design, AWS networking fundamentals, security best practices, and IaC principles — and the full source is on <a href="https://github.com/muhammadkamrankabeer-oss/terraform-aws-3tier-platform" target="_blank" rel="noopener">GitHub</a>.</p>
+
+    <h2>Project Overview</h2>
+    <p>The goal was a multi-tier AWS infrastructure that separates application components into different network layers. The stack includes:</p>
+    <ul>
+      <li>AWS VPC with public and private subnets</li>
+      <li>Internet Gateway and route tables</li>
+      <li>Security groups scoped per tier</li>
+      <li>Frontend EC2 instance (public subnet)</li>
+      <li>Backend EC2 instance (private subnet)</li>
+      <li>Dockerized applications on both tiers</li>
+      <li>Fully modular Terraform code</li>
+    </ul>
+
+    <h2>Why a 3-Tier Architecture?</h2>
+
+    <h3>Presentation layer</h3>
+    <p>The frontend runs on an EC2 instance in the public subnet — serving the web interface via Nginx on port 8080, reachable directly by users.</p>
+
+    <h3>Application layer</h3>
+    <p>The backend runs on a separate EC2 instance inside the private subnet, handling business logic and internal API calls. Because it has no direct internet exposure, it's protected from external access by default.</p>
+
+    <h3>Infrastructure layer</h3>
+    <p>AWS networking — VPC, Internet Gateway, route tables, and security groups — ties the tiers together and enforces the boundaries between them. This separation improves maintainability, scalability, and security.</p>
+
+    <h2>Terraform Module Design</h2>
+    <p>A core goal was avoiding one giant <code>main.tf</code>. The project is split into three reusable modules:</p>
+    <ul>
+      <li><strong>VPC module</strong> — VPC, public/private subnets, Internet Gateway, route tables</li>
+      <li><strong>Security Groups module</strong> — frontend and backend security groups and rules</li>
+      <li><strong>EC2 module</strong> — frontend and backend instances with their security group attachments</li>
+    </ul>
+
+    <h2>Networking Design</h2>
+    <pre><code>VPC:             10.0.0.0/16
+Public Subnet:   10.0.1.0/24   → frontend (internet-facing)
+Private Subnet:  10.0.11.0/24  → backend (isolated)</code></pre>
+    <p>The public subnet hosts the frontend with connectivity through the Internet Gateway. The private subnet hosts the backend, isolated from direct external access — a common enterprise networking pattern.</p>
+
+    <h2>Security Implementation</h2>
+    <p><strong>Frontend security group</strong> allows port 8080 (app) and 22 (SSH for admin access).</p>
+    <p><strong>Backend security group</strong> allows port 3000 — and only from the frontend security group, not from the internet. This follows the principle of least privilege and minimizes the attack surface.</p>
+
+    <h2>Docker Integration</h2>
+    <p>Both tiers run as Docker containers, giving consistent deployments, portability, faster provisioning, and a clear path to migrating onto ECS or Kubernetes later.</p>
+
+    <h2>Terraform Best Practices Applied</h2>
+    <ul>
+      <li><strong>Variables</strong> — infrastructure values moved out of hardcoded blocks for flexibility and reuse</li>
+      <li><strong>Outputs</strong> — root outputs expose VPC ID, subnet IDs, frontend public IP, and backend private IP</li>
+      <li><strong>Version pinning</strong> — a dedicated <code>versions.tf</code> keeps provider versions predictable across environments</li>
+      <li><strong>Documentation</strong> — architecture diagram, deployment screenshots, and an interview-prep guide included in the repo</li>
+    </ul>
+
+    <h2>Lessons Learned</h2>
+    <p>This project reinforced Terraform module design, AWS VPC networking, security group relationships, and just how much good documentation adds to a portfolio project — it's the difference between a repo that gets skimmed and one that gets read.</p>
+
+    <h2>What's Next</h2>
+    <p>Planned production-readiness upgrades:</p>
+    <ul>
+      <li>Application Load Balancer (ALB) + Auto Scaling Groups</li>
+      <li>S3 remote backend with DynamoDB state locking</li>
+      <li>GitHub Actions CI/CD pipeline</li>
+      <li>CloudWatch monitoring</li>
+      <li>RDS database tier</li>
+    </ul>
+
+    <h2>Conclusion</h2>
+    <p>This Terraform AWS 3-Tier Platform shows how Infrastructure as Code can build secure, repeatable, maintainable cloud infrastructure — combining Terraform, AWS networking, EC2, Docker, and modular design into one practical project. If you're learning Terraform and AWS, building something like this hands-on is one of the fastest ways to develop real production instincts.</p>
+
+    <div class="post-tags">
+      <span>terraform</span><span>aws</span><span>vpc</span><span>iac</span><span>devops</span><span>docker</span><span>3-tier-architecture</span>
+    </div>
+
+    <div class="related-links">
+      <strong style="color:var(--text-1)">Related</strong>
+      <a href="devops-notes.html#note-infrastructure-as-code">📖 Infrastructure as Code — Why Your Servers Should Be in Git</a>
+      <a href="devops-notes.html#note-terraform-state">📖 Terraform State — What It Is and How to Manage It Safely</a>
+      <a href="devops-notes.html#note-terraform-modules-and-reuse">📖 Terraform Modules — Write Once, Reuse Everywhere</a>
+      <a href="devops-notes.html#note-what-is-a-vpc">📖 What is a VPC? Your Private Network Inside AWS</a>
+      <a href="https://github.com/muhammadkamrankabeer-oss/terraform-aws-3tier-platform" target="_blank" rel="noopener">💻 View full source code on GitHub</a>
+      <a href="https://dev.to/muhammadkamrankabeeross/-terraform-aws-3-tier-platform-project-showcase-23bo" target="_blank" rel="noopener">📝 Also published on dev.to</a>
+    </div>
+
+    <!-- CTA banner -->
+    <div class="blog-cta-banner" style="margin-top:3em">
+      <p class="eyebrow" style="color:rgba(77,143,255,1);justify-content:center">Work With Me</p>
+      <h3>Need help implementing any of this?</h3>
+      <p>I offer consulting for Linux migration, AWS infrastructure, CI/CD pipelines, Docker, and monitoring setup. Let's talk.</p>
+      <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+        <a href="contact.html" class="btn btn-primary">Book Free Consultation</a>
+        <a href="https://wa.me/923231450045" target="_blank" class="btn btn-white-outline">WhatsApp →</a>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<footer>
+  <div class="container">
+    <div class="ft-grid">
+      <div class="ft-brand"><div class="ft-logo"><img src="assets/logos/dv-logo.png" alt="Devriston"/><span class="ft-logo-name">Devri<span>ston</span></span></div><p>DevOps consulting, Linux, cloud infrastructure and training. Solutions that drive tomorrow.</p>
+        <div class="ft-socials">
+          <a href="https://github.com/muhammadkamrankabeer-oss" target="_blank" class="ft-soc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg></a>
+          <a href="https://www.linkedin.com/in/kamrankabeer/" target="_blank" class="ft-soc"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+          <a href="https://www.youtube.com/@Devriston" target="_blank" class="ft-soc"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+          <a href="https://x.com/Devristonhq" target="_blank" class="ft-soc"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+          <a href="https://dev.to/muhammadkamrankabeeross" target="_blank" class="ft-soc"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7.42 10.05c-.18-.16-.46-.23-.84-.23H6l.02 2.44.04 2.45.56-.02c.41 0 .63-.07.83-.26.24-.24.26-.36.26-2.2 0-1.91-.02-1.96-.29-2.18zM0 4.94v14.12h24V4.94H0zM8.56 15.3c-.44.58-1.06.77-2.53.77H4.71V8.53h1.4c1.67 0 2.16.18 2.6.9.27.43.29.6.32 2.57.05 2.23-.02 2.73-.47 3.3zm5.09-5.47h-2.47v1.77h1.52v1.28l-.72.04-.75.03v1.77l1.22.03 1.2.04v1.28h-1.6c-1.53 0-1.6-.01-1.87-.3l-.3-.28v-3.16c0-3.02.01-3.18.25-3.48.23-.31.25-.31 1.88-.31h1.64v1.29zm4.68 5.45c-.17.43-.64.79-1 .79-.18 0-.45-.15-.67-.39-.32-.32-.45-.63-.82-2.08l-.9-3.39-.45-1.67h.76c.4 0 .75.02.75.05 0 .06 1.16 4.54 1.26 4.83.04.15.32-.7.73-2.3l.66-2.52.74-.04c.4-.02.73 0 .73.04 0 .14-1.67 5.99-1.8 6.19z"/></svg></a>
+        </div>
+      </div>
+      <div class="ft-col"><h4>Categories</h4><ul>
+        <li><a href="blog.html#linux">Linux</a></li>
+        <li><a href="blog.html#docker">Docker</a></li>
+        <li><a href="blog.html#cloud">Cloud / AWS</a></li>
+        <li><a href="blog.html#terraform">Terraform</a></li>
+        <li><a href="blog.html#cicd">CI/CD</a></li>
+        <li><a href="blog.html#monitoring">Monitoring</a></li>
+        <li><a href="blog.html#devops">DevOps</a></li>
+      </ul></div>
+      <div class="ft-col"><h4>Also Explore</h4><ul><li><a href="devops-notes.html">DevOps Notes</a></li><li><a href="case-studies.html">Case Studies</a></li><li><a href="solutions.html">Services</a></li><li><a href="https://github.com/muhammadkamrankabeer-oss" target="_blank">GitHub Labs</a></li></ul></div>
+      <div class="ft-col"><h4>Contact</h4><ul><li><a href="mailto:info@devriston.com.pk">info@devriston.com.pk</a></li><li><a href="https://wa.me/923231450045" target="_blank">WhatsApp</a></li><li><a href="contact.html">Book Consultation</a></li></ul></div>
+    </div>
+    <div class="ft-bottom"><p>© 2025 Devriston · Muhammad Kamran Kabeer · Lahore, Pakistan</p><div class="ft-bottom-links"><a href="sitemap.xml">Sitemap</a></div></div>
+  </div>
+</footer>
+<script src="assets/js/main.js" defer></script>
+</body>
+</html>

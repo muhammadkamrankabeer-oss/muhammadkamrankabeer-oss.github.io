@@ -46,9 +46,9 @@
     <div class="breadcrumb"><a href="index.html">Home</a><span class="sep">/</span><span class="cur">Blog</span></div>
     <p class="eyebrow" style="color:rgba(77,143,255,1)">Knowledge Hub</p>
     <h1 class="fade-up">DevOps Blog</h1>
-    <p class="pg-desc fade-up d2">30 practical articles covering Linux, Docker, AWS, Terraform, CI/CD, Monitoring and DevOps — written from real production experience, not textbooks.</p>
+    <p class="pg-desc fade-up d2">31 practical articles covering Linux, Docker, AWS, Terraform, CI/CD, Monitoring and DevOps — written from real production experience, not textbooks.</p>
     <div style="display:flex;flex-wrap:wrap;gap:28px;margin-top:32px" class="fade-up d3">
-      <div class="h-stat"><span class="h-stat-val">30</span><span class="h-stat-lbl">Articles</span></div>
+      <div class="h-stat"><span class="h-stat-val">31</span><span class="h-stat-lbl">Articles</span></div>
       <div class="h-stat"><span class="h-stat-val">8</span><span class="h-stat-lbl">Categories</span></div>
       <div class="h-stat"><span class="h-stat-val">Free</span><span class="h-stat-lbl">Always</span></div>
     </div>
@@ -72,7 +72,7 @@
       <button class="fpill" data-cat="monitoring">Monitoring</button>
       <button class="fpill" data-cat="devops">DevOps</button>
     </div>
-    <span class="result-count" id="blogCount">30 articles</span>
+    <span class="result-count" id="blogCount">31 articles</span>
   </div>
 </div>
 
@@ -280,8 +280,19 @@ location / {
     </div>
 
     <!-- TERRAFORM -->
-    <div class="cat-hdr" data-section="terraform"><span class="cat-hdr-icon">⚙️</span><span class="cat-hdr-title">Terraform / IaC</span><span class="cat-hdr-count">4 articles</span></div>
+    <div class="cat-hdr" data-section="terraform"><span class="cat-hdr-icon">⚙️</span><span class="cat-hdr-title">Terraform / IaC</span><span class="cat-hdr-count">5 articles</span></div>
     <div class="content-grid" data-section="terraform">
+      <a class="c-card" data-cat="terraform" data-title="Terraform AWS 3-Tier Platform" data-tags="terraform aws vpc iac project ec2 docker" href="terraform-aws-3tier-platform.html">
+        <div class="c-card-accent"></div><div class="c-card-body">
+        <span class="c-cat cat-color-terraform">⚙️ Terraform</span>
+        <h3 class="c-title">Building a Terraform AWS 3-Tier Platform — A Real DevOps Project</h3>
+        <p class="c-excerpt">A modular Terraform project that provisions a complete AWS 3-tier environment — VPC, public/private subnets, Dockerized EC2 frontend and backend, and security groups built on least-privilege.</p>
+        <div class="c-code"><span class="nm">VPC:</span>     <span class="st">10.0.0.0/16</span>
+<span class="nm">Public:</span>  <span class="st">10.0.1.0/24</span>  <span class="cm"># frontend</span>
+<span class="nm">Private:</span> <span class="st">10.0.11.0/24</span> <span class="cm"># backend</span></div>
+        <div class="c-footer"><div class="c-tags"><span class="c-tag">terraform</span><span class="c-tag">aws</span><span class="c-tag">project</span></div><span class="c-read">Read <span class="arr">→</span></span></div>
+        </div><div class="c-read-time">⏱ 8 min read</div>
+      </a>
       <a class="c-card" data-cat="terraform" data-title="Infrastructure as Code" data-tags="terraform iac devops automation versioning" href="devops-notes.html#note-infrastructure-as-code">
         <div class="c-card-accent"></div><div class="c-card-body">
         <span class="c-cat cat-color-terraform">⚙️ Terraform</span>
