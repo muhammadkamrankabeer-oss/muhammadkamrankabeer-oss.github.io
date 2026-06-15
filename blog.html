@@ -4,19 +4,82 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
 <meta name="google-site-verification" content="wAaiTAPySebPceM4Bux5hwxIT3hy6BDj_NlLq4aDj5Y"/>
-<title>Blog | Devriston — Practical DevOps Articles</title>
-<meta name="description" content="Practical DevOps articles covering Linux, Docker, AWS, Terraform, CI/CD and Monitoring — written from real production experience by Muhammad Kamran Kabeer."/>
+<title>DevOps Blog | Devriston — Linux, AWS, Terraform, Docker, CI/CD Articles</title>
+<meta name="description" content="31 practical DevOps articles covering Linux, Docker, AWS, Terraform, CI/CD and Monitoring — written from real production experience by Muhammad Kamran Kabeer, DevOps Engineer, Lahore."/>
+<meta name="keywords" content="devops blog, linux tutorial, terraform aws, docker guide, ci/cd pipeline, monitoring grafana, devops engineer pakistan"/>
+<meta name="author" content="Muhammad Kamran Kabeer"/>
 <meta name="robots" content="index,follow"/>
 <link rel="canonical" href="https://www.devriston.com.pk/blog.html"/>
-<meta property="og:title" content="DevOps Blog | Devriston — Practical Articles"/>
-<meta property="og:description" content="Practical DevOps articles: Linux, Docker, AWS, Terraform, CI/CD, Monitoring. Production-oriented, engineer-written."/>
+<meta property="og:type" content="website"/>
+<meta property="og:title" content="DevOps Blog | Devriston — Linux, AWS, Terraform, Docker Articles"/>
+<meta property="og:description" content="31 practical DevOps articles: Linux, Docker, AWS, Terraform, CI/CD, Monitoring. Production-oriented, engineer-written by Muhammad Kamran Kabeer."/>
 <meta property="og:url" content="https://www.devriston.com.pk/blog.html"/>
 <meta property="og:image" content="https://www.devriston.com.pk/assets/images/banner.png"/>
 <link rel="icon" type="image/png" href="assets/logos/dv-logo.png"/>
 <link rel="stylesheet" href="assets/css/main.css"/>
-<!-- styles consolidated into assets/css/main.css -->
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"Blog",
+  "name":"Devriston DevOps Blog",
+  "url":"https://www.devriston.com.pk/blog.html",
+  "description":"Practical DevOps articles covering Linux, Docker, AWS, Terraform, CI/CD and Monitoring.",
+  "author":{"@type":"Person","name":"Muhammad Kamran Kabeer","url":"https://www.devriston.com.pk/about.html"},
+  "publisher":{"@type":"Organization","name":"Devriston","logo":{"@type":"ImageObject","url":"https://www.devriston.com.pk/assets/logos/dv-logo.png"}}
+}
+</script>
+<style>
+/* ── Featured Articles Section ────────────────────────────── */
+.featured-section{padding:48px 0 0}
+.section-label{font-size:.78rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(77,143,255,1);margin-bottom:16px}
+.featured-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:48px}
+@media(max-width:700px){.featured-grid{grid-template-columns:1fr}}
+.feat-card{display:flex;flex-direction:column;border-radius:12px;overflow:hidden;border:1px solid rgba(77,143,255,.2);background:linear-gradient(135deg,rgba(13,17,26,1) 0%,rgba(10,20,40,1) 100%);text-decoration:none;transition:transform .2s,box-shadow .2s;position:relative}
+.feat-card:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(77,143,255,.15);border-color:rgba(77,143,255,.45)}
+.feat-card-img{height:160px;background:linear-gradient(135deg,rgba(10,20,50,1),rgba(5,30,60,1));display:flex;align-items:center;justify-content:center;font-size:3.5rem;border-bottom:1px solid rgba(77,143,255,.15);position:relative;overflow:hidden}
+.feat-card-img::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(77,143,255,.08) 0%,transparent 70%)}
+.feat-card-body{padding:22px 24px 20px;flex:1;display:flex;flex-direction:column;gap:10px}
+.feat-badge{display:inline-flex;align-items:center;gap:6px;font-size:.75rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:4px 10px;border-radius:20px;width:fit-content}
+.feat-badge.terraform{background:rgba(94,72,255,.18);color:rgba(140,120,255,1)}
+.feat-title{font-size:1.15rem;font-weight:700;line-height:1.3;color:var(--text-1);margin:0}
+.feat-excerpt{font-size:.9rem;color:var(--text-3);line-height:1.6;margin:0;flex:1}
+.feat-footer{display:flex;align-items:center;justify-content:space-between;margin-top:4px}
+.feat-meta{font-size:.8rem;color:var(--text-3)}
+.feat-read{font-size:.85rem;font-weight:600;color:rgba(77,143,255,1)}
+.feat-card-wide{grid-column:span 2}
+@media(max-width:700px){.feat-card-wide{grid-column:span 1}}
+
+/* ── Progress bar on cards ───────────────────────────────── */
+.c-card{position:relative;overflow:hidden}
+.c-card::before{content:'';position:absolute;top:0;left:0;width:0;height:2px;background:linear-gradient(90deg,rgba(77,143,255,1),rgba(0,200,150,1));transition:width .3s ease;z-index:2}
+.c-card:hover::before{width:100%}
+
+/* ── Back to top button ───────────────────────────────────── */
+#backTop{position:fixed;bottom:90px;right:24px;width:42px;height:42px;border-radius:50%;background:rgba(77,143,255,.15);border:1px solid rgba(77,143,255,.35);color:rgba(77,143,255,1);font-size:1.1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .25s,background .2s;z-index:999}
+#backTop.vis{opacity:1;pointer-events:auto}
+#backTop:hover{background:rgba(77,143,255,.3)}
+
+/* ── Reading progress bar ────────────────────────────────── */
+#readProg{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,rgba(77,143,255,1),rgba(0,200,150,1));z-index:9999;transition:width .1s linear}
+
+/* ── Search highlight ────────────────────────────────────── */
+.hl{background:rgba(77,143,255,.25);border-radius:2px;padding:0 2px}
+
+/* ── No-results improvement ──────────────────────────────── */
+#noResults .nr-icon{font-size:3rem;margin-bottom:12px}
+#noResults .nr-suggest{margin-top:16px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+#noResults .nr-suggest button{padding:6px 14px;border:1px solid rgba(77,143,255,.4);border-radius:20px;background:transparent;color:rgba(77,143,255,1);cursor:pointer;font-size:.85rem}
+
+/* ── Category jump nav ────────────────────────────────────── */
+.cat-jump{display:flex;gap:8px;flex-wrap:wrap;padding:14px 0 4px;border-bottom:1px solid var(--border);margin-bottom:32px}
+.cat-jump a{font-size:.8rem;font-weight:600;padding:5px 13px;border-radius:20px;text-decoration:none;border:1px solid var(--border);color:var(--text-3);transition:all .2s}
+.cat-jump a:hover{color:rgba(77,143,255,1);border-color:rgba(77,143,255,.4)}
+</style>
 </head>
 <body>
+
+<div id="readProg"></div>
+<button id="backTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Back to top">↑</button>
 
 <a class="wa-btn" href="https://wa.me/923231450045?text=Hi%20Kamran%2C%20I%20read%20your%20blog%20and%20I%27d%20like%20to%20discuss%20a%20project." target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
   <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.122 1.532 5.856L.057 23.617a.75.75 0 00.908.98l5.963-1.562A11.943 11.943 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.886 0-3.655-.52-5.168-1.424l-.37-.22-3.539.927.943-3.443-.24-.381A9.96 9.96 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
@@ -49,7 +112,7 @@
     <p class="pg-desc fade-up d2">31 practical articles covering Linux, Docker, AWS, Terraform, CI/CD, Monitoring and DevOps — written from real production experience, not textbooks.</p>
     <div style="display:flex;flex-wrap:wrap;gap:28px;margin-top:32px" class="fade-up d3">
       <div class="h-stat"><span class="h-stat-val">31</span><span class="h-stat-lbl">Articles</span></div>
-      <div class="h-stat"><span class="h-stat-val">8</span><span class="h-stat-lbl">Categories</span></div>
+      <div class="h-stat"><span class="h-stat-val">7</span><span class="h-stat-lbl">Categories</span></div>
       <div class="h-stat"><span class="h-stat-val">Free</span><span class="h-stat-lbl">Always</span></div>
     </div>
   </div>
@@ -78,10 +141,51 @@
 
 <main style="background:var(--bg);padding-bottom:80px">
   <div class="container">
-    <div id="noResults" style="display:none;text-align:center;padding:72px 24px"><h3>No articles found</h3><p style="color:var(--text-3)">Try a different search term or clear the filter.</p></div>
+    <div id="noResults" style="display:none;text-align:center;padding:72px 24px">
+      <div class="nr-icon">🔍</div>
+      <h3>No articles found</h3>
+      <p style="color:var(--text-3)">Try a different search term or browse a category.</p>
+      <div class="nr-suggest">
+        <button onclick="clearSearch()">Clear search</button>
+        <button onclick="setFilter('linux')">Linux</button>
+        <button onclick="setFilter('docker')">Docker</button>
+        <button onclick="setFilter('terraform')">Terraform</button>
+        <button onclick="setFilter('all')">Show all</button>
+      </div>
+    </div>
+
+    <!-- FEATURED ARTICLES -->
+    <div class="featured-section" id="featuredSection">
+      <p class="section-label">⭐ Featured Articles</p>
+      <div class="featured-grid">
+        <a class="feat-card feat-card-wide" href="terraform-aws-3tier-platform.html">
+          <div class="feat-card-img">⚙️</div>
+          <div class="feat-card-body">
+            <span class="feat-badge terraform">⚙️ Terraform · Project</span>
+            <h2 class="feat-title">Building a Terraform AWS 3-Tier Platform — A Real DevOps Project</h2>
+            <p class="feat-excerpt">A complete modular Terraform project that provisions a real AWS 3-tier environment — custom VPC, public/private subnets, Dockerized EC2 frontend and backend, security groups built on least-privilege, and IaC best practices throughout. With source code on GitHub.</p>
+            <div class="feat-footer">
+              <span class="feat-meta">⏱ 8 min read · Terraform, AWS, Docker, IaC</span>
+              <span class="feat-read">Read full article →</span>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <!-- CATEGORY JUMP NAV -->
+    <div id="catJump" class="cat-jump">
+      <a href="#linux">🐧 Linux</a>
+      <a href="#docker">🐳 Docker</a>
+      <a href="#cloud">☁️ Cloud / AWS</a>
+      <a href="#terraform">⚙️ Terraform</a>
+      <a href="#cicd">🔄 CI/CD</a>
+      <a href="#monitoring">📊 Monitoring</a>
+      <a href="#devops">🚀 DevOps</a>
+    </div>
 
     <!-- LINUX -->
-    <div class="cat-hdr" data-section="linux"><span class="cat-hdr-icon">🐧</span><span class="cat-hdr-title">Linux</span><span class="cat-hdr-count">5 articles</span></div>
+    <div class="cat-hdr" id="linux" data-section="linux"><span class="cat-hdr-icon">🐧</span><span class="cat-hdr-title">Linux</span><span class="cat-hdr-count">5 articles</span></div>
     <div class="content-grid" data-section="linux">
       <a class="c-card" data-cat="linux" data-title="Linux vs Windows Server" data-tags="linux server os windows" href="devops-notes.html#note-linux-vs-windows-server">
         <div class="c-card-accent"></div><div class="c-card-body">
@@ -143,7 +247,7 @@ monitor-01    192.168.1.12   <span class="cm"># Prometheus+Grafana</span></div>
     </div>
 
     <!-- DOCKER -->
-    <div class="cat-hdr" data-section="docker"><span class="cat-hdr-icon">🐳</span><span class="cat-hdr-title">Docker</span><span class="cat-hdr-count">5 articles</span></div>
+    <div class="cat-hdr" id="docker" data-section="docker"><span class="cat-hdr-icon">🐳</span><span class="cat-hdr-title">Docker</span><span class="cat-hdr-count">5 articles</span></div>
     <div class="content-grid" data-section="docker">
       <a class="c-card" data-cat="docker" data-title="What is Docker?" data-tags="docker containers basics intro beginner" href="devops-notes.html#note-what-is-docker">
         <div class="c-card-accent"></div><div class="c-card-body">
@@ -210,7 +314,7 @@ monitor-01    192.168.1.12   <span class="cm"># Prometheus+Grafana</span></div>
     </div>
 
     <!-- CLOUD -->
-    <div class="cat-hdr" data-section="cloud"><span class="cat-hdr-icon">☁️</span><span class="cat-hdr-title">Cloud / AWS</span><span class="cat-hdr-count">5 articles</span></div>
+    <div class="cat-hdr" id="cloud" data-section="cloud"><span class="cat-hdr-icon">☁️</span><span class="cat-hdr-title">Cloud / AWS</span><span class="cat-hdr-count">5 articles</span></div>
     <div class="content-grid" data-section="cloud">
       <a class="c-card" data-cat="cloud" data-title="What is AWS EC2?" data-tags="aws ec2 cloud compute instances" href="devops-notes.html#note-what-is-aws-ec2">
         <div class="c-card-accent"></div><div class="c-card-body">
@@ -280,19 +384,8 @@ location / {
     </div>
 
     <!-- TERRAFORM -->
-    <div class="cat-hdr" data-section="terraform"><span class="cat-hdr-icon">⚙️</span><span class="cat-hdr-title">Terraform / IaC</span><span class="cat-hdr-count">5 articles</span></div>
+    <div class="cat-hdr" id="terraform" data-section="terraform"><span class="cat-hdr-icon">⚙️</span><span class="cat-hdr-title">Terraform / IaC</span><span class="cat-hdr-count">4 articles</span></div>
     <div class="content-grid" data-section="terraform">
-      <a class="c-card" data-cat="terraform" data-title="Terraform AWS 3-Tier Platform" data-tags="terraform aws vpc iac project ec2 docker" href="terraform-aws-3tier-platform.html">
-        <div class="c-card-accent"></div><div class="c-card-body">
-        <span class="c-cat cat-color-terraform">⚙️ Terraform</span>
-        <h3 class="c-title">Building a Terraform AWS 3-Tier Platform — A Real DevOps Project</h3>
-        <p class="c-excerpt">A modular Terraform project that provisions a complete AWS 3-tier environment — VPC, public/private subnets, Dockerized EC2 frontend and backend, and security groups built on least-privilege.</p>
-        <div class="c-code"><span class="nm">VPC:</span>     <span class="st">10.0.0.0/16</span>
-<span class="nm">Public:</span>  <span class="st">10.0.1.0/24</span>  <span class="cm"># frontend</span>
-<span class="nm">Private:</span> <span class="st">10.0.11.0/24</span> <span class="cm"># backend</span></div>
-        <div class="c-footer"><div class="c-tags"><span class="c-tag">terraform</span><span class="c-tag">aws</span><span class="c-tag">project</span></div><span class="c-read">Read <span class="arr">→</span></span></div>
-        </div><div class="c-read-time">⏱ 8 min read</div>
-      </a>
       <a class="c-card" data-cat="terraform" data-title="Infrastructure as Code" data-tags="terraform iac devops automation versioning" href="devops-notes.html#note-infrastructure-as-code">
         <div class="c-card-accent"></div><div class="c-card-body">
         <span class="c-cat cat-color-terraform">⚙️ Terraform</span>
@@ -349,7 +442,7 @@ location / {
     </div>
 
     <!-- CI/CD -->
-    <div class="cat-hdr" data-section="cicd"><span class="cat-hdr-icon">🔄</span><span class="cat-hdr-title">CI/CD</span><span class="cat-hdr-count">4 articles</span></div>
+    <div class="cat-hdr" id="cicd" data-section="cicd"><span class="cat-hdr-icon">🔄</span><span class="cat-hdr-title">CI/CD</span><span class="cat-hdr-count">4 articles</span></div>
     <div class="content-grid" data-section="cicd">
       <a class="c-card" data-cat="cicd" data-title="CI/CD Pipeline Basics" data-tags="cicd pipeline github-actions automation deployment" href="devops-notes.html#note-cicd-pipeline-basics">
         <div class="c-card-accent"></div><div class="c-card-body">
@@ -406,7 +499,7 @@ location / {
     </div>
 
     <!-- MONITORING -->
-    <div class="cat-hdr" data-section="monitoring"><span class="cat-hdr-icon">📊</span><span class="cat-hdr-title">Monitoring</span><span class="cat-hdr-count">3 articles</span></div>
+    <div class="cat-hdr" id="monitoring" data-section="monitoring"><span class="cat-hdr-icon">📊</span><span class="cat-hdr-title">Monitoring</span><span class="cat-hdr-count">3 articles</span></div>
     <div class="content-grid" data-section="monitoring">
       <a class="c-card" data-cat="monitoring" data-title="Monitoring Stack Architecture" data-tags="monitoring prometheus grafana alertmanager loki" href="devops-notes.html#note-monitoring-stack-architecture">
         <div class="c-card-accent"></div><div class="c-card-body">
@@ -449,7 +542,7 @@ location / {
     </div>
 
     <!-- DEVOPS CAREER -->
-    <div class="cat-hdr" data-section="devops"><span class="cat-hdr-icon">🚀</span><span class="cat-hdr-title">DevOps Career & Mindset</span><span class="cat-hdr-count">9 articles</span></div>
+    <div class="cat-hdr" id="devops" data-section="devops"><span class="cat-hdr-icon">🚀</span><span class="cat-hdr-title">DevOps Career & Mindset</span><span class="cat-hdr-count">9 articles</span></div>
     <div class="content-grid" data-section="devops">
       <a class="c-card" data-cat="devops" data-title="DevOps Roadmap 2026" data-tags="devops roadmap 2026 career path learning" href="devops-notes.html#note-devops-roadmap-2026">
         <div class="c-card-accent"></div><div class="c-card-body">
@@ -615,5 +708,99 @@ location / {
   </div>
 </footer>
 <script src="assets/js/main.js" defer></script>
+<script>
+/* ── Reading progress bar ──────────────────────── */
+window.addEventListener('scroll',()=>{
+  const d=document.documentElement;
+  const prog=(d.scrollTop/(d.scrollHeight-d.clientHeight))*100;
+  document.getElementById('readProg').style.width=prog+'%';
+  const bt=document.getElementById('backTop');
+  d.scrollTop>400?bt.classList.add('vis'):bt.classList.remove('vis');
+});
+
+/* ── Search + filter + highlight ──────────────── */
+const searchInput=document.getElementById('blogSearch');
+const cards=[...document.querySelectorAll('.c-card')];
+const catHdrs=[...document.querySelectorAll('.cat-hdr')];
+const grids=[...document.querySelectorAll('.content-grid')];
+const noRes=document.getElementById('noResults');
+const countEl=document.getElementById('blogCount');
+const pills=[...document.querySelectorAll('.fpill')];
+const featSection=document.getElementById('featuredSection');
+const catJump=document.getElementById('catJump');
+let activeCat='all';
+
+function highlight(text,term){
+  if(!term)return text;
+  const re=new RegExp(`(${term.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')})`, 'gi');
+  return text.replace(re,'<span class="hl">$1</span>');
+}
+
+function applyFilter(){
+  const term=searchInput.value.toLowerCase().trim();
+  let visible=0;
+  const searching=term.length>0;
+  const filtering=activeCat!=='all';
+
+  /* show/hide featured + jump nav when searching or filtering */
+  if(searching||filtering){
+    featSection.style.display='none';
+    catJump.style.display='none';
+  } else {
+    featSection.style.display='';
+    catJump.style.display='';
+  }
+
+  cards.forEach(card=>{
+    const title=(card.dataset.title||'').toLowerCase();
+    const tags=(card.dataset.tags||'').toLowerCase();
+    const cat=(card.dataset.cat||'').toLowerCase();
+    const excerpt=card.querySelector('.c-excerpt');
+    const titleEl=card.querySelector('.c-title');
+    const matchesCat=!filtering||cat===activeCat;
+    const matchesTerm=!searching||title.includes(term)||tags.includes(term)||(excerpt&&excerpt.textContent.toLowerCase().includes(term));
+    const show=matchesCat&&matchesTerm;
+    card.style.display=show?'':'none';
+    if(show){
+      visible++;
+      if(searching){
+        if(titleEl)titleEl.innerHTML=highlight(titleEl.textContent,searchInput.value.trim());
+        if(excerpt)excerpt.innerHTML=highlight(excerpt.textContent,searchInput.value.trim());
+      } else {
+        if(titleEl)titleEl.textContent=titleEl.textContent;
+        if(excerpt)excerpt.textContent=excerpt.textContent;
+      }
+    }
+  });
+
+  /* show/hide section headers based on visible cards */
+  grids.forEach((grid,i)=>{
+    const anyVisible=[...grid.querySelectorAll('.c-card')].some(c=>c.style.display!=='none');
+    if(catHdrs[i]){catHdrs[i].style.display=anyVisible?'':'none';}
+    grid.style.display=anyVisible?'':'none';
+  });
+
+  noRes.style.display=visible===0?'flex':'none';
+  noRes.style.flexDirection='column';
+  noRes.style.alignItems='center';
+  countEl.textContent=visible+' article'+(visible===1?'':'s');
+}
+
+pills.forEach(p=>p.addEventListener('click',()=>{
+  pills.forEach(x=>x.classList.remove('active'));
+  p.classList.add('active');
+  activeCat=p.dataset.cat;
+  applyFilter();
+}));
+searchInput.addEventListener('input',applyFilter);
+
+/* helper functions for no-results buttons */
+function clearSearch(){searchInput.value='';applyFilter();}
+function setFilter(cat){
+  searchInput.value='';
+  pills.forEach(p=>{p.classList.remove('active');if(p.dataset.cat===cat)p.classList.add('active');});
+  activeCat=cat;applyFilter();
+}
+</script>
 </body>
 </html>

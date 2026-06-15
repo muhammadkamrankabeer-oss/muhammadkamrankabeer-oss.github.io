@@ -1,249 +1,1016 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Devriston - Technology Learning Hub</title>
-  <meta name="description" content="Quick technical notes, cheat sheets and interview revision cards for DevOps Engineers, SysAdmins, and Cloud Practitioners.">
-  
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "CollectionPage",
-    "name": "Devriston Technology Learning Hub",
-    "description": "Quick technical notes, cheat sheets and interview revision cards for Linux, Docker, and Git.",
-    "url": "https://www.devriston.com.pk",
-    "mainEntity": {
-      "@type": "ItemList",
-      "itemListElement": [
-        {
-          "@type": "ListItem",
-          "position": 1,
-          "item": {
-            "@type": "TechArticle",
-            "headline": "Linux vs Windows Server",
-            "description": "A structural look at why Linux dominates production server environments over Windows Server."
-          }
-        },
-        {
-          "@type": "ListItem",
-          "position": 2,
-          "item": {
-            "@type": "TechArticle",
-            "headline": "Docker Container Isolation",
-            "description": "Understanding container layers, isolation mechanics, and the role of namespaces."
-          }
-        }
-      ]
-    }
-  }
-  </script>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<meta name="google-site-verification" content="wAaiTAPySebPceM4Bux5hwxIT3hy6BDj_NlLq4aDj5Y"/>
+<title>DevOps Notes | Devriston — 30 Practical Concept Cards</title>
+<meta name="description" content="30 practical DevOps concept cards covering Linux, Docker, AWS, Terraform, CI/CD and Monitoring. Searchable, filterable, shareable. By Muhammad Kamran Kabeer."/>
+<meta name="robots" content="index,follow"/>
+<link rel="canonical" href="https://www.devriston.com.pk/devops-notes.html"/>
+<meta property="og:title" content="DevOps Notes | Devriston — 30 Practical Concept Cards"/>
+<meta property="og:description" content="30 practical DevOps notes — searchable, filterable, shareable. Linux, Docker, AWS, Terraform, CI/CD, Monitoring."/>
+<meta property="og:url" content="https://www.devriston.com.pk/devops-notes.html"/>
+<meta property="og:image" content="https://www.devriston.com.pk/assets/images/banner.png"/>
+<link rel="icon" type="image/png" href="assets/logos/dv-logo.png"/>
+<link rel="stylesheet" href="assets/css/main.css"/>
+<style>
+/* Note card specifics */
+.n-card{background:var(--bg);border:1.5px solid var(--border);border-radius:var(--r-xl);overflow:hidden;box-shadow:var(--shadow-sm);display:flex;flex-direction:column;transition:transform .2s,box-shadow .2s,border-color .2s}
+.n-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
+.n-card[data-cat="linux"]:hover    {border-color:#16a34a}
+.n-card[data-cat="docker"]:hover   {border-color:#0891b2}
+.n-card[data-cat="cloud"]:hover    {border-color:#ea580c}
+.n-card[data-cat="terraform"]:hover{border-color:#7c3aed}
+.n-card[data-cat="cicd"]:hover     {border-color:#16a34a}
+.n-card[data-cat="monitoring"]:hover{border-color:#d97706}
+.n-card[data-cat="devops"]:hover   {border-color:var(--blue)}
+.n-accent{height:4px}
+.n-card[data-cat="linux"]     .n-accent{background:linear-gradient(90deg,#16a34a,#4ade80)}
+.n-card[data-cat="docker"]    .n-accent{background:linear-gradient(90deg,#0891b2,#22d3ee)}
+.n-card[data-cat="cloud"]     .n-accent{background:linear-gradient(90deg,#ea580c,#fb923c)}
+.n-card[data-cat="terraform"] .n-accent{background:linear-gradient(90deg,#7c3aed,#a78bfa)}
+.n-card[data-cat="cicd"]      .n-accent{background:linear-gradient(90deg,#16a34a,#4ade80)}
+.n-card[data-cat="monitoring"].n-accent{background:linear-gradient(90deg,#d97706,#fbbf24)}
+.n-card[data-cat="devops"]    .n-accent{background:linear-gradient(90deg,var(--blue),#60a5fa)}
+.n-body{padding:20px;flex:1;display:flex;flex-direction:column}
+.n-meta{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+.n-num{font-family:var(--f-mono);font-size:.66rem;letter-spacing:.08em;color:var(--text-3)}
+.n-tags{display:flex;gap:5px;flex-wrap:wrap}
+.n-tag{font-size:.63rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;padding:2px 8px;border-radius:var(--r-full)}
+.n-card[data-cat="linux"]     .n-tag{background:#f0fdf4;color:#16a34a}
+.n-card[data-cat="docker"]    .n-tag{background:#ecfeff;color:#0891b2}
+.n-card[data-cat="cloud"]     .n-tag{background:#fff7ed;color:#ea580c}
+.n-card[data-cat="terraform"] .n-tag{background:#f5f3ff;color:#7c3aed}
+.n-card[data-cat="cicd"]      .n-tag{background:#f0fdf4;color:#16a34a}
+.n-card[data-cat="monitoring"].n-tag{background:#fffbeb;color:#d97706}
+.n-card[data-cat="devops"]    .n-tag{background:var(--blue-tint);color:var(--blue)}
+.n-title{font-size:.98rem;font-weight:700;color:var(--text);margin-bottom:8px;line-height:1.35;letter-spacing:-.01em}
+.n-desc{font-size:.83rem;color:var(--text-2);line-height:1.72;margin-bottom:12px;flex:1}
+.n-code{background:var(--navy);border-radius:var(--r);padding:11px 13px;margin-bottom:12px;font-family:var(--f-mono);font-size:.7rem;color:#e2e8f0;line-height:1.7;overflow-x:auto;white-space:pre}
+.n-code .kw{color:#93c5fd}.n-code .cm{color:#6b7280}.n-code .st{color:#86efac}
+.n-code .fn{color:#fcd34d}.n-code .gr{color:#4ade80}.n-code .nm{color:#f9a8d4}
+/* Expand section */
+.n-expand-btn{display:flex;align-items:center;gap:6px;width:100%;background:none;border:none;padding:11px 20px;font-family:var(--f-sans);font-size:.79rem;font-weight:600;color:var(--text-3);cursor:pointer;border-top:1px solid var(--border);transition:all .14s;text-align:left}
+.n-expand-btn:hover{color:var(--blue);background:var(--blue-tint)}
+.n-expand-btn[aria-expanded="true"]{color:var(--blue)}
+.n-expand-btn .earr{margin-left:auto;font-size:.7rem;transition:transform .14s}
+.n-expand-btn[aria-expanded="true"] .earr{transform:rotate(180deg)}
+.n-expanded{display:none;padding:14px 20px 18px;background:var(--bg-2);border-top:1px solid var(--border)}
+.n-expanded.open{display:block}
+.n-expanded p{font-size:.83rem;color:var(--text-2);line-height:1.75;margin-bottom:10px}
+.n-expanded ul{padding-left:15px;display:flex;flex-direction:column;gap:5px}
+.n-expanded li{font-size:.82rem;color:var(--text-2);line-height:1.7}
+.n-expanded strong{color:var(--text);font-weight:600}
+/* Share bar */
+.n-share{display:flex;align-items:center;gap:7px;padding:9px 20px;border-top:1px solid var(--border);background:var(--bg-2)}
+.n-share-url{font-family:var(--f-mono);font-size:.62rem;color:var(--text-3);flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.n-copy-btn{font-family:var(--f-sans);font-size:.7rem;font-weight:600;color:var(--text-3);background:var(--bg);border:1px solid var(--border);border-radius:4px;padding:3px 9px;cursor:pointer;transition:all .14s;white-space:nowrap}
+.n-copy-btn:hover{border-color:var(--blue);color:var(--blue)}
 
-  <style>
-    /* Global System Variables */
-    :root {
-      --bg-dark: #0a0f1d;
-      --card-bg: #111a2e;
-      --text-main: #e2e8f0;
-      --text-muted: #94a3b8;
-      --accent-blue: #3b82f6;
-      --accent-green: #10b981;
-      --accent-purple: #8b5cf6;
-      --border-color: #1e293b;
-      --font-stack: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-    }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    body {
-      background-color: var(--bg-dark);
-      color: var(--text-main);
-      font-family: var(--font-stack);
-      line-height: 1.6;
-      padding: 2rem 1rem;
-    }
-
-    main {
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    /* Modern Utilities */
-    .flex-row-wrap-gap {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 28px;
-      margin-top: 28px;
-    }
-
-    /* Filter Navigation */
-    .nav-filters {
-      display: flex;
-      gap: 10px;
-      margin-bottom: 2rem;
-      flex-wrap: wrap;
-    }
-
-    .filter-btn {
-      background: var(--card-bg);
-      border: 1px solid var(--border-color);
-      color: var(--text-muted);
-      padding: 0.5rem 1rem;
-      border-radius: 6px;
-      cursor: pointer;
-      font-weight: 500;
-      transition: all 0.2s ease;
-    }
-
-    .filter-btn:hover, .filter-btn.active {
-      background: var(--accent-blue);
-      color: #fff;
-      border-color: var(--accent-blue);
-    }
-
-    /* Category Semantic Headers */
-    .cat-hdr {
-      width: 100%;
-      margin: 2rem 0 1rem 0;
-      border-bottom: 2px solid var(--border-color);
-      padding-bottom: 0.5rem;
-    }
-
-    h2.cat-hdr-title {
-      font-size: 1.75rem;
-      color: var(--text-main);
-      text-transform: capitalize;
-    }
-
-    /* Cards Architecture */
-    .grid-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-      gap: 1.5rem;
-    }
-
-    .n-card {
-      background: var(--card-bg);
-      border: 1px solid var(--border-color);
-      border-radius: 12px;
-      padding: 1.5rem;
-      position: relative;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
-
-    .n-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 10px 20px rgba(0,0,0,0.3);
-    }
-
-    .n-card-title {
-      font-size: 1.25rem;
-      margin-bottom: 0.75rem;
-      font-weight: 600;
-      color: #fff;
-    }
-
-    .n-tags {
-      display: flex;
-      gap: 6px;
-      margin-bottom: 1rem;
-      flex-wrap: wrap;
-    }
-
-    .n-tag {
-      font-size: 0.75rem;
-      padding: 0.2rem 0.5rem;
-      border-radius: 4px;
-      background: rgba(255,255,255,0.05);
-      color: var(--text-muted);
-    }
-
-    .n-section-title {
-      font-size: 0.85rem;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      color: var(--accent-blue);
-      margin-top: 1rem;
-      margin-bottom: 0.25rem;
-      font-weight: 700;
-    }
-
-    .n-desc, .n-why, .n-example, .n-tip, .n-practice {
-      font-size: 0.95rem;
-      color: var(--text-main);
-      margin-bottom: 0.75rem;
-    }
-
-    /* Enhanced Code Snippet Containers */
-    .n-code-wrapper {
-      position: relative;
-      margin: 0.75rem 0;
-    }
-
-    .n-code {
-      background: #070b12;
-      border-radius: 6px;
-      padding: 0.75rem;
-      font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
-      font-size: 0.85rem;
-      overflow-x: auto;
-      color: #a9b7c6;
-      border: 1px solid rgba(255,255,255,0.05);
-      display: block;
-      white-space: pre;
-    }
-
-    .copy-btn {
-      position: absolute;
-      top: 6px;
-      right: 6px;
-      background: rgba(255, 255, 255, 0.08);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      color: var(--text-muted);
-      padding: 2px 8px;
-      font-size: 0.75rem;
-      border-radius: 4px;
-      cursor: pointer;
-      transition: background 0.2s, color 0.2s;
-    }
-
-    .copy-btn:hover {
-      background: var(--accent-blue);
-      color: #fff;
-    }
-
-    /* Animations */
-    .fade-up {
-      animation: fadeUp 0.4s ease forwards;
-    }
-
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-  </style>
+/* Python additions */
+.n-card[data-cat="python"]:hover{border-color:#3776ab}
+.n-card[data-cat="python"] .n-accent{background:linear-gradient(90deg,#3776ab,#ffd343)}
+.n-card[data-cat="python"] .n-tag{background:#eff6ff;color:#3776ab}
+.python-lab{margin:40px 0;padding:24px;background:var(--bg);border:1.5px solid var(--border);border-radius:var(--r-xl);box-shadow:var(--shadow-sm)}
+.python-lab h2{margin-bottom:8px}
+.python-editor{width:100%;min-height:180px;background:var(--navy);color:#e2e8f0;border:0;border-radius:var(--r);padding:16px;font-family:var(--f-mono);resize:vertical}
+.python-run{margin-top:12px;background:var(--blue);color:white;border:0;border-radius:var(--r-full);padding:10px 18px;cursor:pointer;font-weight:700}
+.python-output{margin-top:15px;background:#020617;color:#e2e8f0;padding:15px;border-radius:var(--r);min-height:60px;white-space:pre-wrap;font-family:var(--f-mono)}
+</style>
 </head>
 <body>
 
-  <main>
-    <div class="nav-filters">
-      <button class="filter-btn active" data-filter="all">All Modules</button>
-      <button class="filter-btn" data-filter="linux">Linux Core</button>
-      <button class="filter-btn" data-filter="docker">Docker Engines</button>
-      <button class="filter-btn" data-filter="kubernetes">Kubernetes</button>
+<a class="wa-btn" href="https://wa.me/923231450045?text=Hi%20Kamran%2C%20I%20found%20your%20DevOps%20notes%20helpful%20and%20I%27d%20like%20to%20discuss%20a%20project." target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.122 1.532 5.856L.057 23.617a.75.75 0 00.908.98l5.963-1.562A11.943 11.943 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.886 0-3.655-.52-5.168-1.424l-.37-.22-3.539.927.943-3.443-.24-.381A9.96 9.96 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+  WhatsApp
+</a>
+
+<nav id="nav" class="scrolled">
+  <div class="container nav-inner">
+    <a href="index.html" class="nav-logo"><img src="assets/logos/dv-logo.png" alt="Devriston"/><span class="nav-brand">Devri<span>ston</span></span></a>
+    <div class="nav-links">
+      <a href="index.html">Home</a><a href="solutions.html">Solutions</a>
+      <a href="case-studies.html">Case Studies</a><a href="blog.html">Blog</a>
+      <a href="devops-notes.html" class="active">Notes</a><a href="about.html">About</a>
+      <a href="contact.html" class="nav-cta">Book Consultation</a>
+    </div>
+    <button class="ham" onclick="toggleDrawer()" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<div class="drawer" id="nav-drawer">
+  <a href="index.html">Home</a><a href="solutions.html">Solutions</a><a href="case-studies.html">Case Studies</a>
+  <a href="blog.html">Blog</a><a href="devops-notes.html">DevOps Notes</a><a href="about.html">About</a><a href="contact.html">Contact</a>
+</div>
+
+<section class="pg-hero">
+  <div class="container">
+    <div class="breadcrumb"><a href="index.html">Home</a><span class="sep">/</span><span class="cur">DevOps Notes</span></div>
+    <p class="eyebrow" style="color:rgba(77,143,255,1)">Quick Reference</p>
+    <h1 class="fade-up">DevOps Notes</h1>
+    <p class="pg-desc fade-up d2">40 practical concept cards — searchable, filterable, and shareable with direct links. Each card has a code example and expandable deep-dive. Use these for LinkedIn posts, interview prep, or daily reference.</p>
+    <div style="display:flex;flex-wrap:wrap;gap:28px;margin-top:28px" class="fade-up d3">
+      <div class="h-stat"><span class="h-stat-val">30</span><span class="h-stat-lbl">Note Cards</span></div>
+      <div class="h-stat"><span class="h-stat-val">8</span><span class="h-stat-lbl">Categories</span></div>
+      <div class="h-stat"><span class="h-stat-val">🔗</span><span class="h-stat-lbl">Deep Links</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- SEARCH + FILTER -->
+<div class="search-bar">
+  <div class="container" style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;width:100%">
+    <div class="sw" style="flex:1;min-width:200px">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      <input type="text" id="noteSearch" class="search-input" placeholder="Search notes — Docker, Terraform, Linux…" autocomplete="off"/>
+    </div>
+    <div class="filter-pills">
+      <button class="fpill active" data-cat="all">All</button>
+      <button class="fpill" data-cat="linux">Linux</button>
+      <button class="fpill" data-cat="docker">Docker</button>
+      <button class="fpill" data-cat="cloud">Cloud</button>
+      <button class="fpill" data-cat="terraform">Terraform</button>
+      <button class="fpill" data-cat="cicd">CI/CD</button>
+      <button class="fpill" data-cat="monitoring">Monitoring</button>
+      <button class="fpill" data-cat="devops">DevOps</button><button class="fpill" data-cat="python">Python</button>
+    </div>
+    <span class="result-count" id="resultCount">30 notes</span>
+  </div>
+</div>
+
+<main style="background:var(--bg-2);padding-bottom:80px">
+  <div class="container">
+    <div id="noResults" style="display:none;text-align:center;padding:72px 24px"><h3>No notes found</h3><p style="color:var(--text-3)">Try a different search term or clear the filter.</p></div>
+
+    <!-- LINUX -->
+    <div class="cat-hdr" data-section="linux"><span class="cat-hdr-icon">🐧</span><span class="cat-hdr-title">Linux</span><span class="cat-hdr-count">5 notes</span></div>
+    <div class="content-grid" data-section="linux">
+
+      <article class="n-card c-card" data-cat="linux" data-title="Linux vs Windows Server" data-tags="linux server os windows" id="note-linux-vs-windows-server">
+        <div class="n-accent"></div><div class="n-body">
+        <div class="n-meta"><span class="n-num">#01</span><div class="n-tags"><span class="n-tag">Linux</span><span class="n-tag">Server</span></div></div>
+        <h3 class="n-title">Linux vs Windows Server</h3>
+        <p class="n-desc">Linux dominates production because it's open, auditable, lightweight, and fully scriptable. Windows Server costs licensing fees and hides complexity behind GUIs that can't be automated at scale.</p>
+        <div class="n-code"><span class="cm"># Check OS and kernel</span>
+<span class="fn">uname</span> -a
+<span class="fn">cat</span> /etc/os-release
+<span class="cm"># Linux process list — clean, scriptable</span>
+<span class="fn">ps</span> aux | <span class="fn">grep</span> nginx</div>
+        </div>
+        <button class="n-expand-btn" aria-expanded="false" onclick="toggleExpand(this)">Key Differences <span class="earr">▼</span></button>
+        <div class="n-expanded"><ul>
+          <li><strong>Cost:</strong> Linux is free. Windows Server requires CALs + OS licensing.</li>
+          <li><strong>Automation:</strong> Linux is shell-native. Everything is a file or a process.</li>
+          <li><strong>Performance:</strong> Linux runs faster on the same hardware with lower memory overhead.</li>
+          <li><strong>DevOps fit:</strong> Docker, Ansible, Terraform are all Linux-first tools.</li>
+          <li><strong>Security:</strong> Linux has fewer vulnerabilities and a much smaller attack surface.</li>
+        </ul></div>
+      </article>
+
+      <article class="n-card c-card" data-cat="linux" data-title="Why Linux Matters in DevOps" data-tags="linux devops foundation career" id="note-why-linux-matters-in-devops">
+        <div class="n-accent"></div><div class="n-body">
+        <div class="n-meta"><span class="n-num">#02</span><div class="n-tags"><span class="n-tag">Linux</span><span class="n-tag">Foundation</span></div></div>
+        <h3 class="n-title">Why Linux Matters in DevOps</h3>
+        <p class="n-desc">Every cloud VM, Docker container, CI runner, and Kubernetes node runs Linux. Linux fluency is the baseline that unlocks the entire DevOps stack. No shortcuts — this is the foundation.</p>
+        <div class="n-code"><span class="fn">systemctl</span> status nginx
+<span class="fn">journalctl</span> -u nginx --since <span class="st">"1 hour ago"</span>
+<span class="fn">ss</span> -tlnp | <span class="fn">grep</span> :80
+<span class="fn">chmod</span> 640 /etc/nginx/nginx.conf</div>
+        </div>
+        <button class="n-expand-btn" aria-expanded="false" onclick="toggleExpand(this)">Essential Commands <span class="earr">▼</span></button>
+        <div class="n-expanded"><ul>
+          <li><strong>chmod/chown:</strong> Control who can read, write, and execute files.</li>
+          <li><strong>systemctl:</strong> Start, stop, enable, and inspect services.</li>
+          <li><strong>journalctl:</strong> Read structured system logs — your first debugging tool.</li>
+          <li><strong>ss / netstat:</strong> See what ports are open and what's listening.</li>
+          <li><strong>cron:</strong> Schedule tasks without any orchestration tool.</li>
+        </ul></div>
+      </article>
+
+      <article class="n-card c-card" data-cat="linux" data-title="Automating DevOps Workstations" data-tags="linux automation ansible bash workstation" id="note-automating-devops-workstations">
+        <div class="n-accent"></div><div class="n-body">
+        <div class="n-meta"><span class="n-num">#03</span><div class="n-tags"><span class="n-tag">Linux</span><span class="n-tag">Automation</span></div></div>
+        <h3 class="n-title">Automating DevOps Workstations</h3>
+        <p class="n-desc">A fully automated workstation setup means rebuilding your entire dev environment in under 10 minutes. Script once, version-control it, run it anywhere. Never manually install tools again.</p>
+        <div class="n-code"><span class="kw">#!/bin/bash</span>
+TOOLS=(<span class="st">"git"</span> <span class="st">"docker.io"</span> <span class="st">"ansible"</span> <span class="st">"terraform"</span>)
+<span class="kw">for</span> pkg <span class="kw">in</span> <span class="nm">"${TOOLS[@]}"</span>; <span class="kw">do</span>
+  apt-get install -y <span class="nm">$pkg</span> && <span class="fn">echo</span> <span class="st">"✓ $pkg"</span>
+<span class="kw">done</span></div>
+        </div>
+        <button class="n-expand-btn" aria-expanded="false" onclick="toggleExpand(this)">Ansible Approach <span class="earr">▼</span></button>
+        <div class="n-expanded"><ul>
+          <li><strong>Store dotfiles in Git:</strong> .bashrc, .vimrc, .gitconfig — all version-controlled.</li>
+          <li><strong>Use roles:</strong> Separate roles for tools, terminal config, SSH setup.</li>
+          <li><strong>Vault for secrets:</strong> SSH keys, tokens — encrypted in the repo.</li>
+          <li><strong>Result:</strong> New machine fully configured in under 10 minutes.</li>
+        </ul></div>
+      </article>
+
+      <article class="n-card c-card" data-cat="linux" data-title="Building Labs on Old Hardware" data-tags="linux homelab hardware lab" id="note-building-labs-on-old-hardware">
+        <div class="n-accent"></div><div class="n-body">
+        <div class="n-meta"><span class="n-num">#04</span><div class="n-tags"><span class="n-tag">Linux</span><span class="n-tag">Homelab</span></div></div>
+        <h3 class="n-title">Building Labs on Old Hardware</h3>
+        <p class="n-desc">You don't need expensive servers. An old laptop or refurbished Dell with 8–16GB RAM runs a full DevOps lab — Linux, Docker, Ansible, and a monitoring stack simultaneously.</p>
+        <div class="n-code"><span class="fn">free</span> -h          <span class="cm"># RAM available</span>
+<span class="fn">nproc</span>            <span class="cm"># CPU cores</span>
+<span class="fn">df</span> -h /          <span class="cm"># Disk space</span>
+<span class="gr"># 8GB RAM = full DevOps lab possible</span></div>
+        </div>
+        <button class="n-expand-btn" aria-expanded="false" onclick="toggleExpand(this)">Recommended Lab Stack <span class="earr">▼</span></button>
+        <div class="n-expanded"><ul>
+          <li><strong>OS:</strong> Ubuntu Server 22.04 LTS — stable, well-documented, free.</li>
+          <li><strong>Virtualization:</strong> KVM + libvirt for running multiple VMs on one machine.</li>
+          <li><strong>Containers:</strong> Docker Compose for multi-service lab environments.</li>
+          <li><strong>RAM target:</strong> 8GB minimum. 16GB for a comfortable multi-VM setup.</li>
+          <li><strong>Networking:</strong> Use static IPs for consistent lab addressing.</li>
+        </ul></div>
+      </article>
+
+      <article class="n-card c-card" data-cat="linux" data-title="DevOps Homelab Architecture" data-tags="linux homelab architecture lab design" id="note-devops-homelab-architecture">
+        <div class="n-accent"></div><div class="n-body">
+        <div class="n-meta"><span class="n-num">#05</span><div class="n-tags"><span class="n-tag">Linux</span><span class="n-tag">Homelab</span></div></div>
+        <h3 class="n-title">DevOps Homelab Architecture</h3>
+        <p class="n-desc">A well-designed homelab mirrors production: a control node runs Ansible, target VMs simulate servers, Docker runs services, monitoring watches everything. Same tools, smaller scale.</p>
+        <div class="n-code"><span class="gr">control-node  192.168.1.10</span>
+  ├── Ansible + Terraform
+server-01     192.168.1.11
+  └── Docker + Compose apps
+monitor-01    192.168.1.12
+  └── Prometheus + Grafana</div>
+        </div>
+        <button class="n-expand-btn" aria-expanded="false" onclick="toggleExpand(this)">Why Build a Homelab <span class="earr">▼</span></button>
+        <div class="n-expanded"><ul>
+          <li><strong>Safe failure:</strong> Break things without consequences. Learn from real errors.</li>
+          <li><strong>GitHub portfolio:</strong> Every lab becomes a documented repo employers can see.</li>
+          <li><strong>Cost:</strong> AWS charges by the hour. Your homelab charges once (electricity).</li>
+          <li><strong>Speed:</strong> No cloud latency. Instant feedback loops for Ansible and Docker.</li>
+        </ul></div>
+      </article>
+
     </div>
 
-    <div class="flex-row-wrap-gap">
-      
-      <header class="cat-hdr" data-section="linux">
-        <h2 class="cat-hdr-title">Linux Core Systems</h2>
-      </header>
-      
-      <div class="grid-container" id="linux-grid">
-        <article class="n-card fade-up" data-module="linux">
-          <div class="n-card-title">Linux vs Windows Server</div>
-          <div class="n-
+    <!-- DOCKER -->
+    <div class="cat-hdr" data-section="docker"><span class="cat-hdr-icon">🐳</span><span class="cat-hdr-title">Docker</span><span class="cat-hdr-count">5 notes</span></div>
+    <div class="content-grid" data-section="docker">
+
+      <article class="n-card c-card" data-cat="docker" data-title="What is Docker?" data-tags="docker containers basics intro" id="note-what-is-docker">
+        <div class="n-accent"></div><div class="n-body">
+        <div class="n-meta"><span class="n-num">#06</span><div class="n-tags"><span class="n-tag">Docker</span><span class="n-tag">Basics</span></div></div>
+        <h3 class="n-title">What is Docker?</h3>
+        <p class="n-desc">Docker packages your application and all its dependencies into a container — a lightweight, portable unit that runs identically on any machine. No more "works on my laptop".</p>
+        <div class="n-code"><span class="fn">docker</span> run -d -p 80:80 --name web nginx
+<span class="fn">docker</span> ps
+<span class="fn">docker</span> logs web --follow
+<span class="fn">docker</span> exec -it web bash</div>
+        </div>
+        <button class="n-expand-btn" aria-expanded="false" onclick="toggleExpand(this)">Core Concepts <span class="earr">▼</span></button>
+        <div class="n-expanded"><ul>
+          <li><strong>Image:</strong> Read-only template built from a Dockerfile. Stored in a registry.</li>
+          <li><strong>Container:</strong> A running instance of an image. Ephemeral by default.</li>
+          <li><strong>Registry:</strong> Docker Hub, AWS ECR, GHCR — where images are stored.</li>
+          <li><strong>Volume:</strong> Persistent storage that survives container restarts.</li>
+          <li><strong>Network:</strong> How containers talk to each other and the outside world.</li>
+        </ul></div>
+      </article>
+
+      <article class="n-card c-card" data-cat="docker" data-title="Docker vs Virtual Machines" data-tags="docker vm containers comparison" id="note-docker-vs-virtual-machines">
+        <div class="n-accent"></div><div class="n-body">
+        <div class="n-meta"><span class="n-num">#07</span><div class="n-tags"><span class="n-tag">Docker</span><span class="n-tag">VMs</span></div></div>
+        <h3 class="n-title">Docker vs Virtual Machines</h3>
+        <p class="n-desc">VMs virtualise hardware — each gets its own OS kernel eating GBs of RAM. Docker containers share the host kernel and start in milliseconds. For microservices, Docker wins on density and speed.</p>
+        <div class="n-code"><span class="cm">VM:  App → Guest OS → Hypervisor → Host OS</span>
+<span class="cm">Con: App → Docker Engine → Host OS</span>
+
+Startup: VM=60s  <span class="gr">Container=&lt;1s</span>
+RAM:     VM=2GB  <span class="gr">Container=50MB</span></div>
+        </div>
+        <button class="n-expand-btn" aria-expanded="false" onclick="toggleExpand(this)">When to Use Each <span class="earr">▼</span></button>
+        <div class="n-expanded"><ul>
+          <li><strong>Use VMs when:</strong> You need full OS isolation, different kernels, or legacy apps requiring a specific OS.</li>
+          <li><strong>Use Containers when:</strong> Running microservices, needing fast scaling, or wanting consistent dev/prod environments.</li>
+          <li><strong>Use both:</strong> In Kubernetes — VMs (nodes) run container workloads.</li>
+        </ul></div>
+      </article>
+
+      <article class="n-card c-card" data-cat="docker" data-title="Docker Volumes" data-tags="docker volumes storage persistence" id="note-docker-volumes">
+        <div class="n-accent"></div><div class="n-body">
+        <div class="n-meta"><span class="n-num">#08</span><div class="n-tags"><span class="n-tag">Docker</span><span class="n-tag">Storage</span></div></div>
+        <h3 class="n-title">Docker Volumes</h3>
+        <p class="n-desc">Containers are ephemeral — kill one and its filesystem is gone. Volumes are persistent storage managed by Docker, surviving container restarts, removals, and recreations.</p>
+        <div class="n-code"><span class="kw">version:</span> <span class="st">'3.9'</span>
+<span class="kw">services:</span>
+  <span class="nm">postgres:</span>
+    <span class="kw">image:</span> postgres:15
+    <span class="kw">volumes:</span>
+      - <span class="st">pgdata:/var/lib/postgresql/data</span>
+<span class="kw">volumes:</span>
+  <span class="nm">pgdata:</span>  <span class="cm"># named — Docker managed</span></div>
+        </div>
+        <button class="n-expand-btn" aria-expanded="false" onclick="toggleExpand(this)">Volume Types <span class="earr">▼</span></button>
+        <div class="n-expanded"><ul>
+          <li><strong>Named volumes:</strong> Docker manages the path. Best for databases.</li>
+          <li><strong>Bind mounts:</strong> Map a host path directly. Good for dev (live reload). Risky in prod.</li>
+          <li><strong>tmpfs:</strong> In-memory only. Fast, non-persistent. Good for secrets or temp data.</li>
+        </ul></div>
+      </article>
+
+      <article class="n-card c-card" data-cat="docker" data-title="Docker Networking" data-tags="docker network bridge overlay" id="note-docker-networking">
+        <div class="n-accent"></div><div class="n-body">
+        <div class="n-meta"><span class="n-num">#09</span><div class="n-tags"><span class="n-tag">Docker</span><span class="n-tag">Networking</span></div></div>
+        <h3 class="n-title">Docker Networking</h3>
+        <p class="n-desc">Containers need to communicate — with each other, the host, and the internet. Docker provides network drivers for each use case: bridge, host, overlay, and none.</p>
+        <div class="n-code"><span class="fn">docker</span> network create app-net
+<span class="fn">docker</span> run -d --network app-net --name api  myapi
+<span class="fn">docker</span> run -d --network app-net --name db   postgres
+<span class="cm"># api resolves db by name: db:5432</span>
+<span class="fn">docker</span> network inspect app-net</div>
+        </div>
+        <button class="n-expand-btn" aria-expanded="false" onclick="toggleExpand(this)">Network Driver Types <span class="earr">▼</span></button>
+        <div class="n-expanded"><ul>
+          <li><strong>bridge (default):</strong> Isolated network on the host. Containers resolve each other by name.</li>
+          <li><strong>host:</strong> Container shares host's network stack. Fastest performance, no isolation.</li>
+          <li><strong>overlay:</strong> Multi-host networking for Docker Swarm.</li>
+          <li><strong>none:</strong> No networking. Fully isolated container for security-critical workloads.</li>
+        </ul></div>
+      </article>
+
+      <article class="n-card c-card" data-cat="docker" data-title="Docker Mistakes Beginners Make" data-tags="docker mistakes best-practices production" id="note-docker-mistakes-beginners-make">
+        <div class="n-accent"></div><div class="n-body">
+        <div class="n-meta"><span class="n-num">#10</span><div class="n-tags"><span class="n-tag">Docker</span><span class="n-tag">Best Practices</span></div></div>
+        <h3 class="n-title">Docker Mistakes Beginners Make</h3>
+        <p class="n-desc">Most Docker production problems come from the same repeated mistakes: running as root, using :latest tags, ignoring .dockerignore, storing state in containers, and fat images.</p>
+        <div class="n-code"><span class="cm"># ❌ Bad</span>
+<span class="kw">FROM</span> ubuntu:latest
+<span class="kw">COPY</span> . .
+<span class="cm"># ✅ Good</span>
+<span class="kw">FROM</span> python:3.11-slim
+<span class="kw">COPY</span> requirements.txt .
+<span class="kw">RUN</span> pip install -r requirements.txt
+<span class="kw">USER</span> appuser</div>
+        </div>
+        <button class="n-expand-btn" aria-expanded="false" onclick="toggleExpand(this)">Top 5 Mistakes <span class="earr">▼</span></button>
+        <div class="n-expanded"><ul>
+          <li><strong>:latest tags:</strong> Unpredictable builds. Always pin image versions.</li>
+          <li><strong>Running as root:</strong> Major security risk. Add a non-root USER in your Dockerfile.</li>
+          <li><strong>No .dockerignore:</strong> Copies node_modules, .git, secrets into the image.</li>
+          <li><strong>Fat images:</strong> Use slim/alpine base images. Multi-stage builds for compiled apps.</li>
+          <li><strong>State in containers:</strong> Use volumes for databases and persistent data.</li>
+        </ul></div>
+      </article>
+
+    </div>
+
+    <!-- CLOUD / AWS -->
+    <div class="cat-hdr" data-section="cloud"><span class="cat-hdr-icon">☁️</span><span class="cat-hdr-title">Cloud / AWS</span><span class="cat-hdr-count">5 notes</span></div>
+    <div class="content-grid" data-section="cloud">
+
+      <article class="n-card c-card" data-cat="cloud" data-title="What is AWS EC2?" data-tags="aws ec2 cloud compute" id="note-what-is-aws-ec2">
+        <div class="n-accent"></div><div class="n-body">
+        <div class="n-meta"><span class="n-num">#11</span><div class="n-tags"><span class="n-tag">AWS</span><span class="n-tag">Compute</span></div></div>
+        <h3 class="n-title">What is AWS EC2?</h3>
+        <p class="n-desc">EC2 (Elastic Compute Cloud) is AWS's virtual server service. Pick the CPU, RAM, and OS — AWS runs it. Pay per second. Scale from one instance to thousands in minutes.</p>
+        <div class="n-code"><span class="fn">aws</span> ec2 run-instances \
+  --image-id ami-0c55b159cbfafe1f0 \
+  --instance-type t3.micro \
+  --key-name my-key \
+  --security-group-ids sg-12345
+<span class="fn">ssh</span> -i my-key.pem ubuntu@PUBLIC_IP</div>
+        </div>
+        <button class="n-expand-btn" aria-expanded="false" onclick="toggleExpand(this)">EC2 Key Concepts <span class="earr">▼</span></button>
+        <div class="n-expanded"><ul>
+          <li><strong>AMI:</strong> Amazon Machine Image — the OS template. Choose Ubuntu, RHEL, Amazon Linux.</li>
+          <li><strong>Instance types:</strong> t3.micro (cheap, burstable), m5.large (balanced), c5 (CPU).</li>
+          <li><strong>Elastic IP:</strong> Static public IP that persists across instance restarts.</li>
+          <li><strong>Security Groups:</strong> Stateful firewall. Define inbound/outbound rules per instance.</li>
+          <li><strong>User Data:</strong> Bootstrap script that runs on first launch — install packages, configure services.</li>
+        </ul></div>
+      </article>
+
+      <article class="n-card c-card" data-cat="cloud" data-title="What is a VPC?" data-tags="aws vpc networking subnets" id="note-what-is-a-vpc">
+        <div class="n-accent"></div><div class="n-body">
+        <div class="n-meta"><span class="n-num">#12</span><div class="n-tags"><span class="n-tag">AWS</span><span class="n-tag">Networking</span></div></div>
+        <h3 class="n-title">What is a VPC?</h3>
+        <p class="n-desc">A Virtual Private Cloud is your own isolated network inside AWS. You define IP ranges, subnets, routing tables, and internet access. Think of it as your private data centre in the cloud.</p>
+        <div class="n-code"><span class="gr">VPC: 10.0.0.0/16</span>
+├── Public:  10.0.1.0/24  <span class="cm">← web+NAT</span>
+│     ├── EC2 (web server)
+│     └── NAT Gateway
+└── Private: 10.0.2.0/24  <span class="cm">← app+db</span>
+      ├── EC2 (app server)
+      └── RDS (database)</div>
+        </div>
+        <button class="n-expand-btn" aria-expanded="false" onclick="toggleExpand(this)">VPC Components <span class="earr">▼</span></button>
+        <div class="n-expanded"><ul>
+          <li><strong>Subnet:</strong> Public subnets have routes to the internet. Private do not.</li>
+          <li><strong>Internet Gateway (IGW):</strong> The door between your VPC and the internet.</li>
+          <li><strong>NAT Gateway:</strong> Lets private instances reach the internet without being reachable from it.</li>
+          <li><strong>Route Table:</strong> Rules for where traffic goes. Associate with subnets.</li>
+          <li><strong>NACL vs Security Group:</strong> NACLs are stateless subnet-level rules; SGs are stateful instance-level.</li>
+        </ul></div>
+      </article>
+
+      <article class="n-card c-card" data-cat="cloud" data-title="Load Balancer Explained" data-tags="aws alb nlb load-balancer" id="note-load-balancer-explained">
+        <div class="n-accent"></div><div class="n-body">
+        <div class="n-meta"><span class="n-num">#13</span><div class="n-tags"><span class="n-tag">AWS</span><span class="n-tag">Load Balancer</span></div></div>
+        <h3 class="n-title">Load Balancer Explained</h3>
+        <p class="n-desc">A load balancer distributes incoming traffic across multiple servers so no single instance gets overwhelmed. AWS ALB (Application Load Balancer) works at Layer 7 — routing by URL path, headers, and hostnames.</p>
+        <div class="n-code"><span class="gr">Client → ALB (port 443)</span>
+  ├── /api/*   → Target Group A
+  ├── /app/*   → Target Group B
+  └── /*       → Target Group C
+<span class="cm">Health Check: GET /health → 200 OK</span></div>
+        </div>
+        <button class="n-expand-btn" aria-expanded="false" onclick="toggleExpand(this)">ALB vs NLB vs CLB <span class="earr">▼</span></button>
+        <div class="n-expanded"><ul>
+          <li><strong>ALB (Application):</strong> Layer 7. HTTP/HTTPS. Path and host-based routing. Best for web apps.</li>
+          <li><strong>NLB (Network):</strong> Layer 4. TCP/UDP. Ultra-low latency. Best for high-throughput workloads.</li>
+          <li><strong>CLB (Classic):</strong> Legacy. Don't use for new projects.</li>
+        </ul></div>
+      </article>
+
+      <article class="n-card c-card" data-cat="cloud" data-title="Reverse Proxy vs Load Balancer" data-tags="nginx proxy load-balancer networking" id="note-reverse-proxy-vs-load-balancer">
+        <div class="n-accent"></div><div class="n-body">
+        <div class="n-meta"><span class="n-num">#14</span><div class="n-tags"><span class="n-tag">Cloud</span><span class="n-tag">Nginx</span></div></div>
+        <h3 class="n-title">Reverse Proxy vs Load Balancer</h3>
+        <p class="n-desc">Both sit in front of your servers — but serve different roles. A reverse proxy handles SSL termination, caching, and routing. A load balancer distributes traffic across backend instances.</p>
+        <div class="n-code"><span class="cm"># nginx as reverse proxy</span>
+server {
+  listen 443 ssl;
+  server_name api.devriston.com.pk;
+  location / {
+    proxy_pass http://localhost:3000;
+    proxy_set_header Host $host;
+  }
+}</div>
+        </div>
+        <button class="n-expand-btn" aria-expanded="false" onclick="toggleExpand(this)">Key Differences <span class="earr">▼</span></button>
+        <div class="n-expanded"><ul>
+          <li><strong>Reverse Proxy:</strong> Terminates client connections. Handles SSL, caching, compression, auth.</li>
+          <li><strong>Load Balancer:</strong> Distributes connections across multiple backend targets.</li>
+          <li><strong>AWS combo:</strong> ALB (LB) → EC2s running Nginx (reverse proxy) → application.</li>
+        </ul></div>
+      </article>
+
+      <article class="n-card c-card" data-cat="cloud" data-title="High Availability Basics" data-tags="aws ha cloud architecture redundancy" id="note-high-availability-basics">
+        <div class="n-accent"></div><div class="n-body">
+        <div class="n-meta"><span class="n-num">#15</span><div class="n-tags"><span class="n-tag">AWS</span><span class="n-tag">Architecture</span></div></div>
+        <h3 class="n-title">High Availability Basics</h3>
+        <p class="n-desc">HA means your system keeps running even when individual components fail. The core principle: eliminate single points of failure. Deploy across multiple AZs. Use health checks and auto-recovery.</p>
+        <div class="n-code"><span class="gr">HA Architecture — 2 AZ</span>
+         ALB
+        /   \
+    AZ-1     AZ-2
+     EC2       EC2
+     RDS  ←→  RDS
+  (primary)  (standby)
+<span class="cm">Failover: automatic. RTO: ~60s</span></div>
+        </div>
+        <button class="n-expand-btn" aria-expanded="false" onclick="toggleExpand(this)">HA Checklist <span class="earr">▼</span></button>
+        <div class="n-expanded"><ul>
+          <li><strong>Multi-AZ:</strong> Deploy app servers in at least 2 Availability Zones behind a load balancer.</li>
+          <li><strong>RDS Multi-AZ:</strong> AWS automatically maintains a standby replica. Failover in ~60 seconds.</li>
+          <li><strong>Auto Scaling Groups:</strong> Replace failed instances automatically based on health checks.</li>
+          <li><strong>Stateless apps:</strong> Store session data in Redis/ElastiCache, not in-memory.</li>
+        </ul></div>
+      </article>
+
+    </div>
+
+    <!-- TERRAFORM / IaC -->
+    <div class="cat-hdr" data-section="terraform"><span class="cat-hdr-icon">⚙️</span><span class="cat-hdr-title">Terraform / IaC</span><span class="cat-hdr-count">4 notes</span></div>
+    <div class="content-grid" data-section="terraform">
+
+      <article class="n-card c-card" data-cat="terraform" data-title="Infrastructure as Code" data-tags="terraform iac devops automation" id="note-infrastructure-as-code">
+        <div class="n-accent"></div><div class="n-body">
+        <div class="n-meta"><span class="n-num">#16</span><div class="n-tags"><span class="n-tag">Terraform</span><span class="n-tag">IaC</span></div></div>
+        <h3 class="n-title">Infrastructure as Code</h3>
+        <p class="n-desc">IaC means your servers, networks, and cloud resources are defined in code files — not manually configured. Reproducible, reviewable in Git, and deployable in minutes — not days.</p>
+        <div class="n-code"><span class="kw">resource</span> <span class="st">"aws_instance"</span> <span class="st">"web"</span> {
+  <span class="nm">ami</span>           = <span class="st">"ami-0c55b159cbfafe1f0"</span>
+  <span class="nm">instance_type</span> = <span class="st">"t3.micro"</span>
+  <span class="nm">tags</span> = {
+    Name      = <span class="st">"devriston-web"</span>
+    ManagedBy = <span class="st">"terraform"</span>
+  }
+}</div>
+        </div>
+        <button class="n-expand-btn" aria-expanded="false" onclick="toggleExpand(this)">IaC Benefits <span class="earr">▼</span></button>
+        <div class="n-expanded"><ul>
+          <li><strong>Reproducibility:</strong> Run the same code in dev, staging, and prod — identical infrastructure every time.</li>
+          <li><strong>Version control:</strong> Infrastructure changes go through Git PRs, code review, and audit history.</li>
+          <li><strong>Disaster recovery:</strong> Rebuild your entire environment from code in minutes, not days.</li>
+          <li><strong>Drift detection:</strong> Terraform detects when real infrastructure diverges from declared state.</li>
+        </ul></div>
+      </article>
+
+      <article class="n-card c-card" data-cat="terraform" data-title="Why Terraform Matters" data-tags="terraform iac cloud multi-provider" id="note-why-terraform-matters">
+        <div class="n-accent"></div><div class="n-body">
+        <div class="n-meta"><span class="n-num">#17</span><div class="n-tags"><span class="n-tag">Terraform</span><span class="n-tag">Multi-Cloud</span></div></div>
+        <h3 class="n-title">Why Terraform Matters</h3>
+        <p class="n-desc">Terraform is cloud-agnostic. Write infrastructure for AWS today, replicate on GCP or Azure tomorrow with minimal changes. 3000+ providers cover everything from DNS to Kubernetes to GitHub.</p>
+        <div class="n-code"><span class="fn">terraform</span> init     <span class="cm"># download providers + modules</span>
+<span class="fn">terraform</span> plan     <span class="cm"># show what will change</span>
+<span class="fn">terraform</span> apply    <span class="cm"># execute the changes</span>
+
+<span class="gr">+ aws_instance.web will be created</span>
+<span class="gr">Plan: 2 to add, 0 to change, 0 to destroy.</span></div>
+        </div>
+        <button class="n-expand-btn" aria-expanded="false" onclick="toggleExpand(this)">Terraform vs CloudFormation <span class="earr">▼</span></button>
+        <div class="n-expanded"><ul>
+          <li><strong>Terraform:</strong> HCL language. Multi-cloud. 3000+ providers. The industry standard.</li>
+          <li><strong>CloudFormation:</strong> AWS-only. YAML/JSON. Good if you're 100% AWS forever.</li>
+          <li><strong>Pulumi:</strong> Write IaC in Python/TypeScript/Go. Great for developers who dislike HCL.</li>
+        </ul></div>
+      </article>
+
+      <article class="n-card c-card" data-cat="terraform" data-title="Terraform State" data-tags="terraform state remote backend s3" id="note-terraform-state">
+        <div class="n-accent"></div><div class="n-body">
+        <div class="n-meta"><span class="n-num">#18</span><div class="n-tags"><span class="n-tag">Terraform</span><span class="n-tag">State</span></div></div>
+        <h3 class="n-title">Terraform State</h3>
+        <p class="n-desc">Terraform tracks what it has built in a state file. This is how it knows what exists, what changed, and what to destroy. Never commit state to Git — use remote backends like S3 with DynamoDB locking.</p>
+        <div class="n-code"><span class="kw">terraform</span> {
+  <span class="kw">backend</span> <span class="st">"s3"</span> {
+    <span class="nm">bucket</span>         = <span class="st">"devriston-tf-state"</span>
+    <span class="nm">key</span>            = <span class="st">"prod/terraform.tfstate"</span>
+    <span class="nm">region</span>         = <span class="st">"us-east-1"</span>
+    <span class="nm">dynamodb_table</span> = <span class="st">"tf-lock"</span>
+    <span class="nm">encrypt</span>        = <span class="kw">true</span>
+  }
+}</div>
+        </div>
+        <button class="n-expand-btn" aria-expanded="false" onclick="toggleExpand(this)">State Best Practices <span class="earr">▼</span></button>
+        <div class="n-expanded"><ul>
+          <li><strong>Remote backend:</strong> Store state in S3. Never local files in a team environment.</li>
+          <li><strong>State locking:</strong> Use DynamoDB to prevent simultaneous terraform apply runs.</li>
+          <li><strong>Encryption:</strong> State files contain secrets. Always encrypt at rest and in transit.</li>
+          <li><strong>Never edit manually:</strong> Direct state edits corrupt tracking. Use CLI commands instead.</li>
+        </ul></div>
+      </article>
+
+      <article class="n-card c-card" data-cat="terraform" data-title="What is Ansible?" data-tags="ansible automation iac configuration" id="note-what-is-ansible">
+        <div class="n-accent"></div><div class="n-body">
+        <div class="n-meta"><span class="n-num">#19</span><div class="n-tags"><span class="n-tag">Ansible</span><span class="n-tag">Automation</span></div></div>
+        <h3 class="n-title">What is Ansible?</h3>
+        <p class="n-desc">Ansible automates server configuration over SSH — no agent required. Write a playbook in YAML, run it against 1 or 1000 servers, get the same result every time. Idempotent by design.</p>
+        <div class="n-code">- <span class="kw">name:</span> <span class="st">Install and start Nginx</span>
+  <span class="kw">hosts:</span> webservers
+  <span class="kw">become:</span> <span class="kw">true</span>
+  <span class="kw">tasks:</span>
+    - <span class="kw">apt:</span>     name=nginx state=present
+    - <span class="kw">service:</span> name=nginx state=started
+                  enabled=yes</div>
+        </div>
+        <button class="n-expand-btn" aria-expanded="false" onclick="toggleExpand(this)">Ansible vs Terraform <span class="earr">▼</span></button>
+        <div class="n-expanded"><ul>
+          <li><strong>Terraform:</strong> Provisions infrastructure (creates servers, networks, databases). Declarative.</li>
+          <li><strong>Ansible:</strong> Configures what's inside servers (installs software, manages users). Procedural YAML.</li>
+          <li><strong>Together:</strong> Terraform builds the VM, Ansible configures it. Perfect combination.</li>
+          <li><strong>Ansible strength:</strong> No agent. Works with any SSH-accessible machine.</li>
+        </ul></div>
+      </article>
+
+    </div>
+
+    <!-- CI/CD -->
+    <div class="cat-hdr" data-section="cicd"><span class="cat-hdr-icon">🔄</span><span class="cat-hdr-title">CI/CD</span><span class="cat-hdr-count">4 notes</span></div>
+    <div class="content-grid" data-section="cicd">
+
+      <article class="n-card c-card" data-cat="cicd" data-title="CI/CD Pipeline Basics" data-tags="cicd pipeline github-actions automation" id="note-cicd-pipeline-basics">
+        <div class="n-accent"></div><div class="n-body">
+        <div class="n-meta"><span class="n-num">#20</span><div class="n-tags"><span class="n-tag">CI/CD</span><span class="n-tag">Pipelines</span></div></div>
+        <h3 class="n-title">CI/CD Pipeline Basics</h3>
+        <p class="n-desc">CI automatically builds and tests code on every commit. CD ships passing builds to staging or production. Together: faster, safer shipping — zero manual deployment steps.</p>
+        <div class="n-code"><span class="kw">name:</span> CI/CD Pipeline
+<span class="kw">on:</span>
+  <span class="kw">push:</span>
+    <span class="kw">branches:</span> [main]
+<span class="kw">jobs:</span>
+  <span class="nm">build-test-deploy:</span>
+    <span class="kw">runs-on:</span> ubuntu-latest
+    <span class="kw">steps:</span>
+      - docker build → test → push → deploy</div>
+        </div>
+        <button class="n-expand-btn" aria-expanded="false" onclick="toggleExpand(this)">Pipeline Stages <span class="earr">▼</span></button>
+        <div class="n-expanded"><ul>
+          <li><strong>Source:</strong> Git push triggers the pipeline.</li>
+          <li><strong>Build:</strong> Compile code, build Docker image, resolve dependencies.</li>
+          <li><strong>Test:</strong> Unit tests, integration tests, security scans, linting.</li>
+          <li><strong>Staging deploy:</strong> Deploy to pre-production for final verification.</li>
+          <li><strong>Production deploy:</strong> Blue/green, canary, or rolling deployment.</li>
+        </ul></div>
+      </article>
+
+      <article class="n-card c-card" data-cat="cicd" data-title="GitHub Actions vs Jenkins" data-tags="cicd github-actions jenkins comparison" id="note-github-actions-vs-jenkins">
+        <div class="n-accent"></div><div class="n-body">
+        <div class="n-meta"><span class="n-num">#21</span><div class="n-tags"><span class="n-tag">CI/CD</span><span class="n-tag">GitHub Actions</span></div></div>
+        <h3 class="n-title">GitHub Actions vs Jenkins</h3>
+        <p class="n-desc">Jenkins is powerful, self-hosted CI — but requires maintenance and plugins. GitHub Actions is managed, YAML-driven, and integrates natively with your repo. For most teams, Actions wins.</p>
+        <div class="n-code"><span class="cm">Feature        GH Actions    Jenkins</span>
+Setup time      <span class="gr">Minutes</span>       Hours/Days
+Infrastructure  <span class="gr">Managed</span>       Self-hosted
+Config          <span class="gr">YAML</span>          Groovy DSL
+Cost            <span class="gr">Free tier</span>     Server cost
+Marketplace     <span class="gr">10,000+</span>       1,800 plugins</div>
+        </div>
+        <button class="n-expand-btn" aria-expanded="false" onclick="toggleExpand(this)">When to Choose Each <span class="earr">▼</span></button>
+        <div class="n-expanded"><ul>
+          <li><strong>GitHub Actions:</strong> Code is on GitHub, want zero infra overhead, don't need deep customisation.</li>
+          <li><strong>Jenkins:</strong> Complex multi-team pipelines, self-hosted runners for compliance, existing investment.</li>
+        </ul></div>
+      </article>
+
+      <article class="n-card c-card" data-cat="cicd" data-title="Self-Healing Infrastructure" data-tags="cicd docker self-healing automation reliability" id="note-self-healing-infrastructure">
+        <div class="n-accent"></div><div class="n-body">
+        <div class="n-meta"><span class="n-num">#22</span><div class="n-tags"><span class="n-tag">Docker</span><span class="n-tag">Reliability</span></div></div>
+        <h3 class="n-title">Self-Healing Infrastructure</h3>
+        <p class="n-desc">Self-healing means your infrastructure automatically detects and recovers from failures without human intervention. Docker health checks, restart policies, and AWS Auto Scaling are the building blocks.</p>
+        <div class="n-code"><span class="kw">healthcheck:</span>
+  test: [<span class="st">"CMD"</span>,<span class="st">"curl"</span>,<span class="st">"-f"</span>,
+         <span class="st">"http://localhost:3000/health"</span>]
+  <span class="kw">interval:</span> 30s
+  <span class="kw">timeout:</span>  10s
+  <span class="kw">retries:</span>  3
+<span class="kw">restart:</span> unless-stopped</div>
+        </div>
+        <button class="n-expand-btn" aria-expanded="false" onclick="toggleExpand(this)">Self-Healing Layers <span class="earr">▼</span></button>
+        <div class="n-expanded"><ul>
+          <li><strong>Process level:</strong> systemd restarts services; Docker restart policies restart containers.</li>
+          <li><strong>Container level:</strong> Health checks detect failed containers; Compose replaces them.</li>
+          <li><strong>Instance level:</strong> AWS Auto Scaling replaces unhealthy EC2s; ALB stops routing to them.</li>
+        </ul></div>
+      </article>
+
+      <article class="n-card c-card" data-cat="cicd" data-title="Git Branching Strategy" data-tags="git cicd branching gitflow trunk" id="note-git-branching-strategy">
+        <div class="n-accent"></div><div class="n-body">
+        <div class="n-meta"><span class="n-num">#23</span><div class="n-tags"><span class="n-tag">Git</span><span class="n-tag">CI/CD</span></div></div>
+        <h3 class="n-title">Git Branching Strategy</h3>
+        <p class="n-desc">A branching strategy defines how teams collaborate in Git. GitFlow uses long-lived branches. Trunk-based development uses short-lived feature branches merged to main frequently. For CI/CD, trunk-based wins.</p>
+        <div class="n-code"><span class="fn">git</span> checkout -b feature/add-monitoring
+<span class="cm"># ... make changes ...</span>
+<span class="fn">git</span> add . && <span class="fn">git</span> commit -m <span class="st">"feat: prometheus"</span>
+<span class="fn">git</span> push origin feature/add-monitoring
+<span class="cm"># PR → review → merge → CI/CD triggers</span></div>
+        </div>
+        <button class="n-expand-btn" aria-expanded="false" onclick="toggleExpand(this)">Strategies Compared <span class="earr">▼</span></button>
+        <div class="n-expanded"><ul>
+          <li><strong>Trunk-based:</strong> All developers commit to main (or short branches). CI runs on every commit. Fast, clean.</li>
+          <li><strong>GitFlow:</strong> main + develop + feature + release + hotfix. Heavyweight but structured.</li>
+          <li><strong>GitHub Flow:</strong> main + feature branches + PRs. Simple. Good for small teams.</li>
+        </ul></div>
+      </article>
+
+    </div>
+
+    <!-- MONITORING -->
+    <div class="cat-hdr" data-section="monitoring"><span class="cat-hdr-icon">📊</span><span class="cat-hdr-title">Monitoring</span><span class="cat-hdr-count">3 notes</span></div>
+    <div class="content-grid" data-section="monitoring">
+
+      <article class="n-card c-card" data-cat="monitoring" data-title="Monitoring Stack Architecture" data-tags="monitoring prometheus grafana alertmanager" id="note-monitoring-stack-architecture">
+        <div class="n-accent"></div><div class="n-body">
+        <div class="n-meta"><span class="n-num">#24</span><div class="n-tags"><span class="n-tag">Monitoring</span><span class="n-tag">Architecture</span></div></div>
+        <h3 class="n-title">Monitoring Stack Architecture</h3>
+        <p class="n-desc">A production monitoring stack has three jobs: collect metrics (Prometheus), visualise them (Grafana), and alert on anomalies (AlertManager). Each component is purpose-built, composable, and open-source.</p>
+        <div class="n-code"><span class="gr">Targets</span> (EC2, Docker, Apps)
+  ↓ expose /metrics endpoint
+<span class="gr">Prometheus</span> ← scrapes every 15s
+  ├──→ <span class="gr">Grafana</span>      (dashboards)
+  └──→ <span class="gr">AlertManager</span> (alerts)
+            ↓
+     Slack / Email / PagerDuty</div>
+        </div>
+        <button class="n-expand-btn" aria-expanded="false" onclick="toggleExpand(this)">Key Exporters <span class="earr">▼</span></button>
+        <div class="n-expanded"><ul>
+          <li><strong>Node Exporter:</strong> Linux system metrics — CPU, RAM, disk, network. Run on every server.</li>
+          <li><strong>cAdvisor:</strong> Container metrics — per-container CPU, memory from Docker.</li>
+          <li><strong>Blackbox Exporter:</strong> HTTP/TCP probing — check if endpoints respond correctly.</li>
+          <li><strong>Postgres Exporter:</strong> Database metrics — queries, connections, cache hit rates.</li>
+        </ul></div>
+      </article>
+
+      <article class="n-card c-card" data-cat="monitoring" data-title="Prometheus Grafana Workflow" data-tags="prometheus grafana promql monitoring" id="note-prometheus-grafana-workflow">
+        <div class="n-accent"></div><div class="n-body">
+        <div class="n-meta"><span class="n-num">#25</span><div class="n-tags"><span class="n-tag">Prometheus</span><span class="n-tag">PromQL</span></div></div>
+        <h3 class="n-title">Prometheus + Grafana Workflow</h3>
+        <p class="n-desc">Prometheus stores time-series metrics and lets you query them with PromQL. Grafana connects to Prometheus as a data source and renders the queries as actionable dashboards.</p>
+        <div class="n-code"><span class="cm"># CPU usage % across all cores</span>
+100 - (avg by(instance)(rate(
+  node_cpu_seconds_total{mode=<span class="st">"idle"</span>}[5m]
+)) * 100)
+
+<span class="cm"># RAM used %</span>
+(node_memory_MemTotal_bytes -
+ node_memory_MemAvailable_bytes) /
+ node_memory_MemTotal_bytes * 100</div>
+        </div>
+        <button class="n-expand-btn" aria-expanded="false" onclick="toggleExpand(this)">Setup Tips <span class="earr">▼</span></button>
+        <div class="n-expanded"><ul>
+          <li><strong>Grafana provisioning:</strong> Use YAML to auto-load datasources and dashboards — no manual clicking.</li>
+          <li><strong>AlertManager:</strong> Define alert rules in Prometheus, route to AlertManager, configure Slack/email receivers.</li>
+          <li><strong>Dashboard import:</strong> Grafana dashboard #1860 = Node Exporter Full. Import by ID.</li>
+        </ul></div>
+      </article>
+
+      <article class="n-card c-card" data-cat="monitoring" data-title="Lessons From Production Style Labs" data-tags="monitoring devops production lessons labs" id="note-lessons-from-production-style-labs">
+        <div class="n-accent"></div><div class="n-body">
+        <div class="n-meta"><span class="n-num">#26</span><div class="n-tags"><span class="n-tag">Production</span><span class="n-tag">Lessons</span></div></div>
+        <h3 class="n-title">Lessons From Production-Style Labs</h3>
+        <p class="n-desc">Real production experience teaches things no tutorial can. These are hard-won lessons from running actual services, debugging systems at 2am, and learning what monitoring should have caught earlier.</p>
+        <div class="n-code"><span class="cm"># First checks when something breaks</span>
+<span class="fn">df</span> -h                          <span class="cm"># disk space</span>
+<span class="fn">free</span> -h                        <span class="cm"># memory</span>
+<span class="fn">journalctl</span> -xe --since <span class="st">"10m"</span>  <span class="cm"># logs</span>
+<span class="fn">ss</span> -tlnp                       <span class="cm"># open ports</span></div>
+        </div>
+        <button class="n-expand-btn" aria-expanded="false" onclick="toggleExpand(this)">Top 5 Production Lessons <span class="earr">▼</span></button>
+        <div class="n-expanded"><ul>
+          <li><strong>Monitoring before deployment:</strong> If you can't observe it, you can't debug it. Set up metrics before launch.</li>
+          <li><strong>Idempotency matters:</strong> Scripts that break if run twice cause more problems than they solve.</li>
+          <li><strong>Document the fix:</strong> Post-mortems that only describe what broke are useless. Capture root cause and remediation.</li>
+          <li><strong>Smallest change wins:</strong> Change one thing at a time when debugging.</li>
+        </ul></div>
+      </article>
+
+    </div>
+
+    <!-- DEVOPS CAREER -->
+    <div class="cat-hdr" data-section="devops"><span class="cat-hdr-icon">🚀</span><span class="cat-hdr-title">DevOps Career & Mindset</span><span class="cat-hdr-count">4 notes</span></div>
+    <div class="content-grid" data-section="devops">
+
+      <article class="n-card c-card" data-cat="devops" data-title="DevOps Roadmap 2026" data-tags="devops roadmap 2026 career learning" id="note-devops-roadmap-2026">
+        <div class="n-accent"></div><div class="n-body">
+        <div class="n-meta"><span class="n-num">#27</span><div class="n-tags"><span class="n-tag">DevOps</span><span class="n-tag">Roadmap</span></div></div>
+        <h3 class="n-title">DevOps Roadmap 2026</h3>
+        <p class="n-desc">The fundamentals haven't changed — Linux, networking, Git, CI/CD. What's shifted is the expectation around security (DevSecOps), observability, and platform engineering replacing pure ops roles.</p>
+        <div class="n-code"><span class="gr">Phase 1:</span> Linux + bash + networking + Git
+<span class="gr">Phase 2:</span> Docker + AWS + Terraform
+<span class="gr">Phase 3:</span> Ansible + GitHub Actions
+<span class="gr">Phase 4:</span> Prometheus + Grafana + Loki
+<span class="gr">Phase 5:</span> Kubernetes + Helm + ArgoCD</div>
+        </div>
+        <button class="n-expand-btn" aria-expanded="false" onclick="toggleExpand(this)">Trends Worth Watching <span class="earr">▼</span></button>
+        <div class="n-expanded"><ul>
+          <li><strong>Platform Engineering:</strong> Building internal developer platforms using Backstage, Port, Crossplane.</li>
+          <li><strong>GitOps:</strong> ArgoCD and Flux becoming the standard for Kubernetes deployment automation.</li>
+          <li><strong>DevSecOps:</strong> Security shifting left — SAST/DAST in pipelines, container scanning (Trivy).</li>
+          <li><strong>FinOps:</strong> Cloud cost optimisation is now a required skill, not optional.</li>
+        </ul></div>
+      </article>
+
+      <article class="n-card c-card" data-cat="devops" data-title="How to Learn DevOps Effectively" data-tags="devops learning career education" id="note-how-to-learn-devops-effectively">
+        <div class="n-accent"></div><div class="n-body">
+        <div class="n-meta"><span class="n-num">#28</span><div class="n-tags"><span class="n-tag">DevOps</span><span class="n-tag">Learning</span></div></div>
+        <h3 class="n-title">How to Learn DevOps Effectively</h3>
+        <p class="n-desc">Most people learn DevOps wrong — watching tutorials and feeling productive but unable to do anything without the video paused. The only path: build real things, break them, fix them, document on GitHub.</p>
+        <div class="n-code"><span class="gr">Effective Learning Loop</span>
+1. Pick one concept   (Docker networking)
+2. Read the docs      (not a tutorial)
+3. Build a lab        (hands-on)
+4. Break something    (intentionally)
+5. Fix it             (debug the error)
+6. Document on GitHub (portfolio + learning)</div>
+        </div>
+        <button class="n-expand-btn" aria-expanded="false" onclick="toggleExpand(this)">Resources Worth Your Time <span class="earr">▼</span></button>
+        <div class="n-expanded"><ul>
+          <li><strong>Official docs first:</strong> Docker docs, Terraform registry, AWS docs. Written by the people who built the tools.</li>
+          <li><strong>Read real codebases:</strong> Real Ansible roles, Terraform modules on GitHub teach more than any course.</li>
+          <li><strong>Avoid tutorial hell:</strong> If you've watched 5 videos and written 0 code, you're consuming — not learning.</li>
+          <li><strong>Time-box theory:</strong> 20% reading, 80% building. Most DevOps concepts click in 2 hours of hands-on work.</li>
+        </ul></div>
+      </article>
+
+      <article class="n-card c-card" data-cat="devops" data-title="Most Important DevOps Skills" data-tags="devops career skills employers" id="note-most-important-devops-skills">
+        <div class="n-accent"></div><div class="n-body">
+        <div class="n-meta"><span class="n-num">#29</span><div class="n-tags"><span class="n-tag">DevOps</span><span class="n-tag">Career</span></div></div>
+        <h3 class="n-title">Most Important DevOps Skills</h3>
+        <p class="n-desc">The DevOps job market is flooded with tool names but short on engineers who understand systems. The skills that get you hired — and keep you employed — go deeper than any single tool.</p>
+        <div class="n-code"><span class="gr">Tier 1 — Non-negotiable</span>
+  Linux fundamentals + bash scripting
+  Networking (TCP/IP, DNS, HTTP, TLS)
+  Git + version control workflows
+
+<span class="gr">Tier 2 — Core DevOps</span>
+  Docker + CI/CD + Cloud + IaC
+
+<span class="gr">Tier 3 — Differentiators</span>
+  Observability + DevSecOps</div>
+        </div>
+        <button class="n-expand-btn" aria-expanded="false" onclick="toggleExpand(this)">Skill-Building Advice <span class="earr">▼</span></button>
+        <div class="n-expanded"><ul>
+          <li><strong>Go deep before wide:</strong> Master Linux before jumping to Kubernetes. Foundation skills compound.</li>
+          <li><strong>Build, don't watch:</strong> A working homelab beats 50 YouTube tutorials.</li>
+          <li><strong>Document everything:</strong> A well-documented GitHub repo is a portfolio that speaks for you.</li>
+          <li><strong>Read error messages:</strong> The ability to interpret logs and stack traces is the most underrated DevOps skill.</li>
+        </ul></div>
+      </article>
+
+      <article class="n-card c-card" data-cat="devops" data-title="Infrastructure Automation Workflow" data-tags="devops automation terraform ansible workflow" id="note-infrastructure-automation-workflow">
+        <div class="n-accent"></div><div class="n-body">
+        <div class="n-meta"><span class="n-num">#30</span><div class="n-tags"><span class="n-tag">DevOps</span><span class="n-tag">Automation</span></div></div>
+        <h3 class="n-title">Infrastructure Automation Workflow</h3>
+        <p class="n-desc">A complete infrastructure automation workflow: Terraform provisions resources, Ansible configures them, GitHub Actions orchestrates both, and Prometheus watches the result. Each tool has one job.</p>
+        <div class="n-code"><span class="gr">Git push → GitHub Actions</span>
+  ├── terraform plan  (review)
+  ├── terraform apply (provision)
+  ├── ansible-playbook (configure)
+  └── smoke tests     (verify)
+  ↓
+<span class="gr">Production</span>
+  ↓
+Prometheus → Grafana (observe)</div>
+        </div>
+        <button class="n-expand-btn" aria-expanded="false" onclick="toggleExpand(this)">Workflow Best Practices <span class="earr">▼</span></button>
+        <div class="n-expanded"><ul>
+          <li><strong>Plan before apply:</strong> Always run terraform plan in CI and require approval before prod apply.</li>
+          <li><strong>Separate provision and config:</strong> Terraform provisions the VM; Ansible configures it.</li>
+          <li><strong>Smoke tests post-deploy:</strong> Run a health check before marking a deployment as successful.</li>
+          <li><strong>Rollback plan:</strong> Know before you deploy how to revert. Terraform can destroy and recreate.</li>
+        </ul></div>
+      </article>
+
+    </div>
+  </div>
+
+    <div class="container python-lab"><h2>🐍 Try Python Online</h2><p>Run Python directly in your browser.</p><textarea id="pythonCode" class="python-editor">print("Hello Devriston")
+</textarea><br><button class="python-run" onclick="runPython()">Run Code</button><pre id="pythonOutput" class="python-output">Output will appear here...</pre></div>
+</main>
+
+<section class="cta-section">
+  <div class="container">
+    <div class="cta-inner">
+      <p class="eyebrow" style="color:rgba(77,143,255,1);justify-content:center">Work With Me</p>
+      <h2>Need help implementing any of this?</h2>
+      <p class="cta-sub">Consulting for Linux, AWS, Terraform, Docker, CI/CD, and monitoring. Free 30-minute discovery call.</p>
+      <div class="cta-btns">
+        <a href="contact.html" class="btn btn-primary btn-lg">Book Free Consultation</a>
+        <a href="blog.html" class="btn btn-white-outline btn-lg">Read Full Articles</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="ft-grid">
+      <div class="ft-brand"><div class="ft-logo"><img src="assets/logos/dv-logo.png" alt="Devriston"/><span class="ft-logo-name">Devri<span>ston</span></span></div><p>DevOps consulting, Linux, cloud infrastructure and training. Solutions that drive tomorrow.</p>
+        <div class="ft-socials">
+          <a href="https://github.com/muhammadkamrankabeer-oss" target="_blank" class="ft-soc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg></a>
+          <a href="https://www.linkedin.com/in/kamrankabeer/" target="_blank" class="ft-soc"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+          <a href="https://x.com/Devristonhq" target="_blank" class="ft-soc"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+          <a href="https://dev.to/muhammadkamrankabeeross" target="_blank" class="ft-soc"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7.42 10.05c-.18-.16-.46-.23-.84-.23H6l.02 2.44.04 2.45.56-.02c.41 0 .63-.07.83-.26.24-.24.26-.36.26-2.2 0-1.91-.02-1.96-.29-2.18zM0 4.94v14.12h24V4.94H0zM8.56 15.3c-.44.58-1.06.77-2.53.77H4.71V8.53h1.4c1.67 0 2.16.18 2.6.9.27.43.29.6.32 2.57.05 2.23-.02 2.73-.47 3.3zm5.09-5.47h-2.47v1.77h1.52v1.28l-.72.04-.75.03v1.77l1.22.03 1.2.04v1.28h-1.6c-1.53 0-1.6-.01-1.87-.3l-.3-.28v-3.16c0-3.02.01-3.18.25-3.48.23-.31.25-.31 1.88-.31h1.64v1.29zm4.68 5.45c-.17.43-.64.79-1 .79-.18 0-.45-.15-.67-.39-.32-.32-.45-.63-.82-2.08l-.9-3.39-.45-1.67h.76c.4 0 .75.02.75.05 0 .06 1.16 4.54 1.26 4.83.04.15.32-.7.73-2.3l.66-2.52.74-.04c.4-.02.73 0 .73.04 0 .14-1.67 5.99-1.8 6.19z"/></svg></a>
+        </div>
+      </div>
+      <div class="ft-col"><h4>Categories</h4><ul><li><a href="#" onclick="document.querySelector('.fpill[data-cat=linux]').click()">Linux</a></li><li><a href="#" onclick="document.querySelector('.fpill[data-cat=docker]').click()">Docker</a></li><li><a href="#" onclick="document.querySelector('.fpill[data-cat=cloud]').click()">Cloud / AWS</a></li><li><a href="#" onclick="document.querySelector('.fpill[data-cat=terraform]').click()">Terraform</a></li><li><a href="#" onclick="document.querySelector('.fpill[data-cat=cicd]').click()">CI/CD</a></li><li><a href="#" onclick="document.querySelector('.fpill[data-cat=monitoring]').click()">Monitoring</a></li></ul></div>
+      <div class="ft-col"><h4>Also Explore</h4><ul><li><a href="blog.html">Blog Articles</a></li><li><a href="case-studies.html">Case Studies</a></li><li><a href="solutions.html">Services</a></li><li><a href="contact.html">Book Consultation</a></li></ul></div>
+      <div class="ft-col"><h4>Contact</h4><ul><li><a href="mailto:info@devriston.com.pk">info@devriston.com.pk</a></li><li><a href="https://wa.me/923231450045" target="_blank">WhatsApp</a></li><li><a href="contact.html">Book Consultation</a></li></ul></div>
+    </div>
+    <div class="ft-bottom"><p>© 2025 Devriston · Muhammad Kamran Kabeer · Lahore, Pakistan</p><div class="ft-bottom-links"><a href="sitemap.xml">Sitemap</a></div></div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/pyodide/v0.27.0/full/pyodide.js"></script>
+<script>
+let pyodideReady;
+async function loadPy(){
+  pyodideReady = pyodideReady || loadPyodide();
+  return await pyodideReady;
+}
+async function runPython(){
+ const output=document.getElementById("pythonOutput");
+ output.textContent="Running...";
+ try{
+   const py=await loadPy();
+   let code=document.getElementById("pythonCode").value;
+   let result=await py.runPythonAsync(code);
+   output.textContent=result===undefined ? "Program finished." : result;
+ }catch(e){output.textContent=e}
+}
+</script>
+<script src="assets/js/main.js" defer></script>
+</body>
+</html>
+    <!-- PYTHON PROGRAMMING -->
+    <div class="cat-hdr" data-section="python"><span class="cat-hdr-icon">🐍</span><span class="cat-hdr-title">Python Programming</span><span class="cat-hdr-count">10 notes</span></div>
+    <div class="content-grid" data-section="python">
+
+      <article class="n-card c-card" data-cat="python" data-title="Introduction to Python" data-tags="python programming beginner" id="note-python-31">
+        <div class="n-accent"></div><div class="n-body">
+        <div class="n-meta"><span class="n-num">#31</span><div class="n-tags"><span class="n-tag">Python</span></div></div>
+        <h3 class="n-title">Introduction to Python</h3>
+        <p class="n-desc">Python overview, why Python is popular, features, and real-world applications.</p>
+        <div class="n-code">print("Hello Python")</div>
+        </div>
+        <button class="n-expand-btn" aria-expanded="false" onclick="toggleExpand(this)">Learn More <span class="earr">▼</span></button>
+        <div class="n-expanded"><ul><li><strong>Practice:</strong> Try the examples and modify the code to learn.</li><li><strong>Goal:</strong> Build strong Python programming fundamentals.</li></ul></div>
+      </article>
+
+      <article class="n-card c-card" data-cat="python" data-title="Installing Python & Setup" data-tags="python programming beginner" id="note-python-32">
+        <div class="n-accent"></div><div class="n-body">
+        <div class="n-meta"><span class="n-num">#32</span><div class="n-tags"><span class="n-tag">Python</span></div></div>
+        <h3 class="n-title">Installing Python & Setup</h3>
+        <p class="n-desc">Installing Python, setting up environment, and choosing an IDE.</p>
+        <div class="n-code">python --version</div>
+        </div>
+        <button class="n-expand-btn" aria-expanded="false" onclick="toggleExpand(this)">Learn More <span class="earr">▼</span></button>
+        <div class="n-expanded"><ul><li><strong>Practice:</strong> Try the examples and modify the code to learn.</li><li><strong>Goal:</strong> Build strong Python programming fundamentals.</li></ul></div>
+      </article>
+
+      <article class="n-card c-card" data-cat="python" data-title="Python Syntax Basics" data-tags="python programming beginner" id="note-python-33">
+        <div class="n-accent"></div><div class="n-body">
+        <div class="n-meta"><span class="n-num">#33</span><div class="n-tags"><span class="n-tag">Python</span></div></div>
+        <h3 class="n-title">Python Syntax Basics</h3>
+        <p class="n-desc">Indentation, comments, statements, and basic Python program structure.</p>
+        <div class="n-code"># Python code
+print("Start")</div>
+        </div>
+        <button class="n-expand-btn" aria-expanded="false" onclick="toggleExpand(this)">Learn More <span class="earr">▼</span></button>
+        <div class="n-expanded"><ul><li><strong>Practice:</strong> Try the examples and modify the code to learn.</li><li><strong>Goal:</strong> Build strong Python programming fundamentals.</li></ul></div>
+      </article>
+
+      <article class="n-card c-card" data-cat="python" data-title="Variables & Data Types" data-tags="python programming beginner" id="note-python-34">
+        <div class="n-accent"></div><div class="n-body">
+        <div class="n-meta"><span class="n-num">#34</span><div class="n-tags"><span class="n-tag">Python</span></div></div>
+        <h3 class="n-title">Variables & Data Types</h3>
+        <p class="n-desc">Variables, strings, numbers, booleans, and type conversion.</p>
+        <div class="n-code">name="Devriston"
+print(name)</div>
+        </div>
+        <button class="n-expand-btn" aria-expanded="false" onclick="toggleExpand(this)">Learn More <span class="earr">▼</span></button>
+        <div class="n-expanded"><ul><li><strong>Practice:</strong> Try the examples and modify the code to learn.</li><li><strong>Goal:</strong> Build strong Python programming fundamentals.</li></ul></div>
+      </article>
+
+      <article class="n-card c-card" data-cat="python" data-title="Input and Output" data-tags="python programming beginner" id="note-python-35">
+        <div class="n-accent"></div><div class="n-body">
+        <div class="n-meta"><span class="n-num">#35</span><div class="n-tags"><span class="n-tag">Python</span></div></div>
+        <h3 class="n-title">Input and Output</h3>
+        <p class="n-desc">Using input(), print(), and formatting output.</p>
+        <div class="n-code">name=input("Name: ")
+print(name)</div>
+        </div>
+        <button class="n-expand-btn" aria-expanded="false" onclick="toggleExpand(this)">Learn More <span class="earr">▼</span></button>
+        <div class="n-expanded"><ul><li><strong>Practice:</strong> Try the examples and modify the code to learn.</li><li><strong>Goal:</strong> Build strong Python programming fundamentals.</li></ul></div>
+      </article>
+
+      <article class="n-card c-card" data-cat="python" data-title="Python Operators" data-tags="python programming beginner" id="note-python-36">
+        <div class="n-accent"></div><div class="n-body">
+        <div class="n-meta"><span class="n-num">#36</span><div class="n-tags"><span class="n-tag">Python</span></div></div>
+        <h3 class="n-title">Python Operators</h3>
+        <p class="n-desc">Arithmetic, comparison, assignment, and logical operators.</p>
+        <div class="n-code">x=10+5
+print(x)</div>
+        </div>
+        <button class="n-expand-btn" aria-expanded="false" onclick="toggleExpand(this)">Learn More <span class="earr">▼</span></button>
+        <div class="n-expanded"><ul><li><strong>Practice:</strong> Try the examples and modify the code to learn.</li><li><strong>Goal:</strong> Build strong Python programming fundamentals.</li></ul></div>
+      </article>
+
+      <article class="n-card c-card" data-cat="python" data-title="Conditional Statements" data-tags="python programming beginner" id="note-python-37">
+        <div class="n-accent"></div><div class="n-body">
+        <div class="n-meta"><span class="n-num">#37</span><div class="n-tags"><span class="n-tag">Python</span></div></div>
+        <h3 class="n-title">Conditional Statements</h3>
+        <p class="n-desc">if, elif, else, nested conditions, and decision making.</p>
+        <div class="n-code">if x>5:
+ print("Yes")</div>
+        </div>
+        <button class="n-expand-btn" aria-expanded="false" onclick="toggleExpand(this)">Learn More <span class="earr">▼</span></button>
+        <div class="n-expanded"><ul><li><strong>Practice:</strong> Try the examples and modify the code to learn.</li><li><strong>Goal:</strong> Build strong Python programming fundamentals.</li></ul></div>
+      </article>
+
+      <article class="n-card c-card" data-cat="python" data-title="Loops in Python" data-tags="python programming beginner" id="note-python-38">
+        <div class="n-accent"></div><div class="n-body">
+        <div class="n-meta"><span class="n-num">#38</span><div class="n-tags"><span class="n-tag">Python</span></div></div>
+        <h3 class="n-title">Loops in Python</h3>
+        <p class="n-desc">for loops, while loops, break, continue, and repetition.</p>
+        <div class="n-code">for i in range(3):
+ print(i)</div>
+        </div>
+        <button class="n-expand-btn" aria-expanded="false" onclick="toggleExpand(this)">Learn More <span class="earr">▼</span></button>
+        <div class="n-expanded"><ul><li><strong>Practice:</strong> Try the examples and modify the code to learn.</li><li><strong>Goal:</strong> Build strong Python programming fundamentals.</li></ul></div>
+      </article>
+
+      <article class="n-card c-card" data-cat="python" data-title="Functions in Python" data-tags="python programming beginner" id="note-python-39">
+        <div class="n-accent"></div><div class="n-body">
+        <div class="n-meta"><span class="n-num">#39</span><div class="n-tags"><span class="n-tag">Python</span></div></div>
+        <h3 class="n-title">Functions in Python</h3>
+        <p class="n-desc">Creating functions, parameters, arguments, and return values.</p>
+        <div class="n-code">def hello():
+ print("Hi")</div>
+        </div>
+        <button class="n-expand-btn" aria-expanded="false" onclick="toggleExpand(this)">Learn More <span class="earr">▼</span></button>
+        <div class="n-expanded"><ul><li><strong>Practice:</strong> Try the examples and modify the code to learn.</li><li><strong>Goal:</strong> Build strong Python programming fundamentals.</li></ul></div>
+      </article>
+
+      <article class="n-card c-card" data-cat="python" data-title="Python Collections" data-tags="python programming beginner" id="note-python-40">
+        <div class="n-accent"></div><div class="n-body">
+        <div class="n-meta"><span class="n-num">#40</span><div class="n-tags"><span class="n-tag">Python</span></div></div>
+        <h3 class="n-title">Python Collections</h3>
+        <p class="n-desc">Lists, tuples, dictionaries, and sets.</p>
+        <div class="n-code">items=[1,2,3]
+print(items)</div>
+        </div>
+        <button class="n-expand-btn" aria-expanded="false" onclick="toggleExpand(this)">Learn More <span class="earr">▼</span></button>
+        <div class="n-expanded"><ul><li><strong>Practice:</strong> Try the examples and modify the code to learn.</li><li><strong>Goal:</strong> Build strong Python programming fundamentals.</li></ul></div>
+      </article>
+
+    </div>
+
+
