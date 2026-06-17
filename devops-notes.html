@@ -4,12 +4,12 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
 <meta name="google-site-verification" content="wAaiTAPySebPceM4Bux5hwxIT3hy6BDj_NlLq4aDj5Y"/>
-<title>DevOps Notes | Devriston — 30 Practical Concept Cards</title>
-<meta name="description" content="30 practical DevOps concept cards covering Linux, Docker, AWS, Terraform, CI/CD and Monitoring. Searchable, filterable, shareable. By Muhammad Kamran Kabeer."/>
+<title>DevOps Notes | Devriston — 40 Practical Concept Cards</title>
+<meta name="description" content="40 practical DevOps & Python concept cards covering Linux, Docker, AWS, Terraform, CI/CD and Monitoring. Searchable, filterable, shareable. By Muhammad Kamran Kabeer."/>
 <meta name="robots" content="index,follow"/>
 <link rel="canonical" href="https://www.devriston.com.pk/devops-notes.html"/>
-<meta property="og:title" content="DevOps Notes | Devriston — 30 Practical Concept Cards"/>
-<meta property="og:description" content="30 practical DevOps notes — searchable, filterable, shareable. Linux, Docker, AWS, Terraform, CI/CD, Monitoring."/>
+<meta property="og:title" content="DevOps Notes | Devriston — 40 Practical Concept Cards"/>
+<meta property="og:description" content="40 practical DevOps & Python notes — searchable, filterable, shareable. Linux, Docker, AWS, Terraform, CI/CD, Monitoring."/>
 <meta property="og:url" content="https://www.devriston.com.pk/devops-notes.html"/>
 <meta property="og:image" content="https://www.devriston.com.pk/assets/images/banner.png"/>
 <link rel="icon" type="image/png" href="assets/logos/dv-logo.png"/>
@@ -110,7 +110,7 @@
     <h1 class="fade-up">DevOps Notes</h1>
     <p class="pg-desc fade-up d2">40 practical concept cards — searchable, filterable, and shareable with direct links. Each card has a code example and expandable deep-dive. Use these for LinkedIn posts, interview prep, or daily reference.</p>
     <div style="display:flex;flex-wrap:wrap;gap:28px;margin-top:28px" class="fade-up d3">
-      <div class="h-stat"><span class="h-stat-val">30</span><span class="h-stat-lbl">Note Cards</span></div>
+      <div class="h-stat"><span class="h-stat-val">40</span><span class="h-stat-lbl">Note Cards</span></div>
       <div class="h-stat"><span class="h-stat-val">8</span><span class="h-stat-lbl">Categories</span></div>
       <div class="h-stat"><span class="h-stat-val">🔗</span><span class="h-stat-lbl">Deep Links</span></div>
     </div>
@@ -134,7 +134,7 @@
       <button class="fpill" data-cat="monitoring">Monitoring</button>
       <button class="fpill" data-cat="devops">DevOps</button><button class="fpill" data-cat="python">Python</button>
     </div>
-    <span class="result-count" id="resultCount">30 notes</span>
+    <span class="result-count" id="resultCount">40 notes</span>
   </div>
 </div>
 
@@ -829,6 +829,218 @@ Prometheus → Grafana (observe)</div>
       </article>
 
     </div>
+
+    <!-- PYTHON PROGRAMMING -->
+    <div class="cat-hdr" data-section="python"><span class="cat-hdr-icon">🐍</span><span class="cat-hdr-title">Python Programming</span><span class="cat-hdr-count">10 notes</span></div>
+    <div class="content-grid" data-section="python">
+
+      <article class="n-card c-card" data-cat="python" data-title="Introduction to Python" data-tags="python programming beginner" id="note-python-31">
+        <div class="n-accent"></div><div class="n-body">
+        <div class="n-meta"><span class="n-num">#31</span><div class="n-tags"><span class="n-tag">Python</span></div></div>
+        <h3 class="n-title">Introduction to Python</h3>
+        <p class="n-desc">Python is a high-level, general-purpose programming language known for simple, readable syntax. It's used in web development, data science, automation, AI, and DevOps scripting — often called the most beginner-friendly language to learn first.</p>
+        <div class="n-code"><span class="cm"># Your very first Python program</span>
+<span class="fn">print</span>(<span class="st">"Hello Python"</span>)
+<span class="cm"># Output: Hello Python</span></div>
+        </div>
+        <button class="n-expand-btn" aria-expanded="false" onclick="toggleExpand(this)">What is Python &amp; Why Learn It <span class="earr">▼</span></button>
+        <div class="n-expanded"><ul>
+          <li><strong>What it is:</strong> Python is an interpreted language — code runs line by line without a separate compile step, so you see results instantly.</li>
+          <li><strong>Why it's popular:</strong> Simple English-like syntax means beginners write working programs in their first hour, unlike Java or C++.</li>
+          <li><strong>Where it's used:</strong> Instagram's backend, NASA's data analysis, ChatGPT-style AI models, and Ansible automation scripts all run on Python.</li>
+          <li><strong>DevOps connection:</strong> Many automation tools (Ansible itself, AWS boto3 SDK, CI/CD scripts) are written in or scripted with Python.</li>
+          <li><strong>No compiling needed:</strong> Write code → save → run. No build step like C/C++ requires.</li>
+        </ul></div>
+      </article>
+
+      <article class="n-card c-card" data-cat="python" data-title="Installing Python & Setup" data-tags="python programming beginner" id="note-python-32">
+        <div class="n-accent"></div><div class="n-body">
+        <div class="n-meta"><span class="n-num">#32</span><div class="n-tags"><span class="n-tag">Python</span></div></div>
+        <h3 class="n-title">Installing Python & Setup</h3>
+        <p class="n-desc">Before writing Python code, you need Python installed on your computer. Most Linux systems already have it. Windows and Mac users download it from python.org. This card shows exact commands to check, install, and verify your setup.</p>
+        <div class="n-code"><span class="cm"># Check if Python is already installed</span>
+<span class="fn">python3</span> --version
+<span class="cm"># Output: Python 3.11.4</span></div>
+        </div>
+        <button class="n-expand-btn" aria-expanded="false" onclick="toggleExpand(this)">Install Steps by Operating System <span class="earr">▼</span></button>
+        <div class="n-expanded"><ul>
+          <li><strong>Linux (Ubuntu/Debian):</strong> Usually pre-installed. If not: <code>sudo apt update &amp;&amp; sudo apt install python3</code></li>
+          <li><strong>Windows:</strong> Go to python.org/downloads → download installer → <strong>tick "Add Python to PATH"</strong> during install (most common mistake is forgetting this box).</li>
+          <li><strong>Mac:</strong> Comes pre-installed, but install the latest via <code>brew install python3</code> using Homebrew.</li>
+          <li><strong>Verify it worked:</strong> Open terminal/command prompt and type <code>python3 --version</code> — you should see a version number, not an error.</li>
+          <li><strong>Choosing an editor:</strong> Beginners should start with VS Code (free) or even just a Terminal + Notepad. No need for a heavy IDE at first.</li>
+          <li><strong>Running a file:</strong> Save code as <code>hello.py</code> then run with <code>python3 hello.py</code> in terminal.</li>
+        </ul></div>
+      </article>
+
+      <article class="n-card c-card" data-cat="python" data-title="Python Syntax Basics" data-tags="python programming beginner" id="note-python-33">
+        <div class="n-accent"></div><div class="n-body">
+        <div class="n-meta"><span class="n-num">#33</span><div class="n-tags"><span class="n-tag">Python</span></div></div>
+        <h3 class="n-title">Python Syntax Basics</h3>
+        <p class="n-desc">Python's most unique rule: indentation (spacing) is not optional — it defines code blocks instead of curly braces {} like other languages. Get the spacing wrong and your program will literally fail to run.</p>
+        <div class="n-code"><span class="cm"># Comments start with #</span>
+<span class="kw">if</span> <span class="nm">True</span>:
+    <span class="fn">print</span>(<span class="st">"Indented = inside the if block"</span>)
+<span class="fn">print</span>(<span class="st">"Not indented = outside the block"</span>)</div>
+        </div>
+        <button class="n-expand-btn" aria-expanded="false" onclick="toggleExpand(this)">Indentation &amp; Syntax Rules <span class="earr">▼</span></button>
+        <div class="n-expanded"><ul>
+          <li><strong>Indentation is mandatory:</strong> Use 4 spaces (not tabs) for every level. Mixing tabs and spaces causes errors.</li>
+          <li><strong>No semicolons needed:</strong> Unlike C/Java, Python statements end at the newline — no <code>;</code> required.</li>
+          <li><strong>Comments:</strong> Anything after <code>#</code> is ignored by Python — use it to explain your code.</li>
+          <li><strong>Case-sensitive:</strong> <code>Name</code> and <code>name</code> are two completely different variables.</li>
+          <li><strong>Common beginner error:</strong> <code>IndentationError: expected an indented block</code> — means you forgot to indent after a colon <code>:</code>.</li>
+        </ul></div>
+      </article>
+
+      <article class="n-card c-card" data-cat="python" data-title="Variables & Data Types" data-tags="python programming beginner" id="note-python-34">
+        <div class="n-accent"></div><div class="n-body">
+        <div class="n-meta"><span class="n-num">#34</span><div class="n-tags"><span class="n-tag">Python</span></div></div>
+        <h3 class="n-title">Variables & Data Types</h3>
+        <p class="n-desc">A variable is a named container that stores data in memory. Python automatically detects the data type — you never declare it manually like in Java or C. This is called "dynamic typing".</p>
+        <div class="n-code">name = <span class="st">"Devriston"</span>      <span class="cm"># str (text)</span>
+age = <span class="nm">25</span>                 <span class="cm"># int (whole number)</span>
+price = <span class="nm">99.50</span>             <span class="cm"># float (decimal)</span>
+is_active = <span class="nm">True</span>          <span class="cm"># bool (True/False)</span>
+<span class="fn">print</span>(name, age, price, is_active)</div>
+        </div>
+        <button class="n-expand-btn" aria-expanded="false" onclick="toggleExpand(this)">Python Data Types Explained <span class="earr">▼</span></button>
+        <div class="n-expanded"><ul>
+          <li><strong>str (string):</strong> Text data, always wrapped in quotes — single <code>'text'</code> or double <code>"text"</code> work the same.</li>
+          <li><strong>int (integer):</strong> Whole numbers with no decimal point — positive, negative, or zero.</li>
+          <li><strong>float:</strong> Numbers with decimal points, used for prices, measurements, percentages.</li>
+          <li><strong>bool (boolean):</strong> Only two possible values — <code>True</code> or <code>False</code> (capital letters matter).</li>
+          <li><strong>Type conversion:</strong> Use <code>int("25")</code>, <code>str(25)</code>, <code>float("9.5")</code> to convert between types.</li>
+          <li><strong>Check a type:</strong> Use <code>type(age)</code> — Python will tell you exactly what type a variable is.</li>
+        </ul></div>
+      </article>
+
+      <article class="n-card c-card" data-cat="python" data-title="Input and Output" data-tags="python programming beginner" id="note-python-35">
+        <div class="n-accent"></div><div class="n-body">
+        <div class="n-meta"><span class="n-num">#35</span><div class="n-tags"><span class="n-tag">Python</span></div></div>
+        <h3 class="n-title">Input and Output</h3>
+        <p class="n-desc">print() displays output to the screen. input() pauses the program and waits for the user to type something — always returning it as text (string), even if they typed a number.</p>
+        <div class="n-code">name = <span class="fn">input</span>(<span class="st">"Enter your name: "</span>)
+age = <span class="fn">int</span>(<span class="fn">input</span>(<span class="st">"Enter your age: "</span>))
+<span class="fn">print</span>(<span class="fn">f</span><span class="st">"Hello {name}, you are {age} years old"</span>)</div>
+        </div>
+        <button class="n-expand-btn" aria-expanded="false" onclick="toggleExpand(this)">Formatting Output Properly <span class="earr">▼</span></button>
+        <div class="n-expanded"><ul>
+          <li><strong>input() is always a string:</strong> Even if user types "25", Python stores it as text <code>"25"</code> — wrap with <code>int()</code> to use it as a number for math.</li>
+          <li><strong>f-strings (modern way):</strong> <code>f"Hello {name}"</code> — put variables directly inside curly braces. Cleanest, most readable method.</li>
+          <li><strong>print() with multiple values:</strong> <code>print(name, age)</code> automatically adds a space between them.</li>
+          <li><strong>sep and end parameters:</strong> <code>print(a, b, sep="-", end="!")</code> customizes spacing and line ending.</li>
+          <li><strong>Common bug:</strong> Forgetting to convert input() to int/float before doing math causes <code>TypeError: can't add str and int</code>.</li>
+        </ul></div>
+      </article>
+
+      <article class="n-card c-card" data-cat="python" data-title="Python Operators" data-tags="python programming beginner" id="note-python-36">
+        <div class="n-accent"></div><div class="n-body">
+        <div class="n-meta"><span class="n-num">#36</span><div class="n-tags"><span class="n-tag">Python</span></div></div>
+        <h3 class="n-title">Python Operators</h3>
+        <p class="n-desc">Operators perform actions on values — math operations, comparisons that return True/False, and logical combinations. Used in nearly every line of real code.</p>
+        <div class="n-code">x = <span class="nm">10</span>
+y = <span class="nm">3</span>
+<span class="fn">print</span>(x + y)    <span class="cm"># 13 — addition</span>
+<span class="fn">print</span>(x % y)    <span class="cm"># 1  — remainder (modulo)</span>
+<span class="fn">print</span>(x > y)    <span class="cm"># True — comparison</span></div>
+        </div>
+        <button class="n-expand-btn" aria-expanded="false" onclick="toggleExpand(this)">All Operator Types <span class="earr">▼</span></button>
+        <div class="n-expanded"><ul>
+          <li><strong>Arithmetic:</strong> <code>+ - * /</code> (basic math), <code>//</code> (floor division, drops decimals), <code>%</code> (remainder), <code>**</code> (power, e.g. <code>2**3 = 8</code>).</li>
+          <li><strong>Comparison:</strong> <code>== != &gt; &lt; &gt;= &lt;=</code> — these always return <code>True</code> or <code>False</code>, never a number.</li>
+          <li><strong>Logical:</strong> <code>and</code>, <code>or</code>, <code>not</code> — combine multiple True/False conditions together.</li>
+          <li><strong>Assignment:</strong> <code>=</code> sets a value, <code>+=</code> adds and reassigns (<code>x += 1</code> is shorthand for <code>x = x + 1</code>).</li>
+          <li><strong>Common confusion:</strong> <code>=</code> assigns a value, <code>==</code> compares two values. Mixing these up is the #1 beginner bug.</li>
+        </ul></div>
+      </article>
+
+      <article class="n-card c-card" data-cat="python" data-title="Conditional Statements" data-tags="python programming beginner" id="note-python-37">
+        <div class="n-accent"></div><div class="n-body">
+        <div class="n-meta"><span class="n-num">#37</span><div class="n-tags"><span class="n-tag">Python</span></div></div>
+        <h3 class="n-title">Conditional Statements</h3>
+        <p class="n-desc">Conditionals let your program make decisions — running different code depending on whether a condition is True or False. This is the foundation of all program logic.</p>
+        <div class="n-code">age = <span class="nm">20</span>
+<span class="kw">if</span> age &gt;= <span class="nm">18</span>:
+    <span class="fn">print</span>(<span class="st">"Adult"</span>)
+<span class="kw">elif</span> age &gt;= <span class="nm">13</span>:
+    <span class="fn">print</span>(<span class="st">"Teenager"</span>)
+<span class="kw">else</span>:
+    <span class="fn">print</span>(<span class="st">"Child"</span>)</div>
+        </div>
+        <button class="n-expand-btn" aria-expanded="false" onclick="toggleExpand(this)">if / elif / else Explained <span class="earr">▼</span></button>
+        <div class="n-expanded"><ul>
+          <li><strong>if:</strong> Runs the indented block only if the condition is True. Always ends with a colon <code>:</code>.</li>
+          <li><strong>elif (else if):</strong> Checked only if the previous if/elif was False — you can chain as many as needed.</li>
+          <li><strong>else:</strong> The fallback — runs when none of the above conditions were True. Optional, but common.</li>
+          <li><strong>Nested conditions:</strong> You can put an if inside another if — but keep indentation consistent or Python throws an error.</li>
+          <li><strong>Real use case:</strong> Login systems, grading scripts, and even DevOps scripts use this to decide "if server is down, restart it".</li>
+        </ul></div>
+      </article>
+
+      <article class="n-card c-card" data-cat="python" data-title="Loops in Python" data-tags="python programming beginner" id="note-python-38">
+        <div class="n-accent"></div><div class="n-body">
+        <div class="n-meta"><span class="n-num">#38</span><div class="n-tags"><span class="n-tag">Python</span></div></div>
+        <h3 class="n-title">Loops in Python</h3>
+        <p class="n-desc">Loops repeat a block of code automatically — instead of writing print() five times, a loop does it in two lines. The two main types are for (known number of repeats) and while (repeats until a condition becomes False).</p>
+        <div class="n-code"><span class="kw">for</span> i <span class="kw">in</span> <span class="fn">range</span>(<span class="nm">5</span>):
+    <span class="fn">print</span>(<span class="st">"Count:"</span>, i)
+<span class="cm"># Prints Count: 0 through Count: 4</span></div>
+        </div>
+        <button class="n-expand-btn" aria-expanded="false" onclick="toggleExpand(this)">For Loops, While Loops &amp; Control <span class="earr">▼</span></button>
+        <div class="n-expanded"><ul>
+          <li><strong>for loop:</strong> Best when you know how many times to repeat — looping through a range, list, or string.</li>
+          <li><strong>range(5):</strong> Generates numbers 0,1,2,3,4 — starts at 0 and stops BEFORE 5, a common beginner trap.</li>
+          <li><strong>while loop:</strong> Repeats as long as a condition stays True — used when you don't know the exact repeat count in advance.</li>
+          <li><strong>break:</strong> Immediately exits the loop completely, even if conditions would allow more repeats.</li>
+          <li><strong>continue:</strong> Skips just the current repeat and moves to the next one, without exiting the loop.</li>
+          <li><strong>Infinite loop warning:</strong> A while loop with a condition that never becomes False will run forever — always make sure the condition changes inside the loop.</li>
+        </ul></div>
+      </article>
+
+      <article class="n-card c-card" data-cat="python" data-title="Functions in Python" data-tags="python programming beginner" id="note-python-39">
+        <div class="n-accent"></div><div class="n-body">
+        <div class="n-meta"><span class="n-num">#39</span><div class="n-tags"><span class="n-tag">Python</span></div></div>
+        <h3 class="n-title">Functions in Python</h3>
+        <p class="n-desc">A function is a reusable block of code that performs one task. Instead of repeating the same code everywhere, you write it once as a function and call it whenever needed — keeping programs organized and easy to fix.</p>
+        <div class="n-code"><span class="kw">def</span> <span class="fn">greet</span>(name):
+    <span class="fn">print</span>(<span class="fn">f</span><span class="st">"Hello, {name}!"</span>)
+
+<span class="fn">greet</span>(<span class="st">"Kamran"</span>)
+<span class="cm"># Output: Hello, Kamran!</span></div>
+        </div>
+        <button class="n-expand-btn" aria-expanded="false" onclick="toggleExpand(this)">Parameters, Return Values &amp; Why They Matter <span class="earr">▼</span></button>
+        <div class="n-expanded"><ul>
+          <li><strong>def keyword:</strong> Defines a new function. The function only runs when you "call" it by name later — defining it alone does nothing.</li>
+          <li><strong>Parameters:</strong> Values passed into the function, like <code>name</code> above — the function uses them inside its code block.</li>
+          <li><strong>return statement:</strong> Sends a value back to wherever the function was called — without <code>return</code>, a function gives back <code>None</code>.</li>
+          <li><strong>Why use functions:</strong> If you find a bug, you fix it in one place (the function) instead of fixing it everywhere you copy-pasted code.</li>
+          <li><strong>Default parameters:</strong> <code>def greet(name="Guest")</code> — lets you call <code>greet()</code> with no argument and it still works.</li>
+        </ul></div>
+      </article>
+
+      <article class="n-card c-card" data-cat="python" data-title="Python Collections" data-tags="python programming beginner" id="note-python-40">
+        <div class="n-accent"></div><div class="n-body">
+        <div class="n-meta"><span class="n-num">#40</span><div class="n-tags"><span class="n-tag">Python</span></div></div>
+        <h3 class="n-title">Python Collections</h3>
+        <p class="n-desc">Collections store multiple values together in one variable. Python has four built-in types — list, tuple, dictionary, and set — each with different rules about order, editing, and duplicates.</p>
+        <div class="n-code">fruits = [<span class="st">"apple"</span>, <span class="st">"banana"</span>, <span class="st">"mango"</span>]
+<span class="fn">print</span>(fruits[<span class="nm">0</span>])      <span class="cm"># apple — index starts at 0</span>
+fruits.append(<span class="st">"grape"</span>)
+<span class="fn">print</span>(fruits)</div>
+        </div>
+        <button class="n-expand-btn" aria-expanded="false" onclick="toggleExpand(this)">List vs Tuple vs Dictionary vs Set <span class="earr">▼</span></button>
+        <div class="n-expanded"><ul>
+          <li><strong>List <code>[ ]</code>:</strong> Ordered and changeable (mutable) — you can add, remove, or edit items anytime. Most commonly used.</li>
+          <li><strong>Tuple <code>( )</code>:</strong> Ordered but unchangeable (immutable) — once created, items can't be edited. Used for fixed data like coordinates.</li>
+          <li><strong>Dictionary <code>{key: value}</code>:</strong> Stores data in key-value pairs, like a real dictionary — look up a value instantly using its key, e.g. <code>student = {"name": "Ali", "age": 20}</code>.</li>
+          <li><strong>Set <code>{ }</code>:</strong> Unordered, and automatically removes duplicate values — useful when you only care about unique items.</li>
+          <li><strong>Indexing rule:</strong> Python counts from 0, not 1 — the first item is always at position <code>[0]</code>.</li>
+          <li><strong>When to use which:</strong> Use a list for most everyday tasks, a dictionary when you need labeled data, a tuple for data that should never change.</li>
+        </ul></div>
+      </article>
+
+    </div>
   </div>
 
     <div class="container python-lab"><h2>🐍 Try Python Online</h2><p>Run Python directly in your browser.</p><textarea id="pythonCode" class="python-editor">print("Hello Devriston")
@@ -860,11 +1072,11 @@ Prometheus → Grafana (observe)</div>
           <a href="https://dev.to/muhammadkamrankabeeross" target="_blank" class="ft-soc"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7.42 10.05c-.18-.16-.46-.23-.84-.23H6l.02 2.44.04 2.45.56-.02c.41 0 .63-.07.83-.26.24-.24.26-.36.26-2.2 0-1.91-.02-1.96-.29-2.18zM0 4.94v14.12h24V4.94H0zM8.56 15.3c-.44.58-1.06.77-2.53.77H4.71V8.53h1.4c1.67 0 2.16.18 2.6.9.27.43.29.6.32 2.57.05 2.23-.02 2.73-.47 3.3zm5.09-5.47h-2.47v1.77h1.52v1.28l-.72.04-.75.03v1.77l1.22.03 1.2.04v1.28h-1.6c-1.53 0-1.6-.01-1.87-.3l-.3-.28v-3.16c0-3.02.01-3.18.25-3.48.23-.31.25-.31 1.88-.31h1.64v1.29zm4.68 5.45c-.17.43-.64.79-1 .79-.18 0-.45-.15-.67-.39-.32-.32-.45-.63-.82-2.08l-.9-3.39-.45-1.67h.76c.4 0 .75.02.75.05 0 .06 1.16 4.54 1.26 4.83.04.15.32-.7.73-2.3l.66-2.52.74-.04c.4-.02.73 0 .73.04 0 .14-1.67 5.99-1.8 6.19z"/></svg></a>
         </div>
       </div>
-      <div class="ft-col"><h4>Categories</h4><ul><li><a href="#" onclick="document.querySelector('.fpill[data-cat=linux]').click()">Linux</a></li><li><a href="#" onclick="document.querySelector('.fpill[data-cat=docker]').click()">Docker</a></li><li><a href="#" onclick="document.querySelector('.fpill[data-cat=cloud]').click()">Cloud / AWS</a></li><li><a href="#" onclick="document.querySelector('.fpill[data-cat=terraform]').click()">Terraform</a></li><li><a href="#" onclick="document.querySelector('.fpill[data-cat=cicd]').click()">CI/CD</a></li><li><a href="#" onclick="document.querySelector('.fpill[data-cat=monitoring]').click()">Monitoring</a></li></ul></div>
+      <div class="ft-col"><h4>Categories</h4><ul><li><a href="#" onclick="document.querySelector('.fpill[data-cat=linux]').click()">Linux</a></li><li><a href="#" onclick="document.querySelector('.fpill[data-cat=docker]').click()">Docker</a></li><li><a href="#" onclick="document.querySelector('.fpill[data-cat=cloud]').click()">Cloud / AWS</a></li><li><a href="#" onclick="document.querySelector('.fpill[data-cat=terraform]').click()">Terraform</a></li><li><a href="#" onclick="document.querySelector('.fpill[data-cat=cicd]').click()">CI/CD</a></li><li><a href="#" onclick="document.querySelector('.fpill[data-cat=monitoring]').click()">Monitoring</a></li><li><a href="#" onclick="document.querySelector('.fpill[data-cat=python]').click()">Python</a></li></ul></div>
       <div class="ft-col"><h4>Also Explore</h4><ul><li><a href="blog.html">Blog Articles</a></li><li><a href="case-studies.html">Case Studies</a></li><li><a href="solutions.html">Services</a></li><li><a href="contact.html">Book Consultation</a></li></ul></div>
       <div class="ft-col"><h4>Contact</h4><ul><li><a href="mailto:info@devriston.com.pk">info@devriston.com.pk</a></li><li><a href="https://wa.me/923231450045" target="_blank">WhatsApp</a></li><li><a href="contact.html">Book Consultation</a></li></ul></div>
     </div>
-    <div class="ft-bottom"><p>© 2025 Devriston · Muhammad Kamran Kabeer · Lahore, Pakistan</p><div class="ft-bottom-links"><a href="sitemap.xml">Sitemap</a></div></div>
+    <div class="ft-bottom"><p>© 2026 Devriston · Muhammad Kamran Kabeer · Lahore, Pakistan</p><div class="ft-bottom-links"><a href="sitemap.xml">Sitemap</a></div></div>
   </div>
 </footer>
 
@@ -877,9 +1089,14 @@ async function loadPy(){
 }
 async function runPython(){
  const output=document.getElementById("pythonOutput");
- output.textContent="Running...";
+ if(!pyodideReady){
+   output.textContent="Loading Python engine (~6MB, one-time download)...";
+ }else{
+   output.textContent="Running...";
+ }
  try{
    const py=await loadPy();
+   output.textContent="Running...";
    let code=document.getElementById("pythonCode").value;
    let result=await py.runPythonAsync(code);
    output.textContent=result===undefined ? "Program finished." : result;
@@ -889,128 +1106,3 @@ async function runPython(){
 <script src="assets/js/main.js" defer></script>
 </body>
 </html>
-    <!-- PYTHON PROGRAMMING -->
-    <div class="cat-hdr" data-section="python"><span class="cat-hdr-icon">🐍</span><span class="cat-hdr-title">Python Programming</span><span class="cat-hdr-count">10 notes</span></div>
-    <div class="content-grid" data-section="python">
-
-      <article class="n-card c-card" data-cat="python" data-title="Introduction to Python" data-tags="python programming beginner" id="note-python-31">
-        <div class="n-accent"></div><div class="n-body">
-        <div class="n-meta"><span class="n-num">#31</span><div class="n-tags"><span class="n-tag">Python</span></div></div>
-        <h3 class="n-title">Introduction to Python</h3>
-        <p class="n-desc">Python overview, why Python is popular, features, and real-world applications.</p>
-        <div class="n-code">print("Hello Python")</div>
-        </div>
-        <button class="n-expand-btn" aria-expanded="false" onclick="toggleExpand(this)">Learn More <span class="earr">▼</span></button>
-        <div class="n-expanded"><ul><li><strong>Practice:</strong> Try the examples and modify the code to learn.</li><li><strong>Goal:</strong> Build strong Python programming fundamentals.</li></ul></div>
-      </article>
-
-      <article class="n-card c-card" data-cat="python" data-title="Installing Python & Setup" data-tags="python programming beginner" id="note-python-32">
-        <div class="n-accent"></div><div class="n-body">
-        <div class="n-meta"><span class="n-num">#32</span><div class="n-tags"><span class="n-tag">Python</span></div></div>
-        <h3 class="n-title">Installing Python & Setup</h3>
-        <p class="n-desc">Installing Python, setting up environment, and choosing an IDE.</p>
-        <div class="n-code">python --version</div>
-        </div>
-        <button class="n-expand-btn" aria-expanded="false" onclick="toggleExpand(this)">Learn More <span class="earr">▼</span></button>
-        <div class="n-expanded"><ul><li><strong>Practice:</strong> Try the examples and modify the code to learn.</li><li><strong>Goal:</strong> Build strong Python programming fundamentals.</li></ul></div>
-      </article>
-
-      <article class="n-card c-card" data-cat="python" data-title="Python Syntax Basics" data-tags="python programming beginner" id="note-python-33">
-        <div class="n-accent"></div><div class="n-body">
-        <div class="n-meta"><span class="n-num">#33</span><div class="n-tags"><span class="n-tag">Python</span></div></div>
-        <h3 class="n-title">Python Syntax Basics</h3>
-        <p class="n-desc">Indentation, comments, statements, and basic Python program structure.</p>
-        <div class="n-code"># Python code
-print("Start")</div>
-        </div>
-        <button class="n-expand-btn" aria-expanded="false" onclick="toggleExpand(this)">Learn More <span class="earr">▼</span></button>
-        <div class="n-expanded"><ul><li><strong>Practice:</strong> Try the examples and modify the code to learn.</li><li><strong>Goal:</strong> Build strong Python programming fundamentals.</li></ul></div>
-      </article>
-
-      <article class="n-card c-card" data-cat="python" data-title="Variables & Data Types" data-tags="python programming beginner" id="note-python-34">
-        <div class="n-accent"></div><div class="n-body">
-        <div class="n-meta"><span class="n-num">#34</span><div class="n-tags"><span class="n-tag">Python</span></div></div>
-        <h3 class="n-title">Variables & Data Types</h3>
-        <p class="n-desc">Variables, strings, numbers, booleans, and type conversion.</p>
-        <div class="n-code">name="Devriston"
-print(name)</div>
-        </div>
-        <button class="n-expand-btn" aria-expanded="false" onclick="toggleExpand(this)">Learn More <span class="earr">▼</span></button>
-        <div class="n-expanded"><ul><li><strong>Practice:</strong> Try the examples and modify the code to learn.</li><li><strong>Goal:</strong> Build strong Python programming fundamentals.</li></ul></div>
-      </article>
-
-      <article class="n-card c-card" data-cat="python" data-title="Input and Output" data-tags="python programming beginner" id="note-python-35">
-        <div class="n-accent"></div><div class="n-body">
-        <div class="n-meta"><span class="n-num">#35</span><div class="n-tags"><span class="n-tag">Python</span></div></div>
-        <h3 class="n-title">Input and Output</h3>
-        <p class="n-desc">Using input(), print(), and formatting output.</p>
-        <div class="n-code">name=input("Name: ")
-print(name)</div>
-        </div>
-        <button class="n-expand-btn" aria-expanded="false" onclick="toggleExpand(this)">Learn More <span class="earr">▼</span></button>
-        <div class="n-expanded"><ul><li><strong>Practice:</strong> Try the examples and modify the code to learn.</li><li><strong>Goal:</strong> Build strong Python programming fundamentals.</li></ul></div>
-      </article>
-
-      <article class="n-card c-card" data-cat="python" data-title="Python Operators" data-tags="python programming beginner" id="note-python-36">
-        <div class="n-accent"></div><div class="n-body">
-        <div class="n-meta"><span class="n-num">#36</span><div class="n-tags"><span class="n-tag">Python</span></div></div>
-        <h3 class="n-title">Python Operators</h3>
-        <p class="n-desc">Arithmetic, comparison, assignment, and logical operators.</p>
-        <div class="n-code">x=10+5
-print(x)</div>
-        </div>
-        <button class="n-expand-btn" aria-expanded="false" onclick="toggleExpand(this)">Learn More <span class="earr">▼</span></button>
-        <div class="n-expanded"><ul><li><strong>Practice:</strong> Try the examples and modify the code to learn.</li><li><strong>Goal:</strong> Build strong Python programming fundamentals.</li></ul></div>
-      </article>
-
-      <article class="n-card c-card" data-cat="python" data-title="Conditional Statements" data-tags="python programming beginner" id="note-python-37">
-        <div class="n-accent"></div><div class="n-body">
-        <div class="n-meta"><span class="n-num">#37</span><div class="n-tags"><span class="n-tag">Python</span></div></div>
-        <h3 class="n-title">Conditional Statements</h3>
-        <p class="n-desc">if, elif, else, nested conditions, and decision making.</p>
-        <div class="n-code">if x>5:
- print("Yes")</div>
-        </div>
-        <button class="n-expand-btn" aria-expanded="false" onclick="toggleExpand(this)">Learn More <span class="earr">▼</span></button>
-        <div class="n-expanded"><ul><li><strong>Practice:</strong> Try the examples and modify the code to learn.</li><li><strong>Goal:</strong> Build strong Python programming fundamentals.</li></ul></div>
-      </article>
-
-      <article class="n-card c-card" data-cat="python" data-title="Loops in Python" data-tags="python programming beginner" id="note-python-38">
-        <div class="n-accent"></div><div class="n-body">
-        <div class="n-meta"><span class="n-num">#38</span><div class="n-tags"><span class="n-tag">Python</span></div></div>
-        <h3 class="n-title">Loops in Python</h3>
-        <p class="n-desc">for loops, while loops, break, continue, and repetition.</p>
-        <div class="n-code">for i in range(3):
- print(i)</div>
-        </div>
-        <button class="n-expand-btn" aria-expanded="false" onclick="toggleExpand(this)">Learn More <span class="earr">▼</span></button>
-        <div class="n-expanded"><ul><li><strong>Practice:</strong> Try the examples and modify the code to learn.</li><li><strong>Goal:</strong> Build strong Python programming fundamentals.</li></ul></div>
-      </article>
-
-      <article class="n-card c-card" data-cat="python" data-title="Functions in Python" data-tags="python programming beginner" id="note-python-39">
-        <div class="n-accent"></div><div class="n-body">
-        <div class="n-meta"><span class="n-num">#39</span><div class="n-tags"><span class="n-tag">Python</span></div></div>
-        <h3 class="n-title">Functions in Python</h3>
-        <p class="n-desc">Creating functions, parameters, arguments, and return values.</p>
-        <div class="n-code">def hello():
- print("Hi")</div>
-        </div>
-        <button class="n-expand-btn" aria-expanded="false" onclick="toggleExpand(this)">Learn More <span class="earr">▼</span></button>
-        <div class="n-expanded"><ul><li><strong>Practice:</strong> Try the examples and modify the code to learn.</li><li><strong>Goal:</strong> Build strong Python programming fundamentals.</li></ul></div>
-      </article>
-
-      <article class="n-card c-card" data-cat="python" data-title="Python Collections" data-tags="python programming beginner" id="note-python-40">
-        <div class="n-accent"></div><div class="n-body">
-        <div class="n-meta"><span class="n-num">#40</span><div class="n-tags"><span class="n-tag">Python</span></div></div>
-        <h3 class="n-title">Python Collections</h3>
-        <p class="n-desc">Lists, tuples, dictionaries, and sets.</p>
-        <div class="n-code">items=[1,2,3]
-print(items)</div>
-        </div>
-        <button class="n-expand-btn" aria-expanded="false" onclick="toggleExpand(this)">Learn More <span class="earr">▼</span></button>
-        <div class="n-expanded"><ul><li><strong>Practice:</strong> Try the examples and modify the code to learn.</li><li><strong>Goal:</strong> Build strong Python programming fundamentals.</li></ul></div>
-      </article>
-
-    </div>
-
-
