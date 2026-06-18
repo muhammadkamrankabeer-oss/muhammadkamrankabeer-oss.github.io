@@ -77,7 +77,107 @@
 .python-editor{width:100%;min-height:180px;background:var(--navy);color:#e2e8f0;border:0;border-radius:var(--r);padding:16px;font-family:var(--f-mono);resize:vertical}
 .python-run{margin-top:12px;background:var(--blue);color:white;border:0;border-radius:var(--r-full);padding:10px 18px;cursor:pointer;font-weight:700}
 .python-output{margin-top:15px;background:#020617;color:#e2e8f0;padding:15px;border-radius:var(--r);min-height:60px;white-space:pre-wrap;font-family:var(--f-mono)}
+
+/* Start Here banner */
+.start-here{display:flex;gap:16px;align-items:flex-start;background:linear-gradient(135deg,var(--blue-tint) 0%,#eff6ff 100%);border:1.5px solid var(--blue);border-radius:var(--r-xl);padding:20px 24px;margin-bottom:32px}
+.sh-icon{font-size:1.8rem;flex-shrink:0;line-height:1}
+.sh-body{flex:1;min-width:0}
+.sh-title{font-size:.95rem;font-weight:700;color:var(--text);margin-bottom:4px}
+.sh-desc{font-size:.82rem;color:var(--text-2);margin-bottom:14px;line-height:1.6}
+.sh-path{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.sh-step{display:flex;align-items:center;gap:6px;background:var(--bg);border:1px solid var(--border);border-radius:var(--r-full);padding:6px 14px 6px 8px;font-size:.78rem;font-weight:600;color:var(--text);text-decoration:none;transition:all .15s;white-space:nowrap}
+.sh-step:hover{border-color:var(--blue);color:var(--blue);transform:translateY(-1px);box-shadow:var(--shadow-sm)}
+.sh-num{background:var(--blue);color:#fff;width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.66rem;font-weight:700;flex-shrink:0}
+.sh-arrow{color:var(--text-3);font-size:.85rem;flex-shrink:0}
+@media(max-width:640px){.start-here{flex-direction:column;padding:16px}.sh-path{gap:6px}.sh-arrow{display:none}.sh-step{width:100%}}
 </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LearningResource",
+  "name": "DevOps & Python Notes | Devriston",
+  "description": "40 practical concept cards covering Linux, Docker, AWS, Terraform, CI/CD, Monitoring and Python programming — with code examples, diagrams, and an interactive Python sandbox.",
+  "url": "https://www.devriston.com.pk/devops-notes.html",
+  "educationalLevel": "Beginner to Intermediate",
+  "learningResourceType": "Reference",
+  "inLanguage": "en",
+  "author": {
+    "@type": "Person",
+    "name": "Muhammad Kamran Kabeer",
+    "url": "https://www.devriston.com.pk/about.html"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Devriston",
+    "url": "https://www.devriston.com.pk"
+  },
+  "about": [
+    {"@type":"Thing","name":"Linux"},
+    {"@type":"Thing","name":"Docker"},
+    {"@type":"Thing","name":"AWS Cloud"},
+    {"@type":"Thing","name":"Terraform"},
+    {"@type":"Thing","name":"CI/CD"},
+    {"@type":"Thing","name":"DevOps"},
+    {"@type":"Thing","name":"Python Programming"}
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is Python?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Python is a high-level, general-purpose programming language known for simple, readable syntax. It's used in web development, data science, automation, AI, and DevOps scripting — often called the most beginner-friendly language to learn first."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the difference between Linux and Windows Server?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Linux is free and open-source, runs on lighter hardware, and powers over 96% of the world's servers. Windows Server requires paid licensing and is more common in desktop-first enterprise environments. Most cloud platforms like AWS run on Linux underneath."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is Docker and why is it used?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Docker is a platform to build, package, and run applications in containers. A container packages an application with everything it needs to run, so it works identically on a laptop, a server, or in the cloud — solving the classic 'it works on my machine' problem."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is Ansible used for in DevOps?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ansible is an open-source automation tool used to configure servers, deploy applications, and manage infrastructure. Instead of manually logging into each server, a single Ansible playbook can configure dozens of servers simultaneously over SSH."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is Terraform and how is it different from Ansible?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Terraform is an Infrastructure-as-Code tool used to create and manage cloud resources like servers, networks, and storage. While Ansible focuses on configuring existing servers, Terraform focuses on provisioning the infrastructure itself before configuration happens."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why does Python use indentation instead of curly braces?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Python uses indentation (spacing) to define code blocks instead of curly braces like other languages. This is a deliberate design choice that forces consistently readable code — but it also means incorrect spacing will cause an IndentationError when running the program."
+      }
+    }
+  ]
+}
+</script>
 </head>
 <body>
 
@@ -141,6 +241,26 @@
 <main style="background:var(--bg-2);padding-bottom:80px">
   <div class="container">
     <div id="noResults" style="display:none;text-align:center;padding:72px 24px"><h3>No notes found</h3><p style="color:var(--text-3)">Try a different search term or clear the filter.</p></div>
+
+    <!-- START HERE — BEGINNER PATH BANNER -->
+    <div class="start-here">
+      <div class="sh-icon">🎯</div>
+      <div class="sh-body">
+        <div class="sh-title">New here? Start with these 5 cards, in order</div>
+        <div class="sh-desc">If you've never written code or used Linux before, read these first — each builds on the last.</div>
+        <div class="sh-path">
+          <a href="#note-python-31" class="sh-step"><span class="sh-num">1</span>What is Python</a>
+          <span class="sh-arrow">→</span>
+          <a href="#note-python-32" class="sh-step"><span class="sh-num">2</span>Installing Python</a>
+          <span class="sh-arrow">→</span>
+          <a href="#note-python-33" class="sh-step"><span class="sh-num">3</span>Python Syntax</a>
+          <span class="sh-arrow">→</span>
+          <a href="#note-linux-vs-windows-server" class="sh-step"><span class="sh-num">4</span>Linux vs Windows</a>
+          <span class="sh-arrow">→</span>
+          <a href="#note-python-37" class="sh-step"><span class="sh-num">5</span>if / else Logic</a>
+        </div>
+      </div>
+    </div>
 
     <!-- LINUX -->
     <div class="cat-hdr" data-section="linux"><span class="cat-hdr-icon">🐧</span><span class="cat-hdr-title">Linux</span><span class="cat-hdr-count">5 notes</span></div>
@@ -1080,27 +1200,66 @@ fruits.append(<span class="st">"grape"</span>)
   </div>
 </footer>
 
-<script src="https://cdn.jsdelivr.net/pyodide/v0.27.0/full/pyodide.js"></script>
 <script>
+/* Pyodide is lazy-loaded — the ~150KB pyodide.js script and ~6MB WASM runtime
+   only download when a visitor actually clicks "Run Code". This saves
+   bandwidth for the majority of visitors who just read notes and never
+   run Python — especially important on slower Pakistani connections. */
 let pyodideReady;
+let pyodideScriptLoaded = false;
+
+function loadPyodideScript(){
+  return new Promise((resolve, reject) => {
+    if (pyodideScriptLoaded) { resolve(); return; }
+    const script = document.createElement('script');
+    script.src = "https://cdn.jsdelivr.net/pyodide/v0.27.0/full/pyodide.js";
+    script.onload = () => { pyodideScriptLoaded = true; resolve(); };
+    script.onerror = () => reject(new Error("script-load-failed"));
+    document.body.appendChild(script);
+  });
+}
+
+function withTimeout(promise, ms, timeoutMessage){
+  return Promise.race([
+    promise,
+    new Promise((_, reject) => setTimeout(() => reject(new Error(timeoutMessage)), ms))
+  ]);
+}
+
 async function loadPy(){
-  pyodideReady = pyodideReady || loadPyodide();
+  if(!pyodideReady){
+    await loadPyodideScript();
+    pyodideReady = loadPyodide();
+  }
   return await pyodideReady;
 }
+
 async function runPython(){
  const output=document.getElementById("pythonOutput");
- if(!pyodideReady){
-   output.textContent="Loading Python engine (~6MB, one-time download)...";
+ if(!pyodideScriptLoaded){
+   output.textContent="Loading Python engine (~6MB, one-time download)... this can take 10-20 seconds on slower connections.";
  }else{
    output.textContent="Running...";
  }
  try{
-   const py=await loadPy();
+   const py=await withTimeout(
+     loadPy(),
+     20000,
+     "timeout"
+   );
    output.textContent="Running...";
    let code=document.getElementById("pythonCode").value;
    let result=await py.runPythonAsync(code);
    output.textContent=result===undefined ? "Program finished." : result;
- }catch(e){output.textContent=e}
+ }catch(e){
+   if(e && e.message === "timeout"){
+     output.textContent="⚠️ Python engine couldn't load — this usually means a slow or blocked connection. Please check your internet and click Run again.";
+   }else if(e && e.message === "script-load-failed"){
+     output.textContent="⚠️ Couldn't reach the Python engine server. Please refresh the page and try again.";
+   }else{
+     output.textContent=e;
+   }
+ }
 }
 </script>
 <script src="assets/js/main.js" defer></script>
