@@ -74,6 +74,41 @@
 .cat-jump{display:flex;gap:8px;flex-wrap:wrap;padding:14px 0 4px;border-bottom:1px solid var(--border);margin-bottom:32px}
 .cat-jump a{font-size:.8rem;font-weight:600;padding:5px 13px;border-radius:20px;text-decoration:none;border:1px solid var(--border);color:var(--text-3);transition:all .2s}
 .cat-jump a:hover{color:rgba(77,143,255,1);border-color:rgba(77,143,255,.4)}
+
+/* ── Author block ─────────────────────────────────────────── */
+.author-block{display:flex;align-items:center;gap:18px;padding:20px 24px;border:1px solid rgba(77,143,255,.15);border-radius:12px;background:rgba(77,143,255,.04);margin-bottom:36px}
+.author-avatar{width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,rgba(77,143,255,1),rgba(0,200,150,1));display:flex;align-items:center;justify-content:center;font-size:1.5rem;flex-shrink:0;font-weight:700;color:#fff}
+.author-info{flex:1}
+.author-name{font-weight:700;font-size:1rem;color:var(--text-1);margin:0 0 2px}
+.author-role{font-size:.82rem;color:var(--text-3);margin:0 0 8px}
+.author-links{display:flex;gap:8px;flex-wrap:wrap}
+.author-links a{font-size:.78rem;color:rgba(77,143,255,1);text-decoration:none;border:1px solid rgba(77,143,255,.3);padding:3px 10px;border-radius:20px;transition:background .2s}
+.author-links a:hover{background:rgba(77,143,255,.1)}
+@media(max-width:540px){.author-block{flex-direction:column;align-items:flex-start;gap:12px}}
+
+/* ── Sort toggle ──────────────────────────────────────────── */
+.sort-row{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-bottom:28px}
+.sort-toggle{display:flex;align-items:center;gap:6px;font-size:.8rem;color:var(--text-3)}
+.sort-toggle span{margin-right:4px}
+.sort-toggle button{padding:4px 12px;border-radius:20px;border:1px solid var(--border);background:transparent;color:var(--text-3);cursor:pointer;font-size:.78rem;transition:all .2s}
+.sort-toggle button.active{background:rgba(77,143,255,.12);color:rgba(77,143,255,1);border-color:rgba(77,143,255,.4)}
+
+/* ── Subscribe / follow strip ─────────────────────────────── */
+.subscribe-strip{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:18px 24px;border:1px solid rgba(0,200,150,.2);border-radius:12px;background:rgba(0,200,150,.04);margin:0 0 40px;flex-wrap:wrap}
+.subscribe-strip p{margin:0;font-size:.9rem;color:var(--text-2)}
+.subscribe-strip p strong{color:var(--text-1)}
+.subscribe-strip .sub-links{display:flex;gap:10px;flex-wrap:wrap}
+.subscribe-strip .sub-links a{font-size:.82rem;font-weight:600;padding:7px 16px;border-radius:20px;text-decoration:none;transition:all .2s}
+.sub-devto{background:rgba(0,200,150,.12);color:rgba(0,200,150,1);border:1px solid rgba(0,200,150,.3)}
+.sub-devto:hover{background:rgba(0,200,150,.22)}
+.sub-gh{background:rgba(255,255,255,.06);color:var(--text-2);border:1px solid var(--border)}
+.sub-gh:hover{background:rgba(255,255,255,.1)}
+
+/* ── Featured card image upgrade ─────────────────────────── */
+.feat-card-img svg{opacity:.18;position:absolute}
+.feat-card-img-content{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;gap:8px}
+.feat-card-img-content .feat-emoji{font-size:3rem}
+.feat-card-img-content .feat-img-label{font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(77,143,255,.7)}
 </style>
 </head>
 <body>
@@ -109,9 +144,9 @@
     <div class="breadcrumb"><a href="index.html">Home</a><span class="sep">/</span><span class="cur">Blog</span></div>
     <p class="eyebrow" style="color:rgba(77,143,255,1)">Knowledge Hub</p>
     <h1 class="fade-up">DevOps Blog</h1>
-    <p class="pg-desc fade-up d2">31 practical articles covering Linux, Docker, AWS, Terraform, CI/CD, Monitoring and DevOps — written from real production experience, not textbooks.</p>
+    <p class="pg-desc fade-up d2">32 practical articles covering Linux, Docker, AWS, Terraform, CI/CD, Monitoring and DevOps — written from real production experience, not textbooks.</p>
     <div style="display:flex;flex-wrap:wrap;gap:28px;margin-top:32px" class="fade-up d3">
-      <div class="h-stat"><span class="h-stat-val">31</span><span class="h-stat-lbl">Articles</span></div>
+      <div class="h-stat"><span class="h-stat-val">32</span><span class="h-stat-lbl">Articles</span></div>
       <div class="h-stat"><span class="h-stat-val">7</span><span class="h-stat-lbl">Categories</span></div>
       <div class="h-stat"><span class="h-stat-val">Free</span><span class="h-stat-lbl">Always</span></div>
     </div>
@@ -135,7 +170,7 @@
       <button class="fpill" data-cat="monitoring">Monitoring</button>
       <button class="fpill" data-cat="devops">DevOps</button>
     </div>
-    <span class="result-count" id="blogCount">31 articles</span>
+    <span class="result-count" id="blogCount">32 articles</span>
   </div>
 </div>
 
@@ -159,7 +194,29 @@
       <p class="section-label">⭐ Featured Articles</p>
       <div class="featured-grid">
         <a class="feat-card feat-card-wide" href="terraform-aws-3tier-platform.html">
-          <div class="feat-card-img">⚙️</div>
+          <div class="feat-card-img">
+            <svg viewBox="0 0 600 160" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" preserveAspectRatio="xMidYMid slice">
+              <rect x="40" y="30" width="120" height="36" rx="6" fill="none" stroke="rgba(77,143,255,0.6)" stroke-width="1.5"/>
+              <text x="100" y="53" text-anchor="middle" fill="rgba(77,143,255,0.8)" font-size="11" font-family="monospace">Internet Gateway</text>
+              <rect x="200" y="18" width="110" height="36" rx="6" fill="none" stroke="rgba(0,200,150,0.6)" stroke-width="1.5"/>
+              <text x="255" y="41" text-anchor="middle" fill="rgba(0,200,150,0.8)" font-size="11" font-family="monospace">Public Subnet</text>
+              <rect x="200" y="70" width="110" height="36" rx="6" fill="none" stroke="rgba(140,120,255,0.5)" stroke-width="1.5"/>
+              <text x="255" y="93" text-anchor="middle" fill="rgba(140,120,255,0.8)" font-size="11" font-family="monospace">Private Subnet</text>
+              <rect x="360" y="18" width="90" height="36" rx="6" fill="none" stroke="rgba(0,200,150,0.5)" stroke-width="1.5"/>
+              <text x="405" y="41" text-anchor="middle" fill="rgba(0,200,150,0.7)" font-size="11" font-family="monospace">EC2 Frontend</text>
+              <rect x="360" y="70" width="90" height="36" rx="6" fill="none" stroke="rgba(140,120,255,0.5)" stroke-width="1.5"/>
+              <text x="405" y="93" text-anchor="middle" fill="rgba(140,120,255,0.7)" font-size="11" font-family="monospace">EC2 Backend</text>
+              <rect x="500" y="44" width="72" height="36" rx="6" fill="none" stroke="rgba(255,160,50,0.5)" stroke-width="1.5"/>
+              <text x="536" y="67" text-anchor="middle" fill="rgba(255,160,50,0.7)" font-size="11" font-family="monospace">Docker</text>
+              <line x1="160" y1="48" x2="200" y2="36" stroke="rgba(77,143,255,0.35)" stroke-width="1" stroke-dasharray="4"/>
+              <line x1="160" y1="48" x2="200" y2="88" stroke="rgba(77,143,255,0.35)" stroke-width="1" stroke-dasharray="4"/>
+              <line x1="310" y1="36" x2="360" y2="36" stroke="rgba(0,200,150,0.35)" stroke-width="1" stroke-dasharray="4"/>
+              <line x1="310" y1="88" x2="360" y2="88" stroke="rgba(140,120,255,0.35)" stroke-width="1" stroke-dasharray="4"/>
+              <line x1="450" y1="36" x2="500" y2="62" stroke="rgba(255,160,50,0.3)" stroke-width="1" stroke-dasharray="4"/>
+              <line x1="450" y1="88" x2="500" y2="62" stroke="rgba(255,160,50,0.3)" stroke-width="1" stroke-dasharray="4"/>
+              <text x="30" y="140" fill="rgba(77,143,255,0.3)" font-size="9" font-family="monospace">VPC: 10.0.0.0/16  |  Public: 10.0.1.0/24  |  Private: 10.0.11.0/24</text>
+            </svg>
+          </div>
           <div class="feat-card-body">
             <span class="feat-badge terraform">⚙️ Terraform · Project</span>
             <h2 class="feat-title">Building a Terraform AWS 3-Tier Platform — A Real DevOps Project</h2>
@@ -173,6 +230,31 @@
       </div>
     </div>
 
+    <!-- AUTHOR -->
+    <div class="author-block">
+      <div class="author-avatar">MK</div>
+      <div class="author-info">
+        <p class="author-name">Muhammad Kamran Kabeer</p>
+        <p class="author-role">Founder & Lead DevOps Engineer · Devriston · Lahore, Pakistan</p>
+        <div class="author-links">
+          <a href="about.html">About me</a>
+          <a href="https://www.linkedin.com/in/kamrankabeer/" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="https://github.com/muhammadkamrankabeer-oss" target="_blank" rel="noopener">GitHub</a>
+          <a href="https://dev.to/muhammadkamrankabeeross" target="_blank" rel="noopener">dev.to</a>
+          <a href="contact.html">Work with me</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- SUBSCRIBE STRIP -->
+    <div class="subscribe-strip">
+      <p><strong>Get new articles when they drop.</strong> Follow on dev.to or star the GitHub repo to stay updated.</p>
+      <div class="sub-links">
+        <a class="sub-devto" href="https://dev.to/muhammadkamrankabeeross" target="_blank" rel="noopener">Follow on dev.to →</a>
+        <a class="sub-gh" href="https://github.com/muhammadkamrankabeer-oss" target="_blank" rel="noopener">⭐ GitHub</a>
+      </div>
+    </div>
+
     <!-- CATEGORY JUMP NAV -->
     <div id="catJump" class="cat-jump">
       <a href="#linux">🐧 Linux</a>
@@ -182,6 +264,17 @@
       <a href="#cicd">🔄 CI/CD</a>
       <a href="#monitoring">📊 Monitoring</a>
       <a href="#devops">🚀 DevOps</a>
+    </div>
+
+    <!-- SORT ROW -->
+    <div class="sort-row" id="sortRow">
+      <span style="font-size:.82rem;color:var(--text-3)" id="sortLabel">Showing all categories</span>
+      <div class="sort-toggle">
+        <span>Sort:</span>
+        <button class="active" id="sortDefault" onclick="sortCards('default')">Default</button>
+        <button id="sortAZ" onclick="sortCards('az')">A → Z</button>
+        <button id="sortTime" onclick="sortCards('time')">Read time</button>
+      </div>
     </div>
 
     <!-- LINUX -->
@@ -384,8 +477,19 @@ location / {
     </div>
 
     <!-- TERRAFORM -->
-    <div class="cat-hdr" id="terraform" data-section="terraform"><span class="cat-hdr-icon">⚙️</span><span class="cat-hdr-title">Terraform / IaC</span><span class="cat-hdr-count">4 articles</span></div>
+    <div class="cat-hdr" id="terraform" data-section="terraform"><span class="cat-hdr-icon">⚙️</span><span class="cat-hdr-title">Terraform / IaC</span><span class="cat-hdr-count">5 articles</span></div>
     <div class="content-grid" data-section="terraform">
+      <a class="c-card" data-cat="terraform" data-title="Terraform AWS 3-Tier Platform Project" data-tags="terraform aws vpc iac project ec2 docker 3tier architecture" href="terraform-aws-3tier-platform.html">
+        <div class="c-card-accent"></div><div class="c-card-body">
+        <span class="c-cat cat-color-terraform">⚙️ Terraform · Project</span>
+        <h3 class="c-title">Building a Terraform AWS 3-Tier Platform — A Real DevOps Project</h3>
+        <p class="c-excerpt">A complete modular Terraform project that provisions a real AWS 3-tier environment — custom VPC, public/private subnets, Dockerized EC2 frontend and backend, security groups built on least-privilege, and IaC best practices throughout.</p>
+        <div class="c-code"><span class="nm">VPC:</span>     <span class="st">10.0.0.0/16</span>
+<span class="nm">Public:</span>  <span class="st">10.0.1.0/24</span>  <span class="cm"># frontend</span>
+<span class="nm">Private:</span> <span class="st">10.0.11.0/24</span> <span class="cm"># backend</span></div>
+        <div class="c-footer"><div class="c-tags"><span class="c-tag">terraform</span><span class="c-tag">aws</span><span class="c-tag">project</span></div><span class="c-read">Full article <span class="arr">→</span></span></div>
+        </div><div class="c-read-time">⏱ 8 min read</div>
+      </a>
       <a class="c-card" data-cat="terraform" data-title="Infrastructure as Code" data-tags="terraform iac devops automation versioning" href="devops-notes.html#note-infrastructure-as-code">
         <div class="c-card-accent"></div><div class="c-card-body">
         <span class="c-cat cat-color-terraform">⚙️ Terraform</span>
@@ -728,7 +832,15 @@ const countEl=document.getElementById('blogCount');
 const pills=[...document.querySelectorAll('.fpill')];
 const featSection=document.getElementById('featuredSection');
 const catJump=document.getElementById('catJump');
+const sortRow=document.getElementById('sortRow');
+const sortLabel=document.getElementById('sortLabel');
 let activeCat='all';
+let sortMode='default';
+
+/* store original DOM order for reset */
+grids.forEach(grid=>{
+  [...grid.children].forEach((card,i)=>card.dataset.origIdx=i);
+});
 
 function highlight(text,term){
   if(!term)return text;
@@ -742,13 +854,14 @@ function applyFilter(){
   const searching=term.length>0;
   const filtering=activeCat!=='all';
 
-  /* show/hide featured + jump nav when searching or filtering */
   if(searching||filtering){
     featSection.style.display='none';
     catJump.style.display='none';
+    sortRow.style.display='none';
   } else {
     featSection.style.display='';
     catJump.style.display='';
+    sortRow.style.display='';
   }
 
   cards.forEach(card=>{
@@ -773,7 +886,6 @@ function applyFilter(){
     }
   });
 
-  /* show/hide section headers based on visible cards */
   grids.forEach((grid,i)=>{
     const anyVisible=[...grid.querySelectorAll('.c-card')].some(c=>c.style.display!=='none');
     if(catHdrs[i]){catHdrs[i].style.display=anyVisible?'':'none';}
@@ -784,6 +896,16 @@ function applyFilter(){
   noRes.style.flexDirection='column';
   noRes.style.alignItems='center';
   countEl.textContent=visible+' article'+(visible===1?'':'s');
+
+  /* update sort label */
+  if(filtering){
+    const pill=document.querySelector('.fpill.active');
+    sortLabel.textContent='Showing: '+(pill?pill.textContent:'All');
+  } else if(searching){
+    sortLabel.textContent='Search results for "'+searchInput.value.trim()+'"';
+  } else {
+    sortLabel.textContent='Showing all categories';
+  }
 }
 
 pills.forEach(p=>p.addEventListener('click',()=>{
@@ -793,6 +915,35 @@ pills.forEach(p=>p.addEventListener('click',()=>{
   applyFilter();
 }));
 searchInput.addEventListener('input',applyFilter);
+
+/* ── Sort ──────────────────────────────────────── */
+function sortCards(mode){
+  sortMode=mode;
+  ['sortDefault','sortAZ','sortTime'].forEach(id=>{
+    document.getElementById(id).classList.remove('active');
+  });
+  document.getElementById(mode==='default'?'sortDefault':mode==='az'?'sortAZ':'sortTime').classList.add('active');
+
+  grids.forEach(grid=>{
+    const gridCards=[...grid.querySelectorAll('.c-card')];
+    gridCards.sort((a,b)=>{
+      if(mode==='az'){
+        return (a.dataset.title||'').localeCompare(b.dataset.title||'');
+      } else if(mode==='time'){
+        const getMin=c=>{
+          const rt=c.querySelector('.c-read-time');
+          if(!rt)return 99;
+          const m=rt.textContent.match(/(\d+)/);
+          return m?parseInt(m[1]):99;
+        };
+        return getMin(a)-getMin(b);
+      } else {
+        return parseInt(a.dataset.origIdx||0)-parseInt(b.dataset.origIdx||0);
+      }
+    });
+    gridCards.forEach(c=>grid.appendChild(c));
+  });
+}
 
 /* helper functions for no-results buttons */
 function clearSearch(){searchInput.value='';applyFilter();}
