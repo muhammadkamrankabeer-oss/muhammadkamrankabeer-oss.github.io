@@ -4,80 +4,38 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
 <meta name="google-site-verification" content="wAaiTAPySebPceM4Bux5hwxIT3hy6BDj_NlLq4aDj5Y"/>
-<title>DevOps Blog | Devriston — Linux, AWS, Terraform, Docker, CI/CD Articles</title>
-<meta name="description" content="31 practical DevOps articles covering Linux, Docker, AWS, Terraform, CI/CD and Monitoring — written from real production experience by Muhammad Kamran Kabeer, DevOps Engineer, Lahore."/>
-<meta name="keywords" content="devops blog, linux tutorial, terraform aws, docker guide, ci/cd pipeline, monitoring grafana, devops engineer pakistan"/>
+<title>DevOps Blog | Devriston — Project Writeups, Tutorials & Engineering Articles</title>
+<meta name="description" content="8 in-depth DevOps project articles by Muhammad Kamran Kabeer — Terraform, Ansible, Docker, CI/CD, Prometheus, Samba4 and more. Real projects, real source code, real lessons."/>
+<meta name="keywords" content="devops blog, terraform aws, ansible automation, docker self-healing, prometheus grafana, cicd github actions, devops engineer pakistan"/>
 <meta name="author" content="Muhammad Kamran Kabeer"/>
 <meta name="robots" content="index,follow"/>
 <link rel="canonical" href="https://www.devriston.com.pk/blog.html"/>
 <meta property="og:type" content="website"/>
-<meta property="og:title" content="DevOps Blog | Devriston — Linux, AWS, Terraform, Docker Articles"/>
-<meta property="og:description" content="31 practical DevOps articles: Linux, Docker, AWS, Terraform, CI/CD, Monitoring. Production-oriented, engineer-written by Muhammad Kamran Kabeer."/>
+<meta property="og:title" content="DevOps Blog | Devriston — Project Writeups & Engineering Articles"/>
+<meta property="og:description" content="8 in-depth DevOps project articles — Terraform, Ansible, Docker, CI/CD, Prometheus. Real projects, real source code."/>
 <meta property="og:url" content="https://www.devriston.com.pk/blog.html"/>
 <meta property="og:image" content="https://www.devriston.com.pk/assets/images/banner.png"/>
 <link rel="icon" type="image/png" href="assets/logos/dv-logo.png"/>
 <link rel="stylesheet" href="assets/css/main.css"/>
 <script type="application/ld+json">
-{
-  "@context":"https://schema.org",
-  "@type":"Blog",
-  "name":"Devriston DevOps Blog",
-  "url":"https://www.devriston.com.pk/blog.html",
-  "description":"Practical DevOps articles covering Linux, Docker, AWS, Terraform, CI/CD and Monitoring.",
-  "author":{"@type":"Person","name":"Muhammad Kamran Kabeer","url":"https://www.devriston.com.pk/about.html"},
-  "publisher":{"@type":"Organization","name":"Devriston","logo":{"@type":"ImageObject","url":"https://www.devriston.com.pk/assets/logos/dv-logo.png"}}
-}
+{"@context":"https://schema.org","@type":"Blog","name":"Devriston DevOps Blog","url":"https://www.devriston.com.pk/blog.html","description":"In-depth DevOps project articles covering Terraform, Ansible, Docker, CI/CD and Monitoring.","author":{"@type":"Person","name":"Muhammad Kamran Kabeer","url":"https://www.devriston.com.pk/about.html"},"publisher":{"@type":"Organization","name":"Devriston","logo":{"@type":"ImageObject","url":"https://www.devriston.com.pk/assets/logos/dv-logo.png"}}}
 </script>
 <style>
-/* ── Featured Articles Section ────────────────────────────── */
-.featured-section{padding:48px 0 0}
-.section-label{font-size:.78rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(77,143,255,1);margin-bottom:16px}
-.featured-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:48px}
-@media(max-width:700px){.featured-grid{grid-template-columns:1fr}}
-.feat-card{display:flex;flex-direction:column;border-radius:12px;overflow:hidden;border:1px solid rgba(77,143,255,.2);background:linear-gradient(135deg,rgba(13,17,26,1) 0%,rgba(10,20,40,1) 100%);text-decoration:none;transition:transform .2s,box-shadow .2s;position:relative}
-.feat-card:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(77,143,255,.15);border-color:rgba(77,143,255,.45)}
-.feat-card-img{height:160px;background:linear-gradient(135deg,rgba(10,20,50,1),rgba(5,30,60,1));display:flex;align-items:center;justify-content:center;font-size:3.5rem;border-bottom:1px solid rgba(77,143,255,.15);position:relative;overflow:hidden}
-.feat-card-img::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(77,143,255,.08) 0%,transparent 70%)}
-.feat-card-body{padding:22px 24px 20px;flex:1;display:flex;flex-direction:column;gap:10px}
-.feat-badge{display:inline-flex;align-items:center;gap:6px;font-size:.75rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:4px 10px;border-radius:20px;width:fit-content}
-.feat-badge.terraform{background:rgba(94,72,255,.18);color:rgba(140,120,255,1)}
-.feat-title{font-size:1.15rem;font-weight:700;line-height:1.3;color:var(--text-1);margin:0}
-.feat-excerpt{font-size:.9rem;color:var(--text-3);line-height:1.6;margin:0;flex:1}
-.feat-footer{display:flex;align-items:center;justify-content:space-between;margin-top:4px}
-.feat-meta{font-size:.8rem;color:var(--text-3)}
-.feat-read{font-size:.85rem;font-weight:600;color:rgba(77,143,255,1)}
-.feat-card-wide{grid-column:span 2}
-@media(max-width:700px){.feat-card-wide{grid-column:span 1}}
-
-/* ── Progress bar on cards ───────────────────────────────── */
+/* ── Card hover top bar ───────────────────────────────────── */
 .c-card{position:relative;overflow:hidden}
 .c-card::before{content:'';position:absolute;top:0;left:0;width:0;height:2px;background:linear-gradient(90deg,rgba(77,143,255,1),rgba(0,200,150,1));transition:width .3s ease;z-index:2}
 .c-card:hover::before{width:100%}
-
-/* ── Back to top button ───────────────────────────────────── */
+/* ── Back to top ──────────────────────────────────────────── */
 #backTop{position:fixed;bottom:90px;right:24px;width:42px;height:42px;border-radius:50%;background:rgba(77,143,255,.15);border:1px solid rgba(77,143,255,.35);color:rgba(77,143,255,1);font-size:1.1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .25s,background .2s;z-index:999}
 #backTop.vis{opacity:1;pointer-events:auto}
 #backTop:hover{background:rgba(77,143,255,.3)}
-
-/* ── Reading progress bar ────────────────────────────────── */
+/* ── Reading progress ─────────────────────────────────────── */
 #readProg{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,rgba(77,143,255,1),rgba(0,200,150,1));z-index:9999;transition:width .1s linear}
-
-/* ── Search highlight ────────────────────────────────────── */
+/* ── Search highlight ─────────────────────────────────────── */
 .hl{background:rgba(77,143,255,.25);border-radius:2px;padding:0 2px}
-
-/* ── No-results improvement ──────────────────────────────── */
-#noResults .nr-icon{font-size:3rem;margin-bottom:12px}
-#noResults .nr-suggest{margin-top:16px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
-#noResults .nr-suggest button{padding:6px 14px;border:1px solid rgba(77,143,255,.4);border-radius:20px;background:transparent;color:rgba(77,143,255,1);cursor:pointer;font-size:.85rem}
-
-/* ── Category jump nav ────────────────────────────────────── */
-.cat-jump{display:flex;gap:8px;flex-wrap:wrap;padding:14px 0 4px;border-bottom:1px solid var(--border);margin-bottom:32px}
-.cat-jump a{font-size:.8rem;font-weight:600;padding:5px 13px;border-radius:20px;text-decoration:none;border:1px solid var(--border);color:var(--text-3);transition:all .2s}
-.cat-jump a:hover{color:rgba(77,143,255,1);border-color:rgba(77,143,255,.4)}
-
 /* ── Author block ─────────────────────────────────────────── */
 .author-block{display:flex;align-items:center;gap:18px;padding:20px 24px;border:1px solid rgba(77,143,255,.15);border-radius:12px;background:rgba(77,143,255,.04);margin-bottom:36px}
-.author-avatar{width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,rgba(77,143,255,1),rgba(0,200,150,1));display:flex;align-items:center;justify-content:center;font-size:1.5rem;flex-shrink:0;font-weight:700;color:#fff}
+.author-avatar{width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,rgba(77,143,255,1),rgba(0,200,150,1));display:flex;align-items:center;justify-content:center;font-size:1.4rem;flex-shrink:0;font-weight:700;color:#fff}
 .author-info{flex:1}
 .author-name{font-weight:700;font-size:1rem;color:var(--text-1);margin:0 0 2px}
 .author-role{font-size:.82rem;color:var(--text-3);margin:0 0 8px}
@@ -85,69 +43,44 @@
 .author-links a{font-size:.78rem;color:rgba(77,143,255,1);text-decoration:none;border:1px solid rgba(77,143,255,.3);padding:3px 10px;border-radius:20px;transition:background .2s}
 .author-links a:hover{background:rgba(77,143,255,.1)}
 @media(max-width:540px){.author-block{flex-direction:column;align-items:flex-start;gap:12px}}
-
-/* ── Sort toggle ──────────────────────────────────────────── */
-.sort-row{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-bottom:28px}
-.sort-toggle{display:flex;align-items:center;gap:6px;font-size:.8rem;color:var(--text-3)}
-.sort-toggle span{margin-right:4px}
-.sort-toggle button{padding:4px 12px;border-radius:20px;border:1px solid var(--border);background:transparent;color:var(--text-3);cursor:pointer;font-size:.78rem;transition:all .2s}
-.sort-toggle button.active{background:rgba(77,143,255,.12);color:rgba(77,143,255,1);border-color:rgba(77,143,255,.4)}
-
-/* ── Subscribe / follow strip ─────────────────────────────── */
+/* ── Subscribe strip ──────────────────────────────────────── */
 .subscribe-strip{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:18px 24px;border:1px solid rgba(0,200,150,.2);border-radius:12px;background:rgba(0,200,150,.04);margin:0 0 40px;flex-wrap:wrap}
 .subscribe-strip p{margin:0;font-size:.9rem;color:var(--text-2)}
-.subscribe-strip p strong{color:var(--text-1)}
 .subscribe-strip .sub-links{display:flex;gap:10px;flex-wrap:wrap}
 .subscribe-strip .sub-links a{font-size:.82rem;font-weight:600;padding:7px 16px;border-radius:20px;text-decoration:none;transition:all .2s}
 .sub-devto{background:rgba(0,200,150,.12);color:rgba(0,200,150,1);border:1px solid rgba(0,200,150,.3)}
 .sub-devto:hover{background:rgba(0,200,150,.22)}
 .sub-gh{background:rgba(255,255,255,.06);color:var(--text-2);border:1px solid var(--border)}
 .sub-gh:hover{background:rgba(255,255,255,.1)}
-
-/* ── Featured card image upgrade ─────────────────────────── */
-.feat-card-img svg{opacity:.18;position:absolute}
-.feat-card-img-content{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;gap:8px}
-.feat-card-img-content .feat-emoji{font-size:3rem}
-.feat-card-img-content .feat-img-label{font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(77,143,255,.7)}
+/* ── No results ───────────────────────────────────────────── */
+#noResults .nr-icon{font-size:3rem;margin-bottom:12px}
+#noResults .nr-suggest{margin-top:16px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+#noResults .nr-suggest button{padding:6px 14px;border:1px solid rgba(77,143,255,.4);border-radius:20px;background:transparent;color:rgba(77,143,255,1);cursor:pointer;font-size:.85rem}
+/* ── Notes callout ────────────────────────────────────────── */
+.notes-callout{display:flex;align-items:center;gap:16px;padding:16px 22px;border:1px solid rgba(255,160,60,.25);border-radius:10px;background:rgba(255,160,60,.05);margin-bottom:40px;flex-wrap:wrap}
+.notes-callout p{margin:0;font-size:.9rem;color:var(--text-2);flex:1}
+.notes-callout a{font-size:.85rem;font-weight:600;color:rgba(255,160,60,1);text-decoration:none;white-space:nowrap}
+.notes-callout a:hover{text-decoration:underline}
 </style>
 </head>
 <body>
-
 <div id="readProg"></div>
 <button id="backTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Back to top">↑</button>
 
-<a class="wa-btn" href="https://wa.me/923231450045?text=Hi%20Kamran%2C%20I%20read%20your%20blog%20and%20I%27d%20like%20to%20discuss%20a%20project." target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
-  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.122 1.532 5.856L.057 23.617a.75.75 0 00.908.98l5.963-1.562A11.943 11.943 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.886 0-3.655-.52-5.168-1.424l-.37-.22-3.539.927.943-3.443-.24-.381A9.96 9.96 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
-  WhatsApp
-</a>
+<a class="wa-btn" href="https://wa.me/923231450045?text=Hi%20Kamran%2C%20I%20read%20your%20blog%20and%20I%27d%20like%20to%20discuss%20a%20project." target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.122 1.532 5.856L.057 23.617a.75.75 0 00.908.98l5.963-1.562A11.943 11.943 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.886 0-3.655-.52-5.168-1.424l-.37-.22-3.539.927.943-3.443-.24-.381A9.96 9.96 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>WhatsApp</a>
 
-<nav id="nav" class="scrolled">
-  <div class="container nav-inner">
-    <a href="index.html" class="nav-logo"><img src="assets/logos/dv-logo.png" alt="Devriston"/><span class="nav-brand">Devri<span>ston</span></span></a>
-    <div class="nav-links">
-      <a href="index.html">Home</a><a href="solutions.html">Solutions</a>
-      <a href="case-studies.html">Case Studies</a><a href="blog.html" class="active">Blog</a>
-      <a href="devops-notes.html">Notes</a><a href="about.html">About</a>
-      <a href="contact.html" class="nav-cta">Book Consultation</a>
-    </div>
-    <button class="ham" onclick="toggleDrawer()" aria-label="Menu"><span></span><span></span><span></span></button>
-  </div>
-</nav>
-<div class="drawer" id="nav-drawer">
-  <a href="index.html">Home</a><a href="solutions.html">Solutions</a><a href="case-studies.html">Case Studies</a>
-  <a href="blog.html">Blog</a><a href="devops-notes.html">DevOps Notes</a><a href="about.html">About</a><a href="contact.html">Contact</a>
-</div>
+<nav id="nav" class="scrolled"><div class="container nav-inner"><a href="index.html" class="nav-logo"><img src="assets/logos/dv-logo.png" alt="Devriston"/><span class="nav-brand">Devri<span>ston</span></span></a><div class="nav-links"><a href="index.html">Home</a><a href="solutions.html">Solutions</a><a href="case-studies.html">Case Studies</a><a href="blog.html" class="active">Blog</a><a href="devops-notes.html">Notes</a><a href="about.html">About</a><a href="contact.html" class="nav-cta">Book Consultation</a></div><button class="ham" onclick="toggleDrawer()" aria-label="Menu"><span></span><span></span><span></span></button></div></nav>
+<div class="drawer" id="nav-drawer"><a href="index.html">Home</a><a href="solutions.html">Solutions</a><a href="case-studies.html">Case Studies</a><a href="blog.html">Blog</a><a href="devops-notes.html">DevOps Notes</a><a href="about.html">About</a><a href="contact.html">Contact</a></div>
 
-<!-- HERO -->
 <section class="pg-hero">
   <div class="container">
     <div class="breadcrumb"><a href="index.html">Home</a><span class="sep">/</span><span class="cur">Blog</span></div>
-    <p class="eyebrow" style="color:rgba(77,143,255,1)">Knowledge Hub</p>
+    <p class="eyebrow" style="color:rgba(77,143,255,1)">Project Articles</p>
     <h1 class="fade-up">DevOps Blog</h1>
-    <p class="pg-desc fade-up d2">32 practical articles covering Linux, Docker, AWS, Terraform, CI/CD, Monitoring and DevOps — written from real production experience, not textbooks.</p>
+    <p class="pg-desc fade-up d2">8 in-depth project articles — each backed by real source code on GitHub. Terraform, Ansible, Docker, CI/CD, Monitoring and more.</p>
     <div style="display:flex;flex-wrap:wrap;gap:28px;margin-top:32px" class="fade-up d3">
-      <div class="h-stat"><span class="h-stat-val">32</span><span class="h-stat-lbl">Articles</span></div>
-      <div class="h-stat"><span class="h-stat-val">7</span><span class="h-stat-lbl">Categories</span></div>
+      <div class="h-stat"><span class="h-stat-val">8</span><span class="h-stat-lbl">Articles</span></div>
+      <div class="h-stat"><span class="h-stat-val">8</span><span class="h-stat-lbl">GitHub Repos</span></div>
       <div class="h-stat"><span class="h-stat-val">Free</span><span class="h-stat-lbl">Always</span></div>
     </div>
   </div>
@@ -158,80 +91,32 @@
   <div class="container" style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;width:100%">
     <div class="sw" style="flex:1;min-width:200px">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-      <input type="text" id="blogSearch" class="search-input" placeholder="Search articles — Docker, Terraform, Linux…" autocomplete="off"/>
+      <input type="text" id="blogSearch" class="search-input" placeholder="Search articles — Docker, Terraform, Ansible…" autocomplete="off"/>
     </div>
     <div class="filter-pills">
       <button class="fpill active" data-cat="all">All</button>
-      <button class="fpill" data-cat="linux">Linux</button>
-      <button class="fpill" data-cat="docker">Docker</button>
-      <button class="fpill" data-cat="cloud">Cloud</button>
       <button class="fpill" data-cat="terraform">Terraform</button>
-      <button class="fpill" data-cat="cicd">CI/CD</button>
       <button class="fpill" data-cat="monitoring">Monitoring</button>
-      <button class="fpill" data-cat="devops">DevOps</button>
+      <button class="fpill" data-cat="docker">Docker</button>
+      <button class="fpill" data-cat="linux">Linux</button>
+      <button class="fpill" data-cat="cicd">CI/CD</button>
     </div>
-    <span class="result-count" id="blogCount">32 articles</span>
+    <span class="result-count" id="blogCount">8 articles</span>
   </div>
 </div>
 
 <main style="background:var(--bg);padding-bottom:80px">
   <div class="container">
+
     <div id="noResults" style="display:none;text-align:center;padding:72px 24px">
       <div class="nr-icon">🔍</div>
       <h3>No articles found</h3>
-      <p style="color:var(--text-3)">Try a different search term or browse a category.</p>
-      <div class="nr-suggest">
-        <button onclick="clearSearch()">Clear search</button>
-        <button onclick="setFilter('linux')">Linux</button>
-        <button onclick="setFilter('docker')">Docker</button>
-        <button onclick="setFilter('terraform')">Terraform</button>
-        <button onclick="setFilter('all')">Show all</button>
-      </div>
-    </div>
-
-    <!-- FEATURED ARTICLES -->
-    <div class="featured-section" id="featuredSection">
-      <p class="section-label">⭐ Featured Articles</p>
-      <div class="featured-grid">
-        <a class="feat-card feat-card-wide" href="terraform-aws-3tier-platform.html">
-          <div class="feat-card-img">
-            <svg viewBox="0 0 600 160" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" preserveAspectRatio="xMidYMid slice">
-              <rect x="40" y="30" width="120" height="36" rx="6" fill="none" stroke="rgba(77,143,255,0.6)" stroke-width="1.5"/>
-              <text x="100" y="53" text-anchor="middle" fill="rgba(77,143,255,0.8)" font-size="11" font-family="monospace">Internet Gateway</text>
-              <rect x="200" y="18" width="110" height="36" rx="6" fill="none" stroke="rgba(0,200,150,0.6)" stroke-width="1.5"/>
-              <text x="255" y="41" text-anchor="middle" fill="rgba(0,200,150,0.8)" font-size="11" font-family="monospace">Public Subnet</text>
-              <rect x="200" y="70" width="110" height="36" rx="6" fill="none" stroke="rgba(140,120,255,0.5)" stroke-width="1.5"/>
-              <text x="255" y="93" text-anchor="middle" fill="rgba(140,120,255,0.8)" font-size="11" font-family="monospace">Private Subnet</text>
-              <rect x="360" y="18" width="90" height="36" rx="6" fill="none" stroke="rgba(0,200,150,0.5)" stroke-width="1.5"/>
-              <text x="405" y="41" text-anchor="middle" fill="rgba(0,200,150,0.7)" font-size="11" font-family="monospace">EC2 Frontend</text>
-              <rect x="360" y="70" width="90" height="36" rx="6" fill="none" stroke="rgba(140,120,255,0.5)" stroke-width="1.5"/>
-              <text x="405" y="93" text-anchor="middle" fill="rgba(140,120,255,0.7)" font-size="11" font-family="monospace">EC2 Backend</text>
-              <rect x="500" y="44" width="72" height="36" rx="6" fill="none" stroke="rgba(255,160,50,0.5)" stroke-width="1.5"/>
-              <text x="536" y="67" text-anchor="middle" fill="rgba(255,160,50,0.7)" font-size="11" font-family="monospace">Docker</text>
-              <line x1="160" y1="48" x2="200" y2="36" stroke="rgba(77,143,255,0.35)" stroke-width="1" stroke-dasharray="4"/>
-              <line x1="160" y1="48" x2="200" y2="88" stroke="rgba(77,143,255,0.35)" stroke-width="1" stroke-dasharray="4"/>
-              <line x1="310" y1="36" x2="360" y2="36" stroke="rgba(0,200,150,0.35)" stroke-width="1" stroke-dasharray="4"/>
-              <line x1="310" y1="88" x2="360" y2="88" stroke="rgba(140,120,255,0.35)" stroke-width="1" stroke-dasharray="4"/>
-              <line x1="450" y1="36" x2="500" y2="62" stroke="rgba(255,160,50,0.3)" stroke-width="1" stroke-dasharray="4"/>
-              <line x1="450" y1="88" x2="500" y2="62" stroke="rgba(255,160,50,0.3)" stroke-width="1" stroke-dasharray="4"/>
-              <text x="30" y="140" fill="rgba(77,143,255,0.3)" font-size="9" font-family="monospace">VPC: 10.0.0.0/16  |  Public: 10.0.1.0/24  |  Private: 10.0.11.0/24</text>
-            </svg>
-          </div>
-          <div class="feat-card-body">
-            <span class="feat-badge terraform">⚙️ Terraform · Project</span>
-            <h2 class="feat-title">Building a Terraform AWS 3-Tier Platform — A Real DevOps Project</h2>
-            <p class="feat-excerpt">A complete modular Terraform project that provisions a real AWS 3-tier environment — custom VPC, public/private subnets, Dockerized EC2 frontend and backend, security groups built on least-privilege, and IaC best practices throughout. With source code on GitHub.</p>
-            <div class="feat-footer">
-              <span class="feat-meta">⏱ 8 min read · Terraform, AWS, Docker, IaC</span>
-              <span class="feat-read">Read full article →</span>
-            </div>
-          </div>
-        </a>
-      </div>
+      <p style="color:var(--text-3)">Try a different search term or browse all articles.</p>
+      <div class="nr-suggest"><button onclick="clearSearch()">Clear search</button><button onclick="setFilter('all')">Show all</button></div>
     </div>
 
     <!-- AUTHOR -->
-    <div class="author-block">
+    <div class="author-block" style="margin-top:40px">
       <div class="author-avatar">MK</div>
       <div class="author-info">
         <p class="author-name">Muhammad Kamran Kabeer</p>
@@ -246,535 +131,128 @@
       </div>
     </div>
 
-    <!-- SUBSCRIBE STRIP -->
-    <div class="subscribe-strip">
-      <p><strong>Get new articles when they drop.</strong> Follow on dev.to or star the GitHub repo to stay updated.</p>
+    <!-- NOTES CALLOUT -->
+    <div class="notes-callout">
+      <p>Looking for quick concept references? <strong>DevOps Notes</strong> has 40 searchable reference cards covering Linux, Docker, AWS, Terraform, CI/CD and more.</p>
+      <a href="devops-notes.html">Browse DevOps Notes →</a>
+    </div>
+
+    <!-- ARTICLES GRID -->
+    <div class="content-grid" id="articlesGrid">
+      <a class="c-card" data-cat="terraform-aws-3tier-platform" data-title="Building a Terraform AWS 3-Tier Platform" data-tags="terraform aws vpc iac" href="terraform-aws-3tier-platform.html">
+        <div class="c-card-accent"></div><div class="c-card-body">
+        <span class="c-cat" style="background:rgba(94,72,255,.18);color:rgba(140,120,255,1)">⚙️ Terraform · IaC</span>
+        <h3 class="c-title">Building a Terraform AWS 3-Tier Platform</h3>
+        <p class="c-excerpt">A modular Terraform project provisioning a complete AWS 3-tier environment — custom VPC, public/private subnets, Dockerized EC2 frontend and backend, and security groups built on least-privilege. Full source on GitHub.</p>
+        <div class="c-code"><span class="nm">VPC:</span>     <span class="st">10.0.0.0/16</span>
+<span class="nm">Public:</span>  <span class="st">10.0.1.0/24</span>  <span class="cm"># frontend EC2</span>
+<span class="nm">Private:</span> <span class="st">10.0.11.0/24</span> <span class="cm"># backend EC2</span></div>
+        <div class="c-footer"><div class="c-tags"><span class="c-tag">terraform</span><span class="c-tag">aws</span><span class="c-tag">vpc</span><span class="c-tag">iac</span></div><span class="c-read">Read article <span class="arr">→</span></span></div>
+        </div><div class="c-read-time">⏱ 8 min read</div>
+      </a>
+      <a class="c-card" data-cat="monitoring-stack-automation" data-title="Self-Hosted Monitoring Stack with Prometheus, Grafana, Loki & Ansible" data-tags="prometheus grafana ansible docker" href="monitoring-stack-automation.html">
+        <div class="c-card-accent"></div><div class="c-card-body">
+        <span class="c-cat" style="background:rgba(0,200,150,.12);color:rgba(0,200,150,1)">📊 Monitoring · Ansible</span>
+        <h3 class="c-title">Self-Hosted Monitoring Stack with Prometheus, Grafana, Loki & Ansible</h3>
+        <p class="c-excerpt">Turning a Dell Latitude into a fully monitored node using Ansible and Docker Compose — deploying Prometheus, Grafana, Loki and Alertmanager end-to-end with zero manual steps.</p>
+        <div class="c-code"><span class="gr">Targets → Prometheus → Grafana</span>
+           ↓
+     AlertManager
+           ↓
+<span class="st">Slack / Email / PagerDuty</span></div>
+        <div class="c-footer"><div class="c-tags"><span class="c-tag">prometheus</span><span class="c-tag">grafana</span><span class="c-tag">ansible</span><span class="c-tag">docker</span></div><span class="c-read">Read article <span class="arr">→</span></span></div>
+        </div><div class="c-read-time">⏱ 9 min read</div>
+      </a>
+      <a class="c-card" data-cat="self-healing-container-platform" data-title="Building a Production Self-Healing Container Platform" data-tags="docker self-healing prometheus vagrant" href="self-healing-container-platform.html">
+        <div class="c-card-accent"></div><div class="c-card-body">
+        <span class="c-cat" style="background:rgba(77,143,255,.12);color:rgba(77,143,255,1)">🐳 Docker · DevOps</span>
+        <h3 class="c-title">Building a Production Self-Healing Container Platform</h3>
+        <p class="c-excerpt">A Docker platform where services detect failures and restart themselves — health checks, watchdog service, Prometheus metrics, and Grafana dashboards that prove recovery is actually working.</p>
+        <div class="c-code"><span class="kw">healthcheck:</span>
+  test: [<span class="st">"CMD","curl","-f","http://localhost/health"</span>]
+  <span class="kw">interval:</span> 30s
+  <span class="kw">retries:</span> 3
+<span class="kw">restart:</span> unless-stopped</div>
+        <div class="c-footer"><div class="c-tags"><span class="c-tag">docker</span><span class="c-tag">self-healing</span><span class="c-tag">prometheus</span><span class="c-tag">vagrant</span></div><span class="c-read">Read article <span class="arr">→</span></span></div>
+        </div><div class="c-read-time">⏱ 8 min read</div>
+      </a>
+      <a class="c-card" data-cat="samba4-enterprise-identity-suite" data-title="Enterprise Samba4 Active Directory with Ansible & Linux Hardening" data-tags="samba4 ansible linux vagrant" href="samba4-enterprise-identity-suite.html">
+        <div class="c-card-accent"></div><div class="c-card-body">
+        <span class="c-cat" style="background:rgba(255,160,60,.12);color:rgba(255,160,60,1)">🐧 Linux · Ansible</span>
+        <h3 class="c-title">Enterprise Samba4 Active Directory with Ansible & Linux Hardening</h3>
+        <p class="c-excerpt">Enterprise-grade Samba4 AD domain automated with Ansible on Debian VMs provisioned by Vagrant — with SSH hardening, UFW, fail2ban, and Prometheus monitoring baked in from day one.</p>
+        <div class="c-code"><span class="fn">samba-tool</span> domain provision \
+  --realm=<span class="st">LAB.DEVRISTON.PK</span> \
+  --dns-backend=<span class="st">SAMBA_INTERNAL</span> \
+  --server-role=<span class="st">dc</span></div>
+        <div class="c-footer"><div class="c-tags"><span class="c-tag">samba4</span><span class="c-tag">ansible</span><span class="c-tag">linux</span><span class="c-tag">vagrant</span></div><span class="c-read">Read article <span class="arr">→</span></span></div>
+        </div><div class="c-read-time">⏱ 10 min read</div>
+      </a>
+      <a class="c-card" data-cat="cicd-docker-deployment" data-title="CI/CD Docker Deployment Pipeline — From Git Push to Production" data-tags="cicd github-actions docker deployment" href="cicd-docker-deployment.html">
+        <div class="c-card-accent"></div><div class="c-card-body">
+        <span class="c-cat" style="background:rgba(77,143,255,.12);color:rgba(77,143,255,1)">🔄 CI/CD · Docker</span>
+        <h3 class="c-title">CI/CD Docker Deployment Pipeline — From Git Push to Production</h3>
+        <p class="c-excerpt">A complete GitHub Actions pipeline — automated testing, Docker image build tagged with commit SHA, registry push, and zero-manual-step SSH deployment to a Linux server.</p>
+        <div class="c-code"><span class="kw">on:</span> push: branches: [main]
+<span class="kw">jobs:</span>
+  test → build → push → deploy
+<span class="gr">✔ Zero manual steps to production</span></div>
+        <div class="c-footer"><div class="c-tags"><span class="c-tag">cicd</span><span class="c-tag">github-actions</span><span class="c-tag">docker</span><span class="c-tag">deployment</span></div><span class="c-read">Read article <span class="arr">→</span></span></div>
+        </div><div class="c-read-time">⏱ 9 min read</div>
+      </a>
+      <a class="c-card" data-cat="devops-workstation-automation" data-title="I Built a Fully Automated DevOps Workstation Using Ansible" data-tags="ansible automation linux terraform" href="devops-workstation-automation.html">
+        <div class="c-card-accent"></div><div class="c-card-body">
+        <span class="c-cat" style="background:rgba(255,160,60,.12);color:rgba(255,160,60,1)">🐧 Linux · Ansible</span>
+        <h3 class="c-title">I Built a Fully Automated DevOps Workstation Using Ansible</h3>
+        <p class="c-excerpt">One Ansible playbook provisions a complete DevOps environment — Terraform, Docker, Vagrant, VirtualBox, AWS CLI — idempotently on any Xubuntu/Debian machine in under 10 minutes.</p>
+        <div class="c-code"><span class="fn">git</span> clone <span class="st">devops-workstation-automation</span>
+<span class="fn">ansible-playbook</span> setup.yml \
+  --ask-become-pass
+<span class="gr"># Full DevOps env in ~8 minutes</span></div>
+        <div class="c-footer"><div class="c-tags"><span class="c-tag">ansible</span><span class="c-tag">automation</span><span class="c-tag">linux</span><span class="c-tag">terraform</span></div><span class="c-read">Read article <span class="arr">→</span></span></div>
+        </div><div class="c-read-time">⏱ 8 min read</div>
+      </a>
+      <a class="c-card" data-cat="docker-image-optimization" data-title="Docker Image Optimization — From 1.2GB to 68MB" data-tags="docker optimization dockerfile alpine" href="docker-image-optimization.html">
+        <div class="c-card-accent"></div><div class="c-card-body">
+        <span class="c-cat" style="background:rgba(77,143,255,.12);color:rgba(77,143,255,1)">🐳 Docker</span>
+        <h3 class="c-title">Docker Image Optimization — From 1.2GB to 68MB</h3>
+        <p class="c-excerpt">A systematic walkthrough of Docker image optimization: slim base images, multi-stage builds, Alpine Linux, and layer caching — with real size measurements showing the reduction at each step.</p>
+        <div class="c-code"><span class="cm"># Size reduction at each step</span>
+<span class="nm">python:3.11</span>       <span class="gr">1.23 GB</span>  baseline
+<span class="nm">python:3.11-slim</span>  <span class="gr"> 310 MB</span>  -75%
+<span class="nm">multi-stage</span>       <span class="gr"> 148 MB</span>  -88%
+<span class="nm">alpine</span>            <span class="gr">  68 MB</span>  -94%</div>
+        <div class="c-footer"><div class="c-tags"><span class="c-tag">docker</span><span class="c-tag">optimization</span><span class="c-tag">dockerfile</span><span class="c-tag">alpine</span></div><span class="c-read">Read article <span class="arr">→</span></span></div>
+        </div><div class="c-read-time">⏱ 7 min read</div>
+      </a>
+      <a class="c-card" data-cat="self-healing-docker" data-title="Self-Healing Docker Services — Health Checks, Restart Policies & Watchdog" data-tags="docker self-healing health-checks devops" href="self-healing-docker.html">
+        <div class="c-card-accent"></div><div class="c-card-body">
+        <span class="c-cat" style="background:rgba(77,143,255,.12);color:rgba(77,143,255,1)">🐳 Docker · DevOps</span>
+        <h3 class="c-title">Self-Healing Docker Services — Health Checks, Restart Policies & Watchdog</h3>
+        <p class="c-excerpt">Three layers of Docker self-healing: restart policies for process crashes, health checks for unhealthy containers, and a Python watchdog service for application-level failures that health checks miss.</p>
+        <div class="c-code"><span class="kw">healthcheck:</span>
+  test: [<span class="st">"CMD","curl","-f","http://localhost/health"</span>]
+<span class="kw">restart:</span> unless-stopped
+<span class="cm"># + watchdog for app-level failures</span></div>
+        <div class="c-footer"><div class="c-tags"><span class="c-tag">docker</span><span class="c-tag">self-healing</span><span class="c-tag">health-checks</span><span class="c-tag">devops</span></div><span class="c-read">Read article <span class="arr">→</span></span></div>
+        </div><div class="c-read-time">⏱ 8 min read</div>
+      </a>
+    </div>
+
+    <!-- SUBSCRIBE -->
+    <div class="subscribe-strip" style="margin-top:48px">
+      <p><strong>More articles coming as new projects ship.</strong> Follow on dev.to or star the GitHub to stay updated.</p>
       <div class="sub-links">
         <a class="sub-devto" href="https://dev.to/muhammadkamrankabeeross" target="_blank" rel="noopener">Follow on dev.to →</a>
         <a class="sub-gh" href="https://github.com/muhammadkamrankabeer-oss" target="_blank" rel="noopener">⭐ GitHub</a>
       </div>
     </div>
 
-    <!-- CATEGORY JUMP NAV -->
-    <div id="catJump" class="cat-jump">
-      <a href="#linux">🐧 Linux</a>
-      <a href="#docker">🐳 Docker</a>
-      <a href="#cloud">☁️ Cloud / AWS</a>
-      <a href="#terraform">⚙️ Terraform</a>
-      <a href="#cicd">🔄 CI/CD</a>
-      <a href="#monitoring">📊 Monitoring</a>
-      <a href="#devops">🚀 DevOps</a>
-    </div>
-
-    <!-- SORT ROW -->
-    <div class="sort-row" id="sortRow">
-      <span style="font-size:.82rem;color:var(--text-3)" id="sortLabel">Showing all categories</span>
-      <div class="sort-toggle">
-        <span>Sort:</span>
-        <button class="active" id="sortDefault" onclick="sortCards('default')">Default</button>
-        <button id="sortAZ" onclick="sortCards('az')">A → Z</button>
-        <button id="sortTime" onclick="sortCards('time')">Read time</button>
-      </div>
-    </div>
-
-    <!-- LINUX -->
-    <div class="cat-hdr" id="linux" data-section="linux"><span class="cat-hdr-icon">🐧</span><span class="cat-hdr-title">Linux</span><span class="cat-hdr-count">5 articles</span></div>
-    <div class="content-grid" data-section="linux">
-      <a class="c-card" data-cat="linux" data-title="Linux vs Windows Server" data-tags="linux server os windows" href="devops-notes.html#note-linux-vs-windows-server">
-        <div class="c-card-accent"></div><div class="c-card-body">
-        <span class="c-cat cat-color-linux">🐧 Linux</span>
-        <h3 class="c-title">Linux vs Windows Server — Why DevOps Chose Linux</h3>
-        <p class="c-excerpt">Linux dominates production infrastructure because it's open, auditable, lightweight and fully scriptable. Every cloud VM, Docker container and CI runner runs Linux. Here's why it matters for your career.</p>
-        <div class="c-code"><span class="fn">uname</span> -a && <span class="fn">cat</span> /etc/os-release
-<span class="gr">✔ Linux — foundation of all DevOps</span></div>
-        <div class="c-footer"><div class="c-tags"><span class="c-tag">linux</span><span class="c-tag">server</span><span class="c-tag">windows</span></div><span class="c-read">Read <span class="arr">→</span></span></div>
-        </div><div class="c-read-time">⏱ 5 min read</div>
-      </a>
-      <a class="c-card" data-cat="linux" data-title="Why Linux Matters in DevOps" data-tags="linux devops foundation career" href="devops-notes.html#note-why-linux-matters-in-devops">
-        <div class="c-card-accent"></div><div class="c-card-body">
-        <span class="c-cat cat-color-linux">🐧 Linux</span>
-        <h3 class="c-title">Why Linux Matters in DevOps — The Non-Negotiable Skill</h3>
-        <p class="c-excerpt">Every cloud VM, Docker container, CI runner and Kubernetes node runs Linux. Linux fluency is the baseline that unlocks the entire DevOps stack. No shortcuts here — this is the foundation.</p>
-        <div class="c-code"><span class="fn">systemctl</span> status nginx
-<span class="fn">journalctl</span> -u nginx --since <span class="st">"1h ago"</span>
-<span class="fn">ss</span> -tlnp | <span class="fn">grep</span> :80</div>
-        <div class="c-footer"><div class="c-tags"><span class="c-tag">linux</span><span class="c-tag">devops</span><span class="c-tag">career</span></div><span class="c-read">Read <span class="arr">→</span></span></div>
-        </div><div class="c-read-time">⏱ 6 min read</div>
-      </a>
-      <a class="c-card" data-cat="linux" data-title="Automating DevOps Workstations" data-tags="linux automation ansible bash workstation" href="devops-notes.html#note-automating-devops-workstations">
-        <div class="c-card-accent"></div><div class="c-card-body">
-        <span class="c-cat cat-color-linux">🐧 Linux</span>
-        <h3 class="c-title">Automating Your DevOps Workstation with Bash and Ansible</h3>
-        <p class="c-excerpt">A fully automated workstation setup means rebuilding your entire dev environment in under 10 minutes on any machine. Script it once, version-control it, run it anywhere — never manually install tools again.</p>
-        <div class="c-code"><span class="kw">#!/bin/bash</span>
-TOOLS=(<span class="st">"git"</span> <span class="st">"docker.io"</span> <span class="st">"ansible"</span> <span class="st">"terraform"</span>)
-<span class="kw">for</span> pkg <span class="kw">in</span> <span class="nm">"${TOOLS[@]}"</span>; <span class="kw">do</span>
-  apt-get install -y <span class="nm">$pkg</span>
-<span class="kw">done</span></div>
-        <div class="c-footer"><div class="c-tags"><span class="c-tag">linux</span><span class="c-tag">ansible</span><span class="c-tag">bash</span></div><span class="c-read">Read <span class="arr">→</span></span></div>
-        </div><div class="c-read-time">⏱ 7 min read</div>
-      </a>
-      <a class="c-card" data-cat="linux" data-title="Building Labs on Old Hardware" data-tags="linux homelab hardware lab" href="devops-notes.html#note-building-labs-on-old-hardware">
-        <div class="c-card-accent"></div><div class="c-card-body">
-        <span class="c-cat cat-color-linux">🐧 Linux</span>
-        <h3 class="c-title">Building a Full DevOps Lab on Old Hardware</h3>
-        <p class="c-excerpt">You don't need expensive servers. An old laptop or refurbished Dell Optiplex with 8–16GB RAM runs a complete DevOps lab — Linux, Docker, Ansible, and a full monitoring stack running simultaneously.</p>
-        <div class="c-code"><span class="fn">free</span> -h    <span class="cm"># RAM available</span>
-<span class="fn">nproc</span>      <span class="cm"># CPU cores</span>
-<span class="fn">df</span> -h /    <span class="cm"># Disk space</span>
-<span class="gr"># 8GB RAM = full DevOps lab</span></div>
-        <div class="c-footer"><div class="c-tags"><span class="c-tag">linux</span><span class="c-tag">homelab</span><span class="c-tag">hardware</span></div><span class="c-read">Read <span class="arr">→</span></span></div>
-        </div><div class="c-read-time">⏱ 6 min read</div>
-      </a>
-      <a class="c-card" data-cat="linux" data-title="DevOps Homelab Architecture" data-tags="linux homelab architecture lab design" href="devops-notes.html#note-devops-homelab-architecture">
-        <div class="c-card-accent"></div><div class="c-card-body">
-        <span class="c-cat cat-color-linux">🐧 Linux</span>
-        <h3 class="c-title">DevOps Homelab Architecture — Build It Right From Day One</h3>
-        <p class="c-excerpt">A well-designed homelab mirrors production. A control node runs Ansible, target VMs simulate servers, Docker runs services, and a monitoring stack watches everything. Same tools, smaller scale.</p>
-        <div class="c-code"><span class="gr">control-node  192.168.1.10</span>  <span class="cm"># Ansible + Terraform</span>
-server-01     192.168.1.11   <span class="cm"># Docker apps</span>
-monitor-01    192.168.1.12   <span class="cm"># Prometheus+Grafana</span></div>
-        <div class="c-footer"><div class="c-tags"><span class="c-tag">linux</span><span class="c-tag">homelab</span><span class="c-tag">architecture</span></div><span class="c-read">Read <span class="arr">→</span></span></div>
-        </div><div class="c-read-time">⏱ 8 min read</div>
-      </a>
-    </div>
-
-    <!-- DOCKER -->
-    <div class="cat-hdr" id="docker" data-section="docker"><span class="cat-hdr-icon">🐳</span><span class="cat-hdr-title">Docker</span><span class="cat-hdr-count">5 articles</span></div>
-    <div class="content-grid" data-section="docker">
-      <a class="c-card" data-cat="docker" data-title="What is Docker?" data-tags="docker containers basics intro beginner" href="devops-notes.html#note-what-is-docker">
-        <div class="c-card-accent"></div><div class="c-card-body">
-        <span class="c-cat cat-color-docker">🐳 Docker</span>
-        <h3 class="c-title">What is Docker? A Complete Beginner's Guide</h3>
-        <p class="c-excerpt">Docker packages your application and all its dependencies into a container — a lightweight, portable unit that runs identically on any machine. No more "works on my laptop". Here's everything you need to know.</p>
-        <div class="c-code"><span class="fn">docker</span> run -d -p 80:80 --name web nginx
-<span class="fn">docker</span> ps
-<span class="fn">docker</span> logs web --follow
-<span class="fn">docker</span> exec -it web bash</div>
-        <div class="c-footer"><div class="c-tags"><span class="c-tag">docker</span><span class="c-tag">containers</span><span class="c-tag">beginner</span></div><span class="c-read">Read <span class="arr">→</span></span></div>
-        </div><div class="c-read-time">⏱ 7 min read</div>
-      </a>
-      <a class="c-card" data-cat="docker" data-title="Docker vs Virtual Machines" data-tags="docker vm containers comparison" href="devops-notes.html#note-docker-vs-virtual-machines">
-        <div class="c-card-accent"></div><div class="c-card-body">
-        <span class="c-cat cat-color-docker">🐳 Docker</span>
-        <h3 class="c-title">Docker vs Virtual Machines — The Real Difference Explained</h3>
-        <p class="c-excerpt">VMs virtualise hardware — each gets its own OS kernel eating GBs of RAM. Containers share the host kernel and start in milliseconds. For microservices, containers win on density and speed.</p>
-        <div class="c-code"><span class="cm">Startup: VM=60s   Container=&lt;1s</span>
-<span class="cm">RAM:     VM=2GB   Container=50MB</span>
-<span class="gr">Containers win for microservices</span></div>
-        <div class="c-footer"><div class="c-tags"><span class="c-tag">docker</span><span class="c-tag">vm</span><span class="c-tag">comparison</span></div><span class="c-read">Read <span class="arr">→</span></span></div>
-        </div><div class="c-read-time">⏱ 6 min read</div>
-      </a>
-      <a class="c-card" data-cat="docker" data-title="Docker Volumes" data-tags="docker volumes storage persistence data" href="devops-notes.html#note-docker-volumes">
-        <div class="c-card-accent"></div><div class="c-card-body">
-        <span class="c-cat cat-color-docker">🐳 Docker</span>
-        <h3 class="c-title">Docker Volumes — Persistent Storage That Survives Restarts</h3>
-        <p class="c-excerpt">Containers are ephemeral — kill one and its filesystem is gone. Volumes are persistent storage managed by Docker that survive container restarts, removals, and full recreations.</p>
-        <div class="c-code"><span class="kw">volumes:</span>
-  <span class="nm">pgdata:</span>   <span class="cm"># named volume — Docker managed</span>
-<span class="kw">services:</span>
-  db:
-    <span class="kw">volumes:</span>
-      - <span class="st">pgdata:/var/lib/postgresql/data</span></div>
-        <div class="c-footer"><div class="c-tags"><span class="c-tag">docker</span><span class="c-tag">volumes</span><span class="c-tag">storage</span></div><span class="c-read">Read <span class="arr">→</span></span></div>
-        </div><div class="c-read-time">⏱ 5 min read</div>
-      </a>
-      <a class="c-card" data-cat="docker" data-title="Docker Networking" data-tags="docker network bridge overlay networking" href="devops-notes.html#note-docker-networking">
-        <div class="c-card-accent"></div><div class="c-card-body">
-        <span class="c-cat cat-color-docker">🐳 Docker</span>
-        <h3 class="c-title">Docker Networking Deep Dive — Bridge, Host, Overlay</h3>
-        <p class="c-excerpt">Containers need to communicate — with each other, the host, and the internet. Docker provides network drivers for each use case. Understanding these is essential for production deployments.</p>
-        <div class="c-code"><span class="fn">docker</span> network create app-net
-<span class="fn">docker</span> run -d --network app-net --name api myapi
-<span class="fn">docker</span> run -d --network app-net --name db postgres
-<span class="cm"># api resolves db by name: db:5432</span></div>
-        <div class="c-footer"><div class="c-tags"><span class="c-tag">docker</span><span class="c-tag">networking</span><span class="c-tag">bridge</span></div><span class="c-read">Read <span class="arr">→</span></span></div>
-        </div><div class="c-read-time">⏱ 6 min read</div>
-      </a>
-      <a class="c-card" data-cat="docker" data-title="Docker Mistakes Beginners Make" data-tags="docker mistakes production best-practices" href="devops-notes.html#note-docker-mistakes-beginners-make">
-        <div class="c-card-accent"></div><div class="c-card-body">
-        <span class="c-cat cat-color-docker">🐳 Docker</span>
-        <h3 class="c-title">5 Docker Mistakes Beginners Make in Production</h3>
-        <p class="c-excerpt">Most Docker production problems come from the same repeated mistakes: running as root, using :latest tags, ignoring .dockerignore, storing state in containers, and fat images. Fix all five here.</p>
-        <div class="c-code"><span class="cm"># ❌ Bad</span>
-<span class="kw">FROM</span> ubuntu:latest
-<span class="cm"># ✅ Good</span>
-<span class="kw">FROM</span> python:3.11-slim
-<span class="kw">USER</span> appuser   <span class="cm"># non-root!</span></div>
-        <div class="c-footer"><div class="c-tags"><span class="c-tag">docker</span><span class="c-tag">production</span><span class="c-tag">mistakes</span></div><span class="c-read">Read <span class="arr">→</span></span></div>
-        </div><div class="c-read-time">⏱ 8 min read</div>
-      </a>
-    </div>
-
-    <!-- CLOUD -->
-    <div class="cat-hdr" id="cloud" data-section="cloud"><span class="cat-hdr-icon">☁️</span><span class="cat-hdr-title">Cloud / AWS</span><span class="cat-hdr-count">5 articles</span></div>
-    <div class="content-grid" data-section="cloud">
-      <a class="c-card" data-cat="cloud" data-title="What is AWS EC2?" data-tags="aws ec2 cloud compute instances" href="devops-notes.html#note-what-is-aws-ec2">
-        <div class="c-card-accent"></div><div class="c-card-body">
-        <span class="c-cat cat-color-cloud">☁️ Cloud</span>
-        <h3 class="c-title">What is AWS EC2? Virtual Servers in the Cloud Explained</h3>
-        <p class="c-excerpt">EC2 is AWS's virtual server service. Pick CPU, RAM, and OS — AWS runs it. Pay per second. Scale from one instance to thousands in minutes. Here's everything you need to get started.</p>
-        <div class="c-code"><span class="fn">aws</span> ec2 run-instances \
-  --image-id ami-0c55b159cbfafe1f0 \
-  --instance-type t3.micro \
-  --key-name my-key
-<span class="fn">ssh</span> -i my-key.pem ubuntu@PUBLIC_IP</div>
-        <div class="c-footer"><div class="c-tags"><span class="c-tag">aws</span><span class="c-tag">ec2</span><span class="c-tag">cloud</span></div><span class="c-read">Read <span class="arr">→</span></span></div>
-        </div><div class="c-read-time">⏱ 7 min read</div>
-      </a>
-      <a class="c-card" data-cat="cloud" data-title="What is a VPC?" data-tags="aws vpc networking subnets cloud" href="devops-notes.html#note-what-is-a-vpc">
-        <div class="c-card-accent"></div><div class="c-card-body">
-        <span class="c-cat cat-color-cloud">☁️ Cloud</span>
-        <h3 class="c-title">What is a VPC? Your Private Network Inside AWS</h3>
-        <p class="c-excerpt">A Virtual Private Cloud is your own isolated network inside AWS. You define IP ranges, subnets, routing tables, and internet access. Think of it as your private data centre in the cloud.</p>
-        <div class="c-code"><span class="gr">VPC: 10.0.0.0/16</span>
-├── Public:  10.0.1.0/24  <span class="cm"># web servers</span>
-└── Private: 10.0.2.0/24  <span class="cm"># databases</span>
-    <span class="cm"># No direct internet access</span></div>
-        <div class="c-footer"><div class="c-tags"><span class="c-tag">aws</span><span class="c-tag">vpc</span><span class="c-tag">networking</span></div><span class="c-read">Read <span class="arr">→</span></span></div>
-        </div><div class="c-read-time">⏱ 6 min read</div>
-      </a>
-      <a class="c-card" data-cat="cloud" data-title="Load Balancer Explained" data-tags="aws alb nlb load-balancer cloud" href="devops-notes.html#note-load-balancer-explained">
-        <div class="c-card-accent"></div><div class="c-card-body">
-        <span class="c-cat cat-color-cloud">☁️ Cloud</span>
-        <h3 class="c-title">Load Balancer Explained — ALB vs NLB on AWS</h3>
-        <p class="c-excerpt">A load balancer distributes incoming traffic across multiple servers so no single instance gets overwhelmed. AWS ALB works at Layer 7 — routing by URL path, headers, and hostnames.</p>
-        <div class="c-code"><span class="gr">Client → ALB (port 443)</span>
-├── /api/*  → API servers
-├── /app/*  → App servers
-└── /*      → Web servers</div>
-        <div class="c-footer"><div class="c-tags"><span class="c-tag">aws</span><span class="c-tag">alb</span><span class="c-tag">networking</span></div><span class="c-read">Read <span class="arr">→</span></span></div>
-        </div><div class="c-read-time">⏱ 5 min read</div>
-      </a>
-      <a class="c-card" data-cat="cloud" data-title="Reverse Proxy vs Load Balancer" data-tags="nginx proxy load-balancer networking" href="devops-notes.html#note-reverse-proxy-vs-load-balancer">
-        <div class="c-card-accent"></div><div class="c-card-body">
-        <span class="c-cat cat-color-cloud">☁️ Cloud</span>
-        <h3 class="c-title">Reverse Proxy vs Load Balancer — Key Differences</h3>
-        <p class="c-excerpt">Both sit in front of your servers but serve different roles. A reverse proxy handles SSL termination, caching, and request routing. A load balancer distributes traffic across multiple backends.</p>
-        <div class="c-code"><span class="cm"># nginx reverse proxy</span>
-location / {
-  proxy_pass http://localhost:3000;
-  proxy_set_header Host $host;
-  proxy_set_header X-Real-IP $remote_addr;
-}</div>
-        <div class="c-footer"><div class="c-tags"><span class="c-tag">nginx</span><span class="c-tag">proxy</span><span class="c-tag">networking</span></div><span class="c-read">Read <span class="arr">→</span></span></div>
-        </div><div class="c-read-time">⏱ 5 min read</div>
-      </a>
-      <a class="c-card" data-cat="cloud" data-title="High Availability Basics" data-tags="aws ha cloud architecture redundancy" href="devops-notes.html#note-high-availability-basics">
-        <div class="c-card-accent"></div><div class="c-card-body">
-        <span class="c-cat cat-color-cloud">☁️ Cloud</span>
-        <h3 class="c-title">High Availability on AWS — Eliminate Single Points of Failure</h3>
-        <p class="c-excerpt">HA means your system keeps running even when individual components fail. The core principle: eliminate single points of failure. Deploy across multiple AZs, use health checks, enable auto-recovery.</p>
-        <div class="c-code"><span class="gr">HA — 2 AZ Setup</span>
-         ALB
-        /   \
-    AZ-1     AZ-2
-     EC2       EC2
-     RDS  ←→  RDS <span class="cm">(standby)</span></div>
-        <div class="c-footer"><div class="c-tags"><span class="c-tag">aws</span><span class="c-tag">ha</span><span class="c-tag">architecture</span></div><span class="c-read">Read <span class="arr">→</span></span></div>
-        </div><div class="c-read-time">⏱ 7 min read</div>
-      </a>
-    </div>
-
-    <!-- TERRAFORM -->
-    <div class="cat-hdr" id="terraform" data-section="terraform"><span class="cat-hdr-icon">⚙️</span><span class="cat-hdr-title">Terraform / IaC</span><span class="cat-hdr-count">5 articles</span></div>
-    <div class="content-grid" data-section="terraform">
-      <a class="c-card" data-cat="terraform" data-title="Terraform AWS 3-Tier Platform Project" data-tags="terraform aws vpc iac project ec2 docker 3tier architecture" href="terraform-aws-3tier-platform.html">
-        <div class="c-card-accent"></div><div class="c-card-body">
-        <span class="c-cat cat-color-terraform">⚙️ Terraform · Project</span>
-        <h3 class="c-title">Building a Terraform AWS 3-Tier Platform — A Real DevOps Project</h3>
-        <p class="c-excerpt">A complete modular Terraform project that provisions a real AWS 3-tier environment — custom VPC, public/private subnets, Dockerized EC2 frontend and backend, security groups built on least-privilege, and IaC best practices throughout.</p>
-        <div class="c-code"><span class="nm">VPC:</span>     <span class="st">10.0.0.0/16</span>
-<span class="nm">Public:</span>  <span class="st">10.0.1.0/24</span>  <span class="cm"># frontend</span>
-<span class="nm">Private:</span> <span class="st">10.0.11.0/24</span> <span class="cm"># backend</span></div>
-        <div class="c-footer"><div class="c-tags"><span class="c-tag">terraform</span><span class="c-tag">aws</span><span class="c-tag">project</span></div><span class="c-read">Full article <span class="arr">→</span></span></div>
-        </div><div class="c-read-time">⏱ 8 min read</div>
-      </a>
-      <a class="c-card" data-cat="terraform" data-title="Infrastructure as Code" data-tags="terraform iac devops automation versioning" href="devops-notes.html#note-infrastructure-as-code">
-        <div class="c-card-accent"></div><div class="c-card-body">
-        <span class="c-cat cat-color-terraform">⚙️ Terraform</span>
-        <h3 class="c-title">Infrastructure as Code — Why Your Servers Should Be in Git</h3>
-        <p class="c-excerpt">IaC means your servers, networks, and cloud resources are defined in code files — not manually configured. Reproducible, reviewable in Git, and deployable in minutes — not days of manual work.</p>
-        <div class="c-code"><span class="kw">resource</span> <span class="st">"aws_instance"</span> <span class="st">"web"</span> {
-  <span class="nm">ami</span>           = <span class="st">"ami-0c55b159cbfafe1f0"</span>
-  <span class="nm">instance_type</span> = <span class="st">"t3.micro"</span>
-  <span class="nm">tags</span> = { Name = <span class="st">"devriston-web"</span> }
-}</div>
-        <div class="c-footer"><div class="c-tags"><span class="c-tag">terraform</span><span class="c-tag">iac</span><span class="c-tag">aws</span></div><span class="c-read">Read <span class="arr">→</span></span></div>
-        </div><div class="c-read-time">⏱ 7 min read</div>
-      </a>
-      <a class="c-card" data-cat="terraform" data-title="Why Terraform Matters" data-tags="terraform iac cloud multi-provider" href="devops-notes.html#note-why-terraform-matters">
-        <div class="c-card-accent"></div><div class="c-card-body">
-        <span class="c-cat cat-color-terraform">⚙️ Terraform</span>
-        <h3 class="c-title">Why Terraform Matters — The Cloud-Agnostic IaC Standard</h3>
-        <p class="c-excerpt">Terraform is cloud-agnostic. Write infrastructure for AWS today, replicate on GCP or Azure tomorrow with minimal changes. 3000+ providers cover everything from DNS to Kubernetes to GitHub.</p>
-        <div class="c-code"><span class="fn">terraform</span> init    <span class="cm"># download providers</span>
-<span class="fn">terraform</span> plan    <span class="cm"># preview changes</span>
-<span class="fn">terraform</span> apply   <span class="cm"># execute changes</span>
-<span class="gr">+ 2 to add, 0 to destroy</span></div>
-        <div class="c-footer"><div class="c-tags"><span class="c-tag">terraform</span><span class="c-tag">multi-cloud</span><span class="c-tag">iac</span></div><span class="c-read">Read <span class="arr">→</span></span></div>
-        </div><div class="c-read-time">⏱ 6 min read</div>
-      </a>
-      <a class="c-card" data-cat="terraform" data-title="Terraform State" data-tags="terraform state remote backend s3" href="devops-notes.html#note-terraform-state">
-        <div class="c-card-accent"></div><div class="c-card-body">
-        <span class="c-cat cat-color-terraform">⚙️ Terraform</span>
-        <h3 class="c-title">Terraform State — What It Is and How to Manage It Safely</h3>
-        <p class="c-excerpt">Terraform tracks everything it built in a state file. This is how it knows what exists, what changed, and what to destroy. Never commit state to Git — use remote backends like S3 with DynamoDB locking.</p>
-        <div class="c-code"><span class="kw">terraform</span> {
-  <span class="kw">backend</span> <span class="st">"s3"</span> {
-    <span class="nm">bucket</span>         = <span class="st">"devriston-tf-state"</span>
-    <span class="nm">dynamodb_table</span> = <span class="st">"tf-lock"</span>
-    <span class="nm">encrypt</span>        = <span class="kw">true</span>
-  }
-}</div>
-        <div class="c-footer"><div class="c-tags"><span class="c-tag">terraform</span><span class="c-tag">state</span><span class="c-tag">s3</span></div><span class="c-read">Read <span class="arr">→</span></span></div>
-        </div><div class="c-read-time">⏱ 8 min read</div>
-      </a>
-      <a class="c-card" data-cat="terraform" data-title="What is Ansible?" data-tags="ansible automation iac configuration management" href="devops-notes.html#note-what-is-ansible">
-        <div class="c-card-accent"></div><div class="c-card-body">
-        <span class="c-cat cat-color-terraform">⚙️ Terraform</span>
-        <h3 class="c-title">What is Ansible? Server Automation Without Agents</h3>
-        <p class="c-excerpt">Ansible automates server configuration over SSH — no agent required. Write a playbook in YAML, run it against 1 or 1000 servers, get the same result every time. Idempotent by design.</p>
-        <div class="c-code">- <span class="kw">name:</span> <span class="st">Install and start Nginx</span>
-  <span class="kw">hosts:</span> webservers
-  <span class="kw">tasks:</span>
-    - <span class="kw">apt:</span> name=nginx state=present
-    - <span class="kw">service:</span> name=nginx state=started</div>
-        <div class="c-footer"><div class="c-tags"><span class="c-tag">ansible</span><span class="c-tag">automation</span><span class="c-tag">iac</span></div><span class="c-read">Read <span class="arr">→</span></span></div>
-        </div><div class="c-read-time">⏱ 6 min read</div>
-      </a>
-    </div>
-
-    <!-- CI/CD -->
-    <div class="cat-hdr" id="cicd" data-section="cicd"><span class="cat-hdr-icon">🔄</span><span class="cat-hdr-title">CI/CD</span><span class="cat-hdr-count">4 articles</span></div>
-    <div class="content-grid" data-section="cicd">
-      <a class="c-card" data-cat="cicd" data-title="CI/CD Pipeline Basics" data-tags="cicd pipeline github-actions automation deployment" href="devops-notes.html#note-cicd-pipeline-basics">
-        <div class="c-card-accent"></div><div class="c-card-body">
-        <span class="c-cat cat-color-cicd">🔄 CI/CD</span>
-        <h3 class="c-title">CI/CD Pipeline Basics — From Commit to Production</h3>
-        <p class="c-excerpt">CI automatically builds and tests code on every commit. CD ships passing builds to production. Together they give you faster, safer shipping — zero manual deployment steps required.</p>
-        <div class="c-code"><span class="kw">on:</span>
-  <span class="kw">push:</span> { <span class="kw">branches:</span> [main] }
-<span class="kw">jobs:</span>
-  deploy:
-    <span class="kw">steps:</span>
-      - docker build → test → push → deploy
-<span class="gr">✔ Deployed to production automatically</span></div>
-        <div class="c-footer"><div class="c-tags"><span class="c-tag">cicd</span><span class="c-tag">github-actions</span><span class="c-tag">devops</span></div><span class="c-read">Read <span class="arr">→</span></span></div>
-        </div><div class="c-read-time">⏱ 8 min read</div>
-      </a>
-      <a class="c-card" data-cat="cicd" data-title="GitHub Actions vs Jenkins" data-tags="cicd github-actions jenkins comparison" href="devops-notes.html#note-github-actions-vs-jenkins">
-        <div class="c-card-accent"></div><div class="c-card-body">
-        <span class="c-cat cat-color-cicd">🔄 CI/CD</span>
-        <h3 class="c-title">GitHub Actions vs Jenkins — Which CI/CD Tool to Use?</h3>
-        <p class="c-excerpt">Jenkins is powerful and self-hosted but requires maintenance. GitHub Actions is managed, YAML-driven, and integrates natively with your repo. For most teams, Actions wins on simplicity and speed.</p>
-        <div class="c-code"><span class="gr">GitHub Actions:</span> setup=minutes, managed
-<span class="cm">Jenkins:        </span> setup=days, self-hosted
-<span class="gr">Marketplace: 10,000+ actions</span>
-<span class="cm">Plugins:     1,800+ plugins</span></div>
-        <div class="c-footer"><div class="c-tags"><span class="c-tag">github-actions</span><span class="c-tag">jenkins</span><span class="c-tag">cicd</span></div><span class="c-read">Read <span class="arr">→</span></span></div>
-        </div><div class="c-read-time">⏱ 7 min read</div>
-      </a>
-      <a class="c-card" data-cat="cicd" data-title="Self-Healing Infrastructure" data-tags="cicd docker self-healing automation reliability" href="devops-notes.html#note-self-healing-infrastructure">
-        <div class="c-card-accent"></div><div class="c-card-body">
-        <span class="c-cat cat-color-cicd">🔄 CI/CD</span>
-        <h3 class="c-title">Self-Healing Infrastructure — Systems That Fix Themselves</h3>
-        <p class="c-excerpt">Self-healing means your infrastructure automatically detects and recovers from failures without human intervention. Docker health checks, restart policies, and AWS Auto Scaling are the building blocks.</p>
-        <div class="c-code"><span class="kw">healthcheck:</span>
-  test: [<span class="st">"CMD"</span>,<span class="st">"curl"</span>,<span class="st">"-f"</span>,<span class="st">"http://localhost/health"</span>]
-  <span class="kw">interval:</span> 30s
-  <span class="kw">retries:</span> 3
-<span class="kw">restart:</span> unless-stopped</div>
-        <div class="c-footer"><div class="c-tags"><span class="c-tag">docker</span><span class="c-tag">self-healing</span><span class="c-tag">reliability</span></div><span class="c-read">Read <span class="arr">→</span></span></div>
-        </div><div class="c-read-time">⏱ 7 min read</div>
-      </a>
-      <a class="c-card" data-cat="cicd" data-title="Git Branching Strategy" data-tags="git cicd branching gitflow trunk" href="devops-notes.html#note-git-branching-strategy">
-        <div class="c-card-accent"></div><div class="c-card-body">
-        <span class="c-cat cat-color-cicd">🔄 CI/CD</span>
-        <h3 class="c-title">Git Branching Strategy — GitFlow vs Trunk-Based</h3>
-        <p class="c-excerpt">A branching strategy defines how teams collaborate in Git. GitFlow uses long-lived branches. Trunk-based development uses short-lived feature branches merged frequently. For CI/CD, trunk-based wins.</p>
-        <div class="c-code"><span class="fn">git</span> checkout -b feature/add-monitoring
-<span class="fn">git</span> commit -m <span class="st">"feat: add prometheus"</span>
-<span class="fn">git</span> push origin feature/add-monitoring
-<span class="cm"># PR → review → merge → pipeline</span></div>
-        <div class="c-footer"><div class="c-tags"><span class="c-tag">git</span><span class="c-tag">branching</span><span class="c-tag">cicd</span></div><span class="c-read">Read <span class="arr">→</span></span></div>
-        </div><div class="c-read-time">⏱ 6 min read</div>
-      </a>
-    </div>
-
-    <!-- MONITORING -->
-    <div class="cat-hdr" id="monitoring" data-section="monitoring"><span class="cat-hdr-icon">📊</span><span class="cat-hdr-title">Monitoring</span><span class="cat-hdr-count">3 articles</span></div>
-    <div class="content-grid" data-section="monitoring">
-      <a class="c-card" data-cat="monitoring" data-title="Monitoring Stack Architecture" data-tags="monitoring prometheus grafana alertmanager loki" href="devops-notes.html#note-monitoring-stack-architecture">
-        <div class="c-card-accent"></div><div class="c-card-body">
-        <span class="c-cat cat-color-monitoring">📊 Monitoring</span>
-        <h3 class="c-title">Monitoring Stack Architecture — Prometheus + Grafana + AlertManager</h3>
-        <p class="c-excerpt">A production monitoring stack has three jobs: collect metrics (Prometheus), visualise them (Grafana), and alert on anomalies (AlertManager). Open-source, composable, and battle-tested.</p>
-        <div class="c-code"><span class="gr">Targets → Prometheus → Grafana</span>
-                   ↓
-             AlertManager
-                   ↓
-        Slack / Email / PagerDuty</div>
-        <div class="c-footer"><div class="c-tags"><span class="c-tag">prometheus</span><span class="c-tag">grafana</span><span class="c-tag">monitoring</span></div><span class="c-read">Read <span class="arr">→</span></span></div>
-        </div><div class="c-read-time">⏱ 8 min read</div>
-      </a>
-      <a class="c-card" data-cat="monitoring" data-title="Prometheus Grafana Workflow" data-tags="prometheus grafana promql monitoring queries" href="devops-notes.html#note-prometheus-grafana-workflow">
-        <div class="c-card-accent"></div><div class="c-card-body">
-        <span class="c-cat cat-color-monitoring">📊 Monitoring</span>
-        <h3 class="c-title">Prometheus + Grafana Workflow — PromQL Queries That Matter</h3>
-        <p class="c-excerpt">Prometheus stores time-series metrics. Grafana renders them as actionable dashboards. Here are the PromQL queries you'll actually use every day in production — CPU, RAM, error rates, latency.</p>
-        <div class="c-code"><span class="cm"># CPU usage %</span>
-100 - (avg by(instance)(
-  rate(node_cpu_seconds_total
-    {mode=<span class="st">"idle"</span>}[5m])) * 100)</div>
-        <div class="c-footer"><div class="c-tags"><span class="c-tag">prometheus</span><span class="c-tag">promql</span><span class="c-tag">grafana</span></div><span class="c-read">Read <span class="arr">→</span></span></div>
-        </div><div class="c-read-time">⏱ 9 min read</div>
-      </a>
-      <a class="c-card" data-cat="monitoring" data-title="Lessons From Production Labs" data-tags="monitoring devops production lessons labs" href="devops-notes.html#note-lessons-from-production-style-labs">
-        <div class="c-card-accent"></div><div class="c-card-body">
-        <span class="c-cat cat-color-monitoring">📊 Monitoring</span>
-        <h3 class="c-title">Lessons From Production Labs — What Tutorials Don't Teach</h3>
-        <p class="c-excerpt">Real production experience teaches things no tutorial can. These are hard-won lessons from running actual services, debugging systems that stopped working at 2am, and learning what monitoring should have caught.</p>
-        <div class="c-code"><span class="cm"># First checks when something breaks</span>
-<span class="fn">df</span> -h                       <span class="cm"># disk space</span>
-<span class="fn">free</span> -h                     <span class="cm"># memory</span>
-<span class="fn">journalctl</span> -xe --since <span class="st">"10m"</span>
-<span class="fn">ss</span> -tlnp                    <span class="cm"># open ports</span></div>
-        <div class="c-footer"><div class="c-tags"><span class="c-tag">production</span><span class="c-tag">debugging</span><span class="c-tag">devops</span></div><span class="c-read">Read <span class="arr">→</span></span></div>
-        </div><div class="c-read-time">⏱ 10 min read</div>
-      </a>
-    </div>
-
-    <!-- DEVOPS CAREER -->
-    <div class="cat-hdr" id="devops" data-section="devops"><span class="cat-hdr-icon">🚀</span><span class="cat-hdr-title">DevOps Career & Mindset</span><span class="cat-hdr-count">9 articles</span></div>
-    <div class="content-grid" data-section="devops">
-      <a class="c-card" data-cat="devops" data-title="DevOps Roadmap 2026" data-tags="devops roadmap 2026 career path learning" href="devops-notes.html#note-devops-roadmap-2026">
-        <div class="c-card-accent"></div><div class="c-card-body">
-        <span class="c-cat cat-color-devops">🚀 DevOps</span>
-        <h3 class="c-title">DevOps Roadmap 2026 — The Complete Learning Path</h3>
-        <p class="c-excerpt">The fundamentals haven't changed — Linux, networking, Git, CI/CD. What's shifted is the expectation around security (DevSecOps), observability, and platform engineering replacing pure ops roles.</p>
-        <div class="c-code"><span class="gr">Phase 1:</span> Linux + bash + networking + Git
-<span class="gr">Phase 2:</span> Docker + AWS + Terraform
-<span class="gr">Phase 3:</span> Ansible + GitHub Actions
-<span class="gr">Phase 4:</span> Prometheus + Grafana + Loki
-<span class="gr">Phase 5:</span> Kubernetes + Helm + ArgoCD</div>
-        <div class="c-footer"><div class="c-tags"><span class="c-tag">devops</span><span class="c-tag">roadmap</span><span class="c-tag">2026</span></div><span class="c-read">Read <span class="arr">→</span></span></div>
-        </div><div class="c-read-time">⏱ 9 min read</div>
-      </a>
-      <a class="c-card" data-cat="devops" data-title="How to Learn DevOps Effectively" data-tags="devops learning career education labs" href="devops-notes.html#note-how-to-learn-devops-effectively">
-        <div class="c-card-accent"></div><div class="c-card-body">
-        <span class="c-cat cat-color-devops">🚀 DevOps</span>
-        <h3 class="c-title">How to Learn DevOps Effectively — Stop Watching, Start Building</h3>
-        <p class="c-excerpt">Most people learn DevOps wrong — watching tutorials and feeling productive but unable to do anything without the video paused. The only path that works: build real things, break them, fix them, document on GitHub.</p>
-        <div class="c-code"><span class="gr">Effective Learning Loop</span>
-1. Pick one concept
-2. Read the official docs
-3. Build a lab — hands-on
-4. Break something intentionally
-5. Fix it and document on GitHub</div>
-        <div class="c-footer"><div class="c-tags"><span class="c-tag">devops</span><span class="c-tag">learning</span><span class="c-tag">labs</span></div><span class="c-read">Read <span class="arr">→</span></span></div>
-        </div><div class="c-read-time">⏱ 7 min read</div>
-      </a>
-      <a class="c-card" data-cat="devops" data-title="Most Important DevOps Skills" data-tags="devops career skills employers hiring" href="devops-notes.html#note-most-important-devops-skills">
-        <div class="c-card-accent"></div><div class="c-card-body">
-        <span class="c-cat cat-color-devops">🚀 DevOps</span>
-        <h3 class="c-title">The Most Important DevOps Skills in 2025 — Ranked</h3>
-        <p class="c-excerpt">The DevOps job market is flooded with tool names but short on engineers who understand systems. The skills that get you hired and keep you employed go deeper than any single tool or certification.</p>
-        <div class="c-code"><span class="gr">Tier 1 — Non-negotiable</span>
-  Linux + bash + networking + Git
-<span class="gr">Tier 2 — Core DevOps</span>
-  Docker + AWS + Terraform + CI/CD
-<span class="gr">Tier 3 — Differentiators</span>
-  Observability + DevSecOps</div>
-        <div class="c-footer"><div class="c-tags"><span class="c-tag">devops</span><span class="c-tag">career</span><span class="c-tag">skills</span></div><span class="c-read">Read <span class="arr">→</span></span></div>
-        </div><div class="c-read-time">⏱ 8 min read</div>
-      </a>
-      <a class="c-card" data-cat="devops" data-title="Infrastructure Automation Workflow" data-tags="devops automation terraform ansible workflow" href="devops-notes.html#note-infrastructure-automation-workflow">
-        <div class="c-card-accent"></div><div class="c-card-body">
-        <span class="c-cat cat-color-devops">🚀 DevOps</span>
-        <h3 class="c-title">Infrastructure Automation Workflow — Terraform + Ansible + GitHub Actions</h3>
-        <p class="c-excerpt">A complete infrastructure automation workflow: Terraform provisions, Ansible configures, GitHub Actions orchestrates both, and Prometheus watches the result. Each tool has one job — and does it well.</p>
-        <div class="c-code"><span class="gr">Git push → GitHub Actions</span>
-  ├── terraform plan + apply
-  ├── ansible-playbook configure
-  └── smoke tests verify
-<span class="gr">→ Production + monitoring active</span></div>
-        <div class="c-footer"><div class="c-tags"><span class="c-tag">terraform</span><span class="c-tag">ansible</span><span class="c-tag">automation</span></div><span class="c-read">Read <span class="arr">→</span></span></div>
-        </div><div class="c-read-time">⏱ 8 min read</div>
-      </a>
-      <a class="c-card" data-cat="devops" data-title="Structuring Your DevOps GitHub" data-tags="devops github portfolio career" href="devops-notes.html#note-structuring-your-devops-github">
-        <div class="c-card-accent"></div><div class="c-card-body">
-        <span class="c-cat cat-color-devops">🚀 DevOps</span>
-        <h3 class="c-title">Structuring Your DevOps GitHub — Build a Portfolio That Gets You Hired</h3>
-        <p class="c-excerpt">Your GitHub profile is your engineering résumé. A well-structured DevOps GitHub with documented labs, proper READMEs, and real code beats any certificate on your CV.</p>
-        <div class="c-code"><span class="gr">your-username/</span>
-  ├── 01-linux-lab/      <span class="cm"># README + scripts</span>
-  ├── 02-docker-lab/
-  ├── 03-terraform-aws/
-  ├── 04-ansible-playbooks/
-  └── 05-monitoring-stack/</div>
-        <div class="c-footer"><div class="c-tags"><span class="c-tag">github</span><span class="c-tag">portfolio</span><span class="c-tag">career</span></div><span class="c-read">Read <span class="arr">→</span></span></div>
-        </div><div class="c-read-time">⏱ 6 min read</div>
-      </a>
-      <a class="c-card" data-cat="devops" data-title="Ansible Roles and Structure" data-tags="devops ansible roles structure automation" href="devops-notes.html#note-ansible-roles-and-structure">
-        <div class="c-card-accent"></div><div class="c-card-body">
-        <span class="c-cat cat-color-devops">🚀 DevOps</span>
-        <h3 class="c-title">Ansible Roles and Structure — Organise Automation at Scale</h3>
-        <p class="c-excerpt">Ansible roles are reusable, self-contained units of automation. Instead of one giant playbook, roles separate tasks, templates, handlers, and variables — making automation maintainable at real scale.</p>
-        <div class="c-code"><span class="gr">roles/nginx/</span>
-  ├── tasks/main.yml    <span class="cm"># what to do</span>
-  ├── handlers/main.yml <span class="cm"># restart triggers</span>
-  ├── templates/        <span class="cm"># Jinja2 configs</span>
-  └── defaults/main.yml <span class="cm"># default vars</span></div>
-        <div class="c-footer"><div class="c-tags"><span class="c-tag">ansible</span><span class="c-tag">roles</span><span class="c-tag">automation</span></div><span class="c-read">Read <span class="arr">→</span></span></div>
-        </div><div class="c-read-time">⏱ 6 min read</div>
-      </a>
-      <a class="c-card" data-cat="devops" data-title="DevOps Interview Preparation" data-tags="devops interview career preparation" href="devops-notes.html#note-devops-interview-preparation">
-        <div class="c-card-accent"></div><div class="c-card-body">
-        <span class="c-cat cat-color-devops">🚀 DevOps</span>
-        <h3 class="c-title">DevOps Interview Preparation — How to Answer Every Question Type</h3>
-        <p class="c-excerpt">DevOps interviews test tool knowledge and systems thinking. Interviewers want to see that you understand why tools exist, not just how to run commands. Here's the framework that works every time.</p>
-        <div class="c-code"><span class="gr">Scenario:</span> "Debug a prod incident"
-<span class="gr">Design:</span>   "CI/CD for a Node.js app"
-<span class="gr">Concept:</span>  "Container vs VM"
-<span class="gr">Practical:</span>"Write Ansible for nginx"</div>
-        <div class="c-footer"><div class="c-tags"><span class="c-tag">devops</span><span class="c-tag">interview</span><span class="c-tag">career</span></div><span class="c-read">Read <span class="arr">→</span></span></div>
-        </div><div class="c-read-time">⏱ 9 min read</div>
-      </a>
-      <a class="c-card" data-cat="devops" data-title="Terraform Modules and Reuse" data-tags="devops terraform modules reuse" href="devops-notes.html#note-terraform-modules-and-reuse">
-        <div class="c-card-accent"></div><div class="c-card-body">
-        <span class="c-cat cat-color-devops">🚀 DevOps</span>
-        <h3 class="c-title">Terraform Modules — Write Once, Reuse Everywhere</h3>
-        <p class="c-excerpt">Terraform modules are reusable IaC components. Instead of copy-pasting VPC code across projects, write a module once and call it everywhere with different inputs. Same pattern as functions in programming.</p>
-        <div class="c-code"><span class="kw">module</span> <span class="st">"vpc"</span> {
-  <span class="nm">source</span>      = <span class="st">"./modules/vpc"</span>
-  <span class="nm">vpc_cidr</span>    = <span class="st">"10.0.0.0/16"</span>
-  <span class="nm">environment</span> = <span class="st">"production"</span>
-}</div>
-        <div class="c-footer"><div class="c-tags"><span class="c-tag">terraform</span><span class="c-tag">modules</span><span class="c-tag">iac</span></div><span class="c-read">Read <span class="arr">→</span></span></div>
-        </div><div class="c-read-time">⏱ 7 min read</div>
-      </a>
-      <a class="c-card" data-cat="devops" data-title="Docker Compose Production Tips" data-tags="devops docker compose production tips" href="devops-notes.html#note-docker-compose-production-tips">
-        <div class="c-card-accent"></div><div class="c-card-body">
-        <span class="c-cat cat-color-devops">🚀 DevOps</span>
-        <h3 class="c-title">Docker Compose in Production — Tips Most Guides Don't Tell You</h3>
-        <p class="c-excerpt">Docker Compose is often dismissed as "just for dev" — but with the right configuration it runs production workloads reliably. Key: pinned versions, health checks, restart policies, and log rotation.</p>
-        <div class="c-code"><span class="kw">image:</span> <span class="st">myapp:1.4.2</span>       <span class="cm"># pinned</span>
-<span class="kw">restart:</span> unless-stopped
-<span class="kw">env_file:</span> .env.production <span class="cm"># no secrets in compose</span>
-<span class="kw">logging:</span>
-  <span class="kw">driver:</span> json-file
-  <span class="kw">options:</span> { max-size: <span class="st">"10m"</span> }</div>
-        <div class="c-footer"><div class="c-tags"><span class="c-tag">docker</span><span class="c-tag">compose</span><span class="c-tag">production</span></div><span class="c-read">Read <span class="arr">→</span></span></div>
-        </div><div class="c-read-time">⏱ 7 min read</div>
-      </a>
-    </div>
-
-    <!-- CTA banner -->
-    <div class="blog-cta-banner">
+    <!-- CTA -->
+    <div class="blog-cta-banner" style="margin-top:48px">
       <p class="eyebrow" style="color:rgba(77,143,255,1);justify-content:center">Work With Me</p>
       <h3>Need help implementing any of this?</h3>
-      <p>I offer consulting for Linux migration, AWS infrastructure, CI/CD pipelines, Docker, and monitoring setup. Let's talk.</p>
+      <p>I offer consulting for Linux, AWS, CI/CD pipelines, Docker, Terraform, and monitoring setup. Let's talk.</p>
       <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
         <a href="contact.html" class="btn btn-primary">Book Free Consultation</a>
         <a href="https://wa.me/923231450045" target="_blank" class="btn btn-white-outline">WhatsApp →</a>
@@ -784,93 +262,36 @@ location / {
   </div>
 </main>
 
-<footer>
-  <div class="container">
-    <div class="ft-grid">
-      <div class="ft-brand"><div class="ft-logo"><img src="assets/logos/dv-logo.png" alt="Devriston"/><span class="ft-logo-name">Devri<span>ston</span></span></div><p>DevOps consulting, Linux, cloud infrastructure and training. Solutions that drive tomorrow.</p>
-        <div class="ft-socials">
-          <a href="https://github.com/muhammadkamrankabeer-oss" target="_blank" class="ft-soc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg></a>
-          <a href="https://www.linkedin.com/in/kamrankabeer/" target="_blank" class="ft-soc"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
-          <a href="https://www.youtube.com/@Devriston" target="_blank" class="ft-soc"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
-          <a href="https://x.com/Devristonhq" target="_blank" class="ft-soc"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
-          <a href="https://dev.to/muhammadkamrankabeeross" target="_blank" class="ft-soc"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7.42 10.05c-.18-.16-.46-.23-.84-.23H6l.02 2.44.04 2.45.56-.02c.41 0 .63-.07.83-.26.24-.24.26-.36.26-2.2 0-1.91-.02-1.96-.29-2.18zM0 4.94v14.12h24V4.94H0zM8.56 15.3c-.44.58-1.06.77-2.53.77H4.71V8.53h1.4c1.67 0 2.16.18 2.6.9.27.43.29.6.32 2.57.05 2.23-.02 2.73-.47 3.3zm5.09-5.47h-2.47v1.77h1.52v1.28l-.72.04-.75.03v1.77l1.22.03 1.2.04v1.28h-1.6c-1.53 0-1.6-.01-1.87-.3l-.3-.28v-3.16c0-3.02.01-3.18.25-3.48.23-.31.25-.31 1.88-.31h1.64v1.29zm4.68 5.45c-.17.43-.64.79-1 .79-.18 0-.45-.15-.67-.39-.32-.32-.45-.63-.82-2.08l-.9-3.39-.45-1.67h.76c.4 0 .75.02.75.05 0 .06 1.16 4.54 1.26 4.83.04.15.32-.7.73-2.3l.66-2.52.74-.04c.4-.02.73 0 .73.04 0 .14-1.67 5.99-1.8 6.19z"/></svg></a>
-        </div>
-      </div>
-      <div class="ft-col"><h4>Categories</h4><ul>
-        <li><a href="javascript:void(0)" onclick="document.querySelector('.fpill[data-cat=linux]').click();window.scrollTo(0,document.querySelector('.search-bar').offsetTop-80)">Linux</a></li>
-        <li><a href="javascript:void(0)" onclick="document.querySelector('.fpill[data-cat=docker]').click();window.scrollTo(0,document.querySelector('.search-bar').offsetTop-80)">Docker</a></li>
-        <li><a href="javascript:void(0)" onclick="document.querySelector('.fpill[data-cat=cloud]').click();window.scrollTo(0,document.querySelector('.search-bar').offsetTop-80)">Cloud / AWS</a></li>
-        <li><a href="javascript:void(0)" onclick="document.querySelector('.fpill[data-cat=terraform]').click();window.scrollTo(0,document.querySelector('.search-bar').offsetTop-80)">Terraform</a></li>
-        <li><a href="javascript:void(0)" onclick="document.querySelector('.fpill[data-cat=cicd]').click();window.scrollTo(0,document.querySelector('.search-bar').offsetTop-80)">CI/CD</a></li>
-        <li><a href="javascript:void(0)" onclick="document.querySelector('.fpill[data-cat=monitoring]').click();window.scrollTo(0,document.querySelector('.search-bar').offsetTop-80)">Monitoring</a></li>
-        <li><a href="javascript:void(0)" onclick="document.querySelector('.fpill[data-cat=devops]').click();window.scrollTo(0,document.querySelector('.search-bar').offsetTop-80)">DevOps</a></li>
-      </ul></div>
-      <div class="ft-col"><h4>Also Explore</h4><ul><li><a href="devops-notes.html">DevOps Notes</a></li><li><a href="case-studies.html">Case Studies</a></li><li><a href="solutions.html">Services</a></li><li><a href="https://github.com/muhammadkamrankabeer-oss" target="_blank">GitHub Labs</a></li></ul></div>
-      <div class="ft-col"><h4>Contact</h4><ul><li><a href="mailto:info@devriston.com.pk">info@devriston.com.pk</a></li><li><a href="https://wa.me/923231450045" target="_blank">WhatsApp</a></li><li><a href="contact.html">Book Consultation</a></li></ul></div>
-    </div>
-    <div class="ft-bottom"><p>© 2025 Devriston · Muhammad Kamran Kabeer · Lahore, Pakistan</p><div class="ft-bottom-links"><a href="sitemap.xml">Sitemap</a></div></div>
-  </div>
-</footer>
+<footer><div class="container"><div class="ft-grid"><div class="ft-brand"><div class="ft-logo"><img src="assets/logos/dv-logo.png" alt="Devriston"/><span class="ft-logo-name">Devri<span>ston</span></span></div><p>DevOps consulting, Linux, cloud infrastructure and training. Solutions that drive tomorrow.</p><div class="ft-socials"><a href="https://github.com/muhammadkamrankabeer-oss" target="_blank" class="ft-soc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg></a><a href="https://www.linkedin.com/in/kamrankabeer/" target="_blank" class="ft-soc"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a><a href="https://dev.to/muhammadkamrankabeeross" target="_blank" class="ft-soc"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7.42 10.05c-.18-.16-.46-.23-.84-.23H6l.02 2.44.04 2.45.56-.02c.41 0 .63-.07.83-.26.24-.24.26-.36.26-2.2 0-1.91-.02-1.96-.29-2.18zM0 4.94v14.12h24V4.94H0zM8.56 15.3c-.44.58-1.06.77-2.53.77H4.71V8.53h1.4c1.67 0 2.16.18 2.6.9.27.43.29.6.32 2.57.05 2.23-.02 2.73-.47 3.3zm5.09-5.47h-2.47v1.77h1.52v1.28l-.72.04-.75.03v1.77l1.22.03 1.2.04v1.28h-1.6c-1.53 0-1.6-.01-1.87-.3l-.3-.28v-3.16c0-3.02.01-3.18.25-3.48.23-.31.25-.31 1.88-.31h1.64v1.29zm4.68 5.45c-.17.43-.64.79-1 .79-.18 0-.45-.15-.67-.39-.32-.32-.45-.63-.82-2.08l-.9-3.39-.45-1.67h.76c.4 0 .75.02.75.05 0 .06 1.16 4.54 1.26 4.83.04.15.32-.7.73-2.3l.66-2.52.74-.04c.4-.02.73 0 .73.04 0 .14-1.67 5.99-1.8 6.19z"/></svg></a><a href="https://x.com/Devristonhq" target="_blank" class="ft-soc"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a></div></div><div class="ft-col"><h4>Articles</h4><ul><li><a href="terraform-aws-3tier-platform.html">Terraform 3-Tier Platform</a></li><li><a href="monitoring-stack-automation.html">Monitoring Stack</a></li><li><a href="cicd-docker-deployment.html">CI/CD Pipeline</a></li><li><a href="devops-notes.html">DevOps Notes</a></li></ul></div><div class="ft-col"><h4>Contact</h4><ul><li><a href="mailto:info@devriston.com.pk">info@devriston.com.pk</a></li><li><a href="https://wa.me/923231450045" target="_blank">WhatsApp</a></li><li><a href="contact.html">Book Consultation</a></li></ul></div></div><div class="ft-bottom"><p>© 2026 Devriston · Muhammad Kamran Kabeer · Lahore, Pakistan</p><div class="ft-bottom-links"><a href="sitemap.xml">Sitemap</a></div></div></div></footer>
 <script src="assets/js/main.js" defer></script>
 <script>
-/* ── Reading progress bar ──────────────────────── */
 window.addEventListener('scroll',()=>{
   const d=document.documentElement;
-  const prog=(d.scrollTop/(d.scrollHeight-d.clientHeight))*100;
-  document.getElementById('readProg').style.width=prog+'%';
+  document.getElementById('readProg').style.width=(d.scrollTop/(d.scrollHeight-d.clientHeight))*100+'%';
   const bt=document.getElementById('backTop');
   d.scrollTop>400?bt.classList.add('vis'):bt.classList.remove('vis');
 });
-
-/* ── Search + filter + highlight ──────────────── */
 const searchInput=document.getElementById('blogSearch');
 const cards=[...document.querySelectorAll('.c-card')];
-const catHdrs=[...document.querySelectorAll('.cat-hdr')];
-const grids=[...document.querySelectorAll('.content-grid')];
 const noRes=document.getElementById('noResults');
 const countEl=document.getElementById('blogCount');
 const pills=[...document.querySelectorAll('.fpill')];
-const featSection=document.getElementById('featuredSection');
-const catJump=document.getElementById('catJump');
-const sortRow=document.getElementById('sortRow');
-const sortLabel=document.getElementById('sortLabel');
 let activeCat='all';
-let sortMode='default';
-
-/* store original DOM order for reset */
-grids.forEach(grid=>{
-  [...grid.children].forEach((card,i)=>card.dataset.origIdx=i);
-});
-
 function highlight(text,term){
   if(!term)return text;
-  const re=new RegExp(`(${term.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')})`, 'gi');
-  return text.replace(re,'<span class="hl">$1</span>');
+  return text.replace(new RegExp(`(${term.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')})`, 'gi'),'<span class="hl">$1</span>');
 }
-
 function applyFilter(){
   const term=searchInput.value.toLowerCase().trim();
   let visible=0;
   const searching=term.length>0;
   const filtering=activeCat!=='all';
-
-  if(searching||filtering){
-    featSection.style.display='none';
-    catJump.style.display='none';
-    sortRow.style.display='none';
-  } else {
-    featSection.style.display='';
-    catJump.style.display='';
-    sortRow.style.display='';
-  }
-
   cards.forEach(card=>{
     const title=(card.dataset.title||'').toLowerCase();
     const tags=(card.dataset.tags||'').toLowerCase();
-    const cat=(card.dataset.cat||'').toLowerCase();
     const excerpt=card.querySelector('.c-excerpt');
     const titleEl=card.querySelector('.c-title');
-    const matchesCat=!filtering||cat===activeCat;
+    const matchesCat=!filtering||tags.includes(activeCat)||card.dataset.cat===activeCat;
     const matchesTerm=!searching||title.includes(term)||tags.includes(term)||(excerpt&&excerpt.textContent.toLowerCase().includes(term));
     const show=matchesCat&&matchesTerm;
     card.style.display=show?'':'none';
@@ -879,35 +300,17 @@ function applyFilter(){
       if(searching){
         if(titleEl)titleEl.innerHTML=highlight(titleEl.textContent,searchInput.value.trim());
         if(excerpt)excerpt.innerHTML=highlight(excerpt.textContent,searchInput.value.trim());
-      } else {
+      }else{
         if(titleEl)titleEl.textContent=titleEl.textContent;
         if(excerpt)excerpt.textContent=excerpt.textContent;
       }
     }
   });
-
-  grids.forEach((grid,i)=>{
-    const anyVisible=[...grid.querySelectorAll('.c-card')].some(c=>c.style.display!=='none');
-    if(catHdrs[i]){catHdrs[i].style.display=anyVisible?'':'none';}
-    grid.style.display=anyVisible?'':'none';
-  });
-
   noRes.style.display=visible===0?'flex':'none';
   noRes.style.flexDirection='column';
   noRes.style.alignItems='center';
   countEl.textContent=visible+' article'+(visible===1?'':'s');
-
-  /* update sort label */
-  if(filtering){
-    const pill=document.querySelector('.fpill.active');
-    sortLabel.textContent='Showing: '+(pill?pill.textContent:'All');
-  } else if(searching){
-    sortLabel.textContent='Search results for "'+searchInput.value.trim()+'"';
-  } else {
-    sortLabel.textContent='Showing all categories';
-  }
 }
-
 pills.forEach(p=>p.addEventListener('click',()=>{
   pills.forEach(x=>x.classList.remove('active'));
   p.classList.add('active');
@@ -915,37 +318,6 @@ pills.forEach(p=>p.addEventListener('click',()=>{
   applyFilter();
 }));
 searchInput.addEventListener('input',applyFilter);
-
-/* ── Sort ──────────────────────────────────────── */
-function sortCards(mode){
-  sortMode=mode;
-  ['sortDefault','sortAZ','sortTime'].forEach(id=>{
-    document.getElementById(id).classList.remove('active');
-  });
-  document.getElementById(mode==='default'?'sortDefault':mode==='az'?'sortAZ':'sortTime').classList.add('active');
-
-  grids.forEach(grid=>{
-    const gridCards=[...grid.querySelectorAll('.c-card')];
-    gridCards.sort((a,b)=>{
-      if(mode==='az'){
-        return (a.dataset.title||'').localeCompare(b.dataset.title||'');
-      } else if(mode==='time'){
-        const getMin=c=>{
-          const rt=c.querySelector('.c-read-time');
-          if(!rt)return 99;
-          const m=rt.textContent.match(/(\d+)/);
-          return m?parseInt(m[1]):99;
-        };
-        return getMin(a)-getMin(b);
-      } else {
-        return parseInt(a.dataset.origIdx||0)-parseInt(b.dataset.origIdx||0);
-      }
-    });
-    gridCards.forEach(c=>grid.appendChild(c));
-  });
-}
-
-/* helper functions for no-results buttons */
 function clearSearch(){searchInput.value='';applyFilter();}
 function setFilter(cat){
   searchInput.value='';
