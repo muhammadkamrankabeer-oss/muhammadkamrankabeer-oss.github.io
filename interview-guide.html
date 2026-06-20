@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<meta name="google-site-verification" content="wAaiTAPySebPceM4Bux5hwxIT3hy6BDj_NlLq4aDj5Y"/>
+<title>DevOps Interview Guide | Devriston — Real Questions From Real Projects</title>
+<meta name="description" content="70+ DevOps interview questions and answers drawn from real projects — Terraform & AWS, Prometheus & Grafana monitoring, self-healing Docker, and Samba4 Active Directory. Searchable and filterable."/>
+<meta name="keywords" content="devops interview questions, terraform interview questions, aws interview questions, docker interview questions, samba4 active directory interview, prometheus grafana interview questions, devops engineer pakistan"/>
+<meta name="author" content="Muhammad Kamran Kabeer"/>
+<meta name="robots" content="index,follow"/>
+<link rel="canonical" href="https://www.devriston.com.pk/interview-guide.html"/>
+<meta property="og:type" content="website"/>
+<meta property="og:title" content="DevOps Interview Guide | Devriston"/>
+<meta property="og:description" content="70+ DevOps interview questions and answers drawn from real projects — Terraform, AWS, Monitoring, Docker, Samba4 AD."/>
+<meta property="og:url" content="https://www.devriston.com.pk/interview-guide.html"/>
+<meta property="og:image" content="https://www.devriston.com.pk/assets/images/banner.png"/>
+<link rel="icon" type="image/png" href="assets/logos/dv-logo.png"/>
+<link rel="stylesheet" href="assets/css/main.css"/>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","name":"Devriston DevOps Interview Guide","url":"https://www.devriston.com.pk/interview-guide.html","description":"DevOps interview questions and answers covering Terraform, AWS, Monitoring, Docker, and Samba4 Active Directory.","author":{"@type":"Person","name":"Muhammad Kamran Kabeer","url":"https://www.devriston.com.pk/about.html"},"publisher":{"@type":"Organization","name":"Devriston","logo":{"@type":"ImageObject","url":"https://www.devriston.com.pk/assets/logos/dv-logo.png"}}}
+</script>
+<style>
+.c-card{position:relative;overflow:hidden}
+.c-card::before{content:'';position:absolute;top:0;left:0;width:0;height:2px;background:linear-gradient(90deg,rgba(77,143,255,1),rgba(0,200,150,1));transition:width .3s ease;z-index:2}
+.c-card:hover::before{width:100%}
+#backTop{position:fixed;bottom:90px;right:24px;width:42px;height:42px;border-radius:50%;background:rgba(77,143,255,.15);border:1px solid rgba(77,143,255,.35);color:rgba(77,143,255,1);font-size:1.1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .25s,background .2s;z-index:999}
+#backTop.vis{opacity:1;pointer-events:auto}
+#backTop:hover{background:rgba(77,143,255,.3)}
+#readProg{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,rgba(77,143,255,1),rgba(0,200,150,1));z-index:9999;transition:width .1s linear}
+#noResults .nr-icon{font-size:3rem;margin-bottom:12px}
+#noResults .nr-suggest{margin-top:16px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+#noResults .nr-suggest button{padding:6px 14px;border:1px solid rgba(77,143,255,.4);border-radius:20px;background:transparent;color:rgba(77,143,255,1);cursor:pointer;font-size:.85rem}
+.notes-callout{display:flex;align-items:center;gap:16px;padding:16px 22px;border:1px solid rgba(255,160,60,.25);border-radius:10px;background:rgba(255,160,60,.05);margin-bottom:40px;flex-wrap:wrap}
+.notes-callout p{margin:0;font-size:.9rem;color:var(--text-2);flex:1}
+.notes-callout a{font-size:.85rem;font-weight:600;color:rgba(255,160,60,1);text-decoration:none;white-space:nowrap}
+.notes-callout a:hover{text-decoration:underline}
+.cat-hdr{display:flex;align-items:center;gap:10px;margin:44px 0 16px}
+.cat-hdr:first-child{margin-top:0}
+.cat-hdr-icon{font-size:1.3rem}
+.cat-hdr-title{font-size:1.15rem;font-weight:700;color:var(--text-1)}
+.cat-hdr-count{margin-left:auto;font-size:.78rem;color:var(--text-3);background:rgba(255,255,255,.04);border:1px solid var(--border);padding:3px 10px;border-radius:20px}
+.qa-list{display:flex;flex-direction:column;gap:10px;margin-bottom:8px}
+.qa-item{background:var(--bg-2);border:1px solid var(--border);border-radius:12px;overflow:hidden;transition:border-color .2s}
+.qa-item:hover{border-color:rgba(77,143,255,.3)}
+.qa-item.open{border-color:rgba(77,143,255,.45)}
+.qa-q{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:16px 20px;cursor:pointer;user-select:none}
+.qa-q-text{font-size:.92rem;font-weight:600;color:var(--text-1);line-height:1.5}
+.qa-chevron{flex-shrink:0;width:18px;height:18px;color:var(--text-3);transition:transform .25s}
+.qa-item.open .qa-chevron{transform:rotate(180deg);color:rgba(77,143,255,1)}
+.qa-a{max-height:0;overflow:hidden;transition:max-height .3s ease}
+.qa-a-inner{padding:0 20px 18px}
+.qa-a-inner p{margin:0 0 10px;font-size:.86rem;color:var(--text-2);line-height:1.78}
+.qa-a-inner p:last-child{margin-bottom:0}
+.qa-a-inner pre{background:#0d1117;border-radius:8px;padding:12px 14px;margin:10px 0;overflow-x:auto}
+.qa-a-inner pre code{background:none;border:none;color:#e2e8f0;padding:0;font-size:.78rem;line-height:1.7;font-family:monospace}
+.qa-tags{display:flex;gap:5px;flex-wrap:wrap;padding:0 20px 16px}
+.qa-tag{font-family:monospace;font-size:.6rem;color:var(--text-3);background:rgba(255,255,255,.04);border:1px solid var(--border);padding:2px 6px;border-radius:3px}
+.hl{background:rgba(77,143,255,.25);border-radius:2px;padding:0 2px}
+</style>
+</head>
+<body>
+<div id="readProg"></div>
+<button id="backTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Back to top">↑</button>
+
+<a class="wa-btn" href="https://wa.me/923231450045?text=Hi%20Kamran%2C%20I%20saw%20your%20interview%20guide%20and%20I%27d%20like%20to%20discuss%20a%20project." target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.122 1.532 5.856L.057 23.617a.75.75 0 00.908.98l5.963-1.562A11.943 11.943 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.886 0-3.655-.52-5.168-1.424l-.37-.22-3.539.927.943-3.443-.24-.381A9.96 9.96 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>WhatsApp</a>
+
+<nav id="nav" class="scrolled"><div class="container nav-inner"><a href="index.html" class="nav-logo"><img src="assets/logos/dv-logo.png" alt="Devriston"/><span class="nav-brand">Devri<span>ston</span></span></a><div class="nav-links"><a href="index.html">Home</a><a href="solutions.html">Solutions</a><a href="case-studies.html">Case Studies</a><a href="blog.html">Blog</a><a href="devops-notes.html">Notes</a><a href="interview-guide.html" class="active">Interview Guide</a><a href="about.html">About</a><a href="contact.html" class="nav-cta">Book Consultation</a></div><button class="ham" onclick="toggleDrawer()" aria-label="Menu"><span></span><span></span><span></span></button></div></nav>
+<div class="drawer" id="nav-drawer"><a href="index.html">Home</a><a href="solutions.html">Solutions</a><a href="case-studies.html">Case Studies</a><a href="blog.html">Blog</a><a href="devops-notes.html">DevOps Notes</a><a href="interview-guide.html">Interview Guide</a><a href="about.html">About</a><a href="contact.html">Contact</a></div>
+
+<section class="pg-hero">
+  <div class="container">
+    <div class="breadcrumb"><a href="index.html">Home</a><span class="sep">/</span><span class="cur">Interview Guide</span></div>
+    <p class="eyebrow" style="color:rgba(77,143,255,1)">Interview Prep</p>
+    <h1 class="fade-up">DevOps Interview Guide</h1>
+    <p class="pg-desc fade-up d2">Real questions and answers pulled from production-grade projects — not textbook trivia. Terraform & AWS, monitoring stacks, self-healing containers, and Samba4 Active Directory.</p>
+    <div style="display:flex;flex-wrap:wrap;gap:28px;margin-top:32px" class="fade-up d3">
+      <div class="h-stat"><span class="h-stat-val">70+</span><span class="h-stat-lbl">Questions</span></div>
+      <div class="h-stat"><span class="h-stat-val">5</span><span class="h-stat-lbl">Categories</span></div>
+      <div class="h-stat"><span class="h-stat-val">Free</span><span class="h-stat-lbl">Always</span></div>
+    </div>
+  </div>
+</section>
+
+<div class="search-bar">
+  <div class="container" style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;width:100%">
+    <div class="sw" style="flex:1;min-width:200px">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      <input type="text" id="qaSearch" class="search-input" placeholder="Search questions — Kerberos, security group, idempotent…" autocomplete="off"/>
+    </div>
+    <div class="filter-pills">
+      <button class="fpill active" data-cat="all">All</button>
+      <button class="fpill" data-cat="fundamentals">Fundamentals</button>
+      <button class="fpill" data-cat="terraform">Terraform & AWS</button>
+      <button class="fpill" data-cat="monitoring">Monitoring</button>
+      <button class="fpill" data-cat="selfhealing">Self-Healing</button>
+      <button class="fpill" data-cat="samba4">Samba4 & AD</button>
+    </div>
+    <span class="result-count" id="qaCount">0 questions</span>
+  </div>
+</div>
+
+<main style="background:var(--bg);padding-bottom:80px">
+  <div class="container">
+
+    <div id="noResults" style="display:none;text-align:center;padding:72px 24px">
+      <div class="nr-icon">🔍</div>
+      <h3>No questions found</h3>
+      <p style="color:var(--text-3)">Try a different search term or browse all categories.</p>
+      <div class="nr-suggest"><button onclick="clearSearch()">Clear search</button><button onclick="setFilter('all')">Show all</button></div>
+    </div>
+
+    <div class="author-block" style="margin-top:40px">
+      <div class="author-avatar">MK</div>
+      <div class="author-info">
+        <p class="author-name">Muhammad Kamran Kabeer</p>
+        <p class="author-role">Founder & DevOps Engineer · Devriston · Lahore, Pakistan</p>
+        <div class="author-links">
+          <a href="about.html">About me</a>
+          <a href="https://www.linkedin.com/in/kamrankabeer/" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="https://github.com/muhammadkamrankabeer-oss" target="_blank" rel="noopener">GitHub</a>
+          <a href="https://dev.to/muhammadkamrankabeeross" target="_blank" rel="noopener">dev.to</a>
+          <a href="contact.html">Work with me</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="notes-callout">
+      <p>Want the full project writeups behind these answers? <strong>The Blog</strong> has 8 in-depth articles with full source code on GitHub.</p>
+      <a href="blog.html">Browse the Blog →</a>
+    </div>
+
+    <div id="qaSections"></div>
+
+    <div class="blog-cta-banner" style="margin-top:48px">
+      <p class="eyebrow" style="color:rgba(77,143,255,1);justify-content:center">Work With Me</p>
+      <h3>Need help implementing any of this?</h3>
+      <p>I offer consulting for Linux, AWS, CI/CD pipelines, Docker, Terraform, and monitoring setup. Let's talk.</p>
+      <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+        <a href="contact.html" class="btn btn-primary">Book Free Consultation</a>
+        <a href="https://wa.me/923231450045" target="_blank" class="btn btn-white-outline">WhatsApp →</a>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<footer><div class="container"><div class="ft-grid"><div class="ft-brand"><div class="ft-logo"><img src="assets/logos/dv-logo.png" alt="Devriston"/><span class="ft-logo-name">Devri<span>ston</span></span></div><p>DevOps consulting, Linux, cloud infrastructure and training. Solutions that drive tomorrow.</p><div class="ft-socials"><a href="https://github.com/muhammadkamrankabeer-oss" target="_blank" class="ft-soc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg></a><a href="https://www.linkedin.com/in/kamrankabeer/" target="_blank" class="ft-soc"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a><a href="https://dev.to/muhammadkamrankabeeross" target="_blank" class="ft-soc"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7.42 10.05c-.18-.16-.46-.23-.84-.23H6l.02 2.44.04 2.45.56-.02c.41 0 .63-.07.83-.26.24-.24.26-.36.26-2.2 0-1.91-.02-1.96-.29-2.18zM0 4.94v14.12h24V4.94H0zM8.56 15.3c-.44.58-1.06.77-2.53.77H4.71V8.53h1.4c1.67 0 2.16.18 2.6.9.27.43.29.6.32 2.57.05 2.23-.02 2.73-.47 3.3zm5.09-5.47h-2.47v1.77h1.52v1.28l-.72.04-.75.03v1.77l1.22.03 1.2.04v1.28h-1.6c-1.53 0-1.6-.01-1.87-.3l-.3-.28v-3.16c0-3.02.01-3.18.25-3.48.23-.31.25-.31 1.88-.31h1.64v1.29zm4.68 5.45c-.17.43-.64.79-1 .79-.18 0-.45-.15-.67-.39-.32-.32-.45-.63-.82-2.08l-.9-3.39-.45-1.67h.76c.4 0 .75.02.75.05 0 .06 1.16 4.54 1.26 4.83.04.15.32-.7.73-2.3l.66-2.52.74-.04c.4-.02.73 0 .73.04 0 .14-1.67 5.99-1.8 6.19z"/></svg></a><a href="https://x.com/Devristonhq" target="_blank" class="ft-soc"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a></div></div><div class="ft-col"><h4>Articles</h4><ul><li><a href="terraform-aws-3tier-platform.html">Terraform 3-Tier Platform</a></li><li><a href="monitoring-stack-automation.html">Monitoring Stack</a></li><li><a href="cicd-docker-deployment.html">CI/CD Pipeline</a></li><li><a href="devops-notes.html">DevOps Notes</a></li><li><a href="interview-guide.html">Interview Guide</a></li></ul></div><div class="ft-col"><h4>Contact</h4><ul><li><a href="mailto:info@devriston.com.pk">info@devriston.com.pk</a></li><li><a href="https://wa.me/923231450045" target="_blank">WhatsApp</a></li><li><a href="contact.html">Book Consultation</a></li></ul></div></div><div class="ft-bottom"><p>© 2026 Devriston · Muhammad Kamran Kabeer · Lahore, Pakistan</p><div class="ft-bottom-links"><a href="sitemap.xml">Sitemap</a></div></div></div></footer>
+<script src="assets/js/main.js" defer></script>
+<script>
+window.addEventListener('scroll',()=>{
+  const d=document.documentElement;
+  document.getElementById('readProg').style.width=(d.scrollTop/(d.scrollHeight-d.clientHeight))*100+'%';
+  const bt=document.getElementById('backTop');
+  d.scrollTop>400?bt.classList.add('vis'):bt.classList.remove('vis');
+});
+
+const QA_DATA = [
+  {cat:"fundamentals", q:"What is Infrastructure as Code (IaC)?", a:"Managing infrastructure through version-controlled code instead of manual configuration.", tags:["iac","fundamentals"]},
+  {cat:"fundamentals", q:"What is Docker?", a:"A platform for packaging applications and their dependencies into portable, consistent containers.", tags:["docker","fundamentals"]},
+  {cat:"fundamentals", q:"What is Docker Compose?", a:"A tool for defining and running multi-container applications from a single YAML file.", tags:["docker","fundamentals"]},
+  {cat:"fundamentals", q:"What is Ansible?", a:"An agentless automation tool for configuration management and deployment, using YAML playbooks.", tags:["ansible","fundamentals"]},
+  {cat:"fundamentals", q:"What is an Ansible Inventory / Playbook / Role?", a:"Inventory defines target hosts; a playbook is a set of tasks run against them; a role packages reusable automation into a structured, shareable unit.", tags:["ansible","fundamentals"]},
+  {cat:"fundamentals", q:"What does idempotent mean in Ansible?", a:"Running the same playbook repeatedly produces the same end state without causing unintended changes on repeat runs.", tags:["ansible","fundamentals"]},
+  {cat:"fundamentals", q:"What is configuration drift?", a:"When servers that should be identical gradually diverge due to manual changes — automation (like Ansible) prevents this.", tags:["ansible","fundamentals"]},
+  {cat:"fundamentals", q:"What is Terraform?", a:"A tool for defining and provisioning infrastructure through declarative, version-controlled code (Infrastructure as Code).", tags:["terraform","fundamentals"]},
+  {cat:"fundamentals", q:"What is a VPC?", a:"A logically isolated virtual network within AWS where you control IP ranges, subnets, and routing.", tags:["aws","fundamentals"]},
+  {cat:"fundamentals", q:"What's the difference between a public and private subnet?", a:"A public subnet has a route to an Internet Gateway; a private subnet doesn't, so its resources aren't directly reachable from the internet.", tags:["aws","fundamentals"]},
+  {cat:"fundamentals", q:"What is a Security Group?", a:"A virtual firewall attached to AWS resources that controls inbound and outbound traffic at the instance level.", tags:["aws","fundamentals"]},
+  {cat:"fundamentals", q:"What is Prometheus?", a:"An open-source metrics collection and alerting system that scrapes HTTP endpoints on a schedule.", tags:["monitoring","fundamentals"]},
+  {cat:"fundamentals", q:"What is Grafana?", a:"A visualization layer that turns data from sources like Prometheus and Loki into dashboards.", tags:["monitoring","fundamentals"]},
+  {cat:"fundamentals", q:"What is Node Exporter / cAdvisor?", a:"Node Exporter exposes host-level Linux metrics; cAdvisor exposes per-container metrics (CPU, memory, network, filesystem). Both feed Prometheus.", tags:["monitoring","fundamentals"]},
+  {cat:"fundamentals", q:"What is Active Directory?", a:"A centralized directory service for managing users, computers, groups, authentication, and authorization.", tags:["samba4","fundamentals"]},
+  {cat:"fundamentals", q:"What is Kerberos?", a:"A ticket-based authentication protocol that enables secure Single Sign-On without repeatedly sending passwords.", tags:["samba4","fundamentals"]},
+  {cat:"fundamentals", q:"What's the difference between authentication and authorization?", a:"Authentication verifies who you are (e.g. username + password); authorization determines what you're allowed to access once verified.", tags:["security","fundamentals"]},
+
+  {cat:"terraform", q:"What problem does the Terraform AWS 3-Tier Platform solve?", a:"It provisions a complete, production-shaped AWS 3-tier network — public/private subnets, a frontend and backend EC2 instance, and least-privilege security groups — entirely from Terraform code, so the whole environment can be destroyed and rebuilt identically instead of being clicked together in the console.", tags:["terraform","aws","overview"]},
+  {cat:"terraform", q:"Explain this project in one minute.", a:"I built a modular Terraform project that provisions a custom AWS VPC with public and private subnets, an Internet Gateway, route tables, and security groups. A frontend EC2 instance sits in the public subnet running a Dockerized app on port 8080, and a backend EC2 instance sits in the private subnet on port 3000, reachable only from the frontend's security group — not directly from the internet.", tags:["terraform","overview"]},
+  {cat:"terraform", q:"Why build a custom VPC instead of using the AWS default VPC?", a:"The default VPC gives no control over subnet layout or security boundaries. Building it explicitly let me decide exactly which subnets are public vs private, and which traffic is allowed between them — which is the whole point of demonstrating a real 3-tier design.", tags:["terraform","vpc"]},
+  {cat:"terraform", q:"Why split the architecture into separate Terraform modules rather than one file?", a:"Separating networking, security groups, and compute into their own modules meant each piece could be reasoned about, tested, and reused independently — adding an RDS tier later doesn't mean rewriting the VPC module.", tags:["terraform","modules"]},
+  {cat:"terraform", q:"Why put the backend EC2 instance in a private subnet instead of public?", a:"The backend has no reason to be reachable from the internet directly — only the frontend needs to talk to it. Keeping it private shrinks the attack surface: even if someone scans for open ports, the backend simply isn't reachable from outside the VPC.", tags:["terraform","security"]},
+  {cat:"terraform", q:"Why does the frontend expose port 8080, but the backend only allows port 3000 from the frontend's security group specifically?", a:"That's the actual enforcement of the 3-tier boundary — the backend's security group rule references the frontend's security group ID as the source, not 0.0.0.0/0. Only traffic originating from the frontend instance can reach the backend, regardless of what subnet routing allows.", tags:["terraform","security-groups"]},
+  {cat:"terraform", q:"Why pin provider versions instead of letting Terraform use the latest?", a:"An unpinned provider can introduce breaking changes between apply runs months apart. .terraform.lock.hcl locks the exact versions used, so re-running this project later gives the same result it gave the first time.", tags:["terraform","versioning"]},
+  {cat:"terraform", q:"Walk me through how a request actually reaches the backend.", a:"A client hits the frontend EC2 instance's public IP on port 8080. The frontend application then makes its own request to the backend instance's private IP on port 3000 — that internal call is only possible because the backend's security group explicitly allows inbound traffic from the frontend's security group.", tags:["terraform","networking"]},
+  {cat:"terraform", q:"What's actually enforcing the difference between the public and private subnet, mechanically?", a:"The route table. The public subnet's route table has a route to the Internet Gateway for 0.0.0.0/0; the private subnet's route table doesn't — so even with the private instance's IP, there's no path to it from the internet.", tags:["terraform","networking"]},
+  {cat:"terraform", q:"What's missing from this for a real production environment?", a:"No load balancer (traffic goes straight to one EC2 instance), no Auto Scaling, no CloudWatch monitoring, and state is local rather than stored remotely in S3 with locking — so two people running terraform apply at once could conflict.", tags:["terraform","critique"]},
+  {cat:"terraform", q:"How would you evolve this into something closer to production?", a:"Add an Application Load Balancer in front of the frontend instances, put them in an Auto Scaling Group instead of a single instance, move state to an S3 backend with DynamoDB locking, add CloudWatch alarms, and likely add an RDS instance in the private subnet for the backend's data layer.", tags:["terraform","critique"]},
+  {cat:"terraform", q:"What was the trickiest part of getting the networking right?", a:"Making sure the backend's security group rule referenced the frontend's security group ID rather than a CIDR block — it's an easy mistake to open the backend to the whole VPC CIDR instead of just the one instance that should reach it, and that mistake doesn't show up unless you test from outside the frontend.", tags:["terraform","lessons"]},
+
+  {cat:"monitoring", q:"What problem does the Monitoring Stack project solve?", a:"It provides a complete observability platform — metrics, dashboards, alerting, and centralized logs — for infrastructure that would otherwise be a black box. Without it, you only find out something's wrong when a user complains.", tags:["monitoring","overview"]},
+  {cat:"monitoring", q:"Explain this project in one minute.", a:"I automated the deployment of a full observability stack — Prometheus, Grafana, Alertmanager, Loki, and Promtail — on a Vagrant-provisioned Debian VM using Ansible. Prometheus scrapes Node Exporter for system metrics, Grafana visualizes them alongside Loki logs, and Alertmanager fires notifications when a CPU threshold is breached. I tested the alert path end-to-end by artificially loading the CPU until it transitioned from pending to firing.", tags:["monitoring","overview"]},
+  {cat:"monitoring", q:"Why Vagrant instead of just running this locally?", a:"It gives a reproducible, throwaway VM — I can destroy and rebuild the exact same environment with one command, which matters when testing provisioning steps that should also work on a real server later.", tags:["monitoring","vagrant"]},
+  {cat:"monitoring", q:"Why Docker Compose instead of installing each tool directly on the VM?", a:"Each piece — Prometheus, Grafana, Alertmanager, Loki, Promtail — has its own config format, port, and update cycle. Running them as separate containers on one Compose file let me version and restart each independently, without the host's package manager getting involved.", tags:["monitoring","docker"]},
+  {cat:"monitoring", q:"Why Ansible to provision this instead of a shell script?", a:"Idempotency. The same playbook can run against a fresh VM or one that's already partially configured, and it won't break anything on a second run — a plain shell script doesn't give you that for free.", tags:["monitoring","ansible"]},
+  {cat:"monitoring", q:"Why add Loki on top of Prometheus, instead of stopping at metrics?", a:"Metrics tell you that something is wrong (CPU spiked); logs tell you why. Loki centralizes the /var/log output so I could correlate a firing alert with what was actually happening in the system logs at that moment, viewed straight from Grafana Explore.", tags:["monitoring","loki"]},
+  {cat:"monitoring", q:"Why Loki instead of something like Elasticsearch for logs?", a:"Loki indexes only labels, not full log text, which keeps it lightweight for a single-VM lab setup. Elasticsearch's full-text indexing is more powerful but heavier than this project needed.", tags:["monitoring","loki"]},
+  {cat:"monitoring", q:"How does Prometheus actually get the data?", a:"It scrapes Node Exporter's HTTP endpoint on a schedule defined in prometheus.yml — Node Exporter doesn't push anything, Prometheus pulls.", tags:["monitoring","prometheus"]},
+  {cat:"monitoring", q:"How do Prometheus and Alertmanager talk to each other?", a:"Through the alerting block in prometheus.yml, which points to Alertmanager's address. When a rule's condition is met, Prometheus sends the alert there for routing.", tags:["monitoring","alerting"]},
+  {cat:"monitoring", q:"Walk me through what happens when CPU usage crosses the threshold.", a:"The Prometheus rule evaluates on each scrape interval. Once CPU stays above the threshold for the configured 'for:' duration, the alert moves from pending to firing and gets pushed to Alertmanager, which then handles routing/grouping for notification.", tags:["monitoring","alerting"]},
+  {cat:"monitoring", q:"How did you actually test that the alert worked, rather than just trusting the config?", a:"I artificially loaded the CPU (stress-testing it past the threshold) and watched the alert state transition from inactive → pending → firing in the Prometheus UI, then confirmed it appeared in Alertmanager.", tags:["monitoring","testing"]},
+  {cat:"monitoring", q:"Why do your Prometheus configs reference containers by name instead of IP?", a:"Docker's internal DNS resolves container names automatically on the bridge network, so 'node-exporter:9100' keeps working even if the container's IP changes on restart — raw IPs would break on every redeploy.", tags:["monitoring","docker"]},
+  {cat:"monitoring", q:"What's the actual difference between monitoring and observability, in context?", a:"Monitoring here is the CPU alert — a known metric with a known threshold. Observability is the bigger picture: when something unexpected breaks, I can pivot from a Grafana metric to the Loki logs from the same time window to investigate, without knowing in advance what I was looking for.", tags:["monitoring","concepts"]},
+  {cat:"monitoring", q:"What's missing from this setup if it had to run in production?", a:"No TLS between components, no authentication on Grafana/Prometheus beyond defaults, no secrets management, and metrics/logs aren't persisted with a backup strategy — they'd be lost if the volume was wiped.", tags:["monitoring","critique"]},
+  {cat:"monitoring", q:"How would you scale this beyond one VM?", a:"Move from Node Exporter on a single host to scraping multiple hosts via service discovery, run Alertmanager in HA mode, and consider remote storage (e.g. Thanos or Mimir) so Prometheus isn't a single point of failure for retention.", tags:["monitoring","scaling"]},
+  {cat:"monitoring", q:"What was the hardest part of building this?", a:"Getting the alert path fully working end-to-end — not just defining a Prometheus rule, but proving it actually reaches Alertmanager and fires under real load, rather than just looking correct in a config file.", tags:["monitoring","lessons"]},
+
+  {cat:"selfhealing", q:"What problem does the Self-Healing Container Platform solve?", a:"Containers fail in ways a basic restart:always policy doesn't catch — a container can stay 'running' while the app inside it has hung or stopped responding. This project adds a layer that actually checks health, not just process state, and recovers automatically while logging what happened.", tags:["selfhealing","overview"]},
+  {cat:"selfhealing", q:"Explain this project in one minute.", a:"I built a Docker Compose platform with cAdvisor and Node Exporter feeding Prometheus, visualized in Grafana, plus a Bash recovery script run by cron every minute. The script checks each container's actual running and health status via Docker inspection commands — if a container is stopped or marked unhealthy, it's automatically restarted and the incident is logged.", tags:["selfhealing","overview"]},
+  {cat:"selfhealing", q:"Why not just rely on Docker's built-in restart policies?", a:"Restart policies only react to a container stopping — they do nothing if a container is still running but its application has hung or stopped responding to requests. My script checks Docker's health status separately, catching 'running but broken' containers a restart policy alone would miss, and logs every incident.", tags:["selfhealing","docker"]},
+  {cat:"selfhealing", q:"Why a cron-driven Bash script instead of a more sophisticated tool?", a:"At this scale, a Bash script running every minute is simple enough to fully understand and debug line by line — no orchestrator dependency. It's a deliberate starting point I'd outgrow if I needed multi-node coordination, which is exactly what I'd reach for Kubernetes or a proper watchdog daemon for.", tags:["selfhealing","design"]},
+  {cat:"selfhealing", q:"Why add cAdvisor on top of Node Exporter — isn't host-level monitoring enough?", a:"Node Exporter only sees the host (CPU, memory, disk) — it has no idea which container is responsible for a spike. cAdvisor gives per-container metrics, so when something looks wrong in Grafana, I can tell which container is using the resources, not just that the host is under load.", tags:["selfhealing","monitoring"]},
+  {cat:"selfhealing", q:"Walk me through what happens when a container crashes.", a:"The cron-triggered script runs docker inspect against each container every minute. If a container's state shows it's not running, the script restarts it and writes a timestamped entry to the recovery log — a record of exactly when and what failed, not just that it's running again now.", tags:["selfhealing","mechanics"]},
+  {cat:"selfhealing", q:"What's the difference between how you handle a stopped container vs an unhealthy one?", a:"A stopped container is caught by checking its running state directly. An unhealthy one is still running, but Docker's own HEALTHCHECK (a command run periodically inside the container) has failed enough times in a row that Docker marks it unhealthy — a different failure mode than a crash, checked separately.", tags:["selfhealing","mechanics"]},
+  {cat:"selfhealing", q:"What's the biggest limitation of this setup?", a:"It's single-node and check-interval-based — a failure can persist for up to a minute before the cron job catches it, and there's no notification when a recovery happens; you'd have to go look at the logs or Grafana yourself.", tags:["selfhealing","critique"]},
+  {cat:"selfhealing", q:"How would you improve it?", a:"Add Alertmanager so a Slack/email notification fires the moment a recovery action happens, move from cron to a real watchdog process for faster detection, and extend it to multiple nodes if it needed to cover more than one host.", tags:["selfhealing","critique"]},
+  {cat:"selfhealing", q:"What was the hardest part of building this?", a:"Getting the detection logic to correctly distinguish a stopped container from an unhealthy-but-running one — they need different docker inspect fields, and conflating them meant the script either missed failures or restarted containers that didn't actually need it.", tags:["selfhealing","lessons"]},
+
+  {cat:"samba4", q:"What problem does the Samba4 Enterprise Identity Suite solve?", a:"It replaces per-machine local user accounts with centralized authentication — Linux clients authenticate against a Samba4 Domain Controller the same way they would against Windows AD, but on open-source infrastructure with no licensing cost.", tags:["samba4","overview"]},
+  {cat:"samba4", q:"Walk me through the login flow in your project.", a:"A user logs into a Linux client → SSSD picks up the authentication request → it's forwarded to the Samba4 Domain Controller → Kerberos validates the credentials and issues a Ticket Granting Ticket → the user gets an authenticated session, with access permissions determined by their AD group membership.", tags:["samba4","flow"]},
+  {cat:"samba4", q:"Why Samba4 instead of Windows Active Directory?", a:"Samba4 provides the same core AD functionality — LDAP, Kerberos, DNS, domain services — running on Linux servers, which avoids Windows Server licensing costs entirely while staying compatible with AD-joined clients.", tags:["samba4","design"]},
+  {cat:"samba4", q:"Why use SSSD and Realmd instead of creating local Linux user accounts?", a:"Local accounts don't scale and don't give centralized control — every server has its own user list, with no Single Sign-On and inconsistent permissions across machines. SSSD and Realmd join Linux clients to the same domain, centralizing authentication, group membership, and auditing.", tags:["samba4","sssd"]},
+  {cat:"samba4", q:"Why does time synchronization matter enough to call out specifically?", a:"Kerberos tickets are timestamped, valid only within a defined time window. If a client's clock drifts too far from the Domain Controller's, valid credentials get rejected — purely because of clock skew, not misconfiguration. It's one of the first things to check when authentication suddenly breaks.", tags:["samba4","kerberos"]},
+  {cat:"samba4", q:"What actually happens during a Kerberos login, step by step?", a:"The user authenticates with their credentials. The Domain Controller validates them and issues a Ticket Granting Ticket (TGT). The client uses the TGT to request service tickets for specific resources. The target service validates the ticket. Access is granted — without the password being sent again for each service.", tags:["samba4","kerberos"]},
+  {cat:"samba4", q:"How do you verify a domain join and a Kerberos ticket from the command line?", a:"realm list confirms the machine is joined to the domain. kinit administrator requests a Kerberos ticket. klist shows the currently held ticket(s).", tags:["samba4","cli"], code:"realm list        # confirms domain join\nkinit administrator  # requests a ticket\nklist              # shows held ticket(s)"},
+  {cat:"samba4", q:"If AD authentication suddenly breaks, what's the first thing you check?", a:"Roughly in this order: DNS (can the client resolve the Domain Controller and Kerberos services?), then time synchronization (clock drift breaks ticket validation), then Kerberos itself, then SSSD. DNS and time are the two most common root causes — Kerberos/SSSD errors are often just the symptom.", tags:["samba4","troubleshooting"]},
+  {cat:"samba4", q:"What's a limitation of this setup as it stands?", a:"It's a single Domain Controller — if it goes down, authentication for the whole domain stops. A production setup would need at least a second DC for redundancy.", tags:["samba4","critique"]},
+  {cat:"samba4", q:"How would you harden or extend this further?", a:"Add a secondary Domain Controller for failover, integrate DC-specific monitoring, and tighten Kerberos policy settings (ticket lifetimes, encryption types) beyond the defaults.", tags:["samba4","critique"]},
+  {cat:"samba4", q:"What was the trickiest part of getting this working with Ansible?", a:"Making the playbook idempotent for domain provisioning specifically — most Ansible modules are naturally idempotent, but domain join/provision operations aren't something you want to accidentally re-run destructively, so the playbook needed to check current state before acting rather than just re-applying blindly.", tags:["samba4","ansible"]}
+];
+
+const CAT_LABELS = {
+  fundamentals: {icon:"📚", title:"Fundamentals"},
+  terraform: {icon:"⚙️", title:"Terraform & AWS"},
+  monitoring: {icon:"📊", title:"Monitoring Stack"},
+  selfhealing: {icon:"🐳", title:"Self-Healing Containers"},
+  samba4: {icon:"🔐", title:"Samba4 & Active Directory"}
+};
+const CAT_ORDER = ["fundamentals","terraform","monitoring","selfhealing","samba4"];
+
+function escapeHtml(s){return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
+function highlight(text,term){
+  if(!term)return text;
+  return text.replace(new RegExp(`(${term.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')})`, 'gi'),'<span class="hl">$1</span>');
+}
+
+const qaSearch=document.getElementById('qaSearch');
+const noRes=document.getElementById('noResults');
+const countEl=document.getElementById('qaCount');
+const pills=[...document.querySelectorAll('.fpill')];
+let activeCat='all';
+
+function renderQA(){
+  const wrap=document.getElementById('qaSections');
+  wrap.innerHTML="";
+  const term=qaSearch.value.trim().toLowerCase();
+  let total=0;
+
+  CAT_ORDER.forEach(catKey=>{
+    if(activeCat!=='all' && activeCat!==catKey) return;
+    const items=QA_DATA.filter(item=>{
+      if(item.cat!==catKey) return false;
+      if(!term) return true;
+      const hay=(item.q+" "+item.a+" "+(item.tags||[]).join(" ")).toLowerCase();
+      return hay.includes(term);
+    });
+    if(items.length===0) return;
+    total+=items.length;
+
+    const info=CAT_LABELS[catKey];
+    const section=document.createElement('div');
+    section.innerHTML=`
+      <div class="cat-hdr">
+        <span class="cat-hdr-icon">${info.icon}</span>
+        <span class="cat-hdr-title">${info.title}</span>
+        <span class="cat-hdr-count">${items.length} question${items.length>1?'s':''}</span>
+      </div>
+      <div class="qa-list">
+        ${items.map((item,i)=>{
+          const id=catKey+"-"+i;
+          const qText=term?highlight(item.q,qaSearch.value.trim()):item.q;
+          const aText=term?highlight(item.a,qaSearch.value.trim()):item.a;
+          const codeBlock=item.code?`<pre><code>${escapeHtml(item.code)}</code></pre>`:"";
+          return `
+          <div class="qa-item" data-id="${id}">
+            <div class="qa-q" onclick="window.__qaToggle('${id}')">
+              <span class="qa-q-text">${qText}</span>
+              <svg class="qa-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M6 9l6 6 6-6"/></svg>
+            </div>
+            <div class="qa-a" id="qa-body-${id}">
+              <div class="qa-a-inner"><p>${aText}</p>${codeBlock}</div>
+            </div>
+            <div class="qa-tags">${(item.tags||[]).map(t=>`<span class="qa-tag">${t}</span>`).join("")}</div>
+          </div>`;
+        }).join("")}
+      </div>`;
+    wrap.appendChild(section);
+  });
+
+  countEl.textContent=total+' question'+(total!==1?'s':'');
+  noRes.style.display=total===0?'flex':'none';
+  noRes.style.flexDirection='column';
+  noRes.style.alignItems='center';
+}
+
+window.__qaToggle=function(id){
+  const item=document.querySelector(`.qa-item[data-id="${id}"]`);
+  const body=document.getElementById('qa-body-'+id);
+  const isOpen=item.classList.contains('open');
+  if(isOpen){item.classList.remove('open');body.style.maxHeight=null;}
+  else{item.classList.add('open');body.style.maxHeight=body.scrollHeight+"px";}
+};
+
+pills.forEach(p=>p.addEventListener('click',()=>{
+  pills.forEach(x=>x.classList.remove('active'));
+  p.classList.add('active');
+  activeCat=p.dataset.cat;
+  renderQA();
+}));
+qaSearch.addEventListener('input',renderQA);
+function clearSearch(){qaSearch.value='';renderQA();}
+function setFilter(cat){
+  qaSearch.value='';
+  pills.forEach(p=>{p.classList.remove('active');if(p.dataset.cat===cat)p.classList.add('active');});
+  activeCat=cat;renderQA();
+}
+
+renderQA();
+</script>
+</body>
+</html>
