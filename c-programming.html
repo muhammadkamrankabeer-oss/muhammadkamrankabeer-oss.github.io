@@ -1,0 +1,1261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<meta name="google-site-verification" content="wAaiTAPySebPceM4Bux5hwxIT3hy6BDj_NlLq4aDj5Y"/>
+<title>C Programming — Learn C Language from Scratch | Devriston</title>
+<meta name="description" content="Learn C programming from scratch — setup, syntax, variables, loops, functions, arrays, and important programs. Free beginner guide with code examples and expected output. By Muhammad Kamran Kabeer."/>
+<meta name="robots" content="index,follow"/>
+<link rel="canonical" href="https://www.devriston.com.pk/c-programming.html"/>
+<meta property="og:title" content="C Programming — Learn C Language from Scratch | Devriston"/>
+<meta property="og:description" content="Free beginner C programming guide — setup, Hello World, variables, loops, functions, arrays, and exam-ready programs. Code examples with output."/>
+<meta property="og:url" content="https://www.devriston.com.pk/c-programming.html"/>
+<meta property="og:image" content="https://www.devriston.com.pk/assets/images/banner.png"/>
+<meta name="keywords" content="C programming for beginners, learn C language, C programming practicals, C language tutorial Pakistan, C programs with output"/>
+<link rel="icon" type="image/png" href="assets/logos/dv-logo.png"/>
+<link rel="stylesheet" href="assets/css/main.css"/>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LearningResource",
+  "name": "C Programming — Learn C Language from Scratch",
+  "description": "Free beginner C programming guide covering setup, syntax, variables, input/output, decision making, loops, functions, arrays, and important programs with code examples.",
+  "url": "https://www.devriston.com.pk/c-programming.html",
+  "educationalLevel": "Beginner",
+  "learningResourceType": "Tutorial",
+  "inLanguage": "en",
+  "author": {
+    "@type": "Person",
+    "name": "Muhammad Kamran Kabeer",
+    "url": "https://www.devriston.com.pk/about.html"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Devriston",
+    "url": "https://www.devriston.com.pk"
+  },
+  "about": [
+    {"@type":"Thing","name":"C Programming Language"},
+    {"@type":"Thing","name":"Programming for Beginners"},
+    {"@type":"Thing","name":"Computer Science Practicals"}
+  ]
+}
+</script>
+<style>
+/* ── Layout ── */
+.cp-wrap{display:grid;grid-template-columns:260px 1fr;gap:0;min-height:calc(100vh - 80px);align-items:start}
+@media(max-width:900px){.cp-wrap{grid-template-columns:1fr}}
+
+/* ── Sidebar ── */
+.cp-sidebar{position:sticky;top:72px;height:calc(100vh - 72px);overflow-y:auto;background:var(--bg);border-right:1.5px solid var(--border);padding:24px 0 40px;scrollbar-width:thin}
+.cp-sidebar::-webkit-scrollbar{width:4px}
+.cp-sidebar::-webkit-scrollbar-thumb{background:var(--border);border-radius:4px}
+.sb-label{font-size:.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--text-3);padding:0 20px;margin:18px 0 6px}
+.sb-link{display:flex;align-items:center;gap:9px;padding:8px 20px;font-size:.82rem;font-weight:500;color:var(--text-2);text-decoration:none;transition:all .13s;border-left:3px solid transparent;line-height:1.3}
+.sb-link:hover{color:var(--blue);background:var(--blue-tint);border-left-color:var(--blue)}
+.sb-link.active{color:var(--blue);background:var(--blue-tint);border-left-color:var(--blue);font-weight:600}
+.sb-link .sb-icon{font-size:.9rem;width:18px;text-align:center;flex-shrink:0}
+.sb-link .sb-num{font-family:var(--f-mono);font-size:.62rem;color:var(--text-3);margin-left:auto;flex-shrink:0}
+.sb-divider{height:1px;background:var(--border);margin:12px 20px}
+.sb-mobile-toggle{display:none;width:100%;background:var(--bg);border:1.5px solid var(--border);border-radius:var(--r);padding:12px 16px;font-family:var(--f-sans);font-size:.85rem;font-weight:600;color:var(--text);cursor:pointer;text-align:left;margin-bottom:16px}
+@media(max-width:900px){
+  .cp-sidebar{position:static;height:auto;border-right:none;border-bottom:1.5px solid var(--border);padding:0}
+  .sb-mobile-toggle{display:flex;align-items:center;justify-content:space-between}
+  .sb-nav{display:none;padding-bottom:12px}
+  .sb-nav.open{display:block}
+}
+
+/* ── Content area ── */
+.cp-content{padding:40px 48px 80px;min-width:0}
+@media(max-width:640px){.cp-content{padding:24px 20px 60px}}
+
+/* ── Section ── */
+.cp-section{margin-bottom:64px;scroll-margin-top:88px}
+.cp-section:last-child{margin-bottom:0}
+.section-eyebrow{font-size:.68rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--blue);margin-bottom:6px}
+.cp-section h2{font-size:1.6rem;font-weight:800;color:var(--text);margin-bottom:12px;letter-spacing:-.02em;line-height:1.25}
+.cp-section p{font-size:.93rem;color:var(--text-2);line-height:1.8;margin-bottom:14px}
+.cp-section p:last-child{margin-bottom:0}
+
+/* ── Code block ── */
+.cp-code{background:var(--navy);border-radius:var(--r);overflow:hidden;margin:20px 0;border:1px solid rgba(255,255,255,.06)}
+.cp-code-header{display:flex;align-items:center;justify-content:space-between;padding:10px 16px;background:rgba(255,255,255,.04);border-bottom:1px solid rgba(255,255,255,.06)}
+.cp-code-label{font-family:var(--f-mono);font-size:.65rem;color:#94a3b8;letter-spacing:.06em}
+.cp-copy-btn{font-family:var(--f-sans);font-size:.7rem;font-weight:600;color:#94a3b8;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:4px;padding:3px 10px;cursor:pointer;transition:all .14s}
+.cp-copy-btn:hover{color:#fff;border-color:rgba(255,255,255,.3)}
+.cp-copy-btn.copied{color:#4ade80;border-color:#4ade80}
+pre.cp-pre{margin:0;padding:18px 20px;font-family:var(--f-mono);font-size:.78rem;line-height:1.75;color:#e2e8f0;overflow-x:auto;white-space:pre}
+/* syntax colours */
+.kw{color:#93c5fd}   /* keywords: int, return, if */
+.cm{color:#6b7280}   /* comments */
+.st{color:#86efac}   /* strings */
+.fn{color:#fcd34d}   /* functions */
+.gr{color:#4ade80}   /* output / success */
+.nm{color:#f9a8d4}   /* numbers / special */
+.pp{color:#c084fc}   /* preprocessor */
+.op{color:#67e8f9}   /* operators */
+
+/* ── Output block ── */
+.cp-output{background:#020617;border-radius:var(--r);padding:14px 18px;margin-top:-8px;margin-bottom:20px;border:1px solid rgba(74,222,128,.15);border-top:none;border-top-left-radius:0;border-top-right-radius:0}
+.cp-output-label{font-family:var(--f-mono);font-size:.62rem;color:#4ade80;letter-spacing:.08em;margin-bottom:6px;display:block}
+.cp-output pre{margin:0;font-family:var(--f-mono);font-size:.78rem;color:#86efac;line-height:1.7;white-space:pre-wrap}
+
+/* ── Callout boxes ── */
+.cp-note{display:flex;gap:12px;background:var(--blue-tint);border:1.5px solid var(--blue);border-radius:var(--r);padding:14px 16px;margin:18px 0}
+.cp-note-icon{font-size:1.1rem;flex-shrink:0;line-height:1.4}
+.cp-note p{margin:0;font-size:.83rem;color:var(--text);line-height:1.7}
+.cp-note strong{color:var(--blue)}
+.cp-warn{background:#fffbeb;border-color:#d97706}
+.cp-warn p{color:#78350f}
+
+/* ── Setup cards ── */
+.setup-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin:18px 0}
+.setup-card{background:var(--bg);border:1.5px solid var(--border);border-radius:var(--r-xl);padding:18px;transition:all .15s}
+.setup-card:hover{border-color:var(--blue);transform:translateY(-2px);box-shadow:var(--shadow-sm)}
+.setup-card-icon{font-size:1.5rem;margin-bottom:8px}
+.setup-card h4{font-size:.88rem;font-weight:700;color:var(--text);margin-bottom:4px}
+.setup-card p{font-size:.78rem;color:var(--text-2);margin-bottom:10px;line-height:1.6}
+.setup-card a{font-size:.76rem;font-weight:700;color:var(--blue);text-decoration:none;display:inline-flex;align-items:center;gap:4px}
+.setup-card a:hover{text-decoration:underline}
+
+/* ── Concept table ── */
+.cp-table{width:100%;border-collapse:collapse;margin:18px 0;font-size:.83rem}
+.cp-table th{background:var(--navy);color:#e2e8f0;font-family:var(--f-mono);font-size:.72rem;font-weight:600;padding:10px 14px;text-align:left;letter-spacing:.04em}
+.cp-table td{padding:9px 14px;border-bottom:1px solid var(--border);color:var(--text-2);vertical-align:top;line-height:1.6}
+.cp-table td:first-child{font-family:var(--f-mono);color:var(--blue);font-size:.76rem}
+.cp-table tr:last-child td{border-bottom:none}
+.cp-table tr:hover td{background:var(--bg-2)}
+
+/* ── Program cards (important programs section) ── */
+.prog-card{background:var(--bg);border:1.5px solid var(--border);border-radius:var(--r-xl);overflow:hidden;margin-bottom:24px;box-shadow:var(--shadow-sm)}
+.prog-card-hdr{display:flex;align-items:center;gap:12px;padding:16px 20px;border-bottom:1px solid var(--border);cursor:pointer;user-select:none}
+.prog-card-hdr:hover{background:var(--bg-2)}
+.prog-badge{font-size:.62rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;padding:3px 10px;border-radius:var(--r-full);background:var(--blue-tint);color:var(--blue);flex-shrink:0}
+.prog-title{font-size:.95rem;font-weight:700;color:var(--text);flex:1}
+.prog-arrow{color:var(--text-3);font-size:.75rem;transition:transform .14s;flex-shrink:0}
+.prog-card-hdr[aria-expanded="true"] .prog-arrow{transform:rotate(180deg)}
+.prog-card-body{display:none;padding:0 20px 20px}
+.prog-card-body.open{display:block}
+.prog-desc{font-size:.83rem;color:var(--text-2);line-height:1.75;margin:14px 0 4px}
+
+/* ── Progress bar (top of page) ── */
+#read-progress{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--blue),#60a5fa);width:0%;z-index:9999;transition:width .1s}
+
+/* ── Back to top ── */
+.back-top{position:fixed;bottom:28px;right:24px;background:var(--blue);color:#fff;border:none;border-radius:50%;width:40px;height:40px;font-size:1rem;cursor:pointer;display:none;align-items:center;justify-content:center;box-shadow:var(--shadow-lg);z-index:100;transition:all .15s}
+.back-top.show{display:flex}
+.back-top:hover{background:#2563eb;transform:translateY(-2px)}
+
+/* ── Section nav badges ── */
+.cp-section h2 .badge{font-size:.62rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;padding:2px 9px;border-radius:var(--r-full);background:var(--blue-tint);color:var(--blue);vertical-align:middle;margin-left:10px;font-style:normal}
+
+/* ── Step numbers ── */
+.step-list{list-style:none;padding:0;margin:14px 0;display:flex;flex-direction:column;gap:10px}
+.step-list li{display:flex;align-items:flex-start;gap:12px;font-size:.87rem;color:var(--text-2);line-height:1.7}
+.step-num{background:var(--blue);color:#fff;width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.65rem;font-weight:700;flex-shrink:0;margin-top:2px}
+</style>
+</head>
+<body>
+
+<div id="read-progress"></div>
+
+<a class="wa-btn" href="https://wa.me/923231450045?text=Hi%20Kamran%2C%20I%20saw%20your%20C%20programming%20page%20and%20I%27d%20like%20to%20learn%20more." target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.122 1.532 5.856L.057 23.617a.75.75 0 00.908.98l5.963-1.562A11.943 11.943 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.886 0-3.655-.52-5.168-1.424l-.37-.22-3.539.927.943-3.443-.24-.381A9.96 9.96 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+  WhatsApp
+</a>
+
+<nav id="nav" class="scrolled">
+  <div class="container nav-inner">
+    <a href="index.html" class="nav-logo"><img src="assets/logos/dv-logo.png" alt="Devriston"/><span class="nav-brand">Devri<span>ston</span></span></a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="solutions.html">Solutions</a>
+      <a href="case-studies.html">Case Studies</a>
+      <a href="blog.html">Blog</a>
+      <a href="devops-notes.html">Notes</a>
+      <a href="interview-guide.html">Interview Guide</a>
+      <a href="about.html">About</a>
+      <a href="contact.html" class="nav-cta">Book Consultation</a>
+    </div>
+    <button class="ham" onclick="toggleDrawer()" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<div class="drawer" id="nav-drawer">
+  <a href="index.html">Home</a>
+  <a href="solutions.html">Solutions</a>
+  <a href="case-studies.html">Case Studies</a>
+  <a href="blog.html">Blog</a>
+  <a href="devops-notes.html">DevOps Notes</a>
+  <a href="c-programming.html" class="active">C Programming</a>
+  <a href="interview-guide.html">Interview Guide</a>
+  <a href="about.html">About</a>
+  <a href="contact.html">Contact</a>
+</div>
+
+<section class="pg-hero">
+  <div class="container">
+    <div class="breadcrumb"><a href="index.html">Home</a><span class="sep">/</span><a href="devops-notes.html">Notes</a><span class="sep">/</span><span class="cur">C Programming</span></div>
+    <p class="eyebrow" style="color:rgba(77,143,255,1)">Beginner Guide</p>
+    <h1 class="fade-up">C Programming</h1>
+    <p class="pg-desc fade-up d2">Learn C language from scratch — setup, syntax, logic, and real programs. Every concept has working code and expected output. No prior programming experience needed.</p>
+    <div style="display:flex;flex-wrap:wrap;gap:28px;margin-top:28px" class="fade-up d3">
+      <div class="h-stat"><span class="h-stat-val">11</span><span class="h-stat-lbl">Topics</span></div>
+      <div class="h-stat"><span class="h-stat-val">20+</span><span class="h-stat-lbl">Programs</span></div>
+      <div class="h-stat"><span class="h-stat-val">100%</span><span class="h-stat-lbl">Free</span></div>
+    </div>
+  </div>
+</section>
+
+<div style="background:var(--bg-2);padding-bottom:80px">
+<div class="container">
+<div class="cp-wrap">
+
+  <!-- SIDEBAR -->
+  <aside class="cp-sidebar" id="cp-sidebar" aria-label="Page navigation">
+    <button class="sb-mobile-toggle" onclick="toggleSidebar()" id="sb-toggle" aria-expanded="false">
+      <span>📚 Jump to section</span><span id="sb-arrow">▼</span>
+    </button>
+    <nav class="sb-nav" id="sb-nav">
+      <div class="sb-label">Getting Started</div>
+      <a href="#intro"        class="sb-link active"><span class="sb-icon">💡</span>What is C?</a>
+      <a href="#setup"        class="sb-link"><span class="sb-icon">⚙️</span>Setup &amp; Install</a>
+      <div class="sb-divider"></div>
+      <div class="sb-label">Core Concepts</div>
+      <a href="#hello-world"  class="sb-link"><span class="sb-icon">👋</span>Hello World<span class="sb-num">P1</span></a>
+      <a href="#variables"    class="sb-link"><span class="sb-icon">📦</span>Variables &amp; Data Types<span class="sb-num">P2</span></a>
+      <a href="#input-output" class="sb-link"><span class="sb-icon">⌨️</span>Input &amp; Output<span class="sb-num">P3</span></a>
+      <a href="#operators"    class="sb-link"><span class="sb-icon">🔢</span>Operators<span class="sb-num">P4</span></a>
+      <a href="#decisions"    class="sb-link"><span class="sb-icon">🔀</span>Decision Making<span class="sb-num">P5</span></a>
+      <a href="#loops"        class="sb-link"><span class="sb-icon">🔄</span>Loops<span class="sb-num">P6</span></a>
+      <a href="#functions"    class="sb-link"><span class="sb-icon">🧩</span>Functions<span class="sb-num">P7</span></a>
+      <a href="#arrays"       class="sb-link"><span class="sb-icon">📋</span>Arrays<span class="sb-num">P8</span></a>
+      <div class="sb-divider"></div>
+      <div class="sb-label">Practice</div>
+      <a href="#important-programs" class="sb-link"><span class="sb-icon">⭐</span>Important Programs</a>
+      <div class="sb-divider"></div>
+      <a href="devops-notes.html" class="sb-link" style="color:var(--blue)"><span class="sb-icon">📝</span>DevOps Notes →</a>
+    </nav>
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <main class="cp-content" id="cp-main">
+
+    <!-- ══════════════════════════════════════════
+         SECTION 1 — WHAT IS C
+    ══════════════════════════════════════════ -->
+    <section class="cp-section" id="intro">
+      <div class="section-eyebrow">Introduction</div>
+      <h2>What is C Language?</h2>
+      <p>C is one of the oldest and most widely-used programming languages in the world. It was developed in the early 1970s at Bell Labs. Almost every operating system — including Linux and Windows — is written using C or C-based languages.</p>
+      <p>If you're learning programming for the first time, C is an excellent starting point. It teaches you how computers actually work — memory, variables, logic, and how programs execute line by line.</p>
+
+      <div class="cp-note">
+        <span class="cp-note-icon">💡</span>
+        <p><strong>Why learn C first?</strong> C teaches the fundamentals that every other language builds on — variables, loops, functions, memory. Once you know C, learning Python, Java, or C++ becomes much easier.</p>
+      </div>
+
+      <h3 style="font-size:1rem;font-weight:700;color:var(--text);margin:24px 0 10px">Where is C used?</h3>
+      <table class="cp-table">
+        <thead><tr><th>Area</th><th>Example</th></tr></thead>
+        <tbody>
+          <tr><td>Operating Systems</td><td>Linux kernel, Windows core are written in C</td></tr>
+          <tr><td>Embedded Systems</td><td>Microcontrollers, Arduino, hardware drivers</td></tr>
+          <tr><td>System Tools</td><td>Compilers, database engines (MySQL core)</td></tr>
+          <tr><td>Game Development</td><td>Game engines and performance-critical code</td></tr>
+          <tr><td>Learning Foundation</td><td>First language taught in CS programs worldwide</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- ══════════════════════════════════════════
+         SECTION 2 — SETUP
+    ══════════════════════════════════════════ -->
+    <section class="cp-section" id="setup">
+      <div class="section-eyebrow">Getting Ready</div>
+      <h2>Setup &amp; Install</h2>
+      <p>You have two options — write code online (nothing to install) or install a compiler on your computer. Both work fine for learning.</p>
+
+      <div class="setup-grid">
+        <div class="setup-card">
+          <div class="setup-card-icon">🌐</div>
+          <h4>Online Compiler</h4>
+          <p>Run C code in your browser. No installation needed. Best for beginners.</p>
+          <a href="https://www.onlinegdb.com/online_c_compiler" target="_blank" rel="noopener">OnlineGDB →</a><br/>
+          <a href="https://www.programiz.com/c-programming/online-compiler/" target="_blank" rel="noopener" style="margin-top:6px;display:inline-block">Programiz →</a>
+        </div>
+        <div class="setup-card">
+          <div class="setup-card-icon">💻</div>
+          <h4>Dev-C++ (Offline)</h4>
+          <p>Simple IDE for Windows. Classic choice for beginners. Easy to install.</p>
+          <a href="https://sourceforge.net/projects/orwelldevcpp/" target="_blank" rel="noopener">Download Dev-C++ →</a>
+        </div>
+        <div class="setup-card">
+          <div class="setup-card-icon">⚡</div>
+          <h4>VS Code + GCC</h4>
+          <p>Professional setup. Lightweight editor with full GCC compiler support.</p>
+          <a href="https://code.visualstudio.com/download" target="_blank" rel="noopener">Download VS Code →</a><br/>
+          <a href="https://www.mingw-w64.org/downloads/" target="_blank" rel="noopener" style="margin-top:6px;display:inline-block">MinGW (GCC) →</a>
+        </div>
+      </div>
+
+      <div class="cp-note cp-warn">
+        <span class="cp-note-icon">⚠️</span>
+        <p><strong>Recommendation:</strong> Start with OnlineGDB — no setup required, runs instantly. Once you're comfortable with the basics, install Dev-C++ or VS Code for offline practice.</p>
+      </div>
+
+      <h3 style="font-size:1rem;font-weight:700;color:var(--text);margin:24px 0 10px">How a C program runs</h3>
+      <p>Every C program goes through these steps before you see output:</p>
+      <ol class="step-list">
+        <li><span class="step-num">1</span><span>Write code in a <code style="font-family:var(--f-mono);background:var(--bg-2);padding:1px 6px;border-radius:4px;font-size:.82rem">.c</code> file — e.g. <code style="font-family:var(--f-mono);background:var(--bg-2);padding:1px 6px;border-radius:4px;font-size:.82rem">hello.c</code></span></li>
+        <li><span class="step-num">2</span><span><strong>Compile</strong> — the compiler (GCC) converts your code to machine language</span></li>
+        <li><span class="step-num">3</span><span><strong>Link</strong> — connects your code with library functions like <code style="font-family:var(--f-mono);background:var(--bg-2);padding:1px 6px;border-radius:4px;font-size:.82rem">printf</code></span></li>
+        <li><span class="step-num">4</span><span><strong>Run</strong> — the executable file runs and shows output</span></li>
+      </ol>
+    </section>
+
+    <!-- ══════════════════════════════════════════
+         SECTION 3 — HELLO WORLD
+    ══════════════════════════════════════════ -->
+    <section class="cp-section" id="hello-world">
+      <div class="section-eyebrow">Practical 1</div>
+      <h2>Hello World <em class="badge">Start Here</em></h2>
+      <p>Every programmer writes this first. It teaches you the basic structure of a C program — what every file must contain before anything else can work.</p>
+
+      <div class="cp-code">
+        <div class="cp-code-header"><span class="cp-code-label">hello.c</span><button class="cp-copy-btn" onclick="copyCode(this)">Copy</button></div>
+<pre class="cp-pre"><span class="pp">#include</span> <span class="st">&lt;stdio.h&gt;</span>    <span class="cm">// standard input/output library</span>
+
+<span class="kw">int</span> <span class="fn">main</span>() {
+    <span class="fn">printf</span>(<span class="st">"Hello, World!\n"</span>);   <span class="cm">// print to screen</span>
+    <span class="kw">return</span> <span class="nm">0</span>;                    <span class="cm">// 0 means program ran successfully</span>
+}</pre>
+      </div>
+      <div class="cp-output">
+        <span class="cp-output-label">▶ OUTPUT</span>
+        <pre>Hello, World!</pre>
+      </div>
+
+      <h3 style="font-size:1rem;font-weight:700;color:var(--text);margin:20px 0 10px">Line by line explanation</h3>
+      <table class="cp-table">
+        <thead><tr><th>Line</th><th>What it does</th></tr></thead>
+        <tbody>
+          <tr><td>#include &lt;stdio.h&gt;</td><td>Imports the standard library so you can use printf and scanf</td></tr>
+          <tr><td>int main()</td><td>Every C program starts execution from main(). The int means it returns a number.</td></tr>
+          <tr><td>printf("...")</td><td>Prints text to the screen. \n moves to the next line.</td></tr>
+          <tr><td>return 0;</td><td>Tells the OS the program finished without errors.</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- ══════════════════════════════════════════
+         SECTION 4 — VARIABLES & DATA TYPES
+    ══════════════════════════════════════════ -->
+    <section class="cp-section" id="variables">
+      <div class="section-eyebrow">Practical 2</div>
+      <h2>Variables &amp; Data Types</h2>
+      <p>A variable is a named box that stores data. Before using a variable in C, you must declare its <strong>type</strong> — this tells the compiler how much memory to reserve and what kind of data it will hold.</p>
+
+      <table class="cp-table">
+        <thead><tr><th>Type</th><th>Stores</th><th>Example</th><th>Size</th></tr></thead>
+        <tbody>
+          <tr><td>int</td><td>Whole numbers</td><td>5, -10, 100</td><td>4 bytes</td></tr>
+          <tr><td>float</td><td>Decimal numbers</td><td>3.14, -2.5</td><td>4 bytes</td></tr>
+          <tr><td>double</td><td>Precise decimals</td><td>3.14159265</td><td>8 bytes</td></tr>
+          <tr><td>char</td><td>Single character</td><td>'A', 'z', '5'</td><td>1 byte</td></tr>
+        </tbody>
+      </table>
+
+      <div class="cp-code">
+        <div class="cp-code-header"><span class="cp-code-label">variables.c</span><button class="cp-copy-btn" onclick="copyCode(this)">Copy</button></div>
+<pre class="cp-pre"><span class="pp">#include</span> <span class="st">&lt;stdio.h&gt;</span>
+
+<span class="kw">int</span> <span class="fn">main</span>() {
+    <span class="kw">int</span>    age    <span class="op">=</span> <span class="nm">18</span>;
+    <span class="kw">float</span>  marks  <span class="op">=</span> <span class="nm">87.5</span>;
+    <span class="kw">char</span>   grade  <span class="op">=</span> <span class="st">'A'</span>;
+
+    <span class="fn">printf</span>(<span class="st">"Age: %d\n"</span>, age);
+    <span class="fn">printf</span>(<span class="st">"Marks: %.1f\n"</span>, marks);
+    <span class="fn">printf</span>(<span class="st">"Grade: %c\n"</span>, grade);
+
+    <span class="kw">return</span> <span class="nm">0</span>;
+}</pre>
+      </div>
+      <div class="cp-output">
+        <span class="cp-output-label">▶ OUTPUT</span>
+        <pre>Age: 18
+Marks: 87.5
+Grade: A</pre>
+      </div>
+
+      <div class="cp-note">
+        <span class="cp-note-icon">💡</span>
+        <p><strong>Format specifiers:</strong> <code style="font-family:var(--f-mono)">%d</code> = integer, <code style="font-family:var(--f-mono)">%f</code> = float, <code style="font-family:var(--f-mono)">%c</code> = character, <code style="font-family:var(--f-mono)">%s</code> = string. These go inside printf/scanf to match the variable type.</p>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════
+         SECTION 5 — INPUT & OUTPUT
+    ══════════════════════════════════════════ -->
+    <section class="cp-section" id="input-output">
+      <div class="section-eyebrow">Practical 3</div>
+      <h2>Input &amp; Output</h2>
+      <p><code style="font-family:var(--f-mono);background:var(--bg-2);padding:2px 6px;border-radius:4px">printf()</code> prints to the screen. <code style="font-family:var(--f-mono);background:var(--bg-2);padding:2px 6px;border-radius:4px">scanf()</code> reads input from the keyboard. Together, these two functions handle all basic interaction with the user.</p>
+
+      <div class="cp-code">
+        <div class="cp-code-header"><span class="cp-code-label">input-output.c</span><button class="cp-copy-btn" onclick="copyCode(this)">Copy</button></div>
+<pre class="cp-pre"><span class="pp">#include</span> <span class="st">&lt;stdio.h&gt;</span>
+
+<span class="kw">int</span> <span class="fn">main</span>() {
+    <span class="kw">int</span> num1, num2, sum;
+
+    <span class="fn">printf</span>(<span class="st">"Enter first number: "</span>);
+    <span class="fn">scanf</span>(<span class="st">"%d"</span>, <span class="op">&amp;</span>num1);       <span class="cm">// &amp; means "address of" num1</span>
+
+    <span class="fn">printf</span>(<span class="st">"Enter second number: "</span>);
+    <span class="fn">scanf</span>(<span class="st">"%d"</span>, <span class="op">&amp;</span>num2);
+
+    sum <span class="op">=</span> num1 <span class="op">+</span> num2;
+    <span class="fn">printf</span>(<span class="st">"Sum = %d\n"</span>, sum);
+
+    <span class="kw">return</span> <span class="nm">0</span>;
+}</pre>
+      </div>
+      <div class="cp-output">
+        <span class="cp-output-label">▶ OUTPUT</span>
+        <pre>Enter first number: 10
+Enter second number: 25
+Sum = 35</pre>
+      </div>
+
+      <div class="cp-note cp-warn">
+        <span class="cp-note-icon">⚠️</span>
+        <p><strong>Common mistake:</strong> Forgetting <code style="font-family:var(--f-mono)">&amp;</code> before the variable name in scanf. Always write <code style="font-family:var(--f-mono)">scanf("%d", &amp;variable)</code> — the ampersand is required.</p>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════
+         SECTION 6 — OPERATORS
+    ══════════════════════════════════════════ -->
+    <section class="cp-section" id="operators">
+      <div class="section-eyebrow">Practical 4</div>
+      <h2>Operators &amp; Expressions</h2>
+      <p>Operators perform operations on variables and values. C has arithmetic, relational, and logical operators.</p>
+
+      <table class="cp-table">
+        <thead><tr><th>Operator</th><th>Name</th><th>Example</th><th>Result</th></tr></thead>
+        <tbody>
+          <tr><td>+</td><td>Addition</td><td>10 + 3</td><td>13</td></tr>
+          <tr><td>-</td><td>Subtraction</td><td>10 - 3</td><td>7</td></tr>
+          <tr><td>*</td><td>Multiplication</td><td>10 * 3</td><td>30</td></tr>
+          <tr><td>/</td><td>Division</td><td>10 / 3</td><td>3 (integer division)</td></tr>
+          <tr><td>%</td><td>Modulus (remainder)</td><td>10 % 3</td><td>1</td></tr>
+          <tr><td>==</td><td>Equal to</td><td>5 == 5</td><td>1 (true)</td></tr>
+          <tr><td>!=</td><td>Not equal</td><td>5 != 3</td><td>1 (true)</td></tr>
+          <tr><td>&gt;</td><td>Greater than</td><td>7 &gt; 4</td><td>1 (true)</td></tr>
+        </tbody>
+      </table>
+
+      <div class="cp-code">
+        <div class="cp-code-header"><span class="cp-code-label">operators.c</span><button class="cp-copy-btn" onclick="copyCode(this)">Copy</button></div>
+<pre class="cp-pre"><span class="pp">#include</span> <span class="st">&lt;stdio.h&gt;</span>
+
+<span class="kw">int</span> <span class="fn">main</span>() {
+    <span class="kw">int</span> a <span class="op">=</span> <span class="nm">17</span>, b <span class="op">=</span> <span class="nm">5</span>;
+
+    <span class="fn">printf</span>(<span class="st">"a + b = %d\n"</span>, a <span class="op">+</span> b);
+    <span class="fn">printf</span>(<span class="st">"a - b = %d\n"</span>, a <span class="op">-</span> b);
+    <span class="fn">printf</span>(<span class="st">"a * b = %d\n"</span>, a <span class="op">*</span> b);
+    <span class="fn">printf</span>(<span class="st">"a / b = %d\n"</span>, a <span class="op">/</span> b);   <span class="cm">// integer division = 3</span>
+    <span class="fn">printf</span>(<span class="st">"a %% b = %d\n"</span>, a <span class="op">%</span> b);  <span class="cm">// remainder = 2</span>
+
+    <span class="kw">return</span> <span class="nm">0</span>;
+}</pre>
+      </div>
+      <div class="cp-output">
+        <span class="cp-output-label">▶ OUTPUT</span>
+        <pre>a + b = 22
+a - b = 12
+a * b = 85
+a / b = 3
+a % b = 2</pre>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════
+         SECTION 7 — DECISION MAKING
+    ══════════════════════════════════════════ -->
+    <section class="cp-section" id="decisions">
+      <div class="section-eyebrow">Practical 5</div>
+      <h2>Decision Making</h2>
+      <p>Programs need to make decisions based on conditions. C provides <code style="font-family:var(--f-mono);background:var(--bg-2);padding:2px 6px;border-radius:4px">if</code>, <code style="font-family:var(--f-mono);background:var(--bg-2);padding:2px 6px;border-radius:4px">if-else</code>, and <code style="font-family:var(--f-mono);background:var(--bg-2);padding:2px 6px;border-radius:4px">switch</code> for this.</p>
+
+      <h3 style="font-size:.95rem;font-weight:700;color:var(--text);margin:20px 0 8px">if / else</h3>
+      <div class="cp-code">
+        <div class="cp-code-header"><span class="cp-code-label">if-else.c</span><button class="cp-copy-btn" onclick="copyCode(this)">Copy</button></div>
+<pre class="cp-pre"><span class="pp">#include</span> <span class="st">&lt;stdio.h&gt;</span>
+
+<span class="kw">int</span> <span class="fn">main</span>() {
+    <span class="kw">int</span> marks;
+    <span class="fn">printf</span>(<span class="st">"Enter marks: "</span>);
+    <span class="fn">scanf</span>(<span class="st">"%d"</span>, <span class="op">&amp;</span>marks);
+
+    <span class="kw">if</span> (marks <span class="op">&gt;=</span> <span class="nm">90</span>) {
+        <span class="fn">printf</span>(<span class="st">"Grade: A+\n"</span>);
+    } <span class="kw">else if</span> (marks <span class="op">&gt;=</span> <span class="nm">80</span>) {
+        <span class="fn">printf</span>(<span class="st">"Grade: A\n"</span>);
+    } <span class="kw">else if</span> (marks <span class="op">&gt;=</span> <span class="nm">70</span>) {
+        <span class="fn">printf</span>(<span class="st">"Grade: B\n"</span>);
+    } <span class="kw">else if</span> (marks <span class="op">&gt;=</span> <span class="nm">60</span>) {
+        <span class="fn">printf</span>(<span class="st">"Grade: C\n"</span>);
+    } <span class="kw">else</span> {
+        <span class="fn">printf</span>(<span class="st">"Grade: Fail\n"</span>);
+    }
+
+    <span class="kw">return</span> <span class="nm">0</span>;
+}</pre>
+      </div>
+      <div class="cp-output">
+        <span class="cp-output-label">▶ OUTPUT</span>
+        <pre>Enter marks: 85
+Grade: A</pre>
+      </div>
+
+      <h3 style="font-size:.95rem;font-weight:700;color:var(--text);margin:24px 0 8px">switch statement</h3>
+      <p>Use <code style="font-family:var(--f-mono);background:var(--bg-2);padding:2px 6px;border-radius:4px">switch</code> when comparing one variable against multiple fixed values — cleaner than many else-if chains.</p>
+
+      <div class="cp-code">
+        <div class="cp-code-header"><span class="cp-code-label">switch.c — Simple Calculator</span><button class="cp-copy-btn" onclick="copyCode(this)">Copy</button></div>
+<pre class="cp-pre"><span class="pp">#include</span> <span class="st">&lt;stdio.h&gt;</span>
+
+<span class="kw">int</span> <span class="fn">main</span>() {
+    <span class="kw">int</span> a, b;
+    <span class="kw">char</span> op;
+
+    <span class="fn">printf</span>(<span class="st">"Enter: num1 operator num2\n"</span>);
+    <span class="fn">scanf</span>(<span class="st">"%d %c %d"</span>, <span class="op">&amp;</span>a, <span class="op">&amp;</span>op, <span class="op">&amp;</span>b);
+
+    <span class="kw">switch</span> (op) {
+        <span class="kw">case</span> <span class="st">'+'</span>: <span class="fn">printf</span>(<span class="st">"Result = %d\n"</span>, a <span class="op">+</span> b); <span class="kw">break</span>;
+        <span class="kw">case</span> <span class="st">'-'</span>: <span class="fn">printf</span>(<span class="st">"Result = %d\n"</span>, a <span class="op">-</span> b); <span class="kw">break</span>;
+        <span class="kw">case</span> <span class="st">'*'</span>: <span class="fn">printf</span>(<span class="st">"Result = %d\n"</span>, a <span class="op">*</span> b); <span class="kw">break</span>;
+        <span class="kw">case</span> <span class="st">'/'</span>:
+            <span class="kw">if</span> (b <span class="op">!=</span> <span class="nm">0</span>) <span class="fn">printf</span>(<span class="st">"Result = %d\n"</span>, a <span class="op">/</span> b);
+            <span class="kw">else</span> <span class="fn">printf</span>(<span class="st">"Error: Division by zero\n"</span>);
+            <span class="kw">break</span>;
+        <span class="kw">default</span>: <span class="fn">printf</span>(<span class="st">"Unknown operator\n"</span>);
+    }
+
+    <span class="kw">return</span> <span class="nm">0</span>;
+}</pre>
+      </div>
+      <div class="cp-output">
+        <span class="cp-output-label">▶ OUTPUT</span>
+        <pre>Enter: num1 operator num2
+8 * 5
+Result = 40</pre>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════
+         SECTION 8 — LOOPS
+    ══════════════════════════════════════════ -->
+    <section class="cp-section" id="loops">
+      <div class="section-eyebrow">Practical 6</div>
+      <h2>Loops</h2>
+      <p>Loops repeat a block of code multiple times. C has three types — <code style="font-family:var(--f-mono);background:var(--bg-2);padding:2px 6px;border-radius:4px">for</code>, <code style="font-family:var(--f-mono);background:var(--bg-2);padding:2px 6px;border-radius:4px">while</code>, and <code style="font-family:var(--f-mono);background:var(--bg-2);padding:2px 6px;border-radius:4px">do-while</code>.</p>
+
+      <h3 style="font-size:.95rem;font-weight:700;color:var(--text);margin:20px 0 8px">for loop — Multiplication Table</h3>
+      <div class="cp-code">
+        <div class="cp-code-header"><span class="cp-code-label">for-loop.c</span><button class="cp-copy-btn" onclick="copyCode(this)">Copy</button></div>
+<pre class="cp-pre"><span class="pp">#include</span> <span class="st">&lt;stdio.h&gt;</span>
+
+<span class="kw">int</span> <span class="fn">main</span>() {
+    <span class="kw">int</span> n;
+    <span class="fn">printf</span>(<span class="st">"Enter a number: "</span>);
+    <span class="fn">scanf</span>(<span class="st">"%d"</span>, <span class="op">&amp;</span>n);
+
+    <span class="kw">for</span> (<span class="kw">int</span> i <span class="op">=</span> <span class="nm">1</span>; i <span class="op">&lt;=</span> <span class="nm">10</span>; i<span class="op">++</span>) {
+        <span class="fn">printf</span>(<span class="st">"%d x %d = %d\n"</span>, n, i, n <span class="op">*</span> i);
+    }
+
+    <span class="kw">return</span> <span class="nm">0</span>;
+}</pre>
+      </div>
+      <div class="cp-output">
+        <span class="cp-output-label">▶ OUTPUT</span>
+        <pre>Enter a number: 5
+5 x 1 = 5
+5 x 2 = 10
+5 x 3 = 15
+...
+5 x 10 = 50</pre>
+      </div>
+
+      <h3 style="font-size:.95rem;font-weight:700;color:var(--text);margin:24px 0 8px">while loop</h3>
+      <div class="cp-code">
+        <div class="cp-code-header"><span class="cp-code-label">while-loop.c — Sum of digits</span><button class="cp-copy-btn" onclick="copyCode(this)">Copy</button></div>
+<pre class="cp-pre"><span class="pp">#include</span> <span class="st">&lt;stdio.h&gt;</span>
+
+<span class="kw">int</span> <span class="fn">main</span>() {
+    <span class="kw">int</span> num, sum <span class="op">=</span> <span class="nm">0</span>, digit;
+
+    <span class="fn">printf</span>(<span class="st">"Enter a number: "</span>);
+    <span class="fn">scanf</span>(<span class="st">"%d"</span>, <span class="op">&amp;</span>num);
+
+    <span class="kw">while</span> (num <span class="op">!=</span> <span class="nm">0</span>) {
+        digit <span class="op">=</span> num <span class="op">%</span> <span class="nm">10</span>;    <span class="cm">// get last digit</span>
+        sum <span class="op">+=</span> digit;
+        num <span class="op">/=</span> <span class="nm">10</span>;            <span class="cm">// remove last digit</span>
+    }
+
+    <span class="fn">printf</span>(<span class="st">"Sum of digits = %d\n"</span>, sum);
+    <span class="kw">return</span> <span class="nm">0</span>;
+}</pre>
+      </div>
+      <div class="cp-output">
+        <span class="cp-output-label">▶ OUTPUT</span>
+        <pre>Enter a number: 456
+Sum of digits = 15</pre>
+      </div>
+
+      <h3 style="font-size:.95rem;font-weight:700;color:var(--text);margin:24px 0 8px">do-while loop</h3>
+      <p>Runs the body <strong>at least once</strong>, then checks the condition. Useful for menus.</p>
+      <div class="cp-code">
+        <div class="cp-code-header"><span class="cp-code-label">do-while.c</span><button class="cp-copy-btn" onclick="copyCode(this)">Copy</button></div>
+<pre class="cp-pre"><span class="pp">#include</span> <span class="st">&lt;stdio.h&gt;</span>
+
+<span class="kw">int</span> <span class="fn">main</span>() {
+    <span class="kw">int</span> n <span class="op">=</span> <span class="nm">1</span>;
+
+    <span class="kw">do</span> {
+        <span class="fn">printf</span>(<span class="st">"%d "</span>, n);
+        n<span class="op">++</span>;
+    } <span class="kw">while</span> (n <span class="op">&lt;=</span> <span class="nm">5</span>);
+
+    <span class="fn">printf</span>(<span class="st">"\n"</span>);
+    <span class="kw">return</span> <span class="nm">0</span>;
+}</pre>
+      </div>
+      <div class="cp-output">
+        <span class="cp-output-label">▶ OUTPUT</span>
+        <pre>1 2 3 4 5</pre>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════
+         SECTION 9 — FUNCTIONS
+    ══════════════════════════════════════════ -->
+    <section class="cp-section" id="functions">
+      <div class="section-eyebrow">Practical 7</div>
+      <h2>Functions</h2>
+      <p>A function is a reusable block of code that performs a specific task. Instead of writing the same code multiple times, you write it once as a function and call it whenever needed.</p>
+
+      <div class="cp-code">
+        <div class="cp-code-header"><span class="cp-code-label">functions.c — Add two numbers</span><button class="cp-copy-btn" onclick="copyCode(this)">Copy</button></div>
+<pre class="cp-pre"><span class="pp">#include</span> <span class="st">&lt;stdio.h&gt;</span>
+
+<span class="cm">// Function declaration</span>
+<span class="kw">int</span> <span class="fn">add</span>(<span class="kw">int</span> a, <span class="kw">int</span> b);
+
+<span class="kw">int</span> <span class="fn">main</span>() {
+    <span class="kw">int</span> x <span class="op">=</span> <span class="nm">10</span>, y <span class="op">=</span> <span class="nm">20</span>;
+    <span class="kw">int</span> result <span class="op">=</span> <span class="fn">add</span>(x, y);    <span class="cm">// function call</span>
+    <span class="fn">printf</span>(<span class="st">"Sum = %d\n"</span>, result);
+    <span class="kw">return</span> <span class="nm">0</span>;
+}
+
+<span class="cm">// Function definition</span>
+<span class="kw">int</span> <span class="fn">add</span>(<span class="kw">int</span> a, <span class="kw">int</span> b) {
+    <span class="kw">return</span> a <span class="op">+</span> b;
+}</pre>
+      </div>
+      <div class="cp-output">
+        <span class="cp-output-label">▶ OUTPUT</span>
+        <pre>Sum = 30</pre>
+      </div>
+
+      <h3 style="font-size:.95rem;font-weight:700;color:var(--text);margin:24px 0 8px">Recursion</h3>
+      <p>A function that calls itself is called recursive. It must have a base condition to stop, otherwise it runs forever.</p>
+      <div class="cp-code">
+        <div class="cp-code-header"><span class="cp-code-label">recursion.c — Factorial</span><button class="cp-copy-btn" onclick="copyCode(this)">Copy</button></div>
+<pre class="cp-pre"><span class="pp">#include</span> <span class="st">&lt;stdio.h&gt;</span>
+
+<span class="kw">int</span> <span class="fn">factorial</span>(<span class="kw">int</span> n) {
+    <span class="kw">if</span> (n <span class="op">==</span> <span class="nm">0</span> <span class="op">||</span> n <span class="op">==</span> <span class="nm">1</span>)
+        <span class="kw">return</span> <span class="nm">1</span>;              <span class="cm">// base condition</span>
+    <span class="kw">return</span> n <span class="op">*</span> <span class="fn">factorial</span>(n <span class="op">-</span> <span class="nm">1</span>);  <span class="cm">// recursive call</span>
+}
+
+<span class="kw">int</span> <span class="fn">main</span>() {
+    <span class="kw">int</span> n;
+    <span class="fn">printf</span>(<span class="st">"Enter n: "</span>);
+    <span class="fn">scanf</span>(<span class="st">"%d"</span>, <span class="op">&amp;</span>n);
+    <span class="fn">printf</span>(<span class="st">"%d! = %d\n"</span>, n, <span class="fn">factorial</span>(n));
+    <span class="kw">return</span> <span class="nm">0</span>;
+}</pre>
+      </div>
+      <div class="cp-output">
+        <span class="cp-output-label">▶ OUTPUT</span>
+        <pre>Enter n: 5
+5! = 120</pre>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════
+         SECTION 10 — ARRAYS
+    ══════════════════════════════════════════ -->
+    <section class="cp-section" id="arrays">
+      <div class="section-eyebrow">Practical 8</div>
+      <h2>Arrays</h2>
+      <p>An array stores multiple values of the same type in a single variable. Instead of creating 10 separate variables for 10 numbers, you create one array of size 10.</p>
+
+      <div class="cp-code">
+        <div class="cp-code-header"><span class="cp-code-label">arrays.c — Store and display marks</span><button class="cp-copy-btn" onclick="copyCode(this)">Copy</button></div>
+<pre class="cp-pre"><span class="pp">#include</span> <span class="st">&lt;stdio.h&gt;</span>
+
+<span class="kw">int</span> <span class="fn">main</span>() {
+    <span class="kw">int</span> marks[<span class="nm">5</span>];
+    <span class="kw">int</span> sum <span class="op">=</span> <span class="nm">0</span>;
+
+    <span class="fn">printf</span>(<span class="st">"Enter 5 marks:\n"</span>);
+    <span class="kw">for</span> (<span class="kw">int</span> i <span class="op">=</span> <span class="nm">0</span>; i <span class="op">&lt;</span> <span class="nm">5</span>; i<span class="op">++</span>) {
+        <span class="fn">scanf</span>(<span class="st">"%d"</span>, <span class="op">&amp;</span>marks[i]);
+        sum <span class="op">+=</span> marks[i];
+    }
+
+    <span class="fn">printf</span>(<span class="st">"Total = %d\n"</span>, sum);
+    <span class="fn">printf</span>(<span class="st">"Average = %.1f\n"</span>, sum <span class="op">/</span> <span class="nm">5.0</span>);
+
+    <span class="kw">return</span> <span class="nm">0</span>;
+}</pre>
+      </div>
+      <div class="cp-output">
+        <span class="cp-output-label">▶ OUTPUT</span>
+        <pre>Enter 5 marks:
+70 80 90 85 75
+Total = 400
+Average = 80.0</pre>
+      </div>
+
+      <div class="cp-note">
+        <span class="cp-note-icon">💡</span>
+        <p><strong>Array indexing starts at 0.</strong> An array <code style="font-family:var(--f-mono)">int marks[5]</code> has elements at positions 0, 1, 2, 3, 4. Accessing <code style="font-family:var(--f-mono)">marks[5]</code> goes out of bounds and causes undefined behavior.</p>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════
+         SECTION 11 — IMPORTANT PROGRAMS
+    ══════════════════════════════════════════ -->
+    <section class="cp-section" id="important-programs">
+      <div class="section-eyebrow">Practice</div>
+      <h2>Important Programs <em class="badge">Exam Ready</em></h2>
+      <p>These are the most commonly asked C programs in exams and lab practicals. Each one builds on the concepts covered above. Click any program to expand it.</p>
+
+      <!-- P1: Factorial -->
+      <div class="prog-card">
+        <div class="prog-card-hdr" onclick="toggleProg(this)" aria-expanded="false">
+          <span class="prog-badge">Loops</span>
+          <span class="prog-title">Factorial of a Number (using loop)</span>
+          <span class="prog-arrow">▼</span>
+        </div>
+        <div class="prog-card-body">
+          <p class="prog-desc">Calculate n! using a for loop. Factorial of 5 = 5×4×3×2×1 = 120.</p>
+          <div class="cp-code">
+            <div class="cp-code-header"><span class="cp-code-label">factorial-loop.c</span><button class="cp-copy-btn" onclick="copyCode(this)">Copy</button></div>
+<pre class="cp-pre"><span class="pp">#include</span> <span class="st">&lt;stdio.h&gt;</span>
+
+<span class="kw">int</span> <span class="fn">main</span>() {
+    <span class="kw">int</span> n, fact <span class="op">=</span> <span class="nm">1</span>;
+    <span class="fn">printf</span>(<span class="st">"Enter n: "</span>);
+    <span class="fn">scanf</span>(<span class="st">"%d"</span>, <span class="op">&amp;</span>n);
+
+    <span class="kw">for</span> (<span class="kw">int</span> i <span class="op">=</span> <span class="nm">1</span>; i <span class="op">&lt;=</span> n; i<span class="op">++</span>)
+        fact <span class="op">*=</span> i;
+
+    <span class="fn">printf</span>(<span class="st">"%d! = %d\n"</span>, n, fact);
+    <span class="kw">return</span> <span class="nm">0</span>;
+}</pre>
+          </div>
+          <div class="cp-output"><span class="cp-output-label">▶ OUTPUT</span><pre>Enter n: 5
+5! = 120</pre></div>
+        </div>
+      </div>
+
+      <!-- P2: Fibonacci -->
+      <div class="prog-card">
+        <div class="prog-card-hdr" onclick="toggleProg(this)" aria-expanded="false">
+          <span class="prog-badge">Loops</span>
+          <span class="prog-title">Fibonacci Series</span>
+          <span class="prog-arrow">▼</span>
+        </div>
+        <div class="prog-card-body">
+          <p class="prog-desc">Print the Fibonacci series up to n terms. Each number is the sum of the two before it: 0, 1, 1, 2, 3, 5, 8...</p>
+          <div class="cp-code">
+            <div class="cp-code-header"><span class="cp-code-label">fibonacci.c</span><button class="cp-copy-btn" onclick="copyCode(this)">Copy</button></div>
+<pre class="cp-pre"><span class="pp">#include</span> <span class="st">&lt;stdio.h&gt;</span>
+
+<span class="kw">int</span> <span class="fn">main</span>() {
+    <span class="kw">int</span> n, a <span class="op">=</span> <span class="nm">0</span>, b <span class="op">=</span> <span class="nm">1</span>, c;
+
+    <span class="fn">printf</span>(<span class="st">"How many terms? "</span>);
+    <span class="fn">scanf</span>(<span class="st">"%d"</span>, <span class="op">&amp;</span>n);
+
+    <span class="fn">printf</span>(<span class="st">"Fibonacci: "</span>);
+    <span class="kw">for</span> (<span class="kw">int</span> i <span class="op">=</span> <span class="nm">1</span>; i <span class="op">&lt;=</span> n; i<span class="op">++</span>) {
+        <span class="fn">printf</span>(<span class="st">"%d "</span>, a);
+        c <span class="op">=</span> a <span class="op">+</span> b;
+        a <span class="op">=</span> b;
+        b <span class="op">=</span> c;
+    }
+    <span class="fn">printf</span>(<span class="st">"\n"</span>);
+    <span class="kw">return</span> <span class="nm">0</span>;
+}</pre>
+          </div>
+          <div class="cp-output"><span class="cp-output-label">▶ OUTPUT</span><pre>How many terms? 7
+Fibonacci: 0 1 1 2 3 5 8</pre></div>
+        </div>
+      </div>
+
+      <!-- P3: Prime -->
+      <div class="prog-card">
+        <div class="prog-card-hdr" onclick="toggleProg(this)" aria-expanded="false">
+          <span class="prog-badge">Decision + Loops</span>
+          <span class="prog-title">Check Prime Number</span>
+          <span class="prog-arrow">▼</span>
+        </div>
+        <div class="prog-card-body">
+          <p class="prog-desc">A prime number is divisible only by 1 and itself. Check if a given number is prime.</p>
+          <div class="cp-code">
+            <div class="cp-code-header"><span class="cp-code-label">prime.c</span><button class="cp-copy-btn" onclick="copyCode(this)">Copy</button></div>
+<pre class="cp-pre"><span class="pp">#include</span> <span class="st">&lt;stdio.h&gt;</span>
+
+<span class="kw">int</span> <span class="fn">main</span>() {
+    <span class="kw">int</span> n, isPrime <span class="op">=</span> <span class="nm">1</span>;
+
+    <span class="fn">printf</span>(<span class="st">"Enter a number: "</span>);
+    <span class="fn">scanf</span>(<span class="st">"%d"</span>, <span class="op">&amp;</span>n);
+
+    <span class="kw">if</span> (n <span class="op">&lt;</span> <span class="nm">2</span>) isPrime <span class="op">=</span> <span class="nm">0</span>;
+
+    <span class="kw">for</span> (<span class="kw">int</span> i <span class="op">=</span> <span class="nm">2</span>; i <span class="op">&lt;</span> n; i<span class="op">++</span>) {
+        <span class="kw">if</span> (n <span class="op">%</span> i <span class="op">==</span> <span class="nm">0</span>) {
+            isPrime <span class="op">=</span> <span class="nm">0</span>;
+            <span class="kw">break</span>;
+        }
+    }
+
+    <span class="kw">if</span> (isPrime)
+        <span class="fn">printf</span>(<span class="st">"%d is a Prime number\n"</span>, n);
+    <span class="kw">else</span>
+        <span class="fn">printf</span>(<span class="st">"%d is NOT a Prime number\n"</span>, n);
+
+    <span class="kw">return</span> <span class="nm">0</span>;
+}</pre>
+          </div>
+          <div class="cp-output"><span class="cp-output-label">▶ OUTPUT</span><pre>Enter a number: 13
+13 is a Prime number</pre></div>
+        </div>
+      </div>
+
+      <!-- P4: Reverse Number -->
+      <div class="prog-card">
+        <div class="prog-card-hdr" onclick="toggleProg(this)" aria-expanded="false">
+          <span class="prog-badge">Loops + Math</span>
+          <span class="prog-title">Reverse a Number &amp; Check Palindrome</span>
+          <span class="prog-arrow">▼</span>
+        </div>
+        <div class="prog-card-body">
+          <p class="prog-desc">Reverse the digits of a number. If reversed == original, it's a palindrome (e.g. 121, 1331).</p>
+          <div class="cp-code">
+            <div class="cp-code-header"><span class="cp-code-label">palindrome.c</span><button class="cp-copy-btn" onclick="copyCode(this)">Copy</button></div>
+<pre class="cp-pre"><span class="pp">#include</span> <span class="st">&lt;stdio.h&gt;</span>
+
+<span class="kw">int</span> <span class="fn">main</span>() {
+    <span class="kw">int</span> num, original, rev <span class="op">=</span> <span class="nm">0</span>;
+
+    <span class="fn">printf</span>(<span class="st">"Enter a number: "</span>);
+    <span class="fn">scanf</span>(<span class="st">"%d"</span>, <span class="op">&amp;</span>num);
+    original <span class="op">=</span> num;
+
+    <span class="kw">while</span> (num <span class="op">!=</span> <span class="nm">0</span>) {
+        rev <span class="op">=</span> rev <span class="op">*</span> <span class="nm">10</span> <span class="op">+</span> (num <span class="op">%</span> <span class="nm">10</span>);
+        num <span class="op">/=</span> <span class="nm">10</span>;
+    }
+
+    <span class="fn">printf</span>(<span class="st">"Reversed: %d\n"</span>, rev);
+
+    <span class="kw">if</span> (original <span class="op">==</span> rev)
+        <span class="fn">printf</span>(<span class="st">"%d is a Palindrome\n"</span>, original);
+    <span class="kw">else</span>
+        <span class="fn">printf</span>(<span class="st">"%d is NOT a Palindrome\n"</span>, original);
+
+    <span class="kw">return</span> <span class="nm">0</span>;
+}</pre>
+          </div>
+          <div class="cp-output"><span class="cp-output-label">▶ OUTPUT</span><pre>Enter a number: 121
+Reversed: 121
+121 is a Palindrome</pre></div>
+        </div>
+      </div>
+
+      <!-- P5: Largest in array -->
+      <div class="prog-card">
+        <div class="prog-card-hdr" onclick="toggleProg(this)" aria-expanded="false">
+          <span class="prog-badge">Arrays</span>
+          <span class="prog-title">Largest &amp; Smallest in an Array</span>
+          <span class="prog-arrow">▼</span>
+        </div>
+        <div class="prog-card-body">
+          <p class="prog-desc">Find the maximum and minimum values from an array entered by the user.</p>
+          <div class="cp-code">
+            <div class="cp-code-header"><span class="cp-code-label">largest-smallest.c</span><button class="cp-copy-btn" onclick="copyCode(this)">Copy</button></div>
+<pre class="cp-pre"><span class="pp">#include</span> <span class="st">&lt;stdio.h&gt;</span>
+
+<span class="kw">int</span> <span class="fn">main</span>() {
+    <span class="kw">int</span> n, arr[<span class="nm">50</span>];
+
+    <span class="fn">printf</span>(<span class="st">"How many numbers? "</span>);
+    <span class="fn">scanf</span>(<span class="st">"%d"</span>, <span class="op">&amp;</span>n);
+
+    <span class="fn">printf</span>(<span class="st">"Enter %d numbers:\n"</span>, n);
+    <span class="kw">for</span> (<span class="kw">int</span> i <span class="op">=</span> <span class="nm">0</span>; i <span class="op">&lt;</span> n; i<span class="op">++</span>)
+        <span class="fn">scanf</span>(<span class="st">"%d"</span>, <span class="op">&amp;</span>arr[i]);
+
+    <span class="kw">int</span> max <span class="op">=</span> arr[<span class="nm">0</span>], min <span class="op">=</span> arr[<span class="nm">0</span>];
+    <span class="kw">for</span> (<span class="kw">int</span> i <span class="op">=</span> <span class="nm">1</span>; i <span class="op">&lt;</span> n; i<span class="op">++</span>) {
+        <span class="kw">if</span> (arr[i] <span class="op">&gt;</span> max) max <span class="op">=</span> arr[i];
+        <span class="kw">if</span> (arr[i] <span class="op">&lt;</span> min) min <span class="op">=</span> arr[i];
+    }
+
+    <span class="fn">printf</span>(<span class="st">"Largest  = %d\n"</span>, max);
+    <span class="fn">printf</span>(<span class="st">"Smallest = %d\n"</span>, min);
+    <span class="kw">return</span> <span class="nm">0</span>;
+}</pre>
+          </div>
+          <div class="cp-output"><span class="cp-output-label">▶ OUTPUT</span><pre>How many numbers? 5
+Enter 5 numbers:
+34 12 78 56 90
+Largest  = 90
+Smallest = 12</pre></div>
+        </div>
+      </div>
+
+      <!-- P6: Bubble Sort -->
+      <div class="prog-card">
+        <div class="prog-card-hdr" onclick="toggleProg(this)" aria-expanded="false">
+          <span class="prog-badge">Arrays</span>
+          <span class="prog-title">Bubble Sort</span>
+          <span class="prog-arrow">▼</span>
+        </div>
+        <div class="prog-card-body">
+          <p class="prog-desc">Sort an array in ascending order by repeatedly swapping adjacent elements that are in the wrong order.</p>
+          <div class="cp-code">
+            <div class="cp-code-header"><span class="cp-code-label">bubble-sort.c</span><button class="cp-copy-btn" onclick="copyCode(this)">Copy</button></div>
+<pre class="cp-pre"><span class="pp">#include</span> <span class="st">&lt;stdio.h&gt;</span>
+
+<span class="kw">int</span> <span class="fn">main</span>() {
+    <span class="kw">int</span> n, arr[<span class="nm">50</span>], temp;
+
+    <span class="fn">printf</span>(<span class="st">"How many numbers? "</span>);
+    <span class="fn">scanf</span>(<span class="st">"%d"</span>, <span class="op">&amp;</span>n);
+
+    <span class="kw">for</span> (<span class="kw">int</span> i <span class="op">=</span> <span class="nm">0</span>; i <span class="op">&lt;</span> n; i<span class="op">++</span>)
+        <span class="fn">scanf</span>(<span class="st">"%d"</span>, <span class="op">&amp;</span>arr[i]);
+
+    <span class="cm">// Bubble sort</span>
+    <span class="kw">for</span> (<span class="kw">int</span> i <span class="op">=</span> <span class="nm">0</span>; i <span class="op">&lt;</span> n<span class="op">-</span><span class="nm">1</span>; i<span class="op">++</span>) {
+        <span class="kw">for</span> (<span class="kw">int</span> j <span class="op">=</span> <span class="nm">0</span>; j <span class="op">&lt;</span> n<span class="op">-</span>i<span class="op">-</span><span class="nm">1</span>; j<span class="op">++</span>) {
+            <span class="kw">if</span> (arr[j] <span class="op">&gt;</span> arr[j<span class="op">+</span><span class="nm">1</span>]) {
+                temp <span class="op">=</span> arr[j];
+                arr[j] <span class="op">=</span> arr[j<span class="op">+</span><span class="nm">1</span>];
+                arr[j<span class="op">+</span><span class="nm">1</span>] <span class="op">=</span> temp;
+            }
+        }
+    }
+
+    <span class="fn">printf</span>(<span class="st">"Sorted: "</span>);
+    <span class="kw">for</span> (<span class="kw">int</span> i <span class="op">=</span> <span class="nm">0</span>; i <span class="op">&lt;</span> n; i<span class="op">++</span>)
+        <span class="fn">printf</span>(<span class="st">"%d "</span>, arr[i]);
+    <span class="fn">printf</span>(<span class="st">"\n"</span>);
+    <span class="kw">return</span> <span class="nm">0</span>;
+}</pre>
+          </div>
+          <div class="cp-output"><span class="cp-output-label">▶ OUTPUT</span><pre>How many numbers? 5
+64 34 25 12 22
+Sorted: 12 22 25 34 64</pre></div>
+        </div>
+      </div>
+
+      <!-- P7: Linear Search -->
+      <div class="prog-card">
+        <div class="prog-card-hdr" onclick="toggleProg(this)" aria-expanded="false">
+          <span class="prog-badge">Arrays</span>
+          <span class="prog-title">Linear Search</span>
+          <span class="prog-arrow">▼</span>
+        </div>
+        <div class="prog-card-body">
+          <p class="prog-desc">Search for a value in an array by checking each element one by one from start to end.</p>
+          <div class="cp-code">
+            <div class="cp-code-header"><span class="cp-code-label">linear-search.c</span><button class="cp-copy-btn" onclick="copyCode(this)">Copy</button></div>
+<pre class="cp-pre"><span class="pp">#include</span> <span class="st">&lt;stdio.h&gt;</span>
+
+<span class="kw">int</span> <span class="fn">main</span>() {
+    <span class="kw">int</span> arr[] <span class="op">=</span> {<span class="nm">10</span>, <span class="nm">25</span>, <span class="nm">38</span>, <span class="nm">47</span>, <span class="nm">55</span>};
+    <span class="kw">int</span> n <span class="op">=</span> <span class="nm">5</span>, target, found <span class="op">=</span> <span class="nm">0</span>;
+
+    <span class="fn">printf</span>(<span class="st">"Enter number to search: "</span>);
+    <span class="fn">scanf</span>(<span class="st">"%d"</span>, <span class="op">&amp;</span>target);
+
+    <span class="kw">for</span> (<span class="kw">int</span> i <span class="op">=</span> <span class="nm">0</span>; i <span class="op">&lt;</span> n; i<span class="op">++</span>) {
+        <span class="kw">if</span> (arr[i] <span class="op">==</span> target) {
+            <span class="fn">printf</span>(<span class="st">"Found at index %d\n"</span>, i);
+            found <span class="op">=</span> <span class="nm">1</span>;
+            <span class="kw">break</span>;
+        }
+    }
+
+    <span class="kw">if</span> (<span class="op">!</span>found)
+        <span class="fn">printf</span>(<span class="st">"Number not found\n"</span>);
+
+    <span class="kw">return</span> <span class="nm">0</span>;
+}</pre>
+          </div>
+          <div class="cp-output"><span class="cp-output-label">▶ OUTPUT</span><pre>Enter number to search: 38
+Found at index 2</pre></div>
+        </div>
+      </div>
+
+      <!-- P8: Star Pattern -->
+      <div class="prog-card">
+        <div class="prog-card-hdr" onclick="toggleProg(this)" aria-expanded="false">
+          <span class="prog-badge">Nested Loops</span>
+          <span class="prog-title">Star Pattern (Right Triangle)</span>
+          <span class="prog-arrow">▼</span>
+        </div>
+        <div class="prog-card-body">
+          <p class="prog-desc">Print a right-triangle star pattern using nested loops. Classic exam question for testing loop understanding.</p>
+          <div class="cp-code">
+            <div class="cp-code-header"><span class="cp-code-label">pattern.c</span><button class="cp-copy-btn" onclick="copyCode(this)">Copy</button></div>
+<pre class="cp-pre"><span class="pp">#include</span> <span class="st">&lt;stdio.h&gt;</span>
+
+<span class="kw">int</span> <span class="fn">main</span>() {
+    <span class="kw">int</span> n;
+    <span class="fn">printf</span>(<span class="st">"Enter rows: "</span>);
+    <span class="fn">scanf</span>(<span class="st">"%d"</span>, <span class="op">&amp;</span>n);
+
+    <span class="kw">for</span> (<span class="kw">int</span> i <span class="op">=</span> <span class="nm">1</span>; i <span class="op">&lt;=</span> n; i<span class="op">++</span>) {
+        <span class="kw">for</span> (<span class="kw">int</span> j <span class="op">=</span> <span class="nm">1</span>; j <span class="op">&lt;=</span> i; j<span class="op">++</span>) {
+            <span class="fn">printf</span>(<span class="st">"* "</span>);
+        }
+        <span class="fn">printf</span>(<span class="st">"\n"</span>);
+    }
+    <span class="kw">return</span> <span class="nm">0</span>;
+}</pre>
+          </div>
+          <div class="cp-output"><span class="cp-output-label">▶ OUTPUT (n=5)</span><pre>*
+* *
+* * *
+* * * *
+* * * * *</pre></div>
+        </div>
+      </div>
+
+      <!-- P9: Sum of N numbers -->
+      <div class="prog-card">
+        <div class="prog-card-hdr" onclick="toggleProg(this)" aria-expanded="false">
+          <span class="prog-badge">Loops</span>
+          <span class="prog-title">Sum &amp; Average of N Numbers</span>
+          <span class="prog-arrow">▼</span>
+        </div>
+        <div class="prog-card-body">
+          <p class="prog-desc">Read N numbers from the user and calculate their sum and average.</p>
+          <div class="cp-code">
+            <div class="cp-code-header"><span class="cp-code-label">sum-average.c</span><button class="cp-copy-btn" onclick="copyCode(this)">Copy</button></div>
+<pre class="cp-pre"><span class="pp">#include</span> <span class="st">&lt;stdio.h&gt;</span>
+
+<span class="kw">int</span> <span class="fn">main</span>() {
+    <span class="kw">int</span> n, num, sum <span class="op">=</span> <span class="nm">0</span>;
+
+    <span class="fn">printf</span>(<span class="st">"How many numbers? "</span>);
+    <span class="fn">scanf</span>(<span class="st">"%d"</span>, <span class="op">&amp;</span>n);
+
+    <span class="kw">for</span> (<span class="kw">int</span> i <span class="op">=</span> <span class="nm">1</span>; i <span class="op">&lt;=</span> n; i<span class="op">++</span>) {
+        <span class="fn">printf</span>(<span class="st">"Enter number %d: "</span>, i);
+        <span class="fn">scanf</span>(<span class="st">"%d"</span>, <span class="op">&amp;</span>num);
+        sum <span class="op">+=</span> num;
+    }
+
+    <span class="fn">printf</span>(<span class="st">"Sum     = %d\n"</span>, sum);
+    <span class="fn">printf</span>(<span class="st">"Average = %.2f\n"</span>, (<span class="kw">float</span>)sum <span class="op">/</span> n);
+    <span class="kw">return</span> <span class="nm">0</span>;
+}</pre>
+          </div>
+          <div class="cp-output"><span class="cp-output-label">▶ OUTPUT</span><pre>How many numbers? 3
+Enter number 1: 10
+Enter number 2: 20
+Enter number 3: 30
+Sum     = 60
+Average = 20.00</pre></div>
+        </div>
+      </div>
+
+      <!-- P10: Even/Odd + Count -->
+      <div class="prog-card">
+        <div class="prog-card-hdr" onclick="toggleProg(this)" aria-expanded="false">
+          <span class="prog-badge">Decision + Loops</span>
+          <span class="prog-title">Count Even &amp; Odd Numbers in Array</span>
+          <span class="prog-arrow">▼</span>
+        </div>
+        <div class="prog-card-body">
+          <p class="prog-desc">Read an array and count how many numbers are even and how many are odd using the modulus operator.</p>
+          <div class="cp-code">
+            <div class="cp-code-header"><span class="cp-code-label">even-odd.c</span><button class="cp-copy-btn" onclick="copyCode(this)">Copy</button></div>
+<pre class="cp-pre"><span class="pp">#include</span> <span class="st">&lt;stdio.h&gt;</span>
+
+<span class="kw">int</span> <span class="fn">main</span>() {
+    <span class="kw">int</span> n, arr[<span class="nm">50</span>], even <span class="op">=</span> <span class="nm">0</span>, odd <span class="op">=</span> <span class="nm">0</span>;
+
+    <span class="fn">printf</span>(<span class="st">"How many numbers? "</span>);
+    <span class="fn">scanf</span>(<span class="st">"%d"</span>, <span class="op">&amp;</span>n);
+
+    <span class="kw">for</span> (<span class="kw">int</span> i <span class="op">=</span> <span class="nm">0</span>; i <span class="op">&lt;</span> n; i<span class="op">++</span>) {
+        <span class="fn">scanf</span>(<span class="st">"%d"</span>, <span class="op">&amp;</span>arr[i]);
+        <span class="kw">if</span> (arr[i] <span class="op">%</span> <span class="nm">2</span> <span class="op">==</span> <span class="nm">0</span>)
+            even<span class="op">++</span>;
+        <span class="kw">else</span>
+            odd<span class="op">++</span>;
+    }
+
+    <span class="fn">printf</span>(<span class="st">"Even numbers: %d\n"</span>, even);
+    <span class="fn">printf</span>(<span class="st">"Odd  numbers: %d\n"</span>, odd);
+    <span class="kw">return</span> <span class="nm">0</span>;
+}</pre>
+          </div>
+          <div class="cp-output"><span class="cp-output-label">▶ OUTPUT</span><pre>How many numbers? 6
+1 2 3 4 5 6
+Even numbers: 3
+Odd  numbers: 3</pre></div>
+        </div>
+      </div>
+
+      <div class="cp-note" style="margin-top:32px">
+        <span class="cp-note-icon">⭐</span>
+        <p><strong>More programs coming.</strong> This page is regularly updated. Bookmark it and check back for more practicals including string programs, 2D arrays, and number system conversions.</p>
+      </div>
+    </section>
+
+  </main><!-- end cp-content -->
+</div><!-- end cp-wrap -->
+</div><!-- end bg container -->
+
+<section class="cta-section">
+  <div class="container">
+    <div class="cta-inner">
+      <p class="eyebrow" style="color:rgba(77,143,255,1);justify-content:center">Keep Learning</p>
+      <h2>Explore more from Devriston</h2>
+      <p class="cta-sub">DevOps notes, interview prep, Linux guides, and cloud infrastructure — all free, all practical.</p>
+      <div class="cta-btns">
+        <a href="devops-notes.html" class="btn btn-primary btn-lg">DevOps Notes</a>
+        <a href="interview-guide.html" class="btn btn-white-outline btn-lg">Interview Guide</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="ft-grid">
+      <div class="ft-brand">
+        <div class="ft-logo"><img src="assets/logos/dv-logo.png" alt="Devriston"/><span class="ft-logo-name">Devri<span>ston</span></span></div>
+        <p>DevOps consulting, Linux administration, cloud infrastructure and training. Solutions that drive tomorrow.</p>
+        <div class="ft-socials">
+          <a href="https://github.com/muhammadkamrankabeer-oss" target="_blank" class="ft-soc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg></a>
+          <a href="https://www.linkedin.com/in/kamrankabeer/" target="_blank" class="ft-soc"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+          <a href="https://x.com/Devristonhq" target="_blank" class="ft-soc"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+          <a href="https://dev.to/muhammadkamrankabeeross" target="_blank" class="ft-soc"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7.42 10.05c-.18-.16-.46-.23-.84-.23H6l.02 2.44.04 2.45.56-.02c.41 0 .63-.07.83-.26.24-.24.26-.36.26-2.2 0-1.91-.02-1.96-.29-2.18zM0 4.94v14.12h24V4.94H0zM8.56 15.3c-.44.58-1.06.77-2.53.77H4.71V8.53h1.4c1.67 0 2.16.18 2.6.9.27.43.29.6.32 2.57.05 2.23-.02 2.73-.47 3.3zm5.09-5.47h-2.47v1.77h1.52v1.28l-.72.04-.75.03v1.77l1.22.03 1.2.04v1.28h-1.6c-1.53 0-1.6-.01-1.87-.3l-.3-.28v-3.16c0-3.02.01-3.18.25-3.48.23-.31.25-.31 1.88-.31h1.64v1.29zm4.68 5.45c-.17.43-.64.79-1 .79-.18 0-.45-.15-.67-.39-.32-.32-.45-.63-.82-2.08l-.9-3.39-.45-1.67h.76c.4 0 .75.02.75.05 0 .06 1.16 4.54 1.26 4.83.04.15.32-.7.73-2.3l.66-2.52.74-.04c.4-.02.73 0 .73.04 0 .14-1.67 5.99-1.8 6.19z"/></svg></a>
+        </div>
+      </div>
+      <div class="ft-col"><h4>C Programming</h4><ul>
+        <li><a href="#intro">What is C?</a></li>
+        <li><a href="#setup">Setup &amp; Install</a></li>
+        <li><a href="#hello-world">Hello World</a></li>
+        <li><a href="#loops">Loops</a></li>
+        <li><a href="#functions">Functions</a></li>
+        <li><a href="#important-programs">Important Programs</a></li>
+      </ul></div>
+      <div class="ft-col"><h4>Also Explore</h4><ul>
+        <li><a href="devops-notes.html">DevOps Notes</a></li>
+        <li><a href="interview-guide.html">Interview Guide</a></li>
+        <li><a href="blog.html">Blog Articles</a></li>
+        <li><a href="case-studies.html">Case Studies</a></li>
+        <li><a href="contact.html">Book Consultation</a></li>
+      </ul></div>
+      <div class="ft-col"><h4>Contact</h4><ul>
+        <li><a href="mailto:info@devriston.com.pk">info@devriston.com.pk</a></li>
+        <li><a href="https://wa.me/923231450045" target="_blank">WhatsApp</a></li>
+        <li><a href="contact.html">Book Consultation</a></li>
+      </ul></div>
+    </div>
+    <div class="ft-bottom"><p>© 2026 Devriston · Muhammad Kamran Kabeer · Lahore, Pakistan</p><div class="ft-bottom-links"><a href="sitemap.xml">Sitemap</a></div></div>
+  </div>
+</footer>
+
+<button class="back-top" id="backTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Back to top">↑</button>
+
+<script>
+/* ── Read progress bar ── */
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const progress = (doc.scrollTop / (doc.scrollHeight - doc.clientHeight)) * 100;
+  document.getElementById('read-progress').style.width = progress + '%';
+  document.getElementById('backTop').classList.toggle('show', doc.scrollTop > 400);
+});
+
+/* ── Sidebar active link on scroll ── */
+const sections = document.querySelectorAll('.cp-section');
+const sbLinks  = document.querySelectorAll('.sb-link');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      sbLinks.forEach(l => l.classList.remove('active'));
+      const active = document.querySelector(`.sb-link[href="#${entry.target.id}"]`);
+      if (active) active.classList.add('active');
+    }
+  });
+}, { rootMargin: '-20% 0px -70% 0px' });
+sections.forEach(s => observer.observe(s));
+
+/* ── Mobile sidebar toggle ── */
+function toggleSidebar() {
+  const nav = document.getElementById('sb-nav');
+  const btn = document.getElementById('sb-toggle');
+  const arrow = document.getElementById('sb-arrow');
+  const open = nav.classList.toggle('open');
+  btn.setAttribute('aria-expanded', open);
+  arrow.textContent = open ? '▲' : '▼';
+}
+
+/* ── Program card toggle ── */
+function toggleProg(hdr) {
+  const body  = hdr.nextElementSibling;
+  const arrow = hdr.querySelector('.prog-arrow');
+  const open  = body.classList.toggle('open');
+  hdr.setAttribute('aria-expanded', open);
+  arrow.style.transform = open ? 'rotate(180deg)' : '';
+}
+
+/* ── Copy code button ── */
+function copyCode(btn) {
+  const pre = btn.closest('.cp-code').querySelector('pre');
+  navigator.clipboard.writeText(pre.innerText).then(() => {
+    btn.textContent = 'Copied!';
+    btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 2000);
+  });
+}
+</script>
+<script src="assets/js/main.js" defer></script>
+</body>
+</html>
