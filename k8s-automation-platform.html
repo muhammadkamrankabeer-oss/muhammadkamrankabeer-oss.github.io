@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Automating a Production Kubernetes Cluster with Ansible & Vagrant — Beyond minikube | Devriston</title>
+<meta name="description" content="How I built a production-style 3-node Kubernetes cluster automated with Ansible and Vagrant — kubeadm bootstrap, containerd runtime, Calico CNI, and automated worker joining. No minikube shortcuts."/>
+<meta name="author" content="Muhammad Kamran Kabeer"/>
+<meta name="robots" content="index,follow"/>
+<link rel="canonical" href="https://www.devriston.com.pk/k8s-automation-platform.html"/>
+<meta property="og:type" content="article"/>
+<meta property="og:title" content="Automating a Production Kubernetes Cluster with Ansible & Vagrant — Beyond minikube"/>
+<meta property="og:description" content="A 3-node Kubernetes cluster automated end-to-end with Ansible and Vagrant — kubeadm, containerd, Calico CNI, and automated worker joining. Real cluster setup, not minikube."/>
+<meta property="og:url" content="https://www.devriston.com.pk/k8s-automation-platform.html"/>
+<meta property="og:image" content="https://www.devriston.com.pk/assets/images/banner.png"/>
+<meta property="article:published_time" content="2026-06-23"/>
+<meta property="article:author" content="Muhammad Kamran Kabeer"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="Automating a Production Kubernetes Cluster with Ansible & Vagrant"/>
+<meta name="twitter:description" content="A 3-node Kubernetes cluster automated end-to-end — kubeadm, containerd, Calico CNI, automated worker joining. Beyond minikube."/>
+<meta name="twitter:image" content="https://www.devriston.com.pk/assets/images/banner.png"/>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://www.devriston.com.pk/k8s-automation-platform.html"},"headline":"Automating a Production Kubernetes Cluster with Ansible and Vagrant — Beyond minikube","description":"How I built a production-style 3-node Kubernetes cluster automated with Ansible and Vagrant — kubeadm bootstrap, containerd, Calico CNI, and automated worker joining.","image":"https://www.devriston.com.pk/assets/images/banner.png","author":{"@type":"Person","name":"Muhammad Kamran Kabeer","url":"https://www.devriston.com.pk/about.html"},"publisher":{"@type":"Organization","name":"Devriston","logo":{"@type":"ImageObject","url":"https://www.devriston.com.pk/assets/logos/dv-logo.png"}},"datePublished":"2026-06-23","dateModified":"2026-06-23","keywords":"kubernetes, ansible, vagrant, kubeadm, containerd, calico, devops, iac"}
+</script>
+<link rel="icon" type="image/png" href="assets/logos/dv-logo.png"/>
+<link rel="stylesheet" href="assets/css/main.css"/>
+<style>
+.post-shell{max-width:760px;margin:0 auto;padding:0 24px 80px}
+.post-meta{display:flex;gap:14px;align-items:center;flex-wrap:wrap;font-size:.9rem;color:var(--text-3);margin:14px 0 28px}
+.post-title{font-size:clamp(1.8rem,4vw,2.6rem);line-height:1.2;margin:0 0 6px}
+.post-body h2{margin-top:2.2em;font-size:1.35rem;border-left:3px solid rgba(0,200,150,1);padding-left:12px}
+.post-body h3{margin-top:1.6em;font-size:1.1rem;color:rgba(0,200,150,1)}
+.post-body p,.post-body li{line-height:1.78;font-size:1.01rem;color:var(--text-2)}
+.post-body ul{padding-left:1.4em;margin:.6em 0}
+.post-body pre{background:#0D1117;color:#c9d1d9;padding:18px;border-radius:8px;overflow-x:auto;font-size:.88rem;line-height:1.55;margin:1.2em 0;border:1px solid rgba(77,143,255,.12)}
+.post-body code{font-family:"Fira Code",ui-monospace,monospace}
+.post-body p code{background:rgba(77,143,255,.1);padding:2px 6px;border-radius:4px;font-size:.9em}
+.post-tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:2.5em}
+.post-tags span{background:var(--surface-2,rgba(255,255,255,.06));padding:4px 10px;border-radius:6px;font-size:.8rem;color:var(--text-3)}
+.related-links{margin-top:2.5em;padding-top:1.5em;border-top:1px solid var(--border,rgba(255,255,255,.08))}
+.related-links a{display:block;margin:8px 0;color:rgba(0,200,150,1);text-decoration:none;font-size:.95rem}
+.related-links a:hover{text-decoration:underline}
+.arch-box{background:#0D1117;border:1px solid rgba(77,143,255,.2);border-radius:8px;padding:18px 20px;margin:1.4em 0;font-family:"Fira Code",ui-monospace,monospace;font-size:.85rem;line-height:1.9;color:#c9d1d9;overflow-x:auto}
+.arch-box .g{color:rgba(0,200,150,1)}.arch-box .b{color:rgba(77,143,255,1)}.arch-box .y{color:rgba(255,200,80,1)}.arch-box .c{color:rgba(140,140,160,1)}
+.node-table{width:100%;border-collapse:collapse;margin:1.2em 0;font-size:.9rem}
+.node-table th{background:rgba(77,143,255,.1);color:var(--text-1);padding:10px 14px;text-align:left;border-bottom:1px solid rgba(77,143,255,.2)}
+.node-table td{padding:9px 14px;border-bottom:1px solid rgba(255,255,255,.05);color:var(--text-2)}
+.node-table tr:last-child td{border-bottom:none}
+.wip-badge{display:inline-block;background:rgba(255,200,50,.12);color:rgba(255,200,50,1);border:1px solid rgba(255,200,50,.3);padding:4px 12px;border-radius:20px;font-size:.8rem;font-weight:600;margin-bottom:18px}
+</style>
+</head>
+<body>
+<a class="wa-btn" href="https://wa.me/923231450045?text=Hi%20Kamran%2C%20I%20read%20your%20blog%20and%20I%27d%20like%20to%20discuss%20a%20project." target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.122 1.532 5.856L.057 23.617a.75.75 0 00.908.98l5.963-1.562A11.943 11.943 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.886 0-3.655-.52-5.168-1.424l-.37-.22-3.539.927.943-3.443-.24-.381A9.96 9.96 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>WhatsApp</a>
+<nav id="nav" class="scrolled"><div class="container nav-inner"><a href="index.html" class="nav-logo"><img src="assets/logos/dv-logo.png" alt="Devriston"/><span class="nav-brand">Devri<span>ston</span></span></a><div class="nav-links"><a href="index.html">Home</a><a href="solutions.html">Solutions</a><a href="case-studies.html">Case Studies</a><a href="blog.html" class="active">Blog</a><a href="devops-notes.html">Notes</a><a href="about.html">About</a><a href="contact.html" class="nav-cta">Book Consultation</a></div><button class="ham" onclick="toggleDrawer()" aria-label="Menu"><span></span><span></span><span></span></button></div></nav>
+<div class="drawer" id="nav-drawer"><a href="index.html">Home</a><a href="solutions.html">Solutions</a><a href="case-studies.html">Case Studies</a><a href="blog.html">Blog</a><a href="devops-notes.html">DevOps Notes</a><a href="about.html">About</a><a href="contact.html">Contact</a></div>
+<section class="pg-hero">
+  <div class="container">
+    <div class="breadcrumb"><a href="index.html">Home</a><span class="sep">/</span><a href="blog.html">Blog</a><span class="sep">/</span><span class="cur">Kubernetes Automation Platform</span></div>
+    <p class="eyebrow" style="color:rgba(77,143,255,1)">☸️ Kubernetes · Ansible · IaC</p>
+    <h1 class="fade-up">Automating a Production Kubernetes Cluster with Ansible &amp; Vagrant — Beyond minikube</h1>
+    <div class="post-meta fade-up d2"><span>Jun 23, 2026</span><span>·</span><span>⏱ 11 min read</span><span>·</span><span>By Muhammad Kamran Kabeer</span></div>
+  </div>
+</section>
+<main style="background:var(--bg)">
+  <div class="post-shell post-body">
+
+    <div class="wip-badge">⚠️ Active Development — core cluster automation complete</div>
+
+    <p>Most Kubernetes tutorials point you at minikube or k3s — single-binary tools that hide everything Kubernetes actually does. This project takes a different approach: a production-style multi-node cluster provisioned from scratch using Vagrant and configured end-to-end with Ansible, exposing every step that managed services abstract away.</p>
+
+    <p>The result is a three-node Kubernetes cluster — one control plane, two workers — bootstrapped with <code>kubeadm</code>, running <code>containerd</code> as the container runtime and <code>Calico</code> for pod networking. Every step is automated. No manual <code>kubectl</code> commands, no hand-editing config files.</p>
+
+    <h2>Why Not minikube or k3s?</h2>
+    <p>minikube and k3s are excellent for getting something running fast. They are not excellent for learning what Kubernetes actually does. They hide:</p>
+    <ul>
+      <li>How the control plane components initialize and talk to each other</li>
+      <li>How worker nodes join and register with the API server</li>
+      <li>How a CNI plugin establishes pod-to-pod networking across nodes</li>
+      <li>How container runtimes are configured and wired into kubelet</li>
+      <li>The kernel-level prerequisites Kubernetes needs (swap, sysctl, modules)</li>
+    </ul>
+    <p>Building a cluster with <code>kubeadm</code> forces you to understand all of it. This project automates that process so it's reproducible — but it doesn't hide it.</p>
+
+    <h2>Cluster Architecture</h2>
+    <div class="arch-box">
+<span class="b">Ansible Workstation</span>
+         |
+       SSH
+         |
+   ┌─────┴──────┬──────────────┐
+   ▼            ▼              ▼
+<span class="g">k8s-master</span>    <span class="y">worker-1</span>      <span class="y">worker-2</span>
+192.168.56.10 192.168.56.11 192.168.56.12
+│ API Server  │ kubelet      │ kubelet
+│ etcd        │ kube-proxy   │ kube-proxy
+│ Scheduler   │ containerd   │ containerd
+│ Controller  └──────────────┘
+│ containerd
+         │
+         ▼
+<span class="b">Calico CNI — Pod CIDR: 192.168.0.0/16</span></div>
+
+    <table class="node-table">
+      <thead><tr><th>Node</th><th>IP Address</th><th>Role</th></tr></thead>
+      <tbody>
+        <tr><td>k8s-master</td><td>192.168.56.10</td><td>Control Plane (API Server, etcd, Scheduler, Controller)</td></tr>
+        <tr><td>worker-1</td><td>192.168.56.11</td><td>Worker (kubelet, kube-proxy, containerd)</td></tr>
+        <tr><td>worker-2</td><td>192.168.56.12</td><td>Worker (kubelet, kube-proxy, containerd)</td></tr>
+      </tbody>
+    </table>
+
+    <h2>Ansible Role Architecture</h2>
+    <p>The automation is structured into five purpose-built roles, applied in a deliberate sequence so dependencies are always satisfied before they're needed:</p>
+
+    <h3>common — OS preparation</h3>
+    <p>Runs on all nodes before anything Kubernetes-related. Disables swap (Kubernetes requires it off), loads necessary kernel modules (<code>br_netfilter</code>, <code>overlay</code>), and sets sysctl parameters for container networking:</p>
+    <pre><code># Kernel modules required by Kubernetes
+- name: Load kernel modules
+  modprobe:
+    name: "{{ item }}"
+    state: present
+  loop:
+    - overlay
+    - br_netfilter
+
+# Required sysctl settings
+- name: Set network sysctl params
+  sysctl:
+    name: "{{ item.key }}"
+    value: "{{ item.value }}"
+    sysctl_set: yes
+  loop:
+    - {key: "net.bridge.bridge-nf-call-iptables",  value: "1"}
+    - {key: "net.bridge.bridge-nf-call-ip6tables", value: "1"}
+    - {key: "net.ipv4.ip_forward",                  value: "1"}</code></pre>
+
+    <h3>containerd — container runtime</h3>
+    <p>Installs and configures containerd with <code>SystemdCgroup = true</code> — the setting most tutorials skip, and the one that causes the most silent failures. Without it, kubelet and containerd disagree on cgroup management and the cluster behaves unpredictably.</p>
+    <pre><code>[plugins."io.containerd.grpc.v1.cri".containerd.runtimes.runc.options]
+  SystemdCgroup = true</code></pre>
+
+    <h3>kubernetes — tooling installation</h3>
+    <p>Adds the Kubernetes apt repository, installs <code>kubeadm</code>, <code>kubelet</code>, and <code>kubectl</code> at a pinned version, and holds them to prevent unintended upgrades that would break the cluster.</p>
+    <pre><code>- name: Install Kubernetes packages
+  apt:
+    name:
+      - kubeadm={{ k8s_version }}-*
+      - kubelet={{ k8s_version }}-*
+      - kubectl={{ k8s_version }}-*
+    state: present
+
+- name: Hold Kubernetes packages at version
+  dpkg_selections:
+    name: "{{ item }}"
+    selection: hold
+  loop: [kubeadm, kubelet, kubectl]</code></pre>
+
+    <h3>master — control plane bootstrap</h3>
+    <p>Runs <code>kubeadm init</code> with the correct pod CIDR for Calico, generates the kubeconfig, deploys the Calico CNI manifest, and extracts the join token — which gets passed to the worker role automatically via Ansible facts.</p>
+    <pre><code>- name: Initialize control plane
+  command: >
+    kubeadm init
+    --apiserver-advertise-address={{ ansible_host }}
+    --pod-network-cidr=192.168.0.0/16
+    --node-name=k8s-master
+
+- name: Extract join command
+  command: kubeadm token create --print-join-command
+  register: join_command
+
+- name: Store join command for workers
+  set_fact:
+    k8s_join_command: "{{ join_command.stdout }}"</code></pre>
+
+    <h3>worker — node enrollment</h3>
+    <p>Uses the join command stored as an Ansible fact to attach each worker to the control plane. Fully automated — no manual token copy-paste.</p>
+    <pre><code>- name: Join worker to cluster
+  command: "{{ hostvars['k8s-master']['k8s_join_command'] }}"</code></pre>
+
+    <h2>The Hardest Bug — Node IP Misconfiguration</h2>
+    <p>Every node initially registered with the same NAT IP address (<code>10.0.2.15</code>) instead of its private network address. The cluster appeared to form correctly, then failed silently — pods scheduled to workers couldn't communicate, and <code>kubectl get nodes</code> showed all nodes at the same IP.</p>
+    <p>The root cause: Vagrant creates two network interfaces per VM — a NAT interface (<code>eth0</code>) and a private network interface (<code>eth1</code>). By default, kubelet advertises <code>eth0</code>. The fix is to force kubelet to use the correct interface explicitly:</p>
+    <pre><code>KUBELET_EXTRA_ARGS=--node-ip={{ ansible_host }}</code></pre>
+    <p>This is passed via the kubelet configuration file in the Ansible role. It's one of the most common issues in multi-node Vagrant + Kubernetes setups and barely documented in official guides.</p>
+
+    <h2>Deployment — Three Commands</h2>
+    <pre><code># 1. Provision the VMs
+make up
+
+# 2. Configure the entire cluster
+cd ansible && ansible-playbook -i inventory/hosts.ini playbooks/site.yml
+
+# 3. Verify
+kubectl get nodes
+# NAME         STATUS   ROLES
+# k8s-master   Ready    control-plane
+# worker-1     Ready    &lt;none&gt;
+# worker-2     Ready    &lt;none&gt;</code></pre>
+
+    <h2>Demo Application</h2>
+    <p>An NGINX deployment runs across both worker nodes, exposed via a Kubernetes Service. This validates the full stack: scheduling, pod networking across nodes (via Calico), and service discovery.</p>
+    <pre><code>kubectl apply -f kubernetes/demo-app/deployment.yaml
+kubectl apply -f kubernetes/demo-app/service.yaml
+kubectl get pods -o wide
+# Shows pods distributed across worker-1 and worker-2</code></pre>
+
+    <h2>What's Already Working</h2>
+    <ul>
+      <li>Automated three-node cluster provisioning — control plane + 2 workers</li>
+      <li>containerd runtime with correct cgroup configuration</li>
+      <li>Calico CNI — cross-node pod networking operational</li>
+      <li>Automated worker join via Ansible facts (no manual token handling)</li>
+      <li>Demo NGINX workload scheduled across both workers</li>
+      <li>Full Makefile interface for one-command operations</li>
+    </ul>
+
+    <h2>Roadmap — What's Coming</h2>
+    <ul>
+      <li>Ingress controller (NGINX Ingress) with routing rules</li>
+      <li>Persistent storage provisioning (local-path or NFS)</li>
+      <li>Prometheus + Grafana monitoring stack on the cluster</li>
+      <li>GitHub Actions CI/CD pipeline deploying to the cluster</li>
+      <li>Automated health-check playbook for cluster validation</li>
+    </ul>
+
+    <h2>Key Lessons</h2>
+    <ul>
+      <li><strong>Swap must be disabled</strong> — Kubernetes refuses to start with swap on. Automate this in <code>common</code>, not as a manual prerequisite</li>
+      <li><strong>SystemdCgroup matters</strong> — mismatch between containerd and kubelet cgroup drivers causes silent, confusing failures</li>
+      <li><strong>Node IP is not automatic in Vagrant</strong> — always set <code>--node-ip</code> explicitly on multi-interface VMs</li>
+      <li><strong>kubeadm hides less than you think</strong> — it still requires you to understand the components it bootstraps</li>
+      <li><strong>Ansible facts replace manual token passing</strong> — the join command flows automatically from master role to worker role</li>
+    </ul>
+
+    <div class="post-tags"><span>kubernetes</span><span>ansible</span><span>vagrant</span><span>kubeadm</span><span>containerd</span><span>calico</span><span>devops</span><span>iac</span></div>
+    <div class="related-links">
+      <strong style="color:var(--text-1)">Related</strong>
+      <a href="devops-notes.html#note-what-is-kubernetes">📖 What is Kubernetes? Orchestration Beyond Docker</a>
+      <a href="devops-notes.html#note-what-is-ansible">📖 What is Ansible? Server Automation Without Agents</a>
+      <a href="devops-notes.html#note-infrastructure-as-code">📖 Infrastructure as Code — Why Your Servers Should Be in Git</a>
+      <a href="self-healing-container-platform.html">🔗 Related Project: Self-Healing Container Platform</a>
+      <a href="monitoring-stack-automation.html">🔗 Related Project: Monitoring Stack Automation</a>
+      <a href="https://github.com/muhammadkamrankabeer-oss/k8s-automation-platform" target="_blank" rel="noopener">💻 View full source code on GitHub</a>
+    </div>
+    <div class="blog-cta-banner" style="margin-top:3em">
+      <p class="eyebrow" style="color:rgba(77,143,255,1);justify-content:center">Work With Me</p>
+      <h3>Need help implementing any of this?</h3>
+      <p>I offer consulting for Kubernetes, Linux, AWS, CI/CD pipelines, Docker, Terraform, and monitoring. Let's talk.</p>
+      <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+        <a href="contact.html" class="btn btn-primary">Book Free Consultation</a>
+        <a href="https://wa.me/923231450045" target="_blank" class="btn btn-white-outline">WhatsApp →</a>
+      </div>
+    </div>
+  </div>
+</main>
+<footer><div class="container"><div class="ft-grid"><div class="ft-brand"><div class="ft-logo"><img src="assets/logos/dv-logo.png" alt="Devriston"/><span class="ft-logo-name">Devri<span>ston</span></span></div><p>DevOps consulting, Linux, cloud infrastructure and training.</p><div class="ft-socials"><a href="https://github.com/muhammadkamrankabeer-oss" target="_blank" class="ft-soc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg></a><a href="https://www.linkedin.com/in/kamrankabeer/" target="_blank" class="ft-soc"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a><a href="https://dev.to/muhammadkamrankabeeross" target="_blank" class="ft-soc"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7.42 10.05c-.18-.16-.46-.23-.84-.23H6l.02 2.44.04 2.45.56-.02c.41 0 .63-.07.83-.26.24-.24.26-.36.26-2.2 0-1.91-.02-1.96-.29-2.18zM0 4.94v14.12h24V4.94H0zM8.56 15.3c-.44.58-1.06.77-2.53.77H4.71V8.53h1.4c1.67 0 2.16.18 2.6.9.27.43.29.6.32 2.57.05 2.23-.02 2.73-.47 3.3zm5.09-5.47h-2.47v1.77h1.52v1.28l-.72.04-.75.03v1.77l1.22.03 1.2.04v1.28h-1.6c-1.53 0-1.6-.01-1.87-.3l-.3-.28v-3.16c0-3.02.01-3.18.25-3.48.23-.31.25-.31 1.88-.31h1.64v1.29zm4.68 5.45c-.17.43-.64.79-1 .79-.18 0-.45-.15-.67-.39-.32-.32-.45-.63-.82-2.08l-.9-3.39-.45-1.67h.76c.4 0 .75.02.75.05 0 .06 1.16 4.54 1.26 4.83.04.15.32-.7.73-2.3l.66-2.52.74-.04c.4-.02.73 0 .73.04 0 .14-1.67 5.99-1.8 6.19z"/></svg></a><a href="https://x.com/Devristonhq" target="_blank" class="ft-soc"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a></div></div><div class="ft-col"><h4>Articles</h4><ul><li><a href="k8s-automation-platform.html">Kubernetes Automation</a></li><li><a href="terraform-aws-3tier-platform.html">Terraform 3-Tier Platform</a></li><li><a href="monitoring-stack-automation.html">Monitoring Stack</a></li><li><a href="blog.html">All Articles</a></li></ul></div><div class="ft-col"><h4>Contact</h4><ul><li><a href="mailto:info@devriston.com.pk">info@devriston.com.pk</a></li><li><a href="https://wa.me/923231450045" target="_blank">WhatsApp</a></li><li><a href="contact.html">Book Consultation</a></li></ul></div></div><div class="ft-bottom"><p>© 2026 Devriston · Muhammad Kamran Kabeer · Lahore, Pakistan</p><div class="ft-bottom-links"><a href="sitemap.xml">Sitemap</a></div></div></div></footer>
+<script src="assets/js/main.js" defer></script>
+</body>
+</html>
