@@ -1,0 +1,1321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Courses | Devriston — Linux, Cloud & DevOps Training</title>
+  <meta name="description" content="Learn Linux (RHCSA path), Cloud (AWS-focused), and DevOps from a practicing engineer with 10+ years experience. Real labs, real projects, beginner-friendly." />
+  <meta name="keywords" content="linux course Pakistan, RHCSA training Lahore, AWS cloud course, DevOps course online, Docker Kubernetes training, DevOps bootcamp Pakistan, Devriston" />
+  <meta name="author" content="Muhammad Kamran Kabeer" />
+  <meta name="robots" content="index,follow" />
+  <link rel="canonical" href="https://www.devriston.com.pk/courses.html" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Courses | Devriston — Linux, Cloud & DevOps Training" />
+  <meta property="og:description" content="Not just theory. Not just commands. Learn DevOps from a practicing engineer — every concept in plain language, then you build it." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.devriston.com.pk/courses.html" />
+  <meta property="og:image" content="https://www.devriston.com.pk/assets/images/banner.png" />
+  <meta property="og:site_name" content="Devriston" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@Devristonhq" />
+  <meta name="twitter:title" content="Courses | Devriston" />
+  <meta name="twitter:description" content="Linux, Cloud & DevOps courses — beginner to production-ready." />
+  <meta name="twitter:image" content="https://www.devriston.com.pk/assets/images/banner.png" />
+
+  <!-- JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "name": "Devriston Courses",
+    "description": "Linux, Cloud, and DevOps courses by Muhammad Kamran Kabeer",
+    "url": "https://www.devriston.com.pk/courses.html",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "item": {
+          "@type": "Course",
+          "name": "Linux Fundamentals — RHCSA Path",
+          "description": "Beginner-friendly Linux course from installation to Samba4 enterprise server. RHCSA-aligned with a real final project.",
+          "provider": { "@type": "Person", "name": "Muhammad Kamran Kabeer" },
+          "url": "https://www.devriston.com.pk/courses.html#linux"
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "item": {
+          "@type": "Course",
+          "name": "Cloud Fundamentals — AWS Deep Dive",
+          "description": "Intro to cloud computing with multi-cloud awareness, focused on AWS core services with hands-on labs.",
+          "provider": { "@type": "Person", "name": "Muhammad Kamran Kabeer" },
+          "url": "https://www.devriston.com.pk/courses.html#cloud"
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "item": {
+          "@type": "Course",
+          "name": "DevOps Bootcamp — From Zero to Production",
+          "description": "Complete DevOps learning path — Git, Docker, CI/CD, Kubernetes, monitoring — with GitHub repos as real assignments.",
+          "provider": { "@type": "Person", "name": "Muhammad Kamran Kabeer" },
+          "url": "https://www.devriston.com.pk/courses.html#devops"
+        }
+      }
+    ]
+  }
+  </script>
+
+  <style>
+    /* ─── Design Tokens (Devriston V4) ─── */
+    :root {
+      --navy:     #040d1c;
+      --navy-2:   #071428;
+      --navy-3:   #0a1d3a;
+      --blue:     #1a6aff;
+      --cyan:     #00d4ff;
+      --white:    #ffffff;
+      --gray-100: #f0f4ff;
+      --gray-400: #8899bb;
+      --gray-500: #5a6a88;
+      --border:   rgba(26,106,255,0.18);
+      --border-2: rgba(0,212,255,0.12);
+      --glow-blue: rgba(26,106,255,0.25);
+      --glow-cyan: rgba(0,212,255,0.15);
+
+      --font-main: 'Inter', system-ui, -apple-system, sans-serif;
+      --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+
+      --radius: 12px;
+      --radius-lg: 18px;
+      --transition: 0.22s cubic-bezier(0.4,0,0.2,1);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; font-size: 16px; }
+
+    body {
+      background: var(--navy);
+      color: var(--white);
+      font-family: var(--font-main);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ─── Scrollbar ─── */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--navy); }
+    ::-webkit-scrollbar-thumb { background: var(--blue); border-radius: 3px; }
+
+    /* ─── Back to top ─── */
+    #back-top {
+      position: fixed; bottom: 24px; right: 24px;
+      background: var(--blue); color: #fff;
+      width: 40px; height: 40px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px; text-decoration: none;
+      opacity: 0; pointer-events: none;
+      transition: opacity var(--transition), transform var(--transition);
+      z-index: 999; box-shadow: 0 0 16px var(--glow-blue);
+    }
+    #back-top.visible { opacity: 1; pointer-events: auto; }
+    #back-top:hover { transform: translateY(-3px); }
+
+    /* ─── WhatsApp Float ─── */
+    .wa-float {
+      position: fixed; bottom: 72px; right: 24px;
+      background: #25d366; color: #fff;
+      width: 48px; height: 48px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 22px; text-decoration: none; z-index: 998;
+      box-shadow: 0 4px 20px rgba(37,211,102,0.4);
+      transition: transform var(--transition);
+    }
+    .wa-float:hover { transform: scale(1.1); }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(4,13,28,0.92);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 5%;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 64px;
+    }
+    .nav-brand {
+      display: flex; align-items: center; gap: 10px;
+      text-decoration: none; color: var(--white);
+      font-weight: 700; font-size: 1.1rem;
+    }
+    .nav-brand img { height: 32px; }
+    .nav-links { display: flex; gap: 28px; list-style: none; }
+    .nav-links a {
+      color: var(--gray-400); text-decoration: none;
+      font-size: 0.875rem; font-weight: 500;
+      transition: color var(--transition);
+    }
+    .nav-links a:hover, .nav-links a.active { color: var(--white); }
+    .nav-links a.active { color: var(--cyan); }
+    .nav-cta {
+      background: var(--blue); color: #fff !important;
+      padding: 7px 18px; border-radius: 6px;
+      font-size: 0.825rem !important;
+      transition: background var(--transition), box-shadow var(--transition) !important;
+    }
+    .nav-cta:hover { background: #1557d6 !important; box-shadow: 0 0 18px var(--glow-blue); }
+
+    .nav-mobile-toggle {
+      display: none; background: none; border: none;
+      color: var(--white); font-size: 1.4rem; cursor: pointer;
+    }
+    .nav-mobile { display: none; }
+
+    /* ─── BREADCRUMB ─── */
+    .breadcrumb {
+      margin-top: 64px; padding: 14px 5%;
+      font-size: 0.8rem; color: var(--gray-500);
+    }
+    .breadcrumb a { color: var(--gray-400); text-decoration: none; }
+    .breadcrumb a:hover { color: var(--cyan); }
+    .breadcrumb span { margin: 0 6px; }
+
+    /* ─── HERO ─── */
+    .hero {
+      padding: 64px 5% 80px;
+      text-align: center;
+      position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; top: -60px; left: 50%; transform: translateX(-50%);
+      width: 700px; height: 400px;
+      background: radial-gradient(ellipse, rgba(26,106,255,0.14) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(26,106,255,0.12); border: 1px solid var(--border);
+      color: var(--cyan); border-radius: 20px;
+      padding: 5px 14px; font-size: 0.78rem; font-weight: 600;
+      letter-spacing: 0.04em; text-transform: uppercase;
+      margin-bottom: 22px;
+    }
+    .hero-badge::before { content: ''; width: 6px; height: 6px; background: var(--cyan); border-radius: 50%; display: inline-block; animation: pulse 2s infinite; }
+    @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(1.4)} }
+
+    .hero h1 {
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 800; line-height: 1.15;
+      margin-bottom: 18px;
+    }
+    .hero h1 em {
+      font-style: normal;
+      background: linear-gradient(135deg, var(--blue), var(--cyan));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero-sub {
+      max-width: 600px; margin: 0 auto 32px;
+      color: var(--gray-400); font-size: 1.05rem; line-height: 1.7;
+    }
+    .hero-stats {
+      display: flex; justify-content: center; gap: 40px;
+      flex-wrap: wrap; margin-bottom: 36px;
+    }
+    .hero-stat { text-align: center; }
+    .hero-stat strong { display: block; font-size: 1.6rem; font-weight: 800; color: var(--cyan); }
+    .hero-stat span { font-size: 0.8rem; color: var(--gray-400); }
+
+    .hero-actions { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+    .btn-primary {
+      background: var(--blue); color: #fff;
+      padding: 12px 28px; border-radius: 8px;
+      text-decoration: none; font-weight: 600; font-size: 0.9rem;
+      transition: background var(--transition), box-shadow var(--transition), transform var(--transition);
+      display: inline-flex; align-items: center; gap: 8px;
+    }
+    .btn-primary:hover { background: #1557d6; box-shadow: 0 0 24px var(--glow-blue); transform: translateY(-2px); }
+    .btn-ghost {
+      border: 1px solid var(--border); color: var(--gray-400);
+      padding: 12px 28px; border-radius: 8px;
+      text-decoration: none; font-weight: 500; font-size: 0.9rem;
+      transition: border-color var(--transition), color var(--transition), transform var(--transition);
+      display: inline-flex; align-items: center; gap: 8px;
+    }
+    .btn-ghost:hover { border-color: var(--cyan); color: var(--cyan); transform: translateY(-2px); }
+
+    /* ─── DIFFERENTIATOR STRIP ─── */
+    .diff-strip {
+      background: var(--navy-2);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 40px 5%;
+    }
+    .diff-strip h2 {
+      text-align: center; font-size: 1rem; font-weight: 600;
+      color: var(--gray-400); text-transform: uppercase;
+      letter-spacing: 0.08em; margin-bottom: 28px;
+    }
+    .diff-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 20px; max-width: 900px; margin: 0 auto;
+    }
+    .diff-card {
+      background: rgba(255,255,255,0.03); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 20px;
+      display: flex; align-items: flex-start; gap: 14px;
+    }
+    .diff-icon { font-size: 1.6rem; flex-shrink: 0; line-height: 1; }
+    .diff-text strong { display: block; font-size: 0.9rem; font-weight: 700; margin-bottom: 4px; }
+    .diff-text p { font-size: 0.8rem; color: var(--gray-400); line-height: 1.5; }
+
+    /* ─── SECTION COMMON ─── */
+    section { padding: 80px 5%; }
+    .section-label {
+      font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--cyan); margin-bottom: 10px;
+    }
+    .section-title {
+      font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 800;
+      line-height: 1.2; margin-bottom: 12px;
+    }
+    .section-sub { color: var(--gray-400); font-size: 0.95rem; max-width: 560px; }
+
+    /* ─── COURSE CARDS ─── */
+    .courses-section { background: var(--navy); }
+    .courses-section > .section-label,
+    .courses-section > .section-title,
+    .courses-section > .section-sub { margin-left: 0; }
+
+    .course-block {
+      margin-top: 60px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      background: var(--navy-2);
+      overflow: hidden;
+      transition: box-shadow var(--transition);
+    }
+    .course-block:hover { box-shadow: 0 0 40px rgba(26,106,255,0.1); }
+
+    .course-header {
+      padding: 36px 40px;
+      display: grid; grid-template-columns: 1fr auto;
+      gap: 20px; align-items: start;
+      border-bottom: 1px solid var(--border);
+      position: relative;
+    }
+    .course-header::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    }
+    .course-linux .course-header::before  { background: linear-gradient(90deg, #ff6b35, #ff9500); }
+    .course-cloud .course-header::before  { background: linear-gradient(90deg, var(--blue), var(--cyan)); }
+    .course-devops .course-header::before { background: linear-gradient(90deg, #a855f7, var(--blue)); }
+
+    .course-number {
+      font-family: var(--font-mono);
+      font-size: 0.72rem; color: var(--gray-500);
+      font-weight: 600; letter-spacing: 0.08em;
+      margin-bottom: 8px;
+    }
+    .course-icon { font-size: 2.2rem; margin-bottom: 12px; display: block; }
+    .course-title-main {
+      font-size: 1.55rem; font-weight: 800; margin-bottom: 8px;
+      line-height: 1.2;
+    }
+    .course-tagline { color: var(--gray-400); font-size: 0.92rem; max-width: 500px; line-height: 1.6; }
+
+    .course-meta-badges { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+    .badge {
+      padding: 4px 10px; border-radius: 4px;
+      font-size: 0.72rem; font-weight: 600; letter-spacing: 0.03em;
+    }
+    .badge-level { background: rgba(0,212,255,0.1); color: var(--cyan); border: 1px solid rgba(0,212,255,0.25); }
+    .badge-format { background: rgba(26,106,255,0.1); color: #7db3ff; border: 1px solid rgba(26,106,255,0.25); }
+    .badge-project { background: rgba(168,85,247,0.1); color: #c084fc; border: 1px solid rgba(168,85,247,0.25); }
+
+    .course-enroll-box { text-align: right; }
+    .enroll-cta {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--blue); color: #fff;
+      padding: 10px 22px; border-radius: 8px;
+      text-decoration: none; font-weight: 600; font-size: 0.85rem;
+      transition: background var(--transition), box-shadow var(--transition);
+      white-space: nowrap;
+    }
+    .enroll-cta:hover { background: #1557d6; box-shadow: 0 0 18px var(--glow-blue); }
+    .enroll-note { font-size: 0.72rem; color: var(--gray-500); margin-top: 8px; }
+
+    /* ─── MODULES GRID ─── */
+    .course-modules { padding: 36px 40px; }
+    .modules-intro { font-size: 0.82rem; color: var(--gray-500); margin-bottom: 24px; font-family: var(--font-mono); }
+
+    .modules-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+      gap: 14px;
+    }
+    .module-card {
+      background: rgba(255,255,255,0.025); border: 1px solid var(--border-2);
+      border-radius: 10px; padding: 18px 20px;
+      transition: border-color var(--transition), background var(--transition);
+      cursor: default;
+    }
+    .module-card:hover {
+      background: rgba(26,106,255,0.05);
+      border-color: rgba(26,106,255,0.3);
+    }
+    .module-num {
+      font-family: var(--font-mono); font-size: 0.68rem;
+      color: var(--gray-500); font-weight: 600;
+      letter-spacing: 0.06em; margin-bottom: 8px;
+    }
+    .module-title {
+      font-size: 0.92rem; font-weight: 700; margin-bottom: 6px;
+    }
+    .module-desc {
+      font-size: 0.78rem; color: var(--gray-400); line-height: 1.5;
+    }
+    .module-tags { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 10px; }
+    .module-tag {
+      font-size: 0.65rem; font-family: var(--font-mono);
+      color: var(--gray-500); background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.07);
+      padding: 2px 6px; border-radius: 3px;
+    }
+
+    /* ─── FINAL PROJECT BANNER ─── */
+    .final-project {
+      margin: 24px 0 0;
+      background: rgba(26,106,255,0.06);
+      border: 1px solid rgba(26,106,255,0.2);
+      border-radius: 10px; padding: 20px 24px;
+      display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+    }
+    .fp-icon { font-size: 1.8rem; flex-shrink: 0; }
+    .fp-text strong { display: block; font-size: 0.9rem; font-weight: 700; margin-bottom: 3px; }
+    .fp-text p { font-size: 0.78rem; color: var(--gray-400); line-height: 1.5; }
+    .fp-link {
+      margin-left: auto; flex-shrink: 0;
+      display: inline-flex; align-items: center; gap: 6px;
+      color: var(--cyan); font-size: 0.78rem; font-weight: 600;
+      text-decoration: none; border: 1px solid rgba(0,212,255,0.3);
+      padding: 7px 14px; border-radius: 6px;
+      transition: background var(--transition);
+    }
+    .fp-link:hover { background: rgba(0,212,255,0.08); }
+
+    /* ─── HOW IT WORKS ─── */
+    .how-section { background: var(--navy-2); border-top: 1px solid var(--border); }
+    .how-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 24px; margin-top: 40px;
+    }
+    .how-step { position: relative; }
+    .how-step-num {
+      font-family: var(--font-mono); font-size: 2.5rem; font-weight: 900;
+      color: rgba(26,106,255,0.15); line-height: 1;
+      margin-bottom: 12px;
+    }
+    .how-step h3 { font-size: 1rem; font-weight: 700; margin-bottom: 8px; }
+    .how-step p { font-size: 0.82rem; color: var(--gray-400); line-height: 1.6; }
+
+    /* ─── INSTRUCTOR ─── */
+    .instructor-section { background: var(--navy); border-top: 1px solid var(--border); }
+    .instructor-card {
+      max-width: 700px; margin: 40px auto 0;
+      background: var(--navy-2); border: 1px solid var(--border);
+      border-radius: var(--radius-lg); padding: 36px;
+      display: flex; gap: 28px; align-items: flex-start; flex-wrap: wrap;
+    }
+    .instructor-avatar {
+      width: 80px; height: 80px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--blue), var(--cyan));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.8rem; font-weight: 800; flex-shrink: 0;
+    }
+    .instructor-info h3 { font-size: 1.2rem; font-weight: 800; margin-bottom: 4px; }
+    .instructor-info .role { font-size: 0.82rem; color: var(--cyan); margin-bottom: 12px; }
+    .instructor-info p { font-size: 0.85rem; color: var(--gray-400); line-height: 1.7; margin-bottom: 14px; }
+    .instructor-links { display: flex; gap: 10px; flex-wrap: wrap; }
+    .instructor-links a {
+      font-size: 0.75rem; color: var(--gray-400); text-decoration: none;
+      border: 1px solid var(--border); padding: 5px 10px; border-radius: 5px;
+      transition: color var(--transition), border-color var(--transition);
+    }
+    .instructor-links a:hover { color: var(--cyan); border-color: var(--cyan); }
+
+    /* ─── FAQ ─── */
+    .faq-section { background: var(--navy-2); border-top: 1px solid var(--border); }
+    .faq-grid { max-width: 700px; margin: 40px auto 0; display: flex; flex-direction: column; gap: 2px; }
+    .faq-item {
+      border: 1px solid var(--border); border-radius: 8px;
+      overflow: hidden; margin-bottom: 8px;
+    }
+    .faq-q {
+      width: 100%; background: transparent; border: none;
+      color: var(--white); text-align: left;
+      padding: 18px 20px; font-size: 0.9rem; font-weight: 600;
+      cursor: pointer; display: flex; justify-content: space-between; align-items: center;
+      gap: 12px; font-family: var(--font-main);
+      transition: background var(--transition);
+    }
+    .faq-q:hover { background: rgba(255,255,255,0.03); }
+    .faq-arrow { font-size: 0.9rem; color: var(--gray-400); transition: transform var(--transition); flex-shrink: 0; }
+    .faq-item.open .faq-arrow { transform: rotate(180deg); }
+    .faq-a {
+      max-height: 0; overflow: hidden;
+      transition: max-height 0.35s ease, padding var(--transition);
+      font-size: 0.85rem; color: var(--gray-400); line-height: 1.7;
+      padding: 0 20px;
+    }
+    .faq-item.open .faq-a { max-height: 200px; padding: 0 20px 18px; }
+
+    /* ─── CTA SECTION ─── */
+    .cta-section {
+      text-align: center; padding: 80px 5%;
+      background: var(--navy);
+      border-top: 1px solid var(--border);
+    }
+    .cta-section h2 { font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 800; margin-bottom: 14px; }
+    .cta-section p { color: var(--gray-400); font-size: 0.95rem; max-width: 480px; margin: 0 auto 32px; line-height: 1.7; }
+    .cta-actions { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--navy-2);
+      border-top: 1px solid var(--border);
+      padding: 48px 5% 24px;
+    }
+    .footer-top {
+      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 32px; padding-bottom: 36px;
+      border-bottom: 1px solid var(--border);
+    }
+    .footer-brand img { height: 30px; margin-bottom: 12px; }
+    .footer-brand p { font-size: 0.82rem; color: var(--gray-500); line-height: 1.6; max-width: 240px; margin-bottom: 16px; }
+    .footer-socials { display: flex; gap: 12px; flex-wrap: wrap; }
+    .footer-socials a { color: var(--gray-500); font-size: 0.8rem; text-decoration: none; transition: color var(--transition); }
+    .footer-socials a:hover { color: var(--cyan); }
+    .footer-col h4 { font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--gray-400); margin-bottom: 14px; }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+    .footer-col ul li a { color: var(--gray-500); text-decoration: none; font-size: 0.82rem; transition: color var(--transition); }
+    .footer-col ul li a:hover { color: var(--white); }
+    .footer-bottom { padding-top: 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: gap; }
+    .footer-bottom p { font-size: 0.75rem; color: var(--gray-500); }
+    .footer-bottom a { color: var(--gray-500); text-decoration: none; font-size: 0.75rem; }
+    .footer-bottom a:hover { color: var(--white); }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .nav-mobile-toggle { display: block; }
+      .nav-mobile {
+        display: none; position: fixed; top: 64px; left: 0; right: 0;
+        background: var(--navy-2); border-bottom: 1px solid var(--border);
+        padding: 20px 5%; z-index: 99;
+        flex-direction: column; gap: 4px;
+      }
+      .nav-mobile.open { display: flex; }
+      .nav-mobile a {
+        color: var(--gray-400); text-decoration: none;
+        font-size: 0.9rem; padding: 10px 0;
+        border-bottom: 1px solid var(--border);
+        display: block;
+      }
+      .nav-mobile a:hover { color: var(--white); }
+
+      .course-header { grid-template-columns: 1fr; }
+      .course-enroll-box { text-align: left; }
+      .course-header, .course-modules { padding: 24px 20px; }
+
+      .footer-top { grid-template-columns: 1fr 1fr; }
+      .footer-brand { grid-column: 1/-1; }
+
+      .hero-stats { gap: 24px; }
+      .instructor-card { flex-direction: column; }
+    }
+    @media (max-width: 480px) {
+      .footer-top { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<a href="#" id="back-top" title="Back to top">↑</a>
+<a href="https://wa.me/923231450045?text=Hi%20Kamran%2C%20I%20want%20to%20enroll%20in%20one%20of%20your%20courses." class="wa-float" title="WhatsApp">💬</a>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-brand" href="https://devriston.com.pk/index.html">
+    <img src="https://devriston.com.pk/assets/logos/dv-logo.png" alt="Devriston" />
+    Devriston
+  </a>
+  <ul class="nav-links">
+    <li><a href="https://devriston.com.pk/index.html">Home</a></li>
+    <li><a href="https://devriston.com.pk/solutions.html">Solutions</a></li>
+    <li><a href="https://devriston.com.pk/case-studies.html">Case Studies</a></li>
+    <li><a href="https://devriston.com.pk/courses.html" class="active">Courses</a></li>
+    <li><a href="https://devriston.com.pk/blog.html">Blog</a></li>
+    <li><a href="https://devriston.com.pk/devops-notes.html">Notes</a></li>
+    <li><a href="https://devriston.com.pk/about.html">About</a></li>
+    <li><a href="https://devriston.com.pk/contact.html" class="nav-cta">Book Consultation</a></li>
+  </ul>
+  <button class="nav-mobile-toggle" aria-label="Menu" onclick="document.querySelector('.nav-mobile').classList.toggle('open')">☰</button>
+</nav>
+<div class="nav-mobile">
+  <a href="https://devriston.com.pk/index.html">Home</a>
+  <a href="https://devriston.com.pk/solutions.html">Solutions</a>
+  <a href="https://devriston.com.pk/case-studies.html">Case Studies</a>
+  <a href="https://devriston.com.pk/courses.html">Courses</a>
+  <a href="https://devriston.com.pk/blog.html">Blog</a>
+  <a href="https://devriston.com.pk/devops-notes.html">Notes</a>
+  <a href="https://devriston.com.pk/about.html">About</a>
+  <a href="https://devriston.com.pk/contact.html">Contact</a>
+</div>
+
+<!-- BREADCRUMB -->
+<div class="breadcrumb">
+  <a href="https://devriston.com.pk/index.html">Home</a>
+  <span>›</span>
+  <a href="#">Courses</a>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-badge">Courses by Devriston</div>
+  <h1>Learn from someone who<br/><em>runs it in production.</em></h1>
+  <p class="hero-sub">
+    Not just theory. Not just commands.<br/>
+    Every concept explained in plain language — what it is, what it does, why it matters — then you build it for real.
+  </p>
+  <div class="hero-stats">
+    <div class="hero-stat"><strong>3</strong><span>Courses</span></div>
+    <div class="hero-stat"><strong>10+</strong><span>Years Teaching</span></div>
+    <div class="hero-stat"><strong>100%</strong><span>Hands-on Labs</span></div>
+    <div class="hero-stat"><strong>Real</strong><span>GitHub Projects</span></div>
+  </div>
+  <div class="hero-actions">
+    <a href="#linux" class="btn-primary">🐧 Linux Course</a>
+    <a href="#cloud" class="btn-primary" style="background:#1557d6">☁️ Cloud Course</a>
+    <a href="#devops" class="btn-primary" style="background:#7c3aed">⚙️ DevOps Bootcamp</a>
+  </div>
+</section>
+
+<!-- DIFFERENTIATOR STRIP -->
+<div class="diff-strip">
+  <h2>What makes Devriston courses different</h2>
+  <div class="diff-grid">
+    <div class="diff-card">
+      <span class="diff-icon">💡</span>
+      <div class="diff-text">
+        <strong>Plain language first</strong>
+        <p>Every tool gets a simple, honest explanation — not a textbook paragraph. You understand it before you touch it.</p>
+      </div>
+    </div>
+    <div class="diff-card">
+      <span class="diff-icon">🔧</span>
+      <div class="diff-text">
+        <strong>Real labs, not demos</strong>
+        <p>You build what professionals actually build. Every lab comes from a real production scenario.</p>
+      </div>
+    </div>
+    <div class="diff-card">
+      <span class="diff-icon">📂</span>
+      <div class="diff-text">
+        <strong>GitHub portfolio included</strong>
+        <p>Final projects are real repos you fork, complete, and push. Your GitHub grows as you learn.</p>
+      </div>
+    </div>
+    <div class="diff-card">
+      <span class="diff-icon">🎓</span>
+      <div class="diff-text">
+        <strong>Taught by a practitioner</strong>
+        <p>10+ years in IT and education. Not someone who read the docs — someone who deploys it daily.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- COURSES SECTION -->
+<section class="courses-section" id="courses">
+  <div class="section-label">3 Courses Available</div>
+  <h2 class="section-title">Pick your learning path.</h2>
+  <p class="section-sub">Start from zero or jump into any course. Each one builds real skills you can use immediately.</p>
+
+  <!-- ═══════════════════════════════════
+       COURSE 1 — LINUX
+  ═══════════════════════════════════ -->
+  <div class="course-block course-linux" id="linux">
+    <div class="course-header">
+      <div>
+        <div class="course-number">COURSE 01 / 03</div>
+        <span class="course-icon">🐧</span>
+        <h2 class="course-title-main">Linux Fundamentals<br/>— RHCSA Path</h2>
+        <p class="course-tagline">
+          Start from zero. By the end, you'll manage a real Linux server — users, networking, file sharing, web, DNS, DHCP — and deploy a full enterprise project from scratch.
+        </p>
+        <div class="course-meta-badges">
+          <span class="badge badge-level">Beginner → Intermediate</span>
+          <span class="badge badge-format">🟢 Live Online Batches</span>
+          <span class="badge badge-project">🎯 RHCSA Aligned</span>
+        </div>
+      </div>
+      <div class="course-enroll-box">
+        <a href="https://wa.me/923231450045?text=Hi%20Kamran%2C%20I%20want%20to%20enroll%20in%20the%20Linux%20course." class="enroll-cta">
+          Enroll via WhatsApp →
+        </a>
+        <p class="enroll-note">Batch info, schedule &amp; fee on request</p>
+      </div>
+    </div>
+
+    <div class="course-modules">
+      <div class="modules-intro">// 16 modules · theory + hands-on lab per module · Linux vs Windows comparisons · final project included</div>
+
+      <!-- Free Notes Banner -->
+      <div style="background:rgba(0,212,255,0.06);border:1px solid rgba(0,212,255,0.2);border-radius:10px;padding:14px 20px;margin-bottom:24px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;">
+        <span style="font-size:1.4rem">📖</span>
+        <div>
+          <strong style="font-size:0.88rem">Free Lecture Notes Available</strong>
+          <p style="font-size:0.78rem;color:var(--gray-400);margin:2px 0 0">Every module has complete written notes — concepts, commands, Linux vs Windows comparisons. Read free, no signup.</p>
+        </div>
+        <a href="https://devriston.com.pk/linux-notes.html" style="margin-left:auto;flex-shrink:0;display:inline-flex;align-items:center;gap:6px;color:var(--cyan);font-size:0.78rem;font-weight:600;text-decoration:none;border:1px solid rgba(0,212,255,0.3);padding:7px 14px;border-radius:6px;white-space:nowrap;">Read Free Notes →</a>
+      </div>
+
+      <div class="modules-grid">
+
+        <div class="module-card">
+          <div class="module-num">MODULE 01</div>
+          <div class="module-title">What is Linux?</div>
+          <div class="module-desc">Why Linux powers 90% of the internet. How it compares to Windows — GUI vs terminal, free vs paid, open vs closed. Where you'll use it and why it matters for your career.</div>
+          <div class="module-tags"><span class="module-tag">intro</span><span class="module-tag">linux vs windows</span><span class="module-tag">history</span><span class="module-tag">distros</span></div>
+        </div>
+
+        <div class="module-card">
+          <div class="module-num">MODULE 02</div>
+          <div class="module-title">Installation &amp; First Boot</div>
+          <div class="module-desc">Install Linux on a VM using VirtualBox. Understand disk partitions, bootloader, and what happens when the system starts. Windows calls it "setup wizard" — Linux calls it an installer with real control.</div>
+          <div class="module-tags"><span class="module-tag">virtualbox</span><span class="module-tag">rhel</span><span class="module-tag">partitioning</span><span class="module-tag">GRUB</span></div>
+        </div>
+
+        <div class="module-card">
+          <div class="module-num">MODULE 03</div>
+          <div class="module-title">The Terminal — Basic Commands</div>
+          <div class="module-desc">Navigate files, create/delete/move, read logs, check disk. Windows uses File Explorer with clicks — Linux does all of it faster with commands. Every command explained in plain language before you type it.</div>
+          <div class="module-tags"><span class="module-tag">ls cd cp mv</span><span class="module-tag">grep</span><span class="module-tag">find</span><span class="module-tag">man</span></div>
+        </div>
+
+        <div class="module-card">
+          <div class="module-num">MODULE 04</div>
+          <div class="module-title">Text Editors — Nano &amp; Vim</div>
+          <div class="module-desc">Nano is simple — open, edit, save, done. Vim is powerful once you know it — used by every senior engineer. We cover both. Start with nano, graduate to vim. Windows equivalent: Notepad vs VS Code.</div>
+          <div class="module-tags"><span class="module-tag">nano</span><span class="module-tag">vim</span><span class="module-tag">vi</span><span class="module-tag">config files</span></div>
+        </div>
+
+        <div class="module-card">
+          <div class="module-num">MODULE 05</div>
+          <div class="module-title">Users &amp; Permissions</div>
+          <div class="module-desc">On Windows: right-click → Properties → Security tab. On Linux: <code style="font-size:0.7rem;background:rgba(255,255,255,0.07);padding:1px 5px;border-radius:3px">useradd</code>, <code style="font-size:0.7rem;background:rgba(255,255,255,0.07);padding:1px 5px;border-radius:3px">chmod</code>, <code style="font-size:0.7rem;background:rgba(255,255,255,0.07);padding:1px 5px;border-radius:3px">chown</code> — precise, scriptable, auditable. Learn why Linux permission model is more powerful.</div>
+          <div class="module-tags"><span class="module-tag">useradd</span><span class="module-tag">groups</span><span class="module-tag">chmod</span><span class="module-tag">chown</span><span class="module-tag">sudo</span></div>
+        </div>
+
+        <div class="module-card">
+          <div class="module-num">MODULE 06</div>
+          <div class="module-title">Package Management</div>
+          <div class="module-desc">Windows: download .exe, click through installer, hope for the best. Linux: one command installs, updates, or removes any software — no popups, no wizard, no hidden toolbars. dnf, yum, and apt covered.</div>
+          <div class="module-tags"><span class="module-tag">dnf</span><span class="module-tag">yum</span><span class="module-tag">apt</span><span class="module-tag">rpm</span><span class="module-tag">repos</span></div>
+        </div>
+
+        <div class="module-card">
+          <div class="module-num">MODULE 07</div>
+          <div class="module-title">Storage &amp; LVM</div>
+          <div class="module-desc">Add a new disk, partition it, format it, mount it. LVM lets you resize disks live — like stretching a partition while it's in use. Windows has Disk Management; Linux has more control.</div>
+          <div class="module-tags"><span class="module-tag">lvm</span><span class="module-tag">fdisk</span><span class="module-tag">mount</span><span class="module-tag">df du</span><span class="module-tag">fstab</span></div>
+        </div>
+
+        <div class="module-card">
+          <div class="module-num">MODULE 08</div>
+          <div class="module-title">Processes &amp; Services</div>
+          <div class="module-desc">Windows has Task Manager. Linux has <code style="font-size:0.7rem;background:rgba(255,255,255,0.07);padding:1px 5px;border-radius:3px">ps</code>, <code style="font-size:0.7rem;background:rgba(255,255,255,0.07);padding:1px 5px;border-radius:3px">top</code>, <code style="font-size:0.7rem;background:rgba(255,255,255,0.07);padding:1px 5px;border-radius:3px">htop</code>, and systemd — start, stop, enable services on boot, check logs. More control, less clicking.</div>
+          <div class="module-tags"><span class="module-tag">systemctl</span><span class="module-tag">ps</span><span class="module-tag">kill</span><span class="module-tag">journalctl</span><span class="module-tag">htop</span></div>
+        </div>
+
+        <div class="module-card">
+          <div class="module-num">MODULE 09</div>
+          <div class="module-title">Networking Basics</div>
+          <div class="module-desc">IP addresses, static vs DHCP, configure network interfaces, test connectivity, SSH into a remote server. Windows uses Network Settings GUI — Linux uses <code style="font-size:0.7rem;background:rgba(255,255,255,0.07);padding:1px 5px;border-radius:3px">nmcli</code> and config files you fully control.</div>
+          <div class="module-tags"><span class="module-tag">ip addr</span><span class="module-tag">nmcli</span><span class="module-tag">ssh</span><span class="module-tag">ping</span><span class="module-tag">firewalld</span></div>
+        </div>
+
+        <div class="module-card">
+          <div class="module-num">MODULE 10</div>
+          <div class="module-title">SELinux Basics</div>
+          <div class="module-desc">SELinux is a security layer built into RHEL — it controls what every process can access, even if it's running as root. Think of it as Windows Defender built into the kernel but far more granular. RHCSA exam topic.</div>
+          <div class="module-tags"><span class="module-tag">SELinux</span><span class="module-tag">enforcing</span><span class="module-tag">permissive</span><span class="module-tag">contexts</span><span class="module-tag">audit2allow</span></div>
+        </div>
+
+        <div class="module-card">
+          <div class="module-num">MODULE 11</div>
+          <div class="module-title">Web Server — Apache &amp; Nginx</div>
+          <div class="module-desc">Set up a working web server, host a website, configure virtual hosts. Windows uses IIS — Linux uses Apache or Nginx. Both are faster to configure from terminal than any GUI.</div>
+          <div class="module-tags"><span class="module-tag">apache</span><span class="module-tag">nginx</span><span class="module-tag">vhost</span><span class="module-tag">ssl</span><span class="module-tag">certbot</span></div>
+        </div>
+
+        <div class="module-card">
+          <div class="module-num">MODULE 12</div>
+          <div class="module-title">DHCP Server</div>
+          <div class="module-desc">What DHCP does (hands out IP addresses automatically so you don't configure every device manually) and how to run your own DHCP server. Windows Server has the same role — Linux does it with one config file.</div>
+          <div class="module-tags"><span class="module-tag">dhcpd</span><span class="module-tag">leases</span><span class="module-tag">subnet</span><span class="module-tag">range</span></div>
+        </div>
+
+        <div class="module-card">
+          <div class="module-num">MODULE 13</div>
+          <div class="module-title">DNS Server</div>
+          <div class="module-desc">DNS translates domain names to IP addresses — like a phone book for the internet. Build your own DNS server with BIND. Windows DNS Manager does the same thing with more clicks and less flexibility.</div>
+          <div class="module-tags"><span class="module-tag">bind9</span><span class="module-tag">zones</span><span class="module-tag">A records</span><span class="module-tag">PTR</span><span class="module-tag">dig nslookup</span></div>
+        </div>
+
+        <div class="module-card">
+          <div class="module-num">MODULE 14</div>
+          <div class="module-title">File Sharing — NFS &amp; Samba</div>
+          <div class="module-desc">Share folders between Linux machines (NFS) and between Linux and Windows (Samba). Samba makes Linux look like a Windows file server to any Windows client — no special software needed on Windows.</div>
+          <div class="module-tags"><span class="module-tag">nfs</span><span class="module-tag">samba</span><span class="module-tag">smb.conf</span><span class="module-tag">mount</span><span class="module-tag">cifs</span></div>
+        </div>
+
+        <div class="module-card">
+          <div class="module-num">MODULE 15</div>
+          <div class="module-title">Security Hardening</div>
+          <div class="module-desc">SSH key login (no passwords), firewall rules, fail2ban to block brute-force, disable unused services, audit logs. Windows has Group Policy — Linux gives you tighter control with simpler config files.</div>
+          <div class="module-tags"><span class="module-tag">ssh keys</span><span class="module-tag">fail2ban</span><span class="module-tag">firewalld</span><span class="module-tag">auditd</span><span class="module-tag">sshd_config</span></div>
+        </div>
+
+        <div class="module-card">
+          <div class="module-num">MODULE 16</div>
+          <div class="module-title">Shell Scripting — Automate It</div>
+          <div class="module-desc">Write bash scripts that run backups, check disk, send alerts, rotate logs. Windows has PowerShell — bash is simpler for Linux automation and runs on every server on the planet without installing anything.</div>
+          <div class="module-tags"><span class="module-tag">bash</span><span class="module-tag">variables</span><span class="module-tag">loops</span><span class="module-tag">cron</span><span class="module-tag">functions</span></div>
+        </div>
+
+      </div>
+
+      <!-- Final Project -->
+      <div class="final-project">
+        <span class="fp-icon">🏆</span>
+        <div class="fp-text">
+          <strong>Final Project — Enterprise Samba4 Active Directory</strong>
+          <p>Deploy a full enterprise AD domain on Linux using Ansible automation — Samba4 DC, user management, DNS, Kerberos auth, SSH hardening, and Prometheus monitoring. Same setup used in real organizations migrating from Windows Server. Fork the repo, complete it, push it — it's your portfolio project.</p>
+        </div>
+        <a href="https://github.com/muhammadkamrankabeer-oss" class="fp-link" target="_blank">View Repo on GitHub →</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════
+       COURSE 2 — CLOUD
+  ═══════════════════════════════════ -->
+  <div class="course-block course-cloud" id="cloud">
+    <div class="course-header">
+      <div>
+        <div class="course-number">COURSE 02 / 03</div>
+        <span class="course-icon">☁️</span>
+        <h2 class="course-title-main">Cloud Fundamentals<br/>— AWS Deep Dive</h2>
+        <p class="course-tagline">
+          Understand cloud computing, explore what AWS, GCP, Azure, and DigitalOcean offer, then go deep on AWS — the platform that runs most of the internet. Build real infrastructure from day one.
+        </p>
+        <div class="course-meta-badges">
+          <span class="badge badge-level">Beginner → Intermediate</span>
+          <span class="badge badge-format">🟢 Live Online Batches</span>
+          <span class="badge badge-project">☁️ AWS-Focused</span>
+        </div>
+      </div>
+      <div class="course-enroll-box">
+        <a href="https://wa.me/923231450045?text=Hi%20Kamran%2C%20I%20want%20to%20enroll%20in%20the%20Cloud%20course." class="enroll-cta">
+          Enroll via WhatsApp →
+        </a>
+        <p class="enroll-note">Batch info, schedule &amp; fee on request</p>
+      </div>
+    </div>
+
+    <div class="course-modules">
+      <div class="modules-intro">// 14 modules · theory + hands-on lab per module · final project included</div>
+      <div class="modules-grid">
+
+        <div class="module-card">
+          <div class="module-num">MODULE 01</div>
+          <div class="module-title">What is Cloud Computing?</div>
+          <div class="module-desc">Why companies moved from their own servers to the cloud. What "renting" computing means. Public vs private vs hybrid — explained with real examples, not buzzwords.</div>
+          <div class="module-tags"><span class="module-tag">IaaS</span><span class="module-tag">PaaS</span><span class="module-tag">SaaS</span><span class="module-tag">on-prem vs cloud</span></div>
+        </div>
+
+        <div class="module-card">
+          <div class="module-num">MODULE 02</div>
+          <div class="module-title">Cloud Providers Overview</div>
+          <div class="module-desc">AWS, GCP, Azure, DigitalOcean — what each is best at, who uses them, and how to create a free account on each. You'll know which platform fits which job.</div>
+          <div class="module-tags"><span class="module-tag">AWS</span><span class="module-tag">GCP</span><span class="module-tag">Azure</span><span class="module-tag">DigitalOcean</span></div>
+        </div>
+
+        <div class="module-card">
+          <div class="module-num">MODULE 03</div>
+          <div class="module-title">AWS Core — IAM &amp; Console</div>
+          <div class="module-desc">Navigate the AWS console, create IAM users with least-privilege access, set up MFA. Security before anything else — a habit professionals develop from day one.</div>
+          <div class="module-tags"><span class="module-tag">IAM</span><span class="module-tag">users</span><span class="module-tag">roles</span><span class="module-tag">policies</span><span class="module-tag">MFA</span></div>
+        </div>
+
+        <div class="module-card">
+          <div class="module-num">MODULE 04</div>
+          <div class="module-title">EC2 — Your Server in the Cloud</div>
+          <div class="module-desc">Launch a virtual server on AWS, pick the right instance size, connect via SSH, install software, and understand what you're paying for. The most-used AWS service.</div>
+          <div class="module-tags"><span class="module-tag">EC2</span><span class="module-tag">key pairs</span><span class="module-tag">security groups</span><span class="module-tag">AMI</span></div>
+        </div>
+
+        <div class="module-card">
+          <div class="module-num">MODULE 05</div>
+          <div class="module-title">VPC — Your Private Network</div>
+          <div class="module-desc">Build your own virtual network inside AWS — public subnets (internet-facing), private subnets (internal only), routing tables, internet gateway. The foundation of AWS architecture.</div>
+          <div class="module-tags"><span class="module-tag">VPC</span><span class="module-tag">subnets</span><span class="module-tag">IGW</span><span class="module-tag">route tables</span><span class="module-tag">CIDR</span></div>
+        </div>
+
+        <div class="module-card">
+          <div class="module-num">MODULE 06</div>
+          <div class="module-title">Static IPs, DNS &amp; Route 53</div>
+          <div class="module-desc">Assign a permanent IP to your server (Elastic IP), point a domain name to it with Route 53, understand how DNS works in AWS. Your server gets a real address.</div>
+          <div class="module-tags"><span class="module-tag">Elastic IP</span><span class="module-tag">Route 53</span><span class="module-tag">A records</span><span class="module-tag">hosted zones</span></div>
+        </div>
+
+        <div class="module-card">
+          <div class="module-num">MODULE 07</div>
+          <div class="module-title">Load Balancer &amp; Auto Scaling</div>
+          <div class="module-desc">What a load balancer does (splits traffic across servers) and how Auto Scaling adds/removes servers based on demand. This is how real apps handle thousands of users.</div>
+          <div class="module-tags"><span class="module-tag">ALB</span><span class="module-tag">target groups</span><span class="module-tag">Auto Scaling</span><span class="module-tag">launch templates</span></div>
+        </div>
+
+        <div class="module-card">
+          <div class="module-num">MODULE 08</div>
+          <div class="module-title">S3 — Storage in the Cloud</div>
+          <div class="module-desc">Store files, images, backups, and static websites on S3. Understand buckets, permissions, versioning, and lifecycle rules. Used by almost every application on AWS.</div>
+          <div class="module-tags"><span class="module-tag">S3</span><span class="module-tag">buckets</span><span class="module-tag">ACL</span><span class="module-tag">versioning</span><span class="module-tag">static site</span></div>
+        </div>
+
+        <div class="module-card">
+          <div class="module-num">MODULE 09</div>
+          <div class="module-title">RDS — Managed Databases</div>
+          <div class="module-desc">Launch a MySQL or PostgreSQL database on AWS without managing a server. Understand Multi-AZ for high availability, automated backups, and connection from EC2.</div>
+          <div class="module-tags"><span class="module-tag">RDS</span><span class="module-tag">MySQL</span><span class="module-tag">Multi-AZ</span><span class="module-tag">snapshots</span></div>
+        </div>
+
+        <div class="module-card">
+          <div class="module-num">MODULE 10</div>
+          <div class="module-title">Backup, Snapshots &amp; AMIs</div>
+          <div class="module-desc">Create server images (AMI) so you can launch identical copies anytime. Take EBS snapshots for disaster recovery. The safety net every production setup needs.</div>
+          <div class="module-tags"><span class="module-tag">AMI</span><span class="module-tag">EBS snapshots</span><span class="module-tag">AWS Backup</span><span class="module-tag">restore</span></div>
+        </div>
+
+        <div class="module-card">
+          <div class="module-num">MODULE 11</div>
+          <div class="module-title">Monitoring with CloudWatch</div>
+          <div class="module-desc">Watch your server health, set up alarms for high CPU or low disk, get email alerts before problems become outages. Monitoring is not optional in production.</div>
+          <div class="module-tags"><span class="module-tag">CloudWatch</span><span class="module-tag">alarms</span><span class="module-tag">metrics</span><span class="module-tag">SNS</span></div>
+        </div>
+
+        <div class="module-card">
+          <div class="module-num">MODULE 12</div>
+          <div class="module-title">AWS CLI — Control AWS from Terminal</div>
+          <div class="module-desc">Nobody clicks the AWS console in production. The CLI lets you launch servers, manage S3, check status — all from a terminal. Scriptable, automatable, faster. Essential for DevOps work.</div>
+          <div class="module-tags"><span class="module-tag">aws cli</span><span class="module-tag">configure</span><span class="module-tag">ec2 describe</span><span class="module-tag">s3 cp</span><span class="module-tag">profiles</span></div>
+        </div>
+
+        <div class="module-card">
+          <div class="module-num">MODULE 13</div>
+          <div class="module-title">Lambda — Serverless Functions</div>
+          <div class="module-desc">Lambda runs your code without a server — you upload a function, it runs when triggered, you pay only for what runs. Perfect for automations, schedulers, and event-driven tasks. Serverless is everywhere now.</div>
+          <div class="module-tags"><span class="module-tag">Lambda</span><span class="module-tag">triggers</span><span class="module-tag">EventBridge</span><span class="module-tag">Python runtime</span><span class="module-tag">serverless</span></div>
+        </div>
+
+        <div class="module-card">
+          <div class="module-num">MODULE 14</div>
+          <div class="module-title">Cost Management &amp; Billing Alerts</div>
+          <div class="module-desc">AWS bills you for what you run — a forgotten EC2 instance costs real money. Set up billing alerts, understand the free tier limits, use Cost Explorer, and never get a surprise invoice.</div>
+          <div class="module-tags"><span class="module-tag">Cost Explorer</span><span class="module-tag">billing alerts</span><span class="module-tag">free tier</span><span class="module-tag">budgets</span><span class="module-tag">rightsizing</span></div>
+        </div>
+
+      </div>
+
+      <div class="final-project">
+        <span class="fp-icon">🏆</span>
+        <div class="fp-text">
+          <strong>Final Project — AWS 3-Tier Production Infrastructure</strong>
+          <p>Build a complete AWS architecture: custom VPC with public/private subnets, EC2 with Auto Scaling behind a Load Balancer, RDS in a private subnet, S3 for assets, CloudWatch alarms. Provisioned with Terraform so it's repeatable. Based on the Devriston production repo — fork it, complete it, add it to your GitHub.</p>
+        </div>
+        <a href="https://devriston.com.pk/terraform-aws-3tier-platform.html" class="fp-link" target="_blank">Read the Case Study →</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════
+       COURSE 3 — DEVOPS
+  ═══════════════════════════════════ -->
+  <div class="course-block course-devops" id="devops">
+    <div class="course-header">
+      <div>
+        <div class="course-number">COURSE 03 / 03</div>
+        <span class="course-icon">⚙️</span>
+        <h2 class="course-title-main">DevOps Bootcamp<br/>— Zero to Production</h2>
+        <p class="course-tagline">
+          The complete DevOps learning path — every phase of the DevOps cycle, every core tool, explained simply and practiced hands-on. Your GitHub repos from this course become your job portfolio.
+        </p>
+        <div class="course-meta-badges">
+          <span class="badge badge-level">Beginner → Job-Ready</span>
+          <span class="badge badge-format">🟢 Live Online Batches</span>
+          <span class="badge badge-project">📂 5 GitHub Portfolio Projects</span>
+        </div>
+      </div>
+      <div class="course-enroll-box">
+        <a href="https://wa.me/923231450045?text=Hi%20Kamran%2C%20I%20want%20to%20enroll%20in%20the%20DevOps%20Bootcamp." class="enroll-cta">
+          Enroll via WhatsApp →
+        </a>
+        <p class="enroll-note">Batch info, schedule &amp; fee on request</p>
+      </div>
+    </div>
+
+    <div class="course-modules">
+      <div class="modules-intro">// 17 modules · every DevOps phase covered · 5 real GitHub projects as assignments</div>
+      <div class="modules-grid">
+
+        <div class="module-card">
+          <div class="module-num">MODULE 01</div>
+          <div class="module-title">What is DevOps?</div>
+          <div class="module-desc">DevOps is a way of working — not just tools. Dev and Ops teams used to work separately and blame each other. DevOps fixes that. Simple as that.</div>
+          <div class="module-tags"><span class="module-tag">culture</span><span class="module-tag">dev vs ops</span><span class="module-tag">agile basics</span></div>
+        </div>
+
+        <div class="module-card">
+          <div class="module-num">MODULE 02</div>
+          <div class="module-title">The DevOps Roadmap</div>
+          <div class="module-desc">The full career path — what to learn, in what order, and why. Tools, phases, and skills mapped out so you always know where you are and what's next.</div>
+          <div class="module-tags"><span class="module-tag">roadmap</span><span class="module-tag">career</span><span class="module-tag">learning path</span></div>
+        </div>
+
+        <div class="module-card">
+          <div class="module-num">MODULE 03</div>
+          <div class="module-title">Linux for DevOps</div>
+          <div class="module-desc">The command line skills every DevOps engineer must have — file system, processes, permissions, SSH, shell scripting. Everything you'll use every single day.</div>
+          <div class="module-tags"><span class="module-tag">bash</span><span class="module-tag">ssh</span><span class="module-tag">systemctl</span><span class="module-tag">scripting</span></div>
+        </div>
+
+        <div class="module-card">
+          <div class="module-num">MODULE 04</div>
+          <div class="module-title">Git &amp; Version Control</div>
+          <div class="module-desc">Git is how code is tracked and shared. Learn to commit, branch, merge, resolve conflicts, and understand the workflow every team uses. GitHub account + first repo set up.</div>
+          <div class="module-tags"><span class="module-tag">git</span><span class="module-tag">branching</span><span class="module-tag">merge</span><span class="module-tag">GitHub</span><span class="module-tag">PRs</span></div>
+        </div>
+
+        <div class="module-card">
+          <div class="module-num">MODULE 05</div>
+          <div class="module-title">Bash Scripting</div>
+          <div class="module-desc">Automate repetitive tasks with shell scripts. Variables, loops, conditions, functions, cron jobs. Write scripts that actually save you hours every week.</div>
+          <div class="module-tags"><span class="module-tag">bash</span><span class="module-tag">loops</span><span class="module-tag">functions</span><span class="module-tag">cron</span></div>
+        </div>
+
+        <div class="module-card">
+          <div class="module-num">MODULE 06</div>
+          <div class="module-title">Docker — Containers Explained</div>
+          <div class="module-desc">A container is a box your app runs in — same everywhere, no "works on my machine" problem. Build images, run containers, write Dockerfiles, use Docker Compose for multi-service apps.</div>
+          <div class="module-tags"><span class="module-tag">docker</span><span class="module-tag">Dockerfile</span><span class="module-tag">compose</span><span class="module-tag">images</span><span class="module-tag">volumes</span></div>
+        </div>
+
+        <div class="module-card">
+          <div class="module-num">MODULE 07</div>
+          <div class="module-title">Podman — Docker's Alternative</div>
+          <div class="module-desc">Podman does what Docker does but without a background daemon — which makes it more secure and RHEL-native. Learn the differences and when each is the right choice.</div>
+          <div class="module-tags"><span class="module-tag">podman</span><span class="module-tag">rootless</span><span class="module-tag">RHEL</span><span class="module-tag">vs docker</span></div>
+        </div>
+
+        <div class="module-card">
+          <div class="module-num">MODULE 08</div>
+          <div class="module-title">CI/CD — Automate Your Deployments</div>
+          <div class="module-desc">CI/CD means every code push automatically gets tested, built, and deployed — no manual steps. Understand the pipeline concept before touching a tool.</div>
+          <div class="module-tags"><span class="module-tag">pipeline</span><span class="module-tag">stages</span><span class="module-tag">build</span><span class="module-tag">test</span><span class="module-tag">deploy</span></div>
+        </div>
+
+        <div class="module-card">
+          <div class="module-num">MODULE 09</div>
+          <div class="module-title">GitHub Actions — Build Your First Pipeline</div>
+          <div class="module-desc">Write YAML workflows that run on every push — test your code, build a Docker image, push to a registry, deploy to a server. The most-used CI/CD tool in the industry right now.</div>
+          <div class="module-tags"><span class="module-tag">GitHub Actions</span><span class="module-tag">workflows</span><span class="module-tag">YAML</span><span class="module-tag">secrets</span><span class="module-tag">ECR</span></div>
+        </div>
+
+        <div class="module-card">
+          <div class="module-num">MODULE 10</div>
+          <div class="module-title">Infrastructure as Code — Terraform</div>
+          <div class="module-desc">Write code that creates servers instead of clicking through a console. Terraform provisions cloud infrastructure — reproducible, version-controlled, team-shareable.</div>
+          <div class="module-tags"><span class="module-tag">terraform</span><span class="module-tag">HCL</span><span class="module-tag">plan apply</span><span class="module-tag">state</span><span class="module-tag">modules</span></div>
+        </div>
+
+        <div class="module-card">
+          <div class="module-num">MODULE 11</div>
+          <div class="module-title">Ansible — Automate Server Config</div>
+          <div class="module-desc">Ansible configures servers using YAML playbooks — install software, manage users, apply security rules across 1 or 100 machines simultaneously. No agent needed.</div>
+          <div class="module-tags"><span class="module-tag">ansible</span><span class="module-tag">playbooks</span><span class="module-tag">inventory</span><span class="module-tag">roles</span><span class="module-tag">idempotent</span></div>
+        </div>
+
+        <div class="module-card">
+          <div class="module-num">MODULE 12</div>
+          <div class="module-title">Kubernetes — Container Orchestration</div>
+          <div class="module-desc">Kubernetes manages containers at scale — starts them, restarts failed ones, balances traffic. Understand Pods, Deployments, Services, and why K8s exists before you install it.</div>
+          <div class="module-tags"><span class="module-tag">K8s</span><span class="module-tag">pods</span><span class="module-tag">deployments</span><span class="module-tag">services</span><span class="module-tag">kubectl</span></div>
+        </div>
+
+        <div class="module-card">
+          <div class="module-num">MODULE 13</div>
+          <div class="module-title">Monitoring &amp; Observability</div>
+          <div class="module-desc">Prometheus collects metrics, Grafana shows them as dashboards, AlertManager sends you an alert when something breaks. You'll never want to run a server without monitoring again.</div>
+          <div class="module-tags"><span class="module-tag">prometheus</span><span class="module-tag">grafana</span><span class="module-tag">loki</span><span class="module-tag">alertmanager</span><span class="module-tag">PromQL</span></div>
+        </div>
+
+        <div class="module-card">
+          <div class="module-num">MODULE 14</div>
+          <div class="module-title">DevOps Workstation Setup</div>
+          <div class="module-desc">Set up a professional DevOps environment on your own machine — Terraform, Docker, Ansible, Vagrant, AWS CLI — all provisioned by a single Ansible playbook in under 10 minutes.</div>
+          <div class="module-tags"><span class="module-tag">ansible</span><span class="module-tag">automation</span><span class="module-tag">workstation</span><span class="module-tag">aws cli</span></div>
+        </div>
+
+        <div class="module-card">
+          <div class="module-num">MODULE 15</div>
+          <div class="module-title">Python for DevOps</div>
+          <div class="module-desc">You don't need to be a developer — you need to read, write, and run Python scripts. This module covers what DevOps engineers actually use: boto3 for AWS automation, requests for APIs, file parsing, and writing simple tools.</div>
+          <div class="module-tags"><span class="module-tag">python</span><span class="module-tag">boto3</span><span class="module-tag">scripts</span><span class="module-tag">automation</span><span class="module-tag">json</span></div>
+        </div>
+
+        <div class="module-card">
+          <div class="module-num">MODULE 16</div>
+          <div class="module-title">Secrets Management</div>
+          <div class="module-desc">Never put passwords in your code or repos. Secrets management means storing credentials safely and giving access only when needed. HashiCorp Vault and AWS Secrets Manager — how they work and how to use them.</div>
+          <div class="module-tags"><span class="module-tag">vault</span><span class="module-tag">AWS Secrets</span><span class="module-tag">env vars</span><span class="module-tag">GitHub secrets</span><span class="module-tag">rotation</span></div>
+        </div>
+
+        <div class="module-card">
+          <div class="module-num">MODULE 17</div>
+          <div class="module-title">GitOps &amp; ArgoCD Intro</div>
+          <div class="module-desc">GitOps means your Git repo is the single source of truth for your infrastructure — every change goes through Git, not SSH. ArgoCD watches your repo and syncs your Kubernetes cluster automatically. The direction the industry is heading.</div>
+          <div class="module-tags"><span class="module-tag">GitOps</span><span class="module-tag">ArgoCD</span><span class="module-tag">sync</span><span class="module-tag">declarative</span><span class="module-tag">K8s</span></div>
+        </div>
+
+      </div>
+
+      <div class="final-project">
+        <span class="fp-icon">🏆</span>
+        <div class="fp-text">
+          <strong>5 Portfolio Projects — All from Devriston's Real GitHub Repos</strong>
+          <p>Each major module ends with a GitHub assignment: (1) CI/CD Pipeline — push to production automatically, (2) Docker Self-Healing Platform — containers that fix themselves, (3) Monitoring Stack — full Prometheus + Grafana + Loki setup, (4) Terraform AWS Infrastructure — multi-tier cloud with IaC, (5) K8s Cluster — kubeadm 3-node cluster with Ansible. Fork, complete, push — your GitHub becomes your resume.</p>
+        </div>
+        <a href="https://github.com/muhammadkamrankabeer-oss" class="fp-link" target="_blank">View All Repos →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how-section">
+  <div class="section-label">Process</div>
+  <h2 class="section-title">How it works</h2>
+  <p class="section-sub">No complex platform. No waiting. Start learning with one WhatsApp message.</p>
+  <div class="how-grid">
+    <div class="how-step">
+      <div class="how-step-num">01</div>
+      <h3>Pick your course</h3>
+      <p>Choose Linux, Cloud, or DevOps based on where you are right now. Not sure? Message on WhatsApp and we'll help you decide.</p>
+    </div>
+    <div class="how-step">
+      <div class="how-step-num">02</div>
+      <h3>Join the next batch</h3>
+      <p>Live online sessions via Google Meet. Small batch size — everyone gets attention, not just a seat in a virtual lecture hall.</p>
+    </div>
+    <div class="how-step">
+      <div class="how-step-num">03</div>
+      <h3>Build every session</h3>
+      <p>Theory first (short, plain language). Then a lab where you actually do it. No passive watching — every concept gets practiced.</p>
+    </div>
+    <div class="how-step">
+      <div class="how-step-num">04</div>
+      <h3>Ship your final project</h3>
+      <p>Fork the repo, complete the project, push to GitHub. You finish the course with real work to show — not just a certificate.</p>
+    </div>
+  </div>
+</section>
+
+<!-- INSTRUCTOR -->
+<section class="instructor-section">
+  <div class="section-label">Your Instructor</div>
+  <h2 class="section-title">Built and taught by someone who does this daily.</h2>
+  <div class="instructor-card">
+    <div class="instructor-avatar">MK</div>
+    <div class="instructor-info">
+      <h3>Muhammad Kamran Kabeer</h3>
+      <p class="role">DevOps Engineer · Founder @ Devriston · Lecturer &amp; Lab Manager</p>
+      <p>
+        10+ years in IT — spanning Linux administration, cloud infrastructure, DevOps automation, and teaching computer science at college level. I founded Devriston to deliver production-grade consulting to businesses, and these courses to make the same knowledge accessible to individuals. Every concept I teach is something I run in real systems.
+      </p>
+      <div class="instructor-links">
+        <a href="https://www.linkedin.com/in/kamrankabeer/" target="_blank">LinkedIn</a>
+        <a href="https://github.com/muhammadkamrankabeer-oss" target="_blank">GitHub</a>
+        <a href="https://www.youtube.com/@Devriston" target="_blank">YouTube</a>
+        <a href="https://dev.to/muhammadkamrankabeeross" target="_blank">Dev.to</a>
+        <a href="https://devriston.com.pk/about.html">Full Story →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq-section">
+  <div class="section-label">FAQ</div>
+  <h2 class="section-title" style="text-align:center">Common questions</h2>
+  <div class="faq-grid">
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        Do I need any prior experience? <span class="faq-arrow">▾</span>
+      </button>
+      <div class="faq-a">No. All three courses start from zero. If you know how to use a computer and install software, you're ready. The Linux course is specifically designed for complete beginners.</div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        What do I need — laptop, software, accounts? <span class="faq-arrow">▾</span>
+      </button>
+      <div class="faq-a">A laptop with at least 8GB RAM (16GB preferred for K8s labs), stable internet, and a GitHub account. All tools used are free and open-source. AWS has a free tier that covers all cloud labs.</div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        Are sessions recorded? <span class="faq-arrow">▾</span>
+      </button>
+      <div class="faq-a">Yes. Live sessions are recorded and shared with enrolled students so you can revisit anything you missed or want to review before a lab.</div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        How long is each course? <span class="faq-arrow">▾</span>
+      </button>
+      <div class="faq-a">Batch duration varies by cohort. Contact via WhatsApp for the current batch schedule. The curriculum is designed to be intensive but manageable alongside part-time or full-time commitments.</div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        Is there a certificate? <span class="faq-arrow">▾</span>
+      </button>
+      <div class="faq-a">You'll receive a completion certificate from Devriston. More importantly, you'll have real GitHub projects — which carry far more weight with technical employers than any certificate.</div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        What if I have questions between sessions? <span class="faq-arrow">▾</span>
+      </button>
+      <div class="faq-a">Students get access to a dedicated WhatsApp group. You can ask questions anytime — and get answers from the instructor, not just classmates.</div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        Can I take all three courses? <span class="faq-arrow">▾</span>
+      </button>
+      <div class="faq-a">Yes — and it's recommended. Linux → Cloud → DevOps is the natural progression. Each course builds on the previous one. Many students complete all three as a full career-change programme.</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <h2>Ready to start?</h2>
+  <p>Send a WhatsApp message to ask about the current batch schedule, pricing, and which course is right for you.</p>
+  <div class="cta-actions">
+    <a href="https://wa.me/923231450045?text=Hi%20Kamran%2C%20I%20want%20to%20learn%20more%20about%20your%20courses." class="btn-primary">💬 WhatsApp — Ask About Batches</a>
+    <a href="https://devriston.com.pk/devops-notes.html" class="btn-ghost">📖 Browse Free DevOps Notes</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <img src="https://devriston.com.pk/assets/logos/dv-logo.png" alt="Devriston" />
+      <p>DevOps consulting, Linux administration, cloud infrastructure and training. Solutions that drive tomorrow.</p>
+      <div class="footer-socials">
+        <a href="https://github.com/muhammadkamrankabeer-oss" target="_blank">GitHub</a>
+        <a href="https://www.linkedin.com/in/kamrankabeer/" target="_blank">LinkedIn</a>
+        <a href="https://www.youtube.com/@Devriston" target="_blank">YouTube</a>
+        <a href="https://x.com/Devristonhq" target="_blank">X / Twitter</a>
+        <a href="https://dev.to/muhammadkamrankabeeross" target="_blank">Dev.to</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Courses</h4>
+      <ul>
+        <li><a href="#linux">Linux — RHCSA Path</a></li>
+        <li><a href="#cloud">Cloud — AWS Deep Dive</a></li>
+        <li><a href="#devops">DevOps Bootcamp</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Learn</h4>
+      <ul>
+        <li><a href="https://devriston.com.pk/blog.html">Blog Articles</a></li>
+        <li><a href="https://devriston.com.pk/devops-notes.html">DevOps Notes</a></li>
+        <li><a href="https://devriston.com.pk/interview-guide.html">Interview Guide</a></li>
+        <li><a href="https://github.com/muhammadkamrankabeer-oss" target="_blank">GitHub Labs</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <ul>
+        <li><a href="mailto:info@devriston.com.pk">info@devriston.com.pk</a></li>
+        <li><a href="https://wa.me/923231450045" target="_blank">WhatsApp</a></li>
+        <li><a href="https://devriston.com.pk/contact.html">Book Consultation</a></li>
+        <li><a href="https://www.linkedin.com/in/kamrankabeer/" target="_blank">LinkedIn</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 Devriston · Muhammad Kamran Kabeer · Lahore, Pakistan</p>
+    <div style="display:flex;gap:16px">
+      <a href="https://devriston.com.pk/sitemap.xml">Sitemap</a>
+      <a href="https://devriston.com.pk/robots.txt">Robots</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Back to top
+  const backTop = document.getElementById('back-top');
+  window.addEventListener('scroll', () => {
+    backTop.classList.toggle('visible', window.scrollY > 400);
+  });
+
+  // FAQ accordion
+  function toggleFaq(btn) {
+    const item = btn.closest('.faq-item');
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  }
+
+  // Smooth anchor scrolling with offset for fixed nav
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        const top = target.getBoundingClientRect().top + window.scrollY - 80;
+        window.scrollTo({ top, behavior: 'smooth' });
+      }
+    });
+  });
+</script>
+</body>
+</html>

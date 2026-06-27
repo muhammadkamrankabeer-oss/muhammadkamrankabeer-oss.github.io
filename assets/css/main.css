@@ -421,20 +421,88 @@ footer{background:var(--navy);border-top:1px solid rgba(255,255,255,.06);padding
   .founder-inner{grid-template-columns:1fr}
   .founder-card{position:static}
 }
+
+/* FIX 1 — Nav hamburger triggers at 900px, not 680px
+   Prevents 8 nav links overflowing on tablets (768px–960px) */
+@media(max-width:900px){
+  .nav-links{display:none}
+  .ham{display:flex}
+}
+
 @media(max-width:680px){
   section{padding:60px 0}
   .container{padding:0 16px}
-  .nav-links{display:none}
-  .ham{display:flex}
   .ft-grid{flex-direction:column}
   .ft-bottom{flex-direction:column;text-align:center}
   .f-row{grid-template-columns:1fr}
   .process-bar{flex-direction:column}
   .p-step{border-right:none;border-bottom:1px solid var(--border)}
   .p-step:last-child{border-bottom:none}
-  .hero-stats{gap:18px}
   .search-bar{flex-direction:column;align-items:stretch}
   .result-count{margin-left:0}
   .cs-body{padding:24px}
   .cs-title-block,.cs-meta-block{padding:24px}
+
+  /* FIX 2 — WhatsApp button: icon only on mobile, no text overflow */
+  .wa-btn{padding:12px;border-radius:50%;width:48px;height:48px;justify-content:center}
+  .wa-btn svg{width:22px;height:22px}
+  /* hide the "WhatsApp" text label on small screens */
+  .wa-btn span,.wa-btn:not([aria-label]) > *:not(svg){display:none}
+
+  /* FIX 3 — Hero stats: 2x2 grid on phones instead of cramped 4-in-a-row */
+  .hero-stats{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:28px}
+  .h-stat-val{font-size:1.6rem}
+  .h-stat-lbl{font-size:.72rem}
+
+  /* FIX 4 — Knowledge Hub 3-col: force single column on small phones */
+  .hub-grid{grid-template-columns:1fr !important}
+}
+/* ── LEARN DROPDOWN ── */
+.nav-dropdown{position:relative}
+.nav-dropdown-toggle{
+  display:flex;align-items:center;gap:5px;
+  font-size:.83rem;font-weight:500;color:var(--white-2);
+  padding:7px 12px;border-radius:var(--r);
+  cursor:pointer;border:none;background:transparent;
+  font-family:var(--f-sans);letter-spacing:0;
+  transition:color var(--t-fast),background var(--t-fast);
+  white-space:nowrap;
+}
+.nav-dropdown-toggle:hover,
+.nav-dropdown-toggle.open{color:var(--white);background:rgba(255,255,255,.07)}
+.nav-dropdown-toggle.active-section{color:var(--blue-l);background:rgba(255,255,255,.07)}
+.nav-dropdown-toggle svg{
+  width:11px;height:11px;stroke:currentColor;
+  stroke-width:2.5;fill:none;flex-shrink:0;
+  transition:transform var(--t-fast);
+}
+.nav-dropdown-toggle.open svg{transform:rotate(180deg)}
+.nav-dropdown-menu{
+  display:none;position:absolute;
+  top:calc(100% + 10px);left:50%;transform:translateX(-50%);
+  background:var(--navy-2);
+  border:1px solid rgba(255,255,255,.09);
+  border-radius:var(--r-lg);padding:6px;min-width:210px;
+  box-shadow:0 20px 56px rgba(0,0,0,.55);z-index:2000;
+}
+.nav-dropdown-menu.open{display:block}
+.nav-dropdown-menu a{
+  display:flex;align-items:center;gap:10px;
+  padding:9px 12px;border-radius:var(--r);
+  color:var(--white-2);font-size:.82rem;font-weight:500;
+  text-decoration:none;
+  transition:background var(--t-fast),color var(--t-fast);
+  white-space:nowrap;
+}
+.nav-dropdown-menu a:hover{background:rgba(255,255,255,.07);color:var(--white)}
+.nav-dropdown-menu a.active{color:var(--blue-l)}
+.dd-icon{font-size:.9rem;width:20px;text-align:center;flex-shrink:0}
+.dd-divider{height:1px;background:rgba(255,255,255,.07);margin:5px 0}
+
+/* drawer Learn section label */
+.drawer-section-label{
+  font-size:.65rem;font-weight:700;letter-spacing:.1em;
+  text-transform:uppercase;color:rgba(240,246,255,.3);
+  padding:14px 0 6px;border-bottom:none;
+  pointer-events:none;cursor:default;
 }

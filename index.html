@@ -28,7 +28,7 @@
 <script type="application/ld+json">
 {"@context":"https://schema.org","@graph":[
 {"@type":"Organization","@id":"https://www.devriston.com.pk/#org","name":"Devriston","url":"https://www.devriston.com.pk","logo":"https://www.devriston.com.pk/assets/logos/dv-logo.png","description":"DevOps consulting, cloud infrastructure, and Linux administration services.","sameAs":["https://www.youtube.com/@Devriston","https://www.facebook.com/profile.php?id=61590452186174","https://www.instagram.com/devristonhq/","https://x.com/Devristonhq","https://www.linkedin.com/in/kamrankabeer/","https://github.com/muhammadkamrankabeer-oss","https://dev.to/muhammadkamrankabeeross"],"contactPoint":{"@type":"ContactPoint","email":"info@devriston.com.pk","contactType":"customer service"},"address":{"@type":"PostalAddress","addressLocality":"Lahore","addressCountry":"PK"}},
-{"@type":"Person","@id":"https://www.devriston.com.pk/#founder","name":"Muhammad Kamran Kabeer","jobTitle":"Linux Administrator | Infrastructure Automation | DevOps & Cloud Practitioner | Lecturer & Lab Manager","worksFor":{"@id":"https://www.devriston.com.pk/#org"},"url":"https://www.devriston.com.pk/about.html","sameAs":["https://www.linkedin.com/in/kamrankabeer/","https://github.com/muhammadkamrankabeer-oss","https://dev.to/muhammadkamrankabeeross"]},
+{"@type":"Person","@id":"https://www.devriston.com.pk/#founder","name":"Muhammad Kamran Kabeer","jobTitle":"DevOps Engineer · Linux Admin · Cloud Infrastructure · IaC Automation · Trainer & Educator","worksFor":{"@id":"https://www.devriston.com.pk/#org"},"url":"https://www.devriston.com.pk/about.html","sameAs":["https://www.linkedin.com/in/kamrankabeer/","https://github.com/muhammadkamrankabeer-oss","https://dev.to/muhammadkamrankabeeross"]},
 {"@type":"WebSite","@id":"https://www.devriston.com.pk/#website","url":"https://www.devriston.com.pk","name":"Devriston","publisher":{"@id":"https://www.devriston.com.pk/#org"}}
 ]}
 </script>
@@ -52,8 +52,20 @@
       <a href="index.html" class="active">Home</a>
       <a href="solutions.html">Solutions</a>
       <a href="case-studies.html">Case Studies</a>
-      <a href="blog.html">Blog</a>
-      <a href="devops-notes.html">Notes</a>
+      <div class="nav-dropdown">
+        <button class="nav-dropdown-toggle" onclick="toggleLearnMenu(event)" aria-haspopup="true" aria-expanded="false">
+          Learn
+          <svg viewBox="0 0 12 12"><polyline points="2,4 6,8 10,4"/></svg>
+        </button>
+        <div class="nav-dropdown-menu" id="learn-menu">
+          <a href="blog.html"><span class="dd-icon">📝</span>Blog Articles</a>
+          <a href="devops-notes.html"><span class="dd-icon">📋</span>DevOps Notes</a>
+          <a href="courses.html"><span class="dd-icon">🎓</span>Courses</a>
+          <a href="linux-notes.html"><span class="dd-icon">🐧</span>Linux Notes</a>
+          <div class="dd-divider"></div>
+          <a href="interview-guide.html"><span class="dd-icon">💼</span>Interview Guide</a>
+        </div>
+      </div>
       <a href="about.html">About</a>
       <a href="contact.html" class="nav-cta">Book Consultation</a>
     </div>
@@ -63,11 +75,15 @@
   </div>
 </nav>
 <div class="drawer" id="nav-drawer">
-  <a href="index.html">Home</a>
+  <a href="index.html" class="active">Home</a>
   <a href="solutions.html">Solutions</a>
   <a href="case-studies.html">Case Studies</a>
-  <a href="blog.html">Blog</a>
+  <span class="drawer-section-label">Learn</span>
+  <a href="blog.html">Blog Articles</a>
   <a href="devops-notes.html">DevOps Notes</a>
+  <a href="courses.html">Courses</a>
+  <a href="linux-notes.html">Linux Notes</a>
+  <a href="interview-guide.html">Interview Guide</a>
   <a href="about.html">About</a>
   <a href="contact.html">Contact</a>
 </div>
@@ -196,6 +212,15 @@
         <div class="svc-name">Open Source Consulting</div>
         <p class="svc-desc">Guidance on open-source infrastructure tools, GitOps practices, self-hosted alternatives, and open-source DevOps lab environments.</p>
         <div class="svc-tags"><span class="svc-tag">GitOps</span><span class="svc-tag">ArgoCD</span><span class="svc-tag">Open Source</span></div>
+      </div>
+      <div class="svc-card fade-up d1" style="border-color:rgba(0,212,255,0.25)">
+        <div class="svc-icon" style="background:rgba(0,212,255,0.08);color:#00d4ff">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+        </div>
+        <div class="svc-name" style="color:#00d4ff">IT &amp; DevOps Training</div>
+        <p class="svc-desc">Live online courses in Linux (RHCSA path), Cloud (AWS), and DevOps — taught by a practicing engineer with 10+ years experience. Real labs, real GitHub projects.</p>
+        <div class="svc-tags"><span class="svc-tag">Linux</span><span class="svc-tag">AWS</span><span class="svc-tag">DevOps</span><span class="svc-tag">Live Batches</span></div>
+        <a href="courses.html" style="display:inline-flex;align-items:center;gap:6px;margin-top:14px;font-size:0.78rem;font-weight:600;color:#00d4ff;text-decoration:none;">View Courses →</a>
       </div>
     </div>
   </div>
@@ -433,7 +458,7 @@
     <p class="eyebrow fade-up">Knowledge Hub</p>
     <h2 class="fade-up d1">Learn from the field.</h2>
     <p class="section-sub fade-up d2">Practical articles and DevOps notes written from real production experience — not textbooks.</p>
-    <div class="hub-grid fade-up d2">
+    <div class="hub-grid fade-up d2" style="grid-template-columns:repeat(auto-fit,minmax(280px,1fr))">
       <div class="hub-panel">
         <h3>Latest Blog Articles</h3>
         <p class="hp-sub">In-depth tutorials and guides for DevOps engineers.</p>
@@ -448,7 +473,7 @@
       </div>
       <div class="hub-panel">
         <h3>DevOps Quick Notes</h3>
-        <p class="hp-sub">30 practical concept cards — shareable, searchable, filterable.</p>
+        <p class="hp-sub">40 practical concept cards — shareable, searchable, filterable.</p>
         <div class="hub-list">
           <a class="hub-item" href="devops-notes.html"><span class="hub-cat" style="background:#ecfeff;color:#0891b2">Docker</span><span class="hub-title">What is Docker? Complete Beginner's Guide</span></a>
           <a class="hub-item" href="devops-notes.html"><span class="hub-cat" style="background:#f5f3ff;color:#7c3aed">Terraform</span><span class="hub-title">Infrastructure as Code — Why Version-Control Your Servers</span></a>
@@ -457,6 +482,18 @@
           <a class="hub-item" href="devops-notes.html"><span class="hub-cat" style="background:#f0fdf4;color:#16a34a">Linux</span><span class="hub-title">Why Linux Matters — The Non-Negotiable DevOps Skill</span></a>
         </div>
         <a href="devops-notes.html" class="btn-ghost">All Notes <span class="arr">→</span></a>
+      </div>
+      <div class="hub-panel" style="border-color:rgba(0,212,255,0.2);background:rgba(0,212,255,0.03)">
+        <h3 style="color:#00d4ff">Courses &amp; Lecture Notes</h3>
+        <p class="hp-sub">Live online courses with free written notes for every module.</p>
+        <div class="hub-list">
+          <a class="hub-item" href="courses.html#linux"><span class="hub-cat" style="background:#fff7ed;color:#c2410c">Linux</span><span class="hub-title">Linux Fundamentals — RHCSA Path (16 modules)</span></a>
+          <a class="hub-item" href="courses.html#cloud"><span class="hub-cat" style="background:#eff6ff;color:#1d4ed8">Cloud</span><span class="hub-title">Cloud Fundamentals — AWS Deep Dive (14 modules)</span></a>
+          <a class="hub-item" href="courses.html#devops"><span class="hub-cat" style="background:#f5f3ff;color:#7c3aed">DevOps</span><span class="hub-title">DevOps Bootcamp — Zero to Production (17 modules)</span></a>
+          <a class="hub-item" href="linux-notes.html"><span class="hub-cat" style="background:#f0fdf4;color:#16a34a">Free</span><span class="hub-title">Linux Lecture Notes — All 16 modules, free to read</span></a>
+          <a class="hub-item" href="interview-guide.html"><span class="hub-cat" style="background:#fffbeb;color:#d97706">Prep</span><span class="hub-title">DevOps Interview Guide — 69 Q&amp;As across 5 categories</span></a>
+        </div>
+        <a href="courses.html" class="btn-ghost" style="border-color:rgba(0,212,255,0.3);color:#00d4ff">All Courses <span class="arr">→</span></a>
       </div>
     </div>
   </div>

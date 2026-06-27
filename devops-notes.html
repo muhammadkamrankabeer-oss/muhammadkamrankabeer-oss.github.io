@@ -190,9 +190,23 @@
   <div class="container nav-inner">
     <a href="index.html" class="nav-logo"><img src="assets/logos/dv-logo.png" alt="Devriston"/><span class="nav-brand">Devri<span>ston</span></span></a>
     <div class="nav-links">
-      <a href="index.html">Home</a><a href="solutions.html">Solutions</a>
-      <a href="case-studies.html">Case Studies</a><a href="blog.html">Blog</a>
-      <a href="devops-notes.html" class="active">Notes</a><a href="interview-guide.html">Interview Guide</a>
+      <a href="index.html">Home</a>
+      <a href="solutions.html">Solutions</a>
+      <a href="case-studies.html">Case Studies</a>
+      <div class="nav-dropdown">
+        <button class="nav-dropdown-toggle active-section" onclick="toggleLearnMenu(event)" aria-haspopup="true" aria-expanded="false">
+          Learn
+          <svg viewBox="0 0 12 12"><polyline points="2,4 6,8 10,4"/></svg>
+        </button>
+        <div class="nav-dropdown-menu" id="learn-menu">
+          <a href="blog.html"><span class="dd-icon">📝</span>Blog Articles</a>
+          <a href="devops-notes.html" class="active"><span class="dd-icon">📋</span>DevOps Notes</a>
+          <a href="courses.html"><span class="dd-icon">🎓</span>Courses</a>
+          <a href="linux-notes.html"><span class="dd-icon">🐧</span>Linux Notes</a>
+          <div class="dd-divider"></div>
+          <a href="interview-guide.html"><span class="dd-icon">💼</span>Interview Guide</a>
+        </div>
+      </div>
       <a href="about.html">About</a>
       <a href="contact.html" class="nav-cta">Book Consultation</a>
     </div>
@@ -200,8 +214,17 @@
   </div>
 </nav>
 <div class="drawer" id="nav-drawer">
-  <a href="index.html">Home</a><a href="solutions.html">Solutions</a><a href="case-studies.html">Case Studies</a>
-  <a href="blog.html">Blog</a><a href="devops-notes.html">DevOps Notes</a><a href="c-programming.html">C Programming</a><a href="interview-guide.html">Interview Guide</a><a href="about.html">About</a><a href="contact.html">Contact</a>
+  <a href="index.html">Home</a>
+  <a href="solutions.html">Solutions</a>
+  <a href="case-studies.html">Case Studies</a>
+  <span class="drawer-section-label">Learn</span>
+  <a href="blog.html">Blog Articles</a>
+  <a href="devops-notes.html" class="active">DevOps Notes</a>
+  <a href="courses.html">Courses</a>
+  <a href="linux-notes.html">Linux Notes</a>
+  <a href="interview-guide.html">Interview Guide</a>
+  <a href="about.html">About</a>
+  <a href="contact.html">Contact</a>
 </div>
 
 <section class="pg-hero">

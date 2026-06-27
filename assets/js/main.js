@@ -189,4 +189,22 @@ window.toggleExpand=function(btn){
   if(panel)panel.classList.toggle('open',!expanded);
 };
 
+/* ── Learn dropdown ── */
+window.toggleLearnMenu=function(e){
+  e.stopPropagation();
+  var menu=document.getElementById('learn-menu');
+  var btn=e.currentTarget;
+  if(!menu)return;
+  var isOpen=menu.classList.contains('open');
+  menu.classList.toggle('open',!isOpen);
+  btn.classList.toggle('open',!isOpen);
+  btn.setAttribute('aria-expanded',String(!isOpen));
+};
+document.addEventListener('click',function(){
+  var menu=document.getElementById('learn-menu');
+  var btn=document.querySelector('.nav-dropdown-toggle');
+  if(menu)menu.classList.remove('open');
+  if(btn){btn.classList.remove('open');btn.setAttribute('aria-expanded','false');}
+});
+
 })();

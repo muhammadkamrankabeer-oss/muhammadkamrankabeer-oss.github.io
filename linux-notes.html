@@ -1,0 +1,1533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Linux Lecture Notes | Devriston — Free Study Material</title>
+  <meta name="description" content="Free Linux lecture notes covering all 16 modules — concepts, commands, Linux vs Windows comparisons, nano & vim, users, permissions, networking, DHCP, DNS, Samba, and more." />
+  <meta name="keywords" content="linux notes free, linux lecture notes, linux vs windows comparison, linux commands beginner, RHCSA notes, linux user management, nano vim tutorial, linux for beginners Pakistan" />
+  <meta name="author" content="Muhammad Kamran Kabeer" />
+  <meta name="robots" content="index,follow" />
+  <link rel="canonical" href="https://www.devriston.com.pk/linux-notes.html" />
+  <meta property="og:title" content="Free Linux Lecture Notes | Devriston" />
+  <meta property="og:description" content="16 modules of Linux lecture notes — free to read. Concepts, commands, and Linux vs Windows comparisons for every topic." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.devriston.com.pk/linux-notes.html" />
+  <meta property="og:site_name" content="Devriston" />
+
+  <style>
+    :root {
+      --navy:     #040d1c;
+      --navy-2:   #071428;
+      --navy-3:   #0a1d3a;
+      --blue:     #1a6aff;
+      --cyan:     #00d4ff;
+      --white:    #ffffff;
+      --gray-100: #f0f4ff;
+      --gray-400: #8899bb;
+      --gray-500: #5a6a88;
+      --border:   rgba(26,106,255,0.18);
+      --border-2: rgba(0,212,255,0.12);
+      --green:    #22c55e;
+      --orange:   #f97316;
+      --purple:   #a855f7;
+      --font-main: 'Inter', system-ui, -apple-system, sans-serif;
+      --font-mono: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
+      --radius: 10px;
+      --transition: 0.2s ease;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body { background: var(--navy); color: var(--white); font-family: var(--font-main); line-height: 1.7; -webkit-font-smoothing: antialiased; }
+    ::-webkit-scrollbar { width: 6px; } ::-webkit-scrollbar-track { background: var(--navy); } ::-webkit-scrollbar-thumb { background: var(--blue); border-radius: 3px; }
+
+    /* NAV */
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(4,13,28,0.95); backdrop-filter: blur(14px); border-bottom: 1px solid var(--border); padding: 0 5%; display: flex; align-items: center; justify-content: space-between; height: 60px; }
+    .nav-brand { display: flex; align-items: center; gap: 8px; text-decoration: none; color: var(--white); font-weight: 700; font-size: 1rem; }
+    .nav-brand img { height: 28px; }
+    .nav-links { display: flex; gap: 20px; list-style: none; }
+    .nav-links a { color: var(--gray-400); text-decoration: none; font-size: 0.82rem; font-weight: 500; transition: color var(--transition); }
+    .nav-links a:hover { color: var(--white); }
+    .nav-links a.active { color: var(--cyan); }
+    .nav-cta { background: var(--blue) !important; color: #fff !important; padding: 6px 14px; border-radius: 5px; font-size: 0.78rem !important; }
+    .nav-mobile-toggle { display: none; background: none; border: none; color: var(--white); font-size: 1.3rem; cursor: pointer; }
+    .nav-mobile { display: none; position: fixed; top: 60px; left: 0; right: 0; background: var(--navy-2); border-bottom: 1px solid var(--border); padding: 16px 5%; z-index: 99; flex-direction: column; gap: 0; }
+    .nav-mobile.open { display: flex; }
+    .nav-mobile a { color: var(--gray-400); text-decoration: none; font-size: 0.88rem; padding: 10px 0; border-bottom: 1px solid var(--border); display: block; }
+    .nav-mobile a:hover { color: var(--white); }
+    @media(max-width:768px) { .nav-links { display:none; } .nav-mobile-toggle { display:block; } }
+
+    /* LAYOUT */
+    .page-wrap { display: grid; grid-template-columns: 260px 1fr; min-height: 100vh; margin-top: 60px; }
+    @media(max-width:900px) { .page-wrap { grid-template-columns: 1fr; } .sidebar { display: none; } }
+
+    /* SIDEBAR */
+    .sidebar { position: sticky; top: 60px; height: calc(100vh - 60px); overflow-y: auto; background: var(--navy-2); border-right: 1px solid var(--border); padding: 24px 0; }
+    .sidebar::-webkit-scrollbar { width: 4px; }
+    .sidebar::-webkit-scrollbar-thumb { background: var(--border); }
+    .sidebar-title { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gray-500); padding: 0 20px; margin-bottom: 12px; }
+    .sidebar a { display: flex; align-items: center; gap: 10px; padding: 8px 20px; color: var(--gray-400); text-decoration: none; font-size: 0.8rem; transition: background var(--transition), color var(--transition); border-left: 2px solid transparent; }
+    .sidebar a:hover { background: rgba(255,255,255,0.03); color: var(--white); }
+    .sidebar a.active { background: rgba(26,106,255,0.08); color: var(--cyan); border-left-color: var(--cyan); }
+    .sidebar-num { font-family: var(--font-mono); font-size: 0.65rem; color: var(--gray-500); flex-shrink: 0; width: 22px; }
+
+    /* MAIN CONTENT */
+    main { padding: 40px 48px 80px; max-width: 860px; }
+    @media(max-width:600px) { main { padding: 24px 20px 60px; } }
+
+    /* BREADCRUMB */
+    .breadcrumb { font-size: 0.75rem; color: var(--gray-500); margin-bottom: 28px; }
+    .breadcrumb a { color: var(--gray-400); text-decoration: none; }
+    .breadcrumb a:hover { color: var(--cyan); }
+    .breadcrumb span { margin: 0 6px; }
+
+    /* PAGE HERO */
+    .page-hero { margin-bottom: 48px; }
+    .page-badge { display: inline-flex; align-items: center; gap: 7px; background: rgba(0,212,255,0.08); border: 1px solid rgba(0,212,255,0.2); color: var(--cyan); border-radius: 16px; padding: 4px 12px; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 16px; }
+    .page-hero h1 { font-size: clamp(1.7rem, 3.5vw, 2.4rem); font-weight: 800; line-height: 1.15; margin-bottom: 12px; }
+    .page-hero h1 em { font-style: normal; background: linear-gradient(135deg, var(--blue), var(--cyan)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .page-hero p { color: var(--gray-400); font-size: 0.95rem; max-width: 560px; line-height: 1.7; margin-bottom: 20px; }
+    .hero-pills { display: flex; flex-wrap: wrap; gap: 8px; }
+    .pill { padding: 4px 10px; border-radius: 4px; font-size: 0.72rem; font-weight: 600; border: 1px solid; }
+    .pill-free { background: rgba(34,197,94,0.1); color: var(--green); border-color: rgba(34,197,94,0.3); }
+    .pill-modules { background: rgba(26,106,255,0.1); color: #7db3ff; border-color: rgba(26,106,255,0.3); }
+    .pill-compare { background: rgba(249,115,22,0.1); color: var(--orange); border-color: rgba(249,115,22,0.3); }
+
+    /* MODULE SECTION */
+    .module-section { margin-bottom: 64px; scroll-margin-top: 80px; }
+    .module-header { display: flex; align-items: flex-start; gap: 14px; margin-bottom: 24px; padding-bottom: 16px; border-bottom: 1px solid var(--border); }
+    .module-num-badge { background: rgba(26,106,255,0.12); border: 1px solid var(--border); border-radius: 6px; padding: 4px 10px; font-family: var(--font-mono); font-size: 0.68rem; color: var(--cyan); font-weight: 700; white-space: nowrap; flex-shrink: 0; margin-top: 4px; }
+    .module-header-text h2 { font-size: 1.25rem; font-weight: 800; margin-bottom: 4px; }
+    .module-header-text p { font-size: 0.82rem; color: var(--gray-400); }
+
+    /* CONTENT BLOCKS */
+    .concept-block { background: rgba(255,255,255,0.025); border: 1px solid var(--border-2); border-radius: var(--radius); padding: 20px 22px; margin-bottom: 18px; }
+    .concept-block h3 { font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--cyan); margin-bottom: 10px; }
+    .concept-block p { font-size: 0.88rem; color: #c5d0e8; line-height: 1.75; }
+    .concept-block p + p { margin-top: 10px; }
+
+    /* COMPARE TABLE */
+    .compare-wrap { margin-bottom: 18px; overflow-x: auto; }
+    .compare-label { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--orange); margin-bottom: 10px; display: flex; align-items: center; gap: 7px; }
+    .compare-label::before { content: '⚡'; }
+    table.compare { width: 100%; border-collapse: collapse; font-size: 0.82rem; }
+    table.compare thead tr { background: rgba(255,255,255,0.04); }
+    table.compare th { padding: 10px 14px; text-align: left; font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--gray-400); border-bottom: 1px solid var(--border); }
+    table.compare th:nth-child(2) { color: #7db3ff; }
+    table.compare th:nth-child(3) { color: var(--orange); }
+    table.compare td { padding: 10px 14px; border-bottom: 1px solid rgba(255,255,255,0.04); color: #c5d0e8; vertical-align: top; line-height: 1.5; }
+    table.compare tr:last-child td { border-bottom: none; }
+    table.compare tr:hover td { background: rgba(255,255,255,0.02); }
+    table.compare td:first-child { font-weight: 600; color: var(--white); font-size: 0.8rem; }
+
+    /* CODE BLOCKS */
+    .code-wrap { margin-bottom: 18px; }
+    .code-label { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--green); margin-bottom: 8px; display: flex; align-items: center; gap: 6px; }
+    .code-label::before { content: '▶'; font-size: 0.6rem; }
+    pre { background: #020912; border: 1px solid rgba(26,106,255,0.2); border-radius: var(--radius); padding: 18px 20px; overflow-x: auto; font-family: var(--font-mono); font-size: 0.78rem; line-height: 1.7; color: #c5d0e8; }
+    pre .c  { color: var(--gray-500); font-style: italic; } /* comment */
+    pre .k  { color: var(--cyan); }   /* keyword/command */
+    pre .s  { color: var(--green); }  /* string/value */
+    pre .n  { color: var(--orange); } /* note */
+    pre .h  { color: #c084fc; }       /* highlight */
+
+    /* KEY TERMS */
+    .terms-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px,1fr)); gap: 10px; margin-bottom: 18px; }
+    .term-card { background: rgba(255,255,255,0.025); border: 1px solid var(--border-2); border-radius: 8px; padding: 14px 16px; }
+    .term-card dt { font-family: var(--font-mono); font-size: 0.78rem; color: var(--cyan); font-weight: 700; margin-bottom: 4px; }
+    .term-card dd { font-size: 0.78rem; color: var(--gray-400); line-height: 1.5; }
+
+    /* CALLOUT */
+    .callout { border-radius: 8px; padding: 14px 18px; margin-bottom: 18px; font-size: 0.84rem; line-height: 1.65; display: flex; gap: 12px; align-items: flex-start; }
+    .callout-tip  { background: rgba(34,197,94,0.07);  border: 1px solid rgba(34,197,94,0.2);  }
+    .callout-warn { background: rgba(249,115,22,0.07); border: 1px solid rgba(249,115,22,0.2); }
+    .callout-info { background: rgba(26,106,255,0.07); border: 1px solid rgba(26,106,255,0.2); }
+    .callout-icon { font-size: 1rem; flex-shrink: 0; line-height: 1.5; }
+    .callout p { color: #c5d0e8; }
+    .callout strong { color: var(--white); }
+
+    /* DIVIDER */
+    .module-divider { border: none; border-top: 1px solid var(--border); margin: 56px 0; }
+
+    /* BACK TO TOP */
+    #back-top { position: fixed; bottom: 24px; right: 24px; background: var(--blue); color: #fff; width: 38px; height: 38px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 16px; text-decoration: none; opacity: 0; pointer-events: none; transition: opacity var(--transition); z-index: 999; box-shadow: 0 0 14px rgba(26,106,255,0.4); }
+    #back-top.visible { opacity: 1; pointer-events: auto; }
+
+    /* FOOTER */
+    footer { background: var(--navy-2); border-top: 1px solid var(--border); padding: 36px 5% 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+    footer p { font-size: 0.78rem; color: var(--gray-500); }
+    .footer-links { display: flex; gap: 20px; flex-wrap: wrap; }
+    .footer-links a { color: var(--gray-500); text-decoration: none; font-size: 0.78rem; transition: color var(--transition); }
+    .footer-links a:hover { color: var(--white); }
+
+    /* ENROLL STICKY CTA */
+    .enroll-sticky { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%); background: var(--blue); color: #fff; padding: 11px 28px; border-radius: 30px; font-size: 0.85rem; font-weight: 700; text-decoration: none; box-shadow: 0 4px 24px rgba(26,106,255,0.5); z-index: 998; white-space: nowrap; transition: background var(--transition), transform var(--transition); }
+    .enroll-sticky:hover { background: #1557d6; transform: translateX(-50%) translateY(-2px); }
+    @media(max-width:480px) { .enroll-sticky { font-size: 0.78rem; padding: 10px 20px; } }
+  </style>
+</head>
+<body>
+
+<a href="#" id="back-top">↑</a>
+<a href="https://wa.me/923231450045?text=Hi%20Kamran%2C%20I%20want%20to%20enroll%20in%20the%20Linux%20course." class="enroll-sticky">🐧 Enroll in Linux Course →</a>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-brand" href="https://devriston.com.pk/index.html">
+    <img src="https://devriston.com.pk/assets/logos/dv-logo.png" alt="Devriston" />
+    Devriston
+  </a>
+  <ul class="nav-links">
+    <li><a href="https://devriston.com.pk/index.html">Home</a></li>
+    <li><a href="https://devriston.com.pk/courses.html">Courses</a></li>
+    <li><a href="https://devriston.com.pk/blog.html">Blog</a></li>
+    <li><a href="https://devriston.com.pk/devops-notes.html">DevOps Notes</a></li>
+    <li><a href="https://devriston.com.pk/interview-guide.html">Interview Guide</a></li>
+    <li><a href="https://devriston.com.pk/contact.html" class="nav-cta">Enroll Now</a></li>
+  </ul>
+  <button class="nav-mobile-toggle" onclick="document.querySelector('.nav-mobile').classList.toggle('open')">☰</button>
+</nav>
+<div class="nav-mobile">
+  <a href="https://devriston.com.pk/index.html">Home</a>
+  <a href="https://devriston.com.pk/courses.html">Courses</a>
+  <a href="https://devriston.com.pk/blog.html">Blog</a>
+  <a href="https://devriston.com.pk/devops-notes.html">DevOps Notes</a>
+  <a href="https://devriston.com.pk/interview-guide.html">Interview Guide</a>
+  <a href="https://devriston.com.pk/contact.html">Enroll Now</a>
+</div>
+
+<div class="page-wrap">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sidebar-title">Linux Course — All Modules</div>
+    <a href="#m01" class="sidebar-link"><span class="sidebar-num">01</span>What is Linux?</a>
+    <a href="#m02" class="sidebar-link"><span class="sidebar-num">02</span>Installation</a>
+    <a href="#m03" class="sidebar-link"><span class="sidebar-num">03</span>Terminal Commands</a>
+    <a href="#m04" class="sidebar-link"><span class="sidebar-num">04</span>Nano &amp; Vim</a>
+    <a href="#m05" class="sidebar-link"><span class="sidebar-num">05</span>Users &amp; Permissions</a>
+    <a href="#m06" class="sidebar-link"><span class="sidebar-num">06</span>Package Management</a>
+    <a href="#m07" class="sidebar-link"><span class="sidebar-num">07</span>Storage &amp; LVM</a>
+    <a href="#m08" class="sidebar-link"><span class="sidebar-num">08</span>Processes &amp; Services</a>
+    <a href="#m09" class="sidebar-link"><span class="sidebar-num">09</span>Networking Basics</a>
+    <a href="#m10" class="sidebar-link"><span class="sidebar-num">10</span>SELinux</a>
+    <a href="#m11" class="sidebar-link"><span class="sidebar-num">11</span>Web Server</a>
+    <a href="#m12" class="sidebar-link"><span class="sidebar-num">12</span>DHCP Server</a>
+    <a href="#m13" class="sidebar-link"><span class="sidebar-num">13</span>DNS Server</a>
+    <a href="#m14" class="sidebar-link"><span class="sidebar-num">14</span>File Sharing</a>
+    <a href="#m15" class="sidebar-link"><span class="sidebar-num">15</span>Security Hardening</a>
+    <a href="#m16" class="sidebar-link"><span class="sidebar-num">16</span>Shell Scripting</a>
+  </aside>
+
+  <!-- MAIN -->
+  <main>
+    <div class="breadcrumb">
+      <a href="https://devriston.com.pk/index.html">Home</a><span>›</span>
+      <a href="https://devriston.com.pk/courses.html">Courses</a><span>›</span>
+      Linux Lecture Notes
+    </div>
+
+    <div class="page-hero">
+      <div class="page-badge">🐧 Free Lecture Notes</div>
+      <h1>Linux Fundamentals<br/><em>— Complete Notes</em></h1>
+      <p>All 16 modules. Every concept explained simply. Linux vs Windows comparisons so you understand the <em>why</em>, not just the commands. Free to read — no account needed.</p>
+      <div class="hero-pills">
+        <span class="pill pill-free">✓ 100% Free</span>
+        <span class="pill pill-modules">16 Modules</span>
+        <span class="pill pill-compare">Linux vs Windows</span>
+      </div>
+    </div>
+
+    <!-- ═══════ MODULE 01 ═══════ -->
+    <section class="module-section" id="m01">
+      <div class="module-header">
+        <span class="module-num-badge">MODULE 01</span>
+        <div class="module-header-text">
+          <h2>What is Linux?</h2>
+          <p>History, distros, Linux vs Windows — the full picture before touching a terminal.</p>
+        </div>
+      </div>
+
+      <div class="concept-block">
+        <h3>What is Linux?</h3>
+        <p>Linux is an operating system — just like Windows. An operating system is the software that runs your computer. It manages the hardware (CPU, RAM, disk) and lets you run programs on top of it.</p>
+        <p>Linux was created in 1991 by Linus Torvalds — a student who wanted a free version of Unix. He put the code online for anyone to use and improve. Today, Linux runs 90%+ of all web servers, every Android phone, most cloud platforms, and all supercomputers in the world.</p>
+      </div>
+
+      <div class="compare-wrap">
+        <div class="compare-label">Linux vs Windows — Key Differences</div>
+        <table class="compare">
+          <thead><tr><th>Topic</th><th>Linux</th><th>Windows</th></tr></thead>
+          <tbody>
+            <tr><td>Cost</td><td>Free and open source</td><td>Paid license (~$200 for Pro)</td></tr>
+            <tr><td>Interface</td><td>Terminal first (GUI optional)</td><td>GUI first (terminal optional)</td></tr>
+            <tr><td>Used for</td><td>Servers, cloud, DevOps, development</td><td>Desktop, gaming, office, enterprise apps</td></tr>
+            <tr><td>Security</td><td>Fewer viruses, better permission model</td><td>More targeted by malware</td></tr>
+            <tr><td>Updates</td><td>You choose when and what to update</td><td>Windows decides and restarts your PC</td></tr>
+            <tr><td>Customisation</td><td>Full control over everything</td><td>Limited to what Microsoft allows</td></tr>
+            <tr><td>Package install</td><td>One command (<code>dnf install nginx</code>)</td><td>Download .exe, run installer, click Next</td></tr>
+            <tr><td>Servers worldwide</td><td>~96% of all web servers</td><td>~4% of web servers</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="concept-block">
+        <h3>What is a Distro?</h3>
+        <p>Linux is a kernel — the core engine. A distro (distribution) is a complete OS built on top of that kernel. Different distros package it differently — different tools, package managers, and purposes.</p>
+      </div>
+
+      <dl class="terms-grid">
+        <div class="term-card"><dt>RHEL</dt><dd>Red Hat Enterprise Linux. Used in enterprise companies. What RHCSA is based on. Paid support.</dd></div>
+        <div class="term-card"><dt>CentOS / AlmaLinux</dt><dd>Free alternatives to RHEL. Same commands and behaviour. Good for learning RHCSA.</dd></div>
+        <div class="term-card"><dt>Ubuntu</dt><dd>Most beginner-friendly. Great for development and cloud. Uses <code>apt</code> for packages.</dd></div>
+        <div class="term-card"><dt>Fedora</dt><dd>Cutting-edge features. Community version of RHEL. Uses <code>dnf</code>.</dd></div>
+        <div class="term-card"><dt>Kernel</dt><dd>The core of Linux. Talks to hardware. Everything else runs on top of it.</dd></div>
+        <div class="term-card"><dt>Shell</dt><dd>The program that reads your commands and runs them. Bash is the most common shell.</dd></div>
+      </dl>
+
+      <div class="callout callout-tip">
+        <span class="callout-icon">💡</span>
+        <p><strong>Course uses:</strong> AlmaLinux / RHEL 9 inside VirtualBox. All commands work identically on any RHEL-family distro.</p>
+      </div>
+    </section>
+    <hr class="module-divider"/>
+
+    <!-- ═══════ MODULE 02 ═══════ -->
+    <section class="module-section" id="m02">
+      <div class="module-header">
+        <span class="module-num-badge">MODULE 02</span>
+        <div class="module-header-text">
+          <h2>Installation &amp; First Boot</h2>
+          <p>Install Linux in a VM. Understand partitions and the boot process.</p>
+        </div>
+      </div>
+
+      <div class="concept-block">
+        <h3>What is a Virtual Machine?</h3>
+        <p>A virtual machine (VM) is a computer inside your computer. Software called a hypervisor pretends to be hardware — your Linux install thinks it has its own CPU, RAM, and disk. Your actual Windows or Mac machine keeps running normally alongside it.</p>
+        <p>We use <strong>VirtualBox</strong> (free) as the hypervisor. You install it on your Windows laptop, then install Linux inside a VirtualBox VM.</p>
+      </div>
+
+      <div class="compare-wrap">
+        <div class="compare-label">Installation — Linux vs Windows</div>
+        <table class="compare">
+          <thead><tr><th>Step</th><th>Linux (RHEL/AlmaLinux)</th><th>Windows</th></tr></thead>
+          <tbody>
+            <tr><td>Boot media</td><td>ISO file → boot from VirtualBox or USB</td><td>ISO or USB, same concept</td></tr>
+            <tr><td>Partitioning</td><td>You choose manually — /, /boot, swap</td><td>Usually automatic, you pick the disk</td></tr>
+            <tr><td>Software selection</td><td>Minimal install or Server with GUI</td><td>Always installs the full GUI</td></tr>
+            <tr><td>Root password</td><td>You set it during install</td><td>No root — Administrator account instead</td></tr>
+            <tr><td>Time to complete</td><td>~10–15 minutes</td><td>~20–30 minutes</td></tr>
+            <tr><td>Disk space needed</td><td>~10 GB minimum</td><td>~20 GB minimum</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="concept-block">
+        <h3>Partitions — What They Are</h3>
+        <p>A partition is a section of your disk. Linux separates the OS into multiple partitions for better control and safety. If one partition fills up, the others keep working.</p>
+      </div>
+
+      <dl class="terms-grid">
+        <div class="term-card"><dt>/</dt><dd>Root partition. Everything in Linux lives under /. Like C:\ in Windows.</dd></div>
+        <div class="term-card"><dt>/boot</dt><dd>Holds the bootloader and kernel files needed to start Linux.</dd></div>
+        <div class="term-card"><dt>swap</dt><dd>Extra space on disk used as backup RAM. Like Windows page file.</dd></div>
+        <div class="term-card"><dt>GRUB</dt><dd>The bootloader. First thing that runs when you turn on the PC. Loads the Linux kernel.</dd></div>
+        <div class="term-card"><dt>Kernel</dt><dd>The core Linux program. GRUB loads it into RAM. Then it starts everything else.</dd></div>
+        <div class="term-card"><dt>systemd</dt><dd>The first process that runs after the kernel. It starts all services and brings you to login.</dd></div>
+      </dl>
+
+      <div class="callout callout-warn">
+        <span class="callout-icon">⚠️</span>
+        <p><strong>RAM for VMs:</strong> Assign at least 2 GB RAM to your Linux VM. 4 GB if your machine has 16 GB or more. Less RAM = slow, laggy experience.</p>
+      </div>
+    </section>
+    <hr class="module-divider"/>
+
+    <!-- ═══════ MODULE 03 ═══════ -->
+    <section class="module-section" id="m03">
+      <div class="module-header">
+        <span class="module-num-badge">MODULE 03</span>
+        <div class="module-header-text">
+          <h2>The Terminal — Basic Commands</h2>
+          <p>Navigate files, read logs, manage directories — all from the command line.</p>
+        </div>
+      </div>
+
+      <div class="concept-block">
+        <h3>Why the Terminal?</h3>
+        <p>On Windows you click through File Explorer to move files, right-click to rename, open folders in multiple windows. On Linux you type commands — and it's faster, scriptable, and works the same on any server anywhere in the world. Servers almost never have a GUI — you SSH in and use the terminal.</p>
+      </div>
+
+      <div class="compare-wrap">
+        <div class="compare-label">Common Tasks — Linux vs Windows</div>
+        <table class="compare">
+          <thead><tr><th>Task</th><th>Linux Command</th><th>Windows Equivalent</th></tr></thead>
+          <tbody>
+            <tr><td>List files</td><td><code>ls -la</code></td><td>File Explorer or <code>dir</code></td></tr>
+            <tr><td>Change directory</td><td><code>cd /etc</code></td><td><code>cd C:\Windows</code></td></tr>
+            <tr><td>Create folder</td><td><code>mkdir myfolder</code></td><td>Right-click → New Folder</td></tr>
+            <tr><td>Delete file</td><td><code>rm file.txt</code></td><td>Delete key or <code>del file.txt</code></td></tr>
+            <tr><td>Copy file</td><td><code>cp file.txt /tmp/</code></td><td>Ctrl+C, Ctrl+V</td></tr>
+            <tr><td>Move/rename</td><td><code>mv old.txt new.txt</code></td><td>Right-click → Rename</td></tr>
+            <tr><td>Read a file</td><td><code>cat file.txt</code></td><td>Open in Notepad</td></tr>
+            <tr><td>Search in file</td><td><code>grep "error" log.txt</code></td><td>Ctrl+F in Notepad</td></tr>
+            <tr><td>Check disk space</td><td><code>df -h</code></td><td>Right-click drive → Properties</td></tr>
+            <tr><td>Current directory</td><td><code>pwd</code></td><td>Look at address bar</td></tr>
+            <tr><td>Clear screen</td><td><code>clear</code></td><td><code>cls</code></td></tr>
+            <tr><td>Command help</td><td><code>man ls</code></td><td>Google it</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="code-wrap">
+        <div class="code-label">Essential Commands Practice</div>
+        <pre><span class="c"># Where am I right now?</span>
+pwd
+<span class="c"># Output: /home/kamran</span>
+
+<span class="c"># List files (l=detailed, a=show hidden, h=human readable sizes)</span>
+ls -lah
+
+<span class="c"># Go to /etc directory (main config folder in Linux)</span>
+cd /etc
+
+<span class="c"># Go back to home directory</span>
+cd ~
+
+<span class="c"># Create a directory</span>
+mkdir /tmp/mylab
+
+<span class="c"># Create an empty file</span>
+touch /tmp/mylab/test.txt
+
+<span class="c"># Write text into a file</span>
+echo "Hello Linux" > /tmp/mylab/test.txt
+
+<span class="c"># Read the file</span>
+cat /tmp/mylab/test.txt
+
+<span class="c"># Search for a word in a file</span>
+grep "Hello" /tmp/mylab/test.txt
+
+<span class="c"># Copy the file</span>
+cp /tmp/mylab/test.txt /tmp/backup.txt
+
+<span class="c"># Rename or move</span>
+mv /tmp/backup.txt /tmp/renamed.txt
+
+<span class="c"># Delete a file</span>
+rm /tmp/renamed.txt
+
+<span class="c"># Delete a folder and everything in it</span>
+rm -rf /tmp/mylab</pre>
+      </div>
+
+      <div class="callout callout-warn">
+        <span class="callout-icon">⚠️</span>
+        <p><strong><code>rm -rf</code> is permanent.</strong> There is no Recycle Bin in Linux. Deleted = gone instantly. Always double-check the path before you press Enter.</p>
+      </div>
+
+      <dl class="terms-grid">
+        <div class="term-card"><dt>Absolute path</dt><dd>Full path from root. Starts with /. Example: <code>/etc/nginx/nginx.conf</code></dd></div>
+        <div class="term-card"><dt>Relative path</dt><dd>Path from where you are now. Example: <code>../config/file.txt</code></dd></div>
+        <div class="term-card"><dt>~</dt><dd>Shortcut for your home directory. <code>cd ~</code> takes you home.</dd></div>
+        <div class="term-card"><dt>Tab completion</dt><dd>Press Tab to auto-complete commands and paths. Saves time, prevents typos.</dd></div>
+        <div class="term-card"><dt>Arrow keys</dt><dd>Up/down arrows scroll through previous commands. No need to retype.</dd></div>
+        <div class="term-card"><dt>Ctrl+C</dt><dd>Cancel a running command immediately.</dd></div>
+      </dl>
+    </section>
+    <hr class="module-divider"/>
+
+    <!-- ═══════ MODULE 04 ═══════ -->
+    <section class="module-section" id="m04">
+      <div class="module-header">
+        <span class="module-num-badge">MODULE 04</span>
+        <div class="module-header-text">
+          <h2>Text Editors — Nano &amp; Vim</h2>
+          <p>Edit config files from the terminal. Nano is simple. Vim is powerful. Learn both.</p>
+        </div>
+      </div>
+
+      <div class="concept-block">
+        <h3>Why Terminal Editors?</h3>
+        <p>On a Linux server there is no desktop, no File Explorer, no right-click. You SSH into the machine and the only way to edit a config file is through a terminal text editor. Nano is what beginners reach for first — it shows you the shortcuts at the bottom. Vim is what professionals use once they learn it — faster, more powerful, works on every system.</p>
+        <p><strong>Rule:</strong> Use nano when you're starting out. Learn vim when you're comfortable. Both are useful — you'll use whichever is available on the server you're on.</p>
+      </div>
+
+      <div class="compare-wrap">
+        <div class="compare-label">Nano vs Vim — Quick Comparison</div>
+        <table class="compare">
+          <thead><tr><th>Feature</th><th>Nano</th><th>Vim</th></tr></thead>
+          <tbody>
+            <tr><td>Learning curve</td><td>5 minutes</td><td>Days to weeks</td></tr>
+            <tr><td>Shortcuts shown</td><td>Yes — bottom of screen</td><td>No — must memorise</td></tr>
+            <tr><td>Modes</td><td>Just type, no modes</td><td>Normal, Insert, Visual, Command</td></tr>
+            <tr><td>Speed (once learned)</td><td>Average</td><td>Very fast</td></tr>
+            <tr><td>Pre-installed on</td><td>Most Ubuntu/Debian systems</td><td>Almost every Linux distro</td></tr>
+            <tr><td>Best for</td><td>Quick edits, beginners</td><td>Heavy editing, senior admins</td></tr>
+            <tr><td>Windows equivalent</td><td>Notepad</td><td>VS Code (once you know the shortcuts)</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="code-wrap">
+        <div class="code-label">Nano — Open, Edit, Save, Exit</div>
+        <pre><span class="c"># Open a file with nano</span>
+nano /etc/hostname
+
+<span class="c"># Now you're in nano. Just type — no mode switching needed.</span>
+<span class="c"># Edit the file normally.</span>
+
+<span class="c"># Save (Write Out):</span>
+<span class="n">Ctrl + O</span>  <span class="c">→ press Enter to confirm filename</span>
+
+<span class="c"># Exit nano:</span>
+<span class="n">Ctrl + X</span>
+
+<span class="c"># Save and exit in one go: Ctrl+X → Y → Enter</span>
+
+<span class="c"># Other useful nano shortcuts:</span>
+<span class="n">Ctrl + K</span>  <span class="c">→ cut (delete) a line</span>
+<span class="n">Ctrl + U</span>  <span class="c">→ paste the cut line</span>
+<span class="n">Ctrl + W</span>  <span class="c">→ search (find) text in file</span>
+<span class="n">Ctrl + G</span>  <span class="c">→ show help</span></pre>
+      </div>
+
+      <div class="code-wrap">
+        <div class="code-label">Vim — Open, Edit, Save, Exit</div>
+        <pre><span class="c"># Open a file with vim</span>
+vim /etc/hostname
+
+<span class="c"># Vim starts in NORMAL mode — keys are commands, not text input.</span>
+<span class="c"># To start typing, press:</span>
+<span class="n">i</span>  <span class="c">→ enters INSERT mode (now you can type)</span>
+
+<span class="c"># After typing, press Escape to go back to NORMAL mode</span>
+<span class="n">Esc</span>
+
+<span class="c"># To save and exit (from NORMAL mode):</span>
+<span class="n">:wq</span>  <span class="c">→ write (save) and quit</span>
+
+<span class="c"># To exit WITHOUT saving:</span>
+<span class="n">:q!</span>  <span class="c">→ force quit, discard changes</span>
+
+<span class="c"># Other useful vim commands (all from NORMAL mode):</span>
+<span class="n">dd</span>    <span class="c">→ delete (cut) current line</span>
+<span class="n">yy</span>    <span class="c">→ copy current line</span>
+<span class="n">p</span>     <span class="c">→ paste</span>
+<span class="n">:set number</span>  <span class="c">→ show line numbers</span>
+<span class="n">/word</span>  <span class="c">→ search for "word" in file</span>
+<span class="n">u</span>     <span class="c">→ undo last action</span>
+<span class="n">G</span>     <span class="c">→ jump to end of file</span>
+<span class="n">gg</span>    <span class="c">→ jump to start of file</span></pre>
+      </div>
+
+      <div class="callout callout-tip">
+        <span class="callout-icon">💡</span>
+        <p><strong>Stuck in vim?</strong> If you accidentally opened vim and can't exit — press <code>Esc</code> then type <code>:q!</code> and press Enter. That gets you out every time.</p>
+      </div>
+
+      <div class="callout callout-info">
+        <span class="callout-icon">ℹ️</span>
+        <p><strong>Which to use?</strong> Start every lab with nano. As you get comfortable, switch to vim. Within a few weeks you'll reach for vim naturally — it's faster once the shortcuts are in your fingers.</p>
+      </div>
+    </section>
+    <hr class="module-divider"/>
+
+    <!-- ═══════ MODULE 05 ═══════ -->
+    <section class="module-section" id="m05">
+      <div class="module-header">
+        <span class="module-num-badge">MODULE 05</span>
+        <div class="module-header-text">
+          <h2>Users &amp; Permissions</h2>
+          <p>Create users, assign groups, set who can read, write, or execute files.</p>
+        </div>
+      </div>
+
+      <div class="concept-block">
+        <h3>Why Users &amp; Permissions Matter</h3>
+        <p>Linux is a multi-user system. Multiple people can log into the same server simultaneously. Permissions control exactly who can read, write, or execute each file. This is the foundation of Linux security — no antivirus needed when access is controlled at the file level.</p>
+      </div>
+
+      <div class="compare-wrap">
+        <div class="compare-label">User Management — Linux vs Windows</div>
+        <table class="compare">
+          <thead><tr><th>Task</th><th>Linux Command</th><th>Windows</th></tr></thead>
+          <tbody>
+            <tr><td>Add a user</td><td><code>useradd ahmed</code></td><td>Settings → Accounts → Add user</td></tr>
+            <tr><td>Set password</td><td><code>passwd ahmed</code></td><td>Set during account creation or Settings</td></tr>
+            <tr><td>Delete user</td><td><code>userdel -r ahmed</code></td><td>Settings → Accounts → Remove</td></tr>
+            <tr><td>Create group</td><td><code>groupadd developers</code></td><td>Computer Management → Groups</td></tr>
+            <tr><td>Add user to group</td><td><code>usermod -aG developers ahmed</code></td><td>Group Properties → Add member</td></tr>
+            <tr><td>List users</td><td><code>cat /etc/passwd</code></td><td>Settings → Accounts</td></tr>
+            <tr><td>Switch user</td><td><code>su - ahmed</code></td><td>Log out and log in as other user</td></tr>
+            <tr><td>Admin access</td><td><code>sudo command</code></td><td>Right-click → Run as administrator</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="code-wrap">
+        <div class="code-label">User Management — Commands</div>
+        <pre><span class="c"># Create a new user</span>
+useradd ahmed
+
+<span class="c"># Set or change password</span>
+passwd ahmed
+
+<span class="c"># Create user with home directory and specific shell</span>
+useradd -m -s /bin/bash ahmed
+
+<span class="c"># Delete user and their home folder</span>
+userdel -r ahmed
+
+<span class="c"># Create a group</span>
+groupadd developers
+
+<span class="c"># Add user to a group (without removing existing groups)</span>
+usermod -aG developers ahmed
+
+<span class="c"># Check which groups a user belongs to</span>
+groups ahmed
+
+<span class="c"># Switch to another user</span>
+su - ahmed
+
+<span class="c"># Run a command as root without logging in as root</span>
+sudo dnf update</pre>
+      </div>
+
+      <div class="concept-block">
+        <h3>File Permissions — How They Work</h3>
+        <p>Every file in Linux has three sets of permissions: one for the <strong>owner</strong>, one for the <strong>group</strong>, and one for <strong>everyone else</strong>. Each set has three options: read (r), write (w), execute (x).</p>
+        <p>When you run <code>ls -la</code>, you see something like <code>-rwxr-xr--</code>. That breaks down as: owner can read/write/execute, group can read/execute, others can only read.</p>
+      </div>
+
+      <div class="code-wrap">
+        <div class="code-label">Permissions — chmod &amp; chown</div>
+        <pre><span class="c"># See permissions on files</span>
+ls -la /etc/nginx/nginx.conf
+<span class="c"># Output: -rw-r--r-- 1 root root 2048 Jan 1 nginx.conf</span>
+<span class="c">#          ↑↑↑↑↑↑↑↑↑  = permissions | owner | group</span>
+
+<span class="c"># chmod — change permissions</span>
+<span class="c"># Numeric method (most common):</span>
+<span class="c"># 4=read, 2=write, 1=execute. Add them up:</span>
+<span class="c"># 7 = rwx (4+2+1), 6 = rw- (4+2), 5 = r-x (4+1), 4 = r--</span>
+
+chmod 755 script.sh   <span class="c"># owner: rwx | group: r-x | others: r-x</span>
+chmod 644 config.txt  <span class="c"># owner: rw- | group: r-- | others: r--</span>
+chmod 600 id_rsa      <span class="c"># owner: rw- | group: --- | others: ---  ← SSH keys use this</span>
+
+<span class="c"># chown — change who owns a file</span>
+chown ahmed file.txt           <span class="c"># change owner to ahmed</span>
+chown ahmed:developers file.txt <span class="c"># change owner + group</span>
+chown -R ahmed /var/www/html   <span class="c"># change owner of folder + everything inside</span></pre>
+      </div>
+
+      <dl class="terms-grid">
+        <div class="term-card"><dt>root</dt><dd>The superuser. Like Administrator on Windows but with zero restrictions. Use carefully.</dd></div>
+        <div class="term-card"><dt>sudo</dt><dd>Run one command as root without being root. Safer than logging in as root.</dd></div>
+        <div class="term-card"><dt>/etc/passwd</dt><dd>List of all users on the system. Not passwords — those are in /etc/shadow (encrypted).</dd></div>
+        <div class="term-card"><dt>/etc/group</dt><dd>List of all groups and which users belong to each.</dd></div>
+        <div class="term-card"><dt>chmod</dt><dd>Change permissions on a file or folder.</dd></div>
+        <div class="term-card"><dt>chown</dt><dd>Change the owner and group of a file or folder.</dd></div>
+      </dl>
+    </section>
+    <hr class="module-divider"/>
+
+    <!-- ═══════ MODULE 06 ═══════ -->
+    <section class="module-section" id="m06">
+      <div class="module-header">
+        <span class="module-num-badge">MODULE 06</span>
+        <div class="module-header-text">
+          <h2>Package Management</h2>
+          <p>Install, update, and remove software with a single command.</p>
+        </div>
+      </div>
+
+      <div class="concept-block">
+        <h3>What is a Package Manager?</h3>
+        <p>On Windows you install software by downloading an .exe or .msi file from a website, running it, clicking through a wizard, accepting agreements, and hoping it doesn't install toolbars. On Linux, a package manager does all of this with one command — it downloads, installs, and manages dependencies automatically.</p>
+      </div>
+
+      <div class="compare-wrap">
+        <div class="compare-label">Package Management — Linux vs Windows</div>
+        <table class="compare">
+          <thead><tr><th>Task</th><th>Linux (RHEL/AlmaLinux)</th><th>Windows</th></tr></thead>
+          <tbody>
+            <tr><td>Install software</td><td><code>dnf install nginx</code></td><td>Download .exe → click through installer</td></tr>
+            <tr><td>Remove software</td><td><code>dnf remove nginx</code></td><td>Control Panel → Uninstall</td></tr>
+            <tr><td>Update all software</td><td><code>dnf update</code></td><td>Windows Update (often forces restart)</td></tr>
+            <tr><td>Search for software</td><td><code>dnf search nginx</code></td><td>Google it, visit website</td></tr>
+            <tr><td>See installed packages</td><td><code>dnf list installed</code></td><td>Control Panel → Programs</td></tr>
+            <tr><td>Dependencies</td><td>Installed automatically</td><td>Often manual or bundled in installer</td></tr>
+            <tr><td>Source of packages</td><td>Official repos (verified, safe)</td><td>Any website — no verification</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="code-wrap">
+        <div class="code-label">dnf — RHEL/AlmaLinux/Fedora Package Manager</div>
+        <pre><span class="c"># Install a package</span>
+dnf install nginx -y       <span class="c"># -y means yes to all prompts</span>
+dnf install httpd git vim -y  <span class="c"># install multiple at once</span>
+
+<span class="c"># Remove a package</span>
+dnf remove nginx -y
+
+<span class="c"># Update everything</span>
+dnf update -y
+
+<span class="c"># Update only one package</span>
+dnf update nginx -y
+
+<span class="c"># Search for a package</span>
+dnf search "web server"
+
+<span class="c"># Get info about a package</span>
+dnf info nginx
+
+<span class="c"># List all installed packages</span>
+dnf list installed
+
+<span class="c"># Clean cache</span>
+dnf clean all</pre>
+      </div>
+
+      <div class="code-wrap">
+        <div class="code-label">apt — Ubuntu/Debian Package Manager</div>
+        <pre><span class="c"># Same concept, different command</span>
+apt update               <span class="c"># refresh package list (do this first)</span>
+apt install nginx -y
+apt remove nginx -y
+apt upgrade -y           <span class="c"># update all installed packages</span>
+apt search nginx
+apt show nginx</pre>
+      </div>
+
+      <div class="callout callout-info">
+        <span class="callout-icon">ℹ️</span>
+        <p><strong>dnf vs yum:</strong> Older RHEL systems used <code>yum</code>. RHEL 8+ uses <code>dnf</code>. Commands are almost identical — <code>dnf</code> is faster and smarter. Both still work.</p>
+      </div>
+    </section>
+    <hr class="module-divider"/>
+
+    <!-- ═══════ MODULE 07 ═══════ -->
+    <section class="module-section" id="m07">
+      <div class="module-header">
+        <span class="module-num-badge">MODULE 07</span>
+        <div class="module-header-text">
+          <h2>Storage &amp; LVM</h2>
+          <p>Add disks, create partitions, mount them, resize live with LVM.</p>
+        </div>
+      </div>
+
+      <div class="concept-block">
+        <h3>What is LVM?</h3>
+        <p>LVM (Logical Volume Manager) is a layer between your physical disks and the filesystem. Instead of partitioning a disk directly, LVM lets you create flexible "logical volumes" that can be resized on the fly — even while the server is running and files are being accessed. It's how production servers manage storage without downtime.</p>
+      </div>
+
+      <div class="compare-wrap">
+        <div class="compare-label">Storage Management — Linux vs Windows</div>
+        <table class="compare">
+          <thead><tr><th>Task</th><th>Linux</th><th>Windows</th></tr></thead>
+          <tbody>
+            <tr><td>View disks</td><td><code>lsblk</code> or <code>fdisk -l</code></td><td>Disk Management GUI</td></tr>
+            <tr><td>Partition a disk</td><td><code>fdisk /dev/sdb</code></td><td>Right-click → New Simple Volume</td></tr>
+            <tr><td>Format a partition</td><td><code>mkfs.xfs /dev/sdb1</code></td><td>Format → NTFS</td></tr>
+            <tr><td>Mount a disk</td><td><code>mount /dev/sdb1 /data</code></td><td>Automatic when you plug in</td></tr>
+            <tr><td>Auto-mount on boot</td><td>Add entry to <code>/etc/fstab</code></td><td>Automatic</td></tr>
+            <tr><td>Resize partition live</td><td>Yes — with LVM, no downtime</td><td>Requires reboot in most cases</td></tr>
+            <tr><td>Check disk usage</td><td><code>df -h</code>, <code>du -sh /var</code></td><td>Right-click drive → Properties</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="code-wrap">
+        <div class="code-label">LVM — Create and Manage Logical Volumes</div>
+        <pre><span class="c"># Step 1: Create a Physical Volume from a disk</span>
+pvcreate /dev/sdb
+
+<span class="c"># Step 2: Create a Volume Group (a pool of storage)</span>
+vgcreate myvg /dev/sdb
+
+<span class="c"># Step 3: Create a Logical Volume (like a partition, but flexible)</span>
+lvcreate -L 10G -n mydata myvg
+
+<span class="c"># Step 4: Format it</span>
+mkfs.xfs /dev/myvg/mydata
+
+<span class="c"># Step 5: Create a mount point and mount it</span>
+mkdir /data
+mount /dev/myvg/mydata /data
+
+<span class="c"># Step 6: Auto-mount on boot — add to /etc/fstab</span>
+echo "/dev/myvg/mydata /data xfs defaults 0 0" >> /etc/fstab
+
+<span class="c"># --- Later: Extend the volume (add 5 more GB live) ---</span>
+lvextend -L +5G /dev/myvg/mydata
+xfs_growfs /data     <span class="c"># resize the filesystem to use new space</span>
+
+<span class="c"># Check disk usage</span>
+df -h
+lvdisplay</pre>
+      </div>
+    </section>
+    <hr class="module-divider"/>
+
+    <!-- ═══════ MODULE 08 ═══════ -->
+    <section class="module-section" id="m08">
+      <div class="module-header">
+        <span class="module-num-badge">MODULE 08</span>
+        <div class="module-header-text">
+          <h2>Processes &amp; Services</h2>
+          <p>See what's running, manage services, read logs.</p>
+        </div>
+      </div>
+
+      <div class="concept-block">
+        <h3>What is a Process?</h3>
+        <p>Every program running on your system is a process — it has a PID (Process ID), uses CPU and RAM, and is owned by a user. On Windows you see processes in Task Manager. On Linux you use <code>ps</code>, <code>top</code>, or <code>htop</code>.</p>
+        <p>A <strong>service</strong> is a process that runs in the background — like nginx serving web pages or sshd listening for SSH connections. Linux uses <strong>systemd</strong> to start, stop, and monitor services.</p>
+      </div>
+
+      <div class="compare-wrap">
+        <div class="compare-label">Process &amp; Service Management — Linux vs Windows</div>
+        <table class="compare">
+          <thead><tr><th>Task</th><th>Linux</th><th>Windows</th></tr></thead>
+          <tbody>
+            <tr><td>View running processes</td><td><code>ps aux</code> or <code>top</code></td><td>Task Manager (Ctrl+Shift+Esc)</td></tr>
+            <tr><td>Kill a process</td><td><code>kill 1234</code> or <code>kill -9 1234</code></td><td>End Task in Task Manager</td></tr>
+            <tr><td>Start a service</td><td><code>systemctl start nginx</code></td><td>Services → Start</td></tr>
+            <tr><td>Stop a service</td><td><code>systemctl stop nginx</code></td><td>Services → Stop</td></tr>
+            <tr><td>Enable on boot</td><td><code>systemctl enable nginx</code></td><td>Services → Startup type: Automatic</td></tr>
+            <tr><td>Service status</td><td><code>systemctl status nginx</code></td><td>Services → check Status column</td></tr>
+            <tr><td>View logs</td><td><code>journalctl -u nginx</code></td><td>Event Viewer</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="code-wrap">
+        <div class="code-label">systemctl — Managing Services</div>
+        <pre><span class="c"># Start, stop, restart a service</span>
+systemctl start nginx
+systemctl stop nginx
+systemctl restart nginx
+systemctl reload nginx    <span class="c"># reload config without full restart</span>
+
+<span class="c"># Enable/disable auto-start on boot</span>
+systemctl enable nginx    <span class="c"># start automatically when server boots</span>
+systemctl disable nginx
+
+<span class="c"># Check if service is running</span>
+systemctl status nginx
+
+<span class="c"># Start AND enable in one command</span>
+systemctl enable --now nginx
+
+<span class="c"># List all running services</span>
+systemctl list-units --type=service --state=running
+
+<span class="c"># View logs for a service (live)</span>
+journalctl -u nginx -f    <span class="c"># -f = follow (like tail -f)</span>
+
+<span class="c"># View last 50 lines of logs</span>
+journalctl -u nginx -n 50</pre>
+      </div>
+
+      <div class="code-wrap">
+        <div class="code-label">Process Management</div>
+        <pre><span class="c"># See all running processes</span>
+ps aux
+
+<span class="c"># Live process monitor (like Task Manager)</span>
+top       <span class="c"># basic</span>
+htop      <span class="c"># better (install with: dnf install htop -y)</span>
+
+<span class="c"># Find a process by name</span>
+ps aux | grep nginx
+
+<span class="c"># Kill a process by PID</span>
+kill 1234         <span class="c"># polite kill (asks process to stop)</span>
+kill -9 1234      <span class="c"># force kill (process has no choice)</span>
+
+<span class="c"># Kill by name</span>
+pkill nginx</pre>
+      </div>
+    </section>
+    <hr class="module-divider"/>
+
+    <!-- ═══════ MODULE 09 ═══════ -->
+    <section class="module-section" id="m09">
+      <div class="module-header">
+        <span class="module-num-badge">MODULE 09</span>
+        <div class="module-header-text">
+          <h2>Networking Basics</h2>
+          <p>IPs, interfaces, SSH, firewall — the essentials for managing any Linux server.</p>
+        </div>
+      </div>
+
+      <div class="concept-block">
+        <h3>How Networking Works on Linux</h3>
+        <p>Every device on a network has an IP address — a unique number that identifies it. Linux manages network interfaces (like your ethernet card or WiFi adapter) through the <code>ip</code> command and NetworkManager. To connect to a remote Linux server, you use SSH — a secure encrypted terminal session over the network.</p>
+      </div>
+
+      <div class="compare-wrap">
+        <div class="compare-label">Networking — Linux vs Windows</div>
+        <table class="compare">
+          <thead><tr><th>Task</th><th>Linux</th><th>Windows</th></tr></thead>
+          <tbody>
+            <tr><td>Check IP address</td><td><code>ip addr show</code></td><td>ipconfig</td></tr>
+            <tr><td>Set static IP</td><td><code>nmcli</code> or edit config file</td><td>Network adapter properties → TCP/IP</td></tr>
+            <tr><td>Test connectivity</td><td><code>ping 8.8.8.8</code></td><td>ping 8.8.8.8</td></tr>
+            <tr><td>DNS lookup</td><td><code>dig domain.com</code> or <code>nslookup</code></td><td>nslookup or ping domain</td></tr>
+            <tr><td>Remote access</td><td>SSH (<code>ssh user@ip</code>)</td><td>RDP (Remote Desktop)</td></tr>
+            <tr><td>Open firewall port</td><td><code>firewall-cmd --add-port=80/tcp</code></td><td>Windows Firewall → Allow an app</td></tr>
+            <tr><td>Check open ports</td><td><code>ss -tulnp</code></td><td>netstat -an or Resource Monitor</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="code-wrap">
+        <div class="code-label">Network Commands</div>
+        <pre><span class="c"># Check your IP address</span>
+ip addr show
+ip addr show ens33  <span class="c"># specific interface</span>
+
+<span class="c"># Test connectivity</span>
+ping 8.8.8.8        <span class="c"># Google DNS — tests internet access</span>
+ping -c 4 8.8.8.8   <span class="c"># stop after 4 packets</span>
+
+<span class="c"># DNS lookup</span>
+dig google.com
+nslookup google.com
+
+<span class="c"># Set a static IP using nmcli</span>
+nmcli con mod "ens33" ipv4.addresses 192.168.1.100/24
+nmcli con mod "ens33" ipv4.gateway 192.168.1.1
+nmcli con mod "ens33" ipv4.dns 8.8.8.8
+nmcli con mod "ens33" ipv4.method manual
+nmcli con up "ens33"
+
+<span class="c"># SSH into a remote server</span>
+ssh ahmed@192.168.1.50
+ssh -i ~/.ssh/id_rsa ahmed@192.168.1.50   <span class="c"># with SSH key</span>
+
+<span class="c"># Firewall — open a port</span>
+firewall-cmd --permanent --add-port=80/tcp
+firewall-cmd --permanent --add-service=http
+firewall-cmd --reload
+
+<span class="c"># Check which ports are listening</span>
+ss -tulnp</pre>
+      </div>
+    </section>
+    <hr class="module-divider"/>
+
+    <!-- ═══════ MODULE 10 ═══════ -->
+    <section class="module-section" id="m10">
+      <div class="module-header">
+        <span class="module-num-badge">MODULE 10</span>
+        <div class="module-header-text">
+          <h2>SELinux Basics</h2>
+          <p>Linux's built-in security layer — what it is and how to work with it.</p>
+        </div>
+      </div>
+
+      <div class="concept-block">
+        <h3>What is SELinux?</h3>
+        <p>SELinux (Security-Enhanced Linux) is an extra security layer built into the kernel. Even if a process is running as root, SELinux can restrict what it can access. Think of it as a second gate after file permissions — even if you unlock the door, SELinux can still block you.</p>
+        <p>It's the reason many beginners get "permission denied" on RHEL even when the file permissions look correct. Once you understand SELinux, you stop fighting it and start using it.</p>
+      </div>
+
+      <div class="compare-wrap">
+        <div class="compare-label">SELinux vs Windows Security</div>
+        <table class="compare">
+          <thead><tr><th>Concept</th><th>Linux (SELinux)</th><th>Windows</th></tr></thead>
+          <tbody>
+            <tr><td>Extra security layer</td><td>SELinux — built into kernel</td><td>Windows Defender + UAC</td></tr>
+            <tr><td>Controls</td><td>What every process can access — file, port, network</td><td>UAC prompts for admin actions</td></tr>
+            <tr><td>Default on RHEL</td><td>Yes — enforcing mode by default</td><td>Always on</td></tr>
+            <tr><td>When it blocks</td><td>Silently in logs — you see "permission denied"</td><td>Shows UAC popup</td></tr>
+            <tr><td>Check what's blocked</td><td><code>ausearch -m avc</code></td><td>Event Viewer → Security</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="code-wrap">
+        <div class="code-label">SELinux — Essential Commands</div>
+        <pre><span class="c"># Check current SELinux mode</span>
+getenforce
+<span class="c"># Outputs: Enforcing | Permissive | Disabled</span>
+
+<span class="c"># Enforcing  = actively blocks violations</span>
+<span class="c"># Permissive = logs violations but does NOT block (good for troubleshooting)</span>
+<span class="c"># Disabled   = completely off (not recommended on production)</span>
+
+<span class="c"># Temporarily set to permissive (resets on reboot)</span>
+setenforce 0   <span class="c"># permissive</span>
+setenforce 1   <span class="c"># enforcing</span>
+
+<span class="c"># Permanently change mode — edit config file</span>
+nano /etc/selinux/config
+<span class="c"># Change: SELINUX=enforcing  →  SELINUX=permissive</span>
+
+<span class="c"># Check SELinux context (label) on a file</span>
+ls -Z /var/www/html/index.html
+
+<span class="c"># Fix context on web files (common fix for Apache permission denied)</span>
+restorecon -Rv /var/www/html/
+
+<span class="c"># Check what SELinux blocked recently</span>
+ausearch -m avc -ts recent</pre>
+      </div>
+
+      <div class="callout callout-tip">
+        <span class="callout-icon">💡</span>
+        <p><strong>Golden rule:</strong> If a service works in permissive mode but not in enforcing mode, SELinux is the issue. Run <code>ausearch -m avc -ts recent</code> to see what it blocked, then fix the context or policy — never just disable SELinux on production.</p>
+      </div>
+    </section>
+    <hr class="module-divider"/>
+
+    <!-- ═══════ MODULE 11 ═══════ -->
+    <section class="module-section" id="m11">
+      <div class="module-header">
+        <span class="module-num-badge">MODULE 11</span>
+        <div class="module-header-text">
+          <h2>Web Server — Apache &amp; Nginx</h2>
+          <p>Set up a working web server and host a website from your Linux machine.</p>
+        </div>
+      </div>
+
+      <div class="concept-block">
+        <h3>What Does a Web Server Do?</h3>
+        <p>A web server is software that waits for HTTP requests (when someone types a URL in a browser) and responds with HTML files, images, or data. Apache and Nginx are the two most common on Linux. Windows uses IIS (Internet Information Services) — same concept, different software.</p>
+      </div>
+
+      <div class="compare-wrap">
+        <div class="compare-label">Apache vs Nginx — When to Use Each</div>
+        <table class="compare">
+          <thead><tr><th>Feature</th><th>Apache</th><th>Nginx</th></tr></thead>
+          <tbody>
+            <tr><td>Best for</td><td>Traditional web apps, .htaccess</td><td>High traffic, reverse proxy, static files</td></tr>
+            <tr><td>Config file</td><td><code>/etc/httpd/conf/httpd.conf</code></td><td><code>/etc/nginx/nginx.conf</code></td></tr>
+            <tr><td>Default port</td><td>80 (HTTP), 443 (HTTPS)</td><td>80 (HTTP), 443 (HTTPS)</td></tr>
+            <tr><td>Web root</td><td><code>/var/www/html/</code></td><td><code>/usr/share/nginx/html/</code></td></tr>
+            <tr><td>Windows equivalent</td><td colspan="2">IIS (Internet Information Services)</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="code-wrap">
+        <div class="code-label">Apache — Install and Configure</div>
+        <pre><span class="c"># Install Apache (called httpd on RHEL)</span>
+dnf install httpd -y
+
+<span class="c"># Start and enable on boot</span>
+systemctl enable --now httpd
+
+<span class="c"># Open firewall for web traffic</span>
+firewall-cmd --permanent --add-service=http
+firewall-cmd --permanent --add-service=https
+firewall-cmd --reload
+
+<span class="c"># Create a test web page</span>
+echo "&lt;h1&gt;Hello from Devriston&lt;/h1&gt;" > /var/www/html/index.html
+
+<span class="c"># Fix SELinux context on web files</span>
+restorecon -Rv /var/www/html/
+
+<span class="c"># Now visit http://your-ip in a browser</span>
+
+<span class="c"># Check Apache logs</span>
+tail -f /var/log/httpd/access_log
+tail -f /var/log/httpd/error_log</pre>
+      </div>
+
+      <div class="code-wrap">
+        <div class="code-label">Nginx — Install and Configure</div>
+        <pre><span class="c"># Install Nginx</span>
+dnf install nginx -y
+
+<span class="c"># Start and enable</span>
+systemctl enable --now nginx
+
+<span class="c"># Open firewall</span>
+firewall-cmd --permanent --add-service=http
+firewall-cmd --reload
+
+<span class="c"># Test config before applying changes</span>
+nginx -t
+
+<span class="c"># Reload config without downtime</span>
+systemctl reload nginx
+
+<span class="c"># Nginx logs</span>
+tail -f /var/log/nginx/access.log
+tail -f /var/log/nginx/error.log</pre>
+      </div>
+    </section>
+    <hr class="module-divider"/>
+
+    <!-- ═══════ MODULE 12 ═══════ -->
+    <section class="module-section" id="m12">
+      <div class="module-header">
+        <span class="module-num-badge">MODULE 12</span>
+        <div class="module-header-text">
+          <h2>DHCP Server</h2>
+          <p>Automatically assign IP addresses to devices on your network.</p>
+        </div>
+      </div>
+
+      <div class="concept-block">
+        <h3>What is DHCP?</h3>
+        <p>DHCP (Dynamic Host Configuration Protocol) automatically gives IP addresses to devices when they connect to a network. Without DHCP, you'd have to manually set the IP, gateway, and DNS on every single device — every phone, laptop, and printer in an office. DHCP does it automatically. Your home router runs a DHCP server. So does every office network.</p>
+      </div>
+
+      <div class="compare-wrap">
+        <div class="compare-label">DHCP — Linux vs Windows Server</div>
+        <table class="compare">
+          <thead><tr><th>Task</th><th>Linux (dhcpd)</th><th>Windows Server</th></tr></thead>
+          <tbody>
+            <tr><td>Install</td><td><code>dnf install dhcp-server</code></td><td>Server Manager → Add Role → DHCP</td></tr>
+            <tr><td>Config file</td><td><code>/etc/dhcp/dhcpd.conf</code></td><td>DHCP Manager GUI</td></tr>
+            <tr><td>View leases</td><td><code>cat /var/lib/dhcpd/dhcpd.leases</code></td><td>DHCP Manager → Address Leases</td></tr>
+            <tr><td>Restart service</td><td><code>systemctl restart dhcpd</code></td><td>Right-click → Restart</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="code-wrap">
+        <div class="code-label">DHCP Server Setup</div>
+        <pre><span class="c"># Install DHCP server</span>
+dnf install dhcp-server -y
+
+<span class="c"># Edit config file</span>
+nano /etc/dhcp/dhcpd.conf</pre>
+      </div>
+
+      <div class="code-wrap">
+        <div class="code-label">/etc/dhcp/dhcpd.conf — Example Config</div>
+        <pre><span class="c"># Global settings</span>
+default-lease-time 600;     <span class="c"># lease for 600 seconds (10 min)</span>
+max-lease-time 7200;        <span class="c"># max lease 2 hours</span>
+
+<span class="c"># Subnet definition</span>
+subnet 192.168.1.0 netmask 255.255.255.0 {
+  range 192.168.1.100 192.168.1.200;  <span class="c"># IP range to hand out</span>
+  option routers 192.168.1.1;          <span class="c"># default gateway</span>
+  option domain-name-servers 8.8.8.8, 8.8.4.4;  <span class="c"># DNS servers</span>
+  option domain-name "devriston.local";
+}</pre>
+      </div>
+
+      <div class="code-wrap">
+        <div class="code-label">Start DHCP Service</div>
+        <pre><span class="c"># Enable and start</span>
+systemctl enable --now dhcpd
+
+<span class="c"># Open firewall for DHCP</span>
+firewall-cmd --permanent --add-service=dhcp
+firewall-cmd --reload
+
+<span class="c"># Check active leases</span>
+cat /var/lib/dhcpd/dhcpd.leases</pre>
+      </div>
+    </section>
+    <hr class="module-divider"/>
+
+    <!-- ═══════ MODULE 13 ═══════ -->
+    <section class="module-section" id="m13">
+      <div class="module-header">
+        <span class="module-num-badge">MODULE 13</span>
+        <div class="module-header-text">
+          <h2>DNS Server</h2>
+          <p>Build your own DNS server with BIND. Translate domain names to IPs.</p>
+        </div>
+      </div>
+
+      <div class="concept-block">
+        <h3>What is DNS?</h3>
+        <p>DNS (Domain Name System) translates human-readable domain names (like google.com) into IP addresses (like 142.250.80.46) that computers actually use. It's like a phone book for the internet — you look up the name, it gives you the number. Every time you type a URL, a DNS lookup happens before your browser can connect.</p>
+      </div>
+
+      <div class="compare-wrap">
+        <div class="compare-label">DNS — Linux vs Windows Server</div>
+        <table class="compare">
+          <thead><tr><th>Concept</th><th>Linux (BIND)</th><th>Windows Server</th></tr></thead>
+          <tbody>
+            <tr><td>Software</td><td>BIND9 (named)</td><td>Windows DNS Server role</td></tr>
+            <tr><td>Config file</td><td><code>/etc/named.conf</code></td><td>DNS Manager GUI</td></tr>
+            <tr><td>Zone files</td><td><code>/var/named/</code></td><td>Stored in GUI, exported as text</td></tr>
+            <tr><td>Forward zone</td><td>domain → IP (A records)</td><td>Same concept in GUI</td></tr>
+            <tr><td>Reverse zone</td><td>IP → domain (PTR records)</td><td>Same in GUI</td></tr>
+            <tr><td>Test DNS</td><td><code>dig</code>, <code>nslookup</code></td><td>nslookup</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="code-wrap">
+        <div class="code-label">BIND9 DNS Server Setup</div>
+        <pre><span class="c"># Install BIND</span>
+dnf install bind bind-utils -y
+
+<span class="c"># Edit main config</span>
+nano /etc/named.conf</pre>
+      </div>
+
+      <div class="code-wrap">
+        <div class="code-label">named.conf — Add Zone</div>
+        <pre><span class="c"># Add inside named.conf:</span>
+zone "devriston.local" IN {
+    type master;
+    file "/var/named/devriston.local.zone";
+    allow-update { none; };
+};</pre>
+      </div>
+
+      <div class="code-wrap">
+        <div class="code-label">Zone File — /var/named/devriston.local.zone</div>
+        <pre>$TTL 86400
+@   IN  SOA  ns1.devriston.local. admin.devriston.local. (
+            2024010101  ; Serial
+            3600        ; Refresh
+            900         ; Retry
+            604800      ; Expire
+            86400 )     ; Minimum TTL
+
+<span class="c">; Name servers</span>
+@   IN  NS   ns1.devriston.local.
+
+<span class="c">; A Records (name → IP)</span>
+ns1     IN  A   192.168.1.10
+www     IN  A   192.168.1.20
+mail    IN  A   192.168.1.30</pre>
+      </div>
+
+      <div class="code-wrap">
+        <div class="code-label">Start and Test DNS</div>
+        <pre><span class="c"># Check config for errors</span>
+named-checkconf
+named-checkzone devriston.local /var/named/devriston.local.zone
+
+<span class="c"># Start DNS</span>
+systemctl enable --now named
+
+<span class="c"># Open firewall</span>
+firewall-cmd --permanent --add-service=dns
+firewall-cmd --reload
+
+<span class="c"># Test it</span>
+dig @192.168.1.10 www.devriston.local
+nslookup www.devriston.local 192.168.1.10</pre>
+      </div>
+    </section>
+    <hr class="module-divider"/>
+
+    <!-- ═══════ MODULE 14 ═══════ -->
+    <section class="module-section" id="m14">
+      <div class="module-header">
+        <span class="module-num-badge">MODULE 14</span>
+        <div class="module-header-text">
+          <h2>File Sharing — NFS &amp; Samba</h2>
+          <p>Share folders between Linux machines (NFS) and with Windows machines (Samba).</p>
+        </div>
+      </div>
+
+      <div class="concept-block">
+        <h3>NFS vs Samba — What's the Difference?</h3>
+        <p><strong>NFS</strong> (Network File System) shares folders between Linux/Unix machines. Fast and simple but Windows can't access NFS natively. <strong>Samba</strong> implements the Windows SMB protocol on Linux — so Windows machines see your Linux server as a Windows file share. No special software on the Windows side.</p>
+      </div>
+
+      <div class="compare-wrap">
+        <div class="compare-label">File Sharing — Linux vs Windows</div>
+        <table class="compare">
+          <thead><tr><th>Feature</th><th>Linux (Samba)</th><th>Windows</th></tr></thead>
+          <tbody>
+            <tr><td>Protocol</td><td>SMB (via Samba)</td><td>SMB native</td></tr>
+            <tr><td>Config</td><td><code>/etc/samba/smb.conf</code></td><td>File Explorer → Share tab</td></tr>
+            <tr><td>Windows access</td><td>\\IP\sharename — works natively</td><td>\\Server\share</td></tr>
+            <tr><td>User auth</td><td>Samba users (separate from Linux users)</td><td>Windows users/AD</td></tr>
+            <tr><td>Install</td><td><code>dnf install samba</code></td><td>Built in</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="code-wrap">
+        <div class="code-label">Samba — Share a Folder with Windows</div>
+        <pre><span class="c"># Install Samba</span>
+dnf install samba samba-client samba-common -y
+
+<span class="c"># Create a shared folder</span>
+mkdir -p /srv/shared
+chmod 0775 /srv/shared
+
+<span class="c"># Edit Samba config</span>
+nano /etc/samba/smb.conf</pre>
+      </div>
+
+      <div class="code-wrap">
+        <div class="code-label">smb.conf — Add a Share</div>
+        <pre>[shared]
+    comment = Devriston File Share
+    path = /srv/shared
+    browseable = yes
+    writable = yes
+    valid users = ahmed</pre>
+      </div>
+
+      <div class="code-wrap">
+        <div class="code-label">Start Samba and Add User</div>
+        <pre><span class="c"># Add Samba password for a Linux user</span>
+smbpasswd -a ahmed
+
+<span class="c"># Enable and start Samba services</span>
+systemctl enable --now smb nmb
+
+<span class="c"># Open firewall</span>
+firewall-cmd --permanent --add-service=samba
+firewall-cmd --reload
+
+<span class="c"># Fix SELinux for Samba</span>
+setsebool -P samba_export_all_rw 1
+
+<span class="c"># Test config</span>
+testparm
+
+<span class="c"># On Windows: open File Explorer and type:</span>
+<span class="c"># \\192.168.1.10\shared</span></pre>
+      </div>
+    </section>
+    <hr class="module-divider"/>
+
+    <!-- ═══════ MODULE 15 ═══════ -->
+    <section class="module-section" id="m15">
+      <div class="module-header">
+        <span class="module-num-badge">MODULE 15</span>
+        <div class="module-header-text">
+          <h2>Security Hardening</h2>
+          <p>SSH keys, firewall rules, fail2ban, and audit logs — production-safe from day one.</p>
+        </div>
+      </div>
+
+      <div class="concept-block">
+        <h3>Why Harden a Server?</h3>
+        <p>A fresh Linux server on the internet gets attacked within minutes — bots scan for SSH, try default passwords, probe every open port. Hardening means closing every unnecessary door and making the remaining ones require a key, not a password. These steps are standard on every production server.</p>
+      </div>
+
+      <div class="code-wrap">
+        <div class="code-label">SSH Key Authentication — Passwordless and Secure</div>
+        <pre><span class="c"># On your LOCAL machine — generate SSH key pair</span>
+ssh-keygen -t ed25519 -C "ahmed@devriston"
+<span class="c"># Creates: ~/.ssh/id_ed25519 (private key — never share this)</span>
+<span class="c">#          ~/.ssh/id_ed25519.pub (public key — goes on server)</span>
+
+<span class="c"># Copy public key to server</span>
+ssh-copy-id ahmed@192.168.1.50
+<span class="c"># Now you can SSH without password:</span>
+ssh ahmed@192.168.1.50
+
+<span class="c"># On the SERVER — disable password login (after key works!)</span>
+nano /etc/ssh/sshd_config
+<span class="c"># Change these lines:</span>
+PasswordAuthentication no
+PermitRootLogin no
+<span class="n">Port 2222</span>           <span class="c"># optional: change default port</span>
+
+<span class="c"># Restart SSH</span>
+systemctl restart sshd</pre>
+      </div>
+
+      <div class="code-wrap">
+        <div class="code-label">fail2ban — Block Brute-Force Attacks</div>
+        <pre><span class="c"># Install fail2ban</span>
+dnf install fail2ban -y
+
+<span class="c"># Create local config (don't edit the main file)</span>
+cp /etc/fail2ban/jail.conf /etc/fail2ban/jail.local
+nano /etc/fail2ban/jail.local
+
+<span class="c"># Set these values:</span>
+<span class="n">[sshd]</span>
+enabled  = true
+maxretry = 3        <span class="c"># ban after 3 failed attempts</span>
+bantime  = 3600     <span class="c"># ban for 1 hour</span>
+findtime = 600      <span class="c"># count attempts in 10 minute window</span>
+
+<span class="c"># Start fail2ban</span>
+systemctl enable --now fail2ban
+
+<span class="c"># Check banned IPs</span>
+fail2ban-client status sshd
+
+<span class="c"># Unban an IP</span>
+fail2ban-client set sshd unbanip 192.168.1.99</pre>
+      </div>
+
+      <div class="compare-wrap">
+        <div class="compare-label">Security — Linux vs Windows</div>
+        <table class="compare">
+          <thead><tr><th>Security Feature</th><th>Linux</th><th>Windows</th></tr></thead>
+          <tbody>
+            <tr><td>Brute-force protection</td><td>fail2ban</td><td>Account lockout policy (Group Policy)</td></tr>
+            <tr><td>Firewall</td><td>firewalld / iptables</td><td>Windows Firewall / Defender</td></tr>
+            <tr><td>Remote access security</td><td>SSH keys (no password)</td><td>Certificate-based RDP or VPN</td></tr>
+            <tr><td>Audit logs</td><td>auditd + journalctl</td><td>Event Viewer → Security logs</td></tr>
+            <tr><td>Disable root login</td><td><code>PermitRootLogin no</code> in sshd_config</td><td>No direct Administrator login via RDP</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+    <hr class="module-divider"/>
+
+    <!-- ═══════ MODULE 16 ═══════ -->
+    <section class="module-section" id="m16">
+      <div class="module-header">
+        <span class="module-num-badge">MODULE 16</span>
+        <div class="module-header-text">
+          <h2>Shell Scripting — Automate It</h2>
+          <p>Write bash scripts that do in seconds what would take you minutes manually.</p>
+        </div>
+      </div>
+
+      <div class="concept-block">
+        <h3>What is a Shell Script?</h3>
+        <p>A shell script is a text file full of Linux commands that run one after another. Instead of typing 10 commands every morning to check disk space, restart services, and send a report — you write one script and run it. Or schedule it with cron to run automatically at 6am every day. This is the entry point to automation.</p>
+      </div>
+
+      <div class="compare-wrap">
+        <div class="compare-label">Scripting — Bash vs PowerShell (Windows)</div>
+        <table class="compare">
+          <thead><tr><th>Feature</th><th>Bash (Linux)</th><th>PowerShell (Windows)</th></tr></thead>
+          <tbody>
+            <tr><td>File extension</td><td>.sh</td><td>.ps1</td></tr>
+            <tr><td>Run a script</td><td><code>bash script.sh</code> or <code>./script.sh</code></td><td><code>.\script.ps1</code></td></tr>
+            <tr><td>Variables</td><td><code>name="Ahmed"</code></td><td><code>$name = "Ahmed"</code></td></tr>
+            <tr><td>Output text</td><td><code>echo "Hello"</code></td><td><code>Write-Output "Hello"</code></td></tr>
+            <tr><td>Available on</td><td>Every Linux server on earth</td><td>Windows (and now Linux via PS Core)</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="code-wrap">
+        <div class="code-label">Script 1 — Basic Structure</div>
+        <pre><span class="c">#!/bin/bash</span>
+<span class="c"># The first line (shebang) tells the system to run this with bash</span>
+
+<span class="c"># Variables</span>
+NAME="Ahmed"
+DATE=$(date +%Y-%m-%d)   <span class="c"># capture command output into variable</span>
+
+<span class="c"># Print</span>
+echo "Hello $NAME"
+echo "Today is $DATE"
+
+<span class="c"># Conditions</span>
+if [ -f "/etc/nginx/nginx.conf" ]; then
+    echo "Nginx config exists"
+else
+    echo "Nginx not installed"
+fi
+
+<span class="c"># Loops</span>
+for USER in ahmed kamran ali; do
+    echo "Creating user: $USER"
+    useradd $USER
+done</pre>
+      </div>
+
+      <div class="code-wrap">
+        <div class="code-label">Script 2 — Disk Space Alert</div>
+        <pre><span class="c">#!/bin/bash</span>
+<span class="c"># Alert if any disk is over 80% full</span>
+
+THRESHOLD=80
+
+df -h | grep -vE '^Filesystem|tmpfs' | awk '{ print $5 " " $6 }' | while read USAGE MOUNT; do
+    USE=$(echo $USAGE | sed 's/%//')
+    if [ "$USE" -gt "$THRESHOLD" ]; then
+        echo "WARNING: $MOUNT is at $USAGE"
+    fi
+done</pre>
+      </div>
+
+      <div class="code-wrap">
+        <div class="code-label">Cron — Schedule Scripts to Run Automatically</div>
+        <pre><span class="c"># Open crontab editor</span>
+crontab -e
+
+<span class="c"># Cron format: minute hour day month weekday command</span>
+<span class="c"># Examples:</span>
+
+<span class="c"># Run disk check every day at 6am</span>
+0 6 * * * /home/ahmed/scripts/disk-alert.sh
+
+<span class="c"># Run backup every Sunday at 2am</span>
+0 2 * * 0 /home/ahmed/scripts/backup.sh
+
+<span class="c"># Run every 5 minutes</span>
+*/5 * * * * /home/ahmed/scripts/check.sh
+
+<span class="c"># List all scheduled cron jobs</span>
+crontab -l</pre>
+      </div>
+
+      <div class="callout callout-tip">
+        <span class="callout-icon">💡</span>
+        <p><strong>Make a script executable:</strong> After writing a .sh file, run <code>chmod +x script.sh</code> to make it runnable. Then execute it with <code>./script.sh</code>.</p>
+      </div>
+
+    </section>
+    <hr class="module-divider"/>
+
+    <!-- ENROLL CTA -->
+    <div style="background:linear-gradient(135deg,rgba(26,106,255,0.12),rgba(0,212,255,0.06));border:1px solid rgba(26,106,255,0.25);border-radius:14px;padding:32px 28px;text-align:center;margin-top:20px;">
+      <div style="font-size:2rem;margin-bottom:12px">🐧</div>
+      <h2 style="font-size:1.3rem;font-weight:800;margin-bottom:8px">Ready to go beyond reading?</h2>
+      <p style="font-size:0.88rem;color:var(--gray-400);max-width:420px;margin:0 auto 20px;line-height:1.7">The live course includes hands-on labs, Q&A sessions, and a final enterprise project for your GitHub portfolio. Same instructor who wrote these notes.</p>
+      <a href="https://wa.me/923231450045?text=Hi%20Kamran%2C%20I%20read%20the%20Linux%20notes%20and%20want%20to%20enroll." style="display:inline-flex;align-items:center;gap:8px;background:var(--blue);color:#fff;padding:12px 28px;border-radius:8px;text-decoration:none;font-weight:700;font-size:0.9rem;">💬 Enroll via WhatsApp →</a>
+      <p style="font-size:0.72rem;color:var(--gray-500);margin-top:12px">Batch info &amp; fee on request</p>
+    </div>
+
+  </main>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2026 Devriston · Muhammad Kamran Kabeer · Lahore, Pakistan</p>
+  <div class="footer-links">
+    <a href="https://devriston.com.pk/courses.html">All Courses</a>
+    <a href="https://devriston.com.pk/devops-notes.html">DevOps Notes</a>
+    <a href="https://devriston.com.pk/interview-guide.html">Interview Guide</a>
+    <a href="https://devriston.com.pk/blog.html">Blog</a>
+    <a href="https://devriston.com.pk/contact.html">Contact</a>
+  </div>
+</footer>
+
+<script>
+  // Back to top
+  const bt = document.getElementById('back-top');
+  window.addEventListener('scroll', () => bt.classList.toggle('visible', scrollY > 400));
+
+  // Sidebar active highlight on scroll
+  const sections = document.querySelectorAll('.module-section');
+  const links = document.querySelectorAll('.sidebar-link');
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        links.forEach(l => l.classList.remove('active'));
+        const link = document.querySelector(`.sidebar-link[href="#${e.target.id}"]`);
+        if (link) link.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-20% 0px -70% 0px' });
+  sections.forEach(s => obs.observe(s));
+
+  // Mobile nav toggle
+  document.querySelector('.nav-mobile-toggle').addEventListener('click', () => {
+    document.querySelector('.nav-mobile').classList.toggle('open');
+  });
+</script>
+</body>
+</html>
