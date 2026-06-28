@@ -1,0 +1,874 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI for IT Professionals — Lecture Notes | Devriston</title>
+  <meta name="description" content="Free AI lecture notes covering 12 modules — what is AI, ML vs GenAI, Ollama, open-source models, prompt engineering, AI APIs, Python automation, AI in DevOps and more." />
+  <meta name="keywords" content="AI notes free, AI for IT professionals, Ollama tutorial, prompt engineering guide, ChatGPT for DevOps, open source AI models, AI Python automation, Devriston AI course" />
+  <meta name="author" content="Muhammad Kamran Kabeer" />
+  <meta name="robots" content="index,follow" />
+  <link rel="canonical" href="https://www.devriston.com.pk/ai-notes.html" />
+  <meta property="og:title" content="AI for IT Professionals — Free Lecture Notes | Devriston" />
+  <meta property="og:description" content="12 modules of AI lecture notes — Ollama, open-source models, prompt engineering, AI APIs, Python automation and AI in DevOps. Free to read." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.devriston.com.pk/ai-notes.html" />
+  <meta property="og:site_name" content="Devriston" />
+
+  <style>
+    :root{
+      --navy:#040d1c;--navy-2:#071428;--blue:#1a6aff;--cyan:#00d4ff;
+      --white:#ffffff;--gray-400:#8899bb;--gray-500:#5a6a88;
+      --border:rgba(26,106,255,0.18);--border-2:rgba(0,212,255,0.12);
+      --green:#22c55e;--orange:#f97316;--gold:#f59e0b;--purple:#a855f7;
+      --font-main:'Inter',system-ui,-apple-system,sans-serif;
+      --font-mono:'JetBrains Mono','Fira Code','Courier New',monospace;
+      --radius:10px;--transition:0.2s ease;
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth;font-size:16px}
+    body{background:var(--navy);color:var(--white);font-family:var(--font-main);line-height:1.7;-webkit-font-smoothing:antialiased}
+    ::-webkit-scrollbar{width:6px}::-webkit-scrollbar-track{background:var(--navy)}::-webkit-scrollbar-thumb{background:var(--blue);border-radius:3px}
+
+    /* NAV */
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(4,13,28,0.95);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);padding:0 5%;display:flex;align-items:center;justify-content:space-between;height:60px}
+    .nav-brand{display:flex;align-items:center;gap:8px;text-decoration:none;color:var(--white);font-weight:700;font-size:1rem}
+    .nav-brand img{height:28px}
+    .nav-links{display:flex;align-items:center;gap:4px;list-style:none}
+    .nav-links a{color:var(--gray-400);text-decoration:none;font-size:0.82rem;font-weight:500;padding:7px 12px;border-radius:8px;transition:color var(--transition),background var(--transition)}
+    .nav-links a:hover{color:var(--white);background:rgba(255,255,255,0.07)}
+    .nav-links a.active{color:var(--cyan)}
+    .nav-cta{background:var(--blue)!important;color:#fff!important}
+    .nav-mobile-toggle{display:none;background:none;border:none;color:var(--white);font-size:1.3rem;cursor:pointer}
+    .nav-mobile{display:none;position:fixed;top:60px;left:0;right:0;background:var(--navy-2);border-bottom:1px solid var(--border);padding:16px 5%;z-index:99;flex-direction:column}
+    .nav-mobile.open{display:flex}
+    .nav-mobile a{color:var(--gray-400);text-decoration:none;font-size:0.88rem;padding:10px 0;border-bottom:1px solid var(--border);display:block}
+    .nav-mobile a:hover{color:var(--white)}
+    @media(max-width:900px){.nav-links{display:none}.nav-mobile-toggle{display:block}}
+
+    /* LEARN SUB-NAV */
+    .learn-subnav{position:sticky;top:60px;z-index:90;background:rgba(7,20,40,0.97);backdrop-filter:blur(12px);border-bottom:1px solid rgba(26,106,255,0.15);overflow-x:auto;white-space:nowrap;scrollbar-width:none}
+    .learn-subnav::-webkit-scrollbar{display:none}
+    .learn-subnav-inner{display:inline-flex;align-items:center;gap:2px;padding:0 5%;min-width:100%}
+    .learn-subnav a{display:inline-flex;align-items:center;gap:6px;color:rgba(136,153,187,0.85);text-decoration:none;font-size:0.78rem;font-weight:500;padding:10px 12px;border-bottom:2px solid transparent;transition:color 0.18s,border-color 0.18s;white-space:nowrap;flex-shrink:0}
+    .learn-subnav a:hover{color:#fff}
+    .learn-subnav a.sn-active{color:var(--gold);border-bottom-color:var(--gold);font-weight:600}
+    .learn-subnav .sn-sep{width:1px;height:16px;background:rgba(255,255,255,0.08);margin:0 4px;flex-shrink:0}
+
+    /* LAYOUT */
+    .page-wrap{display:grid;grid-template-columns:260px 1fr;min-height:100vh;margin-top:60px}
+    @media(max-width:900px){.page-wrap{grid-template-columns:1fr}.sidebar{display:none}}
+
+    /* SIDEBAR */
+    .sidebar{position:sticky;top:60px;height:calc(100vh - 60px);overflow-y:auto;background:var(--navy-2);border-right:1px solid var(--border);padding:24px 0}
+    .sidebar::-webkit-scrollbar{width:4px}
+    .sidebar::-webkit-scrollbar-thumb{background:var(--border)}
+    .sidebar-title{font-size:0.68rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--gray-500);padding:0 20px;margin-bottom:12px}
+    .sidebar a{display:flex;align-items:center;gap:10px;padding:8px 20px;color:var(--gray-400);text-decoration:none;font-size:0.8rem;transition:background var(--transition),color var(--transition);border-left:2px solid transparent}
+    .sidebar a:hover{background:rgba(255,255,255,0.03);color:var(--white)}
+    .sidebar a.active{background:rgba(245,158,11,0.08);color:var(--gold);border-left-color:var(--gold)}
+    .sidebar-num{font-family:var(--font-mono);font-size:0.65rem;color:var(--gray-500);flex-shrink:0;width:22px}
+
+    /* MAIN */
+    main{padding:40px 48px 80px;max-width:860px}
+    @media(max-width:600px){main{padding:24px 20px 60px}}
+
+    .breadcrumb{font-size:0.75rem;color:var(--gray-500);margin-bottom:28px}
+    .breadcrumb a{color:var(--gray-400);text-decoration:none}
+    .breadcrumb a:hover{color:var(--cyan)}
+    .breadcrumb span{margin:0 6px}
+
+    .page-hero{margin-bottom:48px}
+    .page-badge{display:inline-flex;align-items:center;gap:7px;background:rgba(245,158,11,0.08);border:1px solid rgba(245,158,11,0.2);color:var(--gold);border-radius:16px;padding:4px 12px;font-size:0.72rem;font-weight:600;letter-spacing:0.05em;text-transform:uppercase;margin-bottom:16px}
+    .page-hero h1{font-size:clamp(1.7rem,3.5vw,2.4rem);font-weight:800;line-height:1.15;margin-bottom:12px}
+    .page-hero h1 em{font-style:normal;background:linear-gradient(135deg,var(--gold),var(--orange));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+    .page-hero p{color:var(--gray-400);font-size:0.95rem;max-width:560px;line-height:1.7;margin-bottom:20px}
+    .hero-pills{display:flex;flex-wrap:wrap;gap:8px}
+    .pill{padding:4px 10px;border-radius:4px;font-size:0.72rem;font-weight:600;border:1px solid}
+    .pill-free{background:rgba(34,197,94,0.1);color:var(--green);border-color:rgba(34,197,94,0.3)}
+    .pill-modules{background:rgba(26,106,255,0.1);color:#7db3ff;border-color:rgba(26,106,255,0.3)}
+    .pill-ai{background:rgba(245,158,11,0.1);color:var(--gold);border-color:rgba(245,158,11,0.3)}
+
+    .module-section{margin-bottom:64px;scroll-margin-top:80px}
+    .module-header{display:flex;align-items:flex-start;gap:14px;margin-bottom:24px;padding-bottom:16px;border-bottom:1px solid var(--border)}
+    .module-num-badge{background:rgba(245,158,11,0.1);border:1px solid rgba(245,158,11,0.25);border-radius:6px;padding:4px 10px;font-family:var(--font-mono);font-size:0.68rem;color:var(--gold);font-weight:700;white-space:nowrap;flex-shrink:0;margin-top:4px}
+    .module-header-text h2{font-size:1.25rem;font-weight:800;margin-bottom:4px}
+    .module-header-text p{font-size:0.82rem;color:var(--gray-400)}
+
+    .concept-block{background:rgba(255,255,255,0.025);border:1px solid var(--border-2);border-radius:var(--radius);padding:20px 22px;margin-bottom:18px}
+    .concept-block h3{font-size:0.78rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--cyan);margin-bottom:10px}
+    .concept-block p{font-size:0.88rem;color:#c5d0e8;line-height:1.75}
+    .concept-block p+p{margin-top:10px}
+
+    .compare-wrap{margin-bottom:18px;overflow-x:auto}
+    .compare-label{font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--orange);margin-bottom:10px;display:flex;align-items:center;gap:7px}
+    .compare-label::before{content:'⚡'}
+    table.compare{width:100%;border-collapse:collapse;font-size:0.82rem}
+    table.compare thead tr{background:rgba(255,255,255,0.04)}
+    table.compare th{padding:10px 14px;text-align:left;font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:var(--gray-400);border-bottom:1px solid var(--border)}
+    table.compare th:nth-child(2){color:var(--gold)}
+    table.compare th:nth-child(3){color:#7db3ff}
+    table.compare td{padding:10px 14px;border-bottom:1px solid rgba(255,255,255,0.04);color:#c5d0e8;vertical-align:top;line-height:1.5}
+    table.compare tr:last-child td{border-bottom:none}
+    table.compare tr:hover td{background:rgba(255,255,255,0.02)}
+    table.compare td:first-child{font-weight:600;color:var(--white);font-size:0.8rem}
+
+    .code-wrap{margin-bottom:18px}
+    .code-label{font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--green);margin-bottom:8px;display:flex;align-items:center;gap:6px}
+    .code-label::before{content:'▶';font-size:0.6rem}
+    pre{background:#020912;border:1px solid rgba(26,106,255,0.2);border-radius:var(--radius);padding:18px 20px;overflow-x:auto;font-family:var(--font-mono);font-size:0.78rem;line-height:1.7;color:#c5d0e8}
+    pre .c{color:var(--gray-500);font-style:italic}
+    pre .k{color:var(--cyan)}
+    pre .s{color:var(--green)}
+    pre .n{color:var(--orange)}
+
+    .terms-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:10px;margin-bottom:18px}
+    .term-card{background:rgba(255,255,255,0.025);border:1px solid var(--border-2);border-radius:8px;padding:14px 16px}
+    .term-card dt{font-family:var(--font-mono);font-size:0.78rem;color:var(--gold);font-weight:700;margin-bottom:4px}
+    .term-card dd{font-size:0.78rem;color:var(--gray-400);line-height:1.5}
+
+    .callout{border-radius:8px;padding:14px 18px;margin-bottom:18px;font-size:0.84rem;line-height:1.65;display:flex;gap:12px;align-items:flex-start}
+    .callout-tip{background:rgba(34,197,94,0.07);border:1px solid rgba(34,197,94,0.2)}
+    .callout-warn{background:rgba(249,115,22,0.07);border:1px solid rgba(249,115,22,0.2)}
+    .callout-info{background:rgba(26,106,255,0.07);border:1px solid rgba(26,106,255,0.2)}
+    .callout-icon{font-size:1rem;flex-shrink:0;line-height:1.5}
+    .callout p{color:#c5d0e8}
+    .callout strong{color:var(--white)}
+
+    .module-divider{border:none;border-top:1px solid var(--border);margin:56px 0}
+
+    #back-top{position:fixed;bottom:24px;right:24px;background:var(--gold);color:#000;width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;text-decoration:none;opacity:0;pointer-events:none;transition:opacity var(--transition);z-index:999;box-shadow:0 0 14px rgba(245,158,11,0.4)}
+    #back-top.visible{opacity:1;pointer-events:auto}
+
+    .enroll-sticky{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:var(--gold);color:#000;padding:11px 28px;border-radius:30px;font-size:0.85rem;font-weight:700;text-decoration:none;box-shadow:0 4px 24px rgba(245,158,11,0.5);z-index:998;white-space:nowrap;transition:background var(--transition),transform var(--transition)}
+    .enroll-sticky:hover{background:#d97706;transform:translateX(-50%) translateY(-2px)}
+
+    footer{background:var(--navy-2);border-top:1px solid var(--border);padding:36px 5% 20px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px}
+    footer p{font-size:0.78rem;color:var(--gray-500)}
+    .footer-links{display:flex;gap:20px;flex-wrap:wrap}
+    .footer-links a{color:var(--gray-500);text-decoration:none;font-size:0.78rem;transition:color var(--transition)}
+    .footer-links a:hover{color:var(--white)}
+  </style>
+</head>
+<body>
+
+<a href="#" id="back-top">↑</a>
+<a href="https://wa.me/923231450045?text=Hi%20Kamran%2C%20I%20read%20the%20AI%20notes%20and%20want%20to%20enroll." class="enroll-sticky">🤖 Enroll in AI Course →</a>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-brand" href="https://devriston.com.pk/index.html">
+    <img src="https://devriston.com.pk/assets/logos/dv-logo.png" alt="Devriston"/>
+    Devriston
+  </a>
+  <ul class="nav-links">
+    <li><a href="https://devriston.com.pk/index.html">Home</a></li>
+    <li><a href="https://devriston.com.pk/solutions.html">Solutions</a></li>
+    <li><a href="https://devriston.com.pk/case-studies.html">Case Studies</a></li>
+    <li><a href="https://devriston.com.pk/learn.html" class="active">Learn</a></li>
+    <li><a href="https://devriston.com.pk/about.html">About</a></li>
+    <li><a href="https://devriston.com.pk/contact.html" class="nav-cta">Enroll Now</a></li>
+  </ul>
+  <button class="nav-mobile-toggle" onclick="document.querySelector('.nav-mobile').classList.toggle('open')">☰</button>
+</nav>
+<div class="nav-mobile">
+  <a href="https://devriston.com.pk/index.html">Home</a>
+  <a href="https://devriston.com.pk/solutions.html">Solutions</a>
+  <a href="https://devriston.com.pk/case-studies.html">Case Studies</a>
+  <a href="https://devriston.com.pk/learn.html">Learn</a>
+  <a href="https://devriston.com.pk/about.html">About</a>
+  <a href="https://devriston.com.pk/contact.html">Enroll Now</a>
+</div>
+
+<!-- SUB-NAV -->
+<nav class="learn-subnav">
+  <div class="learn-subnav-inner">
+    <a href="https://devriston.com.pk/learn.html">🏠 Hub</a>
+    <a href="https://devriston.com.pk/courses.html">🎓 Courses</a>
+    <span class="sn-sep"></span>
+    <a href="https://devriston.com.pk/linux-notes.html">🐧 Linux Notes</a>
+    <a href="https://devriston.com.pk/cloud-notes.html">☁️ Cloud Notes</a>
+    <a href="https://devriston.com.pk/devops-full-notes.html">⚙️ DevOps Notes</a>
+    <a href="https://devriston.com.pk/ai-notes.html" class="sn-active">🤖 AI Notes</a>
+    <span class="sn-sep"></span>
+    <a href="https://devriston.com.pk/devops-notes.html">📋 Quick Notes</a>
+    <a href="https://devriston.com.pk/interview-guide.html">💼 Interview Guide</a>
+    <a href="https://devriston.com.pk/blog.html">📝 Blog</a>
+    <a href="https://devriston.com.pk/c-programming.html">💻 C Programming</a>
+  </div>
+</nav>
+
+<div class="page-wrap">
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sidebar-title">AI Course — All Modules</div>
+    <a href="#m01"><span class="sidebar-num">01</span>What is AI?</a>
+    <a href="#m02"><span class="sidebar-num">02</span>ML vs Deep Learning vs GenAI</a>
+    <a href="#m03"><span class="sidebar-num">03</span>AI Tools Landscape</a>
+    <a href="#m04"><span class="sidebar-num">04</span>Running AI Locally — Ollama</a>
+    <a href="#m05"><span class="sidebar-num">05</span>Open Source Models</a>
+    <a href="#m06"><span class="sidebar-num">06</span>Alternative Platforms</a>
+    <a href="#m07"><span class="sidebar-num">07</span>Prompt Engineering</a>
+    <a href="#m08"><span class="sidebar-num">08</span>AI in DevOps</a>
+    <a href="#m09"><span class="sidebar-num">09</span>AI APIs</a>
+    <a href="#m10"><span class="sidebar-num">10</span>Building AI Tools</a>
+    <a href="#m11"><span class="sidebar-num">11</span>AI on Cloud</a>
+    <a href="#m12"><span class="sidebar-num">12</span>Ethics & Limits</a>
+  </aside>
+
+  <main>
+    <div class="breadcrumb">
+      <a href="https://devriston.com.pk/index.html">Home</a><span>›</span>
+      <a href="https://devriston.com.pk/learn.html">Learn</a><span>›</span>
+      AI Notes
+    </div>
+
+    <div class="page-hero">
+      <div class="page-badge">🤖 Free Lecture Notes</div>
+      <h1>AI for IT Professionals<br/><em>— Complete Notes</em></h1>
+      <p>All 12 modules. Plain language — no math, no research papers. What AI actually is, how to run it locally, how to use it daily as a DevOps or IT professional. Free to read — no signup needed.</p>
+      <div class="hero-pills">
+        <span class="pill pill-free">✓ 100% Free</span>
+        <span class="pill pill-modules">12 Modules</span>
+        <span class="pill pill-ai">Practical Tools</span>
+      </div>
+    </div>
+
+    <!-- M01 -->
+    <section class="module-section" id="m01">
+      <div class="module-header">
+        <span class="module-num-badge">MODULE 01</span>
+        <div class="module-header-text">
+          <h2>What is AI? (Plain Language)</h2>
+          <p>Not sci-fi — what AI actually is and how it got here.</p>
+        </div>
+      </div>
+      <div class="concept-block">
+        <h3>What is Artificial Intelligence?</h3>
+        <p>AI is software that learns patterns from data instead of following rules someone wrote. Traditional software: if X happens, do Y. AI software: here are a million examples of X and Y — figure out the pattern yourself. The result is a system that can do things no programmer explicitly programmed.</p>
+        <p>AI is not robots taking over the world. In 2026 it's autocomplete that got very good — predicting the most likely next word, pixel, or action based on billions of examples it was trained on.</p>
+      </div>
+      <div class="compare-wrap">
+        <div class="compare-label">Traditional Software vs AI</div>
+        <table class="compare">
+          <thead><tr><th>Feature</th><th>Traditional Software</th><th>AI</th></tr></thead>
+          <tbody>
+            <tr><td>Rules</td><td>Programmer writes every rule</td><td>System learns rules from data</td></tr>
+            <tr><td>Flexibility</td><td>Only does what it was programmed for</td><td>Can handle inputs it never saw before</td></tr>
+            <tr><td>How it improves</td><td>Programmer updates the code</td><td>Train on more/better data</td></tr>
+            <tr><td>Example</td><td>if temperature > 100: send_alert()</td><td>Look at 1M server logs → predict failures</td></tr>
+            <tr><td>Good for</td><td>Defined, repeatable tasks</td><td>Pattern recognition, language, images</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="concept-block">
+        <h3>Brief History — How We Got Here</h3>
+        <p>1950s: Alan Turing asks "Can machines think?" — the question that started AI. 1980s–90s: Rule-based expert systems — smart but brittle, couldn't handle the real world. 2012: Deep learning breakthrough — neural networks trained on GPUs finally beat humans at image recognition. 2017: Transformers invented — the architecture behind every modern LLM. 2022: ChatGPT released — AI became something ordinary people used daily.</p>
+      </div>
+      <dl class="terms-grid">
+        <div class="term-card"><dt>AI</dt><dd>Software that learns patterns from data. Umbrella term covering everything from spam filters to ChatGPT.</dd></div>
+        <div class="term-card"><dt>LLM</dt><dd>Large Language Model. An AI trained on huge amounts of text to predict and generate language. ChatGPT, Claude, Gemini are LLMs.</dd></div>
+        <div class="term-card"><dt>Training</dt><dd>The process of feeding data to an AI model so it learns patterns. Done once by the model creator — expensive, needs lots of GPUs.</dd></div>
+        <div class="term-card"><dt>Inference</dt><dd>Running an already-trained model to get answers. What you do when you use ChatGPT — much cheaper than training.</dd></div>
+        <div class="term-card"><dt>Parameters</dt><dd>The "weights" inside a neural network that encode what the model learned. GPT-4 has ~1.8 trillion parameters.</dd></div>
+        <div class="term-card"><dt>Token</dt><dd>A chunk of text — roughly 3/4 of a word. LLMs process and generate tokens, not letters or words. Costs are priced per token.</dd></div>
+      </dl>
+    </section>
+    <hr class="module-divider"/>
+
+    <!-- M02 -->
+    <section class="module-section" id="m02">
+      <div class="module-header">
+        <span class="module-num-badge">MODULE 02</span>
+        <div class="module-header-text">
+          <h2>ML vs Deep Learning vs GenAI</h2>
+          <p>Three terms everyone uses interchangeably — they're not the same thing.</p>
+        </div>
+      </div>
+      <div class="concept-block">
+        <h3>The Three Layers — Each Builds on the Previous</h3>
+        <p>AI is the broad term. Machine Learning is a type of AI. Deep Learning is a type of Machine Learning. Generative AI is a category of Deep Learning applications. Think of it as nested circles — each one is more specific than the last.</p>
+      </div>
+      <div class="compare-wrap">
+        <div class="compare-label">ML vs Deep Learning vs GenAI</div>
+        <table class="compare">
+          <thead><tr><th>Type</th><th>What it Does</th><th>Real Example</th></tr></thead>
+          <tbody>
+            <tr><td>Machine Learning</td><td>Learns patterns from structured data — numbers and tables</td><td>Predict if a server will fail based on CPU/disk trends</td></tr>
+            <tr><td>Deep Learning</td><td>Uses neural networks to learn from unstructured data — images, audio, text</td><td>Detect anomalies in server logs automatically</td></tr>
+            <tr><td>Generative AI</td><td>Creates new content — text, code, images, audio</td><td>ChatGPT writing a Dockerfile for you</td></tr>
+            <tr><td>LLMs specifically</td><td>GenAI trained on text — predicts and generates language</td><td>Claude, ChatGPT, Gemini, Llama</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="callout callout-tip">
+        <span class="callout-icon">💡</span>
+        <p><strong>For IT professionals:</strong> You'll mostly work with GenAI (LLMs) for daily tasks. ML is relevant when you're deploying ML models to production — monitoring them, serving them with Docker/K8s, managing their infrastructure.</p>
+      </div>
+    </section>
+    <hr class="module-divider"/>
+
+    <!-- M03 -->
+    <section class="module-section" id="m03">
+      <div class="module-header">
+        <span class="module-num-badge">MODULE 03</span>
+        <div class="module-header-text">
+          <h2>AI Tools Landscape</h2>
+          <p>ChatGPT, Claude, Gemini, Grok — what each is best at and when to use which.</p>
+        </div>
+      </div>
+      <div class="compare-wrap">
+        <div class="compare-label">AI Tools — Quick Comparison 2026</div>
+        <table class="compare">
+          <thead><tr><th>Tool</th><th>Best For</th><th>Free Tier</th></tr></thead>
+          <tbody>
+            <tr><td>ChatGPT (OpenAI)</td><td>General tasks, coding, DALL-E images, plugins</td><td>GPT-4o mini free · GPT-4o limited</td></tr>
+            <tr><td>Claude (Anthropic)</td><td>Long documents, coding, reasoning, safety-focused</td><td>Claude 3.5 Sonnet free with limits</td></tr>
+            <tr><td>Gemini (Google)</td><td>Google Workspace integration, search-connected</td><td>Gemini 1.5 Flash free</td></tr>
+            <tr><td>Grok (xAI)</td><td>Real-time X/Twitter data, less filtered responses</td><td>Free on X with limits</td></tr>
+            <tr><td>Perplexity</td><td>Search with citations — replaces Google for research</td><td>Free · Pro plan for GPT-4/Claude</td></tr>
+            <tr><td>GitHub Copilot</td><td>Code completion inside VS Code — inline suggestions</td><td>Free for students · $10/mo otherwise</td></tr>
+            <tr><td>Ollama</td><td>Run LLMs locally — private, offline, free</td><td>Completely free</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="callout callout-info">
+        <span class="callout-icon">ℹ️</span>
+        <p><strong>For DevOps work:</strong> Claude and ChatGPT are best for writing scripts, explaining errors, and generating configs. GitHub Copilot is best for in-editor code completion. Perplexity is best when you need an answer with a source you can verify.</p>
+      </div>
+    </section>
+    <hr class="module-divider"/>
+
+    <!-- M04 -->
+    <section class="module-section" id="m04">
+      <div class="module-header">
+        <span class="module-num-badge">MODULE 04</span>
+        <div class="module-header-text">
+          <h2>Running AI Locally — Ollama</h2>
+          <p>Run LLMs on your own machine — private, offline, no API cost.</p>
+        </div>
+      </div>
+      <div class="concept-block">
+        <h3>What is Ollama?</h3>
+        <p>Ollama is a tool that lets you download and run open-source LLMs on your own computer. No internet connection required after download. No data sent to any server. No API cost. It works from the terminal or through a browser UI. Think of it as Docker for AI models — pull a model, run it, use it.</p>
+      </div>
+      <div class="compare-wrap">
+        <div class="compare-label">Ollama vs ChatGPT API</div>
+        <table class="compare">
+          <thead><tr><th>Feature</th><th>Ollama (Local)</th><th>ChatGPT / Claude API</th></tr></thead>
+          <tbody>
+            <tr><td>Cost</td><td>Free — runs on your hardware</td><td>Pay per token — adds up fast</td></tr>
+            <tr><td>Privacy</td><td>Nothing leaves your machine</td><td>Your prompts go to their servers</td></tr>
+            <tr><td>Internet needed</td><td>No — works fully offline</td><td>Yes — always</td></tr>
+            <tr><td>Speed</td><td>Depends on your GPU/CPU</td><td>Fast — their servers are powerful</td></tr>
+            <tr><td>Model quality</td><td>Good — Llama3, Mistral, Phi3</td><td>Best — GPT-4o, Claude 3.5</td></tr>
+            <tr><td>Best for</td><td>Private data, learning, offline dev</td><td>Production apps, best quality needed</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="code-wrap">
+        <div class="code-label">Install Ollama and Run Your First Model</div>
+        <pre><span class="c"># Install on Linux</span>
+curl -fsSL https://ollama.com/install.sh | sh
+
+<span class="c"># Install on macOS</span>
+<span class="c"># Download from: https://ollama.com/download/mac</span>
+
+<span class="c"># Pull and run a model (downloads automatically)</span>
+ollama run llama3.2         <span class="c"># Meta's Llama 3.2 — great general model</span>
+ollama run mistral          <span class="c"># Mistral 7B — fast, efficient</span>
+ollama run phi3             <span class="c"># Microsoft Phi-3 — small but smart</span>
+ollama run codellama        <span class="c"># Optimised for code generation</span>
+
+<span class="c"># List downloaded models</span>
+ollama list
+
+<span class="c"># Run in API mode (works like OpenAI API)</span>
+ollama serve                <span class="c"># starts on localhost:11434</span>
+
+<span class="c"># Call it with curl</span>
+curl http://localhost:11434/api/generate -d '{
+  "model": "llama3.2",
+  "prompt": "Explain what a Docker container is in 2 sentences",
+  "stream": false
+}'
+
+<span class="c"># Install Open WebUI — browser interface for Ollama</span>
+docker run -d -p 3000:8080 \
+  -v open-webui:/app/backend/data \
+  --add-host=host.docker.internal:host-gateway \
+  ghcr.io/open-webui/open-webui:main
+<span class="c"># Then open: http://localhost:3000</span></pre>
+      </div>
+    </section>
+    <hr class="module-divider"/>
+
+    <!-- M05 -->
+    <section class="module-section" id="m05">
+      <div class="module-header">
+        <span class="module-num-badge">MODULE 05</span>
+        <div class="module-header-text">
+          <h2>Open Source Models</h2>
+          <p>Llama, Mistral, Phi, Gemma — who makes them and how to pick the right one.</p>
+        </div>
+      </div>
+      <div class="compare-wrap">
+        <div class="compare-label">Popular Open Source Models — 2026</div>
+        <table class="compare">
+          <thead><tr><th>Model</th><th>Made By</th><th>Best For</th><th>RAM Needed</th></tr></thead>
+          <tbody>
+            <tr><td>Llama 3.2</td><td>Meta</td><td>General purpose — best all-rounder for local use</td><td>8GB+</td></tr>
+            <tr><td>Mistral 7B</td><td>Mistral AI</td><td>Fast, efficient — good on weaker hardware</td><td>6GB+</td></tr>
+            <tr><td>Phi-3 Mini</td><td>Microsoft</td><td>Surprisingly smart for its size — low resource</td><td>4GB+</td></tr>
+            <tr><td>Gemma 2</td><td>Google</td><td>Well-rounded, Google-quality open source</td><td>8GB+</td></tr>
+            <tr><td>CodeLlama</td><td>Meta</td><td>Code generation and completion</td><td>8GB+</td></tr>
+            <tr><td>DeepSeek Coder</td><td>DeepSeek</td><td>Strong at coding — rivals GPT-4 for code</td><td>8GB+</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="concept-block">
+        <h3>What is HuggingFace?</h3>
+        <p>HuggingFace is the GitHub of AI — a platform where anyone can publish, download, and run AI models. Over 500,000 models are available. When you see a new AI model announced, it's almost always on HuggingFace within days. You can browse, filter by task (text generation, image classification, code), and run models directly in the browser or download them.</p>
+      </div>
+      <div class="callout callout-tip">
+        <span class="callout-icon">💡</span>
+        <p><strong>Which to use for learning:</strong> Start with <code>ollama run llama3.2</code> — it's the best balance of quality and speed for general IT tasks. For code specifically, use <code>ollama run codellama</code>. Both run fine on a laptop with 8GB RAM.</p>
+      </div>
+    </section>
+    <hr class="module-divider"/>
+
+    <!-- M06 -->
+    <section class="module-section" id="m06">
+      <div class="module-header">
+        <span class="module-num-badge">MODULE 06</span>
+        <div class="module-header-text">
+          <h2>Alternative Platforms &amp; Self-Hosted AI</h2>
+          <p>Open WebUI, AnythingLLM, HuggingFace Spaces — beyond the terminal.</p>
+        </div>
+      </div>
+      <div class="compare-wrap">
+        <div class="compare-label">Self-Hosted AI Platforms</div>
+        <table class="compare">
+          <thead><tr><th>Tool</th><th>What it Does</th><th>Install</th></tr></thead>
+          <tbody>
+            <tr><td>Open WebUI</td><td>Browser UI for Ollama — looks like ChatGPT, works locally</td><td>Docker one-liner</td></tr>
+            <tr><td>AnythingLLM</td><td>Chat with your own documents — PDFs, Word files, notes</td><td>Desktop app download</td></tr>
+            <tr><td>LM Studio</td><td>Desktop app to download and run models with a nice GUI</td><td>Desktop app</td></tr>
+            <tr><td>LocalAI</td><td>OpenAI API-compatible local server — drop-in replacement</td><td>Docker</td></tr>
+            <tr><td>HuggingFace Spaces</td><td>Run models in the cloud free — no install needed</td><td>Browser only</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="code-wrap">
+        <div class="code-label">Self-Hosted AI Stack — Docker Compose</div>
+        <pre><span class="c"># docker-compose.yml — Ollama + Open WebUI</span>
+services:
+  ollama:
+    image: ollama/ollama
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama:/root/.ollama
+    <span class="c"># Add GPU support if you have NVIDIA:</span>
+    <span class="c"># deploy:</span>
+    <span class="c">#   resources:</span>
+    <span class="c">#     reservations:</span>
+    <span class="c">#       devices:</span>
+    <span class="c">#         - driver: nvidia</span>
+    <span class="c">#           count: all</span>
+
+  open-webui:
+    image: ghcr.io/open-webui/open-webui:main
+    ports:
+      - "3000:8080"
+    environment:
+      - OLLAMA_BASE_URL=http://ollama:11434
+    volumes:
+      - open-webui:/app/backend/data
+    depends_on:
+      - ollama
+
+volumes:
+  ollama:
+  open-webui:
+
+<span class="c"># Run it:</span>
+docker compose up -d
+<span class="c"># Open: http://localhost:3000</span>
+<span class="c"># Pull a model: docker exec -it ollama ollama pull llama3.2</span></pre>
+      </div>
+    </section>
+    <hr class="module-divider"/>
+
+    <!-- M07 -->
+    <section class="module-section" id="m07">
+      <div class="module-header">
+        <span class="module-num-badge">MODULE 07</span>
+        <div class="module-header-text">
+          <h2>Prompt Engineering</h2>
+          <p>How to talk to AI so it gives you useful answers — not generic ones.</p>
+        </div>
+      </div>
+      <div class="concept-block">
+        <h3>Why Prompt Engineering Matters</h3>
+        <p>The same AI model gives completely different quality answers depending on how you ask. "Fix my code" gets a generic answer. "You are a senior Linux engineer. This bash script is supposed to monitor disk usage and send an alert if any partition exceeds 80%. It runs without error but never sends alerts. Debug it step by step and explain what's wrong." — that gets a useful answer. Prompt engineering is the skill of asking well.</p>
+      </div>
+      <div class="code-wrap">
+        <div class="code-label">Prompt Patterns — DevOps Examples</div>
+        <pre><span class="c">── Pattern 1: Role + Task + Context ──</span>
+"You are a senior DevOps engineer with 10 years of Linux experience.
+I have a bash script that backs up /var/www to S3 using aws-cli.
+It works manually but fails silently when run via cron.
+Diagnose the most likely causes and give me fixes for each."
+
+<span class="c">── Pattern 2: Step by Step ──</span>
+"Explain how Docker networking works.
+Do it step by step. Start with the simplest concept and build up.
+Use an analogy before any technical terms."
+
+<span class="c">── Pattern 3: Specific Output Format ──</span>
+"Write an Ansible playbook that installs nginx on RHEL 9.
+Requirements:
+- Enable nginx on boot
+- Open port 80 in firewalld
+- Deploy an index.html with content 'Hello from Ansible'
+- Fix SELinux context on /var/www/html
+Output: only the YAML, no explanation."
+
+<span class="c">── Pattern 4: Debug with Error ──</span>
+"I'm getting this error when running terraform apply:
+Error: Error creating VPC: InvalidVpcCidr.MalformedInput
+My main.tf has cidr_block = '10.0.0.0/8'
+What's wrong and how do I fix it?"
+
+<span class="c">── Pattern 5: Explain in Simple Terms ──</span>
+"Explain Kubernetes namespaces as if I know Linux but
+have never touched Kubernetes. Use a real-world analogy."</pre>
+      </div>
+      <dl class="terms-grid">
+        <div class="term-card"><dt>Prompt</dt><dd>The text you send to an AI. Quality of prompt = quality of answer.</dd></div>
+        <div class="term-card"><dt>System prompt</dt><dd>Instructions given to the AI before the conversation. Sets its role and behaviour.</dd></div>
+        <div class="term-card"><dt>Context window</dt><dd>How much text the AI can "see" at once. Longer = more expensive. Claude has a very large context window.</dd></div>
+        <div class="term-card"><dt>Temperature</dt><dd>Randomness setting — 0 = deterministic/focused, 1 = creative/varied. Use low for code, higher for creative writing.</dd></div>
+        <div class="term-card"><dt>Few-shot prompting</dt><dd>Give the AI 2-3 examples of what you want before asking it to do the task. Dramatically improves quality.</dd></div>
+        <div class="term-card"><dt>Chain of thought</dt><dd>Ask AI to "think step by step" — it produces better reasoning when it explains its process.</dd></div>
+      </dl>
+    </section>
+    <hr class="module-divider"/>
+
+    <!-- M08 -->
+    <section class="module-section" id="m08">
+      <div class="module-header">
+        <span class="module-num-badge">MODULE 08</span>
+        <div class="module-header-text">
+          <h2>AI in DevOps Workflows</h2>
+          <p>GitHub Copilot, AI-assisted debugging, writing configs and scripts with AI.</p>
+        </div>
+      </div>
+      <div class="concept-block">
+        <h3>How AI Fits into Daily DevOps Work</h3>
+        <p>AI doesn't replace a DevOps engineer — it removes the slow parts. Writing boilerplate Dockerfiles, researching the right Terraform resource syntax, understanding an error message you've never seen before, writing documentation nobody wants to write. AI does all of that in seconds. You focus on architecture, judgment, and the work that actually requires experience.</p>
+      </div>
+      <div class="compare-wrap">
+        <div class="compare-label">DevOps Tasks — Before vs With AI</div>
+        <table class="compare">
+          <thead><tr><th>Task</th><th>Before AI</th><th>With AI</th></tr></thead>
+          <tbody>
+            <tr><td>Write a Dockerfile</td><td>Copy from docs, trial and error</td><td>Describe your app → AI writes it → you review</td></tr>
+            <tr><td>Debug an error</td><td>Google the message, read Stack Overflow</td><td>Paste error + context → AI explains + suggests fix</td></tr>
+            <tr><td>Write Ansible playbook</td><td>Check module docs, write from scratch</td><td>Describe what you need → AI writes YAML → you test</td></tr>
+            <tr><td>Understand a log</td><td>Read line by line, search each code</td><td>Paste log → AI explains what happened in plain language</td></tr>
+            <tr><td>Write bash script</td><td>Lookup syntax, test in terminal</td><td>Describe logic → AI writes → you adjust</td></tr>
+            <tr><td>Write documentation</td><td>Nobody does it</td><td>Paste your code/config → AI writes the docs</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="code-wrap">
+        <div class="code-label">GitHub Copilot — Setup in VS Code</div>
+        <pre><span class="c"># Install GitHub Copilot extension in VS Code</span>
+<span class="c"># Extensions → search "GitHub Copilot" → Install</span>
+
+<span class="c"># Sign in with GitHub account</span>
+<span class="c"># Free for students → apply at: education.github.com</span>
+<span class="c"># $10/month for individuals otherwise</span>
+
+<span class="c"># How it works — as you type, Copilot suggests completions</span>
+<span class="c"># Accept suggestion: Tab</span>
+<span class="c"># Reject: Esc</span>
+<span class="c"># See alternatives: Alt + ]</span>
+
+<span class="c"># Copilot Chat (in VS Code sidebar)</span>
+<span class="c"># /explain  → explains selected code</span>
+<span class="c"># /fix      → suggests fix for selected code</span>
+<span class="c"># /tests    → generates unit tests</span>
+<span class="c"># /doc      → writes documentation</span></pre>
+      </div>
+    </section>
+    <hr class="module-divider"/>
+
+    <!-- M09 -->
+    <section class="module-section" id="m09">
+      <div class="module-header">
+        <span class="module-num-badge">MODULE 09</span>
+        <div class="module-header-text">
+          <h2>AI APIs — OpenAI, Claude, Gemini</h2>
+          <p>Call AI from your own Python scripts — build tools that use AI.</p>
+        </div>
+      </div>
+      <div class="concept-block">
+        <h3>What is an AI API?</h3>
+        <p>Instead of typing into a chat interface, an API lets your code send a message to an AI and receive the response — programmatically. You build an application that uses AI as a brain. Your Python script sends a server log to the API and receives an explanation. Your CI/CD pipeline sends failing test output and receives a diagnosis. The AI becomes a component of your automation, not just a chat window.</p>
+      </div>
+      <div class="code-wrap">
+        <div class="code-label">OpenAI API — Python Example</div>
+        <pre><span class="c"># pip install openai</span>
+from openai import OpenAI
+
+client = OpenAI(api_key="sk-your-api-key-here")  <span class="c"># get from platform.openai.com</span>
+
+response = client.chat.completions.create(
+    model="gpt-4o-mini",   <span class="c"># cheapest good model — ~$0.15 per 1M tokens</span>
+    messages=[
+        {"role": "system",  "content": "You are a senior Linux sysadmin. Be concise and practical."},
+        {"role": "user",    "content": "Explain this error: ENOSPC: no space left on device"}
+    ]
+)
+
+print(response.choices[0].message.content)</pre>
+      </div>
+      <div class="code-wrap">
+        <div class="code-label">Ollama API — Free Local Alternative</div>
+        <pre"><span class="c"># No API key needed — runs on localhost</span>
+import requests, json
+
+def ask_ollama(prompt, model="llama3.2"):
+    response = requests.post(
+        "http://localhost:11434/api/generate",
+        json={"model": model, "prompt": prompt, "stream": False}
+    )
+    return response.json()["response"]
+
+<span class="c"># Use it</span>
+answer = ask_ollama("What does chmod 755 do in Linux?")
+print(answer)</pre>
+      </div>
+    </section>
+    <hr class="module-divider"/>
+
+    <!-- M10 -->
+    <section class="module-section" id="m10">
+      <div class="module-header">
+        <span class="module-num-badge">MODULE 10</span>
+        <div class="module-header-text">
+          <h2>Building Simple AI Tools</h2>
+          <p>Log analyser, doc generator, simple chatbot — tools you'll actually use.</p>
+        </div>
+      </div>
+      <div class="concept-block">
+        <h3>The Approach</h3>
+        <p>Every useful AI tool follows the same pattern: get some input (a log file, a config, an error message), send it to an AI with a good prompt, return the result. You don't need machine learning knowledge to build these. You need Python, an API key, and a clear prompt.</p>
+      </div>
+      <div class="code-wrap">
+        <div class="code-label">Tool 1 — Server Log Analyser</div>
+        <pre><span class="c">#!/usr/bin/env python3</span>
+<span class="c"># log-analyser.py — paste a log, get a plain-language explanation</span>
+
+import sys
+from openai import OpenAI
+
+client = OpenAI(api_key="your-key")  <span class="c"># or use Ollama for free</span>
+
+def analyse_log(log_content):
+    prompt = f"""You are a senior Linux/DevOps engineer.
+Analyse this server log and provide:
+1. What happened (plain language, 2 sentences max)
+2. Root cause (if identifiable)
+3. Recommended fix (specific commands if applicable)
+
+Log:
+{log_content}"""
+
+    response = client.chat.completions.create(
+        model="gpt-4o-mini",
+        messages=[{"role":"user","content":prompt}]
+    )
+    return response.choices[0].message.content
+
+<span class="c"># Read from file or stdin</span>
+if len(sys.argv) > 1:
+    log = open(sys.argv[1]).read()
+else:
+    log = sys.stdin.read()
+
+print(analyse_log(log))</pre>
+      </div>
+      <div class="code-wrap">
+        <div class="code-label">Tool 2 — Chat with Your Documentation</div>
+        <pre><span class="c"># Simple RAG (Retrieval-Augmented Generation)</span>
+<span class="c"># Load your own docs → AI answers questions about them</span>
+
+def chat_with_docs(docs_folder, question):
+    <span class="c"># Read all markdown/text files</span>
+    context = ""
+    import os
+    for fname in os.listdir(docs_folder):
+        if fname.endswith(('.md', '.txt')):
+            context += open(f"{docs_folder}/{fname}").read() + "\n\n"
+
+    prompt = f"""Answer this question using ONLY the documentation below.
+If the answer isn't in the docs, say so.
+
+Documentation:
+{context[:8000]}  # limit to context window
+
+Question: {question}"""
+
+    response = client.chat.completions.create(
+        model="gpt-4o-mini",
+        messages=[{"role":"user","content":prompt}]
+    )
+    return response.choices[0].message.content
+
+print(chat_with_docs("./docs", "How do I configure nginx for HTTPS?"))</pre>
+      </div>
+    </section>
+    <hr class="module-divider"/>
+
+    <!-- M11 -->
+    <section class="module-section" id="m11">
+      <div class="module-header">
+        <span class="module-num-badge">MODULE 11</span>
+        <div class="module-header-text">
+          <h2>AI Infrastructure on Cloud</h2>
+          <p>GPU instances, costs, running Ollama on EC2 — when you need cloud AI.</p>
+        </div>
+      </div>
+      <div class="compare-wrap">
+        <div class="compare-label">CPU vs GPU vs Cloud API — When to Use Each</div>
+        <table class="compare">
+          <thead><tr><th>Option</th><th>Cost</th><th>Speed</th><th>Use When</th></tr></thead>
+          <tbody>
+            <tr><td>Laptop CPU (Ollama)</td><td>Free</td><td>Slow — 5–15 tokens/sec</td><td>Learning, private data, small models</td></tr>
+            <tr><td>AWS g4dn.xlarge (GPU)</td><td>~$0.53/hr</td><td>Fast — 50–100 tokens/sec</td><td>Team sharing, larger models, production</td></tr>
+            <tr><td>OpenAI/Claude API</td><td>Per token</td><td>Very fast</td><td>Production apps, best model quality needed</td></tr>
+            <tr><td>HuggingFace Inference</td><td>Free tier + paid</td><td>Variable</td><td>Hosted models without managing infra</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="code-wrap">
+        <div class="code-label">Run Ollama on EC2 — Team AI Server</div>
+        <pre><span class="c"># Launch g4dn.xlarge on AWS (NVIDIA T4 GPU)</span>
+<span class="c"># AMI: Deep Learning AMI (Ubuntu) — GPU drivers pre-installed</span>
+
+<span class="c"># SSH into your EC2, then:</span>
+curl -fsSL https://ollama.com/install.sh | sh
+
+<span class="c"># Pull models</span>
+ollama pull llama3.2
+ollama pull codellama
+
+<span class="c"># Start Ollama listening on all interfaces (for team access)</span>
+OLLAMA_HOST=0.0.0.0:11434 ollama serve &
+
+<span class="c"># Open EC2 Security Group: port 11434 from your team's IPs only</span>
+
+<span class="c"># Deploy Open WebUI for browser access</span>
+docker run -d -p 80:8080 \
+  -e OLLAMA_BASE_URL=http://localhost:11434 \
+  -v open-webui:/app/backend/data \
+  ghcr.io/open-webui/open-webui:main
+
+<span class="c"># Team accesses via: http://your-ec2-ip</span>
+<span class="c"># Everyone gets a private AI — no data leaves your AWS account</span>
+
+<span class="c"># Cost control: Stop instance when not in use</span>
+<span class="c"># Use Lambda to auto-stop at night (see Cloud course Module 13)</span></pre>
+      </div>
+    </section>
+    <hr class="module-divider"/>
+
+    <!-- M12 -->
+    <section class="module-section" id="m12">
+      <div class="module-header">
+        <span class="module-num-badge">MODULE 12</span>
+        <div class="module-header-text">
+          <h2>Ethics, Limits &amp; What AI Can't Do</h2>
+          <p>Hallucinations, data privacy, job reality — what you need to know before relying on AI.</p>
+        </div>
+      </div>
+      <div class="concept-block">
+        <h3>Hallucinations — AI's Biggest Lie</h3>
+        <p>AI models sometimes produce confident, well-written, completely wrong answers. This is called hallucination. The model doesn't "know" it's wrong — it's predicting the most plausible-sounding text based on patterns. It will invent package names, fake documentation URLs, wrong command syntax, and fictional CVEs — all with the same confident tone as correct answers.</p>
+        <p><strong>Rule:</strong> Never run an AI-generated command on a production server without verifying it. Never paste AI-generated config directly. Always test in a safe environment first.</p>
+      </div>
+      <div class="compare-wrap">
+        <div class="compare-label">Where to Trust AI vs Where to Verify</div>
+        <table class="compare">
+          <thead><tr><th>Task</th><th>Trust Level</th><th>Why</th></tr></thead>
+          <tbody>
+            <tr><td>Explain a concept</td><td>High — verify major claims</td><td>Good at explaining known concepts</td></tr>
+            <tr><td>Write boilerplate code</td><td>Medium — test before use</td><td>Good at patterns, may miss your specific context</td></tr>
+            <tr><td>Specific version syntax</td><td>Low — always check docs</td><td>Training data may be outdated</td></tr>
+            <tr><td>Security recommendations</td><td>Low — consult a human expert</td><td>Stakes too high for AI errors</td></tr>
+            <tr><td>Diagnose an error</td><td>Medium — use as a starting point</td><td>Good at common errors, may miss edge cases</td></tr>
+            <tr><td>Generate passwords or keys</td><td>Never</td><td>Use proper random generators only</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="callout callout-warn">
+        <span class="callout-icon">⚠️</span>
+        <p><strong>Never paste into public AI tools:</strong> Client data, database credentials, API keys, private IP addresses, internal hostnames, proprietary code, or anything under NDA. Use Ollama locally for anything sensitive.</p>
+      </div>
+      <div class="concept-block">
+        <h3>AI and Jobs — Realistic View</h3>
+        <p>AI removes the slow parts of IT work — writing boilerplate, looking up syntax, drafting documentation. It does not replace judgment, architecture decisions, client communication, troubleshooting novel problems, or security expertise. The engineers who learn to use AI as a tool will outpace those who ignore it. The engineers who trust AI blindly will cause production incidents. The right position is in the middle: use it, verify it, own the result.</p>
+      </div>
+    </section>
+    <hr class="module-divider"/>
+
+    <!-- ENROLL CTA -->
+    <div style="background:linear-gradient(135deg,rgba(245,158,11,0.1),rgba(249,115,22,0.05));border:1px solid rgba(245,158,11,0.25);border-radius:14px;padding:32px 28px;text-align:center;margin-top:20px">
+      <div style="font-size:2rem;margin-bottom:12px">🤖</div>
+      <h2 style="font-size:1.3rem;font-weight:800;margin-bottom:8px">Ready to go beyond reading?</h2>
+      <p style="font-size:0.88rem;color:var(--gray-400);max-width:420px;margin:0 auto 20px;line-height:1.7">The live course includes hands-on labs, building real AI tools in Python, running your own AI server on EC2, and a final project you'll actually use in your DevOps workflow.</p>
+      <a href="https://wa.me/923231450045?text=Hi%20Kamran%2C%20I%20read%20the%20AI%20notes%20and%20want%20to%20enroll." style="display:inline-flex;align-items:center;gap:8px;background:var(--gold);color:#000;padding:12px 28px;border-radius:8px;text-decoration:none;font-weight:700;font-size:0.9rem">💬 Enroll via WhatsApp →</a>
+      <p style="font-size:0.72rem;color:var(--gray-500);margin-top:12px">Batch info &amp; fee on request</p>
+    </div>
+  </main>
+</div>
+
+<footer>
+  <p>© 2026 Devriston · Muhammad Kamran Kabeer · Lahore, Pakistan</p>
+  <div class="footer-links">
+    <a href="https://devriston.com.pk/learn.html">Learn Hub</a>
+    <a href="https://devriston.com.pk/courses.html">All Courses</a>
+    <a href="https://devriston.com.pk/linux-notes.html">Linux Notes</a>
+    <a href="https://devriston.com.pk/cloud-notes.html">Cloud Notes</a>
+    <a href="https://devriston.com.pk/devops-full-notes.html">DevOps Notes</a>
+    <a href="https://devriston.com.pk/contact.html">Contact</a>
+  </div>
+</footer>
+
+<script>
+  const bt = document.getElementById('back-top');
+  window.addEventListener('scroll', () => bt.classList.toggle('visible', scrollY > 400));
+
+  const sections = document.querySelectorAll('.module-section');
+  const links = document.querySelectorAll('.sidebar a');
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        links.forEach(l => l.classList.remove('active'));
+        const lnk = document.querySelector(`.sidebar a[href="#${e.target.id}"]`);
+        if (lnk) lnk.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-20% 0px -70% 0px' });
+  sections.forEach(s => obs.observe(s));
+
+  document.querySelector('.nav-mobile-toggle').addEventListener('click', () => {
+    document.querySelector('.nav-mobile').classList.toggle('open');
+  });
+</script>
+</body>
+</html>
