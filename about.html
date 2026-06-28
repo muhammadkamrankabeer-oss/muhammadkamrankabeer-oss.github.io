@@ -26,26 +26,10 @@
   <div class="container nav-inner">
     <a href="index.html" class="nav-logo"><img src="assets/logos/dv-logo.png" alt="Devriston"/><span class="nav-brand">Devri<span>ston</span></span></a>
     <div class="nav-links">
-      <a href="index.html">Home</a>
-      <a href="solutions.html">Solutions</a>
-      <a href="case-studies.html">Case Studies</a>
-      <div class="nav-dropdown" style="position:relative;display:inline-block">
-        <button class="nav-dropdown-toggle" onclick="toggleLearnMenu(event)" aria-haspopup="true" aria-expanded="false" style="display:flex;align-items:center;gap:5px;font-size:0.83rem;font-weight:500;color:var(--white-2,#8899bb);background:transparent;border:none;padding:7px 12px;border-radius:8px;cursor:pointer;font-family:inherit;transition:color .2s,background .2s;">
-          Learn
-          <svg viewBox="0 0 12 12" style="width:11px;height:11px;stroke:currentColor;stroke-width:2.5;fill:none;transition:transform 0.2s"><polyline points="2,4 6,8 10,4"/></svg>
-        </button>
-        <div id="learn-menu" style="display:none;position:absolute;top:calc(100% + 10px);left:50%;transform:translateX(-50%);background:#071428;border:1px solid rgba(255,255,255,0.09);border-radius:12px;padding:6px;min-width:220px;box-shadow:0 20px 56px rgba(0,0,0,0.55);z-index:2000;">
-          <a href="blog.html" style="display:flex;align-items:center;gap:10px;padding:9px 12px;border-radius:8px;color:rgba(240,246,255,0.7);font-size:0.82rem;font-weight:500;text-decoration:none;">📝 Blog Articles</a>
-          <a href="devops-notes.html" style="display:flex;align-items:center;gap:10px;padding:9px 12px;border-radius:8px;color:rgba(240,246,255,0.7);font-size:0.82rem;font-weight:500;text-decoration:none;">📋 DevOps Quick Notes</a>
-          <a href="courses.html" style="display:flex;align-items:center;gap:10px;padding:9px 12px;border-radius:8px;color:rgba(240,246,255,0.7);font-size:0.82rem;font-weight:500;text-decoration:none;">🎓 Courses</a>
-          <div style="height:1px;background:rgba(255,255,255,0.07);margin:5px 0"></div>
-          <a href="linux-notes.html" style="display:flex;align-items:center;gap:10px;padding:9px 12px;border-radius:8px;color:rgba(240,246,255,0.7);font-size:0.82rem;font-weight:500;text-decoration:none;">🐧 Linux Notes</a>
-          <a href="cloud-notes.html" style="display:flex;align-items:center;gap:10px;padding:9px 12px;border-radius:8px;color:rgba(240,246,255,0.7);font-size:0.82rem;font-weight:500;text-decoration:none;">☁️ Cloud Notes</a>
-          <a href="devops-full-notes.html" style="display:flex;align-items:center;gap:10px;padding:9px 12px;border-radius:8px;color:rgba(240,246,255,0.7);font-size:0.82rem;font-weight:500;text-decoration:none;">⚙️ DevOps Notes</a>
-          <div style="height:1px;background:rgba(255,255,255,0.07);margin:5px 0"></div>
-          <a href="interview-guide.html" style="display:flex;align-items:center;gap:10px;padding:9px 12px;border-radius:8px;color:rgba(240,246,255,0.7);font-size:0.82rem;font-weight:500;text-decoration:none;">💼 Interview Guide</a>
-        </div>
-      </div>
+      <a href="index.html" >Home</a>
+      <a href="solutions.html" >Solutions</a>
+      <a href="case-studies.html" >Case Studies</a>
+      <a href="learn.html" >Learn</a>
       <a href="about.html" class="active">About</a>
       <a href="contact.html" class="nav-cta">Book Consultation</a>
     </div>
@@ -53,16 +37,12 @@
   </div>
 </nav>
 <div class="drawer" id="nav-drawer">
-  <a href="index.html">Home</a><a href="solutions.html">Solutions</a><a href="case-studies.html">Case Studies</a>
-  <span style="font-size:0.65rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:rgba(240,246,255,0.3);padding:12px 0 4px;display:block;border-bottom:none">Learn</span>
-  <a href="blog.html">📝 Blog Articles</a>
-  <a href="devops-notes.html">📋 DevOps Quick Notes</a>
-  <a href="courses.html">🎓 Courses</a>
-  <a href="linux-notes.html">🐧 Linux Notes</a>
-  <a href="cloud-notes.html">☁️ Cloud Notes</a>
-  <a href="devops-full-notes.html">⚙️ DevOps Notes</a>
-  <a href="interview-guide.html">💼 Interview Guide</a>
-  <a href="about.html">About</a><a href="contact.html">Contact</a>
+  <a href="index.html">Home</a>
+  <a href="solutions.html">Solutions</a>
+  <a href="case-studies.html">Case Studies</a>
+  <a href="learn.html">Learn</a>
+  <a href="about.html"  class="active">About</a>
+  <a href="contact.html">Contact</a>
 </div>
 
 <!-- HERO -->
@@ -241,23 +221,5 @@
   </div>
 </footer>
 <script src="assets/js/main.js" defer></script>
-<script>
-function toggleLearnMenu(e){
-  e.stopPropagation();
-  var m=document.getElementById("learn-menu");
-  var btn=e.currentTarget;
-  if(!m)return;
-  var open=m.style.display==="block";
-  m.style.display=open?"none":"block";
-  var svg=btn.querySelector("svg");
-  if(svg)svg.style.transform=open?"":"rotate(180deg)";
-  btn.setAttribute("aria-expanded",String(!open));
-}
-document.addEventListener("click",function(){
-  var m=document.getElementById("learn-menu");
-  if(m)m.style.display="none";
-  document.querySelectorAll(".nav-dropdown-toggle svg").forEach(function(s){s.style.transform="";});
-});
-</script>
 </body>
 </html>

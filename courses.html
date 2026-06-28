@@ -561,23 +561,7 @@
     <li><a href="https://devriston.com.pk/index.html">Home</a></li>
     <li><a href="https://devriston.com.pk/solutions.html">Solutions</a></li>
     <li><a href="https://devriston.com.pk/case-studies.html">Case Studies</a></li>
-          <li style="position:relative;list-style:none">
-      <button class="nav-dropdown-toggle active-section" onclick="toggleLearnMenu(event)" aria-haspopup="true" aria-expanded="false" style="display:flex;align-items:center;gap:5px;font-size:0.83rem;font-weight:600;color:#00d4ff;background:rgba(255,255,255,0.07);border:none;padding:7px 12px;border-radius:8px;cursor:pointer;font-family:inherit;">
-        Learn
-        <svg viewBox="0 0 12 12" style="width:11px;height:11px;stroke:currentColor;stroke-width:2.5;fill:none;transition:transform 0.2s"><polyline points="2,4 6,8 10,4"/></svg>
-      </button>
-      <div id="learn-menu" style="display:none;position:absolute;top:calc(100% + 10px);left:50%;transform:translateX(-50%);background:#071428;border:1px solid rgba(255,255,255,0.09);border-radius:12px;padding:6px;min-width:220px;box-shadow:0 20px 56px rgba(0,0,0,0.55);z-index:2000;">
-        <a href="https://devriston.com.pk/blog.html" style="display:flex;align-items:center;gap:10px;padding:9px 12px;border-radius:8px;color:rgba(240,246,255,0.7);font-size:0.82rem;font-weight:500;text-decoration:none;">📝 Blog Articles</a>
-        <a href="https://devriston.com.pk/devops-notes.html" style="display:flex;align-items:center;gap:10px;padding:9px 12px;border-radius:8px;color:rgba(240,246,255,0.7);font-size:0.82rem;font-weight:500;text-decoration:none;">📋 DevOps Quick Notes</a>
-        <a href="https://devriston.com.pk/courses.html" style="display:flex;align-items:center;gap:10px;padding:9px 12px;border-radius:8px;color:rgba(240,246,255,0.7);font-size:0.82rem;font-weight:500;text-decoration:none;">🎓 Courses</a>
-        <div style="height:1px;background:rgba(255,255,255,0.07);margin:5px 0"></div>
-        <a href="https://devriston.com.pk/linux-notes.html" style="display:flex;align-items:center;gap:10px;padding:9px 12px;border-radius:8px;color:rgba(240,246,255,0.7);font-size:0.82rem;font-weight:500;text-decoration:none;">🐧 Linux Notes</a>
-        <a href="https://devriston.com.pk/cloud-notes.html" style="display:flex;align-items:center;gap:10px;padding:9px 12px;border-radius:8px;color:rgba(240,246,255,0.7);font-size:0.82rem;font-weight:500;text-decoration:none;">☁️ Cloud Notes</a>
-        <a href="https://devriston.com.pk/devops-full-notes.html" style="display:flex;align-items:center;gap:10px;padding:9px 12px;border-radius:8px;color:rgba(240,246,255,0.7);font-size:0.82rem;font-weight:500;text-decoration:none;">⚙️ DevOps Notes</a>
-        <div style="height:1px;background:rgba(255,255,255,0.07);margin:5px 0"></div>
-        <a href="https://devriston.com.pk/interview-guide.html" style="display:flex;align-items:center;gap:10px;padding:9px 12px;border-radius:8px;color:rgba(240,246,255,0.7);font-size:0.82rem;font-weight:500;text-decoration:none;">💼 Interview Guide</a>
-      </div>
-    </li>
+    <li><a href="https://devriston.com.pk/learn.html" class="active">Learn</a></li>
     <li><a href="https://devriston.com.pk/about.html">About</a></li>
     <li><a href="https://devriston.com.pk/contact.html" class="nav-cta">Book Consultation</a></li>
   </ul>
@@ -587,14 +571,7 @@
   <a href="https://devriston.com.pk/index.html">Home</a>
   <a href="https://devriston.com.pk/solutions.html">Solutions</a>
   <a href="https://devriston.com.pk/case-studies.html">Case Studies</a>
-    <span style="font-size:0.65rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:rgba(240,246,255,0.3);padding:12px 0 4px;display:block;">Learn</span>
-  <a href="https://devriston.com.pk/blog.html">📝 Blog Articles</a>
-  <a href="https://devriston.com.pk/devops-notes.html">📋 DevOps Quick Notes</a>
-  <a href="https://devriston.com.pk/courses.html">🎓 Courses</a>
-  <a href="https://devriston.com.pk/linux-notes.html">🐧 Linux Notes</a>
-  <a href="https://devriston.com.pk/cloud-notes.html">☁️ Cloud Notes</a>
-  <a href="https://devriston.com.pk/devops-full-notes.html">⚙️ DevOps Notes</a>
-  <a href="https://devriston.com.pk/interview-guide.html">💼 Interview Guide</a>
+  <a href="https://devriston.com.pk/learn.html" class="active">Learn</a>
   <a href="https://devriston.com.pk/about.html">About</a>
   <a href="https://devriston.com.pk/contact.html">Contact</a>
 </div>
@@ -1139,7 +1116,134 @@
   </div>
 </section>
 
-<!-- HOW IT WORKS -->
+  <!-- ═══════════════════════════════════
+       COURSE 4 — AI
+  ═══════════════════════════════════ -->
+  <div class="course-block course-devops" id="ai" style="border-top-color:rgba(245,158,11,0.5)">
+    <div class="course-header">
+      <div>
+        <div class="course-number">COURSE 04 / 04</div>
+        <span class="course-icon">🤖</span>
+        <h2 class="course-title-main">AI for IT Professionals<br/>— Practical Guide</h2>
+        <p class="course-tagline">
+          Not an AI research course. Use AI as a daily tool — run models locally, call AI APIs, build simple automations, and use AI to write better scripts, debug faster, and work smarter as a DevOps or IT professional.
+        </p>
+        <div class="course-meta-badges">
+          <span class="badge badge-level">Beginner → Practitioner</span>
+          <span class="badge badge-format" style="background:rgba(245,158,11,0.1);color:#fbbf24;border-color:rgba(245,158,11,0.3)">🆕 New Course</span>
+          <span class="badge badge-project">🤖 Hands-on Tools</span>
+        </div>
+      </div>
+      <div class="course-enroll-box">
+        <a href="https://wa.me/923231450045?text=Hi%20Kamran%2C%20I%20want%20to%20enroll%20in%20the%20AI%20course." class="enroll-cta" style="background:#d97706">
+          Enroll via WhatsApp →
+        </a>
+        <p class="enroll-note">Batch info, schedule &amp; fee on request</p>
+      </div>
+    </div>
+
+    <div class="course-modules">
+      <div class="modules-intro">// 12 modules · every module hands-on · no math required · practical tools throughout</div>
+      <div class="modules-grid">
+
+        <div class="module-card">
+          <div class="module-num">MODULE 01</div>
+          <div class="module-title">What is AI? (Plain Language)</div>
+          <div class="module-desc">Not sci-fi. AI is software that learns patterns from data instead of following fixed rules. History from rule-based systems to neural networks to today's LLMs — explained simply with no math.</div>
+          <div class="module-tags"><span class="module-tag">AI basics</span><span class="module-tag">LLM</span><span class="module-tag">neural networks</span><span class="module-tag">history</span></div>
+        </div>
+
+        <div class="module-card">
+          <div class="module-num">MODULE 02</div>
+          <div class="module-title">ML vs Deep Learning vs GenAI</div>
+          <div class="module-desc">Machine Learning predicts from data. Deep Learning uses neural networks. Generative AI creates new content — text, code, images. What each is used for and when you'd encounter each in IT work.</div>
+          <div class="module-tags"><span class="module-tag">ML</span><span class="module-tag">deep learning</span><span class="module-tag">GenAI</span><span class="module-tag">use cases</span></div>
+        </div>
+
+        <div class="module-card">
+          <div class="module-num">MODULE 03</div>
+          <div class="module-title">AI Tools Landscape</div>
+          <div class="module-desc">ChatGPT, Claude, Gemini, Grok, Copilot — what each is best at, free vs paid tiers, when to use which. Also covers Perplexity, You.com, and other alternatives to Google Search powered by AI.</div>
+          <div class="module-tags"><span class="module-tag">ChatGPT</span><span class="module-tag">Claude</span><span class="module-tag">Gemini</span><span class="module-tag">Grok</span><span class="module-tag">Perplexity</span></div>
+        </div>
+
+        <div class="module-card">
+          <div class="module-num">MODULE 04</div>
+          <div class="module-title">Running AI Locally — Ollama</div>
+          <div class="module-desc">Ollama lets you run LLMs on your own machine — no internet, no API cost, no data leaving your computer. Install on Linux/Windows, pull models (Llama3, Mistral, Phi3), run from terminal or browser UI.</div>
+          <div class="module-tags"><span class="module-tag">ollama</span><span class="module-tag">local LLM</span><span class="module-tag">llama3</span><span class="module-tag">mistral</span><span class="module-tag">privacy</span></div>
+        </div>
+
+        <div class="module-card">
+          <div class="module-num">MODULE 05</div>
+          <div class="module-title">Open Source Models</div>
+          <div class="module-desc">Llama (Meta), Mistral, Phi (Microsoft), Falcon, Gemma (Google) — who makes them, what each is good at, how to pick the right one for your hardware. HuggingFace explained — the GitHub of AI models.</div>
+          <div class="module-tags"><span class="module-tag">open source</span><span class="module-tag">HuggingFace</span><span class="module-tag">llama</span><span class="module-tag">phi</span><span class="module-tag">model selection</span></div>
+        </div>
+
+        <div class="module-card">
+          <div class="module-num">MODULE 06</div>
+          <div class="module-title">Alternative Platforms &amp; Self-Hosted AI</div>
+          <div class="module-desc">Open WebUI — browser interface for Ollama. AnythingLLM — chat with your own documents. HuggingFace Spaces — run models online free. Self-hosted AI stack setup with Docker Compose.</div>
+          <div class="module-tags"><span class="module-tag">Open WebUI</span><span class="module-tag">AnythingLLM</span><span class="module-tag">self-hosted</span><span class="module-tag">docker</span><span class="module-tag">alt3</span></div>
+        </div>
+
+        <div class="module-card">
+          <div class="module-num">MODULE 07</div>
+          <div class="module-title">Prompt Engineering</div>
+          <div class="module-desc">How to talk to AI to get useful output — not generic answers. Roles, context, examples, step-by-step thinking, output format control. Specific prompts for DevOps: write scripts, debug errors, explain logs, generate configs.</div>
+          <div class="module-tags"><span class="module-tag">prompts</span><span class="module-tag">roles</span><span class="module-tag">chain-of-thought</span><span class="module-tag">DevOps prompts</span></div>
+        </div>
+
+        <div class="module-card">
+          <div class="module-num">MODULE 08</div>
+          <div class="module-title">AI in DevOps Workflows</div>
+          <div class="module-desc">GitHub Copilot — code completion in VS Code, write Dockerfiles, Terraform, Ansible with AI assistance. Using Claude/ChatGPT to debug errors — paste log, get fix. AI-assisted code review, writing documentation.</div>
+          <div class="module-tags"><span class="module-tag">GitHub Copilot</span><span class="module-tag">VS Code</span><span class="module-tag">AI debugging</span><span class="module-tag">automation</span></div>
+        </div>
+
+        <div class="module-card">
+          <div class="module-num">MODULE 09</div>
+          <div class="module-title">AI APIs — OpenAI, Claude, Gemini</div>
+          <div class="module-desc">What an API is (for non-developers). Call OpenAI and Claude APIs from Python — authentication, sending prompts, parsing responses. Build a simple tool: paste a server log → AI explains what went wrong.</div>
+          <div class="module-tags"><span class="module-tag">OpenAI API</span><span class="module-tag">Claude API</span><span class="module-tag">Python</span><span class="module-tag">requests</span><span class="module-tag">JSON</span></div>
+        </div>
+
+        <div class="module-card">
+          <div class="module-num">MODULE 10</div>
+          <div class="module-title">Building Simple AI Tools</div>
+          <div class="module-desc">Python + API = real tools. Build a log analyser (paste log → AI explains + suggests fix), a documentation generator (read code → write docs), and a simple chatbot for your own data using RAG basics.</div>
+          <div class="module-tags"><span class="module-tag">Python</span><span class="module-tag">log analyser</span><span class="module-tag">RAG basics</span><span class="module-tag">automation</span></div>
+        </div>
+
+        <div class="module-card">
+          <div class="module-num">MODULE 11</div>
+          <div class="module-title">AI Infrastructure on Cloud</div>
+          <div class="module-desc">GPU instances on AWS (g4dn, p3) — what they cost and when you need them. Running Ollama on EC2 for team access. Cost comparison: local GPU vs cloud GPU vs API. When each makes financial sense.</div>
+          <div class="module-tags"><span class="module-tag">AWS GPU</span><span class="module-tag">g4dn</span><span class="module-tag">EC2</span><span class="module-tag">cloud AI</span><span class="module-tag">cost</span></div>
+        </div>
+
+        <div class="module-card">
+          <div class="module-num">MODULE 12</div>
+          <div class="module-title">Ethics, Limits &amp; What AI Can't Do</div>
+          <div class="module-desc">Hallucinations — what they are, why they happen, how to catch them. Never paste client data or passwords into ChatGPT. AI replacing jobs — realistic view based on what AI actually can and can't do in 2026.</div>
+          <div class="module-tags"><span class="module-tag">hallucinations</span><span class="module-tag">data privacy</span><span class="module-tag">ethics</span><span class="module-tag">limitations</span><span class="module-tag">jobs</span></div>
+        </div>
+
+      </div>
+
+      <div class="final-project">
+        <span class="fp-icon">🏆</span>
+        <div class="fp-text">
+          <strong>Final Project — AI-Powered DevOps Tool</strong>
+          <p>Build a Python tool that reads your server logs, sends them to an AI API, gets a plain-language explanation of any errors, and suggests fixes. Then deploy it on EC2 and run it on a schedule with cron. A real tool you'll actually use — and a unique GitHub project that stands out to employers.</p>
+        </div>
+        <a href="https://github.com/muhammadkamrankabeer-oss" class="fp-link" target="_blank">View GitHub Repos →</a>
+      </div>
+    </div>
+  </div>
+
+</section><!-- /courses-section -->
 <section class="how-section">
   <div class="section-label">Process</div>
   <h2 class="section-title">How it works</h2>
@@ -1335,9 +1439,6 @@
       }
     });
   });
-</script>
-<script>
-function toggleLearnMenu(e){e.stopPropagation();var menu=document.getElementById("learn-menu");var btn=e.currentTarget;if(!menu)return;var isOpen=menu.style.display==="block";menu.style.display=isOpen?"none":"block";var svg=btn.querySelector("svg");if(svg)svg.style.transform=isOpen?"":"rotate(180deg)";btn.setAttribute("aria-expanded",String(!isOpen));}document.addEventListener("click",function(){var m=document.getElementById("learn-menu");if(m)m.style.display="none";});
 </script>
 </body>
 </html>
