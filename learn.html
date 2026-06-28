@@ -4,7 +4,7 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Learn | Devriston — Linux, Cloud, DevOps & AI Courses and Notes</title>
-  <meta name="description" content="Free lecture notes, live online courses, interview prep and blog articles covering Linux, Cloud (AWS), DevOps, and AI — by Muhammad Kamran Kabeer at Devriston."/>
+  <meta name="description" content="Live online DevOps, Linux and Cloud courses in Pakistan — taught by a practicing engineer with 10+ years experience. Free lecture notes for every module. Lahore-based, online delivery."/>
   <meta name="keywords" content="DevOps courses Pakistan, Linux course Lahore, AWS cloud training, AI course for IT professionals, free DevOps notes, RHCSA training, Devriston learning"/>
   <meta name="author" content="Muhammad Kamran Kabeer"/>
   <meta name="robots" content="index,follow"/>
@@ -178,6 +178,37 @@
       .hero-stats{gap:24px}
       .cta-band{padding:28px 20px}
     }
+  
+/* ── LEARN SUB-NAV ── */
+.learn-subnav{
+  position:sticky;top:60px;z-index:90;
+  background:rgba(7,20,40,0.97);backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(26,106,255,0.15);
+  overflow-x:auto;white-space:nowrap;
+  scrollbar-width:none;
+}
+.learn-subnav::-webkit-scrollbar{display:none}
+.learn-subnav-inner{
+  display:inline-flex;align-items:center;gap:2px;
+  padding:0 5%;min-width:100%;
+}
+.learn-subnav a{
+  display:inline-flex;align-items:center;gap:6px;
+  color:rgba(136,153,187,0.85);text-decoration:none;
+  font-size:0.78rem;font-weight:500;
+  padding:10px 12px;border-bottom:2px solid transparent;
+  transition:color 0.18s,border-color 0.18s;
+  white-space:nowrap;flex-shrink:0;
+}
+.learn-subnav a:hover{color:#fff}
+.learn-subnav a.sn-active{
+  color:#00d4ff;border-bottom-color:#00d4ff;font-weight:600;
+}
+.learn-subnav .sn-sep{
+  width:1px;height:16px;background:rgba(255,255,255,0.08);
+  margin:0 4px;flex-shrink:0;
+}
+
   </style>
 </head>
 <body>
@@ -190,26 +221,12 @@
     <img src="assets/logos/dv-logo.png" alt="Devriston"/>
     Devriston
   </a>
-  <div class="nav-links">
-    <a href="index.html">Home</a>
-    <a href="solutions.html">Solutions</a>
-    <a href="case-studies.html">Case Studies</a>
-    <a href="learn.html" class="active">Learn</a>
-    <a href="about.html">About</a>
-    <a href="contact.html" class="nav-cta">Book Consultation</a>
-  </div>
+  <div class="nav-links"><a href="index.html">Home</a><a href="solutions.html">Solutions</a><a href="case-studies.html">Case Studies</a><a href="learn.html" class="active">Learn</a><a href="about.html">About</a><a href="contact.html" class="nav-cta">Book Consultation</a></div>
   <button class="ham" onclick="document.getElementById('drawer').classList.toggle('open')" aria-label="Menu">
     <span></span><span></span><span></span>
   </button>
 </nav>
-<div class="drawer" id="drawer">
-  <a href="index.html">Home</a>
-  <a href="solutions.html">Solutions</a>
-  <a href="case-studies.html">Case Studies</a>
-  <a href="learn.html" class="active">Learn</a>
-  <a href="about.html">About</a>
-  <a href="contact.html">Contact</a>
-</div>
+<div class="drawer" id="nav-drawer"><a href="index.html">Home</a><a href="solutions.html">Solutions</a><a href="case-studies.html">Case Studies</a><a href="learn.html" class="active">Learn</a><a href="about.html">About</a><a href="contact.html">Contact</a></div>
 
 <!-- HERO -->
 <div style="margin-top:62px">
@@ -224,7 +241,7 @@
     <div>
       <div style="display:inline-flex;align-items:center;gap:6px;background:rgba(26,106,255,0.1);border:1px solid var(--border);color:var(--cyan);border-radius:20px;padding:3px 12px;font-size:0.68rem;font-weight:600;letter-spacing:0.05em;text-transform:uppercase;margin-bottom:10px">Learning Hub</div>
       <h1 style="font-size:clamp(1.4rem,3vw,2rem);font-weight:800;line-height:1.2;margin-bottom:6px">
-        Everything you need to <span style="background:linear-gradient(135deg,var(--blue),var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">learn DevOps.</span>
+        DevOps Courses, Linux Training<br/>&amp; <span style="background:linear-gradient(135deg,var(--blue),var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">Free Lecture Notes</span>
       </h1>
       <p style="color:var(--gray-400);font-size:0.85rem;max-width:480px">4 courses · free notes for every module · interview guide · blog. Taught by a practicing engineer with 10+ years experience.</p>
     </div>
@@ -240,6 +257,14 @@
 <div class="container" style="padding-top:24px;padding-bottom:48px">
 
   <!-- ── COURSES ── -->
+  <div style="background:rgba(26,106,255,0.07);border:1px solid rgba(26,106,255,0.18);border-radius:10px;padding:12px 18px;margin-bottom:20px;font-size:0.82rem;color:#c5d0e8;display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+    <span style="font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--cyan);flex-shrink:0">Recommended Path</span>
+    <span>🐧 Linux</span><span style="color:var(--gray-500)">→</span>
+    <span>☁️ Cloud</span><span style="color:var(--gray-500)">→</span>
+    <span>⚙️ DevOps</span><span style="color:var(--gray-500)">→</span>
+    <span>🤖 AI</span>
+    <span style="color:var(--gray-500);margin-left:4px">·  Not sure? <a href="https://wa.me/923231450045?text=Hi%20Kamran%2C%20which%20course%20should%20I%20start%20with?" style="color:var(--cyan);text-decoration:none;font-weight:600">Ask on WhatsApp →</a></span>
+  </div>
   <div style="margin-bottom:32px">
     <div style="display:flex;align-items:baseline;gap:12px;margin-bottom:16px">
       <span style="font-size:0.68rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--cyan)">Courses</span>
@@ -253,7 +278,7 @@
           <span class="course-badge badge-live">Live</span>
         </div>
         <div class="course-name">Linux Fundamentals — RHCSA Path</div>
-        <div class="course-desc">Zero to server admin — users, networking, web, DNS, DHCP, Samba. RHCSA aligned with a real enterprise final project.</div>
+        <div class="course-desc">Start from zero — learn to manage a real Linux server, create users, set up a web server, configure DNS, share files across a network. Aligned with the RHCSA industry certification.</div>
         <div class="course-meta">
           <span class="course-tag">16 modules</span><span class="course-tag">Beginner → Intermediate</span>
         </div>
@@ -269,7 +294,7 @@
           <span class="course-badge badge-live">Live</span>
         </div>
         <div class="course-name">Cloud Fundamentals — AWS Deep Dive</div>
-        <div class="course-desc">EC2, VPC, S3, RDS, Lambda, CLI, CloudWatch, cost management. Final project: full 3-tier AWS infrastructure with Terraform.</div>
+        <div class="course-desc">Build real cloud infrastructure on AWS — virtual servers, private networks, databases, file storage, serverless functions and monitoring. Final project: full production setup using Terraform.</div>
         <div class="course-meta">
           <span class="course-tag">14 modules</span><span class="course-tag">AWS focused</span>
         </div>
@@ -285,7 +310,7 @@
           <span class="course-badge badge-live">Live</span>
         </div>
         <div class="course-name">DevOps Bootcamp — Zero to Production</div>
-        <div class="course-desc">Git, Docker, CI/CD, Terraform, Ansible, Kubernetes, monitoring, GitOps. 5 real GitHub repos become your job portfolio.</div>
+        <div class="course-desc">The complete DevOps path — automate deployments, containerise apps, provision cloud infrastructure, orchestrate with Kubernetes and monitor everything. Your 5 GitHub projects become your CV.</div>
         <div class="course-meta">
           <span class="course-tag">17 modules</span><span class="course-tag">5 portfolio projects</span>
         </div>
@@ -301,7 +326,7 @@
           <span class="course-badge badge-new">New</span>
         </div>
         <div class="course-name">AI for IT Professionals — Practical Guide</div>
-        <div class="course-desc">Ollama, open-source models, prompt engineering, AI APIs, Python automation and AI in DevOps. Use AI as a daily tool — not theory.</div>
+        <div class="course-desc">Use AI to work faster — run models locally, write better scripts with AI help, call AI APIs from Python and build simple tools. Practical skills for IT and DevOps professionals, not AI researchers.</div>
         <div class="course-meta">
           <span class="course-tag">12 modules</span><span class="course-tag">Hands-on tools</span>
         </div>

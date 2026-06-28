@@ -57,7 +57,38 @@
 .qa-tags{display:flex;gap:5px;flex-wrap:wrap;padding:0 20px 16px}
 .qa-tag{font-family:monospace;font-size:.6rem;color:var(--text-3);background:rgba(255,255,255,.04);border:1px solid var(--border);padding:2px 6px;border-radius:3px}
 .hl{background:rgba(77,143,255,.25);border-radius:2px;padding:0 2px}
-</style>
+
+/* ── LEARN SUB-NAV ── */
+.learn-subnav{
+  position:sticky;top:60px;z-index:90;
+  background:rgba(7,20,40,0.97);backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(26,106,255,0.15);
+  overflow-x:auto;white-space:nowrap;
+  scrollbar-width:none;
+}
+.learn-subnav::-webkit-scrollbar{display:none}
+.learn-subnav-inner{
+  display:inline-flex;align-items:center;gap:2px;
+  padding:0 5%;min-width:100%;
+}
+.learn-subnav a{
+  display:inline-flex;align-items:center;gap:6px;
+  color:rgba(136,153,187,0.85);text-decoration:none;
+  font-size:0.78rem;font-weight:500;
+  padding:10px 12px;border-bottom:2px solid transparent;
+  transition:color 0.18s,border-color 0.18s;
+  white-space:nowrap;flex-shrink:0;
+}
+.learn-subnav a:hover{color:#fff}
+.learn-subnav a.sn-active{
+  color:#00d4ff;border-bottom-color:#00d4ff;font-weight:600;
+}
+.learn-subnav .sn-sep{
+  width:1px;height:16px;background:rgba(255,255,255,0.08);
+  margin:0 4px;flex-shrink:0;
+}
+
+  </style>
 </head>
 <body>
 <div id="readProg"></div>
@@ -65,8 +96,8 @@
 
 <a class="wa-btn" href="https://wa.me/923231450045?text=Hi%20Kamran%2C%20I%20saw%20your%20interview%20guide%20and%20I%27d%20like%20to%20discuss%20a%20project." target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.122 1.532 5.856L.057 23.617a.75.75 0 00.908.98l5.963-1.562A11.943 11.943 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.886 0-3.655-.52-5.168-1.424l-.37-.22-3.539.927.943-3.443-.24-.381A9.96 9.96 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>WhatsApp</a>
 
-<nav id="nav" class="scrolled"><div class="container nav-inner"><a href="index.html" class="nav-logo"><img src="assets/logos/dv-logo.png" alt="Devriston"/><span class="nav-brand">Devri<span>ston</span></span></a><div class="nav-links"><a href="index.html">Home</a><a href="solutions.html">Solutions</a><a href="case-studies.html">Case Studies</a><a href="blog.html">Blog</a><a href="devops-notes.html">Notes</a><a href="interview-guide.html" class="active">Interview Guide</a><a href="about.html">About</a><a href="contact.html" class="nav-cta">Book Consultation</a></div><button class="ham" onclick="toggleDrawer()" aria-label="Menu"><span></span><span></span><span></span></button></div></nav>
-<div class="drawer" id="nav-drawer"><a href="index.html">Home</a><a href="solutions.html">Solutions</a><a href="case-studies.html">Case Studies</a><a href="blog.html">Blog</a><a href="devops-notes.html">DevOps Notes</a><a href="interview-guide.html">Interview Guide</a><a href="about.html">About</a><a href="contact.html">Contact</a></div>
+<nav id="nav" class="scrolled"><div class="container nav-inner"><a href="index.html" class="nav-logo"><img src="assets/logos/dv-logo.png" alt="Devriston"/><span class="nav-brand">Devri<span>ston</span></span></a><div class="nav-links"><a href="index.html">Home</a><a href="solutions.html">Solutions</a><a href="case-studies.html">Case Studies</a><a href="learn.html" class="active">Learn</a><a href="about.html">About</a><a href="contact.html" class="nav-cta">Book Consultation</a></div><button class="ham" onclick="toggleDrawer()" aria-label="Menu"><span></span><span></span><span></span></button></div></nav>
+<div class="drawer" id="nav-drawer"><a href="index.html">Home</a><a href="solutions.html">Solutions</a><a href="case-studies.html">Case Studies</a><a href="learn.html" class="active">Learn</a><a href="about.html">About</a><a href="contact.html">Contact</a></div>
 
 <section class="pg-hero">
   <div class="container">

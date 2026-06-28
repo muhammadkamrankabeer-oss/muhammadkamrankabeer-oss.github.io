@@ -154,7 +154,38 @@ pre.cp-pre{margin:0;padding:18px 20px;font-family:var(--f-mono);font-size:.78rem
 .step-list{list-style:none;padding:0;margin:14px 0;display:flex;flex-direction:column;gap:10px}
 .step-list li{display:flex;align-items:flex-start;gap:12px;font-size:.87rem;color:var(--text-2);line-height:1.7}
 .step-num{background:var(--blue);color:#fff;width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.65rem;font-weight:700;flex-shrink:0;margin-top:2px}
-</style>
+
+/* ── LEARN SUB-NAV ── */
+.learn-subnav{
+  position:sticky;top:60px;z-index:90;
+  background:rgba(7,20,40,0.97);backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(26,106,255,0.15);
+  overflow-x:auto;white-space:nowrap;
+  scrollbar-width:none;
+}
+.learn-subnav::-webkit-scrollbar{display:none}
+.learn-subnav-inner{
+  display:inline-flex;align-items:center;gap:2px;
+  padding:0 5%;min-width:100%;
+}
+.learn-subnav a{
+  display:inline-flex;align-items:center;gap:6px;
+  color:rgba(136,153,187,0.85);text-decoration:none;
+  font-size:0.78rem;font-weight:500;
+  padding:10px 12px;border-bottom:2px solid transparent;
+  transition:color 0.18s,border-color 0.18s;
+  white-space:nowrap;flex-shrink:0;
+}
+.learn-subnav a:hover{color:#fff}
+.learn-subnav a.sn-active{
+  color:#00d4ff;border-bottom-color:#00d4ff;font-weight:600;
+}
+.learn-subnav .sn-sep{
+  width:1px;height:16px;background:rgba(255,255,255,0.08);
+  margin:0 4px;flex-shrink:0;
+}
+
+  </style>
 </head>
 <body>
 
@@ -168,30 +199,11 @@ pre.cp-pre{margin:0;padding:18px 20px;font-family:var(--f-mono);font-size:.78rem
 <nav id="nav" class="scrolled">
   <div class="container nav-inner">
     <a href="index.html" class="nav-logo"><img src="assets/logos/dv-logo.png" alt="Devriston"/><span class="nav-brand">Devri<span>ston</span></span></a>
-    <div class="nav-links">
-      <a href="index.html">Home</a>
-      <a href="solutions.html">Solutions</a>
-      <a href="case-studies.html">Case Studies</a>
-      <a href="blog.html">Blog</a>
-      <a href="devops-notes.html">Notes</a>
-      <a href="interview-guide.html">Interview Guide</a>
-      <a href="about.html">About</a>
-      <a href="contact.html" class="nav-cta">Book Consultation</a>
-    </div>
+    <div class="nav-links"><a href="index.html">Home</a><a href="solutions.html">Solutions</a><a href="case-studies.html">Case Studies</a><a href="learn.html" class="active">Learn</a><a href="about.html">About</a><a href="contact.html" class="nav-cta">Book Consultation</a></div>
     <button class="ham" onclick="toggleDrawer()" aria-label="Menu"><span></span><span></span><span></span></button>
   </div>
 </nav>
-<div class="drawer" id="nav-drawer">
-  <a href="index.html">Home</a>
-  <a href="solutions.html">Solutions</a>
-  <a href="case-studies.html">Case Studies</a>
-  <a href="blog.html">Blog</a>
-  <a href="devops-notes.html">DevOps Notes</a>
-  <a href="c-programming.html" class="active">C Programming</a>
-  <a href="interview-guide.html">Interview Guide</a>
-  <a href="about.html">About</a>
-  <a href="contact.html">Contact</a>
-</div>
+<div class="drawer" id="nav-drawer"><a href="index.html">Home</a><a href="solutions.html">Solutions</a><a href="case-studies.html">Case Studies</a><a href="learn.html" class="active">Learn</a><a href="about.html">About</a><a href="contact.html">Contact</a></div>
 
 <section class="pg-hero">
   <div class="container">

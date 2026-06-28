@@ -164,6 +164,37 @@
     .enroll-sticky { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%); background: var(--blue); color: #fff; padding: 11px 28px; border-radius: 30px; font-size: 0.85rem; font-weight: 700; text-decoration: none; box-shadow: 0 4px 24px rgba(26,106,255,0.5); z-index: 998; white-space: nowrap; transition: background var(--transition), transform var(--transition); }
     .enroll-sticky:hover { background: #1557d6; transform: translateX(-50%) translateY(-2px); }
     @media(max-width:480px) { .enroll-sticky { font-size: 0.78rem; padding: 10px 20px; } }
+  
+/* ── LEARN SUB-NAV ── */
+.learn-subnav{
+  position:sticky;top:60px;z-index:90;
+  background:rgba(7,20,40,0.97);backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(26,106,255,0.15);
+  overflow-x:auto;white-space:nowrap;
+  scrollbar-width:none;
+}
+.learn-subnav::-webkit-scrollbar{display:none}
+.learn-subnav-inner{
+  display:inline-flex;align-items:center;gap:2px;
+  padding:0 5%;min-width:100%;
+}
+.learn-subnav a{
+  display:inline-flex;align-items:center;gap:6px;
+  color:rgba(136,153,187,0.85);text-decoration:none;
+  font-size:0.78rem;font-weight:500;
+  padding:10px 12px;border-bottom:2px solid transparent;
+  transition:color 0.18s,border-color 0.18s;
+  white-space:nowrap;flex-shrink:0;
+}
+.learn-subnav a:hover{color:#fff}
+.learn-subnav a.sn-active{
+  color:#00d4ff;border-bottom-color:#00d4ff;font-weight:600;
+}
+.learn-subnav .sn-sep{
+  width:1px;height:16px;background:rgba(255,255,255,0.08);
+  margin:0 4px;flex-shrink:0;
+}
+
   </style>
 </head>
 <body>
@@ -177,14 +208,7 @@
     <img src="https://devriston.com.pk/assets/logos/dv-logo.png" alt="Devriston" />
     Devriston
   </a>
-  <ul class="nav-links">
-    <li><a href="https://devriston.com.pk/index.html">Home</a></li>
-    <li><a href="https://devriston.com.pk/solutions.html">Solutions</a></li>
-    <li><a href="https://devriston.com.pk/case-studies.html">Case Studies</a></li>
-    <li><a href="https://devriston.com.pk/learn.html" class="active">Learn</a></li>
-    <li><a href="https://devriston.com.pk/about.html">About</a></li>
-    <li><a href="https://devriston.com.pk/contact.html" class="nav-cta">Book Consultation</a></li>
-  </ul>
+  <ul class="nav-links"><li><a href="https://devriston.com.pk/index.html">Home</a></li><li><a href="https://devriston.com.pk/solutions.html">Solutions</a></li><li><a href="https://devriston.com.pk/case-studies.html">Case Studies</a></li><li><a href="https://devriston.com.pk/learn.html">Learn</a></li><li><a href="https://devriston.com.pk/about.html">About</a></li><li><a href="https://devriston.com.pk/contact.html" class="nav-cta">Book Consultation</a></li></ul>
   <button class="nav-mobile-toggle" onclick="document.querySelector('.nav-mobile').classList.toggle('open')">☰</button>
 </nav>
 <div class="nav-mobile">
