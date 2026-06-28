@@ -1,0 +1,1389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DevOps Bootcamp Notes | Devriston — Free Study Material</title>
+  <meta name="description" content="Free DevOps lecture notes covering 17 modules — roadmap, Linux, Git, Bash, Docker, Podman, CI/CD, GitHub Actions, Terraform, Ansible, Kubernetes, monitoring, secrets, GitOps and Python." />
+  <meta name="keywords" content="DevOps notes free, DevOps lecture notes, Docker tutorial, Kubernetes notes, GitHub Actions CI/CD, Terraform notes, Ansible tutorial, DevOps roadmap Pakistan, Devriston" />
+  <meta name="author" content="Muhammad Kamran Kabeer" />
+  <meta name="robots" content="index,follow" />
+  <link rel="canonical" href="https://www.devriston.com.pk/devops-full-notes.html" />
+  <meta property="og:title" content="Free DevOps Bootcamp Notes | Devriston" />
+  <meta property="og:description" content="17 modules of DevOps lecture notes — Git, Docker, CI/CD, Kubernetes, Terraform, Ansible, monitoring and more. Free to read." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.devriston.com.pk/devops-full-notes.html" />
+  <meta property="og:site_name" content="Devriston" />
+
+  <style>
+    :root {
+      --navy:#040d1c;--navy-2:#071428;--blue:#1a6aff;--cyan:#00d4ff;
+      --white:#ffffff;--gray-400:#8899bb;--gray-500:#5a6a88;
+      --border:rgba(26,106,255,0.18);--border-2:rgba(0,212,255,0.12);
+      --green:#22c55e;--orange:#f97316;--purple:#a855f7;
+      --font-main:'Inter',system-ui,-apple-system,sans-serif;
+      --font-mono:'JetBrains Mono','Fira Code','Courier New',monospace;
+      --radius:10px;--transition:0.2s ease;
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth;font-size:16px}
+    body{background:var(--navy);color:var(--white);font-family:var(--font-main);line-height:1.7;-webkit-font-smoothing:antialiased}
+    ::-webkit-scrollbar{width:6px}::-webkit-scrollbar-track{background:var(--navy)}::-webkit-scrollbar-thumb{background:var(--blue);border-radius:3px}
+
+    /* NAV */
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(4,13,28,0.95);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);padding:0 5%;display:flex;align-items:center;justify-content:space-between;height:60px}
+    .nav-brand{display:flex;align-items:center;gap:8px;text-decoration:none;color:var(--white);font-weight:700;font-size:1rem}
+    .nav-brand img{height:28px}
+    .nav-links{display:flex;align-items:center;gap:4px;list-style:none}
+    .nav-links a{color:var(--gray-400);text-decoration:none;font-size:0.82rem;font-weight:500;padding:7px 12px;border-radius:8px;transition:color var(--transition),background var(--transition)}
+    .nav-links a:hover{color:var(--white);background:rgba(255,255,255,0.07)}
+    .nav-links a.active{color:var(--cyan)}
+    .nav-cta{background:var(--blue)!important;color:#fff!important}
+    .nav-cta:hover{background:#1557d6!important}
+    .nav-dropdown{position:relative;list-style:none}
+    .nav-dropdown-toggle{display:flex;align-items:center;gap:5px;font-size:0.83rem;font-weight:600;color:var(--purple);background:rgba(255,255,255,0.07);border:none;padding:7px 12px;border-radius:8px;cursor:pointer;font-family:inherit}
+    .nav-dropdown-toggle svg{width:11px;height:11px;stroke:currentColor;stroke-width:2.5;fill:none;transition:transform 0.2s}
+    #learn-menu{display:none;position:absolute;top:calc(100% + 10px);left:50%;transform:translateX(-50%);background:#071428;border:1px solid rgba(255,255,255,0.09);border-radius:12px;padding:6px;min-width:220px;box-shadow:0 20px 56px rgba(0,0,0,0.55);z-index:2000}
+    #learn-menu a{display:flex;align-items:center;gap:10px;padding:9px 12px;border-radius:8px;color:rgba(240,246,255,0.7);font-size:0.82rem;font-weight:500;text-decoration:none}
+    #learn-menu a:hover{background:rgba(255,255,255,0.07);color:#fff}
+    #learn-menu a.active{color:var(--purple);background:rgba(255,255,255,0.05)}
+    #learn-menu .dd-div{height:1px;background:rgba(255,255,255,0.07);margin:5px 0}
+    .nav-mobile-toggle{display:none;background:none;border:none;color:var(--white);font-size:1.3rem;cursor:pointer}
+    .nav-mobile{display:none;position:fixed;top:60px;left:0;right:0;background:var(--navy-2);border-bottom:1px solid var(--border);padding:16px 5%;z-index:99;flex-direction:column}
+    .nav-mobile.open{display:flex}
+    .nav-mobile a{color:var(--gray-400);text-decoration:none;font-size:0.88rem;padding:10px 0;border-bottom:1px solid var(--border);display:block}
+    .nav-mobile a:hover{color:var(--white)}
+    .mob-label{font-size:0.65rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:rgba(240,246,255,0.3);padding:12px 0 4px;display:block}
+    @media(max-width:900px){.nav-links{display:none}.nav-mobile-toggle{display:block}}
+
+    /* LAYOUT */
+    .page-wrap{display:grid;grid-template-columns:260px 1fr;min-height:100vh;margin-top:60px}
+    @media(max-width:900px){.page-wrap{grid-template-columns:1fr}.sidebar{display:none}}
+
+    /* SIDEBAR */
+    .sidebar{position:sticky;top:60px;height:calc(100vh - 60px);overflow-y:auto;background:var(--navy-2);border-right:1px solid var(--border);padding:24px 0}
+    .sidebar::-webkit-scrollbar{width:4px}
+    .sidebar::-webkit-scrollbar-thumb{background:var(--border)}
+    .sidebar-title{font-size:0.68rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--gray-500);padding:0 20px;margin-bottom:12px}
+    .sidebar a{display:flex;align-items:center;gap:10px;padding:8px 20px;color:var(--gray-400);text-decoration:none;font-size:0.8rem;transition:background var(--transition),color var(--transition);border-left:2px solid transparent}
+    .sidebar a:hover{background:rgba(255,255,255,0.03);color:var(--white)}
+    .sidebar a.active{background:rgba(168,85,247,0.08);color:var(--purple);border-left-color:var(--purple)}
+    .sidebar-num{font-family:var(--font-mono);font-size:0.65rem;color:var(--gray-500);flex-shrink:0;width:22px}
+
+    /* MAIN */
+    main{padding:40px 48px 80px;max-width:860px}
+    @media(max-width:600px){main{padding:24px 20px 60px}}
+
+    .breadcrumb{font-size:0.75rem;color:var(--gray-500);margin-bottom:28px}
+    .breadcrumb a{color:var(--gray-400);text-decoration:none}
+    .breadcrumb a:hover{color:var(--cyan)}
+    .breadcrumb span{margin:0 6px}
+
+    .page-hero{margin-bottom:48px}
+    .page-badge{display:inline-flex;align-items:center;gap:7px;background:rgba(168,85,247,0.08);border:1px solid rgba(168,85,247,0.2);color:var(--purple);border-radius:16px;padding:4px 12px;font-size:0.72rem;font-weight:600;letter-spacing:0.05em;text-transform:uppercase;margin-bottom:16px}
+    .page-hero h1{font-size:clamp(1.7rem,3.5vw,2.4rem);font-weight:800;line-height:1.15;margin-bottom:12px}
+    .page-hero h1 em{font-style:normal;background:linear-gradient(135deg,var(--purple),var(--blue));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+    .page-hero p{color:var(--gray-400);font-size:0.95rem;max-width:560px;line-height:1.7;margin-bottom:20px}
+    .hero-pills{display:flex;flex-wrap:wrap;gap:8px}
+    .pill{padding:4px 10px;border-radius:4px;font-size:0.72rem;font-weight:600;border:1px solid}
+    .pill-free{background:rgba(34,197,94,0.1);color:var(--green);border-color:rgba(34,197,94,0.3)}
+    .pill-modules{background:rgba(26,106,255,0.1);color:#7db3ff;border-color:rgba(26,106,255,0.3)}
+    .pill-devops{background:rgba(168,85,247,0.1);color:var(--purple);border-color:rgba(168,85,247,0.3)}
+
+    .module-section{margin-bottom:64px;scroll-margin-top:80px}
+    .module-header{display:flex;align-items:flex-start;gap:14px;margin-bottom:24px;padding-bottom:16px;border-bottom:1px solid var(--border)}
+    .module-num-badge{background:rgba(168,85,247,0.1);border:1px solid rgba(168,85,247,0.25);border-radius:6px;padding:4px 10px;font-family:var(--font-mono);font-size:0.68rem;color:var(--purple);font-weight:700;white-space:nowrap;flex-shrink:0;margin-top:4px}
+    .module-header-text h2{font-size:1.25rem;font-weight:800;margin-bottom:4px}
+    .module-header-text p{font-size:0.82rem;color:var(--gray-400)}
+
+    .concept-block{background:rgba(255,255,255,0.025);border:1px solid var(--border-2);border-radius:var(--radius);padding:20px 22px;margin-bottom:18px}
+    .concept-block h3{font-size:0.78rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--cyan);margin-bottom:10px}
+    .concept-block p{font-size:0.88rem;color:#c5d0e8;line-height:1.75}
+    .concept-block p+p{margin-top:10px}
+
+    .compare-wrap{margin-bottom:18px;overflow-x:auto}
+    .compare-label{font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--orange);margin-bottom:10px;display:flex;align-items:center;gap:7px}
+    .compare-label::before{content:'⚡'}
+    table.compare{width:100%;border-collapse:collapse;font-size:0.82rem}
+    table.compare thead tr{background:rgba(255,255,255,0.04)}
+    table.compare th{padding:10px 14px;text-align:left;font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:var(--gray-400);border-bottom:1px solid var(--border)}
+    table.compare th:nth-child(2){color:var(--purple)}
+    table.compare th:nth-child(3){color:#7db3ff}
+    table.compare td{padding:10px 14px;border-bottom:1px solid rgba(255,255,255,0.04);color:#c5d0e8;vertical-align:top;line-height:1.5}
+    table.compare tr:last-child td{border-bottom:none}
+    table.compare tr:hover td{background:rgba(255,255,255,0.02)}
+    table.compare td:first-child{font-weight:600;color:var(--white);font-size:0.8rem}
+
+    .code-wrap{margin-bottom:18px}
+    .code-label{font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--green);margin-bottom:8px;display:flex;align-items:center;gap:6px}
+    .code-label::before{content:'▶';font-size:0.6rem}
+    pre{background:#020912;border:1px solid rgba(26,106,255,0.2);border-radius:var(--radius);padding:18px 20px;overflow-x:auto;font-family:var(--font-mono);font-size:0.78rem;line-height:1.7;color:#c5d0e8}
+    pre .c{color:var(--gray-500);font-style:italic}
+    pre .k{color:var(--cyan)}
+    pre .s{color:var(--green)}
+    pre .n{color:var(--orange)}
+
+    .terms-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:10px;margin-bottom:18px}
+    .term-card{background:rgba(255,255,255,0.025);border:1px solid var(--border-2);border-radius:8px;padding:14px 16px}
+    .term-card dt{font-family:var(--font-mono);font-size:0.78rem;color:var(--purple);font-weight:700;margin-bottom:4px}
+    .term-card dd{font-size:0.78rem;color:var(--gray-400);line-height:1.5}
+
+    .callout{border-radius:8px;padding:14px 18px;margin-bottom:18px;font-size:0.84rem;line-height:1.65;display:flex;gap:12px;align-items:flex-start}
+    .callout-tip{background:rgba(34,197,94,0.07);border:1px solid rgba(34,197,94,0.2)}
+    .callout-warn{background:rgba(249,115,22,0.07);border:1px solid rgba(249,115,22,0.2)}
+    .callout-info{background:rgba(26,106,255,0.07);border:1px solid rgba(26,106,255,0.2)}
+    .callout-icon{font-size:1rem;flex-shrink:0;line-height:1.5}
+    .callout p{color:#c5d0e8}
+    .callout strong{color:var(--white)}
+
+    .module-divider{border:none;border-top:1px solid var(--border);margin:56px 0}
+
+    #back-top{position:fixed;bottom:24px;right:24px;background:var(--blue);color:#fff;width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;text-decoration:none;opacity:0;pointer-events:none;transition:opacity var(--transition);z-index:999;box-shadow:0 0 14px rgba(26,106,255,0.4)}
+    #back-top.visible{opacity:1;pointer-events:auto}
+
+    .enroll-sticky{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:var(--purple);color:#fff;padding:11px 28px;border-radius:30px;font-size:0.85rem;font-weight:700;text-decoration:none;box-shadow:0 4px 24px rgba(168,85,247,0.5);z-index:998;white-space:nowrap;transition:background var(--transition),transform var(--transition)}
+    .enroll-sticky:hover{background:#9333ea;transform:translateX(-50%) translateY(-2px)}
+    @media(max-width:480px){.enroll-sticky{font-size:0.78rem;padding:10px 20px}}
+
+    footer{background:var(--navy-2);border-top:1px solid var(--border);padding:36px 5% 20px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px}
+    footer p{font-size:0.78rem;color:var(--gray-500)}
+    .footer-links{display:flex;gap:20px;flex-wrap:wrap}
+    .footer-links a{color:var(--gray-500);text-decoration:none;font-size:0.78rem;transition:color var(--transition)}
+    .footer-links a:hover{color:var(--white)}
+  </style>
+</head>
+<body>
+
+<a href="#" id="back-top">↑</a>
+<a href="https://wa.me/923231450045?text=Hi%20Kamran%2C%20I%20read%20the%20DevOps%20notes%20and%20want%20to%20enroll." class="enroll-sticky">⚙️ Enroll in DevOps Bootcamp →</a>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-brand" href="https://devriston.com.pk/index.html">
+    <img src="https://devriston.com.pk/assets/logos/dv-logo.png" alt="Devriston"/>
+    Devriston
+  </a>
+  <ul class="nav-links">
+    <li><a href="https://devriston.com.pk/index.html">Home</a></li>
+    <li><a href="https://devriston.com.pk/solutions.html">Solutions</a></li>
+    <li><a href="https://devriston.com.pk/case-studies.html">Case Studies</a></li>
+    <li class="nav-dropdown">
+      <button class="nav-dropdown-toggle" onclick="toggleLearnMenu(event)" aria-haspopup="true" aria-expanded="false">
+        Learn <svg viewBox="0 0 12 12"><polyline points="2,4 6,8 10,4"/></svg>
+      </button>
+      <div id="learn-menu">
+        <a href="https://devriston.com.pk/blog.html">📝 Blog Articles</a>
+        <a href="https://devriston.com.pk/devops-notes.html">📋 DevOps Quick Notes</a>
+        <a href="https://devriston.com.pk/courses.html">🎓 Courses</a>
+        <div class="dd-div"></div>
+        <a href="https://devriston.com.pk/linux-notes.html">🐧 Linux Notes</a>
+        <a href="https://devriston.com.pk/cloud-notes.html">☁️ Cloud Notes</a>
+        <a href="https://devriston.com.pk/devops-full-notes.html" class="active">⚙️ DevOps Notes</a>
+        <div class="dd-div"></div>
+        <a href="https://devriston.com.pk/interview-guide.html">💼 Interview Guide</a>
+      </div>
+    </li>
+    <li><a href="https://devriston.com.pk/about.html">About</a></li>
+    <li><a href="https://devriston.com.pk/contact.html" class="nav-cta">Enroll Now</a></li>
+  </ul>
+  <button class="nav-mobile-toggle" onclick="document.querySelector('.nav-mobile').classList.toggle('open')">☰</button>
+</nav>
+<div class="nav-mobile">
+  <a href="https://devriston.com.pk/index.html">Home</a>
+  <a href="https://devriston.com.pk/solutions.html">Solutions</a>
+  <a href="https://devriston.com.pk/case-studies.html">Case Studies</a>
+  <span class="mob-label">Learn</span>
+  <a href="https://devriston.com.pk/blog.html">📝 Blog Articles</a>
+  <a href="https://devriston.com.pk/devops-notes.html">📋 DevOps Quick Notes</a>
+  <a href="https://devriston.com.pk/courses.html">🎓 Courses</a>
+  <a href="https://devriston.com.pk/linux-notes.html">🐧 Linux Notes</a>
+  <a href="https://devriston.com.pk/cloud-notes.html">☁️ Cloud Notes</a>
+  <a href="https://devriston.com.pk/devops-full-notes.html">⚙️ DevOps Notes</a>
+  <a href="https://devriston.com.pk/interview-guide.html">💼 Interview Guide</a>
+  <a href="https://devriston.com.pk/about.html">About</a>
+  <a href="https://devriston.com.pk/contact.html">Enroll Now</a>
+</div>
+
+<div class="page-wrap">
+  <aside class="sidebar">
+    <div class="sidebar-title">DevOps Bootcamp — All Modules</div>
+    <a href="#m01"><span class="sidebar-num">01</span>What is DevOps?</a>
+    <a href="#m02"><span class="sidebar-num">02</span>DevOps Roadmap</a>
+    <a href="#m03"><span class="sidebar-num">03</span>Linux for DevOps</a>
+    <a href="#m04"><span class="sidebar-num">04</span>Git & Version Control</a>
+    <a href="#m05"><span class="sidebar-num">05</span>Bash Scripting</a>
+    <a href="#m06"><span class="sidebar-num">06</span>Docker</a>
+    <a href="#m07"><span class="sidebar-num">07</span>Podman</a>
+    <a href="#m08"><span class="sidebar-num">08</span>CI/CD Concepts</a>
+    <a href="#m09"><span class="sidebar-num">09</span>GitHub Actions</a>
+    <a href="#m10"><span class="sidebar-num">10</span>Terraform</a>
+    <a href="#m11"><span class="sidebar-num">11</span>Ansible</a>
+    <a href="#m12"><span class="sidebar-num">12</span>Kubernetes</a>
+    <a href="#m13"><span class="sidebar-num">13</span>Monitoring</a>
+    <a href="#m14"><span class="sidebar-num">14</span>Workstation Setup</a>
+    <a href="#m15"><span class="sidebar-num">15</span>Python for DevOps</a>
+    <a href="#m16"><span class="sidebar-num">16</span>Secrets Management</a>
+    <a href="#m17"><span class="sidebar-num">17</span>GitOps & ArgoCD</a>
+  </aside>
+
+  <main>
+    <div class="breadcrumb">
+      <a href="https://devriston.com.pk/index.html">Home</a><span>›</span>
+      <a href="https://devriston.com.pk/courses.html">Courses</a><span>›</span>
+      DevOps Bootcamp Notes
+    </div>
+
+    <div class="page-hero">
+      <div class="page-badge">⚙️ Free Lecture Notes</div>
+      <h1>DevOps Bootcamp<br/><em>— Complete Notes</em></h1>
+      <p>All 17 modules. Every tool explained in plain language — what it is, what problem it solves, then how to use it. Your GitHub repos from this course become your job portfolio.</p>
+      <div class="hero-pills">
+        <span class="pill pill-free">✓ 100% Free</span>
+        <span class="pill pill-modules">17 Modules</span>
+        <span class="pill pill-devops">Zero to Production</span>
+      </div>
+    </div>
+
+    <!-- ═══ M01 ═══ -->
+    <section class="module-section" id="m01">
+      <div class="module-header">
+        <span class="module-num-badge">MODULE 01</span>
+        <div class="module-header-text">
+          <h2>What is DevOps?</h2>
+          <p>The culture, the why, and what it actually means day-to-day.</p>
+        </div>
+      </div>
+      <div class="concept-block">
+        <h3>What is DevOps?</h3>
+        <p>DevOps is a way of working where Development (people who write code) and Operations (people who run servers) work together instead of separately. Before DevOps, developers threw code "over the wall" to ops, who then scrambled to deploy it. Bugs found in production got blamed back and forth. DevOps breaks down that wall.</p>
+        <p>DevOps is not a tool or a job title — it's a culture backed by automation. The goal: ship software faster, more reliably, and with fewer manual steps.</p>
+      </div>
+      <div class="compare-wrap">
+        <div class="compare-label">Before DevOps vs After DevOps</div>
+        <table class="compare">
+          <thead><tr><th>Topic</th><th>Traditional (Siloed)</th><th>DevOps</th></tr></thead>
+          <tbody>
+            <tr><td>Releases</td><td>Every 3–6 months, big-bang deploy</td><td>Daily or hourly, small increments</td></tr>
+            <tr><td>Deployment</td><td>Manual, error-prone, weekend work</td><td>Automated pipeline — one button or auto</td></tr>
+            <tr><td>Dev ↔ Ops</td><td>Separate teams, blame culture</td><td>Shared responsibility, shared tools</td></tr>
+            <tr><td>Failure handling</td><td>Find someone to blame</td><td>Blameless postmortem — fix the process</td></tr>
+            <tr><td>Infrastructure</td><td>Manually configured servers</td><td>Code — Terraform, Ansible, reproducible</td></tr>
+            <tr><td>Monitoring</td><td>User complaints = first alert</td><td>Automated alerts before users notice</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <dl class="terms-grid">
+        <div class="term-card"><dt>CI</dt><dd>Continuous Integration — code is merged and tested automatically on every push.</dd></div>
+        <div class="term-card"><dt>CD</dt><dd>Continuous Delivery/Deployment — tested code is automatically deployed to staging or production.</dd></div>
+        <div class="term-card"><dt>IaC</dt><dd>Infrastructure as Code — servers and networks defined in files, version-controlled like software.</dd></div>
+        <div class="term-card"><dt>SRE</dt><dd>Site Reliability Engineering — Google's version of DevOps. Focus on reliability, SLOs, error budgets.</dd></div>
+        <div class="term-card"><dt>Blameless Postmortem</dt><dd>After an outage, document what happened and fix the process — don't punish people.</dd></div>
+        <div class="term-card"><dt>Shift Left</dt><dd>Move testing and security earlier in the pipeline — catch bugs before they reach production.</dd></div>
+      </dl>
+    </section>
+    <hr class="module-divider"/>
+
+    <!-- ═══ M02 ═══ -->
+    <section class="module-section" id="m02">
+      <div class="module-header">
+        <span class="module-num-badge">MODULE 02</span>
+        <div class="module-header-text">
+          <h2>The DevOps Roadmap</h2>
+          <p>What to learn, in what order, and why — the complete career path.</p>
+        </div>
+      </div>
+      <div class="concept-block">
+        <h3>The Learning Path</h3>
+        <p>DevOps has many tools and it's easy to get overwhelmed. The key is order — each skill builds on the previous one. Try to learn Docker before you understand Linux and you'll struggle. Learn Kubernetes before Docker and you'll be lost. Follow this sequence and every tool will make sense.</p>
+      </div>
+      <div class="code-wrap">
+        <div class="code-label">DevOps Learning Path — In Order</div>
+        <pre><span class="c">Phase 1 — Foundation (must before anything else)</span>
+  Linux basics → Terminal, files, users, processes, networking
+  Git → Version control, branching, GitHub
+
+<span class="c">Phase 2 — Scripting & Automation</span>
+  Bash scripting → Loops, conditions, cron, functions
+  Python basics → Scripts, boto3, file parsing
+
+<span class="c">Phase 3 — Containers</span>
+  Docker → Images, containers, Dockerfile, Compose
+  Podman → Rootless containers, RHEL environments
+
+<span class="c">Phase 4 — CI/CD</span>
+  GitHub Actions → Workflows, triggers, secrets
+  Jenkins (optional) → Older pipelines, enterprise
+
+<span class="c">Phase 5 — Infrastructure as Code</span>
+  Terraform → Cloud provisioning, state, modules
+  Ansible → Server configuration, playbooks, roles
+
+<span class="c">Phase 6 — Cloud</span>
+  AWS → EC2, VPC, S3, RDS, IAM, Lambda, CLI
+
+<span class="c">Phase 7 — Orchestration</span>
+  Kubernetes → Pods, deployments, services, kubectl
+
+<span class="c">Phase 8 — Monitoring & Observability</span>
+  Prometheus + Grafana → Metrics, dashboards, alerts
+  Loki → Log aggregation
+
+<span class="c">Phase 9 — Advanced</span>
+  GitOps / ArgoCD → Declarative K8s deployments
+  Secrets Management → Vault, AWS Secrets Manager</pre>
+      </div>
+      <div class="callout callout-tip">
+        <span class="callout-icon">💡</span>
+        <p><strong>Don't try to learn everything at once.</strong> Master Linux and Git first — everything else builds on them. A DevOps engineer who knows Linux deeply is worth more than someone who touched 10 tools shallowly.</p>
+      </div>
+    </section>
+    <hr class="module-divider"/>
+
+    <!-- ═══ M03 ═══ -->
+    <section class="module-section" id="m03">
+      <div class="module-header">
+        <span class="module-num-badge">MODULE 03</span>
+        <div class="module-header-text">
+          <h2>Linux for DevOps</h2>
+          <p>The non-negotiable foundation — every DevOps tool runs on Linux.</p>
+        </div>
+      </div>
+      <div class="concept-block">
+        <h3>Why Linux is Non-Negotiable</h3>
+        <p>Every Docker container runs Linux. Every Kubernetes node runs Linux. Every AWS EC2 instance defaults to Linux. Every CI/CD runner uses Linux. If you can't navigate a Linux terminal, you can't do DevOps. This module covers the specific Linux skills DevOps engineers use daily — not everything, just what matters.</p>
+      </div>
+      <div class="code-wrap">
+        <div class="code-label">DevOps-Specific Linux Commands</div>
+        <pre><span class="c"># Process management — what's running, what's eating CPU</span>
+ps aux | grep docker
+top / htop
+systemctl status nginx
+journalctl -u nginx -f --since "1 hour ago"
+
+<span class="c"># Network — what's listening, what's connecting</span>
+ss -tulnp                    <span class="c"># open ports</span>
+curl -I https://example.com  <span class="c"># test HTTP endpoint</span>
+netstat -rn                  <span class="c"># routing table</span>
+
+<span class="c"># File operations DevOps engineers use constantly</span>
+tail -f /var/log/nginx/access.log   <span class="c"># watch logs live</span>
+grep -r "ERROR" /var/log/           <span class="c"># search logs</span>
+find / -name "*.conf" 2>/dev/null   <span class="c"># find config files</span>
+sed -i 's/old/new/g' file.conf      <span class="c"># replace in file</span>
+awk '{print $1}' access.log         <span class="c"># extract columns</span>
+
+<span class="c"># Permissions DevOps needs</span>
+chmod 400 ~/.ssh/id_rsa             <span class="c"># SSH key — must be this</span>
+chmod +x deploy.sh                  <span class="c"># make script executable</span>
+chown -R nginx:nginx /var/www/      <span class="c"># web server ownership</span>
+
+<span class="c"># Disk & performance</span>
+df -h                               <span class="c"># disk usage</span>
+du -sh /var/lib/docker              <span class="c"># docker using how much?</span>
+free -h                             <span class="c"># RAM usage</span>
+iostat -x 1                         <span class="c"># disk I/O live</span></pre>
+      </div>
+    </section>
+    <hr class="module-divider"/>
+
+    <!-- ═══ M04 ═══ -->
+    <section class="module-section" id="m04">
+      <div class="module-header">
+        <span class="module-num-badge">MODULE 04</span>
+        <div class="module-header-text">
+          <h2>Git &amp; Version Control</h2>
+          <p>Track every change, collaborate without chaos, never lose work again.</p>
+        </div>
+      </div>
+      <div class="concept-block">
+        <h3>What is Git?</h3>
+        <p>Git is a version control system — it tracks every change to every file over time. Think of it as unlimited Ctrl+Z for your entire project, with the ability to see exactly who changed what, when, and why. GitHub is a website that hosts Git repositories so teams can collaborate. Every DevOps pipeline starts with a Git push.</p>
+      </div>
+      <div class="compare-wrap">
+        <div class="compare-label">Git Workflow — Local vs Remote</div>
+        <table class="compare">
+          <thead><tr><th>Action</th><th>Git Command</th><th>What Happens</th></tr></thead>
+          <tbody>
+            <tr><td>Start tracking</td><td><code>git init</code></td><td>Creates .git folder — repo starts here</td></tr>
+            <tr><td>Stage changes</td><td><code>git add .</code></td><td>Mark files ready to commit</td></tr>
+            <tr><td>Save snapshot</td><td><code>git commit -m "msg"</code></td><td>Permanent record of changes</td></tr>
+            <tr><td>Push to GitHub</td><td><code>git push origin main</code></td><td>Upload commits to remote repo</td></tr>
+            <tr><td>Get latest</td><td><code>git pull</code></td><td>Download + merge remote changes</td></tr>
+            <tr><td>New branch</td><td><code>git checkout -b feature</code></td><td>Isolated workspace for new work</td></tr>
+            <tr><td>Merge branch</td><td><code>git merge feature</code></td><td>Combine branch back into main</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="code-wrap">
+        <div class="code-label">Git — Daily Workflow</div>
+        <pre><span class="c"># First time setup</span>
+git config --global user.name "Kamran Kabeer"
+git config --global user.email "kamran@devriston.com.pk"
+
+<span class="c"># Clone a repo</span>
+git clone https://github.com/muhammadkamrankabeer-oss/repo.git
+cd repo
+
+<span class="c"># Create a feature branch — never work directly on main</span>
+git checkout -b feature/add-nginx-config
+
+<span class="c"># Make changes, then commit</span>
+git add nginx.conf
+git commit -m "feat: add nginx virtual host config for devriston.com.pk"
+
+<span class="c"># Push branch to GitHub</span>
+git push origin feature/add-nginx-config
+
+<span class="c"># On GitHub: open Pull Request → review → merge to main</span>
+
+<span class="c"># Common fixes</span>
+git log --oneline          <span class="c"># see commit history</span>
+git diff                   <span class="c"># see what changed</span>
+git stash                  <span class="c"># temporarily save uncommitted changes</span>
+git stash pop              <span class="c"># restore stashed changes</span>
+git reset --hard HEAD~1    <span class="c"># undo last commit (dangerous — use carefully)</span></pre>
+      </div>
+    </section>
+    <hr class="module-divider"/>
+
+    <!-- ═══ M05 ═══ -->
+    <section class="module-section" id="m05">
+      <div class="module-header">
+        <span class="module-num-badge">MODULE 05</span>
+        <div class="module-header-text">
+          <h2>Bash Scripting</h2>
+          <p>Automate repetitive tasks — do in 2 seconds what takes 10 minutes manually.</p>
+        </div>
+      </div>
+      <div class="concept-block">
+        <h3>Why Bash for DevOps?</h3>
+        <p>Bash is the glue of DevOps. It's available on every Linux server with zero installation. CI/CD pipelines run bash. Docker entrypoints run bash. Deployment scripts are bash. Monitoring checks are bash. If you can write a bash script, you can automate almost anything on any server anywhere.</p>
+      </div>
+      <div class="code-wrap">
+        <div class="code-label">Bash — Core Patterns DevOps Engineers Use</div>
+        <pre><span class="c">#!/bin/bash</span>
+set -euo pipefail  <span class="c"># exit on error, unset var, pipe failure</span>
+
+<span class="c"># Variables</span>
+APP="nginx"
+ENV=${1:-"staging"}    <span class="c"># first argument, default "staging"</span>
+DATE=$(date +%Y%m%d)
+
+<span class="c"># Conditions</span>
+if systemctl is-active --quiet $APP; then
+  echo "$APP is running"
+else
+  echo "$APP is down — restarting"
+  systemctl restart $APP
+fi
+
+<span class="c"># Loops</span>
+SERVERS=("web-01" "web-02" "web-03")
+for SERVER in "${SERVERS[@]}"; do
+  echo "Deploying to $SERVER..."
+  ssh deploy@$SERVER "cd /app && git pull && systemctl restart app"
+done
+
+<span class="c"># Functions</span>
+check_disk(){
+  local THRESHOLD=80
+  local USAGE=$(df / | awk 'NR==2{print $5}' | tr -d '%')
+  if [ "$USAGE" -gt "$THRESHOLD" ]; then
+    echo "WARNING: Disk at ${USAGE}%"
+    return 1
+  fi
+}
+
+<span class="c"># Error handling</span>
+deploy(){
+  git pull origin main || { echo "Git pull failed"; exit 1; }
+  docker compose up -d --build || { echo "Docker build failed"; exit 1; }
+  echo "Deploy successful"
+}
+
+check_disk && deploy</pre>
+      </div>
+    </section>
+    <hr class="module-divider"/>
+
+    <!-- ═══ M06 ═══ -->
+    <section class="module-section" id="m06">
+      <div class="module-header">
+        <span class="module-num-badge">MODULE 06</span>
+        <div class="module-header-text">
+          <h2>Docker — Containers</h2>
+          <p>Package your app so it runs the same everywhere — no "works on my machine".</p>
+        </div>
+      </div>
+      <div class="concept-block">
+        <h3>What is Docker?</h3>
+        <p>Docker packages your application and all its dependencies into a container — a lightweight, isolated unit that runs identically on your laptop, a CI server, and a production cloud server. The classic problem: "It works on my machine." Docker solves this permanently. One container image = same behaviour everywhere.</p>
+      </div>
+      <div class="compare-wrap">
+        <div class="compare-label">Container vs Virtual Machine vs Bare Metal</div>
+        <table class="compare">
+          <thead><tr><th>Feature</th><th>Container (Docker)</th><th>VM (VirtualBox)</th><th>Bare Metal</th></tr></thead>
+          <tbody>
+            <tr><td>Startup time</td><td>Milliseconds</td><td>Minutes</td><td>Minutes</td></tr>
+            <tr><td>Size</td><td>MBs</td><td>GBs</td><td>Full OS</td></tr>
+            <tr><td>OS</td><td>Shares host kernel</td><td>Full guest OS</td><td>Full OS</td></tr>
+            <tr><td>Isolation</td><td>Process-level</td><td>Full hardware-level</td><td>None</td></tr>
+            <tr><td>Portability</td><td>Run anywhere with Docker</td><td>Import/export VM images</td><td>Hardware dependent</td></tr>
+            <tr><td>Use case</td><td>App packaging, microservices</td><td>Full OS simulation, testing</td><td>Max performance, databases</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="code-wrap">
+        <div class="code-label">Docker — Essential Commands</div>
+        <pre><span class="c"># Images</span>
+docker pull nginx                    <span class="c"># download image</span>
+docker images                        <span class="c"># list local images</span>
+docker build -t myapp:v1 .           <span class="c"># build from Dockerfile</span>
+docker rmi myapp:v1                  <span class="c"># delete image</span>
+
+<span class="c"># Containers</span>
+docker run -d -p 80:80 --name web nginx   <span class="c"># run in background</span>
+docker ps                                 <span class="c"># list running containers</span>
+docker ps -a                              <span class="c"># all containers (including stopped)</span>
+docker stop web && docker rm web          <span class="c"># stop and delete</span>
+docker exec -it web bash                  <span class="c"># shell inside container</span>
+docker logs web -f                        <span class="c"># follow logs</span>
+
+<span class="c"># Dockerfile example</span>
+FROM python:3.12-slim
+WORKDIR /app
+COPY requirements.txt .
+RUN pip install -r requirements.txt --no-cache-dir
+COPY . .
+EXPOSE 8000
+CMD ["python", "app.py"]
+
+<span class="c"># Docker Compose — multi-container apps</span>
+docker compose up -d       <span class="c"># start all services</span>
+docker compose down        <span class="c"># stop and remove</span>
+docker compose logs -f     <span class="c"># follow all logs</span>
+docker compose ps          <span class="c"># service status</span></pre>
+      </div>
+    </section>
+    <hr class="module-divider"/>
+
+    <!-- ═══ M07 ═══ -->
+    <section class="module-section" id="m07">
+      <div class="module-header">
+        <span class="module-num-badge">MODULE 07</span>
+        <div class="module-header-text">
+          <h2>Podman — Docker's Alternative</h2>
+          <p>Rootless containers — more secure, RHEL-native, daemonless.</p>
+        </div>
+      </div>
+      <div class="concept-block">
+        <h3>What is Podman?</h3>
+        <p>Podman does exactly what Docker does — build and run containers — but without a background daemon running as root. Docker requires a daemon (dockerd) running as root all the time, which is a security risk. Podman runs containers as your normal user (rootless) and has no daemon. It's the default on RHEL 8+.</p>
+      </div>
+      <div class="compare-wrap">
+        <div class="compare-label">Podman vs Docker</div>
+        <table class="compare">
+          <thead><tr><th>Feature</th><th>Podman</th><th>Docker</th></tr></thead>
+          <tbody>
+            <tr><td>Daemon</td><td>No daemon — daemonless</td><td>dockerd always running as root</td></tr>
+            <tr><td>Rootless</td><td>Yes — runs as normal user</td><td>No — requires root daemon</td></tr>
+            <tr><td>Commands</td><td>Same as Docker (drop-in replacement)</td><td>docker run, docker build…</td></tr>
+            <tr><td>Compose</td><td>podman-compose (compatible)</td><td>docker compose</td></tr>
+            <tr><td>Default on</td><td>RHEL 8+, Fedora, CentOS Stream</td><td>Ubuntu, most other distros</td></tr>
+            <tr><td>Image format</td><td>OCI (compatible with Docker images)</td><td>OCI + Docker format</td></tr>
+            <tr><td>Security</td><td>Better — no root daemon</td><td>Root daemon is attack surface</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="code-wrap">
+        <div class="code-label">Podman — Commands (almost identical to Docker)</div>
+        <pre><span class="c"># Install on RHEL/AlmaLinux</span>
+dnf install podman podman-compose -y
+
+<span class="c"># Commands are identical to Docker</span>
+podman pull nginx
+podman run -d -p 80:80 --name web nginx
+podman ps
+podman logs web -f
+podman exec -it web bash
+podman stop web && podman rm web
+
+<span class="c"># Build image</span>
+podman build -t myapp:v1 .
+
+<span class="c"># Run as systemd service (Podman feature — Docker can't do this easily)</span>
+podman generate systemd --name web > /etc/systemd/system/web.service
+systemctl enable --now web
+
+<span class="c"># alias docker=podman (makes all your docker scripts work)</span>
+echo "alias docker=podman" >> ~/.bashrc</pre>
+      </div>
+    </section>
+    <hr class="module-divider"/>
+
+    <!-- ═══ M08 ═══ -->
+    <section class="module-section" id="m08">
+      <div class="module-header">
+        <span class="module-num-badge">MODULE 08</span>
+        <div class="module-header-text">
+          <h2>CI/CD — Automate Your Deployments</h2>
+          <p>Every code push automatically tested, built, and deployed — no manual steps.</p>
+        </div>
+      </div>
+      <div class="concept-block">
+        <h3>What is CI/CD?</h3>
+        <p>CI (Continuous Integration) means every time a developer pushes code, it's automatically tested — no waiting for a "test day". CD (Continuous Deployment) means after tests pass, the code is automatically deployed to staging or production. Together, CI/CD turns a deploy from a stressful event into a routine, automated process.</p>
+      </div>
+      <div class="compare-wrap">
+        <div class="compare-label">Manual Deploy vs CI/CD Pipeline</div>
+        <table class="compare">
+          <thead><tr><th>Step</th><th>Manual</th><th>CI/CD Pipeline</th></tr></thead>
+          <tbody>
+            <tr><td>Trigger</td><td>Someone decides "let's deploy"</td><td>Every git push to main</td></tr>
+            <tr><td>Tests</td><td>Maybe run, maybe forgotten</td><td>Always run — fail = stop pipeline</td></tr>
+            <tr><td>Build</td><td>Manually run build commands</td><td>Automated — same commands every time</td></tr>
+            <tr><td>Deploy</td><td>SSH in, run commands, hope</td><td>Automated script — reproducible</td></tr>
+            <tr><td>Time</td><td>30–60 minutes of human time</td><td>5–10 minutes, zero human time</td></tr>
+            <tr><td>Errors</td><td>Forgotten steps, wrong server</td><td>Consistent — same pipeline every time</td></tr>
+            <tr><td>Rollback</td><td>Manual, stressful</td><td>Re-run previous pipeline or trigger rollback job</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="code-wrap">
+        <div class="code-label">CI/CD Pipeline Stages</div>
+        <pre>Code Push (git push)
+     │
+     ▼
+[1] Source Stage
+     └─ Checkout code from repo
+
+[2] Build Stage
+     └─ Compile code, build Docker image
+     └─ Run: docker build -t myapp:$COMMIT_SHA .
+
+[3] Test Stage
+     └─ Unit tests, integration tests, linting
+     └─ Run: pytest tests/ or npm test
+
+[4] Security Scan (optional but recommended)
+     └─ Trivy scan Docker image for CVEs
+     └─ SonarQube for code quality
+
+[5] Push Stage
+     └─ Push Docker image to registry (ECR, DockerHub)
+     └─ docker push myapp:$COMMIT_SHA
+
+[6] Deploy Stage
+     └─ Update server or Kubernetes with new image
+     └─ Run: kubectl set image deploy/app app=myapp:$COMMIT_SHA
+     └─ Or: ssh server "docker compose pull && docker compose up -d"
+
+[7] Verify Stage
+     └─ Health check — is the app responding?
+     └─ curl -f https://myapp.com/health || rollback</pre>
+      </div>
+    </section>
+    <hr class="module-divider"/>
+
+    <!-- ═══ M09 ═══ -->
+    <section class="module-section" id="m09">
+      <div class="module-header">
+        <span class="module-num-badge">MODULE 09</span>
+        <div class="module-header-text">
+          <h2>GitHub Actions</h2>
+          <p>Write YAML workflows that run on every push — the most-used CI/CD tool today.</p>
+        </div>
+      </div>
+      <div class="concept-block">
+        <h3>What is GitHub Actions?</h3>
+        <p>GitHub Actions runs automated workflows triggered by events in your GitHub repo — a push, a PR, a schedule. You write a YAML file that defines what to run. GitHub provides free Linux runners that execute your workflow. It's free for public repos and has a generous free tier for private repos.</p>
+      </div>
+      <div class="code-wrap">
+        <div class="code-label">GitHub Actions — Full CI/CD Workflow</div>
+        <pre><span class="c"># .github/workflows/deploy.yml</span>
+
+name: Build, Test and Deploy
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      <span class="c"># 1 — Checkout code</span>
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      <span class="c"># 2 — Run tests</span>
+      - name: Run Tests
+        run: |
+          pip install -r requirements.txt
+          pytest tests/ -v
+
+      <span class="c"># 3 — Log in to AWS ECR</span>
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ap-south-1
+
+      <span class="c"># 4 — Build and push Docker image</span>
+      - name: Build and Push to ECR
+        run: |
+          ECR_URI=123456789.dkr.ecr.ap-south-1.amazonaws.com/myapp
+          aws ecr get-login-password | docker login --username AWS --password-stdin $ECR_URI
+          docker build -t $ECR_URI:${{ github.sha }} .
+          docker push $ECR_URI:${{ github.sha }}
+
+      <span class="c"># 5 — Deploy to EC2</span>
+      - name: Deploy to EC2
+        run: |
+          ssh -i key.pem ec2-user@${{ secrets.EC2_IP }} \
+            "cd /app && docker compose pull && docker compose up -d"</pre>
+      </div>
+      <dl class="terms-grid">
+        <div class="term-card"><dt>Workflow</dt><dd>A YAML file in .github/workflows/ that defines automated jobs.</dd></div>
+        <div class="term-card"><dt>Job</dt><dd>A group of steps that run on the same runner (machine).</dd></div>
+        <div class="term-card"><dt>Step</dt><dd>A single task — run a command or use a pre-built action.</dd></div>
+        <div class="term-card"><dt>Runner</dt><dd>The machine that executes your workflow. GitHub provides Ubuntu, Windows, macOS runners free.</dd></div>
+        <div class="term-card"><dt>Secrets</dt><dd>Encrypted variables (API keys, passwords) stored in repo settings — never in code.</dd></div>
+        <div class="term-card"><dt>Action</dt><dd>A reusable workflow step from the GitHub marketplace (e.g. actions/checkout).</dd></div>
+      </dl>
+    </section>
+    <hr class="module-divider"/>
+
+    <!-- ═══ M10 ═══ -->
+    <section class="module-section" id="m10">
+      <div class="module-header">
+        <span class="module-num-badge">MODULE 10</span>
+        <div class="module-header-text">
+          <h2>Terraform — Infrastructure as Code</h2>
+          <p>Write code that creates cloud infrastructure — reproducible, version-controlled.</p>
+        </div>
+      </div>
+      <div class="concept-block">
+        <h3>What is Terraform?</h3>
+        <p>Terraform lets you describe your entire cloud infrastructure in code files (.tf). Instead of clicking through AWS console to create a VPC, EC2, and RDS, you write code and run <code>terraform apply</code>. Terraform figures out what to create, in what order, and makes it happen. It also tracks what it created so it can update or destroy it cleanly later.</p>
+      </div>
+      <div class="compare-wrap">
+        <div class="compare-label">Terraform vs Manual Console vs CLI</div>
+        <table class="compare">
+          <thead><tr><th>Feature</th><th>Terraform</th><th>AWS Console</th><th>AWS CLI</th></tr></thead>
+          <tbody>
+            <tr><td>Reproducible</td><td>Yes — same code = same infra</td><td>No — manual clicks</td><td>Partially — scripts drift</td></tr>
+            <tr><td>Version controlled</td><td>Yes — Git tracked</td><td>No</td><td>Yes if in scripts</td></tr>
+            <tr><td>Multi-cloud</td><td>Yes — AWS + GCP + Azure same tool</td><td>No — one console per cloud</td><td>No — one CLI per cloud</td></tr>
+            <tr><td>Destroy cleanly</td><td>terraform destroy</td><td>Manual delete everything</td><td>Manual scripts</td></tr>
+            <tr><td>Team collaboration</td><td>Remote state in S3</td><td>No shared state</td><td>No shared state</td></tr>
+            <tr><td>Preview changes</td><td>terraform plan</td><td>No preview</td><td>No preview</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="code-wrap">
+        <div class="code-label">Terraform — Launch EC2 with VPC</div>
+        <pre><span class="c"># main.tf</span>
+
+terraform {
+  required_providers {
+    aws = { source = "hashicorp/aws", version = "~> 5.0" }
+  }
+}
+
+provider "aws" {
+  region = "ap-south-1"
+}
+
+<span class="c"># VPC</span>
+resource "aws_vpc" "main" {
+  cidr_block = "10.0.0.0/16"
+  tags = { Name = "devriston-vpc" }
+}
+
+<span class="c"># Public Subnet</span>
+resource "aws_subnet" "public" {
+  vpc_id            = aws_vpc.main.id
+  cidr_block        = "10.0.1.0/24"
+  availability_zone = "ap-south-1a"
+  map_public_ip_on_launch = true
+}
+
+<span class="c"># EC2 Instance</span>
+resource "aws_instance" "web" {
+  ami           = "ami-0abcdef1234567890"
+  instance_type = "t2.micro"
+  subnet_id     = aws_subnet.public.id
+  tags = { Name = "web-server", Environment = "staging" }
+}
+
+<span class="c"># Commands</span>
+<span class="c"># terraform init     → download providers</span>
+<span class="c"># terraform plan     → preview what will be created</span>
+<span class="c"># terraform apply    → create the infrastructure</span>
+<span class="c"># terraform destroy  → delete everything</span></pre>
+      </div>
+    </section>
+    <hr class="module-divider"/>
+
+    <!-- ═══ M11 ═══ -->
+    <section class="module-section" id="m11">
+      <div class="module-header">
+        <span class="module-num-badge">MODULE 11</span>
+        <div class="module-header-text">
+          <h2>Ansible — Automate Server Config</h2>
+          <p>Configure 1 or 100 servers simultaneously with YAML playbooks.</p>
+        </div>
+      </div>
+      <div class="concept-block">
+        <h3>What is Ansible?</h3>
+        <p>Ansible configures servers using YAML files called playbooks. You define what state a server should be in — nginx installed, user created, firewall rule added — and Ansible makes it happen. It connects via SSH, needs no agent installed on target servers, and if a task is already done it skips it (idempotent). Run the same playbook 10 times — same result every time.</p>
+      </div>
+      <div class="compare-wrap">
+        <div class="compare-label">Ansible vs Bash Scripts vs Manual</div>
+        <table class="compare">
+          <thead><tr><th>Feature</th><th>Ansible</th><th>Bash Script</th><th>Manual SSH</th></tr></thead>
+          <tbody>
+            <tr><td>Multiple servers</td><td>One command — all servers</td><td>Loop through IPs</td><td>SSH each one individually</td></tr>
+            <tr><td>Idempotent</td><td>Yes — safe to re-run</td><td>Usually not</td><td>No</td></tr>
+            <tr><td>Error handling</td><td>Built-in — stops on failure</td><td>Manual set -e</td><td>Manual</td></tr>
+            <tr><td>Readable</td><td>YAML — easy to understand</td><td>Code — needs comments</td><td>N/A</td></tr>
+            <tr><td>Agent needed</td><td>No — just SSH</td><td>No</td><td>No</td></tr>
+            <tr><td>Best for</td><td>Server config, app deploy, user mgmt</td><td>Simple one-liners, pipelines</td><td>One-off emergency fixes</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="code-wrap">
+        <div class="code-label">Ansible — Playbook Example</div>
+        <pre><span class="c"># inventory.ini — servers to configure</span>
+[webservers]
+web-01 ansible_host=192.168.1.10
+web-02 ansible_host=192.168.1.11
+
+[all:vars]
+ansible_user=ec2-user
+ansible_ssh_private_key_file=~/.ssh/id_ed25519
+
+<span class="c"># playbook.yml — what to do on those servers</span>
+---
+- name: Configure Web Servers
+  hosts: webservers
+  become: yes          <span class="c"># sudo</span>
+
+  tasks:
+    - name: Install Nginx
+      dnf:
+        name: nginx
+        state: present
+
+    - name: Start and enable Nginx
+      systemd:
+        name: nginx
+        state: started
+        enabled: yes
+
+    - name: Open firewall for HTTP
+      firewalld:
+        service: http
+        permanent: yes
+        state: enabled
+        immediate: yes
+
+    - name: Deploy index.html
+      copy:
+        content: "&lt;h1&gt;Deployed by Ansible&lt;/h1&gt;"
+        dest: /var/www/html/index.html
+        owner: nginx
+        mode: '0644'
+
+<span class="c"># Run the playbook</span>
+ansible-playbook -i inventory.ini playbook.yml
+
+<span class="c"># Check syntax before running</span>
+ansible-playbook playbook.yml --syntax-check
+
+<span class="c"># Dry run — see what would change without changing it</span>
+ansible-playbook playbook.yml --check</pre>
+      </div>
+    </section>
+    <hr class="module-divider"/>
+
+    <!-- ═══ M12 ═══ -->
+    <section class="module-section" id="m12">
+      <div class="module-header">
+        <span class="module-num-badge">MODULE 12</span>
+        <div class="module-header-text">
+          <h2>Kubernetes — Container Orchestration</h2>
+          <p>Manage containers at scale — self-healing, load balancing, rolling updates.</p>
+        </div>
+      </div>
+      <div class="concept-block">
+        <h3>What is Kubernetes?</h3>
+        <p>Kubernetes (K8s) manages containers at scale. Docker runs one container on one machine. Kubernetes runs hundreds of containers across dozens of machines — and keeps them healthy. If a container crashes, K8s restarts it. If traffic spikes, it adds more containers. If a server dies, it moves containers to healthy servers. All automatically.</p>
+      </div>
+      <div class="compare-wrap">
+        <div class="compare-label">Docker vs Kubernetes</div>
+        <table class="compare">
+          <thead><tr><th>Feature</th><th>Docker (alone)</th><th>Kubernetes</th></tr></thead>
+          <tbody>
+            <tr><td>Scale</td><td>Manual — run more containers by hand</td><td>Automatic — HPA scales based on CPU/memory</td></tr>
+            <tr><td>Self-healing</td><td>No — crashed container stays down</td><td>Yes — restarts failed containers automatically</td></tr>
+            <tr><td>Load balancing</td><td>Manual or external</td><td>Built-in Service load balancing</td></tr>
+            <tr><td>Rolling updates</td><td>Manual coordination</td><td>Automatic — zero-downtime by default</td></tr>
+            <tr><td>Multi-server</td><td>Docker Swarm (limited)</td><td>Built for multi-node clusters</td></tr>
+            <tr><td>Complexity</td><td>Simple to start</td><td>Steep learning curve</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="code-wrap">
+        <div class="code-label">Kubernetes — Core Objects</div>
+        <pre><span class="c"># deployment.yml — run 3 replicas of nginx</span>
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:1.25
+        ports:
+        - containerPort: 80
+
+---
+<span class="c"># service.yml — expose deployment to traffic</span>
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-service
+spec:
+  selector:
+    app: nginx
+  ports:
+    - port: 80
+      targetPort: 80
+  type: LoadBalancer
+
+<span class="c"># Apply and manage</span>
+kubectl apply -f deployment.yml
+kubectl get pods
+kubectl get services
+kubectl describe pod nginx-deployment-abc123
+kubectl logs nginx-deployment-abc123
+kubectl delete deployment nginx-deployment</pre>
+      </div>
+    </section>
+    <hr class="module-divider"/>
+
+    <!-- ═══ M13 ═══ -->
+    <section class="module-section" id="m13">
+      <div class="module-header">
+        <span class="module-num-badge">MODULE 13</span>
+        <div class="module-header-text">
+          <h2>Monitoring &amp; Observability</h2>
+          <p>Know your system is broken before your users do.</p>
+        </div>
+      </div>
+      <div class="concept-block">
+        <h3>The Three Pillars of Observability</h3>
+        <p><strong>Metrics</strong> — numbers over time (CPU 80%, 500 requests/sec, 2ms latency). <strong>Logs</strong> — text records of what happened ("error: connection refused at 14:32:01"). <strong>Traces</strong> — the path a request took through your system. Prometheus handles metrics, Grafana visualises them, Loki collects logs, AlertManager sends alerts.</p>
+      </div>
+      <div class="compare-wrap">
+        <div class="compare-label">Monitoring Stack — Each Tool's Role</div>
+        <table class="compare">
+          <thead><tr><th>Tool</th><th>What it Does</th><th>Windows Equivalent</th></tr></thead>
+          <tbody>
+            <tr><td>Prometheus</td><td>Scrapes and stores metrics from your apps and servers</td><td>Performance Monitor (perfmon)</td></tr>
+            <tr><td>Grafana</td><td>Visualises metrics as dashboards — charts, graphs, gauges</td><td>Task Manager graphs (but beautiful)</td></tr>
+            <tr><td>AlertManager</td><td>Routes Prometheus alerts to email, Slack, PagerDuty</td><td>Windows Event alerts (basic)</td></tr>
+            <tr><td>Loki</td><td>Collects and indexes logs — like Elasticsearch but lighter</td><td>Event Viewer</td></tr>
+            <tr><td>Node Exporter</td><td>Exports Linux system metrics (CPU, RAM, disk) to Prometheus</td><td>WMI Exporter</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="code-wrap">
+        <div class="code-label">Docker Compose — Full Monitoring Stack</div>
+        <pre><span class="c"># docker-compose.yml</span>
+services:
+  prometheus:
+    image: prom/prometheus:latest
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    ports:
+      - "9090:9090"
+
+  grafana:
+    image: grafana/grafana:latest
+    ports:
+      - "3000:3000"
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=devriston123
+
+  node-exporter:
+    image: prom/node-exporter:latest
+    ports:
+      - "9100:9100"
+
+  loki:
+    image: grafana/loki:latest
+    ports:
+      - "3100:3100"
+
+<span class="c"># prometheus.yml — what to scrape</span>
+scrape_configs:
+  - job_name: 'node'
+    static_configs:
+      - targets: ['node-exporter:9100']
+  - job_name: 'prometheus'
+    static_configs:
+      - targets: ['localhost:9090']
+
+<span class="c"># Useful PromQL queries</span>
+<span class="c"># CPU usage %</span>
+100 - (avg by(instance)(rate(node_cpu_seconds_total{mode="idle"}[5m])) * 100)
+<span class="c"># RAM used %</span>
+(1 - node_memory_MemAvailable_bytes/node_memory_MemTotal_bytes) * 100
+<span class="c"># Disk used %</span>
+(1 - node_filesystem_avail_bytes/node_filesystem_size_bytes) * 100</pre>
+      </div>
+    </section>
+    <hr class="module-divider"/>
+
+    <!-- ═══ M14 ═══ -->
+    <section class="module-section" id="m14">
+      <div class="module-header">
+        <span class="module-num-badge">MODULE 14</span>
+        <div class="module-header-text">
+          <h2>DevOps Workstation Setup</h2>
+          <p>Set up your full DevOps environment in under 10 minutes with Ansible.</p>
+        </div>
+      </div>
+      <div class="concept-block">
+        <h3>Why Automate Your Workstation?</h3>
+        <p>Every DevOps engineer needs the same set of tools: Terraform, Docker, Ansible, AWS CLI, kubectl, Git, Python. Installing these manually takes an hour. Forgetting one step means things break later. The professional approach: write an Ansible playbook that installs everything in one shot. New laptop? Run the playbook. Done in 10 minutes, identical every time.</p>
+      </div>
+      <div class="code-wrap">
+        <div class="code-label">Workstation Ansible Playbook</div>
+        <pre><span class="c"># workstation.yml</span>
+---
+- name: Setup DevOps Workstation
+  hosts: localhost
+  become: yes
+
+  vars:
+    terraform_version: "1.8.0"
+    kubectl_version: "v1.29.0"
+
+  tasks:
+    - name: Install core tools
+      dnf:
+        name:
+          - git
+          - python3
+          - python3-pip
+          - curl
+          - wget
+          - unzip
+          - jq
+          - vim
+          - htop
+        state: present
+
+    - name: Install Docker
+      block:
+        - dnf: name=docker state=present
+        - systemd: name=docker state=started enabled=yes
+        - user: name="{{ ansible_user }}" groups=docker append=yes
+
+    - name: Install AWS CLI
+      shell: |
+        curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o /tmp/awscliv2.zip
+        unzip -q /tmp/awscliv2.zip -d /tmp
+        /tmp/aws/install --update
+      args:
+        creates: /usr/local/bin/aws
+
+    - name: Install Terraform
+      unarchive:
+        src: "https://releases.hashicorp.com/terraform/{{ terraform_version }}/terraform_{{ terraform_version }}_linux_amd64.zip"
+        dest: /usr/local/bin/
+        remote_src: yes
+        mode: '0755'
+
+    - name: Install Ansible
+      pip:
+        name: ansible
+        state: present
+
+<span class="c"># Run it:</span>
+ansible-playbook workstation.yml --ask-become-pass</pre>
+      </div>
+    </section>
+    <hr class="module-divider"/>
+
+    <!-- ═══ M15 ═══ -->
+    <section class="module-section" id="m15">
+      <div class="module-header">
+        <span class="module-num-badge">MODULE 15</span>
+        <div class="module-header-text">
+          <h2>Python for DevOps</h2>
+          <p>Not a developer course — just what DevOps engineers actually use Python for.</p>
+        </div>
+      </div>
+      <div class="concept-block">
+        <h3>Why Python for DevOps?</h3>
+        <p>You don't need to be a software developer to use Python in DevOps. You need to read a script, modify it, write small automation tools, and use boto3 to interact with AWS programmatically. Python is the glue between your bash scripts, your AWS account, and your CI/CD pipeline.</p>
+      </div>
+      <div class="code-wrap">
+        <div class="code-label">Python DevOps Patterns — Practical Examples</div>
+        <pre><span class="c"># 1 — boto3: stop all dev EC2 instances</span>
+import boto3
+
+ec2 = boto3.client('ec2', region_name='ap-south-1')
+reservations = ec2.describe_instances(
+    Filters=[{'Name':'tag:Env','Values':['dev']},
+             {'Name':'instance-state-name','Values':['running']}]
+)['Reservations']
+
+ids = [i['InstanceId'] for r in reservations for i in r['Instances']]
+if ids:
+    ec2.stop_instances(InstanceIds=ids)
+    print(f"Stopped: {ids}")
+
+<span class="c"># 2 — Parse JSON config file</span>
+import json
+
+with open('config.json') as f:
+    config = json.load(f)
+
+db_host = config['database']['host']
+print(f"Connecting to {db_host}")
+
+<span class="c"># 3 — HTTP health check</span>
+import requests
+import sys
+
+def health_check(url):
+    try:
+        r = requests.get(url, timeout=5)
+        if r.status_code == 200:
+            print(f"✓ {url} — OK")
+        else:
+            print(f"✗ {url} — {r.status_code}")
+            sys.exit(1)
+    except requests.exceptions.ConnectionError:
+        print(f"✗ {url} — UNREACHABLE")
+        sys.exit(1)
+
+health_check("https://devriston.com.pk")
+
+<span class="c"># 4 — Read environment variables (secrets)</span>
+import os
+
+DB_PASSWORD = os.environ.get('DB_PASSWORD')
+if not DB_PASSWORD:
+    raise ValueError("DB_PASSWORD environment variable not set")</pre>
+      </div>
+    </section>
+    <hr class="module-divider"/>
+
+    <!-- ═══ M16 ═══ -->
+    <section class="module-section" id="m16">
+      <div class="module-header">
+        <span class="module-num-badge">MODULE 16</span>
+        <div class="module-header-text">
+          <h2>Secrets Management</h2>
+          <p>Never put passwords in your code. Store and access secrets safely.</p>
+        </div>
+      </div>
+      <div class="concept-block">
+        <h3>Why Secrets Management?</h3>
+        <p>Secrets are passwords, API keys, SSH keys, database credentials — anything that gives access. Beginners put them in code files. That code goes to GitHub. GitHub is public. Your AWS account gets compromised in minutes. Secrets management means storing credentials in a secure vault and having applications fetch them at runtime — never hardcoded, never in Git.</p>
+      </div>
+      <div class="compare-wrap">
+        <div class="compare-label">Where NOT to Put Secrets vs Where to Put Them</div>
+        <table class="compare">
+          <thead><tr><th>Location</th><th>Safe?</th><th>Why</th></tr></thead>
+          <tbody>
+            <tr><td>Hardcoded in code</td><td>❌ Never</td><td>Goes to Git, visible to everyone</td></tr>
+            <tr><td>.env file committed</td><td>❌ Never</td><td>Same as hardcoded</td></tr>
+            <tr><td>Environment variables (local)</td><td>✅ OK</td><td>Not in code, not persisted</td></tr>
+            <tr><td>GitHub Secrets</td><td>✅ Good</td><td>Encrypted, only exposed in Actions runners</td></tr>
+            <tr><td>AWS Secrets Manager</td><td>✅ Best</td><td>Centralized, audited, automatic rotation</td></tr>
+            <tr><td>HashiCorp Vault</td><td>✅ Best</td><td>Self-hosted, full control, multi-cloud</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="code-wrap">
+        <div class="code-label">AWS Secrets Manager — Store and Retrieve</div>
+        <pre><span class="c"># Store a secret</span>
+aws secretsmanager create-secret \
+  --name "prod/myapp/db-password" \
+  --secret-string "SuperSecurePassword123!"
+
+<span class="c"># Retrieve in your app (Python)</span>
+import boto3, json
+
+def get_secret(secret_name):
+    client = boto3.client('secretsmanager', region_name='ap-south-1')
+    response = client.get_secret_value(SecretId=secret_name)
+    return json.loads(response['SecretString'])
+
+secret = get_secret("prod/myapp/db-password")
+db_password = secret['password']
+
+<span class="c"># GitHub Actions — use secrets in workflow</span>
+<span class="c"># Add in repo Settings → Secrets → New secret</span>
+<span class="c"># Then use in workflow:</span>
+env:
+  DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+  AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}</pre>
+      </div>
+    </section>
+    <hr class="module-divider"/>
+
+    <!-- ═══ M17 ═══ -->
+    <section class="module-section" id="m17">
+      <div class="module-header">
+        <span class="module-num-badge">MODULE 17</span>
+        <div class="module-header-text">
+          <h2>GitOps &amp; ArgoCD</h2>
+          <p>Your Git repo is the single source of truth — ArgoCD makes Kubernetes match it.</p>
+        </div>
+      </div>
+      <div class="concept-block">
+        <h3>What is GitOps?</h3>
+        <p>GitOps is a deployment model where your Git repository is the single source of truth for your infrastructure and application state. Instead of running kubectl commands manually, you push a change to Git — and a tool (ArgoCD) detects the change and automatically syncs your Kubernetes cluster to match. The cluster always reflects what's in Git. No manual kubectl, no SSH, no drift.</p>
+      </div>
+      <div class="compare-wrap">
+        <div class="compare-label">Traditional Deploy vs GitOps</div>
+        <table class="compare">
+          <thead><tr><th>Step</th><th>Traditional CI/CD</th><th>GitOps (ArgoCD)</th></tr></thead>
+          <tbody>
+            <tr><td>Deploy trigger</td><td>Pipeline runs kubectl apply</td><td>Git push → ArgoCD detects and syncs</td></tr>
+            <tr><td>Source of truth</td><td>Pipeline script + manual state</td><td>Git repo — always</td></tr>
+            <tr><td>Drift detection</td><td>None — cluster can drift from code</td><td>ArgoCD alerts if cluster drifts from Git</td></tr>
+            <tr><td>Rollback</td><td>Re-run old pipeline</td><td>git revert → ArgoCD auto-syncs</td></tr>
+            <tr><td>Audit trail</td><td>Pipeline logs</td><td>Git history — who changed what, when</td></tr>
+            <tr><td>Access needed</td><td>Pipeline needs kubectl access</td><td>Only ArgoCD needs kubectl — pipeline just pushes Git</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="code-wrap">
+        <div class="code-label">ArgoCD — Install and Create Application</div>
+        <pre><span class="c"># Install ArgoCD in Kubernetes</span>
+kubectl create namespace argocd
+kubectl apply -n argocd -f \
+  https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
+
+<span class="c"># Get admin password</span>
+kubectl get secret argocd-initial-admin-secret \
+  -n argocd -o jsonpath="{.data.password}" | base64 -d
+
+<span class="c"># Port-forward to access UI</span>
+kubectl port-forward svc/argocd-server -n argocd 8080:443
+
+<span class="c"># Create an ArgoCD Application (YAML)</span>
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: myapp
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/muhammadkamrankabeer-oss/myapp
+    targetRevision: main
+    path: k8s/              <span class="c"># folder with K8s YAML files</span>
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: production
+  syncPolicy:
+    automated:
+      prune: true          <span class="c"># delete resources removed from Git</span>
+      selfHeal: true       <span class="c"># revert manual kubectl changes</span>
+
+<span class="c"># Now: push a change to k8s/ folder → ArgoCD deploys it automatically</span></pre>
+      </div>
+      <div class="callout callout-info">
+        <span class="callout-icon">ℹ️</span>
+        <p><strong>GitOps is the direction the industry is moving.</strong> If your company uses Kubernetes, there's a strong chance they're moving to or already using ArgoCD or Flux. This is a skill that makes you stand out in 2026 job interviews.</p>
+      </div>
+    </section>
+    <hr class="module-divider"/>
+
+    <!-- ENROLL CTA -->
+    <div style="background:linear-gradient(135deg,rgba(168,85,247,0.1),rgba(26,106,255,0.06));border:1px solid rgba(168,85,247,0.25);border-radius:14px;padding:32px 28px;text-align:center;margin-top:20px">
+      <div style="font-size:2rem;margin-bottom:12px">⚙️</div>
+      <h2 style="font-size:1.3rem;font-weight:800;margin-bottom:8px">Ready to go beyond reading?</h2>
+      <p style="font-size:0.88rem;color:var(--gray-400);max-width:420px;margin:0 auto 20px;line-height:1.7">The live bootcamp includes hands-on labs, 5 real GitHub portfolio projects, Q&A sessions, and a final project deploying a full production stack. Same instructor who wrote these notes.</p>
+      <a href="https://wa.me/923231450045?text=Hi%20Kamran%2C%20I%20read%20the%20DevOps%20notes%20and%20want%20to%20enroll." style="display:inline-flex;align-items:center;gap:8px;background:var(--purple);color:#fff;padding:12px 28px;border-radius:8px;text-decoration:none;font-weight:700;font-size:0.9rem">💬 Enroll via WhatsApp →</a>
+      <p style="font-size:0.72rem;color:var(--gray-500);margin-top:12px">Batch info &amp; fee on request</p>
+    </div>
+  </main>
+</div>
+
+<footer>
+  <p>© 2026 Devriston · Muhammad Kamran Kabeer · Lahore, Pakistan</p>
+  <div class="footer-links">
+    <a href="https://devriston.com.pk/courses.html">All Courses</a>
+    <a href="https://devriston.com.pk/linux-notes.html">Linux Notes</a>
+    <a href="https://devriston.com.pk/cloud-notes.html">Cloud Notes</a>
+    <a href="https://devriston.com.pk/devops-notes.html">DevOps Quick Notes</a>
+    <a href="https://devriston.com.pk/interview-guide.html">Interview Guide</a>
+    <a href="https://devriston.com.pk/contact.html">Contact</a>
+  </div>
+</footer>
+
+<script>
+  const bt = document.getElementById('back-top');
+  window.addEventListener('scroll', () => bt.classList.toggle('visible', scrollY > 400));
+
+  const sections = document.querySelectorAll('.module-section');
+  const links = document.querySelectorAll('.sidebar a');
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        links.forEach(l => l.classList.remove('active'));
+        const lnk = document.querySelector(`.sidebar a[href="#${e.target.id}"]`);
+        if (lnk) lnk.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-20% 0px -70% 0px' });
+  sections.forEach(s => obs.observe(s));
+
+  function toggleLearnMenu(e) {
+    e.stopPropagation();
+    var m = document.getElementById('learn-menu');
+    var btn = e.currentTarget;
+    if (!m) return;
+    var open = m.style.display === 'block';
+    m.style.display = open ? 'none' : 'block';
+    var svg = btn.querySelector('svg');
+    if (svg) svg.style.transform = open ? '' : 'rotate(180deg)';
+    btn.setAttribute('aria-expanded', String(!open));
+  }
+  document.addEventListener('click', function () {
+    var m = document.getElementById('learn-menu');
+    if (m) m.style.display = 'none';
+    document.querySelectorAll('.nav-dropdown-toggle svg').forEach(s => s.style.transform = '');
+  });
+
+  document.querySelector('.nav-mobile-toggle').addEventListener('click', () => {
+    document.querySelector('.nav-mobile').classList.toggle('open');
+  });
+</script>
+</body>
+</html>

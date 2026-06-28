@@ -1,0 +1,1216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cloud & AWS Lecture Notes | Devriston — Free Study Material</title>
+  <meta name="description" content="Free Cloud & AWS lecture notes covering 14 modules — cloud concepts, AWS core services, EC2, VPC, S3, RDS, Lambda, CLI, monitoring and cost management. Beginner-friendly." />
+  <meta name="keywords" content="AWS notes free, cloud computing lecture notes, AWS beginner guide, EC2 tutorial, VPC explained, S3 tutorial, AWS CLI, cloud vs on-premise, DevOps cloud notes Pakistan, Devriston" />
+  <meta name="author" content="Muhammad Kamran Kabeer" />
+  <meta name="robots" content="index,follow" />
+  <link rel="canonical" href="https://www.devriston.com.pk/cloud-notes.html" />
+  <meta property="og:title" content="Free Cloud & AWS Lecture Notes | Devriston" />
+  <meta property="og:description" content="14 modules of Cloud & AWS lecture notes — free to read. EC2, VPC, S3, RDS, Lambda, CLI, monitoring, cost management and more." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.devriston.com.pk/cloud-notes.html" />
+  <meta property="og:site_name" content="Devriston" />
+
+  <style>
+    :root {
+      --navy:     #040d1c;
+      --navy-2:   #071428;
+      --navy-3:   #0a1d3a;
+      --blue:     #1a6aff;
+      --cyan:     #00d4ff;
+      --white:    #ffffff;
+      --gray-400: #8899bb;
+      --gray-500: #5a6a88;
+      --border:   rgba(26,106,255,0.18);
+      --border-2: rgba(0,212,255,0.12);
+      --green:    #22c55e;
+      --orange:   #f97316;
+      --purple:   #a855f7;
+      --font-main: 'Inter', system-ui, -apple-system, sans-serif;
+      --font-mono: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
+      --radius: 10px;
+      --transition: 0.2s ease;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body { background: var(--navy); color: var(--white); font-family: var(--font-main); line-height: 1.7; -webkit-font-smoothing: antialiased; }
+    ::-webkit-scrollbar { width: 6px; } ::-webkit-scrollbar-track { background: var(--navy); } ::-webkit-scrollbar-thumb { background: var(--blue); border-radius: 3px; }
+
+    /* NAV */
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(4,13,28,0.95); backdrop-filter: blur(14px); border-bottom: 1px solid var(--border); padding: 0 5%; display: flex; align-items: center; justify-content: space-between; height: 60px; }
+    .nav-brand { display: flex; align-items: center; gap: 8px; text-decoration: none; color: var(--white); font-weight: 700; font-size: 1rem; }
+    .nav-brand img { height: 28px; }
+    .nav-links { display: flex; align-items: center; gap: 4px; list-style: none; }
+    .nav-links a { color: var(--gray-400); text-decoration: none; font-size: 0.82rem; font-weight: 500; padding: 7px 12px; border-radius: 8px; transition: color var(--transition), background var(--transition); }
+    .nav-links a:hover { color: var(--white); background: rgba(255,255,255,0.07); }
+    .nav-links a.active { color: var(--cyan); }
+    .nav-cta { background: var(--blue) !important; color: #fff !important; }
+    .nav-cta:hover { background: #1557d6 !important; }
+    /* Dropdown */
+    .nav-dropdown { position: relative; list-style: none; }
+    .nav-dropdown-toggle { display: flex; align-items: center; gap: 5px; font-size: 0.83rem; font-weight: 600; color: #00d4ff; background: rgba(255,255,255,0.07); border: none; padding: 7px 12px; border-radius: 8px; cursor: pointer; font-family: inherit; }
+    .nav-dropdown-toggle svg { width: 11px; height: 11px; stroke: currentColor; stroke-width: 2.5; fill: none; transition: transform 0.2s; }
+    #learn-menu { display: none; position: absolute; top: calc(100% + 10px); left: 50%; transform: translateX(-50%); background: #071428; border: 1px solid rgba(255,255,255,0.09); border-radius: 12px; padding: 6px; min-width: 210px; box-shadow: 0 20px 56px rgba(0,0,0,0.55); z-index: 2000; }
+    #learn-menu a { display: flex; align-items: center; gap: 10px; padding: 9px 12px; border-radius: 8px; color: rgba(240,246,255,0.7); font-size: 0.82rem; font-weight: 500; text-decoration: none; }
+    #learn-menu a:hover { background: rgba(255,255,255,0.07); color: #fff; }
+    #learn-menu a.active { color: #00d4ff; background: rgba(255,255,255,0.05); }
+    #learn-menu .dd-div { height: 1px; background: rgba(255,255,255,0.07); margin: 5px 0; }
+    .nav-mobile-toggle { display: none; background: none; border: none; color: var(--white); font-size: 1.3rem; cursor: pointer; }
+    .nav-mobile { display: none; position: fixed; top: 60px; left: 0; right: 0; background: var(--navy-2); border-bottom: 1px solid var(--border); padding: 16px 5%; z-index: 99; flex-direction: column; }
+    .nav-mobile.open { display: flex; }
+    .nav-mobile a { color: var(--gray-400); text-decoration: none; font-size: 0.88rem; padding: 10px 0; border-bottom: 1px solid var(--border); display: block; }
+    .nav-mobile a:hover { color: var(--white); }
+    .nav-mobile .mob-label { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(240,246,255,0.3); padding: 12px 0 4px; display: block; }
+    @media(max-width:900px) { .nav-links { display: none; } .nav-mobile-toggle { display: block; } }
+
+    /* LAYOUT */
+    .page-wrap { display: grid; grid-template-columns: 260px 1fr; min-height: 100vh; margin-top: 60px; }
+    @media(max-width:900px) { .page-wrap { grid-template-columns: 1fr; } .sidebar { display: none; } }
+
+    /* SIDEBAR */
+    .sidebar { position: sticky; top: 60px; height: calc(100vh - 60px); overflow-y: auto; background: var(--navy-2); border-right: 1px solid var(--border); padding: 24px 0; }
+    .sidebar::-webkit-scrollbar { width: 4px; }
+    .sidebar::-webkit-scrollbar-thumb { background: var(--border); }
+    .sidebar-title { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gray-500); padding: 0 20px; margin-bottom: 12px; }
+    .sidebar a { display: flex; align-items: center; gap: 10px; padding: 8px 20px; color: var(--gray-400); text-decoration: none; font-size: 0.8rem; transition: background var(--transition), color var(--transition); border-left: 2px solid transparent; }
+    .sidebar a:hover { background: rgba(255,255,255,0.03); color: var(--white); }
+    .sidebar a.active { background: rgba(26,106,255,0.08); color: var(--cyan); border-left-color: var(--cyan); }
+    .sidebar-num { font-family: var(--font-mono); font-size: 0.65rem; color: var(--gray-500); flex-shrink: 0; width: 22px; }
+
+    /* MAIN */
+    main { padding: 40px 48px 80px; max-width: 860px; }
+    @media(max-width:600px) { main { padding: 24px 20px 60px; } }
+
+    .breadcrumb { font-size: 0.75rem; color: var(--gray-500); margin-bottom: 28px; }
+    .breadcrumb a { color: var(--gray-400); text-decoration: none; }
+    .breadcrumb a:hover { color: var(--cyan); }
+    .breadcrumb span { margin: 0 6px; }
+
+    /* PAGE HERO */
+    .page-hero { margin-bottom: 48px; }
+    .page-badge { display: inline-flex; align-items: center; gap: 7px; background: rgba(0,212,255,0.08); border: 1px solid rgba(0,212,255,0.2); color: var(--cyan); border-radius: 16px; padding: 4px 12px; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 16px; }
+    .page-hero h1 { font-size: clamp(1.7rem, 3.5vw, 2.4rem); font-weight: 800; line-height: 1.15; margin-bottom: 12px; }
+    .page-hero h1 em { font-style: normal; background: linear-gradient(135deg, var(--blue), var(--cyan)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .page-hero p { color: var(--gray-400); font-size: 0.95rem; max-width: 560px; line-height: 1.7; margin-bottom: 20px; }
+    .hero-pills { display: flex; flex-wrap: wrap; gap: 8px; }
+    .pill { padding: 4px 10px; border-radius: 4px; font-size: 0.72rem; font-weight: 600; border: 1px solid; }
+    .pill-free { background: rgba(34,197,94,0.1); color: var(--green); border-color: rgba(34,197,94,0.3); }
+    .pill-modules { background: rgba(26,106,255,0.1); color: #7db3ff; border-color: rgba(26,106,255,0.3); }
+    .pill-aws { background: rgba(249,115,22,0.1); color: var(--orange); border-color: rgba(249,115,22,0.3); }
+
+    /* MODULE */
+    .module-section { margin-bottom: 64px; scroll-margin-top: 80px; }
+    .module-header { display: flex; align-items: flex-start; gap: 14px; margin-bottom: 24px; padding-bottom: 16px; border-bottom: 1px solid var(--border); }
+    .module-num-badge { background: rgba(26,106,255,0.12); border: 1px solid var(--border); border-radius: 6px; padding: 4px 10px; font-family: var(--font-mono); font-size: 0.68rem; color: var(--cyan); font-weight: 700; white-space: nowrap; flex-shrink: 0; margin-top: 4px; }
+    .module-header-text h2 { font-size: 1.25rem; font-weight: 800; margin-bottom: 4px; }
+    .module-header-text p { font-size: 0.82rem; color: var(--gray-400); }
+
+    /* CONTENT BLOCKS */
+    .concept-block { background: rgba(255,255,255,0.025); border: 1px solid var(--border-2); border-radius: var(--radius); padding: 20px 22px; margin-bottom: 18px; }
+    .concept-block h3 { font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--cyan); margin-bottom: 10px; }
+    .concept-block p { font-size: 0.88rem; color: #c5d0e8; line-height: 1.75; }
+    .concept-block p + p { margin-top: 10px; }
+
+    /* COMPARE TABLE */
+    .compare-wrap { margin-bottom: 18px; overflow-x: auto; }
+    .compare-label { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--orange); margin-bottom: 10px; display: flex; align-items: center; gap: 7px; }
+    .compare-label::before { content: '⚡'; }
+    table.compare { width: 100%; border-collapse: collapse; font-size: 0.82rem; }
+    table.compare thead tr { background: rgba(255,255,255,0.04); }
+    table.compare th { padding: 10px 14px; text-align: left; font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--gray-400); border-bottom: 1px solid var(--border); }
+    table.compare th:nth-child(2) { color: var(--orange); }
+    table.compare th:nth-child(3) { color: #7db3ff; }
+    table.compare td { padding: 10px 14px; border-bottom: 1px solid rgba(255,255,255,0.04); color: #c5d0e8; vertical-align: top; line-height: 1.5; }
+    table.compare tr:last-child td { border-bottom: none; }
+    table.compare tr:hover td { background: rgba(255,255,255,0.02); }
+    table.compare td:first-child { font-weight: 600; color: var(--white); font-size: 0.8rem; }
+
+    /* CODE BLOCKS */
+    .code-wrap { margin-bottom: 18px; }
+    .code-label { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--green); margin-bottom: 8px; display: flex; align-items: center; gap: 6px; }
+    .code-label::before { content: '▶'; font-size: 0.6rem; }
+    pre { background: #020912; border: 1px solid rgba(26,106,255,0.2); border-radius: var(--radius); padding: 18px 20px; overflow-x: auto; font-family: var(--font-mono); font-size: 0.78rem; line-height: 1.7; color: #c5d0e8; }
+    pre .c  { color: var(--gray-500); font-style: italic; }
+    pre .k  { color: var(--cyan); }
+    pre .s  { color: var(--green); }
+    pre .n  { color: var(--orange); }
+
+    /* KEY TERMS */
+    .terms-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px,1fr)); gap: 10px; margin-bottom: 18px; }
+    .term-card { background: rgba(255,255,255,0.025); border: 1px solid var(--border-2); border-radius: 8px; padding: 14px 16px; }
+    .term-card dt { font-family: var(--font-mono); font-size: 0.78rem; color: var(--cyan); font-weight: 700; margin-bottom: 4px; }
+    .term-card dd { font-size: 0.78rem; color: var(--gray-400); line-height: 1.5; }
+
+    /* CALLOUT */
+    .callout { border-radius: 8px; padding: 14px 18px; margin-bottom: 18px; font-size: 0.84rem; line-height: 1.65; display: flex; gap: 12px; align-items: flex-start; }
+    .callout-tip  { background: rgba(34,197,94,0.07);  border: 1px solid rgba(34,197,94,0.2);  }
+    .callout-warn { background: rgba(249,115,22,0.07); border: 1px solid rgba(249,115,22,0.2); }
+    .callout-info { background: rgba(26,106,255,0.07); border: 1px solid rgba(26,106,255,0.2); }
+    .callout-icon { font-size: 1rem; flex-shrink: 0; line-height: 1.5; }
+    .callout p { color: #c5d0e8; }
+    .callout strong { color: var(--white); }
+
+    .module-divider { border: none; border-top: 1px solid var(--border); margin: 56px 0; }
+
+    /* BACK TO TOP */
+    #back-top { position: fixed; bottom: 24px; right: 24px; background: var(--blue); color: #fff; width: 38px; height: 38px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 16px; text-decoration: none; opacity: 0; pointer-events: none; transition: opacity var(--transition); z-index: 999; box-shadow: 0 0 14px rgba(26,106,255,0.4); }
+    #back-top.visible { opacity: 1; pointer-events: auto; }
+
+    .enroll-sticky { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%); background: var(--blue); color: #fff; padding: 11px 28px; border-radius: 30px; font-size: 0.85rem; font-weight: 700; text-decoration: none; box-shadow: 0 4px 24px rgba(26,106,255,0.5); z-index: 998; white-space: nowrap; transition: background var(--transition), transform var(--transition); }
+    .enroll-sticky:hover { background: #1557d6; transform: translateX(-50%) translateY(-2px); }
+    @media(max-width:480px) { .enroll-sticky { font-size: 0.78rem; padding: 10px 20px; } }
+
+    footer { background: var(--navy-2); border-top: 1px solid var(--border); padding: 36px 5% 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+    footer p { font-size: 0.78rem; color: var(--gray-500); }
+    .footer-links { display: flex; gap: 20px; flex-wrap: wrap; }
+    .footer-links a { color: var(--gray-500); text-decoration: none; font-size: 0.78rem; transition: color var(--transition); }
+    .footer-links a:hover { color: var(--white); }
+  </style>
+</head>
+<body>
+
+<a href="#" id="back-top">↑</a>
+<a href="https://wa.me/923231450045?text=Hi%20Kamran%2C%20I%20read%20the%20Cloud%20notes%20and%20want%20to%20enroll." class="enroll-sticky">☁️ Enroll in Cloud Course →</a>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-brand" href="https://devriston.com.pk/index.html">
+    <img src="https://devriston.com.pk/assets/logos/dv-logo.png" alt="Devriston" />
+    Devriston
+  </a>
+  <ul class="nav-links">
+    <li><a href="https://devriston.com.pk/index.html">Home</a></li>
+    <li><a href="https://devriston.com.pk/solutions.html">Solutions</a></li>
+    <li><a href="https://devriston.com.pk/case-studies.html">Case Studies</a></li>
+    <li class="nav-dropdown">
+      <button class="nav-dropdown-toggle" onclick="toggleLearnMenu(event)" aria-haspopup="true" aria-expanded="false">
+        Learn <svg viewBox="0 0 12 12"><polyline points="2,4 6,8 10,4"/></svg>
+      </button>
+      <div id="learn-menu">
+        <a href="https://devriston.com.pk/blog.html">📝 Blog Articles</a>
+        <a href="https://devriston.com.pk/devops-notes.html">📋 DevOps Notes</a>
+        <a href="https://devriston.com.pk/courses.html">🎓 Courses</a>
+        <a href="https://devriston.com.pk/linux-notes.html">🐧 Linux Notes</a>
+        <a href="https://devriston.com.pk/cloud-notes.html" class="active">☁️ Cloud Notes</a>
+        <div class="dd-div"></div>
+        <a href="https://devriston.com.pk/interview-guide.html">💼 Interview Guide</a>
+      </div>
+    </li>
+    <li><a href="https://devriston.com.pk/about.html">About</a></li>
+    <li><a href="https://devriston.com.pk/contact.html" class="nav-cta">Enroll Now</a></li>
+  </ul>
+  <button class="nav-mobile-toggle" onclick="document.querySelector('.nav-mobile').classList.toggle('open')">☰</button>
+</nav>
+<div class="nav-mobile">
+  <a href="https://devriston.com.pk/index.html">Home</a>
+  <a href="https://devriston.com.pk/solutions.html">Solutions</a>
+  <a href="https://devriston.com.pk/case-studies.html">Case Studies</a>
+  <span class="mob-label">Learn</span>
+  <a href="https://devriston.com.pk/blog.html">Blog Articles</a>
+  <a href="https://devriston.com.pk/devops-notes.html">DevOps Notes</a>
+  <a href="https://devriston.com.pk/courses.html">Courses</a>
+  <a href="https://devriston.com.pk/linux-notes.html">Linux Notes</a>
+  <a href="https://devriston.com.pk/cloud-notes.html">☁️ Cloud Notes</a>
+  <a href="https://devriston.com.pk/interview-guide.html">Interview Guide</a>
+  <a href="https://devriston.com.pk/about.html">About</a>
+  <a href="https://devriston.com.pk/contact.html">Enroll Now</a>
+</div>
+
+<div class="page-wrap">
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sidebar-title">Cloud Course — All Modules</div>
+    <a href="#m01"><span class="sidebar-num">01</span>What is Cloud?</a>
+    <a href="#m02"><span class="sidebar-num">02</span>Cloud Providers</a>
+    <a href="#m03"><span class="sidebar-num">03</span>IAM & Console</a>
+    <a href="#m04"><span class="sidebar-num">04</span>EC2 — Your Server</a>
+    <a href="#m05"><span class="sidebar-num">05</span>VPC — Your Network</a>
+    <a href="#m06"><span class="sidebar-num">06</span>Static IPs & Route 53</a>
+    <a href="#m07"><span class="sidebar-num">07</span>Load Balancer & Auto Scaling</a>
+    <a href="#m08"><span class="sidebar-num">08</span>S3 — Storage</a>
+    <a href="#m09"><span class="sidebar-num">09</span>RDS — Databases</a>
+    <a href="#m10"><span class="sidebar-num">10</span>Backup & Snapshots</a>
+    <a href="#m11"><span class="sidebar-num">11</span>CloudWatch Monitoring</a>
+    <a href="#m12"><span class="sidebar-num">12</span>AWS CLI</a>
+    <a href="#m13"><span class="sidebar-num">13</span>Lambda — Serverless</a>
+    <a href="#m14"><span class="sidebar-num">14</span>Cost Management</a>
+  </aside>
+
+  <!-- MAIN -->
+  <main>
+    <div class="breadcrumb">
+      <a href="https://devriston.com.pk/index.html">Home</a><span>›</span>
+      <a href="https://devriston.com.pk/courses.html">Courses</a><span>›</span>
+      Cloud &amp; AWS Notes
+    </div>
+
+    <div class="page-hero">
+      <div class="page-badge">☁️ Free Lecture Notes</div>
+      <h1>Cloud Fundamentals<br/><em>— AWS Deep Dive Notes</em></h1>
+      <p>All 14 modules. Every concept explained simply. Cloud vs on-premise comparisons so you understand the <em>why</em>, not just the clicks. Free to read — no account needed.</p>
+      <div class="hero-pills">
+        <span class="pill pill-free">✓ 100% Free</span>
+        <span class="pill pill-modules">14 Modules</span>
+        <span class="pill pill-aws">AWS Focused</span>
+      </div>
+    </div>
+
+    <!-- ═══ MODULE 01 ═══ -->
+    <section class="module-section" id="m01">
+      <div class="module-header">
+        <span class="module-num-badge">MODULE 01</span>
+        <div class="module-header-text">
+          <h2>What is Cloud Computing?</h2>
+          <p>Why companies moved from their own servers to the cloud — explained simply.</p>
+        </div>
+      </div>
+
+      <div class="concept-block">
+        <h3>What is Cloud Computing?</h3>
+        <p>Cloud computing means renting computers, storage, and networking from someone else's data center over the internet — instead of buying and running your own hardware. You pay for what you use, turn it on or off any time, and access it from anywhere.</p>
+        <p>Before cloud, a company that needed a server had to buy physical hardware, rack it in a data center, hire someone to manage it, and wait weeks for delivery. With cloud, you have a server running in 60 seconds and pay by the hour.</p>
+      </div>
+
+      <div class="compare-wrap">
+        <div class="compare-label">Cloud vs On-Premise — Real Differences</div>
+        <table class="compare">
+          <thead><tr><th>Topic</th><th>On-Premise (Your Own Server)</th><th>Cloud (AWS/GCP/Azure)</th></tr></thead>
+          <tbody>
+            <tr><td>Setup time</td><td>Weeks — order, deliver, rack, configure</td><td>60 seconds — click or run a command</td></tr>
+            <tr><td>Cost model</td><td>Big upfront cost (CapEx)</td><td>Pay per hour/GB used (OpEx)</td></tr>
+            <tr><td>Scaling</td><td>Buy more hardware — slow and expensive</td><td>Add servers in minutes, remove when done</td></tr>
+            <tr><td>Maintenance</td><td>Your team manages hardware, power, cooling</td><td>Cloud provider handles the physical layer</td></tr>
+            <tr><td>Availability</td><td>One location — if it burns, you're down</td><td>Multiple regions — failover in seconds</td></tr>
+            <tr><td>Security</td><td>Your responsibility end to end</td><td>Shared — provider secures hardware, you secure data</td></tr>
+            <tr><td>Best for</td><td>Regulated industries, fixed workloads</td><td>Startups, variable workloads, global reach</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="concept-block">
+        <h3>Cloud Service Models — IaaS, PaaS, SaaS</h3>
+        <p>Cloud isn't one thing — it's a spectrum of how much the provider manages for you.</p>
+      </div>
+
+      <dl class="terms-grid">
+        <div class="term-card"><dt>IaaS</dt><dd>Infrastructure as a Service. You get raw VMs, storage, networking. You manage the OS upward. Example: EC2, VPC.</dd></div>
+        <div class="term-card"><dt>PaaS</dt><dd>Platform as a Service. Provider manages OS and runtime. You just deploy your app. Example: AWS Elastic Beanstalk, Heroku.</dd></div>
+        <div class="term-card"><dt>SaaS</dt><dd>Software as a Service. Fully managed application. You just use it. Example: Gmail, Salesforce, Zoom.</dd></div>
+        <div class="term-card"><dt>Region</dt><dd>A geographic area with AWS data centers. Example: us-east-1 (N. Virginia), ap-south-1 (Mumbai).</dd></div>
+        <div class="term-card"><dt>Availability Zone</dt><dd>An isolated data center inside a region. Multiple AZs = high availability. Failure in one AZ doesn't affect others.</dd></div>
+        <div class="term-card"><dt>Shared Responsibility</dt><dd>AWS secures the hardware and infrastructure. You secure your OS, data, and applications.</dd></div>
+      </dl>
+
+      <div class="callout callout-tip">
+        <span class="callout-icon">💡</span>
+        <p><strong>Course focus:</strong> We use AWS — the largest cloud provider with 33% market share. Skills transfer to GCP and Azure since concepts are nearly identical.</p>
+      </div>
+    </section>
+    <hr class="module-divider"/>
+
+    <!-- ═══ MODULE 02 ═══ -->
+    <section class="module-section" id="m02">
+      <div class="module-header">
+        <span class="module-num-badge">MODULE 02</span>
+        <div class="module-header-text">
+          <h2>Cloud Providers Overview</h2>
+          <p>AWS, GCP, Azure, DigitalOcean — what each is best at and how to get started free.</p>
+        </div>
+      </div>
+
+      <div class="compare-wrap">
+        <div class="compare-label">Cloud Providers — Quick Comparison</div>
+        <table class="compare">
+          <thead><tr><th>Provider</th><th>Best For</th><th>Free Tier</th></tr></thead>
+          <tbody>
+            <tr><td>AWS</td><td>Everything — largest service catalog, most jobs require it</td><td>12 months — 750hrs EC2 t2.micro/month</td></tr>
+            <tr><td>Google Cloud (GCP)</td><td>Machine learning, Kubernetes (GKE), data analytics</td><td>$300 credit for 90 days + always-free tier</td></tr>
+            <tr><td>Azure</td><td>Microsoft shops — Active Directory, .NET, Windows VMs</td><td>$200 credit for 30 days + 12 months free</td></tr>
+            <tr><td>DigitalOcean</td><td>Simple apps, small teams, developers — less complex</td><td>$200 credit for 60 days</td></tr>
+            <tr><td>Linode / Akamai</td><td>Budget-friendly Linux VMs, developer projects</td><td>$100 credit</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="concept-block">
+        <h3>Why AWS First?</h3>
+        <p>AWS has the largest market share (~33%), the most job postings, the widest service catalog (200+ services), and the biggest community. If you learn AWS, picking up GCP or Azure takes days — not months — because the concepts are identical. Only the names and console layouts differ.</p>
+      </div>
+
+      <div class="code-wrap">
+        <div class="code-label">Create a Free AWS Account — Steps</div>
+        <pre><span class="c"># 1. Go to: https://aws.amazon.com/free</span>
+<span class="c"># 2. Click "Create a Free Account"</span>
+<span class="c"># 3. Enter email + password → set account name</span>
+<span class="c"># 4. Enter contact info (Personal account is fine)</span>
+<span class="c"># 5. Enter credit/debit card (required but not charged in free tier)</span>
+<span class="c"># 6. Verify identity via SMS</span>
+<span class="c"># 7. Choose Support Plan → Basic (Free)</span>
+<span class="c"># 8. Sign in to AWS Console</span>
+
+<span class="c"># IMPORTANT — Do these immediately after account creation:</span>
+<span class="c"># - Enable MFA on root account</span>
+<span class="c"># - Set a billing alarm (Module 14)</span>
+<span class="c"># - Never use the root account for daily work</span>
+<span class="c"># - Create an IAM user for everything (Module 03)</span></pre>
+      </div>
+
+      <div class="callout callout-warn">
+        <span class="callout-icon">⚠️</span>
+        <p><strong>Free tier warning:</strong> AWS free tier has limits. An EC2 t2.micro runs free for 750 hours/month — that's one instance running 24/7. Two instances = you get billed. Always set a billing alarm before starting labs.</p>
+      </div>
+    </section>
+    <hr class="module-divider"/>
+
+    <!-- ═══ MODULE 03 ═══ -->
+    <section class="module-section" id="m03">
+      <div class="module-header">
+        <span class="module-num-badge">MODULE 03</span>
+        <div class="module-header-text">
+          <h2>IAM &amp; Console</h2>
+          <p>Identity and Access Management — who can do what in your AWS account.</p>
+        </div>
+      </div>
+
+      <div class="concept-block">
+        <h3>What is IAM?</h3>
+        <p>IAM (Identity and Access Management) controls who can access your AWS account and what they can do. The root account (email + password you signed up with) has unlimited power — like the Linux root user. You should never use it for daily work. Instead, create IAM users with only the permissions they need.</p>
+        <p>Think of IAM like a company's access card system — the CEO has a master key, employees have cards that open only the doors they need.</p>
+      </div>
+
+      <div class="compare-wrap">
+        <div class="compare-label">IAM — AWS vs Linux Comparison</div>
+        <table class="compare">
+          <thead><tr><th>Concept</th><th>AWS IAM</th><th>Linux Equivalent</th></tr></thead>
+          <tbody>
+            <tr><td>Superuser</td><td>Root account (email login)</td><td>root user</td></tr>
+            <tr><td>Regular user</td><td>IAM User</td><td>useradd username</td></tr>
+            <tr><td>Group</td><td>IAM Group (attach policies to group)</td><td>groupadd, usermod -aG</td></tr>
+            <tr><td>Permissions</td><td>IAM Policy (JSON document)</td><td>chmod, chown, sudoers</td></tr>
+            <tr><td>Service identity</td><td>IAM Role (for EC2, Lambda etc.)</td><td>Service account user</td></tr>
+            <tr><td>Temp access</td><td>STS assume-role</td><td>su - username</td></tr>
+            <tr><td>API key</td><td>Access Key ID + Secret Key</td><td>SSH key pair</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="code-wrap">
+        <div class="code-label">IAM — Console Steps + CLI Commands</div>
+        <pre><span class="c"># ── Console: Create IAM User ──</span>
+<span class="c"># IAM → Users → Create User</span>
+<span class="c"># → Username: kamran-admin</span>
+<span class="c"># → Enable: AWS Management Console access</span>
+<span class="c"># → Attach policy: AdministratorAccess (for learning)</span>
+<span class="c"># → Download credentials CSV</span>
+
+<span class="c"># ── Enable MFA on root (do this first!) ──</span>
+<span class="c"># Top right → Security credentials → MFA → Assign MFA device</span>
+<span class="c"># Use Google Authenticator or Authy on your phone</span>
+
+<span class="c"># ── Create Access Keys for CLI ──</span>
+<span class="c"># IAM → Users → Your User → Security credentials → Access keys</span>
+
+<span class="c"># ── IAM Policy example (read-only S3) ──</span>
+{
+  "Version": "2012-10-17",
+  "Statement": [{
+    "Effect": "Allow",
+    "Action": ["s3:GetObject", "s3:ListBucket"],
+    "Resource": "*"
+  }]
+}</pre>
+      </div>
+
+      <dl class="terms-grid">
+        <div class="term-card"><dt>IAM User</dt><dd>A person or application with a username and password or access keys to use AWS.</dd></div>
+        <div class="term-card"><dt>IAM Group</dt><dd>A collection of users. Attach one policy to the group — all users inherit it.</dd></div>
+        <div class="term-card"><dt>IAM Policy</dt><dd>A JSON document that says what actions are allowed or denied on which resources.</dd></div>
+        <div class="term-card"><dt>IAM Role</dt><dd>Like a user but for AWS services (e.g. give EC2 permission to access S3).</dd></div>
+        <div class="term-card"><dt>Least Privilege</dt><dd>Give only the permissions needed — nothing more. The golden rule of IAM.</dd></div>
+        <div class="term-card"><dt>MFA</dt><dd>Multi-Factor Authentication. Requires phone OTP in addition to password. Always enable on root.</dd></div>
+      </dl>
+    </section>
+    <hr class="module-divider"/>
+
+    <!-- ═══ MODULE 04 ═══ -->
+    <section class="module-section" id="m04">
+      <div class="module-header">
+        <span class="module-num-badge">MODULE 04</span>
+        <div class="module-header-text">
+          <h2>EC2 — Your Server in the Cloud</h2>
+          <p>Launch a virtual server, connect via SSH, understand what you're paying for.</p>
+        </div>
+      </div>
+
+      <div class="concept-block">
+        <h3>What is EC2?</h3>
+        <p>EC2 (Elastic Compute Cloud) is AWS's virtual machine service. You pick the OS, CPU, RAM, and storage — AWS runs it in their data center. You connect via SSH exactly like a Linux server in your office. The difference: it's billed by the hour and you can terminate it any time.</p>
+      </div>
+
+      <div class="compare-wrap">
+        <div class="compare-label">EC2 vs Your Local Server</div>
+        <table class="compare">
+          <thead><tr><th>Feature</th><th>EC2 (AWS)</th><th>Physical / Local Server</th></tr></thead>
+          <tbody>
+            <tr><td>Setup time</td><td>60 seconds</td><td>Days to weeks</td></tr>
+            <tr><td>Connect</td><td>SSH with key pair</td><td>SSH or direct console</td></tr>
+            <tr><td>OS</td><td>Amazon Linux, Ubuntu, RHEL, Windows</td><td>Whatever you install</td></tr>
+            <tr><td>Resize</td><td>Stop → change instance type → start</td><td>Buy new hardware</td></tr>
+            <tr><td>Cost</td><td>Pay per hour (t2.micro = ~$0.012/hr)</td><td>Fixed cost, always running</td></tr>
+            <tr><td>Backups</td><td>AMI snapshots in minutes</td><td>Manual backup process</td></tr>
+            <tr><td>Terminate</td><td>One click — billing stops instantly</td><td>Hardware still sitting there</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="code-wrap">
+        <div class="code-label">Launch EC2 — Console Steps</div>
+        <pre><span class="c"># EC2 → Launch Instance</span>
+<span class="c"># 1. Name: my-web-server</span>
+<span class="c"># 2. AMI: Amazon Linux 2023 (free tier eligible)</span>
+<span class="c"># 3. Instance type: t2.micro (free tier)</span>
+<span class="c"># 4. Key pair: Create new → download .pem file</span>
+<span class="c"># 5. Security Group: Allow SSH (22) from your IP</span>
+<span class="c"># 6. Storage: 8 GB gp3 (default)</span>
+<span class="c"># 7. Launch!</span>
+
+<span class="c"># Connect via SSH (Linux/Mac)</span>
+chmod 400 my-key.pem
+ssh -i my-key.pem ec2-user@YOUR-PUBLIC-IP
+
+<span class="c"># Connect via SSH (Windows — use PuTTY or Windows Terminal)</span>
+<span class="c"># Convert .pem to .ppk using PuTTYgen first</span>
+
+<span class="c"># Once connected — it's just Linux!</span>
+sudo dnf update -y
+sudo dnf install nginx -y
+sudo systemctl enable --now nginx</pre>
+      </div>
+
+      <dl class="terms-grid">
+        <div class="term-card"><dt>AMI</dt><dd>Amazon Machine Image. A template with OS + software pre-installed. Used to launch EC2 instances.</dd></div>
+        <div class="term-card"><dt>Instance Type</dt><dd>CPU + RAM size. t2.micro = 1 vCPU, 1GB RAM. c5.4xlarge = 16 vCPU, 32GB RAM.</dd></div>
+        <div class="term-card"><dt>Key Pair</dt><dd>SSH key used to connect to EC2. AWS keeps the public key, you keep the private .pem file.</dd></div>
+        <div class="term-card"><dt>Security Group</dt><dd>Firewall rules for your EC2. Like Linux firewalld but managed by AWS.</dd></div>
+        <div class="term-card"><dt>Elastic IP</dt><dd>A permanent public IP. Without it, EC2's public IP changes every time you stop/start.</dd></div>
+        <div class="term-card"><dt>User Data</dt><dd>A startup script that runs when EC2 first boots. Use it to auto-install software.</dd></div>
+      </dl>
+    </section>
+    <hr class="module-divider"/>
+
+    <!-- ═══ MODULE 05 ═══ -->
+    <section class="module-section" id="m05">
+      <div class="module-header">
+        <span class="module-num-badge">MODULE 05</span>
+        <div class="module-header-text">
+          <h2>VPC — Your Private Network</h2>
+          <p>Build an isolated network inside AWS — subnets, routing, internet access.</p>
+        </div>
+      </div>
+
+      <div class="concept-block">
+        <h3>What is a VPC?</h3>
+        <p>VPC (Virtual Private Cloud) is your own private network inside AWS. Think of it as building walls around your servers — you control who can reach them and how. Without a VPC, your servers would be on AWS's shared network. Every AWS account gets a default VPC, but in production you always create your own.</p>
+      </div>
+
+      <div class="compare-wrap">
+        <div class="compare-label">VPC Concepts vs Physical Networking</div>
+        <table class="compare">
+          <thead><tr><th>AWS VPC</th><th>Physical Network Equivalent</th></tr></thead>
+          <tbody>
+            <tr><td>VPC</td><td>Your entire office network / building</td></tr>
+            <tr><td>Public Subnet</td><td>Reception area — accessible from outside</td></tr>
+            <tr><td>Private Subnet</td><td>Server room — internal only, no direct internet</td></tr>
+            <tr><td>Internet Gateway</td><td>The main door to the internet</td></tr>
+            <tr><td>NAT Gateway</td><td>One-way door — private servers can reach internet, internet can't reach them</td></tr>
+            <tr><td>Route Table</td><td>Network router — decides where traffic goes</td></tr>
+            <tr><td>Security Group</td><td>Firewall rules per server</td></tr>
+            <tr><td>NACL</td><td>Firewall rules per subnet (extra layer)</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="code-wrap">
+        <div class="code-label">VPC Architecture — Standard Production Setup</div>
+        <pre><span class="c"># Standard 3-tier VPC layout:</span>
+
+VPC: 10.0.0.0/16  (65,536 addresses)
+├── Public Subnet A:  10.0.1.0/24  (AZ-1a)  ← Load Balancer, Bastion
+├── Public Subnet B:  10.0.2.0/24  (AZ-1b)  ← Load Balancer (HA)
+├── Private Subnet A: 10.0.3.0/24  (AZ-1a)  ← EC2 App Servers
+├── Private Subnet B: 10.0.4.0/24  (AZ-1b)  ← EC2 App Servers (HA)
+├── DB Subnet A:      10.0.5.0/24  (AZ-1a)  ← RDS Database
+└── DB Subnet B:      10.0.6.0/24  (AZ-1b)  ← RDS Standby
+
+<span class="c"># Traffic flow:</span>
+<span class="c"># Internet → IGW → Public Subnet → Load Balancer</span>
+<span class="c">#                                 → Private Subnet → EC2</span>
+<span class="c">#                                                   → DB Subnet → RDS</span>
+<span class="c"># Private EC2 → NAT Gateway → Internet (updates only)</span></pre>
+      </div>
+
+      <div class="callout callout-info">
+        <span class="callout-icon">ℹ️</span>
+        <p><strong>Golden rule:</strong> Databases always go in private subnets. They should never be directly reachable from the internet — only from your app servers inside the same VPC.</p>
+      </div>
+    </section>
+    <hr class="module-divider"/>
+
+    <!-- ═══ MODULE 06 ═══ -->
+    <section class="module-section" id="m06">
+      <div class="module-header">
+        <span class="module-num-badge">MODULE 06</span>
+        <div class="module-header-text">
+          <h2>Static IPs, DNS &amp; Route 53</h2>
+          <p>Give your server a permanent address and point a domain name at it.</p>
+        </div>
+      </div>
+
+      <div class="concept-block">
+        <h3>The Problem with Dynamic IPs</h3>
+        <p>When you stop and start an EC2 instance, its public IP changes. If your domain (e.g. devriston.com.pk) pointed to the old IP, your website goes down. Elastic IP solves this — it's a fixed public IP that stays the same regardless of stops and starts. Route 53 is AWS's DNS service that connects your domain name to that IP.</p>
+      </div>
+
+      <div class="code-wrap">
+        <div class="code-label">Elastic IP — Allocate and Attach</div>
+        <pre><span class="c"># Console: EC2 → Elastic IPs → Allocate Elastic IP</span>
+<span class="c"># → Associate → choose your EC2 instance → Associate</span>
+
+<span class="c"># AWS CLI equivalent:</span>
+<span class="c"># Allocate an Elastic IP</span>
+aws ec2 allocate-address --domain vpc
+
+<span class="c"># Associate it with an instance</span>
+aws ec2 associate-address \
+  --instance-id i-0abc123def456789 \
+  --allocation-id eipalloc-0abc123def456789
+
+<span class="c"># IMPORTANT: Elastic IP is FREE when attached to a running instance</span>
+<span class="c"># You get charged if it's allocated but NOT attached — release unused EIPs!</span></pre>
+      </div>
+
+      <div class="code-wrap">
+        <div class="code-label">Route 53 — Point Domain to EC2</div>
+        <pre><span class="c"># Console: Route 53 → Hosted Zones → Create Hosted Zone</span>
+<span class="c"># → Domain name: devriston.com.pk → Type: Public</span>
+
+<span class="c"># Create an A Record:</span>
+<span class="c"># → Record name: @ (or www)</span>
+<span class="c"># → Record type: A</span>
+<span class="c"># → Value: YOUR-ELASTIC-IP</span>
+<span class="c"># → TTL: 300</span>
+
+<span class="c"># Update your domain registrar's nameservers</span>
+<span class="c"># Route 53 gives you 4 NS records — paste these into your registrar</span>
+
+<span class="c"># Test DNS propagation:</span>
+dig devriston.com.pk
+nslookup devriston.com.pk 8.8.8.8</pre>
+      </div>
+
+      <dl class="terms-grid">
+        <div class="term-card"><dt>Elastic IP</dt><dd>A static public IPv4 address for your AWS account. Stays the same when EC2 stops/starts.</dd></div>
+        <div class="term-card"><dt>Route 53</dt><dd>AWS DNS service. Translates domain names to IPs. Also does health checks and routing policies.</dd></div>
+        <div class="term-card"><dt>A Record</dt><dd>Maps a domain name directly to an IPv4 address.</dd></div>
+        <div class="term-card"><dt>CNAME Record</dt><dd>Maps a domain name to another domain name. Use for www → root domain.</dd></div>
+        <div class="term-card"><dt>TTL</dt><dd>Time To Live. How long DNS resolvers cache the record. Lower = faster propagation.</dd></div>
+        <div class="term-card"><dt>Hosted Zone</dt><dd>A container for DNS records for a domain in Route 53.</dd></div>
+      </dl>
+    </section>
+    <hr class="module-divider"/>
+
+    <!-- ═══ MODULE 07 ═══ -->
+    <section class="module-section" id="m07">
+      <div class="module-header">
+        <span class="module-num-badge">MODULE 07</span>
+        <div class="module-header-text">
+          <h2>Load Balancer &amp; Auto Scaling</h2>
+          <p>Distribute traffic across servers and add/remove them automatically.</p>
+        </div>
+      </div>
+
+      <div class="concept-block">
+        <h3>Why Load Balancers?</h3>
+        <p>A load balancer sits in front of your servers and spreads incoming traffic evenly across them. If one server crashes, the load balancer stops sending traffic to it — users don't notice. Auto Scaling watches your CPU and adds servers when load is high, removes them when it drops. This is how Netflix handles millions of users without buying millions of servers.</p>
+      </div>
+
+      <div class="compare-wrap">
+        <div class="compare-label">Without vs With Load Balancer</div>
+        <table class="compare">
+          <thead><tr><th>Scenario</th><th>Single Server</th><th>Load Balanced</th></tr></thead>
+          <tbody>
+            <tr><td>Server crash</td><td>Site goes down</td><td>Traffic routes to healthy servers</td></tr>
+            <tr><td>Traffic spike</td><td>Server overloads, slow/down</td><td>Auto Scaling adds servers automatically</td></tr>
+            <tr><td>Deployment</td><td>Downtime during update</td><td>Rolling deploy — no downtime</td></tr>
+            <tr><td>SSL certificate</td><td>On each server</td><td>Once on the load balancer — simpler</td></tr>
+            <tr><td>Cost at low traffic</td><td>One server running 24/7</td><td>Scale down to minimum — save money</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="code-wrap">
+        <div class="code-label">ALB + Auto Scaling — Setup Flow</div>
+        <pre><span class="c"># Step 1: Create Launch Template (what servers to launch)</span>
+<span class="c"># EC2 → Launch Templates → Create</span>
+<span class="c"># → AMI, instance type, key pair, security group, user data</span>
+
+<span class="c"># Step 2: Create Target Group (group of servers LB sends traffic to)</span>
+<span class="c"># EC2 → Target Groups → Create</span>
+<span class="c"># → Type: Instances | Protocol: HTTP | Port: 80</span>
+<span class="c"># → Health check path: /  (or /health)</span>
+
+<span class="c"># Step 3: Create Application Load Balancer</span>
+<span class="c"># EC2 → Load Balancers → Create → Application Load Balancer</span>
+<span class="c"># → Internet-facing | Select public subnets in 2+ AZs</span>
+<span class="c"># → Listener: HTTP:80 → Forward to target group</span>
+
+<span class="c"># Step 4: Create Auto Scaling Group</span>
+<span class="c"># EC2 → Auto Scaling Groups → Create</span>
+<span class="c"># → Use your launch template</span>
+<span class="c"># → Select private subnets</span>
+<span class="c"># → Attach to your load balancer target group</span>
+<span class="c"># → Min: 2 | Desired: 2 | Max: 6</span>
+<span class="c"># → Scale out when CPU > 70%</span>
+<span class="c"># → Scale in when CPU < 30%</span></pre>
+      </div>
+    </section>
+    <hr class="module-divider"/>
+
+    <!-- ═══ MODULE 08 ═══ -->
+    <section class="module-section" id="m08">
+      <div class="module-header">
+        <span class="module-num-badge">MODULE 08</span>
+        <div class="module-header-text">
+          <h2>S3 — Storage in the Cloud</h2>
+          <p>Store files, host static websites, manage backups — the most-used AWS service.</p>
+        </div>
+      </div>
+
+      <div class="concept-block">
+        <h3>What is S3?</h3>
+        <p>S3 (Simple Storage Service) stores files as objects in containers called buckets. It's not a filesystem — you can't SSH into it or run commands on it. You upload files and they're accessible via a URL. S3 is used for everything: website assets, application logs, database backups, static website hosting, and as the backend for Terraform state files.</p>
+      </div>
+
+      <div class="compare-wrap">
+        <div class="compare-label">S3 vs Linux Filesystem vs Windows</div>
+        <table class="compare">
+          <thead><tr><th>Concept</th><th>S3</th><th>Linux</th><th>Windows</th></tr></thead>
+          <tbody>
+            <tr><td>Container</td><td>Bucket</td><td>Directory (/data)</td><td>Folder (C:\data)</td></tr>
+            <tr><td>File</td><td>Object (with key)</td><td>File</td><td>File</td></tr>
+            <tr><td>Access</td><td>HTTPS URL or CLI</td><td>File path</td><td>File path</td></tr>
+            <tr><td>Permissions</td><td>Bucket policy + IAM</td><td>chmod/chown</td><td>NTFS permissions</td></tr>
+            <tr><td>Max size</td><td>5 TB per object</td><td>Disk size</td><td>Disk size</td></tr>
+            <tr><td>Redundancy</td><td>3 AZs automatically</td><td>Manual RAID</td><td>Manual RAID</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="code-wrap">
+        <div class="code-label">S3 — AWS CLI Commands</div>
+        <pre><span class="c"># Create a bucket (name must be globally unique)</span>
+aws s3 mb s3://devriston-backups-2026
+
+<span class="c"># Upload a file</span>
+aws s3 cp backup.tar.gz s3://devriston-backups-2026/
+
+<span class="c"># Upload entire folder</span>
+aws s3 sync /var/backups/ s3://devriston-backups-2026/daily/
+
+<span class="c"># Download from S3</span>
+aws s3 cp s3://devriston-backups-2026/backup.tar.gz .
+
+<span class="c"># List bucket contents</span>
+aws s3 ls s3://devriston-backups-2026/
+
+<span class="c"># Delete a file</span>
+aws s3 rm s3://devriston-backups-2026/old-backup.tar.gz
+
+<span class="c"># Enable versioning (keeps all versions of every file)</span>
+aws s3api put-bucket-versioning \
+  --bucket devriston-backups-2026 \
+  --versioning-configuration Status=Enabled
+
+<span class="c"># Host a static website on S3</span>
+aws s3 website s3://my-site/ \
+  --index-document index.html \
+  --error-document 404.html</pre>
+      </div>
+    </section>
+    <hr class="module-divider"/>
+
+    <!-- ═══ MODULE 09 ═══ -->
+    <section class="module-section" id="m09">
+      <div class="module-header">
+        <span class="module-num-badge">MODULE 09</span>
+        <div class="module-header-text">
+          <h2>RDS — Managed Databases</h2>
+          <p>Run MySQL or PostgreSQL without managing a database server.</p>
+        </div>
+      </div>
+
+      <div class="concept-block">
+        <h3>What is RDS?</h3>
+        <p>RDS (Relational Database Service) runs your database on AWS-managed infrastructure. You don't install MySQL, manage backups, apply patches, or handle hardware failures — AWS does all of that. You just connect to it like a normal database. The tradeoff: less control, but much less work and built-in high availability.</p>
+      </div>
+
+      <div class="compare-wrap">
+        <div class="compare-label">RDS vs Self-Managed Database</div>
+        <table class="compare">
+          <thead><tr><th>Task</th><th>RDS (Managed)</th><th>Self-Managed on EC2</th></tr></thead>
+          <tbody>
+            <tr><td>Install</td><td>Click and launch</td><td>dnf install mysql-server, configure</td></tr>
+            <tr><td>Backups</td><td>Automatic daily snapshots</td><td>Write your own backup scripts</td></tr>
+            <tr><td>Patches</td><td>AWS applies them</td><td>You run dnf update, test, apply</td></tr>
+            <tr><td>Failover</td><td>Multi-AZ — automatic in ~60 sec</td><td>Manual — set up replication yourself</td></tr>
+            <tr><td>Scaling</td><td>One click to resize</td><td>Migrate data to bigger server</td></tr>
+            <tr><td>Cost</td><td>Higher per hour</td><td>Lower — just EC2 cost</td></tr>
+            <tr><td>Best for</td><td>Production apps, less ops team</td><td>Full control, cost-sensitive, expertise available</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="code-wrap">
+        <div class="code-label">RDS — Launch and Connect</div>
+        <pre><span class="c"># Console: RDS → Create Database</span>
+<span class="c"># → Standard Create</span>
+<span class="c"># → Engine: MySQL 8.0</span>
+<span class="c"># → Template: Free tier (for learning)</span>
+<span class="c"># → DB instance ID: myapp-db</span>
+<span class="c"># → Master username: admin</span>
+<span class="c"># → Master password: (strong password)</span>
+<span class="c"># → Instance: db.t3.micro (free tier)</span>
+<span class="c"># → VPC: your custom VPC</span>
+<span class="c"># → Subnet group: private subnets</span>
+<span class="c"># → Public access: NO (always)</span>
+<span class="c"># → VPC security group: allow port 3306 from app servers only</span>
+
+<span class="c"># Connect from EC2 inside the same VPC:</span>
+mysql -h myapp-db.xxxxxxxx.us-east-1.rds.amazonaws.com \
+      -u admin -p
+
+<span class="c"># Create a manual snapshot:</span>
+aws rds create-db-snapshot \
+  --db-instance-identifier myapp-db \
+  --db-snapshot-identifier myapp-db-snap-20260627</pre>
+      </div>
+
+      <div class="callout callout-warn">
+        <span class="callout-icon">⚠️</span>
+        <p><strong>Never make RDS publicly accessible.</strong> Always place it in a private subnet. Only your EC2 app servers in the same VPC should reach it — never the open internet.</p>
+      </div>
+    </section>
+    <hr class="module-divider"/>
+
+    <!-- ═══ MODULE 10 ═══ -->
+    <section class="module-section" id="m10">
+      <div class="module-header">
+        <span class="module-num-badge">MODULE 10</span>
+        <div class="module-header-text">
+          <h2>Backup, Snapshots &amp; AMIs</h2>
+          <p>Create server images, take disk snapshots, restore from disaster.</p>
+        </div>
+      </div>
+
+      <div class="concept-block">
+        <h3>Why Backups Matter</h3>
+        <p>Servers fail. Humans make mistakes. Databases get corrupted. Without backups, one bad command can destroy months of work. In AWS, snapshots and AMIs are your safety net — they let you roll back to any point in time or launch an identical copy of a server in minutes.</p>
+      </div>
+
+      <div class="compare-wrap">
+        <div class="compare-label">Backup Types — What Does What</div>
+        <table class="compare">
+          <thead><tr><th>Type</th><th>What it Backs Up</th><th>Use Case</th></tr></thead>
+          <tbody>
+            <tr><td>EBS Snapshot</td><td>One disk (volume)</td><td>Backup a single disk, restore to any EC2</td></tr>
+            <tr><td>AMI</td><td>Entire server (all disks + config)</td><td>Clone a server, launch identical copies</td></tr>
+            <tr><td>RDS Snapshot</td><td>Entire database</td><td>Point-in-time database restore</td></tr>
+            <tr><td>AWS Backup</td><td>Centralized — EC2, RDS, S3, EFS</td><td>One policy for all resources</td></tr>
+            <tr><td>S3 Versioning</td><td>Every version of every file</td><td>Recover accidentally deleted/modified files</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="code-wrap">
+        <div class="code-label">Snapshots & AMIs — CLI Commands</div>
+        <pre><span class="c"># Create an EBS Snapshot</span>
+aws ec2 create-snapshot \
+  --volume-id vol-0abc123def456789 \
+  --description "Web server disk backup 2026-06-27"
+
+<span class="c"># Create an AMI from a running EC2</span>
+aws ec2 create-image \
+  --instance-id i-0abc123def456789 \
+  --name "web-server-v1-2026-06-27" \
+  --description "Web server before deployment"
+
+<span class="c"># Launch a new EC2 from your AMI</span>
+aws ec2 run-instances \
+  --image-id ami-0your-ami-id \
+  --instance-type t2.micro \
+  --key-name my-key \
+  --security-group-ids sg-0abc123
+
+<span class="c"># List your snapshots</span>
+aws ec2 describe-snapshots --owner-ids self
+
+<span class="c"># List your AMIs</span>
+aws ec2 describe-images --owners self</pre>
+      </div>
+
+      <div class="callout callout-tip">
+        <span class="callout-icon">💡</span>
+        <p><strong>Before every deployment:</strong> Create an AMI of your server. If the deployment breaks production, you launch a new instance from the AMI and it's back in 2 minutes. This is your undo button.</p>
+      </div>
+    </section>
+    <hr class="module-divider"/>
+
+    <!-- ═══ MODULE 11 ═══ -->
+    <section class="module-section" id="m11">
+      <div class="module-header">
+        <span class="module-num-badge">MODULE 11</span>
+        <div class="module-header-text">
+          <h2>CloudWatch — Monitoring</h2>
+          <p>Watch your infrastructure health, set alarms, get alerted before things break.</p>
+        </div>
+      </div>
+
+      <div class="concept-block">
+        <h3>What is CloudWatch?</h3>
+        <p>CloudWatch collects metrics from all your AWS resources — CPU usage, network traffic, disk reads, memory (with the agent), application logs. You set alarms that trigger when a metric crosses a threshold. When CPU hits 90%, CloudWatch sends you an email via SNS before your server melts. It's AWS's built-in Prometheus + Grafana equivalent.</p>
+      </div>
+
+      <div class="compare-wrap">
+        <div class="compare-label">CloudWatch vs Self-Hosted Monitoring</div>
+        <table class="compare">
+          <thead><tr><th>Feature</th><th>CloudWatch</th><th>Prometheus + Grafana</th></tr></thead>
+          <tbody>
+            <tr><td>Setup</td><td>Built-in — works automatically</td><td>Install, configure, maintain</td></tr>
+            <tr><td>Cost</td><td>Pay per metric/alarm/log</td><td>Free (self-hosted on EC2)</td></tr>
+            <tr><td>AWS integration</td><td>Native — all services report here</td><td>Needs exporters per service</td></tr>
+            <tr><td>Custom metrics</td><td>Yes — via API or agent</td><td>Yes — via exporters</td></tr>
+            <tr><td>Dashboards</td><td>Basic</td><td>Grafana — highly customizable</td></tr>
+            <tr><td>Best for</td><td>AWS-native alerts, quick setup</td><td>Custom dashboards, multi-cloud, advanced queries</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="code-wrap">
+        <div class="code-label">CloudWatch — Create Alarm via CLI</div>
+        <pre><span class="c"># Create a CPU alarm — email when CPU > 80% for 5 minutes</span>
+
+<span class="c"># Step 1: Create SNS topic (for email notifications)</span>
+aws sns create-topic --name DevOps-Alerts
+
+<span class="c"># Step 2: Subscribe your email</span>
+aws sns subscribe \
+  --topic-arn arn:aws:sns:us-east-1:123456789:DevOps-Alerts \
+  --protocol email \
+  --notification-endpoint kamran@devriston.com.pk
+
+<span class="c"># Step 3: Create the CloudWatch alarm</span>
+aws cloudwatch put-metric-alarm \
+  --alarm-name "High-CPU-web-server" \
+  --metric-name CPUUtilization \
+  --namespace AWS/EC2 \
+  --dimensions Name=InstanceId,Value=i-0abc123def456789 \
+  --period 300 \
+  --evaluation-periods 1 \
+  --threshold 80 \
+  --comparison-operator GreaterThanThreshold \
+  --statistic Average \
+  --alarm-actions arn:aws:sns:us-east-1:123456789:DevOps-Alerts
+
+<span class="c"># Install CloudWatch Agent on EC2 (for memory/disk metrics)</span>
+sudo dnf install amazon-cloudwatch-agent -y
+sudo /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-config-wizard</pre>
+      </div>
+    </section>
+    <hr class="module-divider"/>
+
+    <!-- ═══ MODULE 12 ═══ -->
+    <section class="module-section" id="m12">
+      <div class="module-header">
+        <span class="module-num-badge">MODULE 12</span>
+        <div class="module-header-text">
+          <h2>AWS CLI — Control AWS from Terminal</h2>
+          <p>Stop clicking the console. Manage everything from your terminal.</p>
+        </div>
+      </div>
+
+      <div class="concept-block">
+        <h3>Why CLI Over Console?</h3>
+        <p>The AWS Console (web UI) is good for learning and exploring. But real engineers use the CLI — you can script it, run it in CI/CD pipelines, repeat exact commands, and automate anything. One CLI command does in 2 seconds what takes 10 clicks in the console. And you can put it in a bash script that runs every night.</p>
+      </div>
+
+      <div class="compare-wrap">
+        <div class="compare-label">AWS Console vs CLI vs Terraform</div>
+        <table class="compare">
+          <thead><tr><th>Method</th><th>Speed</th><th>Repeatable</th><th>Best For</th></tr></thead>
+          <tbody>
+            <tr><td>Console (Web UI)</td><td>Slow — many clicks</td><td>No — manual each time</td><td>Learning, exploring</td></tr>
+            <tr><td>AWS CLI</td><td>Fast — one command</td><td>Yes — put in scripts</td><td>Automation, quick tasks</td></tr>
+            <tr><td>Terraform</td><td>Medium — plan then apply</td><td>Yes — version controlled</td><td>Full infrastructure as code</td></tr>
+            <tr><td>SDK (Python/boto3)</td><td>Variable</td><td>Yes — programmable</td><td>Custom tools, Lambda</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="code-wrap">
+        <div class="code-label">AWS CLI — Install and Configure</div>
+        <pre><span class="c"># Install on Linux</span>
+curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+unzip awscliv2.zip
+sudo ./aws/install
+
+<span class="c"># Install on Windows</span>
+<span class="c"># Download: https://awscli.amazonaws.com/AWSCLIV2.msi</span>
+
+<span class="c"># Configure with your IAM access keys</span>
+aws configure
+<span class="c"># AWS Access Key ID: AKIAIOSFODNN7EXAMPLE</span>
+<span class="c"># AWS Secret Access Key: wJalrXUtnFEMI/K7MDENG</span>
+<span class="c"># Default region: ap-south-1</span>
+<span class="c"># Default output format: json</span>
+
+<span class="c"># Verify it works</span>
+aws sts get-caller-identity
+
+<span class="c"># Common CLI commands</span>
+aws ec2 describe-instances                          <span class="c"># list all EC2</span>
+aws ec2 start-instances --instance-ids i-0abc123    <span class="c"># start EC2</span>
+aws ec2 stop-instances --instance-ids i-0abc123     <span class="c"># stop EC2</span>
+aws s3 ls                                           <span class="c"># list all buckets</span>
+aws iam list-users                                  <span class="c"># list IAM users</span>
+aws rds describe-db-instances                       <span class="c"># list databases</span>
+
+<span class="c"># Use profiles for multiple accounts</span>
+aws configure --profile production
+aws s3 ls --profile production</pre>
+      </div>
+    </section>
+    <hr class="module-divider"/>
+
+    <!-- ═══ MODULE 13 ═══ -->
+    <section class="module-section" id="m13">
+      <div class="module-header">
+        <span class="module-num-badge">MODULE 13</span>
+        <div class="module-header-text">
+          <h2>Lambda — Serverless Functions</h2>
+          <p>Run code without servers — pay only for what actually runs.</p>
+        </div>
+      </div>
+
+      <div class="concept-block">
+        <h3>What is Lambda?</h3>
+        <p>Lambda runs your code in response to events — without you managing any server. You upload a function (Python, Node.js, bash etc.), define what triggers it, and AWS handles everything else. It starts in milliseconds, runs, and stops. You pay only for the milliseconds it ran — not for idle time. Perfect for automations, scheduled jobs, and event-driven tasks.</p>
+      </div>
+
+      <div class="compare-wrap">
+        <div class="compare-label">Lambda vs EC2 vs Cron</div>
+        <table class="compare">
+          <thead><tr><th>Feature</th><th>Lambda</th><th>EC2</th><th>Linux Cron</th></tr></thead>
+          <tbody>
+            <tr><td>Server to manage</td><td>None</td><td>Yes — patch, monitor, maintain</td><td>Yes — runs on a server</td></tr>
+            <tr><td>Cost at zero traffic</td><td>$0.00</td><td>Still paying per hour</td><td>Server still running</td></tr>
+            <tr><td>Max runtime</td><td>15 minutes</td><td>Unlimited</td><td>Unlimited</td></tr>
+            <tr><td>Triggers</td><td>S3, API, schedule, SNS, SQS</td><td>Manual or script</td><td>Time-based only</td></tr>
+            <tr><td>Scale</td><td>Automatic — thousands of parallel runs</td><td>Manual or Auto Scaling</td><td>One job at a time</td></tr>
+            <tr><td>Best for</td><td>Short tasks, event-driven, automation</td><td>Long-running apps, full control</td><td>Scheduled tasks on a server</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="code-wrap">
+        <div class="code-label">Lambda — Python Function Example</div>
+        <pre><span class="c"># Example Lambda: Stop EC2 instances every night at 11pm</span>
+
+import boto3
+
+def lambda_handler(event, context):
+    ec2 = boto3.client('ec2', region_name='ap-south-1')
+
+    <span class="c"># Find all running instances tagged Environment=dev</span>
+    response = ec2.describe_instances(
+        Filters=[
+            {'Name': 'tag:Environment', 'Values': ['dev']},
+            {'Name': 'instance-state-name', 'Values': ['running']}
+        ]
+    )
+
+    instance_ids = []
+    for reservation in response['Reservations']:
+        for instance in reservation['Instances']:
+            instance_ids.append(instance['InstanceId'])
+
+    if instance_ids:
+        ec2.stop_instances(InstanceIds=instance_ids)
+        print(f"Stopped: {instance_ids}")
+
+    return {'stopped': instance_ids}
+
+<span class="c"># Deploy this function:</span>
+<span class="c"># Lambda → Create Function → Author from scratch</span>
+<span class="c"># Runtime: Python 3.12</span>
+<span class="c"># Execution role: IAM role with EC2 stop permissions</span>
+<span class="c"># Add trigger: EventBridge (cron) → cron(0 18 * * ? *) = 11pm PKT</span></pre>
+      </div>
+
+      <div class="callout callout-info">
+        <span class="callout-icon">ℹ️</span>
+        <p><strong>Free tier:</strong> Lambda gives 1 million free requests and 400,000 GB-seconds of compute per month — forever, not just 12 months. Most learning workloads run completely free.</p>
+      </div>
+    </section>
+    <hr class="module-divider"/>
+
+    <!-- ═══ MODULE 14 ═══ -->
+    <section class="module-section" id="m14">
+      <div class="module-header">
+        <span class="module-num-badge">MODULE 14</span>
+        <div class="module-header-text">
+          <h2>Cost Management &amp; Billing Alerts</h2>
+          <p>Never get a surprise AWS bill. Understand what costs what and how to control it.</p>
+        </div>
+      </div>
+
+      <div class="concept-block">
+        <h3>Why Cost Management Matters</h3>
+        <p>AWS bills you for every resource every hour. A forgotten running EC2, a NAT Gateway you didn't delete, an Elastic IP sitting unattached — these all cost real money. Many beginners get their first AWS bill and panic. The fix is simple: set billing alerts on day one, check Cost Explorer weekly, and always clean up resources after labs.</p>
+      </div>
+
+      <div class="compare-wrap">
+        <div class="compare-label">Common Surprise Costs — And How to Avoid Them</div>
+        <table class="compare">
+          <thead><tr><th>Resource</th><th>Cost</th><th>How to Avoid</th></tr></thead>
+          <tbody>
+            <tr><td>EC2 running 24/7</td><td>t2.micro ~$8.50/month</td><td>Stop when not in use; use Lambda for scheduled stop</td></tr>
+            <tr><td>NAT Gateway</td><td>~$32/month + data transfer</td><td>Delete after lab; use NAT Instance for learning</td></tr>
+            <tr><td>Elastic IP (unattached)</td><td>$0.005/hour = ~$3.60/month</td><td>Release when not attached to running instance</td></tr>
+            <tr><td>RDS (even stopped)</td><td>Charges resume after 7 days stopped</td><td>Delete RDS after lab; take final snapshot first</td></tr>
+            <tr><td>Data transfer out</td><td>$0.09/GB after first 100GB</td><td>Keep data within same region; use CloudFront</td></tr>
+            <tr><td>CloudWatch logs</td><td>$0.50/GB ingested</td><td>Set log retention — don't keep logs forever</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="code-wrap">
+        <div class="code-label">Billing Alert — Set Up on Day 1</div>
+        <pre><span class="c"># Console: Billing → Budgets → Create Budget</span>
+<span class="c"># → Budget type: Cost budget</span>
+<span class="c"># → Amount: $10 (alert before you're surprised)</span>
+<span class="c"># → Alert threshold: 80% of budget ($8)</span>
+<span class="c"># → Email: your email</span>
+
+<span class="c"># CLI: Create billing alarm via CloudWatch</span>
+aws cloudwatch put-metric-alarm \
+  --alarm-name "Billing-Alert-10USD" \
+  --metric-name EstimatedCharges \
+  --namespace AWS/Billing \
+  --dimensions Name=Currency,Value=USD \
+  --period 86400 \
+  --evaluation-periods 1 \
+  --threshold 10 \
+  --comparison-operator GreaterThanThreshold \
+  --statistic Maximum \
+  --alarm-actions arn:aws:sns:us-east-1:123456:DevOps-Alerts \
+  --region us-east-1
+
+<span class="c"># Cost Explorer — check your spending</span>
+<span class="c"># Billing → Cost Explorer → View by service</span>
+<span class="c"># Filter by last 7 days to catch unexpected charges fast</span>
+
+<span class="c"># Clean up after labs (in order):</span>
+<span class="c"># 1. Terminate EC2 instances</span>
+<span class="c"># 2. Delete Load Balancers</span>
+<span class="c"># 3. Delete NAT Gateways</span>
+<span class="c"># 4. Release Elastic IPs</span>
+<span class="c"># 5. Delete RDS instances (take snapshot first)</span>
+<span class="c"># 6. Delete VPC</span></pre>
+      </div>
+
+      <div class="callout callout-warn">
+        <span class="callout-icon">⚠️</span>
+        <p><strong>Billing alerts are in us-east-1 only.</strong> Even if your resources are in ap-south-1, the EstimatedCharges metric only exists in us-east-1. Always set the region to us-east-1 when creating billing alarms.</p>
+      </div>
+
+      <dl class="terms-grid">
+        <div class="term-card"><dt>Cost Explorer</dt><dd>Visual tool to see AWS spending by service, region, tag, or time period.</dd></div>
+        <div class="term-card"><dt>AWS Budgets</dt><dd>Set spending thresholds and get email/SMS alerts before you exceed them.</dd></div>
+        <div class="term-card"><dt>Free Tier</dt><dd>12 months of selected services free after account creation. Always check free tier limits.</dd></div>
+        <div class="term-card"><dt>Reserved Instances</dt><dd>Commit to 1 or 3 years — save up to 72% vs on-demand pricing for fixed workloads.</dd></div>
+        <div class="term-card"><dt>Spot Instances</dt><dd>Unused EC2 capacity at up to 90% discount — can be terminated by AWS any time.</dd></div>
+        <div class="term-card"><dt>Resource Tags</dt><dd>Key-value labels on resources. Tag everything with Project, Environment, Owner to track costs.</dd></div>
+      </dl>
+    </section>
+    <hr class="module-divider"/>
+
+    <!-- ENROLL CTA -->
+    <div style="background:linear-gradient(135deg,rgba(26,106,255,0.12),rgba(0,212,255,0.06));border:1px solid rgba(26,106,255,0.25);border-radius:14px;padding:32px 28px;text-align:center;margin-top:20px;">
+      <div style="font-size:2rem;margin-bottom:12px">☁️</div>
+      <h2 style="font-size:1.3rem;font-weight:800;margin-bottom:8px">Ready to go beyond reading?</h2>
+      <p style="font-size:0.88rem;color:var(--gray-400);max-width:420px;margin:0 auto 20px;line-height:1.7">The live course includes hands-on labs in your real AWS account, Q&A sessions, and a final 3-tier infrastructure project using Terraform. Same instructor who wrote these notes.</p>
+      <a href="https://wa.me/923231450045?text=Hi%20Kamran%2C%20I%20read%20the%20Cloud%20notes%20and%20want%20to%20enroll." style="display:inline-flex;align-items:center;gap:8px;background:var(--blue);color:#fff;padding:12px 28px;border-radius:8px;text-decoration:none;font-weight:700;font-size:0.9rem;">💬 Enroll via WhatsApp →</a>
+      <p style="font-size:0.72rem;color:var(--gray-500);margin-top:12px">Batch info &amp; fee on request</p>
+    </div>
+  </main>
+</div>
+
+<footer>
+  <p>© 2026 Devriston · Muhammad Kamran Kabeer · Lahore, Pakistan</p>
+  <div class="footer-links">
+    <a href="https://devriston.com.pk/courses.html">All Courses</a>
+    <a href="https://devriston.com.pk/linux-notes.html">Linux Notes</a>
+    <a href="https://devriston.com.pk/devops-notes.html">DevOps Notes</a>
+    <a href="https://devriston.com.pk/interview-guide.html">Interview Guide</a>
+    <a href="https://devriston.com.pk/contact.html">Contact</a>
+  </div>
+</footer>
+
+<script>
+  // Back to top
+  const bt = document.getElementById('back-top');
+  window.addEventListener('scroll', () => bt.classList.toggle('visible', scrollY > 400));
+
+  // Sidebar active highlight on scroll
+  const sections = document.querySelectorAll('.module-section');
+  const links = document.querySelectorAll('.sidebar a');
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        links.forEach(l => l.classList.remove('active'));
+        const link = document.querySelector(`.sidebar a[href="#${e.target.id}"]`);
+        if (link) link.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-20% 0px -70% 0px' });
+  sections.forEach(s => obs.observe(s));
+
+  // Learn dropdown
+  function toggleLearnMenu(e) {
+    e.stopPropagation();
+    var menu = document.getElementById('learn-menu');
+    var btn = e.currentTarget;
+    if (!menu) return;
+    var isOpen = menu.style.display === 'block';
+    menu.style.display = isOpen ? 'none' : 'block';
+    var svg = btn.querySelector('svg');
+    if (svg) svg.style.transform = isOpen ? '' : 'rotate(180deg)';
+    btn.setAttribute('aria-expanded', String(!isOpen));
+  }
+  document.addEventListener('click', function () {
+    var m = document.getElementById('learn-menu');
+    if (m) m.style.display = 'none';
+    document.querySelectorAll('.nav-dropdown-toggle svg').forEach(function (s) { s.style.transform = ''; });
+  });
+
+  // Mobile nav
+  document.querySelector('.nav-mobile-toggle').addEventListener('click', function () {
+    document.querySelector('.nav-mobile').classList.toggle('open');
+  });
+</script>
+</body>
+</html>
