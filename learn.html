@@ -18,17 +18,58 @@
   <meta name="twitter:card" content="summary_large_image"/>
   <meta name="twitter:site" content="@Devristonhq"/>
   <meta name="twitter:title" content="Learn | Devriston"/>
-  <meta name="twitter:description" content="Linux, Cloud, DevOps & AI courses and free notes by a practicing engineer."/>
+  <meta name="twitter:description" content="Linux, Cloud, DevOps &amp; AI courses and free notes by a practicing engineer."/>
   <meta name="twitter:image" content="https://www.devriston.com.pk/assets/images/banner.png"/>
 
+  <!-- ✅ IMPROVEMENT: Full Course JSON-LD structured data for Google rich results -->
   <script type="application/ld+json">
   {
     "@context":"https://schema.org",
-    "@type":"CollectionPage",
-    "name":"Devriston Learning Hub",
-    "description":"Courses, lecture notes, interview guide and blog covering Linux, Cloud, DevOps and AI.",
-    "url":"https://www.devriston.com.pk/learn.html",
-    "publisher":{"@type":"Organization","name":"Devriston","url":"https://www.devriston.com.pk"}
+    "@graph":[
+      {
+        "@type":"BreadcrumbList",
+        "itemListElement":[
+          {"@type":"ListItem","position":1,"name":"Home","item":"https://www.devriston.com.pk/"},
+          {"@type":"ListItem","position":2,"name":"Learn","item":"https://www.devriston.com.pk/learn.html"}
+        ]
+      },
+      {
+        "@type":"Course",
+        "name":"Linux Fundamentals — RHCSA Path",
+        "description":"Start from zero — learn to manage a real Linux server, create users, set up a web server, configure DNS, share files across a network. Aligned with the RHCSA industry certification.",
+        "provider":{"@type":"Organization","name":"Devriston","url":"https://www.devriston.com.pk"},
+        "educationalLevel":"Beginner to Intermediate",
+        "numberOfCredits":"16",
+        "url":"https://www.devriston.com.pk/linux-notes.html"
+      },
+      {
+        "@type":"Course",
+        "name":"Cloud Fundamentals — AWS Deep Dive",
+        "description":"Build real cloud infrastructure on AWS — virtual servers, private networks, databases, file storage, serverless functions and monitoring. Final project: full production setup using Terraform.",
+        "provider":{"@type":"Organization","name":"Devriston","url":"https://www.devriston.com.pk"},
+        "educationalLevel":"Intermediate",
+        "numberOfCredits":"14",
+        "url":"https://www.devriston.com.pk/cloud-notes.html"
+      },
+      {
+        "@type":"Course",
+        "name":"DevOps Bootcamp — Zero to Production",
+        "description":"The complete DevOps path — automate deployments, containerise apps, provision cloud infrastructure, orchestrate with Kubernetes and monitor everything. Your 5 GitHub projects become your CV.",
+        "provider":{"@type":"Organization","name":"Devriston","url":"https://www.devriston.com.pk"},
+        "educationalLevel":"Intermediate to Advanced",
+        "numberOfCredits":"17",
+        "url":"https://www.devriston.com.pk/devops-full-notes.html"
+      },
+      {
+        "@type":"Course",
+        "name":"AI for IT Professionals — Practical Guide",
+        "description":"Use AI to work faster — run models locally, write better scripts with AI help, call AI APIs from Python and build simple tools. Practical skills for IT and DevOps professionals.",
+        "provider":{"@type":"Organization","name":"Devriston","url":"https://www.devriston.com.pk"},
+        "educationalLevel":"Intermediate",
+        "numberOfCredits":"12",
+        "url":"https://www.devriston.com.pk/learn.html"
+      }
+    ]
   }
   </script>
 
@@ -70,33 +111,66 @@
     /* LAYOUT */
     .container{max-width:1100px;margin:0 auto;padding:0 5%}
 
-    /* BREADCRUMB */
-    .breadcrumb{font-size:0.75rem;color:var(--gray-500);padding-top:28px;margin-bottom:0}
-    .breadcrumb a{color:var(--gray-400);text-decoration:none}
-    .breadcrumb a:hover{color:var(--cyan)}
-    .breadcrumb span{margin:0 6px}
+    /* LEARN SUB-NAV */
+    .learn-subnav{
+      position:sticky;top:62px;z-index:90;
+      background:rgba(7,20,40,0.97);backdrop-filter:blur(12px);
+      border-bottom:1px solid rgba(26,106,255,0.15);
+      overflow-x:auto;white-space:nowrap;
+      scrollbar-width:none;
+    }
+    .learn-subnav::-webkit-scrollbar{display:none}
+    .learn-subnav-inner{
+      display:inline-flex;align-items:center;gap:2px;
+      padding:0 5%;min-width:100%;
+    }
+    .learn-subnav a{
+      display:inline-flex;align-items:center;gap:6px;
+      color:rgba(136,153,187,0.85);text-decoration:none;
+      font-size:0.78rem;font-weight:500;
+      padding:10px 12px;border-bottom:2px solid transparent;
+      transition:color 0.18s,border-color 0.18s;
+      white-space:nowrap;flex-shrink:0;
+    }
+    .learn-subnav a:hover{color:#fff}
+    .learn-subnav a.sn-active{color:#00d4ff;border-bottom-color:#00d4ff;font-weight:600}
+    .learn-subnav .sn-sep{width:1px;height:16px;background:rgba(255,255,255,0.08);margin:0 4px;flex-shrink:0}
 
     /* HERO */
-    .hero{padding:48px 0 56px;text-align:center;position:relative;overflow:hidden}
-    .hero::before{content:'';position:absolute;top:-80px;left:50%;transform:translateX(-50%);width:700px;height:400px;background:radial-gradient(ellipse,rgba(26,106,255,0.12) 0%,transparent 70%);pointer-events:none}
-    .hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(26,106,255,0.1);border:1px solid var(--border);color:var(--cyan);border-radius:20px;padding:4px 14px;font-size:0.72rem;font-weight:600;letter-spacing:0.05em;text-transform:uppercase;margin-bottom:20px}
-    .hero h1{font-size:clamp(1.9rem,4vw,2.8rem);font-weight:800;line-height:1.15;margin-bottom:14px}
+    .hero-wrap{padding:32px 0 28px;border-bottom:1px solid var(--border)}
+    .hero-inner{display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:20px}
+    .hero-left{}
+    .breadcrumb{font-size:0.75rem;color:var(--gray-500);margin-bottom:14px}
+    .breadcrumb a{color:var(--gray-400);text-decoration:none}
+    .breadcrumb a:hover{color:var(--cyan)}
+    .hero-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(26,106,255,0.1);border:1px solid var(--border);color:var(--cyan);border-radius:20px;padding:3px 12px;font-size:0.68rem;font-weight:600;letter-spacing:0.05em;text-transform:uppercase;margin-bottom:12px}
+    .hero h1{font-size:clamp(1.5rem,3vw,2.1rem);font-weight:800;line-height:1.2;margin-bottom:8px}
     .hero h1 em{font-style:normal;background:linear-gradient(135deg,var(--blue),var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-    .hero p{color:var(--gray-400);font-size:0.95rem;max-width:520px;margin:0 auto 28px;line-height:1.7}
-    .hero-stats{display:flex;justify-content:center;gap:40px;flex-wrap:wrap}
-    .hero-stat strong{display:block;font-size:1.5rem;font-weight:800;color:var(--cyan)}
-    .hero-stat span{font-size:0.75rem;color:var(--gray-400)}
+    .hero-sub{color:var(--gray-400);font-size:0.85rem;max-width:480px;line-height:1.7}
 
-    /* SECTION HEADERS */
-    .section-wrap{padding:56px 0}
-    .section-wrap+.section-wrap{border-top:1px solid var(--border)}
-    .sec-label{font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--cyan);margin-bottom:8px}
-    .sec-title{font-size:clamp(1.3rem,2.5vw,1.7rem);font-weight:800;margin-bottom:6px}
-    .sec-sub{color:var(--gray-400);font-size:0.88rem;margin-bottom:32px}
+    /* ✅ IMPROVEMENT: Stats redesigned — biggest number bigger, each with descriptor */
+    .hero-stats{display:flex;gap:32px;flex-shrink:0;flex-wrap:wrap}
+    .hero-stat{text-align:center}
+    .hero-stat strong{display:block;font-size:1.8rem;font-weight:800;color:var(--cyan);line-height:1}
+    .hero-stat .stat-label{font-size:0.7rem;color:var(--gray-400);margin-top:4px;line-height:1.3}
+    .hero-stat .stat-sub{font-size:0.65rem;color:var(--gray-500);margin-top:2px}
+    .stat-highlight strong{font-size:2.2rem;color:#fff}
+
+    /* RECOMMENDED PATH BAR */
+    .path-bar{background:rgba(26,106,255,0.07);border:1px solid rgba(26,106,255,0.18);border-radius:var(--r);padding:11px 18px;margin:24px 0 20px;font-size:0.82rem;color:#c5d0e8;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+    .path-label{font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--cyan);flex-shrink:0}
+    .path-sep{color:var(--gray-500)}
+
+    /* SECTION LABEL */
+    .sec-label-row{display:flex;align-items:baseline;gap:12px;margin-bottom:16px}
+    .sec-label{font-size:0.68rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--cyan)}
+    .sec-sub-label{font-size:0.75rem;color:var(--gray-500)}
 
     /* COURSE CARDS */
-    .courses-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:20px}
-    .course-card{background:var(--navy-2);border:1px solid var(--border);border-radius:var(--r-lg);padding:24px;display:flex;flex-direction:column;gap:12px;transition:box-shadow var(--t),transform var(--t);text-decoration:none;color:var(--white)}
+    .courses-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-bottom:32px}
+    @media(max-width:1024px){.courses-grid{grid-template-columns:repeat(2,1fr)}}
+    @media(max-width:600px){.courses-grid{grid-template-columns:1fr}}
+    .course-card{background:var(--navy-2);border:1px solid var(--border);border-radius:var(--r-lg);padding:24px;display:flex;flex-direction:column;gap:12px;transition:box-shadow var(--t),transform var(--t);color:var(--white)}
     .course-card:hover{box-shadow:0 0 32px rgba(26,106,255,0.15);transform:translateY(-3px)}
     .course-card-top{display:flex;align-items:center;justify-content:space-between}
     .course-icon{font-size:1.8rem;line-height:1}
@@ -105,13 +179,29 @@
     .badge-new{background:rgba(245,158,11,0.1);color:var(--gold);border-color:rgba(245,158,11,0.3)}
     .course-name{font-size:1rem;font-weight:800;line-height:1.3}
     .course-desc{font-size:0.8rem;color:var(--gray-400);line-height:1.6;flex:1}
+
+    /* ✅ IMPROVEMENT: Prerequisites + outcomes added */
+    .course-prereq{font-size:0.72rem;color:var(--gray-500);border-top:1px solid var(--border);padding-top:8px;line-height:1.4}
+    .course-prereq strong{color:var(--gray-400);font-weight:600}
+    .course-outcome{font-size:0.72rem;color:var(--green);opacity:0.85;line-height:1.4}
+    .course-outcome::before{content:"✓ "}
+
     .course-meta{display:flex;flex-wrap:wrap;gap:6px}
     .course-tag{font-size:0.65rem;font-family:var(--mono);color:var(--gray-500);background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);padding:2px 6px;border-radius:3px}
+
+    /* ✅ IMPROVEMENT: cert badge */
+    .cert-tag{font-size:0.62rem;font-family:var(--mono);color:var(--gold);background:rgba(245,158,11,0.1);border:1px solid rgba(245,158,11,0.25);padding:2px 6px;border-radius:3px;font-weight:600}
+
+    /* ✅ IMPROVEMENT: Duration row */
+    .course-duration{font-size:0.7rem;color:var(--gray-500);display:flex;align-items:center;gap:6px}
+    .course-duration span{color:var(--gray-400)}
+
+    /* ✅ IMPROVEMENT: Button hierarchy — Enroll is primary, Notes is ghost */
     .course-footer{display:flex;gap:10px;margin-top:4px}
-    .btn-enroll{flex:1;background:var(--blue);color:#fff;padding:9px 14px;border-radius:8px;font-size:0.78rem;font-weight:600;text-decoration:none;text-align:center;transition:background var(--t)}
-    .btn-enroll:hover{background:#1557d6}
-    .btn-notes{flex:1;border:1px solid var(--border);color:var(--gray-400);padding:9px 14px;border-radius:8px;font-size:0.78rem;font-weight:500;text-decoration:none;text-align:center;transition:border-color var(--t),color var(--t)}
-    .btn-notes:hover{border-color:var(--cyan);color:var(--cyan)}
+    .btn-enroll{flex:1.6;background:var(--blue);color:#fff;padding:9px 14px;border-radius:8px;font-size:0.8rem;font-weight:700;text-decoration:none;text-align:center;transition:background var(--t),box-shadow var(--t)}
+    .btn-enroll:hover{background:#1557d6;box-shadow:0 0 18px rgba(26,106,255,0.4)}
+    .btn-notes{flex:1;color:var(--gray-500);padding:9px 10px;border-radius:8px;font-size:0.76rem;font-weight:500;text-decoration:none;text-align:center;transition:color var(--t);border:none;background:none}
+    .btn-notes:hover{color:var(--cyan)}
 
     /* colour accents per course */
     .card-linux  .course-name{color:#fb923c}
@@ -123,363 +213,424 @@
     .card-devops{border-top:3px solid var(--purple)}
     .card-ai    {border-top:3px solid var(--gold)}
 
-    /* NOTES GRID */
-    .notes-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px}
-    .note-card{background:var(--navy-2);border:1px solid var(--border);border-radius:var(--r-lg);padding:20px;text-decoration:none;color:var(--white);display:flex;flex-direction:column;gap:10px;transition:box-shadow var(--t),transform var(--t)}
-    .note-card:hover{box-shadow:0 0 24px rgba(26,106,255,0.12);transform:translateY(-2px)}
-    .note-icon{font-size:1.5rem}
-    .note-name{font-size:0.92rem;font-weight:700}
-    .note-desc{font-size:0.78rem;color:var(--gray-400);line-height:1.5;flex:1}
-    .note-count{font-size:0.7rem;font-family:var(--mono);color:var(--gray-500)}
-    .note-link{font-size:0.78rem;font-weight:600;color:var(--cyan);margin-top:4px}
+    /* ROW LINKS (Notes, Quick Ref) */
+    .row-link{display:flex;align-items:center;gap:12px;background:var(--navy-2);border:1px solid var(--border);border-radius:var(--r);padding:14px 16px;text-decoration:none;color:var(--white);transition:box-shadow var(--t),border-color var(--t)}
+    .row-link:hover{box-shadow:0 0 18px rgba(26,106,255,0.12);border-color:rgba(26,106,255,0.35)}
+    .row-link-icon{font-size:1.2rem;flex-shrink:0}
+    .row-link-body{flex:1;min-width:0}
+    .row-link-title{font-size:0.85rem;font-weight:700;margin-bottom:2px}
+    .row-link-desc{font-size:0.72rem;color:var(--gray-400)}
+    .row-link-arrow{color:var(--gray-500);flex-shrink:0;transition:color var(--t),transform var(--t)}
+    .row-link:hover .row-link-arrow{color:var(--cyan);transform:translateX(2px)}
 
-    /* QUICK REF */
-    .quick-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px}
-    .quick-card{background:var(--navy-2);border:1px solid var(--border);border-radius:var(--r-lg);padding:22px 24px;text-decoration:none;color:var(--white);display:flex;align-items:center;gap:16px;transition:box-shadow var(--t),transform var(--t)}
-    .quick-card:hover{box-shadow:0 0 24px rgba(26,106,255,0.12);transform:translateY(-2px)}
-    .quick-icon{font-size:2rem;flex-shrink:0}
-    .quick-title{font-size:0.95rem;font-weight:700;margin-bottom:4px}
-    .quick-desc{font-size:0.78rem;color:var(--gray-400);line-height:1.5}
-    .quick-arrow{margin-left:auto;color:var(--gray-500);font-size:1.1rem;flex-shrink:0}
+    /* BLOG CARDS */
+    .blog-card{display:block;background:var(--navy-2);border:1px solid var(--border);border-radius:var(--r);padding:12px 14px;text-decoration:none;color:var(--white);transition:box-shadow var(--t),border-color var(--t)}
+    .blog-card:hover{box-shadow:0 0 18px rgba(26,106,255,0.12);border-color:rgba(26,106,255,0.35)}
+    .blog-cat{font-size:0.62rem;font-weight:700;text-transform:uppercase;padding:2px 6px;border-radius:3px}
+    .blog-title{font-size:0.8rem;font-weight:600;margin-top:6px;line-height:1.4}
+    .blog-read{font-size:0.7rem;color:var(--cyan);margin-top:6px;display:flex;align-items:center;gap:4px}
 
-    /* BLOG ROW */
-    .blog-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px}
-    .blog-card{background:var(--navy-2);border:1px solid var(--border);border-radius:var(--r-lg);padding:20px;text-decoration:none;color:var(--white);display:flex;flex-direction:column;gap:8px;transition:box-shadow var(--t),transform var(--t)}
-    .blog-card:hover{box-shadow:0 0 24px rgba(26,106,255,0.12);transform:translateY(-2px)}
-    .blog-cat{font-size:0.65rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;padding:2px 8px;border-radius:3px;display:inline-block}
-    .blog-title{font-size:0.88rem;font-weight:700;line-height:1.4}
-    .blog-desc{font-size:0.76rem;color:var(--gray-400);line-height:1.5;flex:1}
-    .blog-more{display:inline-flex;align-items:center;gap:6px;color:var(--cyan);font-size:0.78rem;font-weight:600;text-decoration:none;border:1px solid rgba(0,212,255,0.25);padding:8px 16px;border-radius:6px;transition:background var(--t)}
-    .blog-more:hover{background:rgba(0,212,255,0.07)}
+    /* TRUST SECTION */
+    .trust-box{background:var(--navy-2);border:1px solid var(--border);border-radius:var(--r-lg);padding:24px 28px;margin-bottom:24px}
+    .trust-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px}
+    .trust-item{display:flex;align-items:flex-start;gap:10px}
+    .trust-icon{font-size:1.2rem;flex-shrink:0}
+    .trust-title{font-size:0.85rem;font-weight:700;margin-bottom:3px}
+    .trust-desc{font-size:0.76rem;color:var(--gray-400);line-height:1.5}
+    .trust-footer{margin-top:16px;padding-top:14px;border-top:1px solid var(--border);font-size:0.76rem;color:var(--gray-500);display:flex;align-items:center;gap:16px;flex-wrap:wrap}
 
     /* CTA BAND */
-    .cta-band{background:linear-gradient(135deg,rgba(26,106,255,0.1),rgba(0,212,255,0.05));border:1px solid rgba(26,106,255,0.2);border-radius:var(--r-lg);padding:40px 32px;text-align:center;margin:56px 0}
+    .cta-band{background:linear-gradient(135deg,rgba(26,106,255,0.1),rgba(0,212,255,0.05));border:1px solid rgba(26,106,255,0.2);border-radius:var(--r-lg);padding:40px 32px;text-align:center;margin:0}
     .cta-band h2{font-size:1.4rem;font-weight:800;margin-bottom:10px}
     .cta-band p{color:var(--gray-400);font-size:0.9rem;max-width:460px;margin:0 auto 24px;line-height:1.7}
     .cta-actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
-    .btn-primary{background:var(--blue);color:#fff;padding:11px 26px;border-radius:8px;text-decoration:none;font-weight:600;font-size:0.88rem;transition:background var(--t),box-shadow var(--t)}
+    .btn-primary{background:var(--blue);color:#fff;padding:11px 26px;border-radius:8px;text-decoration:none;font-weight:700;font-size:0.88rem;transition:background var(--t),box-shadow var(--t)}
     .btn-primary:hover{background:#1557d6;box-shadow:0 0 20px rgba(26,106,255,0.4)}
     .btn-ghost{border:1px solid var(--border);color:var(--gray-400);padding:11px 26px;border-radius:8px;text-decoration:none;font-weight:500;font-size:0.88rem;transition:border-color var(--t),color var(--t)}
     .btn-ghost:hover{border-color:var(--cyan);color:var(--cyan)}
 
     /* FOOTER */
-    footer{background:var(--navy-2);border-top:1px solid var(--border);padding:36px 5% 20px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px}
+    footer{background:var(--navy-2);border-top:1px solid var(--border);padding:36px 5% 20px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;margin-top:48px}
     footer p{font-size:0.78rem;color:var(--gray-500)}
     .ft-links{display:flex;gap:20px;flex-wrap:wrap}
     .ft-links a{color:var(--gray-500);text-decoration:none;font-size:0.78rem;transition:color var(--t)}
     .ft-links a:hover{color:var(--white)}
 
+    /* TWO-COL GRID */
+    .two-col{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+
+    /* BACK TO TOP */
     #back-top{position:fixed;bottom:24px;right:24px;background:var(--blue);color:#fff;width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;text-decoration:none;opacity:0;pointer-events:none;transition:opacity var(--t);z-index:999;box-shadow:0 0 14px rgba(26,106,255,0.4)}
     #back-top.visible{opacity:1;pointer-events:auto}
 
-    @media(max-width:768px){.two-col{grid-template-columns:1fr!important}}
+    /* RESPONSIVE */
+    @media(max-width:768px){
+      .two-col{grid-template-columns:1fr!important}
+      .hero-inner{flex-direction:column}
+      .hero-stats{justify-content:flex-start}
+    }
     @media(max-width:640px){
-      .courses-grid,.notes-grid,.quick-grid,.blog-grid{grid-template-columns:1fr}
-      .hero-stats{gap:24px}
+      .courses-grid{grid-template-columns:1fr}
       .cta-band{padding:28px 20px}
     }
-  
-/* ── LEARN SUB-NAV ── */
-.learn-subnav{
-  position:sticky;top:60px;z-index:90;
-  background:rgba(7,20,40,0.97);backdrop-filter:blur(12px);
-  border-bottom:1px solid rgba(26,106,255,0.15);
-  overflow-x:auto;white-space:nowrap;
-  scrollbar-width:none;
-}
-.learn-subnav::-webkit-scrollbar{display:none}
-.learn-subnav-inner{
-  display:inline-flex;align-items:center;gap:2px;
-  padding:0 5%;min-width:100%;
-}
-.learn-subnav a{
-  display:inline-flex;align-items:center;gap:6px;
-  color:rgba(136,153,187,0.85);text-decoration:none;
-  font-size:0.78rem;font-weight:500;
-  padding:10px 12px;border-bottom:2px solid transparent;
-  transition:color 0.18s,border-color 0.18s;
-  white-space:nowrap;flex-shrink:0;
-}
-.learn-subnav a:hover{color:#fff}
-.learn-subnav a.sn-active{
-  color:#00d4ff;border-bottom-color:#00d4ff;font-weight:600;
-}
-.learn-subnav .sn-sep{
-  width:1px;height:16px;background:rgba(255,255,255,0.08);
-  margin:0 4px;flex-shrink:0;
-}
-
   </style>
 </head>
 <body>
 
-<a href="#" id="back-top">↑</a>
+<a href="#" id="back-top" aria-label="Back to top">↑</a>
 
 <!-- NAV -->
 <nav>
   <a class="nav-brand" href="index.html">
-    <img src="assets/logos/dv-logo.png" alt="Devriston"/>
+    <img src="assets/logos/dv-logo.png" alt="Devriston logo"/>
     Devriston
   </a>
-  <div class="nav-links"><a href="index.html">Home</a><a href="solutions.html">Solutions</a><a href="case-studies.html">Case Studies</a><a href="learn.html" class="active">Learn</a><a href="about.html">About</a><a href="contact.html" class="nav-cta">Book Consultation</a></div>
-  <button class="ham" onclick="document.getElementById('drawer').classList.toggle('open')" aria-label="Menu">
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="solutions.html">Solutions</a>
+    <a href="case-studies.html">Case Studies</a>
+    <a href="learn.html" class="active">Learn</a>
+    <a href="about.html">About</a>
+    <a href="contact.html" class="nav-cta">Book Consultation</a>
+  </div>
+  <button class="ham" onclick="document.getElementById('nav-drawer').classList.toggle('open')" aria-label="Open menu">
     <span></span><span></span><span></span>
   </button>
 </nav>
-<div class="drawer" id="nav-drawer"><a href="index.html">Home</a><a href="solutions.html">Solutions</a><a href="case-studies.html">Case Studies</a><a href="learn.html" class="active">Learn</a><a href="about.html">About</a><a href="contact.html">Contact</a></div>
+<div class="drawer" id="nav-drawer">
+  <a href="index.html">Home</a>
+  <a href="solutions.html">Solutions</a>
+  <a href="case-studies.html">Case Studies</a>
+  <a href="learn.html" class="active">Learn</a>
+  <a href="about.html">About</a>
+  <a href="contact.html">Contact</a>
+</div>
 
-<nav class="learn-subnav"><div class="learn-subnav-inner"><a href="learn.html" class="sn-active">🏠 Hub</a><a href="courses.html">🎓 Courses</a><span class="sn-sep"></span><a href="linux-notes.html">🐧 Linux Notes</a><a href="cloud-notes.html">☁️ Cloud Notes</a><a href="devops-full-notes.html">⚙️ DevOps Notes</a><a href="ai-notes.html">🤖 AI Notes</a><span class="sn-sep"></span><a href="devops-notes.html">📋 Quick Notes</a><a href="interview-guide.html">💼 Interview Guide</a><a href="blog.html">📝 Blog</a><a href="c-programming.html">💻 C Programming</a><a href="python-notes.html">🐍 Python Notes</a></div></nav>
-
-<!-- HERO -->
-<div style="margin-top:0">
-
-<!-- COMPACT HERO -->
-<div class="container" style="padding-top:28px;padding-bottom:20px">
-  <div style="font-size:0.75rem;color:var(--gray-500);margin-bottom:16px">
-    <a href="index.html" style="color:var(--gray-400);text-decoration:none">Home</a>
-    <span style="margin:0 6px">›</span>Learn
+<!-- LEARN SUB-NAV -->
+<nav class="learn-subnav" aria-label="Learning sections">
+  <div class="learn-subnav-inner">
+    <a href="learn.html" class="sn-active">🏠 Hub</a>
+    <a href="courses.html">🎓 Courses</a>
+    <span class="sn-sep"></span>
+    <a href="linux-notes.html">🐧 Linux Notes</a>
+    <a href="cloud-notes.html">☁️ Cloud Notes</a>
+    <a href="devops-full-notes.html">⚙️ DevOps Notes</a>
+    <a href="ai-notes.html">🤖 AI Notes</a>
+    <span class="sn-sep"></span>
+    <a href="devops-notes.html">📋 Quick Notes</a>
+    <a href="interview-guide.html">💼 Interview Guide</a>
+    <a href="blog.html">📝 Blog</a>
+    <a href="c-programming.html">💻 C Programming</a>
+    <a href="python-notes.html">🐍 Python Notes</a>
   </div>
-  <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;padding-bottom:20px;border-bottom:1px solid var(--border)">
-    <div>
-      <div style="display:inline-flex;align-items:center;gap:6px;background:rgba(26,106,255,0.1);border:1px solid var(--border);color:var(--cyan);border-radius:20px;padding:3px 12px;font-size:0.68rem;font-weight:600;letter-spacing:0.05em;text-transform:uppercase;margin-bottom:10px">Learning Hub</div>
-      <h1 style="font-size:clamp(1.4rem,3vw,2rem);font-weight:800;line-height:1.2;margin-bottom:6px">
-        DevOps Courses, Linux Training<br/>&amp; <span style="background:linear-gradient(135deg,var(--blue),var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">Free Lecture Notes</span>
-      </h1>
-      <p style="color:var(--gray-400);font-size:0.85rem;max-width:480px">4 courses · free notes for every module · interview guide · blog. Taught by a practicing engineer with 10+ years experience.</p>
+</nav>
+
+<!-- ════ HERO ════ -->
+<div class="container hero-wrap">
+  <div class="breadcrumb">
+    <a href="index.html">Home</a>
+    <span>›</span> Learn
+  </div>
+  <div class="hero-inner hero">
+    <div class="hero-left">
+      <div class="hero-badge">Learning Hub</div>
+      <h1>DevOps Courses, Linux Training<br/>&amp; <em>Free Lecture Notes</em></h1>
+      <p class="hero-sub">4 courses · free notes for every module · interview guide · blog.<br/>Taught by a practicing engineer with 10+ years experience.</p>
     </div>
-    <div style="display:flex;gap:28px;flex-shrink:0">
-      <div style="text-align:center"><strong style="display:block;font-size:1.4rem;font-weight:800;color:var(--cyan)">4</strong><span style="font-size:0.72rem;color:var(--gray-400)">Courses</span></div>
-      <div style="text-align:center"><strong style="display:block;font-size:1.4rem;font-weight:800;color:var(--cyan)">59</strong><span style="font-size:0.72rem;color:var(--gray-400)">Free Modules</span></div>
-      <div style="text-align:center"><strong style="display:block;font-size:1.4rem;font-weight:800;color:var(--cyan)">10+</strong><span style="font-size:0.72rem;color:var(--gray-400)">Yrs Teaching</span></div>
+    <!-- ✅ IMPROVEMENT: Stats with better hierarchy and descriptions -->
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <strong>4</strong>
+        <div class="stat-label">Live Courses</div>
+        <div class="stat-sub">Online batches</div>
+      </div>
+      <div class="hero-stat stat-highlight">
+        <strong>59</strong>
+        <div class="stat-label">Free Modules</div>
+        <div class="stat-sub">No signup needed</div>
+      </div>
+      <div class="hero-stat">
+        <strong>10+</strong>
+        <div class="stat-label">Years Teaching</div>
+        <div class="stat-sub">College + industry</div>
+      </div>
     </div>
   </div>
 </div>
 
-<!-- MAIN CONTENT — TWO COLUMN LAYOUT ON DESKTOP -->
+<!-- ════ MAIN CONTENT ════ -->
 <div class="container" style="padding-top:24px;padding-bottom:48px">
 
-  <!-- ── COURSES ── -->
-  <div style="background:rgba(26,106,255,0.07);border:1px solid rgba(26,106,255,0.18);border-radius:10px;padding:12px 18px;margin-bottom:20px;font-size:0.82rem;color:#c5d0e8;display:flex;align-items:center;gap:10px;flex-wrap:wrap">
-    <span style="font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--cyan);flex-shrink:0">Recommended Path</span>
-    <span>🐧 Linux</span><span style="color:var(--gray-500)">→</span>
-    <span>☁️ Cloud</span><span style="color:var(--gray-500)">→</span>
-    <span>⚙️ DevOps</span><span style="color:var(--gray-500)">→</span>
+  <!-- RECOMMENDED PATH BAR -->
+  <div class="path-bar">
+    <span class="path-label">Recommended Path</span>
+    <span>🐧 Linux</span>
+    <span class="path-sep">→</span>
+    <span>☁️ Cloud</span>
+    <span class="path-sep">→</span>
+    <span>⚙️ DevOps</span>
+    <span class="path-sep">→</span>
     <span>🤖 AI</span>
-    <span style="color:var(--gray-500);margin-left:4px">·  Not sure? <a href="https://wa.me/923231450045?text=Hi%20Kamran%2C%20which%20course%20should%20I%20start%20with?" style="color:var(--cyan);text-decoration:none;font-weight:600">Ask on WhatsApp →</a></span>
-  </div>
-  <div style="margin-bottom:32px">
-    <div style="display:flex;align-items:baseline;gap:12px;margin-bottom:16px">
-      <span style="font-size:0.68rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--cyan)">Courses</span>
-      <span style="font-size:0.75rem;color:var(--gray-500)">Live online batches · enroll via WhatsApp</span>
-    </div>
-    <div class="courses-grid">
-
-      <div class="course-card card-linux">
-        <div class="course-card-top">
-          <span class="course-icon">🐧</span>
-          <span class="course-badge badge-live">Live</span>
-        </div>
-        <div class="course-name">Linux Fundamentals — RHCSA Path</div>
-        <div class="course-desc">Start from zero — learn to manage a real Linux server, create users, set up a web server, configure DNS, share files across a network. Aligned with the RHCSA industry certification.</div>
-        <div class="course-meta">
-          <span class="course-tag">16 modules</span><span class="course-tag">Beginner → Intermediate</span>
-        </div>
-        <div class="course-footer">
-          <a href="https://wa.me/923231450045?text=Hi%20Kamran%2C%20I%20want%20to%20enroll%20in%20the%20Linux%20course." class="btn-enroll">Enroll →</a>
-          <a href="linux-notes.html" class="btn-notes">Free Notes</a>
-        </div>
-      </div>
-
-      <div class="course-card card-cloud">
-        <div class="course-card-top">
-          <span class="course-icon">☁️</span>
-          <span class="course-badge badge-live">Live</span>
-        </div>
-        <div class="course-name">Cloud Fundamentals — AWS Deep Dive</div>
-        <div class="course-desc">Build real cloud infrastructure on AWS — virtual servers, private networks, databases, file storage, serverless functions and monitoring. Final project: full production setup using Terraform.</div>
-        <div class="course-meta">
-          <span class="course-tag">14 modules</span><span class="course-tag">AWS focused</span>
-        </div>
-        <div class="course-footer">
-          <a href="https://wa.me/923231450045?text=Hi%20Kamran%2C%20I%20want%20to%20enroll%20in%20the%20Cloud%20course." class="btn-enroll">Enroll →</a>
-          <a href="cloud-notes.html" class="btn-notes">Free Notes</a>
-        </div>
-      </div>
-
-      <div class="course-card card-devops">
-        <div class="course-card-top">
-          <span class="course-icon">⚙️</span>
-          <span class="course-badge badge-live">Live</span>
-        </div>
-        <div class="course-name">DevOps Bootcamp — Zero to Production</div>
-        <div class="course-desc">The complete DevOps path — automate deployments, containerise apps, provision cloud infrastructure, orchestrate with Kubernetes and monitor everything. Your 5 GitHub projects become your CV.</div>
-        <div class="course-meta">
-          <span class="course-tag">17 modules</span><span class="course-tag">5 portfolio projects</span>
-        </div>
-        <div class="course-footer">
-          <a href="https://wa.me/923231450045?text=Hi%20Kamran%2C%20I%20want%20to%20enroll%20in%20the%20DevOps%20Bootcamp." class="btn-enroll">Enroll →</a>
-          <a href="devops-full-notes.html" class="btn-notes">Free Notes</a>
-        </div>
-      </div>
-
-      <div class="course-card card-ai">
-        <div class="course-card-top">
-          <span class="course-icon">🤖</span>
-          <span class="course-badge badge-new">New</span>
-        </div>
-        <div class="course-name">AI for IT Professionals — Practical Guide</div>
-        <div class="course-desc">Use AI to work faster — run models locally, write better scripts with AI help, call AI APIs from Python and build simple tools. Practical skills for IT and DevOps professionals, not AI researchers.</div>
-        <div class="course-meta">
-          <span class="course-tag">12 modules</span><span class="course-tag">Hands-on tools</span>
-        </div>
-        <div class="course-footer">
-          <a href="https://wa.me/923231450045?text=Hi%20Kamran%2C%20I%20want%20to%20enroll%20in%20the%20AI%20course." class="btn-enroll">Enroll →</a>
-          <span class="btn-notes" style="cursor:default;opacity:0.5;pointer-events:none">Notes Soon</span>
-        </div>
-      </div>
-
-    </div>
+    <span class="path-sep" style="margin-left:4px">·</span>
+    <span style="color:var(--gray-500)">Not sure? <a href="https://wa.me/923231450045?text=Hi%20Kamran%2C%20which%20course%20should%20I%20start%20with?" style="color:var(--cyan);text-decoration:none;font-weight:600">Ask on WhatsApp →</a></span>
   </div>
 
-  <!-- ── NOTES + QUICK REF side by side on desktop ── -->
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:32px" class="two-col">
+  <!-- ════ COURSES ════ -->
+  <div class="sec-label-row">
+    <h2 class="sec-label">Courses</h2>
+    <span class="sec-sub-label">Live online batches · enroll via WhatsApp</span>
+  </div>
 
-    <!-- Notes -->
+  <div class="courses-grid">
+
+    <!-- Linux -->
+    <div class="course-card card-linux">
+      <div class="course-card-top">
+        <span class="course-icon">🐧</span>
+        <span class="course-badge badge-live">Live</span>
+      </div>
+      <div class="course-name">Linux Fundamentals — RHCSA Path</div>
+      <div class="course-desc">Start from zero — learn to manage a real Linux server, create users, set up a web server, configure DNS, share files across a network.</div>
+      <!-- ✅ IMPROVEMENT: Outcome statement -->
+      <div class="course-outcome">Manage a production Linux server from scratch</div>
+      <div class="course-meta">
+        <span class="course-tag">16 modules</span>
+        <span class="course-tag">Beginner → Intermediate</span>
+        <span class="cert-tag">RHCSA aligned</span>
+      </div>
+      <!-- ✅ IMPROVEMENT: Duration + prerequisites -->
+      <div class="course-duration">⏱ <span>~12 weeks · 2 sessions/week</span></div>
+      <div class="course-prereq"><strong>Needs:</strong> Basic computer skills only — no Linux experience required</div>
+      <div class="course-footer">
+        <a href="https://wa.me/923231450045?text=Hi%20Kamran%2C%20I%20want%20to%20enroll%20in%20the%20Linux%20course." class="btn-enroll">Enroll →</a>
+        <a href="linux-notes.html" class="btn-notes">Free Notes</a>
+      </div>
+    </div>
+
+    <!-- Cloud -->
+    <div class="course-card card-cloud">
+      <div class="course-card-top">
+        <span class="course-icon">☁️</span>
+        <span class="course-badge badge-live">Live</span>
+      </div>
+      <div class="course-name">Cloud Fundamentals — AWS Deep Dive</div>
+      <div class="course-desc">Build real cloud infrastructure on AWS — virtual servers, private networks, databases, file storage, serverless functions and monitoring. Final project: full production setup using Terraform.</div>
+      <div class="course-outcome">Deploy a 3-tier AWS infrastructure with Terraform</div>
+      <div class="course-meta">
+        <span class="course-tag">14 modules</span>
+        <span class="course-tag">AWS focused</span>
+      </div>
+      <div class="course-duration">⏱ <span>~10 weeks · 2 sessions/week</span></div>
+      <div class="course-prereq"><strong>Needs:</strong> Basic Linux knowledge (our Linux course or equivalent)</div>
+      <div class="course-footer">
+        <a href="https://wa.me/923231450045?text=Hi%20Kamran%2C%20I%20want%20to%20enroll%20in%20the%20Cloud%20course." class="btn-enroll">Enroll →</a>
+        <a href="cloud-notes.html" class="btn-notes">Free Notes</a>
+      </div>
+    </div>
+
+    <!-- DevOps -->
+    <div class="course-card card-devops">
+      <div class="course-card-top">
+        <span class="course-icon">⚙️</span>
+        <span class="course-badge badge-live">Live</span>
+      </div>
+      <div class="course-name">DevOps Bootcamp — Zero to Production</div>
+      <div class="course-desc">Automate deployments, containerise apps, provision cloud infrastructure, orchestrate with Kubernetes and monitor everything.</div>
+      <!-- Portfolio highlight -->
+      <div class="course-outcome">5 GitHub repos = your job portfolio for employers</div>
+      <div class="course-meta">
+        <span class="course-tag">17 modules</span>
+        <span class="course-tag">5 portfolio projects</span>
+      </div>
+      <div class="course-duration">⏱ <span>~16 weeks · 2 sessions/week</span></div>
+      <div class="course-prereq"><strong>Needs:</strong> Linux + basic cloud knowledge recommended</div>
+      <div class="course-footer">
+        <a href="https://wa.me/923231450045?text=Hi%20Kamran%2C%20I%20want%20to%20enroll%20in%20the%20DevOps%20Bootcamp." class="btn-enroll">Enroll →</a>
+        <a href="devops-full-notes.html" class="btn-notes">Free Notes</a>
+      </div>
+    </div>
+
+    <!-- AI -->
+    <div class="course-card card-ai">
+      <div class="course-card-top">
+        <span class="course-icon">🤖</span>
+        <span class="course-badge badge-new">New</span>
+      </div>
+      <div class="course-name">AI for IT Professionals — Practical Guide</div>
+      <div class="course-desc">Run models locally, write better scripts with AI help, call AI APIs from Python and build simple tools. Practical skills for IT and DevOps professionals, not AI researchers.</div>
+      <div class="course-outcome">Build and deploy AI-assisted automation scripts</div>
+      <div class="course-meta">
+        <span class="course-tag">12 modules</span>
+        <span class="course-tag">Hands-on tools</span>
+      </div>
+      <div class="course-duration">⏱ <span>~8 weeks · 2 sessions/week</span></div>
+      <div class="course-prereq"><strong>Needs:</strong> Basic Python knowledge helpful but not required</div>
+      <div class="course-footer">
+        <a href="https://wa.me/923231450045?text=Hi%20Kamran%2C%20I%20want%20to%20enroll%20in%20the%20AI%20course." class="btn-enroll">Enroll →</a>
+        <a href="ai-notes.html" class="btn-notes">Free Notes</a>
+      </div>
+    </div>
+
+  </div><!-- /courses-grid -->
+
+  <!-- ════ NOTES + QUICK REF ════ -->
+  <div class="two-col" style="margin-bottom:32px">
+
+    <!-- Lecture Notes -->
     <div>
-      <div style="display:flex;align-items:baseline;gap:12px;margin-bottom:14px">
-        <span style="font-size:0.68rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--cyan)">Lecture Notes</span>
-        <span style="font-size:0.75rem;color:var(--gray-500)">Free · no signup</span>
+      <div class="sec-label-row">
+        <h2 class="sec-label">Lecture Notes</h2>
+        <span class="sec-sub-label">Free · no signup</span>
       </div>
       <div style="display:flex;flex-direction:column;gap:10px">
-        <a href="linux-notes.html" style="display:flex;align-items:center;gap:12px;background:var(--navy-2);border:1px solid var(--border);border-left:3px solid #fb923c;border-radius:var(--r);padding:14px 16px;text-decoration:none;color:var(--white);transition:box-shadow var(--t)">
-          <span style="font-size:1.2rem;flex-shrink:0">🐧</span>
-          <div style="flex:1;min-width:0">
-            <div style="font-size:0.85rem;font-weight:700;margin-bottom:2px">Linux Notes</div>
-            <div style="font-size:0.72rem;color:var(--gray-400)">16 modules · Linux vs Windows · nano &amp; vim</div>
+        <a href="linux-notes.html" class="row-link" style="border-left:3px solid #fb923c">
+          <span class="row-link-icon">🐧</span>
+          <div class="row-link-body">
+            <div class="row-link-title">Linux Notes</div>
+            <div class="row-link-desc">16 modules · Linux vs Windows · nano &amp; vim</div>
           </div>
-          <span style="color:var(--gray-500);flex-shrink:0">→</span>
+          <span class="row-link-arrow">→</span>
         </a>
-        <a href="cloud-notes.html" style="display:flex;align-items:center;gap:12px;background:var(--navy-2);border:1px solid var(--border);border-left:3px solid var(--cyan);border-radius:var(--r);padding:14px 16px;text-decoration:none;color:var(--white);transition:box-shadow var(--t)">
-          <span style="font-size:1.2rem;flex-shrink:0">☁️</span>
-          <div style="flex:1;min-width:0">
-            <div style="font-size:0.85rem;font-weight:700;margin-bottom:2px">Cloud &amp; AWS Notes</div>
-            <div style="font-size:0.72rem;color:var(--gray-400)">14 modules · real CLI commands · cost management</div>
+        <a href="cloud-notes.html" class="row-link" style="border-left:3px solid var(--cyan)">
+          <span class="row-link-icon">☁️</span>
+          <div class="row-link-body">
+            <div class="row-link-title">Cloud &amp; AWS Notes</div>
+            <div class="row-link-desc">14 modules · real CLI commands · cost management</div>
           </div>
-          <span style="color:var(--gray-500);flex-shrink:0">→</span>
+          <span class="row-link-arrow">→</span>
         </a>
-        <a href="devops-full-notes.html" style="display:flex;align-items:center;gap:12px;background:var(--navy-2);border:1px solid var(--border);border-left:3px solid var(--purple);border-radius:var(--r);padding:14px 16px;text-decoration:none;color:var(--white);transition:box-shadow var(--t)">
-          <span style="font-size:1.2rem;flex-shrink:0">⚙️</span>
-          <div style="flex:1;min-width:0">
-            <div style="font-size:0.85rem;font-weight:700;margin-bottom:2px">DevOps Bootcamp Notes</div>
-            <div style="font-size:0.72rem;color:var(--gray-400)">17 modules · Docker · K8s · GitHub Actions · GitOps</div>
+        <a href="devops-full-notes.html" class="row-link" style="border-left:3px solid var(--purple)">
+          <span class="row-link-icon">⚙️</span>
+          <div class="row-link-body">
+            <div class="row-link-title">DevOps Bootcamp Notes</div>
+            <div class="row-link-desc">17 modules · Docker · K8s · GitHub Actions · GitOps</div>
           </div>
-          <span style="color:var(--gray-500);flex-shrink:0">→</span>
+          <span class="row-link-arrow">→</span>
         </a>
-        <div style="display:flex;align-items:center;gap:12px;background:var(--navy-2);border:1px solid var(--border);border-left:3px solid var(--gold);border-radius:var(--r);padding:14px 16px;color:var(--white);opacity:0.45;cursor:default">
-          <span style="font-size:1.2rem;flex-shrink:0">🤖</span>
-          <div style="flex:1;min-width:0">
-            <div style="font-size:0.85rem;font-weight:700;margin-bottom:2px">AI Notes</div>
-            <div style="font-size:0.72rem;color:var(--gray-400)">12 modules · in preparation</div>
+        <!-- ✅ IMPROVEMENT: C Programming + Python added -->
+        <a href="c-programming.html" class="row-link" style="border-left:3px solid #60a5fa">
+          <span class="row-link-icon">💻</span>
+          <div class="row-link-body">
+            <div class="row-link-title">C Programming Notes</div>
+            <div class="row-link-desc">Fundamentals · arrays · functions · pointers</div>
           </div>
-          <span style="font-size:0.68rem;font-weight:600;color:var(--gold);background:rgba(245,158,11,0.1);border:1px solid rgba(245,158,11,0.25);padding:2px 7px;border-radius:4px;flex-shrink:0">Soon</span>
-        </div>
+          <span class="row-link-arrow">→</span>
+        </a>
+        <a href="python-notes.html" class="row-link" style="border-left:3px solid #4ade80">
+          <span class="row-link-icon">🐍</span>
+          <div class="row-link-body">
+            <div class="row-link-title">Python Notes</div>
+            <div class="row-link-desc">Scripting · automation · AI APIs · practical examples</div>
+          </div>
+          <span class="row-link-arrow">→</span>
+        </a>
+        <a href="ai-notes.html" class="row-link" style="border-left:3px solid var(--gold)">
+          <span class="row-link-icon">🤖</span>
+          <div class="row-link-body">
+            <div class="row-link-title">AI Notes</div>
+            <div class="row-link-desc">12 modules · Ollama · prompt engineering · AI APIs</div>
+          </div>
+          <span class="row-link-arrow">→</span>
+        </a>
       </div>
     </div>
 
     <!-- Quick Reference + Blog -->
     <div style="display:flex;flex-direction:column;gap:20px">
-      <!-- Quick Ref -->
       <div>
-        <div style="display:flex;align-items:baseline;gap:12px;margin-bottom:14px">
-          <span style="font-size:0.68rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--cyan)">Quick Reference</span>
+        <div class="sec-label-row">
+          <h2 class="sec-label">Quick Reference</h2>
         </div>
         <div style="display:flex;flex-direction:column;gap:10px">
-          <a href="devops-notes.html" style="display:flex;align-items:center;gap:12px;background:var(--navy-2);border:1px solid var(--border);border-radius:var(--r);padding:14px 16px;text-decoration:none;color:var(--white);transition:box-shadow var(--t)">
-            <span style="font-size:1.2rem;flex-shrink:0">📋</span>
-            <div style="flex:1;min-width:0">
-              <div style="font-size:0.85rem;font-weight:700;margin-bottom:2px">DevOps Quick Notes</div>
-              <div style="font-size:0.72rem;color:var(--gray-400)">40 concept cards · filterable · shareable</div>
+          <a href="devops-notes.html" class="row-link">
+            <span class="row-link-icon">📋</span>
+            <div class="row-link-body">
+              <div class="row-link-title">DevOps Quick Notes</div>
+              <div class="row-link-desc">40 concept cards · filterable · shareable</div>
             </div>
-            <span style="color:var(--gray-500);flex-shrink:0">→</span>
+            <span class="row-link-arrow">→</span>
           </a>
-          <a href="interview-guide.html" style="display:flex;align-items:center;gap:12px;background:var(--navy-2);border:1px solid var(--border);border-radius:var(--r);padding:14px 16px;text-decoration:none;color:var(--white);transition:box-shadow var(--t)">
-            <span style="font-size:1.2rem;flex-shrink:0">💼</span>
-            <div style="flex:1;min-width:0">
-              <div style="font-size:0.85rem;font-weight:700;margin-bottom:2px">Interview Guide</div>
-              <div style="font-size:0.72rem;color:var(--gray-400)">69 Q&amp;As · 5 categories · job-ready</div>
+          <a href="interview-guide.html" class="row-link">
+            <span class="row-link-icon">💼</span>
+            <div class="row-link-body">
+              <div class="row-link-title">Interview Guide</div>
+              <div class="row-link-desc">69 Q&amp;As · 5 categories · job-ready</div>
             </div>
-            <span style="color:var(--gray-500);flex-shrink:0">→</span>
+            <span class="row-link-arrow">→</span>
           </a>
         </div>
       </div>
 
-      <!-- Blog -->
+      <!-- Blog — ✅ IMPROVEMENT: "Read →" label added as signal -->
       <div>
-        <div style="display:flex;align-items:baseline;gap:12px;margin-bottom:14px">
-          <span style="font-size:0.68rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--cyan)">Blog</span>
+        <div class="sec-label-row">
+          <h2 class="sec-label">Blog</h2>
           <a href="blog.html" style="font-size:0.75rem;color:var(--gray-400);text-decoration:none">View all →</a>
         </div>
         <div style="display:flex;flex-direction:column;gap:8px">
-          <a href="blog.html" style="display:block;background:var(--navy-2);border:1px solid var(--border);border-radius:var(--r);padding:12px 14px;text-decoration:none;color:var(--white)">
-            <span style="font-size:0.62rem;font-weight:700;text-transform:uppercase;background:rgba(249,115,22,0.1);color:#fb923c;padding:2px 6px;border-radius:3px">Linux</span>
-            <div style="font-size:0.8rem;font-weight:600;margin-top:6px;line-height:1.4">Linux vs Windows Server — Why DevOps Chose Linux</div>
+          <a href="blog/linux-vs-windows-server.html" class="blog-card">
+            <span class="blog-cat" style="background:rgba(249,115,22,0.1);color:#fb923c">Linux</span>
+            <div class="blog-title">Linux vs Windows Server — Why DevOps Chose Linux</div>
+            <div class="blog-read">Read article →</div>
           </a>
-          <a href="blog.html" style="display:block;background:var(--navy-2);border:1px solid var(--border);border-radius:var(--r);padding:12px 14px;text-decoration:none;color:var(--white)">
-            <span style="font-size:0.62rem;font-weight:700;text-transform:uppercase;background:rgba(0,212,255,0.1);color:#00d4ff;padding:2px 6px;border-radius:3px">Docker</span>
-            <div style="font-size:0.8rem;font-weight:600;margin-top:6px;line-height:1.4">5 Docker Mistakes Beginners Make in Production</div>
+          <a href="blog/docker-mistakes-beginners.html" class="blog-card">
+            <span class="blog-cat" style="background:rgba(0,212,255,0.1);color:#00d4ff">Docker</span>
+            <div class="blog-title">5 Docker Mistakes Beginners Make in Production</div>
+            <div class="blog-read">Read article →</div>
           </a>
-          <a href="blog.html" style="display:block;background:var(--navy-2);border:1px solid var(--border);border-radius:var(--r);padding:12px 14px;text-decoration:none;color:var(--white)">
-            <span style="font-size:0.62rem;font-weight:700;text-transform:uppercase;background:rgba(26,106,255,0.1);color:#7db3ff;padding:2px 6px;border-radius:3px">AWS</span>
-            <div style="font-size:0.8rem;font-weight:600;margin-top:6px;line-height:1.4">High Availability on AWS — Eliminate Single Points of Failure</div>
+          <a href="blog/high-availability-aws.html" class="blog-card">
+            <span class="blog-cat" style="background:rgba(26,106,255,0.1);color:#7db3ff">AWS</span>
+            <div class="blog-title">High Availability on AWS — Eliminate Single Points of Failure</div>
+            <div class="blog-read">Read article →</div>
           </a>
         </div>
       </div>
     </div>
 
-  </div>
+  </div><!-- /two-col -->
 
-  <!-- TRUST SECTION -->
-  <div style="background:var(--navy-2);border:1px solid var(--border);border-radius:var(--r-lg);padding:24px 28px;margin-bottom:24px">
+  <!-- ════ TRUST SECTION ════ -->
+  <div class="trust-box">
     <div style="font-size:0.68rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--cyan);margin-bottom:14px">Why Learn with Devriston</div>
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px">
-      <div style="display:flex;align-items:flex-start;gap:10px">
-        <span style="font-size:1.2rem;flex-shrink:0">🔧</span>
+    <div class="trust-grid">
+      <div class="trust-item">
+        <span class="trust-icon">🔧</span>
         <div>
-          <div style="font-size:0.85rem;font-weight:700;margin-bottom:3px">Taught by a practitioner</div>
-          <div style="font-size:0.76rem;color:var(--gray-400);line-height:1.5">Every concept comes from real production experience — not slides copied from docs.</div>
+          <div class="trust-title">Taught by a practitioner</div>
+          <div class="trust-desc">Every concept comes from real production experience — not slides copied from docs.</div>
         </div>
       </div>
-      <div style="display:flex;align-items:flex-start;gap:10px">
-        <span style="font-size:1.2rem;flex-shrink:0">💡</span>
+      <div class="trust-item">
+        <span class="trust-icon">💡</span>
         <div>
-          <div style="font-size:0.85rem;font-weight:700;margin-bottom:3px">Plain language first</div>
-          <div style="font-size:0.76rem;color:var(--gray-400);line-height:1.5">Every tool explained in one simple sentence before you touch it. No jargon, no assumed knowledge.</div>
+          <div class="trust-title">Plain language first</div>
+          <div class="trust-desc">Every tool explained in one simple sentence before you touch it. No jargon, no assumed knowledge.</div>
         </div>
       </div>
-      <div style="display:flex;align-items:flex-start;gap:10px">
-        <span style="font-size:1.2rem;flex-shrink:0">📂</span>
+      <div class="trust-item">
+        <span class="trust-icon">📂</span>
         <div>
-          <div style="font-size:0.85rem;font-weight:700;margin-bottom:3px">Real GitHub portfolio</div>
-          <div style="font-size:0.76rem;color:var(--gray-400);line-height:1.5">You finish with working projects on GitHub — not just a certificate employers ignore.</div>
+          <div class="trust-title">Real GitHub portfolio</div>
+          <div class="trust-desc">You finish with working projects on GitHub — not just a certificate employers ignore.</div>
         </div>
       </div>
-      <div style="display:flex;align-items:flex-start;gap:10px">
-        <span style="font-size:1.2rem;flex-shrink:0">🎓</span>
+      <div class="trust-item">
+        <span class="trust-icon">🎓</span>
         <div>
-          <div style="font-size:0.85rem;font-weight:700;margin-bottom:3px">10+ years teaching</div>
-          <div style="font-size:0.76rem;color:var(--gray-400);line-height:1.5">College-level teaching experience combined with active DevOps consulting — both theory and practice.</div>
+          <div class="trust-title">10+ years teaching</div>
+          <div class="trust-desc">College-level teaching combined with active DevOps consulting — both theory and practice.</div>
         </div>
       </div>
     </div>
-    <div style="margin-top:16px;padding-top:14px;border-top:1px solid var(--border);font-size:0.76rem;color:var(--gray-500);display:flex;align-items:center;gap:16px;flex-wrap:wrap">
-      <span>📅 Flexible online batches — morning, evening &amp; weekend slots</span>
-      <span>💬 Fee &amp; schedule details on WhatsApp</span>
-      <span>🇵🇰 Based in Lahore · delivering online across Pakistan</span>
+    <div class="trust-footer">
+      <span>📅 Flexible batches — morning, evening &amp; weekend slots</span>
+      <span>💬 Fee &amp; schedule on WhatsApp</span>
+      <span>🇵🇰 Based in Lahore · online across Pakistan</span>
     </div>
   </div>
 
-  <!-- CTA BAND -->
-  <div class="cta-band" style="margin:0">
+  <!-- ════ CTA BAND ════ -->
+  <div class="cta-band">
     <h2>Not sure where to start?</h2>
     <p>Linux → Cloud → DevOps → AI is the natural path. Already know Linux? Jump straight to Cloud. Message on WhatsApp and we'll map a route for you.</p>
     <div class="cta-actions">
@@ -489,6 +640,18 @@
   </div>
 
 </div><!-- /container -->
+
+<footer>
+  <p>© 2025 Devriston · Muhammad Kamran Kabeer · Lahore, Pakistan</p>
+  <div class="ft-links">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="blog.html">Blog</a>
+    <a href="contact.html">Contact</a>
+    <a href="https://github.com/muhammadkamrankabeer-oss" target="_blank" rel="noopener">GitHub</a>
+    <a href="https://www.youtube.com/@Devriston" target="_blank" rel="noopener">YouTube</a>
+  </div>
+</footer>
 
 <script>
   const bt = document.getElementById('back-top');
