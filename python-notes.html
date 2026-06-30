@@ -4,13 +4,13 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Free Python Notes — Basics to DevOps Automation | Devriston</title>
-  <meta name="description" content="16 free Python lecture notes — from absolute basics (syntax, variables, loops) to DevOps automation (file handling, pip/venv, JSON, os/subprocess, a final automation script). By Muhammad Kamran Kabeer."/>
+  <meta name="description" content="16 free Python modules — basics to DevOps automation scripts. No signup needed. Taught by a practicing engineer with 10+ years experience."/>
   <meta name="keywords" content="Python notes free, learn Python basics, Python for DevOps, Python automation scripts, os subprocess Python, Python venv pip, Python for Linux, Devriston Python"/>
   <meta name="author" content="Muhammad Kamran Kabeer"/>
   <meta name="robots" content="index,follow"/>
   <link rel="canonical" href="https://www.devriston.com.pk/python-notes.html"/>
   <meta property="og:title" content="Free Python Notes — Basics to DevOps Automation | Devriston"/>
-  <meta property="og:description" content="16 modules: Python basics through file handling, error handling, pip/venv, JSON, os/subprocess, and a final DevOps automation script project."/>
+  <meta property="og:description" content="16 free Python modules — basics to DevOps automation scripts. No signup needed."/>
   <meta property="og:type" content="website"/>
   <meta property="og:url" content="https://www.devriston.com.pk/python-notes.html"/>
   <meta property="og:site_name" content="Devriston"/>
@@ -18,327 +18,585 @@
   <meta name="twitter:card" content="summary_large_image"/>
   <meta name="twitter:site" content="@Devristonhq"/>
   <meta name="twitter:title" content="Free Python Notes | Devriston"/>
-  <meta name="twitter:description" content="Python basics through DevOps automation — 16 free modules."/>
+  <meta name="twitter:description" content="16 free Python modules — basics to DevOps automation. No signup."/>
 
   <script type="application/ld+json">
   {
     "@context":"https://schema.org",
-    "@type":"LearningResource",
-    "name":"Python Notes — Basics to DevOps Automation",
-    "description":"16 modules covering Python fundamentals through DevOps-focused automation scripting.",
-    "url":"https://www.devriston.com.pk/python-notes.html",
-    "provider":{"@type":"Organization","name":"Devriston","url":"https://www.devriston.com.pk"}
+    "@graph":[
+      {"@type":"BreadcrumbList","itemListElement":[
+        {"@type":"ListItem","position":1,"name":"Home","item":"https://www.devriston.com.pk/"},
+        {"@type":"ListItem","position":2,"name":"Learn","item":"https://www.devriston.com.pk/learn.html"},
+        {"@type":"ListItem","position":3,"name":"Python Notes","item":"https://www.devriston.com.pk/python-notes.html"}
+      ]},
+      {
+        "@type":"Course",
+        "name":"Python Notes — Basics to DevOps Automation",
+        "description":"16 free modules covering Python fundamentals through DevOps automation scripting.",
+        "url":"https://www.devriston.com.pk/python-notes.html",
+        "provider":{"@type":"Organization","name":"Devriston","url":"https://www.devriston.com.pk"},
+        "educationalLevel":"Beginner to Intermediate",
+        "isAccessibleForFree":true,
+        "hasCourseInstance":{"@type":"CourseInstance","courseMode":"online","instructor":{"@type":"Person","name":"Muhammad Kamran Kabeer"}}
+      }
+    ]
   }
   </script>
 
 <style>
   :root{
-    --navy:#040d1c;--navy-2:#071428;--navy-3:#0a1d3a;
-    --blue:#1a6aff;--cyan:#00d4ff;--white:#fff;
-    --gray-400:#8899bb;--gray-500:#5a6a88;
-    --border:rgba(26,106,255,0.18);--border-2:rgba(0,212,255,0.12);
-    --green:#22c55e;--orange:#f97316;--purple:#a855f7;--gold:#f59e0b;
+    --navy:#040d1c;--navy-2:#071428;--blue:#1a6aff;--cyan:#00d4ff;
+    --white:#ffffff;--gray-400:#8899bb;--gray-500:#5a6a88;
+    --border:rgba(26,106,255,0.18);
+    --green:#22c55e;--orange:#f97316;--gold:#f59e0b;--purple:#a855f7;
     --py-blue:#3776ab;--py-yellow:#ffd43b;
-    --font:'Inter',system-ui,-apple-system,sans-serif;
-    --mono:'JetBrains Mono','Fira Code',monospace;
-    --r:10px;--r-lg:16px;--t:0.2s ease;
+    --font-main:'Inter',system-ui,-apple-system,sans-serif;
+    --font-mono:'JetBrains Mono','Fira Code','Courier New',monospace;
+    --radius:10px;--transition:0.2s ease;
   }
   *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-  html{scroll-behavior:smooth}
-  body{background:var(--navy);color:var(--white);font-family:var(--font);line-height:1.6;-webkit-font-smoothing:antialiased}
+  html{scroll-behavior:smooth;font-size:16px}
+  body{background:var(--navy);color:var(--white);font-family:var(--font-main);line-height:1.7;-webkit-font-smoothing:antialiased}
   ::-webkit-scrollbar{width:6px}::-webkit-scrollbar-track{background:var(--navy)}::-webkit-scrollbar-thumb{background:var(--blue);border-radius:3px}
-  a{color:var(--cyan)}
 
-  nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(4,13,28,0.95);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);padding:0 5%;display:flex;align-items:center;justify-content:space-between;height:62px}
+  /* NAV */
+  nav.main-nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(4,13,28,0.95);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);padding:0 5%;display:flex;align-items:center;justify-content:space-between;height:60px}
   .nav-brand{display:flex;align-items:center;gap:8px;text-decoration:none;color:var(--white);font-weight:700;font-size:1rem}
   .nav-brand img{height:28px}
-  .nav-links{display:flex;align-items:center;gap:4px}
-  .nav-links a{color:var(--gray-400);text-decoration:none;font-size:0.82rem;font-weight:500;padding:7px 12px;border-radius:8px;transition:color var(--t),background var(--t)}
+  .nav-links{display:flex;align-items:center;gap:4px;list-style:none}
+  .nav-links a{color:var(--gray-400);text-decoration:none;font-size:0.82rem;font-weight:500;padding:7px 12px;border-radius:8px;transition:color var(--transition),background var(--transition)}
   .nav-links a:hover{color:var(--white);background:rgba(255,255,255,0.07)}
   .nav-links a.active{color:var(--cyan)}
   .nav-cta{background:var(--blue)!important;color:#fff!important}
-  .ham{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px}
-  .ham span{width:22px;height:2px;background:var(--white);border-radius:2px;display:block}
-  @media(max-width:900px){.nav-links{display:none}.ham{display:flex}}
+  .nav-mobile-toggle{display:none;background:none;border:none;color:var(--white);font-size:1.3rem;cursor:pointer;padding:4px}
+  .nav-mobile{display:none;position:fixed;top:60px;left:0;right:0;background:var(--navy-2);border-bottom:1px solid var(--border);padding:16px 5%;z-index:99;flex-direction:column}
+  .nav-mobile.open{display:flex}
+  .nav-mobile a{color:var(--gray-400);text-decoration:none;font-size:0.88rem;padding:10px 0;border-bottom:1px solid var(--border);display:block}
+  .nav-mobile a:hover,.nav-mobile a.active{color:var(--cyan)}
+  @media(max-width:900px){.nav-links{display:none}.nav-mobile-toggle{display:block}}
 
-  .learn-subnav{position:sticky;top:62px;z-index:90;background:rgba(7,20,40,0.97);backdrop-filter:blur(12px);border-bottom:1px solid rgba(26,106,255,0.15);overflow-x:auto;white-space:nowrap;scrollbar-width:none}
+  /* LEARN SUB-NAV */
+  .learn-subnav{position:sticky;top:60px;z-index:90;background:rgba(7,20,40,0.97);backdrop-filter:blur(12px);border-bottom:1px solid rgba(26,106,255,0.15);overflow-x:auto;white-space:nowrap;scrollbar-width:none}
   .learn-subnav::-webkit-scrollbar{display:none}
   .learn-subnav-inner{display:inline-flex;align-items:center;gap:2px;padding:0 5%;min-width:100%}
   .learn-subnav a{display:inline-flex;align-items:center;gap:6px;color:rgba(136,153,187,0.85);text-decoration:none;font-size:0.78rem;font-weight:500;padding:10px 12px;border-bottom:2px solid transparent;transition:color 0.18s,border-color 0.18s;white-space:nowrap;flex-shrink:0}
   .learn-subnav a:hover{color:#fff}
-  .learn-subnav a.sn-active{color:#00d4ff;border-bottom-color:#00d4ff;font-weight:600}
+  .learn-subnav a.sn-active{color:var(--py-yellow);border-bottom-color:var(--py-yellow);font-weight:600}
   .learn-subnav .sn-sep{width:1px;height:16px;background:rgba(255,255,255,0.08);margin:0 4px;flex-shrink:0}
 
-  .container{max-width:980px;margin:0 auto;padding:0 5%}
-  .crumbs{font-size:0.75rem;color:var(--gray-500);padding-top:28px;margin-bottom:0}
-  .crumbs a{color:var(--gray-400);text-decoration:none}
+  /* PAGE LAYOUT — exact same as ai-notes */
+  .page-wrap{display:grid;grid-template-columns:260px 1fr;min-height:100vh;margin-top:60px}
+  @media(max-width:900px){.page-wrap{grid-template-columns:1fr}.sidebar{display:none!important}}
 
-  .hero-top{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;padding:20px 0 24px;border-bottom:1px solid var(--border)}
-  .badge{display:inline-flex;align-items:center;gap:6px;background:rgba(55,118,171,0.12);border:1px solid rgba(55,118,171,0.35);color:#5aa6e0;border-radius:20px;padding:4px 14px;font-size:0.72rem;font-weight:600;letter-spacing:0.05em;text-transform:uppercase;margin-bottom:14px}
-  h1{font-size:clamp(1.6rem,3.4vw,2.3rem);font-weight:800;line-height:1.2;margin-bottom:8px}
-  h1 em{font-style:normal;background:linear-gradient(135deg,var(--py-blue),var(--py-yellow));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-  .lede{color:var(--gray-400);font-size:0.92rem;max-width:560px}
-  .stats{display:flex;gap:28px;flex-shrink:0}
-  .stat{text-align:center}
-  .stat strong{display:block;font-size:1.3rem;font-weight:800;color:var(--cyan)}
-  .stat span{font-size:0.7rem;color:var(--gray-400)}
+  /* SIDEBAR — exact same as ai-notes */
+  .sidebar{position:sticky;top:60px;height:calc(100vh - 60px);overflow-y:auto;background:var(--navy-2);border-right:1px solid var(--border);padding:24px 0}
+  .sidebar::-webkit-scrollbar{width:4px}
+  .sidebar::-webkit-scrollbar-thumb{background:var(--border)}
+  .sidebar-title{font-size:0.68rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--gray-500);padding:0 20px;margin-bottom:8px}
+  .sidebar-tier{font-size:0.65rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--py-yellow);padding:12px 20px 4px;opacity:0.85}
+  .sidebar a{display:flex;align-items:center;gap:10px;padding:8px 20px;color:var(--gray-400);text-decoration:none;font-size:0.8rem;transition:background var(--transition),color var(--transition);border-left:2px solid transparent}
+  .sidebar a:hover{background:rgba(255,255,255,0.03);color:var(--white)}
+  .sidebar a.active{background:rgba(55,118,171,0.1);color:var(--py-yellow);border-left-color:var(--py-yellow)}
+  .sidebar-num{font-family:var(--font-mono);font-size:0.65rem;color:var(--gray-500);flex-shrink:0;width:22px}
+  .sidebar-enroll{margin:20px 16px 0;background:rgba(26,106,255,0.06);border:1px solid var(--border);border-radius:8px;padding:14px}
+  .sidebar-enroll p{font-size:0.72rem;color:var(--gray-400);margin-bottom:10px;line-height:1.5}
+  .sidebar-enroll a{display:block;background:var(--py-blue);color:#fff;padding:8px 12px;border-radius:6px;text-decoration:none;font-size:0.72rem;font-weight:700;text-align:center;border:none}
+  .sidebar-enroll a:hover{background:#2a7fc4;color:#fff}
 
-  .tier-nav{display:flex;gap:8px;overflow-x:auto;padding:18px 0;scrollbar-width:none}
-  .tier-nav::-webkit-scrollbar{display:none}
-  .tier-nav a{flex:0 0 auto;background:var(--navy-2);border:1px solid var(--border);color:var(--gray-400);padding:7px 13px;border-radius:8px;font-size:0.76rem;white-space:nowrap;text-decoration:none}
-  .tier-nav a:hover{border-color:var(--cyan);color:var(--white)}
+  /* MAIN */
+  main{padding:40px 48px 80px;max-width:860px}
+  @media(max-width:600px){main{padding:24px 20px 60px}}
 
-  .tier-label{display:flex;align-items:baseline;gap:12px;margin:38px 0 18px}
-  .tier-label .t{font-size:0.7rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--cyan)}
-  .tier-label .d{font-size:0.78rem;color:var(--gray-500)}
+  /* BREADCRUMB */
+  .breadcrumb{font-size:0.75rem;color:var(--gray-500);margin-bottom:28px}
+  .breadcrumb a{color:var(--gray-400);text-decoration:none}
+  .breadcrumb a:hover{color:var(--cyan)}
+  .breadcrumb span{margin:0 6px}
 
-  main{padding-bottom:60px}
-  .mod{background:var(--navy-2);border:1px solid var(--border);border-radius:var(--r-lg);padding:24px 26px;margin-bottom:18px;scroll-margin-top:130px}
-  .mod-num{display:inline-block;font-size:0.7rem;font-weight:700;letter-spacing:0.08em;color:var(--py-yellow);margin-bottom:6px}
-  .mod h2{font-size:1.2rem;font-weight:800;margin-bottom:8px}
-  .mod p.desc{color:#c5d0e8;font-size:0.88rem;margin-bottom:14px}
-  pre{background:#020812;border:1px solid var(--border);border-radius:10px;padding:14px 16px;overflow-x:auto;font-size:0.82rem;font-family:var(--mono);line-height:1.55;margin-bottom:14px;color:#d6e0e8}
+  /* HERO */
+  .page-hero{margin-bottom:36px;padding-bottom:28px;border-bottom:1px solid var(--border)}
+  .page-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(55,118,171,0.12);border:1px solid rgba(55,118,171,0.35);color:#5aa6e0;border-radius:20px;padding:4px 14px;font-size:0.72rem;font-weight:600;letter-spacing:0.05em;text-transform:uppercase;margin-bottom:14px}
+  .page-hero h1{font-size:clamp(1.6rem,3.4vw,2.3rem);font-weight:800;line-height:1.2;margin-bottom:10px}
+  .page-hero h1 em{font-style:normal;background:linear-gradient(135deg,var(--py-blue),var(--py-yellow));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+  .page-hero p{color:var(--gray-400);font-size:0.92rem;max-width:580px;margin-bottom:12px}
+  .hero-outcome{font-size:0.82rem;color:var(--green);margin-bottom:4px}
+  .hero-outcome::before{content:"✓ "}
+  .hero-prereq{font-size:0.78rem;color:var(--gray-500);margin-bottom:16px}
+  .hero-prereq strong{color:var(--gray-400)}
+  .hero-pills{display:flex;flex-wrap:wrap;gap:8px}
+  .pill{font-size:0.72rem;font-weight:600;padding:4px 12px;border-radius:20px}
+  .pill-free{background:rgba(34,197,94,0.12);color:var(--green);border:1px solid rgba(34,197,94,0.25)}
+  .pill-modules{background:rgba(55,118,171,0.12);color:#5aa6e0;border:1px solid rgba(55,118,171,0.3)}
+  .pill-project{background:rgba(245,158,11,0.12);color:var(--gold);border:1px solid rgba(245,158,11,0.3)}
+
+  /* TIER LABEL */
+  .tier-label{display:flex;align-items:baseline;gap:12px;margin:36px 0 16px;padding-bottom:10px;border-bottom:1px solid var(--border)}
+  .tier-label h2{font-size:0.7rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--py-yellow)}
+  .tier-label .tier-desc{font-size:0.78rem;color:var(--gray-500)}
+
+  /* MODULE SECTION */
+  .module-section{margin-bottom:24px;scroll-margin-top:80px}
+  .module-header{display:flex;align-items:flex-start;gap:14px;margin-bottom:16px}
+  .module-num-badge{flex-shrink:0;font-size:0.65rem;font-weight:700;letter-spacing:0.08em;font-family:var(--font-mono);color:var(--py-yellow);background:rgba(55,118,171,0.12);border:1px solid rgba(55,118,171,0.25);padding:4px 10px;border-radius:6px;margin-top:4px}
+  .module-header-text h2{font-size:1.15rem;font-weight:800;margin-bottom:4px}
+  .module-header-text p{font-size:0.82rem;color:var(--gray-400)}
+  .module-divider{border:none;border-top:1px solid var(--border);margin:28px 0}
+
+  /* CONCEPT BLOCK */
+  .concept-block{background:var(--navy-2);border:1px solid var(--border);border-radius:var(--radius);padding:18px 20px;margin-bottom:16px}
+  .concept-block h3{font-size:0.92rem;font-weight:700;margin-bottom:8px;color:var(--white)}
+  .concept-block p{font-size:0.85rem;color:#c5d0e8;line-height:1.65}
+
+  /* DEVOPS TIP */
+  .devops-tip{display:flex;gap:10px;background:rgba(26,106,255,0.07);border:1px solid rgba(26,106,255,0.2);border-radius:8px;padding:10px 14px;margin-bottom:16px;font-size:0.8rem;color:#8ab4f8;line-height:1.55}
+  .devops-tip strong{color:var(--cyan);flex-shrink:0}
+
+  /* CALLOUTS */
+  .callout{display:flex;gap:12px;border-radius:var(--radius);padding:14px 16px;margin-bottom:16px;font-size:0.84rem;line-height:1.6}
+  .callout-icon{font-size:1.1rem;flex-shrink:0;margin-top:1px}
+  .callout-tip{background:rgba(34,197,94,0.07);border:1px solid rgba(34,197,94,0.2);color:#a3d9b1}
+  .callout-warn{background:rgba(245,158,11,0.07);border:1px solid rgba(245,158,11,0.2);color:#f0c97a}
+  .callout p strong{color:var(--white)}
+
+  /* CODE */
+  .code-wrap{margin-bottom:16px}
+  .code-label{font-size:0.7rem;font-weight:600;font-family:var(--font-mono);color:var(--gray-500);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:6px}
+  pre{background:#020812;border:1px solid var(--border);border-radius:10px;padding:16px 18px;overflow-x:auto;font-size:0.82rem;font-family:var(--font-mono);line-height:1.6;margin-bottom:0;color:#d6e0e8}
   pre .c{color:#5a6a88}
-  .mod h3{font-size:0.85rem;font-weight:700;color:var(--white);margin:14px 0 8px}
-  .mod ul{list-style:none;display:flex;flex-direction:column;gap:7px}
-  .mod ul li{font-size:0.82rem;color:#b8c4d6;padding-left:14px;position:relative}
-  .mod ul li::before{content:'•';position:absolute;left:0;color:var(--cyan)}
-  .mod ul li b{color:var(--white)}
-  code.inline{background:rgba(255,255,255,0.06);border:1px solid var(--border);border-radius:4px;padding:1px 6px;font-size:0.85em;color:var(--cyan);font-family:var(--mono)}
+  code.inline{background:rgba(255,255,255,0.06);border:1px solid var(--border);border-radius:4px;padding:1px 6px;font-size:0.85em;color:var(--cyan);font-family:var(--font-mono)}
 
-  .project{margin-top:30px;background:linear-gradient(135deg,rgba(55,118,171,0.12),rgba(245,158,11,0.07));border:1px solid var(--border);border-radius:var(--r-lg);padding:28px}
-  .project .mod-num{color:var(--gold)}
-  .project h2{font-size:1.25rem;margin-bottom:8px}
+  /* BULLET LISTS */
+  .mod-list{list-style:none;display:flex;flex-direction:column;gap:7px;margin-bottom:14px}
+  .mod-list li{font-size:0.83rem;color:#b8c4d6;padding-left:16px;position:relative;line-height:1.55}
+  .mod-list li::before{content:'•';position:absolute;left:0;color:var(--py-yellow)}
+  .mod-list li b{color:var(--white)}
 
-  .closing{margin-top:50px;text-align:center;border:1px solid var(--border);border-radius:var(--r-lg);padding:34px 24px;background:var(--navy-2)}
-  .closing h2{font-size:1.3rem;margin-bottom:8px}
-  .closing p{color:var(--gray-400);font-size:0.88rem;max-width:480px;margin:0 auto 18px}
-  .btn-primary{background:var(--blue);color:#fff;padding:11px 26px;border-radius:8px;text-decoration:none;font-weight:600;font-size:0.88rem}
-  .btn-primary:hover{background:#1557d6}
+  /* FINAL PROJECT */
+  .module-section.mod-final{background:linear-gradient(135deg,rgba(55,118,171,0.08),rgba(245,158,11,0.05));border:1px solid rgba(245,158,11,0.25);border-radius:14px;padding:24px}
+  .module-section.mod-final .module-num-badge{color:var(--gold);background:rgba(245,158,11,0.1);border-color:rgba(245,158,11,0.3)}
+  .module-section.mod-final .module-header-text h2{color:var(--gold)}
 
+  /* EXTEND BLOCK */
+  .extend-block{background:rgba(26,106,255,0.06);border:1px solid rgba(26,106,255,0.2);border-radius:var(--radius);padding:18px 20px;margin-top:16px}
+  .extend-block h3{font-size:0.9rem;font-weight:700;margin-bottom:6px;color:var(--gold)}
+  .extend-block p{font-size:0.83rem;color:#c5d0e8;line-height:1.6}
+
+  /* ENROLL CTA */
+  .enroll-cta{background:linear-gradient(135deg,rgba(55,118,171,0.12),rgba(255,212,59,0.06));border:1px solid rgba(55,118,171,0.3);border-radius:14px;padding:32px 28px;text-align:center;margin-top:24px}
+  .enroll-cta h2{font-size:1.25rem;font-weight:800;margin-bottom:8px}
+  .enroll-cta p{font-size:0.88rem;color:var(--gray-400);max-width:440px;margin:0 auto 20px;line-height:1.7}
+  .enroll-actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+  .btn-enroll{display:inline-flex;align-items:center;gap:8px;background:var(--py-blue);color:#fff;padding:12px 28px;border-radius:8px;text-decoration:none;font-weight:700;font-size:0.9rem;transition:background 0.2s}
+  .btn-enroll:hover{background:#2a7fc4}
+  .btn-ghost{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--border);color:var(--gray-400);padding:12px 22px;border-radius:8px;text-decoration:none;font-weight:500;font-size:0.88rem;transition:border-color 0.2s,color 0.2s}
+  .btn-ghost:hover{border-color:var(--cyan);color:var(--cyan)}
+
+  /* STICKY ENROLL PILL */
+  .enroll-sticky{position:fixed;bottom:24px;right:24px;z-index:200;background:linear-gradient(135deg,var(--py-blue),var(--py-yellow));color:#0a0a0a;padding:10px 20px;border-radius:50px;font-size:0.78rem;font-weight:700;text-decoration:none;box-shadow:0 4px 20px rgba(55,118,171,0.5);transition:transform 0.2s,box-shadow 0.2s}
+  .enroll-sticky:hover{transform:translateY(-2px);box-shadow:0 6px 28px rgba(55,118,171,0.7);color:#0a0a0a}
+
+  /* FOOTER */
   footer{background:var(--navy-2);border-top:1px solid var(--border);padding:30px 5% 20px;text-align:center;font-size:0.78rem;color:var(--gray-500)}
-  footer a{color:var(--gray-500);text-decoration:none;margin:0 8px}
-  footer a:hover{color:var(--white)}
-
-  @media(max-width:640px){.hero-top{flex-direction:column;align-items:flex-start}}
+  footer p{margin-bottom:10px}
+  .footer-links a{color:var(--gray-500);text-decoration:none;margin:0 8px}
+  .footer-links a:hover{color:var(--white)}
 </style>
 </head>
 <body>
 
-<nav>
-  <a class="nav-brand" href="index.html"><img src="assets/logos/dv-logo.png" alt="Devriston"/>Devriston</a>
-  <div class="nav-links"><a href="index.html">Home</a><a href="solutions.html">Solutions</a><a href="case-studies.html">Case Studies</a><a href="learn.html" class="active">Learn</a><a href="about.html">About</a><a href="contact.html" class="nav-cta">Book Consultation</a></div>
-  <button class="ham" onclick="document.getElementById('nav-drawer').classList.toggle('open')" aria-label="Menu"><span></span><span></span><span></span></button>
+<!-- STICKY ENROLL PILL -->
+<a href="https://wa.me/923231450045?text=Hi%20Kamran%2C%20I%20read%20the%20Python%20notes%20and%20want%20to%20enroll." class="enroll-sticky">🐍 Enroll in Python Course →</a>
+
+<!-- MAIN NAV -->
+<nav class="main-nav" aria-label="Main navigation">
+  <a class="nav-brand" href="index.html">
+    <img src="assets/logos/dv-logo.png" alt="Devriston logo"/>Devriston
+  </a>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="solutions.html">Solutions</a>
+    <a href="case-studies.html">Case Studies</a>
+    <a href="learn.html" class="active">Learn</a>
+    <a href="about.html">About</a>
+    <a href="contact.html" class="nav-cta">Book Consultation</a>
+  </div>
+  <button class="nav-mobile-toggle" aria-label="Open menu">☰</button>
 </nav>
 
-<nav class="learn-subnav"><div class="learn-subnav-inner">
-  <a href="learn.html">🏠 Hub</a><a href="courses.html">🎓 Courses</a><span class="sn-sep"></span>
-  <a href="linux-notes.html">🐧 Linux Notes</a><a href="cloud-notes.html">☁️ Cloud Notes</a><a href="devops-full-notes.html">⚙️ DevOps Notes</a><a href="ai-notes.html">🤖 AI Notes</a><span class="sn-sep"></span>
-  <a href="devops-notes.html">📋 Quick Notes</a><a href="interview-guide.html">💼 Interview Guide</a><a href="blog.html">📝 Blog</a><a href="c-programming.html">💻 C Programming</a><a href="python-notes.html" class="sn-active">🐍 Python Notes</a>
-</div></nav>
+<!-- MOBILE DRAWER -->
+<div class="nav-mobile" id="nav-mobile">
+  <a href="index.html">Home</a>
+  <a href="solutions.html">Solutions</a>
+  <a href="case-studies.html">Case Studies</a>
+  <a href="learn.html" class="active">Learn</a>
+  <a href="about.html">About</a>
+  <a href="contact.html">Book Consultation</a>
+</div>
 
-<div class="container">
-  <div class="crumbs"><a href="index.html">Home</a> › <a href="learn.html">Learn</a> › Python Notes</div>
+<!-- LEARN SUB-NAV -->
+<nav class="learn-subnav" aria-label="Learning sections">
+  <div class="learn-subnav-inner">
+    <a href="learn.html">🏠 Hub</a>
+    <a href="courses.html">🎓 Courses</a>
+    <span class="sn-sep"></span>
+    <a href="linux-notes.html">🐧 Linux Notes</a>
+    <a href="cloud-notes.html">☁️ Cloud Notes</a>
+    <a href="devops-full-notes.html">⚙️ DevOps Notes</a>
+    <a href="ai-notes.html">🤖 AI Notes</a>
+    <span class="sn-sep"></span>
+    <a href="devops-notes.html">📋 Quick Notes</a>
+    <a href="interview-guide.html">💼 Interview Guide</a>
+    <a href="blog.html">📝 Blog</a>
+    <a href="c-programming.html">💻 C Programming</a>
+    <a href="python-notes.html" class="sn-active">🐍 Python Notes</a>
+  </div>
+</nav>
 
-  <div class="hero-top">
-    <div>
-      <div class="badge">🐍 Free Lecture Notes</div>
+<!-- PAGE WRAP: sidebar + main (exact same structure as ai-notes) -->
+<div class="page-wrap">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar" aria-label="Module navigation">
+    <div class="sidebar-title">Python Notes — All Modules</div>
+
+    <div class="sidebar-tier">Tier 1 — Basics</div>
+    <a href="#m01"><span class="sidebar-num">01</span>Introduction to Python</a>
+    <a href="#m02"><span class="sidebar-num">02</span>Installing Python</a>
+    <a href="#m03"><span class="sidebar-num">03</span>Syntax Basics</a>
+    <a href="#m04"><span class="sidebar-num">04</span>Variables &amp; Data Types</a>
+    <a href="#m05"><span class="sidebar-num">05</span>Input &amp; Output</a>
+    <a href="#m06"><span class="sidebar-num">06</span>Operators</a>
+    <a href="#m07"><span class="sidebar-num">07</span>Conditionals</a>
+    <a href="#m08"><span class="sidebar-num">08</span>Loops</a>
+    <a href="#m09"><span class="sidebar-num">09</span>Functions</a>
+    <a href="#m10"><span class="sidebar-num">10</span>Collections</a>
+
+    <div class="sidebar-tier">Tier 2 — DevOps</div>
+    <a href="#m11"><span class="sidebar-num">11</span>Error Handling</a>
+    <a href="#m12"><span class="sidebar-num">12</span>File Handling</a>
+    <a href="#m13"><span class="sidebar-num">13</span>pip &amp; venv</a>
+    <a href="#m14"><span class="sidebar-num">14</span>JSON &amp; APIs</a>
+    <a href="#m15"><span class="sidebar-num">15</span>os &amp; subprocess</a>
+    <a href="#m16"><span class="sidebar-num">16</span>🏆 Final Project</a>
+
+    <div class="sidebar-enroll">
+      <p>Want live sessions with real projects?</p>
+      <a href="https://wa.me/923231450045?text=Hi%20Kamran%2C%20I%20want%20to%20enroll%20in%20the%20Python%20course.">💬 Enroll via WhatsApp</a>
+    </div>
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <main>
+    <div class="breadcrumb">
+      <a href="index.html">Home</a><span>›</span>
+      <a href="learn.html">Learn</a><span>›</span>
+      Python Notes
+    </div>
+
+    <!-- HERO -->
+    <div class="page-hero">
+      <div class="page-badge">🐍 Free Lecture Notes</div>
       <h1>Python Notes — Basics to <em>DevOps Automation</em></h1>
-      <p class="lede">16 modules. Start with zero programming experience, finish able to write a real automation script. No fluff — every concept tied to a working example.</p>
+      <p>16 modules. Start with zero programming experience, finish able to write a real automation script. No fluff — every concept tied to a working example.</p>
+      <p class="hero-outcome">After module 16 you'll have a working Linux server health-check script ready to deploy with cron.</p>
+      <p class="hero-prereq"><strong>Needs:</strong> No prior programming knowledge. Basic Linux terminal familiarity helps from Module 11 onward.</p>
+      <div class="hero-pills">
+        <span class="pill pill-free">✓ 100% Free</span>
+        <span class="pill pill-modules">16 Modules</span>
+        <span class="pill pill-project">1 Final Project</span>
+      </div>
     </div>
-    <div class="stats">
-      <div class="stat"><strong>16</strong><span>Modules</span></div>
-      <div class="stat"><strong>2</strong><span>Tiers</span></div>
-      <div class="stat"><strong>Free</strong><span>No signup</span></div>
+
+    <!-- ═══ TIER 1 ═══ -->
+    <div class="tier-label">
+      <h2>Tier 1 — Basics</h2>
+      <span class="tier-desc">Modules 01–10 · zero experience required</span>
     </div>
-  </div>
 
-  <div class="tier-nav" id="tiernav">
-    <a href="#m01">01 Intro</a><a href="#m02">02 Install</a><a href="#m03">03 Syntax</a><a href="#m04">04 Variables</a>
-    <a href="#m05">05 I/O</a><a href="#m06">06 Operators</a><a href="#m07">07 Conditionals</a><a href="#m08">08 Loops</a>
-    <a href="#m09">09 Functions</a><a href="#m10">10 Collections</a><a href="#m11">11 Errors</a><a href="#m12">12 Files</a>
-    <a href="#m13">13 pip/venv</a><a href="#m14">14 JSON/APIs</a><a href="#m15">15 os/subprocess</a><a href="#m16">16 Final Project</a>
-  </div>
-
-<main>
-
-  <div class="tier-label"><span class="t">Tier 1 — Basics</span><span class="d">Modules 01–10 · zero experience required</span></div>
-
-  <section class="mod" id="m01">
-    <span class="mod-num">MODULE 01</span>
-    <h2>Introduction to Python</h2>
-    <p class="desc">Python is a high-level, general-purpose programming language known for simple, readable syntax. Used in web dev, data science, automation, AI, and DevOps scripting — often the most beginner-friendly first language.</p>
-    <pre><span class="c"># Your very first Python program</span>
+    <!-- M01 -->
+    <section class="module-section" id="m01">
+      <div class="module-header">
+        <span class="module-num-badge">MODULE 01</span>
+        <div class="module-header-text">
+          <h2>Introduction to Python</h2>
+          <p>What Python is, where it runs, and why it's the first language for DevOps engineers.</p>
+        </div>
+      </div>
+      <div class="concept-block">
+        <h3>What is Python?</h3>
+        <p>Python is a high-level, general-purpose programming language known for simple, readable syntax. Used in web dev, data science, automation, AI, and DevOps scripting — often the most beginner-friendly first language.</p>
+      </div>
+      <div class="code-wrap">
+        <div class="code-label">Your first Python program</div>
+        <pre><span class="c"># Your very first Python program</span>
 print("Hello Python")
 <span class="c"># Output: Hello Python</span></pre>
-    <h3>What is Python &amp; Why Learn It</h3>
-    <ul>
-      <li><b>Interpreted:</b> code runs line by line, no separate compile step — you see results instantly.</li>
-      <li><b>Why popular:</b> English-like syntax means beginners write working programs in their first hour.</li>
-      <li><b>Where it's used:</b> Instagram's backend, NASA data analysis, AI models, Ansible automation.</li>
-      <li><b>DevOps connection:</b> boto3 (AWS SDK), Ansible itself, and most CI/CD glue scripts are Python.</li>
-    </ul>
-  </section>
+      </div>
+      <h3 style="font-size:0.9rem;font-weight:700;margin:14px 0 8px">What is Python &amp; Why Learn It</h3>
+      <ul class="mod-list">
+        <li><b>Interpreted:</b> code runs line by line, no compile step — you see results instantly.</li>
+        <li><b>Why popular:</b> English-like syntax means beginners write working programs in their first hour.</li>
+        <li><b>Where it's used:</b> Instagram's backend, NASA data analysis, AI models, Ansible automation.</li>
+        <li><b>DevOps connection:</b> boto3 (AWS SDK), Ansible itself, and most CI/CD glue scripts are Python.</li>
+      </ul>
+    </section>
+    <hr class="module-divider"/>
 
-  <section class="mod" id="m02">
-    <span class="mod-num">MODULE 02</span>
-    <h2>Installing Python &amp; Setup</h2>
-    <p class="desc">Most Linux systems already have Python. This module covers exact commands to check, install, and verify your setup on Linux, Windows, and Mac.</p>
-    <pre><span class="c"># Check if Python is already installed</span>
+    <!-- M02 -->
+    <section class="module-section" id="m02">
+      <div class="module-header">
+        <span class="module-num-badge">MODULE 02</span>
+        <div class="module-header-text">
+          <h2>Installing Python &amp; Setup</h2>
+          <p>Exact commands to check, install, and verify your setup on Linux, Windows, and Mac.</p>
+        </div>
+      </div>
+      <div class="code-wrap">
+        <div class="code-label">Check Python version</div>
+        <pre><span class="c"># Check if Python is already installed</span>
 python3 --version
 <span class="c"># Output: Python 3.11.4</span></pre>
-    <h3>Install Steps by OS</h3>
-    <ul>
-      <li><b>Linux (Ubuntu/Debian):</b> usually pre-installed; if not, <code class="inline">sudo apt install python3</code></li>
-      <li><b>Windows:</b> python.org/downloads → tick "Add Python to PATH" (most common mistake: forgetting this).</li>
-      <li><b>Mac:</b> pre-installed, but get the latest via <code class="inline">brew install python3</code></li>
-      <li><b>Run a file:</b> save as <code class="inline">hello.py</code>, run with <code class="inline">python3 hello.py</code></li>
-    </ul>
-  </section>
+      </div>
+      <h3 style="font-size:0.9rem;font-weight:700;margin:14px 0 8px">Install Steps by OS</h3>
+      <ul class="mod-list">
+        <li><b>Linux (Ubuntu/Debian):</b> usually pre-installed; if not, <code class="inline">sudo apt install python3</code></li>
+        <li><b>Windows:</b> python.org/downloads → tick "Add Python to PATH" (most common mistake: forgetting this).</li>
+        <li><b>Mac:</b> pre-installed, but get the latest via <code class="inline">brew install python3</code></li>
+        <li><b>Run a file:</b> save as <code class="inline">hello.py</code>, run with <code class="inline">python3 hello.py</code></li>
+      </ul>
+      <div class="devops-tip"><strong>DevOps use:</strong> Most DevOps tools (Ansible, AWS CLI helpers, Terraform wrappers) require Python 3.8+. Always verify the version before installing packages on a server.</div>
+    </section>
+    <hr class="module-divider"/>
 
-  <section class="mod" id="m03">
-    <span class="mod-num">MODULE 03</span>
-    <h2>Python Syntax Basics</h2>
-    <p class="desc">Python's most unique rule: indentation defines code blocks instead of curly braces. Get the spacing wrong and your program fails to run.</p>
-    <pre><span class="c"># Comments start with #</span>
+    <!-- M03 -->
+    <section class="module-section" id="m03">
+      <div class="module-header">
+        <span class="module-num-badge">MODULE 03</span>
+        <div class="module-header-text">
+          <h2>Python Syntax Basics</h2>
+          <p>Indentation defines code blocks — the most unique and important Python rule.</p>
+        </div>
+      </div>
+      <div class="code-wrap">
+        <div class="code-label">Indentation example</div>
+        <pre><span class="c"># Comments start with #</span>
 if True:
     print("Indented = inside the if block")
 print("Not indented = outside the block")</pre>
-    <h3>Indentation &amp; Syntax Rules</h3>
-    <ul>
-      <li><b>Indentation is mandatory:</b> 4 spaces, never tabs — mixing both causes errors.</li>
-      <li><b>No semicolons:</b> statements end at the newline.</li>
-      <li><b>Case-sensitive:</b> <code class="inline">Name</code> and <code class="inline">name</code> are different variables.</li>
-      <li><b>Common error:</b> <code class="inline">IndentationError: expected an indented block</code> — you forgot to indent after <code class="inline">:</code></li>
-    </ul>
-  </section>
+      </div>
+      <h3 style="font-size:0.9rem;font-weight:700;margin:14px 0 8px">Indentation &amp; Syntax Rules</h3>
+      <ul class="mod-list">
+        <li><b>Indentation is mandatory:</b> 4 spaces, never tabs — mixing both causes errors.</li>
+        <li><b>No semicolons:</b> statements end at the newline.</li>
+        <li><b>Case-sensitive:</b> <code class="inline">Name</code> and <code class="inline">name</code> are different variables.</li>
+        <li><b>Common error:</b> <code class="inline">IndentationError: expected an indented block</code> — forgot to indent after <code class="inline">:</code></li>
+      </ul>
+      <div class="devops-tip"><strong>DevOps use:</strong> YAML (used in Ansible, Docker Compose, GitHub Actions) also uses indentation for structure — the same mindset applies directly.</div>
+    </section>
+    <hr class="module-divider"/>
 
-  <section class="mod" id="m04">
-    <span class="mod-num">MODULE 04</span>
-    <h2>Variables &amp; Data Types</h2>
-    <p class="desc">A variable is a named container for data. Python auto-detects the type — "dynamic typing", unlike Java or C.</p>
-    <pre>name = "Devriston"   <span class="c"># str</span>
+    <!-- M04 -->
+    <section class="module-section" id="m04">
+      <div class="module-header">
+        <span class="module-num-badge">MODULE 04</span>
+        <div class="module-header-text">
+          <h2>Variables &amp; Data Types</h2>
+          <p>Named containers for data — Python auto-detects the type (dynamic typing).</p>
+        </div>
+      </div>
+      <div class="code-wrap">
+        <div class="code-label">Variables and types</div>
+        <pre>name = "Devriston"   <span class="c"># str</span>
 age = 25             <span class="c"># int</span>
 price = 99.50        <span class="c"># float</span>
 is_active = True     <span class="c"># bool</span>
 print(name, age, price, is_active)</pre>
-    <h3>Data Types Explained</h3>
-    <ul>
-      <li><b>str:</b> text, wrapped in quotes — single or double, same result.</li>
-      <li><b>int / float:</b> whole numbers vs decimal numbers.</li>
-      <li><b>bool:</b> only <code class="inline">True</code> or <code class="inline">False</code> (capitalised).</li>
-      <li><b>Convert types:</b> <code class="inline">int("25")</code>, <code class="inline">str(25)</code>, <code class="inline">float("9.5")</code></li>
-    </ul>
-  </section>
+      </div>
+      <ul class="mod-list">
+        <li><b>str:</b> text, wrapped in quotes — single or double, same result.</li>
+        <li><b>int / float:</b> whole numbers vs decimal numbers.</li>
+        <li><b>bool:</b> only <code class="inline">True</code> or <code class="inline">False</code> (capitalised).</li>
+        <li><b>Convert types:</b> <code class="inline">int("25")</code>, <code class="inline">str(25)</code>, <code class="inline">float("9.5")</code></li>
+      </ul>
+      <div class="devops-tip"><strong>DevOps use:</strong> Environment variables from <code class="inline">os.environ</code> always return strings — you must convert to <code class="inline">int</code> or <code class="inline">bool</code> before using them in logic.</div>
+    </section>
+    <hr class="module-divider"/>
 
-  <section class="mod" id="m05">
-    <span class="mod-num">MODULE 05</span>
-    <h2>Input and Output</h2>
-    <p class="desc"><code class="inline">print()</code> displays output. <code class="inline">input()</code> pauses and waits for typed input — always returned as text, even numbers.</p>
-    <pre>name = input("Enter your name: ")
+    <!-- M05 -->
+    <section class="module-section" id="m05">
+      <div class="module-header">
+        <span class="module-num-badge">MODULE 05</span>
+        <div class="module-header-text">
+          <h2>Input and Output</h2>
+          <p><code class="inline">print()</code> shows output. <code class="inline">input()</code> waits for user input — always returns a string.</p>
+        </div>
+      </div>
+      <div class="code-wrap">
+        <div class="code-label">Input, output and f-strings</div>
+        <pre>name = input("Enter your name: ")
 age = int(input("Enter your age: "))
 print(f"Hello {name}, you are {age} years old")</pre>
-    <h3>Formatting Output Properly</h3>
-    <ul>
-      <li><b>input() is always a string:</b> wrap with <code class="inline">int()</code> before doing math.</li>
-      <li><b>f-strings:</b> <code class="inline">f"Hello {name}"</code> — cleanest way to insert variables.</li>
-      <li><b>Common bug:</b> forgetting the conversion causes <code class="inline">TypeError: can't add str and int</code></li>
-    </ul>
-  </section>
+      </div>
+      <ul class="mod-list">
+        <li><b>input() is always a string:</b> wrap with <code class="inline">int()</code> before doing math.</li>
+        <li><b>f-strings:</b> <code class="inline">f"Hello {name}"</code> — cleanest way to insert variables into text.</li>
+        <li><b>Common bug:</b> forgetting the conversion causes <code class="inline">TypeError: can't add str and int</code></li>
+      </ul>
+      <div class="devops-tip"><strong>DevOps use:</strong> Automation scripts use <code class="inline">print()</code> for structured log output. f-strings appear in every real script to format status messages with variable data.</div>
+    </section>
+    <hr class="module-divider"/>
 
-  <section class="mod" id="m06">
-    <span class="mod-num">MODULE 06</span>
-    <h2>Python Operators</h2>
-    <p class="desc">Operators perform math, comparisons (True/False), and logical combinations — used in nearly every line of real code.</p>
-    <pre>x = 10
+    <!-- M06 -->
+    <section class="module-section" id="m06">
+      <div class="module-header">
+        <span class="module-num-badge">MODULE 06</span>
+        <div class="module-header-text">
+          <h2>Python Operators</h2>
+          <p>Math, comparisons, and logical combinations — used in nearly every line of real code.</p>
+        </div>
+      </div>
+      <div class="code-wrap">
+        <div class="code-label">Arithmetic and comparison operators</div>
+        <pre>x = 10
 y = 3
 print(x + y)   <span class="c"># 13 — addition</span>
-print(x % y)   <span class="c"># 1 — remainder</span>
+print(x % y)   <span class="c"># 1  — remainder</span>
 print(x > y)   <span class="c"># True — comparison</span></pre>
-    <h3>All Operator Types</h3>
-    <ul>
-      <li><b>Arithmetic:</b> <code class="inline">+ - * / // % **</code></li>
-      <li><b>Comparison:</b> <code class="inline">== != > < >= <=</code> always return True/False.</li>
-      <li><b>Logical:</b> <code class="inline">and</code>, <code class="inline">or</code>, <code class="inline">not</code></li>
-      <li><b>Common confusion:</b> <code class="inline">=</code> assigns, <code class="inline">==</code> compares — #1 beginner bug.</li>
-    </ul>
-  </section>
+      </div>
+      <ul class="mod-list">
+        <li><b>Arithmetic:</b> <code class="inline">+ - * / // % **</code></li>
+        <li><b>Comparison:</b> <code class="inline">== != > &lt; >= &lt;=</code> always return True/False.</li>
+        <li><b>Logical:</b> <code class="inline">and</code>, <code class="inline">or</code>, <code class="inline">not</code></li>
+        <li><b>Common confusion:</b> <code class="inline">=</code> assigns, <code class="inline">==</code> compares — #1 beginner bug.</li>
+      </ul>
+      <div class="devops-tip"><strong>DevOps use:</strong> Comparisons power all threshold checks — "if disk usage > 85, send alert" is pure operator logic. <code class="inline">%</code> (modulo) is used in cron-style scheduling logic.</div>
+    </section>
+    <hr class="module-divider"/>
 
-  <section class="mod" id="m07">
-    <span class="mod-num">MODULE 07</span>
-    <h2>Conditional Statements</h2>
-    <p class="desc">Conditionals let your program make decisions — the foundation of all program logic.</p>
-    <pre>age = 20
+    <!-- M07 -->
+    <section class="module-section" id="m07">
+      <div class="module-header">
+        <span class="module-num-badge">MODULE 07</span>
+        <div class="module-header-text">
+          <h2>Conditional Statements</h2>
+          <p>Let your program make decisions — the foundation of all logic.</p>
+        </div>
+      </div>
+      <div class="code-wrap">
+        <div class="code-label">if / elif / else</div>
+        <pre>age = 20
 if age >= 18:
     print("Adult")
 elif age >= 13:
     print("Teenager")
 else:
     print("Child")</pre>
-    <h3>if / elif / else Explained</h3>
-    <ul>
-      <li><b>if:</b> runs only if condition is True, always ends with <code class="inline">:</code></li>
-      <li><b>elif:</b> checked only if previous was False — chain as many as needed.</li>
-      <li><b>Real use case:</b> "if server is down, restart it" — same logic DevOps scripts use.</li>
-    </ul>
-  </section>
+      </div>
+      <ul class="mod-list">
+        <li><b>if:</b> runs only if condition is True, always ends with <code class="inline">:</code></li>
+        <li><b>elif:</b> checked only if previous was False — chain as many as needed.</li>
+        <li><b>else:</b> fallback — runs if nothing above matched.</li>
+      </ul>
+      <div class="devops-tip"><strong>DevOps use:</strong> "if server is down, restart it; elif it's degraded, alert; else log OK" — this exact pattern powers self-healing scripts and monitoring tools.</div>
+    </section>
+    <hr class="module-divider"/>
 
-  <section class="mod" id="m08">
-    <span class="mod-num">MODULE 08</span>
-    <h2>Loops in Python</h2>
-    <p class="desc">Loops repeat code automatically. <code class="inline">for</code> = known repeats, <code class="inline">while</code> = repeats until a condition becomes False.</p>
-    <pre>for i in range(5):
+    <!-- M08 -->
+    <section class="module-section" id="m08">
+      <div class="module-header">
+        <span class="module-num-badge">MODULE 08</span>
+        <div class="module-header-text">
+          <h2>Loops in Python</h2>
+          <p><code class="inline">for</code> = known repeats. <code class="inline">while</code> = repeats until condition becomes False.</p>
+        </div>
+      </div>
+      <div class="code-wrap">
+        <div class="code-label">for loop with range</div>
+        <pre>for i in range(5):
     print("Count:", i)
 <span class="c"># Prints Count: 0 through Count: 4</span></pre>
-    <h3>For, While &amp; Control</h3>
-    <ul>
-      <li><b>range(5):</b> generates 0–4 — stops BEFORE 5, a common beginner trap.</li>
-      <li><b>break:</b> exits the loop completely. <b>continue:</b> skips to next repeat.</li>
-      <li><b>Infinite loop warning:</b> always make sure the while condition changes inside the loop.</li>
-    </ul>
-  </section>
+      </div>
+      <ul class="mod-list">
+        <li><b>range(5):</b> generates 0–4 — stops BEFORE 5, a very common beginner trap.</li>
+        <li><b>break:</b> exits the loop completely. <b>continue:</b> skips to next repeat.</li>
+        <li><b>Infinite loop warning:</b> always make sure the while condition changes inside the loop.</li>
+      </ul>
+      <div class="devops-tip"><strong>DevOps use:</strong> Loops iterate over server lists, log lines, or S3 bucket objects — "for each server in fleet, run health check" is pure Python loop logic.</div>
+    </section>
+    <hr class="module-divider"/>
 
-  <section class="mod" id="m09">
-    <span class="mod-num">MODULE 09</span>
-    <h2>Functions in Python</h2>
-    <p class="desc">A function is a reusable block of code. Write once, call whenever needed — keeps programs organized and easy to fix.</p>
-    <pre>def greet(name):
+    <!-- M09 -->
+    <section class="module-section" id="m09">
+      <div class="module-header">
+        <span class="module-num-badge">MODULE 09</span>
+        <div class="module-header-text">
+          <h2>Functions in Python</h2>
+          <p>Write once, call anywhere — the foundation of organized, maintainable scripts.</p>
+        </div>
+      </div>
+      <div class="code-wrap">
+        <div class="code-label">Defining and calling a function</div>
+        <pre>def greet(name):
     print(f"Hello, {name}!")
 
 greet("Kamran")
 <span class="c"># Output: Hello, Kamran!</span></pre>
-    <h3>Parameters &amp; Return Values</h3>
-    <ul>
-      <li><b>def:</b> defines a function — it only runs when called by name.</li>
-      <li><b>return:</b> sends a value back; without it a function returns <code class="inline">None</code></li>
-      <li><b>Default parameters:</b> <code class="inline">def greet(name="Guest")</code> lets you call with no argument.</li>
-    </ul>
-  </section>
+      </div>
+      <ul class="mod-list">
+        <li><b>def:</b> defines a function — it only runs when called by name.</li>
+        <li><b>return:</b> sends a value back; without it a function returns <code class="inline">None</code></li>
+        <li><b>Default parameters:</b> <code class="inline">def greet(name="Guest")</code> lets you call with no argument.</li>
+      </ul>
+      <div class="devops-tip"><strong>DevOps use:</strong> Real scripts wrap each check in a function — <code class="inline">get_disk_usage()</code>, <code class="inline">check_memory()</code>, <code class="inline">send_alert()</code>. Exactly what the final project builds.</div>
+    </section>
+    <hr class="module-divider"/>
 
-  <section class="mod" id="m10">
-    <span class="mod-num">MODULE 10</span>
-    <h2>Python Collections</h2>
-    <p class="desc">Collections store multiple values. Four built-in types — list, tuple, dictionary, set — each with different rules.</p>
-    <pre>fruits = ["apple", "banana", "mango"]
+    <!-- M10 -->
+    <section class="module-section" id="m10">
+      <div class="module-header">
+        <span class="module-num-badge">MODULE 10</span>
+        <div class="module-header-text">
+          <h2>Python Collections</h2>
+          <p>Store multiple values — list, tuple, dictionary, and set, each with different rules.</p>
+        </div>
+      </div>
+      <div class="code-wrap">
+        <div class="code-label">Lists and dictionaries</div>
+        <pre>fruits = ["apple", "banana", "mango"]
 print(fruits[0])   <span class="c"># apple</span>
 fruits.append("grape")
-print(fruits)</pre>
-    <h3>List vs Tuple vs Dict vs Set</h3>
-    <ul>
-      <li><b>List [ ]:</b> ordered, changeable — most commonly used.</li>
-      <li><b>Tuple ( ):</b> ordered, unchangeable — fixed data like coordinates.</li>
-      <li><b>Dict {key: value}:</b> instant lookup by key, e.g. <code class="inline">{"name":"Ali","age":20}</code></li>
-      <li><b>Set { }:</b> unordered, auto-removes duplicates.</li>
-    </ul>
-  </section>
 
-  <div class="tier-label"><span class="t">Tier 2 — Python for DevOps &amp; Linux</span><span class="d">Modules 11–16 · bridges basics into real automation</span></div>
+server = {"host": "web-01", "port": 80, "active": True}
+print(server["host"])  <span class="c"># web-01</span></pre>
+      </div>
+      <ul class="mod-list">
+        <li><b>List [ ]:</b> ordered, changeable — most commonly used collection.</li>
+        <li><b>Tuple ( ):</b> ordered, unchangeable — fixed data like coordinates.</li>
+        <li><b>Dict {key: value}:</b> instant lookup by key — the foundation of JSON data.</li>
+        <li><b>Set { }:</b> unordered, auto-removes duplicates — useful for deduplication.</li>
+      </ul>
+      <div class="devops-tip"><strong>DevOps use:</strong> Dictionaries map server configs and API responses (JSON becomes a dict). Lists hold server IPs or service names to iterate over.</div>
+    </section>
+    <hr class="module-divider"/>
 
-  <section class="mod" id="m11">
-    <span class="mod-num">MODULE 11</span>
-    <h2>Error Handling — try / except</h2>
-    <p class="desc">Scripts that crash on the first bad input are useless in production. <code class="inline">try/except</code> lets your script handle failures gracefully instead of dying.</p>
-    <pre>try:
+    <!-- ═══ TIER 2 ═══ -->
+    <div class="tier-label">
+      <h2>Tier 2 — Python for DevOps &amp; Linux</h2>
+      <span class="tier-desc">Modules 11–16 · bridges basics into real automation</span>
+    </div>
+
+    <!-- M11 -->
+    <section class="module-section" id="m11">
+      <div class="module-header">
+        <span class="module-num-badge">MODULE 11</span>
+        <div class="module-header-text">
+          <h2>Error Handling — try / except</h2>
+          <p>Scripts that crash on bad input are useless in production. Handle failures gracefully.</p>
+        </div>
+      </div>
+      <div class="code-wrap">
+        <div class="code-label">try / except / finally</div>
+        <pre>try:
     value = int(input("Enter a number: "))
     print(100 / value)
 except ZeroDivisionError:
@@ -347,39 +605,55 @@ except ValueError:
     print("That wasn't a number")
 finally:
     print("Done checking input")</pre>
-    <h3>Why This Matters for Automation</h3>
-    <ul>
-      <li><b>try:</b> code that might fail goes here.</li>
-      <li><b>except:</b> catches a specific error type — be specific, don't use a bare <code class="inline">except:</code></li>
-      <li><b>finally:</b> always runs — close files, release locks, log "attempt finished".</li>
-      <li><b>Real use case:</b> a server-check script shouldn't crash just because one host is unreachable.</li>
-    </ul>
-  </section>
+      </div>
+      <ul class="mod-list">
+        <li><b>try:</b> code that might fail goes here.</li>
+        <li><b>except:</b> catches a specific error type — be specific, don't use a bare <code class="inline">except:</code></li>
+        <li><b>finally:</b> always runs — close files, release locks, log "attempt finished".</li>
+        <li><b>Real use case:</b> a server-check script shouldn't crash because one host is unreachable.</li>
+      </ul>
+    </section>
+    <hr class="module-divider"/>
 
-  <section class="mod" id="m12">
-    <span class="mod-num">MODULE 12</span>
-    <h2>File Handling &amp; Paths</h2>
-    <p class="desc">Reading configs, writing logs, parsing output files — almost every automation script touches the filesystem.</p>
-    <pre><span class="c"># Writing and reading a file</span>
+    <!-- M12 -->
+    <section class="module-section" id="m12">
+      <div class="module-header">
+        <span class="module-num-badge">MODULE 12</span>
+        <div class="module-header-text">
+          <h2>File Handling &amp; Paths</h2>
+          <p>Reading configs, writing logs, parsing output — every automation script touches the filesystem.</p>
+        </div>
+      </div>
+      <div class="code-wrap">
+        <div class="code-label">Writing and reading files safely</div>
+        <pre><span class="c"># Writing and reading a file</span>
 with open("status.log", "a") as f:
     f.write("Service checked: OK\n")
 
 with open("status.log", "r") as f:
     for line in f:
         print(line.strip())</pre>
-    <h3>Working With Files Safely</h3>
-    <ul>
-      <li><b>with open(...) as f:</b> auto-closes the file even if an error happens — always prefer this.</li>
-      <li><b>Modes:</b> <code class="inline">"r"</code> read, <code class="inline">"w"</code> overwrite, <code class="inline">"a"</code> append.</li>
-      <li><b>pathlib:</b> modern way to handle paths — <code class="inline">from pathlib import Path</code> works across Linux/Windows.</li>
-    </ul>
-  </section>
+      </div>
+      <ul class="mod-list">
+        <li><b>with open(...) as f:</b> auto-closes the file even if an error happens — always prefer this.</li>
+        <li><b>Modes:</b> <code class="inline">"r"</code> read, <code class="inline">"w"</code> overwrite, <code class="inline">"a"</code> append.</li>
+        <li><b>pathlib:</b> modern way to handle paths — <code class="inline">from pathlib import Path</code> works across Linux/Windows.</li>
+      </ul>
+    </section>
+    <hr class="module-divider"/>
 
-  <section class="mod" id="m13">
-    <span class="mod-num">MODULE 13</span>
-    <h2>Modules, pip &amp; Virtual Environments</h2>
-    <p class="desc">Real projects use external libraries. pip installs them; venv keeps each project's dependencies isolated so they don't conflict.</p>
-    <pre><span class="c"># Create and activate a virtual environment</span>
+    <!-- M13 -->
+    <section class="module-section" id="m13">
+      <div class="module-header">
+        <span class="module-num-badge">MODULE 13</span>
+        <div class="module-header-text">
+          <h2>Modules, pip &amp; Virtual Environments</h2>
+          <p>pip installs external libraries. venv keeps each project's dependencies isolated.</p>
+        </div>
+      </div>
+      <div class="code-wrap">
+        <div class="code-label">Create venv and install packages</div>
+        <pre><span class="c"># Create and activate a virtual environment</span>
 python3 -m venv venv
 source venv/bin/activate
 
@@ -387,72 +661,120 @@ source venv/bin/activate
 pip install requests
 pip freeze > requirements.txt
 pip install -r requirements.txt</pre>
-    <h3>Why Isolation Matters</h3>
-    <ul>
-      <li><b>venv:</b> a private copy of Python + packages per project — no version conflicts between projects.</li>
-      <li><b>requirements.txt:</b> lets anyone (or any CI pipeline) recreate your exact environment.</li>
-      <li><b>import:</b> use <code class="inline">import os</code> for built-ins, no install needed for the standard library.</li>
-    </ul>
-  </section>
+      </div>
+      <ul class="mod-list">
+        <li><b>venv:</b> a private copy of Python + packages per project — no version conflicts between projects.</li>
+        <li><b>requirements.txt:</b> lets anyone (or any CI pipeline) recreate your exact environment.</li>
+        <li><b>import:</b> use <code class="inline">import os</code> for built-ins — no install needed for the standard library.</li>
+      </ul>
+      <div class="callout callout-tip">
+        <span class="callout-icon">💡</span>
+        <p><strong>Best practice:</strong> Always create a venv before starting a project. Commit <code class="inline">requirements.txt</code> but add <code class="inline">venv/</code> to your <code class="inline">.gitignore</code>.</p>
+      </div>
+    </section>
+    <hr class="module-divider"/>
 
-  <section class="mod" id="m14">
-    <span class="mod-num">MODULE 14</span>
-    <h2>Working with JSON &amp; APIs</h2>
-    <p class="desc">APIs (AWS, GitHub, monitoring tools) speak JSON. This is how Python scripts talk to them and to your own config files.</p>
-    <pre>import requests, json
+    <!-- M14 -->
+    <section class="module-section" id="m14">
+      <div class="module-header">
+        <span class="module-num-badge">MODULE 14</span>
+        <div class="module-header-text">
+          <h2>Working with JSON &amp; APIs</h2>
+          <p>AWS, GitHub, and monitoring tools speak JSON. Here's how Python talks to them.</p>
+        </div>
+      </div>
+      <div class="code-wrap">
+        <div class="code-label">Calling an API and reading a local JSON config</div>
+        <pre>import requests, json
 
 response = requests.get("https://api.github.com/users/octocat")
 data = response.json()
 print(data["login"], data["public_repos"])
 
-<span class="c"># Reading a local JSON config</span>
+<span class="c"># Reading a local JSON config (works offline)</span>
 with open("config.json") as f:
     config = json.load(f)
 print(config["server_name"])</pre>
-    <h3>JSON Essentials</h3>
-    <ul>
-      <li><b>requests:</b> the standard library for calling HTTP APIs — install with <code class="inline">pip install requests</code></li>
-      <li><b>.json():</b> converts an API response straight into a Python dictionary.</li>
-      <li><b>json.load() / json.dump():</b> read and write JSON files for configs or saved state.</li>
-    </ul>
-  </section>
+      </div>
+      <ul class="mod-list">
+        <li><b>requests:</b> the standard library for HTTP APIs — install with <code class="inline">pip install requests</code></li>
+        <li><b>.json():</b> converts an API response straight into a Python dictionary.</li>
+        <li><b>json.load() / json.dump():</b> read and write JSON files for configs or saved state.</li>
+      </ul>
+      <div class="callout callout-warn">
+        <span class="callout-icon">⚠️</span>
+        <p><strong>Network note:</strong> The GitHub example requires internet access. Behind a proxy or restricted network? Use the <code class="inline">json.load()</code> example with a local config file as your primary pattern.</p>
+      </div>
+    </section>
+    <hr class="module-divider"/>
 
-  <section class="mod" id="m15">
-    <span class="mod-num">MODULE 15</span>
-    <h2>os &amp; subprocess — Automating Linux</h2>
-    <p class="desc">This is where Python actually becomes a DevOps tool: reading environment variables, listing files, and running real shell commands from a script.</p>
-    <pre>import os, subprocess
+    <!-- M15 -->
+    <section class="module-section" id="m15">
+      <div class="module-header">
+        <span class="module-num-badge">MODULE 15</span>
+        <div class="module-header-text">
+          <h2>os &amp; subprocess — Automating Linux</h2>
+          <p>Reading env vars, listing files, running real shell commands — Python becomes a DevOps tool.</p>
+        </div>
+      </div>
+      <div class="code-wrap">
+        <div class="code-label">os.environ and subprocess.run</div>
+        <pre>import os, subprocess
 
-<span class="c"># Read an environment variable</span>
+<span class="c"># Read an env var — never hardcode secrets in scripts</span>
 api_key = os.environ.get("API_KEY", "not set")
 
 <span class="c"># Run a shell command and capture output</span>
 result = subprocess.run(
-    ["df", "-h", "/"], capture_output=True, text=True
+    ["df", "-h", "/"],
+    capture_output=True,
+    text=True,
+    check=True    <span class="c"># raises CalledProcessError if command fails</span>
 )
-print(result.stdout)</pre>
-    <h3>Scripting the System</h3>
-    <ul>
-      <li><b>os.environ:</b> read env vars/secrets — never hardcode API keys in the script.</li>
-      <li><b>os.listdir() / os.path:</b> walk directories, check if files/paths exist.</li>
-      <li><b>subprocess.run():</b> the safe modern way to call shell commands — capture exit codes, stdout, stderr.</li>
-      <li><b>sys.argv:</b> read command-line arguments so your script can be reused with different inputs.</li>
-    </ul>
-  </section>
+print(result.stdout)
+print("Exit code:", result.returncode)  <span class="c"># 0 = success</span></pre>
+      </div>
+      <ul class="mod-list">
+        <li><b>os.environ:</b> read env vars and secrets — never hardcode API keys in the script.</li>
+        <li><b>os.listdir() / os.path:</b> walk directories, check if files or paths exist.</li>
+        <li><b>subprocess.run():</b> the safe modern way to call shell commands — captures exit codes, stdout, stderr.</li>
+        <li><b>check=True:</b> raises <code class="inline">CalledProcessError</code> if the command fails — always use in production scripts so errors are never silently ignored.</li>
+        <li><b>sys.argv:</b> read command-line arguments so your script can be reused with different inputs.</li>
+      </ul>
+    </section>
+    <hr class="module-divider"/>
 
-  <section class="mod" id="m16">
-    <span class="mod-num">MODULE 16</span>
-    <h2>Final Project — Server Health-Check Script</h2>
-    <p class="desc">Put it all together: a script that checks disk space and memory, logs the result to a file, and exits with an alert if a threshold is crossed — a real, runnable DevOps tool.</p>
-    <pre>#!/usr/bin/env python3
+    <!-- M16 FINAL PROJECT -->
+    <section class="module-section mod-final" id="m16">
+      <div class="module-header">
+        <span class="module-num-badge">MODULE 16 — FINAL PROJECT</span>
+        <div class="module-header-text">
+          <h2>Server Health-Check Script</h2>
+          <p>Put it all together — a real, deployable DevOps tool that checks disk, logs, and alerts.</p>
+        </div>
+      </div>
+      <div class="concept-block">
+        <h3>What This Script Does</h3>
+        <p>Checks disk space using subprocess, logs every result to a file in your home directory, and prints an alert if usage crosses 85%. A complete, runnable script you can schedule with cron immediately after finishing this module.</p>
+      </div>
+      <div class="code-wrap">
+        <div class="code-label">health_check.py — complete script</div>
+        <pre>#!/usr/bin/env python3
 import subprocess, datetime
+from pathlib import Path
+
+<span class="c"># Log to home dir — no sudo needed</span>
+LOG_FILE = Path.home() / "health_check.log"
 
 def get_disk_usage():
-    result = subprocess.run(["df", "-h", "/"], capture_output=True, text=True)
+    result = subprocess.run(
+        ["df", "-h", "/"],
+        capture_output=True, text=True, check=True
+    )
     return result.stdout.splitlines()[1]
 
 def log_status(line):
-    with open("/var/log/health_check.log", "a") as f:
+    with open(LOG_FILE, "a") as f:
         f.write(f"{datetime.datetime.now()} — {line}\n")
 
 try:
@@ -463,35 +785,74 @@ try:
         print(f"⚠️  ALERT: Disk usage at {usage_percent}%")
     else:
         print(f"✅ Disk OK: {usage_percent}% used")
+except subprocess.CalledProcessError as e:
+    log_status(f"COMMAND ERROR: {e}")
+    print("Could not run df — check your system.")
+except PermissionError:
+    print(f"Cannot write log to {LOG_FILE} — check permissions.")
 except Exception as e:
     log_status(f"ERROR: {e}")
     print("Health check failed — see log")</pre>
-  </section>
+      </div>
+      <h3 style="font-size:0.9rem;font-weight:700;margin:14px 0 8px">What each part does</h3>
+      <ul class="mod-list">
+        <li><b>pathlib.Path.home():</b> log file goes to your home directory — no sudo required.</li>
+        <li><b>check=True on subprocess:</b> if <code class="inline">df</code> fails, you get a clear error not a silent crash.</li>
+        <li><b>Specific except blocks:</b> <code class="inline">CalledProcessError</code> and <code class="inline">PermissionError</code> caught separately for clearer debugging.</li>
+        <li><b>Schedule it:</b> add to crontab with <code class="inline">crontab -e</code> → <code class="inline">*/5 * * * * python3 ~/health_check.py</code></li>
+      </ul>
+      <div class="extend-block">
+        <h3>🏆 Extend This Project</h3>
+        <p>Schedule it with <code class="inline">cron</code>, send the alert to Slack via <code class="inline">requests</code>, add memory and CPU checks using <code class="inline">psutil</code>, or wire it into the monitoring stack from the DevOps Bootcamp for a real always-on health check.</p>
+      </div>
+    </section>
 
-  <div class="project">
-    <span class="mod-num">🏆 EXTEND THIS PROJECT</span>
-    <h2>Where to Take It Next</h2>
-    <p style="color:#c5d0e8;font-size:0.88rem">Schedule it with <code class="inline">cron</code>, send the alert to Slack via <code class="inline">requests</code>, or wire it into the monitoring stack from the DevOps Bootcamp for a real always-on health check.</p>
-  </div>
+    <!-- ENROLL CTA -->
+    <div class="enroll-cta">
+      <div style="font-size:2rem;margin-bottom:12px">🐍</div>
+      <h2>Want the hands-on version?</h2>
+      <p>The live DevOps Bootcamp and AI course both build directly on these Python fundamentals — same instructor who wrote these notes, with real projects and live sessions.</p>
+      <div class="enroll-actions">
+        <a href="https://wa.me/923231450045?text=Hi%20Kamran%2C%20I%20read%20the%20Python%20notes%20and%20want%20to%20know%20more." class="btn-enroll">💬 Ask on WhatsApp →</a>
+        <a href="learn.html" class="btn-ghost">Browse All Courses</a>
+      </div>
+      <p style="font-size:0.72rem;color:var(--gray-500);margin-top:12px">Batch info &amp; fee details on request</p>
+    </div>
 
-  <div class="closing">
-    <h2>Want the hands-on version?</h2>
-    <p>The live DevOps Bootcamp and AI course both build directly on these Python fundamentals — same instructor who wrote these notes.</p>
-    <a class="btn-primary" href="https://wa.me/923231450045?text=Hi%20Kamran%2C%20I%20read%20the%20Python%20notes%20and%20want%20to%20know%20more.">💬 Ask on WhatsApp →</a>
-  </div>
-
-</main>
-</div>
+  </main>
+</div><!-- /page-wrap -->
 
 <footer>
-  © 2026 Devriston · Muhammad Kamran Kabeer · Lahore, Pakistan<br><br>
-  <a href="learn.html">Learning Hub</a>
-  <a href="devops-notes.html">DevOps Quick Notes</a>
-  <a href="linux-notes.html">Linux Notes</a>
-  <a href="c-programming.html">C Programming</a>
-  <a href="ai-notes.html">AI Notes</a>
-  <a href="contact.html">Contact</a>
+  <p>© 2026 Devriston · Muhammad Kamran Kabeer · Lahore, Pakistan</p>
+  <div class="footer-links">
+    <a href="learn.html">Learning Hub</a>
+    <a href="devops-notes.html">DevOps Quick Notes</a>
+    <a href="linux-notes.html">Linux Notes</a>
+    <a href="ai-notes.html">AI Notes</a>
+    <a href="c-programming.html">C Programming</a>
+    <a href="contact.html">Contact</a>
+  </div>
 </footer>
 
+<script>
+  // Mobile nav toggle
+  document.querySelector('.nav-mobile-toggle').addEventListener('click', () => {
+    document.getElementById('nav-mobile').classList.toggle('open');
+  });
+
+  // IntersectionObserver — sidebar active highlight on scroll (same as ai-notes)
+  const sections = document.querySelectorAll('.module-section');
+  const links = document.querySelectorAll('.sidebar a[href^="#"]');
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        links.forEach(l => l.classList.remove('active'));
+        const lnk = document.querySelector(`.sidebar a[href="#${e.target.id}"]`);
+        if (lnk) lnk.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-20% 0px -70% 0px' });
+  sections.forEach(s => obs.observe(s));
+</script>
 </body>
 </html>
