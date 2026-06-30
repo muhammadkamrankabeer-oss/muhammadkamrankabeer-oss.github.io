@@ -5,14 +5,14 @@
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
 <meta name="google-site-verification" content="wAaiTAPySebPceM4Bux5hwxIT3hy6BDj_NlLq4aDj5Y"/>
 <title>DevOps Blog | Devriston — Project Writeups, Tutorials & Engineering Articles</title>
-<meta name="description" content="8 in-depth DevOps project articles by Muhammad Kamran Kabeer — Terraform, Ansible, Docker, CI/CD, Prometheus, Samba4 and more. Real projects, real source code, real lessons."/>
+<meta name="description" content="9 in-depth DevOps project articles by Muhammad Kamran Kabeer — Terraform, Ansible, Docker, CI/CD, Prometheus, Samba4, Kubernetes and more. Real projects, real source code, real lessons."/>
 <meta name="keywords" content="devops blog, terraform aws, ansible automation, docker self-healing, prometheus grafana, cicd github actions, devops engineer pakistan"/>
 <meta name="author" content="Muhammad Kamran Kabeer"/>
 <meta name="robots" content="index,follow"/>
 <link rel="canonical" href="https://www.devriston.com.pk/blog.html"/>
 <meta property="og:type" content="website"/>
 <meta property="og:title" content="DevOps Blog | Devriston — Project Writeups & Engineering Articles"/>
-<meta property="og:description" content="8 in-depth DevOps project articles — Terraform, Ansible, Docker, CI/CD, Prometheus. Real projects, real source code."/>
+<meta property="og:description" content="9 in-depth DevOps project articles — Terraform, Ansible, Docker, CI/CD, Prometheus, Kubernetes. Real projects, real source code."/>
 <meta property="og:url" content="https://www.devriston.com.pk/blog.html"/>
 <meta property="og:image" content="https://www.devriston.com.pk/assets/images/banner.png"/>
 <link rel="icon" type="image/png" href="assets/logos/dv-logo.png"/>
@@ -135,6 +135,8 @@
       <button class="fpill" data-cat="linux">Linux</button>
       <button class="fpill" data-cat="cicd">CI/CD</button>
       <button class="fpill" data-cat="kubernetes">Kubernetes</button>
+      <button class="fpill" data-cat="cloud">Cloud / AWS</button>
+      <button class="fpill" data-cat="devops">DevOps</button>
     </div>
     <span class="result-count" id="blogCount">9 articles</span>
   </div>
@@ -174,7 +176,7 @@
 
     <!-- ARTICLES GRID -->
     <div class="content-grid" id="articlesGrid">
-      <a class="c-card" data-cat="terraform-aws-3tier-platform" data-title="Building a Terraform AWS 3-Tier Platform" data-tags="terraform aws vpc iac" href="terraform-aws-3tier-platform.html">
+      <a class="c-card" data-cat="terraform-aws-3tier-platform" data-title="Building a Terraform AWS 3-Tier Platform" data-tags="terraform aws vpc iac cloud" href="terraform-aws-3tier-platform.html">
         <div class="c-card-accent"></div><div class="c-card-body">
         <span class="c-cat" style="background:rgba(94,72,255,.18);color:rgba(140,120,255,1)">⚙️ Terraform · IaC</span>
         <h3 class="c-title">Building a Terraform AWS 3-Tier Platform</h3>
@@ -185,7 +187,7 @@
         <div class="c-footer"><div class="c-tags"><span class="c-tag">terraform</span><span class="c-tag">aws</span><span class="c-tag">vpc</span><span class="c-tag">iac</span></div><span class="c-read">Read article <span class="arr">→</span></span></div>
         </div><div class="c-read-time">⏱ 8 min read</div>
       </a>
-      <a class="c-card" data-cat="monitoring-stack-automation" data-title="Self-Hosted Monitoring Stack with Prometheus, Grafana, Loki & Ansible" data-tags="prometheus grafana ansible docker" href="monitoring-stack-automation.html">
+      <a class="c-card" data-cat="monitoring-stack-automation" data-title="Self-Hosted Monitoring Stack with Prometheus, Grafana, Loki & Ansible" data-tags="prometheus grafana ansible docker monitoring" href="monitoring-stack-automation.html">
         <div class="c-card-accent"></div><div class="c-card-body">
         <span class="c-cat" style="background:rgba(0,200,150,.12);color:rgba(0,200,150,1)">📊 Monitoring · Ansible</span>
         <h3 class="c-title">Self-Hosted Monitoring Stack with Prometheus, Grafana, Loki & Ansible</h3>
@@ -370,6 +372,15 @@ function setFilter(cat){
   pills.forEach(p=>{p.classList.remove('active');if(p.dataset.cat===cat)p.classList.add('active');});
   activeCat=cat;applyFilter();
 }
+// Deep-link support: blog.html#docker, blog.html#terraform etc. (used by article page footer category links)
+(function(){
+  const validCats=pills.map(p=>p.dataset.cat);
+  const hash=decodeURIComponent(location.hash.replace('#',''));
+  if(hash&&validCats.includes(hash)){
+    setFilter(hash);
+    setTimeout(()=>{document.querySelector('.search-bar').scrollIntoView({behavior:'smooth',block:'start'});},300);
+  }
+})();
 </script>
 </body>
 </html>
