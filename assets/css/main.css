@@ -115,6 +115,11 @@ hr.div{border:none;height:1px;background:var(--border)}
 .hero-h1 .grad{background:linear-gradient(135deg,var(--blue-l),var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 .hero-sub{font-size:1.08rem;color:var(--white-2);max-width:500px;margin-bottom:34px;line-height:1.82}
 .hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:48px}
+.hero-ctas-row{display:flex;flex-wrap:wrap;gap:28px;margin-bottom:14px}
+.hero-cta-group{display:flex;flex-direction:column;gap:9px}
+.hero-cta-label{font-size:.66rem;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--white-2);opacity:.65}
+.hero-tertiary{font-size:.85rem;color:var(--white-2);text-decoration:underline;text-underline-offset:3px;text-decoration-color:rgba(255,255,255,.25);margin-bottom:34px;display:inline-block}
+.hero-tertiary:hover{color:var(--cyan);text-decoration-color:var(--cyan)}
 .hero-stats{display:flex;gap:32px;flex-wrap:wrap;padding-top:30px;border-top:1px solid rgba(255,255,255,.07)}
 .h-stat{display:flex;flex-direction:column;gap:2px}
 .h-stat-val{font-size:1.85rem;font-weight:800;color:var(--white);line-height:1}
