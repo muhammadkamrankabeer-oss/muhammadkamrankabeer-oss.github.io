@@ -170,6 +170,19 @@
     .courses-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-bottom:32px}
     @media(max-width:1024px){.courses-grid{grid-template-columns:repeat(2,1fr)}}
     @media(max-width:600px){.courses-grid{grid-template-columns:1fr}}
+    .courses-grid.core-grid{grid-template-columns:repeat(3,1fr)}
+    @media(max-width:900px){.courses-grid.core-grid{grid-template-columns:1fr}}
+    .foundation-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:32px}
+    @media(max-width:800px){.foundation-grid{grid-template-columns:1fr}}
+    .course-card-mini{background:var(--navy-2);border:1px solid var(--border);border-radius:var(--r-lg);padding:18px;display:flex;flex-direction:column;gap:8px;color:var(--white)}
+    .cm-top{display:flex;align-items:center;justify-content:space-between}
+    .cm-icon{font-size:1.3rem}
+    .cm-badge{font-family:var(--f-mono);font-size:.62rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:3px 8px;border-radius:var(--r-full)}
+    .cm-badge.live{background:rgba(34,197,94,.12);color:#4ade80}
+    .cm-badge.free{background:rgba(26,106,255,.12);color:var(--blue-l,#5b9dff)}
+    .cm-name{font-weight:700;font-size:.95rem}
+    .cm-desc{font-size:.82rem;color:var(--gray-500);line-height:1.5}
+    .cm-footer{margin-top:4px;display:flex;gap:8px}
     .course-card{background:var(--navy-2);border:1px solid var(--border);border-radius:var(--r-lg);padding:24px;display:flex;flex-direction:column;gap:12px;transition:box-shadow var(--t),transform var(--t);color:var(--white)}
     .course-card:hover{box-shadow:0 0 32px rgba(26,106,255,0.15);transform:translateY(-3px)}
     .course-card-top{display:flex;align-items:center;justify-content:space-between}
@@ -307,7 +320,7 @@
 </div>
 
 <!-- LEARN SUB-NAV -->
-<nav class="learn-subnav" aria-label="Learning sections"><div class="learn-subnav-inner"><a href="https://www.devriston.com.pk/learn.html" class="sn-active">🏠 Academy Hub</a><a href="https://www.devriston.com.pk/courses.html">🎓 Courses</a><span class="sn-sep"></span><a href="https://www.devriston.com.pk/linux-notes.html">🐧 Linux Notes</a><a href="https://www.devriston.com.pk/cloud-notes.html">☁️ Cloud Notes</a><a href="https://www.devriston.com.pk/devops-full-notes.html">⚙️ DevOps Notes</a><a href="https://www.devriston.com.pk/ai-notes.html">🤖 AI Notes</a><a href="https://www.devriston.com.pk/python-notes.html">🐍 Python Notes</a><a href="https://www.devriston.com.pk/c-programming.html">💻 C Programming</a><span class="sn-sep"></span><a href="blog.html">📚 Resources Hub →</a></div></nav>
+<nav class="learn-subnav"><div class="learn-subnav-inner"><a href="learn.html" class="sn-active">🏠 Hub</a><a href="courses.html">🎓 Courses</a><span class="sn-sep"></span><a href="linux-notes.html">🐧 Linux</a><a href="cloud-notes.html">☁️ Cloud</a><a href="devops-full-notes.html">⚙️ DevOps</a><span class="sn-sep"></span><a href="ai-notes.html">🤖 AI</a><a href="python-notes.html">🐍 Python</a><a href="c-programming.html">💻 C</a><a href="os-notes.html">🖥️ OS</a><a href="networking-notes.html">🌐 Networking</a><span class="sn-sep"></span><a href="devops-notes.html">📋 Quick Notes</a><a href="interview-guide.html">💼 Interview Guide</a><a href="blog.html">📝 Blog</a></div></nav>
 
 <!-- ════ HERO ════ -->
 <div class="container hero-wrap">
@@ -319,17 +332,17 @@
     <div class="hero-left">
       <div class="hero-badge">Learning Hub</div>
       <h1>DevOps Courses, Linux Training<br/>&amp; <em>Free Lecture Notes</em></h1>
-      <p class="hero-sub">4 courses · free notes for every module · interview guide · blog.<br/>Taught by a practicing engineer with 10+ years experience.</p>
+      <p class="hero-sub">3 courses · free notes for every module · interview guide · blog.<br/>Taught by a practicing engineer with 10+ years experience.</p>
     </div>
     <!-- ✅ IMPROVEMENT: Stats with better hierarchy and descriptions -->
     <div class="hero-stats">
       <div class="hero-stat">
-        <strong>4</strong>
+        <strong>3</strong>
         <div class="stat-label">Live Courses</div>
         <div class="stat-sub">Online batches</div>
       </div>
       <div class="hero-stat stat-highlight">
-        <strong>59</strong>
+        <strong>69</strong>
         <div class="stat-label">Free Modules</div>
         <div class="stat-sub">No signup needed</div>
       </div>
@@ -359,13 +372,13 @@
     <span style="color:var(--gray-500)">Not sure? <a href="https://wa.me/923231450045?text=Hi%20Kamran%2C%20which%20course%20should%20I%20start%20with?" style="color:var(--cyan);text-decoration:none;font-weight:600">Ask on WhatsApp →</a></span>
   </div>
 
-  <!-- ════ COURSES ════ -->
+  <!-- ════ CORE COURSES ════ -->
   <div class="sec-label-row">
-    <h2 class="sec-label">Courses</h2>
-    <span class="sec-sub-label">Live online batches · enroll via WhatsApp</span>
+    <h2 class="sec-label">Core Courses</h2>
+    <span class="sec-sub-label">Main career path · live online batches · enroll via WhatsApp</span>
   </div>
 
-  <div class="courses-grid">
+  <div class="courses-grid core-grid">
 
     <!-- Linux -->
     <div class="course-card card-linux">
@@ -375,14 +388,12 @@
       </div>
       <div class="course-name">Linux Fundamentals — RHCSA Path</div>
       <div class="course-desc">Start from zero — learn to manage a real Linux server, create users, set up a web server, configure DNS, share files across a network.</div>
-      <!-- ✅ IMPROVEMENT: Outcome statement -->
       <div class="course-outcome">Manage a production Linux server from scratch</div>
       <div class="course-meta">
         <span class="course-tag">16 modules</span>
         <span class="course-tag">Beginner → Intermediate</span>
         <span class="cert-tag">RHCSA aligned</span>
       </div>
-      <!-- ✅ IMPROVEMENT: Duration + prerequisites -->
       <div class="course-duration">⏱ <span>~12 weeks · 2 sessions/week</span></div>
       <div class="course-prereq"><strong>Needs:</strong> Basic computer skills only — no Linux experience required</div>
       <div class="course-footer">
@@ -420,7 +431,6 @@
       </div>
       <div class="course-name">DevOps Bootcamp — Zero to Production</div>
       <div class="course-desc">Automate deployments, containerise apps, provision cloud infrastructure, orchestrate with Kubernetes and monitor everything.</div>
-      <!-- Portfolio highlight -->
       <div class="course-outcome">5 GitHub repos = your job portfolio for employers</div>
       <div class="course-meta">
         <span class="course-tag">17 modules</span>
@@ -434,28 +444,68 @@
       </div>
     </div>
 
+  </div><!-- /core-grid -->
+
+  <!-- ════ FOUNDATION & SPECIALIZATION ════ -->
+  <div class="sec-label-row">
+    <h2 class="sec-label">Foundation &amp; Specialization</h2>
+    <span class="sec-sub-label">Supplementary skills — one live course, four free self-paced references</span>
+  </div>
+
+  <div class="foundation-grid">
+
     <!-- AI -->
-    <div class="course-card card-ai">
-      <div class="course-card-top">
-        <span class="course-icon">🤖</span>
-        <span class="course-badge badge-new">New</span>
-      </div>
-      <div class="course-name">AI for IT Professionals — Practical Guide</div>
-      <div class="course-desc">Run models locally, write better scripts with AI help, call AI APIs from Python and build simple tools. Practical skills for IT and DevOps professionals, not AI researchers.</div>
-      <div class="course-outcome">Build and deploy AI-assisted automation scripts</div>
-      <div class="course-meta">
-        <span class="course-tag">12 modules</span>
-        <span class="course-tag">Hands-on tools</span>
-      </div>
-      <div class="course-duration">⏱ <span>~8 weeks · 2 sessions/week</span></div>
-      <div class="course-prereq"><strong>Needs:</strong> Basic Python knowledge helpful but not required</div>
-      <div class="course-footer">
+    <div class="course-card-mini">
+      <div class="cm-top"><span class="cm-icon">🤖</span><span class="cm-badge live">Live</span></div>
+      <div class="cm-name">AI for IT Professionals</div>
+      <div class="cm-desc">Run models locally, script with AI help, call AI APIs from Python. Practical AI for IT/DevOps, not research.</div>
+      <div class="cm-footer">
         <a href="https://wa.me/923231450045?text=Hi%20Kamran%2C%20I%20want%20to%20enroll%20in%20the%20AI%20course." class="btn-enroll">Enroll →</a>
         <a href="ai-notes.html" class="btn-notes">Free Notes</a>
       </div>
     </div>
 
-  </div><!-- /courses-grid -->
+    <!-- Python -->
+    <div class="course-card-mini">
+      <div class="cm-top"><span class="cm-icon">🐍</span><span class="cm-badge free">Self-Paced · Free</span></div>
+      <div class="cm-name">Python Notes</div>
+      <div class="cm-desc">Scripting fundamentals for automation and DevOps tooling — free reference notes, no live batch.</div>
+      <div class="cm-footer">
+        <a href="python-notes.html" class="btn-notes" style="width:100%;text-align:center">View Notes →</a>
+      </div>
+    </div>
+
+    <!-- C Programming -->
+    <div class="course-card-mini">
+      <div class="cm-top"><span class="cm-icon">💻</span><span class="cm-badge free">Self-Paced · Free</span></div>
+      <div class="cm-name">C Programming</div>
+      <div class="cm-desc">Core programming fundamentals — memory, pointers, systems thinking. Free reference notes, no live batch.</div>
+      <div class="cm-footer">
+        <a href="c-programming.html" class="btn-notes" style="width:100%;text-align:center">View Notes →</a>
+      </div>
+    </div>
+
+    <!-- OS -->
+    <div class="course-card-mini">
+      <div class="cm-top"><span class="cm-icon">🖥️</span><span class="cm-badge free">Self-Paced · Free</span></div>
+      <div class="cm-name">Operating Systems</div>
+      <div class="cm-desc">Process scheduling, memory management, deadlocks, file systems — core CS fundamentals. Free reference notes.</div>
+      <div class="cm-footer">
+        <a href="os-notes.html" class="btn-notes" style="width:100%;text-align:center">View Notes →</a>
+      </div>
+    </div>
+
+    <!-- Networking -->
+    <div class="course-card-mini">
+      <div class="cm-top"><span class="cm-icon">🌐</span><span class="cm-badge free">Self-Paced · Free</span></div>
+      <div class="cm-name">Computer Networking</div>
+      <div class="cm-desc">OSI/TCP-IP models, subnetting, routing, DNS/DHCP — foundational networking concepts. Free reference notes.</div>
+      <div class="cm-footer">
+        <a href="networking-notes.html" class="btn-notes" style="width:100%;text-align:center">View Notes →</a>
+      </div>
+    </div>
+
+  </div><!-- /foundation-grid -->
 
   <!-- ════ NOTES + QUICK REF ════ -->
   <div class="two-col" style="margin-bottom:32px">
@@ -513,6 +563,22 @@
           <div class="row-link-body">
             <div class="row-link-title">AI Notes</div>
             <div class="row-link-desc">12 modules · Ollama · prompt engineering · AI APIs</div>
+          </div>
+          <span class="row-link-arrow">→</span>
+        </a>
+        <a href="os-notes.html" class="row-link" style="border-left:3px solid #a78bfa">
+          <span class="row-link-icon">🖥️</span>
+          <div class="row-link-body">
+            <div class="row-link-title">Operating Systems Notes</div>
+            <div class="row-link-desc">5 modules · process scheduling · memory · deadlocks</div>
+          </div>
+          <span class="row-link-arrow">→</span>
+        </a>
+        <a href="networking-notes.html" class="row-link" style="border-left:3px solid #38bdf8">
+          <span class="row-link-icon">🌐</span>
+          <div class="row-link-body">
+            <div class="row-link-title">Networking Notes</div>
+            <div class="row-link-desc">5 modules · OSI/TCP-IP · subnetting · routing · DNS</div>
           </div>
           <span class="row-link-arrow">→</span>
         </a>

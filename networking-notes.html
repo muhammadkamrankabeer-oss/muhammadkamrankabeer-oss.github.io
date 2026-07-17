@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Computer Networking Lecture Notes | Devriston — Free Study Material</title>
+  <meta name="description" content="Free Computer Networking lecture notes for DIT students — OSI/TCP-IP models, IP addressing & subnetting, switches/routers, DNS/DHCP/security, plus full practical labs (cabling, Wireshark, router config)." />
+  <meta name="keywords" content="computer networking notes free, networking lecture notes DIT, PBTE DIT computer networks, OSI model notes, TCP IP notes, subnetting notes, IP addressing notes, networking notes Pakistan" />
+  <meta name="author" content="Muhammad Kamran Kabeer" />
+  <meta name="robots" content="index,follow" />
+  <link rel="canonical" href="https://www.devriston.com.pk/networking-notes.html" />
+  <meta property="og:title" content="Free Computer Networking Lecture Notes | Devriston" />
+  <meta property="og:description" content="5 modules of Computer Networking lecture notes for DIT — free to read. OSI/TCP-IP, IP addressing, switching, and full practical labs." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.devriston.com.pk/networking-notes.html" />
+  <meta property="og:site_name" content="Devriston" />
+
+  <style>
+    :root {
+      --navy:     #040d1c;
+      --navy-2:   #071428;
+      --navy-3:   #0a1d3a;
+      --blue:     #1a6aff;
+      --cyan:     #00d4ff;
+      --white:    #ffffff;
+      --gray-100: #f0f4ff;
+      --gray-400: #8899bb;
+      --gray-500: #5a6a88;
+      --border:   rgba(26,106,255,0.18);
+      --border-2: rgba(0,212,255,0.12);
+      --green:    #22c55e;
+      --orange:   #f97316;
+      --purple:   #a855f7;
+      --font-main: 'Inter', system-ui, -apple-system, sans-serif;
+      --font-mono: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
+      --radius: 10px;
+      --transition: 0.2s ease;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body { background: var(--navy); color: var(--white); font-family: var(--font-main); line-height: 1.7; -webkit-font-smoothing: antialiased; }
+    ::-webkit-scrollbar { width: 6px; } ::-webkit-scrollbar-track { background: var(--navy); } ::-webkit-scrollbar-thumb { background: var(--blue); border-radius: 3px; }
+
+    /* NAV */
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(4,13,28,0.95); backdrop-filter: blur(14px); border-bottom: 1px solid var(--border); padding: 0 5%; display: flex; align-items: center; justify-content: space-between; height: 60px; }
+    .nav-brand { display: flex; align-items: center; gap: 8px; text-decoration: none; color: var(--white); font-weight: 700; font-size: 1rem; }
+    .nav-brand img { height: 28px; }
+    .nav-links { display: flex; gap: 20px; list-style: none; }
+    .nav-links a { color: var(--gray-400); text-decoration: none; font-size: 0.82rem; font-weight: 500; transition: color var(--transition); }
+    .nav-links a:hover { color: var(--white); }
+    .nav-links a.active { color: var(--cyan); }
+    .nav-cta { background: var(--blue) !important; color: #fff !important; padding: 6px 14px; border-radius: 5px; font-size: 0.78rem !important; }
+    .nav-mobile-toggle { display: none; background: none; border: none; color: var(--white); font-size: 1.3rem; cursor: pointer; }
+    .nav-mobile { display: none; position: fixed; top: 60px; left: 0; right: 0; background: var(--navy-2); border-bottom: 1px solid var(--border); padding: 16px 5%; z-index: 99; flex-direction: column; gap: 0; }
+    .nav-mobile.open { display: flex; }
+    .nav-mobile a { color: var(--gray-400); text-decoration: none; font-size: 0.88rem; padding: 10px 0; border-bottom: 1px solid var(--border); display: block; }
+    .nav-mobile a:hover { color: var(--white); }
+    @media(max-width:768px) { .nav-links { display:none; } .nav-mobile-toggle { display:block; } }
+
+    /* LAYOUT */
+    .page-wrap { display: grid; grid-template-columns: 260px 1fr; min-height: 100vh; margin-top: 60px; }
+    @media(max-width:900px) { .page-wrap { grid-template-columns: 1fr; } .sidebar { display: none; } }
+
+    /* SIDEBAR */
+    .sidebar { position: sticky; top: 60px; height: calc(100vh - 60px); overflow-y: auto; background: var(--navy-2); border-right: 1px solid var(--border); padding: 24px 0; }
+    .sidebar::-webkit-scrollbar { width: 4px; }
+    .sidebar::-webkit-scrollbar-thumb { background: var(--border); }
+    .sidebar-title { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gray-500); padding: 0 20px; margin-bottom: 12px; }
+    .sidebar a { display: flex; align-items: center; gap: 10px; padding: 8px 20px; color: var(--gray-400); text-decoration: none; font-size: 0.8rem; transition: background var(--transition), color var(--transition); border-left: 2px solid transparent; }
+    .sidebar a:hover { background: rgba(255,255,255,0.03); color: var(--white); }
+    .sidebar a.active { background: rgba(26,106,255,0.08); color: var(--cyan); border-left-color: var(--cyan); }
+    .sidebar-num { font-family: var(--font-mono); font-size: 0.65rem; color: var(--gray-500); flex-shrink: 0; width: 22px; }
+
+    /* MAIN CONTENT */
+    main { padding: 40px 48px 80px; max-width: 860px; }
+    @media(max-width:600px) { main { padding: 24px 20px 60px; } }
+
+    /* BREADCRUMB */
+    .breadcrumb { font-size: 0.75rem; color: var(--gray-500); margin-bottom: 28px; }
+    .breadcrumb a { color: var(--gray-400); text-decoration: none; }
+    .breadcrumb a:hover { color: var(--cyan); }
+    .breadcrumb span { margin: 0 6px; }
+
+    /* PAGE HERO */
+    .page-hero { margin-bottom: 48px; }
+    .page-badge { display: inline-flex; align-items: center; gap: 7px; background: rgba(0,212,255,0.08); border: 1px solid rgba(0,212,255,0.2); color: var(--cyan); border-radius: 16px; padding: 4px 12px; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 16px; }
+    .page-hero h1 { font-size: clamp(1.7rem, 3.5vw, 2.4rem); font-weight: 800; line-height: 1.15; margin-bottom: 12px; }
+    .page-hero h1 em { font-style: normal; background: linear-gradient(135deg, var(--blue), var(--cyan)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .page-hero p { color: var(--gray-400); font-size: 0.95rem; max-width: 560px; line-height: 1.7; margin-bottom: 20px; }
+    .hero-pills { display: flex; flex-wrap: wrap; gap: 8px; }
+    .pill { padding: 4px 10px; border-radius: 4px; font-size: 0.72rem; font-weight: 600; border: 1px solid; }
+    .pill-free { background: rgba(34,197,94,0.1); color: var(--green); border-color: rgba(34,197,94,0.3); }
+    .pill-modules { background: rgba(26,106,255,0.1); color: #7db3ff; border-color: rgba(26,106,255,0.3); }
+    .pill-compare { background: rgba(249,115,22,0.1); color: var(--orange); border-color: rgba(249,115,22,0.3); }
+
+    /* MODULE SECTION */
+    .module-section { margin-bottom: 64px; scroll-margin-top: 80px; }
+    .module-header { display: flex; align-items: flex-start; gap: 14px; margin-bottom: 24px; padding-bottom: 16px; border-bottom: 1px solid var(--border); }
+    .module-num-badge { background: rgba(26,106,255,0.12); border: 1px solid var(--border); border-radius: 6px; padding: 4px 10px; font-family: var(--font-mono); font-size: 0.68rem; color: var(--cyan); font-weight: 700; white-space: nowrap; flex-shrink: 0; margin-top: 4px; }
+    .module-header-text h2 { font-size: 1.25rem; font-weight: 800; margin-bottom: 4px; }
+    .module-header-text p { font-size: 0.82rem; color: var(--gray-400); }
+
+    /* CONTENT BLOCKS */
+    .concept-block { background: rgba(255,255,255,0.025); border: 1px solid var(--border-2); border-radius: var(--radius); padding: 20px 22px; margin-bottom: 18px; }
+    .concept-block h3 { font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--cyan); margin-bottom: 10px; }
+    .concept-block p { font-size: 0.88rem; color: #c5d0e8; line-height: 1.75; }
+    .concept-block p + p { margin-top: 10px; }
+
+    /* COMPARE TABLE */
+    .compare-wrap { margin-bottom: 18px; overflow-x: auto; }
+    .compare-label { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--orange); margin-bottom: 10px; display: flex; align-items: center; gap: 7px; }
+    .compare-label::before { content: '⚡'; }
+    table.compare { width: 100%; border-collapse: collapse; font-size: 0.82rem; }
+    table.compare thead tr { background: rgba(255,255,255,0.04); }
+    table.compare th { padding: 10px 14px; text-align: left; font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--gray-400); border-bottom: 1px solid var(--border); }
+    table.compare th:nth-child(2) { color: #7db3ff; }
+    table.compare th:nth-child(3) { color: var(--orange); }
+    table.compare td { padding: 10px 14px; border-bottom: 1px solid rgba(255,255,255,0.04); color: #c5d0e8; vertical-align: top; line-height: 1.5; }
+    table.compare tr:last-child td { border-bottom: none; }
+    table.compare tr:hover td { background: rgba(255,255,255,0.02); }
+    table.compare td:first-child { font-weight: 600; color: var(--white); font-size: 0.8rem; }
+
+    /* CODE BLOCKS */
+    .code-wrap { margin-bottom: 18px; }
+    .code-label { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--green); margin-bottom: 8px; display: flex; align-items: center; gap: 6px; }
+    .code-label::before { content: '▶'; font-size: 0.6rem; }
+    pre { background: #020912; border: 1px solid rgba(26,106,255,0.2); border-radius: var(--radius); padding: 18px 20px; overflow-x: auto; font-family: var(--font-mono); font-size: 0.78rem; line-height: 1.7; color: #c5d0e8; }
+    pre .c  { color: var(--gray-500); font-style: italic; } /* comment */
+    pre .k  { color: var(--cyan); }   /* keyword/command */
+    pre .s  { color: var(--green); }  /* string/value */
+    pre .n  { color: var(--orange); } /* note */
+    pre .h  { color: #c084fc; }       /* highlight */
+
+    /* KEY TERMS */
+    .terms-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px,1fr)); gap: 10px; margin-bottom: 18px; }
+    .term-card { background: rgba(255,255,255,0.025); border: 1px solid var(--border-2); border-radius: 8px; padding: 14px 16px; }
+    .term-card dt { font-family: var(--font-mono); font-size: 0.78rem; color: var(--cyan); font-weight: 700; margin-bottom: 4px; }
+    .term-card dd { font-size: 0.78rem; color: var(--gray-400); line-height: 1.5; }
+
+    /* CALLOUT */
+    .callout { border-radius: 8px; padding: 14px 18px; margin-bottom: 18px; font-size: 0.84rem; line-height: 1.65; display: flex; gap: 12px; align-items: flex-start; }
+    .callout-tip  { background: rgba(34,197,94,0.07);  border: 1px solid rgba(34,197,94,0.2);  }
+    .callout-warn { background: rgba(249,115,22,0.07); border: 1px solid rgba(249,115,22,0.2); }
+    .callout-info { background: rgba(26,106,255,0.07); border: 1px solid rgba(26,106,255,0.2); }
+    .callout-icon { font-size: 1rem; flex-shrink: 0; line-height: 1.5; }
+    .callout p { color: #c5d0e8; }
+    .callout strong { color: var(--white); }
+
+    /* DIVIDER */
+    .module-divider { border: none; border-top: 1px solid var(--border); margin: 56px 0; }
+
+    /* BACK TO TOP */
+    #back-top { position: fixed; bottom: 24px; right: 24px; background: var(--blue); color: #fff; width: 38px; height: 38px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 16px; text-decoration: none; opacity: 0; pointer-events: none; transition: opacity var(--transition); z-index: 999; box-shadow: 0 0 14px rgba(26,106,255,0.4); }
+    #back-top.visible { opacity: 1; pointer-events: auto; }
+
+    /* FOOTER */
+    footer { background: var(--navy-2); border-top: 1px solid var(--border); padding: 36px 5% 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+    footer p { font-size: 0.78rem; color: var(--gray-500); }
+    .footer-links { display: flex; gap: 20px; flex-wrap: wrap; }
+    .footer-links a { color: var(--gray-500); text-decoration: none; font-size: 0.78rem; transition: color var(--transition); }
+    .footer-links a:hover { color: var(--white); }
+
+    /* ENROLL STICKY CTA */
+    .enroll-sticky { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%); background: var(--blue); color: #fff; padding: 11px 28px; border-radius: 30px; font-size: 0.85rem; font-weight: 700; text-decoration: none; box-shadow: 0 4px 24px rgba(26,106,255,0.5); z-index: 998; white-space: nowrap; transition: background var(--transition), transform var(--transition); }
+    .enroll-sticky:hover { background: #1557d6; transform: translateX(-50%) translateY(-2px); }
+    @media(max-width:480px) { .enroll-sticky { font-size: 0.78rem; padding: 10px 20px; } }
+  
+/* ── LEARN SUB-NAV ── */
+.learn-subnav{
+  position:sticky;top:60px;z-index:90;
+  background:rgba(7,20,40,0.97);backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(26,106,255,0.15);
+  overflow-x:auto;white-space:nowrap;
+  scrollbar-width:none;
+}
+.learn-subnav::-webkit-scrollbar{display:none}
+.learn-subnav-inner{
+  display:inline-flex;align-items:center;gap:2px;
+  padding:0 5%;min-width:100%;
+}
+.learn-subnav a{
+  display:inline-flex;align-items:center;gap:6px;
+  color:rgba(136,153,187,0.85);text-decoration:none;
+  font-size:0.78rem;font-weight:500;
+  padding:10px 12px;border-bottom:2px solid transparent;
+  transition:color 0.18s,border-color 0.18s;
+  white-space:nowrap;flex-shrink:0;
+}
+.learn-subnav a:hover{color:#fff}
+.learn-subnav a.sn-active{
+  color:#00d4ff;border-bottom-color:#00d4ff;font-weight:600;
+}
+.learn-subnav .sn-sep{
+  width:1px;height:16px;background:rgba(255,255,255,0.08);
+  margin:0 4px;flex-shrink:0;
+}
+
+  </style>
+</head>
+<body>
+
+<a href="#" id="back-top">↑</a>
+<a href="https://wa.me/923231450045?text=Hi%20Kamran%2C%20I%20want%20to%20enroll%20in%20the%20Networking%20course." class="enroll-sticky">🌐 Enroll in Networking Course →</a>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-brand" href="https://www.devriston.com.pk/index.html">
+    <img src="https://www.devriston.com.pk/assets/logos/dv-logo.png" alt="Devriston" />
+    Devriston
+  </a>
+  <ul class="nav-links"><li><a href="https://www.devriston.com.pk/index.html">Home</a></li><li><a href="https://www.devriston.com.pk/solutions.html">Solutions</a></li><li><a href="https://www.devriston.com.pk/case-studies.html">Engineering</a></li><li><a href="https://www.devriston.com.pk/learn.html">Academy</a></li><li><a href="https://www.devriston.com.pk/blog.html">Resources</a></li><li><a href="https://www.devriston.com.pk/about.html">About</a></li><li><a href="https://www.devriston.com.pk/contact.html" class="nav-cta">Book Consultation</a></li></ul>
+  <button class="nav-mobile-toggle" onclick="document.querySelector('.nav-mobile').classList.toggle('open')">☰</button>
+</nav>
+<div class="nav-mobile">
+  <a href="https://www.devriston.com.pk/index.html">Home</a>
+  <a href="https://www.devriston.com.pk/solutions.html">Solutions</a>
+  <a href="https://www.devriston.com.pk/case-studies.html">Engineering</a>
+  <a href="https://www.devriston.com.pk/learn.html" class="active">Academy</a><a href="https://www.devriston.com.pk/blog.html">Resources</a>
+  <a href="https://www.devriston.com.pk/about.html">About</a>
+  <a href="https://www.devriston.com.pk/contact.html">Contact</a>
+</div>
+
+<!-- SUB-NAV -->
+<nav class="learn-subnav"><div class="learn-subnav-inner"><a href="learn.html">🏠 Hub</a><a href="courses.html">🎓 Courses</a><span class="sn-sep"></span><a href="linux-notes.html">🐧 Linux</a><a href="cloud-notes.html">☁️ Cloud</a><a href="devops-full-notes.html">⚙️ DevOps</a><span class="sn-sep"></span><a href="ai-notes.html">🤖 AI</a><a href="python-notes.html">🐍 Python</a><a href="c-programming.html">💻 C</a><a href="os-notes.html">🖥️ OS</a><a href="networking-notes.html" class="sn-active">🌐 Networking</a><span class="sn-sep"></span><a href="devops-notes.html">📋 Quick Notes</a><a href="interview-guide.html">💼 Interview Guide</a><a href="blog.html">📝 Blog</a></div></nav>
+
+<div class="page-wrap">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sidebar-title">Networking Course — All Modules</div>
+    <a href="#m01" class="sidebar-link"><span class="sidebar-num">01</span>Data Comm. &amp; Network Types</a>
+    <a href="#m02" class="sidebar-link"><span class="sidebar-num">02</span>OSI &amp; TCP/IP Models</a>
+    <a href="#m03" class="sidebar-link"><span class="sidebar-num">03</span>Physical &amp; Data Link Layer</a>
+    <a href="#m04" class="sidebar-link"><span class="sidebar-num">04</span>Network &amp; Transport Layer</a>
+    <a href="#m05" class="sidebar-link"><span class="sidebar-num">05</span>App Layer Services &amp; Security</a>
+  </aside>
+
+  <!-- MAIN -->
+  <main>
+    <div class="breadcrumb">
+      <a href="https://www.devriston.com.pk/index.html">Home</a><span>›</span>
+      <a href="https://www.devriston.com.pk/courses.html">Courses</a><span>›</span>
+      Computer Networking Lecture Notes
+    </div>
+
+    <div class="page-hero">
+      <div class="page-badge">🌐 Free Lecture Notes</div>
+      <h1>Computer Networking<br/><em>— Complete DIT Notes</em></h1>
+      <p>All 5 modules — OSI/TCP-IP, IP addressing, switching, and application-layer services — with real comparisons and every practical lab included, from cable crimping to Wireshark. Free to read — no account needed.</p>
+      <div class="hero-pills">
+        <span class="pill pill-free">✓ 100% Free</span>
+        <span class="pill pill-modules">5 Modules</span>
+        <span class="pill pill-compare">6 Practical Labs</span>
+      </div>
+    </div>
+
+    <!-- ═══════ MODULE 01 ═══════ -->
+    <section class="module-section" id="m01">
+      <div class="module-header">
+        <span class="module-num-badge">MODULE 01</span>
+        <div class="module-header-text">
+          <h2>Data Communication &amp; Network Types</h2>
+          <p>The building blocks of any network — components, categories by size, topologies, and how devices relate to each other.</p>
+        </div>
+      </div>
+
+      <div class="concept-block">
+        <h3>Data Communication Components</h3>
+        <p>Every communication needs five parts: a <strong>sender</strong>, a <strong>receiver</strong>, a <strong>message</strong> (the data), a <strong>transmission medium</strong> (cable or wireless), and a <strong>protocol</strong> — the agreed rules both sides follow so the message is understood the same way on both ends.</p>
+      </div>
+
+      <div class="concept-block">
+        <h3>Network Types by Size</h3>
+        <p><strong>LAN</strong> (Local Area Network) covers a single building or campus. <strong>MAN</strong> (Metropolitan Area Network) spans a city. <strong>WAN</strong> (Wide Area Network) spans countries or continents — the internet is the largest WAN. <strong>WLAN</strong> is a wireless LAN, same coverage as a LAN but over Wi-Fi instead of cable.</p>
+      </div>
+
+      <div class="compare-wrap">
+        <div class="compare-label">Client-Server vs Peer-to-Peer</div>
+        <table class="compare">
+          <thead><tr><th>Aspect</th><th>Client-Server</th><th>Peer-to-Peer (P2P)</th></tr></thead>
+          <tbody>
+            <tr><td>Structure</td><td>Central server, many clients request from it</td><td>Every node is both client and server</td></tr>
+            <tr><td>Management</td><td>Centralized — easier to secure and administer</td><td>Decentralized — no single point of control</td></tr>
+            <tr><td>Example</td><td>A file server, a web app backend</td><td>BitTorrent, a small office workgroup sharing files directly</td></tr>
+            <tr><td>Failure point</td><td>Server down = everyone affected</td><td>No single point of failure</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="concept-block">
+        <h3>Network Topologies</h3>
+        <p>Topology is the physical or logical layout of connections: <strong>Star</strong> (all devices connect to one central hub/switch — most common today), <strong>Bus</strong> (all devices share one backbone cable — legacy), <strong>Ring</strong> (each device connects to exactly two neighbours in a loop), <strong>Mesh</strong> (every device connects to every other — high redundancy, expensive), and <strong>Hybrid</strong> (a mix, e.g. star networks linked into a larger bus or mesh backbone).</p>
+      </div>
+
+      <div class="code-wrap">
+        <div class="code-label">Practical — Lab 1: Cable Crimping, Testing &amp; Standards</div>
+        <pre><span class="c"># T568A and T568B wiring standards (pin order on RJ-45)</span>
+T568A:  White-Green, Green, White-Orange, Blue, White-Blue, Orange, White-Brown, Brown
+T568B:  White-Orange, Orange, White-Green, Blue, White-Blue, Green, White-Brown, Brown
+
+<span class="c"># Cable types built from these standards:</span>
+Straight-through cable  <span class="c"># same standard both ends (T568B–T568B) — PC to switch</span>
+Crossover cable          <span class="c"># T568A one end, T568B other end — PC to PC direct, switch to switch</span>
+
+<span class="c"># Tools: RJ-45 connectors, crimping tool, cable tester</span>
+<span class="c"># After crimping: always verify with a cable tester before trusting the link</span></pre>
+      </div>
+
+      <dl class="terms-grid">
+        <div class="term-card"><dt>Protocol</dt><dd>The agreed set of rules that let two devices understand each other's messages.</dd></div>
+        <div class="term-card"><dt>LAN / WAN</dt><dd>LAN = one site; WAN = many sites connected across distance, like the internet.</dd></div>
+        <div class="term-card"><dt>Topology</dt><dd>The layout pattern of how devices connect — star, bus, ring, mesh, or hybrid.</dd></div>
+        <div class="term-card"><dt>RJ-45</dt><dd>The standard 8-pin connector used to terminate Ethernet twisted-pair cable.</dd></div>
+      </dl>
+
+      <div class="callout callout-tip">
+        <span class="callout-icon">💡</span>
+        <p><strong>Almost every modern LAN is Star topology</strong> — a central switch, one cable run per device. Bus and Ring are mostly historical at this point, but still asked about in exams because they explain <em>why</em> Star won (a single cable break doesn't take down the whole network).</p>
+      </div>
+    </section>
+    <hr class="module-divider"/>
+
+    <!-- ═══════ MODULE 02 ═══════ -->
+    <section class="module-section" id="m02">
+      <div class="module-header">
+        <span class="module-num-badge">MODULE 02</span>
+        <div class="module-header-text">
+          <h2>OSI &amp; TCP/IP Models</h2>
+          <p>The reference frameworks every networking concept in this course maps back to.</p>
+        </div>
+      </div>
+
+      <div class="concept-block">
+        <h3>The OSI Reference Model</h3>
+        <p>OSI splits networking into 7 layers, each handling one job and passing data to the next. From bottom to top: <strong>Physical</strong> (raw bits over a medium) → <strong>Data Link</strong> (MAC addressing, frames on the local segment) → <strong>Network</strong> (IP addressing, routing between networks) → <strong>Transport</strong> (TCP/UDP, port numbers, reliability) → <strong>Session</strong> (managing connections/sessions) → <strong>Presentation</strong> (formatting, encryption, compression) → <strong>Application</strong> (what the user-facing program actually does — HTTP, FTP, DNS). Data gets wrapped in a new header at each layer going down — this is <strong>encapsulation</strong> — and unwrapped layer by layer going up on the receiving end.</p>
+      </div>
+
+      <div class="concept-block">
+        <h3>The TCP/IP Suite</h3>
+        <p>TCP/IP is the model the real internet actually runs on — 4 layers instead of OSI's 7, because it merges several OSI layers together. It's more practical than OSI (which is mostly a teaching/reference tool) and is what every device on the internet actually implements.</p>
+      </div>
+
+      <div class="compare-wrap">
+        <div class="compare-label">OSI (7 layers) mapped to TCP/IP (4 layers)</div>
+        <table class="compare">
+          <thead><tr><th>OSI Layer</th><th>TCP/IP Layer</th><th>Examples</th></tr></thead>
+          <tbody>
+            <tr><td>Application, Presentation, Session</td><td>Application</td><td>HTTP, HTTPS, FTP, DNS, DHCP</td></tr>
+            <tr><td>Transport</td><td>Transport</td><td>TCP, UDP</td></tr>
+            <tr><td>Network</td><td>Internet</td><td>IP, ICMP</td></tr>
+            <tr><td>Data Link, Physical</td><td>Link (Network Access)</td><td>Ethernet, Wi-Fi, ARP</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <dl class="terms-grid">
+        <div class="term-card"><dt>Encapsulation</dt><dd>Wrapping data in a new header at each layer as it moves down the stack for transmission.</dd></div>
+        <div class="term-card"><dt>PDU</dt><dd>Protocol Data Unit — the name for data at each layer: Segment (Transport), Packet (Network), Frame (Data Link), Bits (Physical).</dd></div>
+        <div class="term-card"><dt>De-encapsulation</dt><dd>Stripping headers off layer by layer as data moves up the stack on the receiving device.</dd></div>
+      </dl>
+
+      <div class="callout callout-info">
+        <span class="callout-icon">ℹ️</span>
+        <p><strong>Exam tip:</strong> "Please Do Not Throw Sausage Pizza Away" is the classic mnemonic for OSI top-to-bottom: Application, Presentation, Session, Transport, Network, Data Link, Physical.</p>
+      </div>
+    </section>
+    <hr class="module-divider"/>
+
+    <!-- ═══════ MODULE 03 ═══════ -->
+    <section class="module-section" id="m03">
+      <div class="module-header">
+        <span class="module-num-badge">MODULE 03</span>
+        <div class="module-header-text">
+          <h2>Physical &amp; Data Link Layer</h2>
+          <p>The cables, wireless signals, and devices that get bits from one machine to the next one physically connected to it.</p>
+        </div>
+      </div>
+
+      <div class="concept-block">
+        <h3>Transmission Media</h3>
+        <p><strong>Guided (wired)</strong> media physically carries the signal: <strong>Twisted Pair</strong> (Cat5e/6/7 — the standard Ethernet cable, ranked by speed and shielding), <strong>Coaxial</strong> (older, used in cable internet), and <strong>Fiber-Optic</strong> (light pulses through glass — fastest, longest range, immune to electrical interference). <strong>Unguided (wireless)</strong> media uses radio waves — Wi-Fi, Bluetooth, microwave links.</p>
+      </div>
+
+      <div class="concept-block">
+        <h3>Data Link Layer</h3>
+        <p>This layer handles communication between two devices on the <em>same</em> local network segment. Every network interface has a unique <strong>MAC address</strong> burned into it. Data at this layer is organized into <strong>frames</strong>, and the layer performs basic <strong>error detection</strong> (catching corrupted frames, though not always correcting them).</p>
+      </div>
+
+      <div class="compare-wrap">
+        <div class="compare-label">Hub vs Switch vs Router — What Layer, What Job</div>
+        <table class="compare">
+          <thead><tr><th>Device</th><th>OSI Layer</th><th>What it does</th></tr></thead>
+          <tbody>
+            <tr><td>Hub / Repeater</td><td>Physical (L1)</td><td>Blindly repeats signal to every port — no intelligence</td></tr>
+            <tr><td>Switch</td><td>Data Link (L2)</td><td>Reads MAC addresses, sends frames only to the correct port</td></tr>
+            <tr><td>Router / L3 Switch</td><td>Network (L3)</td><td>Reads IP addresses, forwards packets between different networks</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="code-wrap">
+        <div class="code-label">Practical — Lab 4: Layer-2 Switch &amp; VLAN Configuration</div>
+        <pre><span class="c"># In Cisco Packet Tracer (or real switch CLI)</span>
+Switch&gt; enable
+Switch# configure terminal
+Switch(config)# hostname SW1
+Switch(config)# enable secret Cisco123     <span class="c"># set console/privileged password</span>
+Switch(config)# banner motd # Authorized Access Only #
+
+<span class="c"># Create and assign a VLAN</span>
+Switch(config)# vlan 10
+Switch(config-vlan)# name Sales
+Switch(config-vlan)# exit
+Switch(config)# interface fastEthernet 0/1
+Switch(config-if)# switchport mode access
+Switch(config-if)# switchport access vlan 10</pre>
+      </div>
+
+      <dl class="terms-grid">
+        <div class="term-card"><dt>MAC Address</dt><dd>A unique 48-bit hardware address burned into every network interface card.</dd></div>
+        <div class="term-card"><dt>Frame</dt><dd>The unit of data at the Data Link layer — includes MAC addresses and error-checking.</dd></div>
+        <div class="term-card"><dt>VLAN</dt><dd>Virtual LAN — logically separates traffic on the same physical switch into isolated broadcast domains.</dd></div>
+      </dl>
+
+      <div class="callout callout-tip">
+        <span class="callout-icon">💡</span>
+        <p><strong>Simple way to remember switch vs router:</strong> a switch connects devices <em>within</em> one network; a router connects <em>different</em> networks together (like your home LAN to the internet).</p>
+      </div>
+    </section>
+    <hr class="module-divider"/>
+
+    <!-- ═══════ MODULE 04 ═══════ -->
+    <section class="module-section" id="m04">
+      <div class="module-header">
+        <span class="module-num-badge">MODULE 04</span>
+        <div class="module-header-text">
+          <h2>Network &amp; Transport Layer</h2>
+          <p>IP addressing, subnetting, and how TCP/UDP get data reliably (or quickly) from one application to another.</p>
+        </div>
+      </div>
+
+      <div class="concept-block">
+        <h3>IPv4 Addressing</h3>
+        <p>An IPv4 address is 32 bits, written as four decimal numbers (e.g. <code>192.168.1.10</code>). Addresses are grouped into classes: <strong>Class A</strong> (huge networks, few of them), <strong>Class B</strong> (medium), <strong>Class C</strong> (small — most common for LANs), <strong>Class D</strong> (multicast), <strong>Class E</strong> (reserved/experimental). <strong>Private IP ranges</strong> (like <code>192.168.x.x</code>, <code>10.x.x.x</code>) are used inside LANs and never routed on the public internet — that's what NAT is for.</p>
+      </div>
+
+      <div class="compare-wrap">
+        <div class="compare-label">Private IPv4 Ranges by Class</div>
+        <table class="compare">
+          <thead><tr><th>Class</th><th>Private Range</th><th>Typical Use</th></tr></thead>
+          <tbody>
+            <tr><td>A</td><td>10.0.0.0 – 10.255.255.255</td><td>Large enterprise networks</td></tr>
+            <tr><td>B</td><td>172.16.0.0 – 172.31.255.255</td><td>Medium-sized organizations</td></tr>
+            <tr><td>C</td><td>192.168.0.0 – 192.168.255.255</td><td>Home routers, small offices</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="concept-block">
+        <h3>Subnetting &amp; IPv6</h3>
+        <p>A <strong>subnet mask</strong> (e.g. <code>255.255.255.0</code>) splits an IP address into a network portion and a host portion, letting one large network be divided into smaller, manageable segments. <strong>IPv6</strong> uses 128-bit addresses written in hex (e.g. <code>2001:0db8::1</code>) — introduced because IPv4's ~4.3 billion addresses ran out with the growth of the internet.</p>
+      </div>
+
+      <div class="concept-block">
+        <h3>Transport Layer — TCP vs UDP</h3>
+        <p><strong>TCP</strong> is connection-oriented — it performs a handshake, guarantees delivery, and re-sends lost packets (used for web pages, email, file transfer). <strong>UDP</strong> is connectionless — no handshake, no guarantee, but much faster (used for video streaming, DNS lookups, online gaming). Both use <strong>port numbers</strong> to direct traffic to the correct application on a device (e.g. port 80 for HTTP, port 443 for HTTPS).</p>
+      </div>
+
+      <div class="code-wrap">
+        <div class="code-label">Practical — Lab 2: Static IP Configuration &amp; Connectivity</div>
+        <pre><span class="c"># Linux — set static IP with nmcli</span>
+nmcli con mod eth0 ipv4.addresses 192.168.1.50/24
+nmcli con mod eth0 ipv4.gateway 192.168.1.1
+nmcli con mod eth0 ipv4.dns "8.8.8.8"
+nmcli con mod eth0 ipv4.method manual
+nmcli con up eth0
+
+<span class="c"># Windows — set static IP via netsh</span>
+netsh interface ip set address "Ethernet" static 192.168.1.50 255.255.255.0 192.168.1.1
+
+<span class="c"># Diagnostics — same intent, different command names</span>
+ping 8.8.8.8              <span class="c"># both OSes</span>
+ip a          / ipconfig      <span class="c"># Linux / Windows — show interface config</span>
+traceroute 8.8.8.8 / tracert 8.8.8.8   <span class="c"># Linux / Windows — trace the route hop by hop</span>
+nslookup devriston.com.pk     <span class="c"># both — resolve a domain to an IP</span></pre>
+      </div>
+
+      <div class="code-wrap">
+        <div class="code-label">Practical — Lab 5: SOHO Router &amp; Wireless AP Configuration</div>
+        <pre><span class="c"># Typical steps via the router's web portal (usually 192.168.1.1 or 192.168.0.1)</span>
+1. Log in with admin credentials
+2. WAN setup      <span class="c"># PPPoE / DHCP / Static, per your ISP</span>
+3. DHCP pool      <span class="c"># e.g. 192.168.1.100 - 192.168.1.200 for LAN clients</span>
+4. Wireless       <span class="c"># set SSID, choose WPA2/WPA3, set a strong pre-shared key</span>
+5. Save & reboot the router to apply</pre>
+      </div>
+
+      <dl class="terms-grid">
+        <div class="term-card"><dt>Subnet Mask</dt><dd>Defines which part of an IP address is the network and which is the host.</dd></div>
+        <div class="term-card"><dt>Port Number</dt><dd>A number (0–65535) that routes traffic to the correct application on a device.</dd></div>
+        <div class="term-card"><dt>NAT</dt><dd>Network Address Translation — lets many private IPs share one public IP to reach the internet.</dd></div>
+        <div class="term-card"><dt>Three-way handshake</dt><dd>TCP's connection setup: SYN → SYN-ACK → ACK, before any real data is sent.</dd></div>
+      </dl>
+
+      <div class="callout callout-warn">
+        <span class="callout-icon">⚠️</span>
+        <p><strong>Common exam trap:</strong> a /24 subnet mask (255.255.255.0) gives 254 usable host addresses, not 256 — the first address is the network address and the last is the broadcast address, neither assignable to a device.</p>
+      </div>
+    </section>
+    <hr class="module-divider"/>
+
+    <!-- ═══════ MODULE 05 ═══════ -->
+    <section class="module-section" id="m05">
+      <div class="module-header">
+        <span class="module-num-badge">MODULE 05</span>
+        <div class="module-header-text">
+          <h2>Application Layer Services &amp; Security</h2>
+          <p>The services that make a network actually useful — naming, address assignment, file transfer, the web — plus the basics of keeping it secure.</p>
+        </div>
+      </div>
+
+      <div class="concept-block">
+        <h3>Core Network Services</h3>
+        <p><strong>DNS</strong> translates human-readable domain names (devriston.com.pk) into IP addresses computers use to connect. <strong>DHCP</strong> automatically assigns IP addresses, subnet masks, gateways, and DNS servers to devices joining a network — without it, every device would need manual configuration. <strong>FTP</strong> transfers files between a client and server.</p>
+      </div>
+
+      <div class="concept-block">
+        <h3>Web Services</h3>
+        <p><strong>HTTP</strong> is the protocol web browsers and servers use to exchange pages — plain text, unencrypted. <strong>HTTPS</strong> is HTTP wrapped in <strong>SSL/TLS</strong> encryption, so data in transit (passwords, card numbers) can't be read if intercepted. Every padlock icon in a browser address bar means HTTPS is active.</p>
+      </div>
+
+      <div class="concept-block">
+        <h3>Basic Network Security</h3>
+        <p>A <strong>firewall</strong> filters traffic based on rules (allow/deny by port, IP, or protocol) — the first line of defense at a network's edge. <strong>NAT</strong> incidentally adds a layer of protection too, since internal private IPs are never directly reachable from the internet. An <strong>ACL</strong> (Access Control List) is a more granular rule set, often applied on routers/switches to permit or deny specific traffic.</p>
+      </div>
+
+      <div class="compare-wrap">
+        <div class="compare-label">Common Ports to Know</div>
+        <table class="compare">
+          <thead><tr><th>Port</th><th>Service</th><th>Protocol</th></tr></thead>
+          <tbody>
+            <tr><td>20/21</td><td>FTP</td><td>TCP</td></tr>
+            <tr><td>53</td><td>DNS</td><td>TCP/UDP</td></tr>
+            <tr><td>67/68</td><td>DHCP</td><td>UDP</td></tr>
+            <tr><td>80</td><td>HTTP</td><td>TCP</td></tr>
+            <tr><td>443</td><td>HTTPS</td><td>TCP</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="code-wrap">
+        <div class="code-label">Practical — Lab 3: Workgroup Configuration &amp; Resource Sharing</div>
+        <pre><span class="c"># Windows — join a workgroup (Settings → System → About → Rename this PC)</span>
+<span class="c"># then set the same Workgroup name on every PC that should see each other</span>
+
+<span class="c"># Share a folder with permissions</span>
+Right-click folder → Properties → Sharing tab → Advanced Sharing
+→ Share this folder → Permissions → set Read / Change / Full Control
+
+<span class="c"># Access a shared folder from another PC</span>
+\\192.168.1.10\SharedFolder</pre>
+      </div>
+
+      <div class="code-wrap">
+        <div class="code-label">Practical — Lab 6: Packet Sniffing &amp; Traffic Analysis</div>
+        <pre><span class="c"># Wireshark — capture and inspect live traffic</span>
+1. Select your active network interface, click Start Capture
+2. Filter traffic by protocol:
+   tcp                  <span class="c"># show only TCP packets</span>
+   udp                  <span class="c"># show only UDP packets</span>
+   dns                  <span class="c"># show only DNS lookups</span>
+   http                 <span class="c"># show only unencrypted HTTP traffic</span>
+
+<span class="c"># Find the TCP three-way handshake:</span>
+<span class="c"># Look for consecutive packets flagged [SYN] → [SYN, ACK] → [ACK]</span></pre>
+      </div>
+
+      <dl class="terms-grid">
+        <div class="term-card"><dt>DNS</dt><dd>Translates domain names into IP addresses — the internet's phone book.</dd></div>
+        <div class="term-card"><dt>DHCP</dt><dd>Automatically assigns IP configuration to devices joining a network.</dd></div>
+        <div class="term-card"><dt>Firewall</dt><dd>Filters network traffic based on rules — allowed ports, IPs, or protocols.</dd></div>
+        <div class="term-card"><dt>SSL/TLS</dt><dd>The encryption layer that turns HTTP into HTTPS, protecting data in transit.</dd></div>
+      </dl>
+
+      <div class="callout callout-tip">
+        <span class="callout-icon">💡</span>
+        <p><strong>Try it:</strong> open Wireshark, visit any non-HTTPS site, and filter by <code>http</code> — you'll see form data readable in plain text. Then visit an HTTPS site and try the same filter — nothing readable shows up. That's the whole point of TLS.</p>
+      </div>
+    </section>
+    <hr class="module-divider"/>
+
+    <!-- ENROLL CTA -->
+    <div style="background:linear-gradient(135deg,rgba(26,106,255,0.12),rgba(0,212,255,0.06));border:1px solid rgba(26,106,255,0.25);border-radius:14px;padding:32px 28px;text-align:center;margin-top:20px;">
+      <div style="font-size:2rem;margin-bottom:12px">🌐</div>
+      <h2 style="font-size:1.3rem;font-weight:800;margin-bottom:8px">Ready to go beyond reading?</h2>
+      <p style="font-size:0.88rem;color:var(--gray-400);max-width:420px;margin:0 auto 20px;line-height:1.7">The live course includes hands-on labs, Q&A sessions, and a final enterprise project for your GitHub portfolio. Same instructor who wrote these notes.</p>
+      <a href="https://wa.me/923231450045?text=Hi%20Kamran%2C%20I%20read%20the%20Networking%20notes%20and%20want%20to%20enroll." style="display:inline-flex;align-items:center;gap:8px;background:var(--blue);color:#fff;padding:12px 28px;border-radius:8px;text-decoration:none;font-weight:700;font-size:0.9rem;">💬 Enroll via WhatsApp →</a>
+      <p style="font-size:0.72rem;color:var(--gray-500);margin-top:12px">Batch info &amp; fee on request</p>
+    </div>
+
+  </main>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2026 Devriston · Muhammad Kamran Kabeer · Lahore, Pakistan</p>
+  <div class="footer-links">
+    <a href="https://www.devriston.com.pk/courses.html">All Courses</a>
+    <a href="https://www.devriston.com.pk/devops-notes.html">DevOps Notes</a>
+    <a href="https://www.devriston.com.pk/interview-guide.html">Interview Guide</a>
+    <a href="https://www.devriston.com.pk/blog.html">Blog</a>
+    <a href="https://www.devriston.com.pk/contact.html">Contact</a>
+  </div>
+</footer>
+
+<script>
+  // Back to top
+  const bt = document.getElementById('back-top');
+  window.addEventListener('scroll', () => bt.classList.toggle('visible', scrollY > 400));
+
+  // Sidebar active highlight on scroll
+  const sections = document.querySelectorAll('.module-section');
+  const links = document.querySelectorAll('.sidebar-link');
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        links.forEach(l => l.classList.remove('active'));
+        const link = document.querySelector(`.sidebar-link[href="#${e.target.id}"]`);
+        if (link) link.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-20% 0px -70% 0px' });
+  sections.forEach(s => obs.observe(s));
+
+  // Mobile nav toggle
+  document.querySelector('.nav-mobile-toggle').addEventListener('click', () => {
+    document.querySelector('.nav-mobile').classList.toggle('open');
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Operating Systems Lecture Notes | Devriston — Free Study Material</title>
+  <meta name="description" content="Free Operating Systems lecture notes for DIT students — OS architecture, process & memory management, file systems, CLI administration, plus full practical labs (Windows CMD/PowerShell, Linux Bash)." />
+  <meta name="keywords" content="operating system notes free, OS lecture notes DIT, PBTE DIT operating systems, process management notes, memory management notes, file systems notes, CLI administration Windows Linux, OS notes Pakistan" />
+  <meta name="author" content="Muhammad Kamran Kabeer" />
+  <meta name="robots" content="index,follow" />
+  <link rel="canonical" href="https://www.devriston.com.pk/os-notes.html" />
+  <meta property="og:title" content="Free Operating Systems Lecture Notes | Devriston" />
+  <meta property="og:description" content="5 modules of Operating Systems lecture notes for DIT — free to read. Concepts, comparisons, and full practical labs." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.devriston.com.pk/os-notes.html" />
+  <meta property="og:site_name" content="Devriston" />
+
+  <style>
+    :root {
+      --navy:     #040d1c;
+      --navy-2:   #071428;
+      --navy-3:   #0a1d3a;
+      --blue:     #1a6aff;
+      --cyan:     #00d4ff;
+      --white:    #ffffff;
+      --gray-100: #f0f4ff;
+      --gray-400: #8899bb;
+      --gray-500: #5a6a88;
+      --border:   rgba(26,106,255,0.18);
+      --border-2: rgba(0,212,255,0.12);
+      --green:    #22c55e;
+      --orange:   #f97316;
+      --purple:   #a855f7;
+      --font-main: 'Inter', system-ui, -apple-system, sans-serif;
+      --font-mono: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
+      --radius: 10px;
+      --transition: 0.2s ease;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body { background: var(--navy); color: var(--white); font-family: var(--font-main); line-height: 1.7; -webkit-font-smoothing: antialiased; }
+    ::-webkit-scrollbar { width: 6px; } ::-webkit-scrollbar-track { background: var(--navy); } ::-webkit-scrollbar-thumb { background: var(--blue); border-radius: 3px; }
+
+    /* NAV */
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(4,13,28,0.95); backdrop-filter: blur(14px); border-bottom: 1px solid var(--border); padding: 0 5%; display: flex; align-items: center; justify-content: space-between; height: 60px; }
+    .nav-brand { display: flex; align-items: center; gap: 8px; text-decoration: none; color: var(--white); font-weight: 700; font-size: 1rem; }
+    .nav-brand img { height: 28px; }
+    .nav-links { display: flex; gap: 20px; list-style: none; }
+    .nav-links a { color: var(--gray-400); text-decoration: none; font-size: 0.82rem; font-weight: 500; transition: color var(--transition); }
+    .nav-links a:hover { color: var(--white); }
+    .nav-links a.active { color: var(--cyan); }
+    .nav-cta { background: var(--blue) !important; color: #fff !important; padding: 6px 14px; border-radius: 5px; font-size: 0.78rem !important; }
+    .nav-mobile-toggle { display: none; background: none; border: none; color: var(--white); font-size: 1.3rem; cursor: pointer; }
+    .nav-mobile { display: none; position: fixed; top: 60px; left: 0; right: 0; background: var(--navy-2); border-bottom: 1px solid var(--border); padding: 16px 5%; z-index: 99; flex-direction: column; gap: 0; }
+    .nav-mobile.open { display: flex; }
+    .nav-mobile a { color: var(--gray-400); text-decoration: none; font-size: 0.88rem; padding: 10px 0; border-bottom: 1px solid var(--border); display: block; }
+    .nav-mobile a:hover { color: var(--white); }
+    @media(max-width:768px) { .nav-links { display:none; } .nav-mobile-toggle { display:block; } }
+
+    /* LAYOUT */
+    .page-wrap { display: grid; grid-template-columns: 260px 1fr; min-height: 100vh; margin-top: 60px; }
+    @media(max-width:900px) { .page-wrap { grid-template-columns: 1fr; } .sidebar { display: none; } }
+
+    /* SIDEBAR */
+    .sidebar { position: sticky; top: 60px; height: calc(100vh - 60px); overflow-y: auto; background: var(--navy-2); border-right: 1px solid var(--border); padding: 24px 0; }
+    .sidebar::-webkit-scrollbar { width: 4px; }
+    .sidebar::-webkit-scrollbar-thumb { background: var(--border); }
+    .sidebar-title { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gray-500); padding: 0 20px; margin-bottom: 12px; }
+    .sidebar a { display: flex; align-items: center; gap: 10px; padding: 8px 20px; color: var(--gray-400); text-decoration: none; font-size: 0.8rem; transition: background var(--transition), color var(--transition); border-left: 2px solid transparent; }
+    .sidebar a:hover { background: rgba(255,255,255,0.03); color: var(--white); }
+    .sidebar a.active { background: rgba(26,106,255,0.08); color: var(--cyan); border-left-color: var(--cyan); }
+    .sidebar-num { font-family: var(--font-mono); font-size: 0.65rem; color: var(--gray-500); flex-shrink: 0; width: 22px; }
+
+    /* MAIN CONTENT */
+    main { padding: 40px 48px 80px; max-width: 860px; }
+    @media(max-width:600px) { main { padding: 24px 20px 60px; } }
+
+    /* BREADCRUMB */
+    .breadcrumb { font-size: 0.75rem; color: var(--gray-500); margin-bottom: 28px; }
+    .breadcrumb a { color: var(--gray-400); text-decoration: none; }
+    .breadcrumb a:hover { color: var(--cyan); }
+    .breadcrumb span { margin: 0 6px; }
+
+    /* PAGE HERO */
+    .page-hero { margin-bottom: 48px; }
+    .page-badge { display: inline-flex; align-items: center; gap: 7px; background: rgba(0,212,255,0.08); border: 1px solid rgba(0,212,255,0.2); color: var(--cyan); border-radius: 16px; padding: 4px 12px; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 16px; }
+    .page-hero h1 { font-size: clamp(1.7rem, 3.5vw, 2.4rem); font-weight: 800; line-height: 1.15; margin-bottom: 12px; }
+    .page-hero h1 em { font-style: normal; background: linear-gradient(135deg, var(--blue), var(--cyan)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .page-hero p { color: var(--gray-400); font-size: 0.95rem; max-width: 560px; line-height: 1.7; margin-bottom: 20px; }
+    .hero-pills { display: flex; flex-wrap: wrap; gap: 8px; }
+    .pill { padding: 4px 10px; border-radius: 4px; font-size: 0.72rem; font-weight: 600; border: 1px solid; }
+    .pill-free { background: rgba(34,197,94,0.1); color: var(--green); border-color: rgba(34,197,94,0.3); }
+    .pill-modules { background: rgba(26,106,255,0.1); color: #7db3ff; border-color: rgba(26,106,255,0.3); }
+    .pill-compare { background: rgba(249,115,22,0.1); color: var(--orange); border-color: rgba(249,115,22,0.3); }
+
+    /* MODULE SECTION */
+    .module-section { margin-bottom: 64px; scroll-margin-top: 80px; }
+    .module-header { display: flex; align-items: flex-start; gap: 14px; margin-bottom: 24px; padding-bottom: 16px; border-bottom: 1px solid var(--border); }
+    .module-num-badge { background: rgba(26,106,255,0.12); border: 1px solid var(--border); border-radius: 6px; padding: 4px 10px; font-family: var(--font-mono); font-size: 0.68rem; color: var(--cyan); font-weight: 700; white-space: nowrap; flex-shrink: 0; margin-top: 4px; }
+    .module-header-text h2 { font-size: 1.25rem; font-weight: 800; margin-bottom: 4px; }
+    .module-header-text p { font-size: 0.82rem; color: var(--gray-400); }
+
+    /* CONTENT BLOCKS */
+    .concept-block { background: rgba(255,255,255,0.025); border: 1px solid var(--border-2); border-radius: var(--radius); padding: 20px 22px; margin-bottom: 18px; }
+    .concept-block h3 { font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--cyan); margin-bottom: 10px; }
+    .concept-block p { font-size: 0.88rem; color: #c5d0e8; line-height: 1.75; }
+    .concept-block p + p { margin-top: 10px; }
+
+    /* COMPARE TABLE */
+    .compare-wrap { margin-bottom: 18px; overflow-x: auto; }
+    .compare-label { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--orange); margin-bottom: 10px; display: flex; align-items: center; gap: 7px; }
+    .compare-label::before { content: '⚡'; }
+    table.compare { width: 100%; border-collapse: collapse; font-size: 0.82rem; }
+    table.compare thead tr { background: rgba(255,255,255,0.04); }
+    table.compare th { padding: 10px 14px; text-align: left; font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--gray-400); border-bottom: 1px solid var(--border); }
+    table.compare th:nth-child(2) { color: #7db3ff; }
+    table.compare th:nth-child(3) { color: var(--orange); }
+    table.compare td { padding: 10px 14px; border-bottom: 1px solid rgba(255,255,255,0.04); color: #c5d0e8; vertical-align: top; line-height: 1.5; }
+    table.compare tr:last-child td { border-bottom: none; }
+    table.compare tr:hover td { background: rgba(255,255,255,0.02); }
+    table.compare td:first-child { font-weight: 600; color: var(--white); font-size: 0.8rem; }
+
+    /* CODE BLOCKS */
+    .code-wrap { margin-bottom: 18px; }
+    .code-label { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--green); margin-bottom: 8px; display: flex; align-items: center; gap: 6px; }
+    .code-label::before { content: '▶'; font-size: 0.6rem; }
+    pre { background: #020912; border: 1px solid rgba(26,106,255,0.2); border-radius: var(--radius); padding: 18px 20px; overflow-x: auto; font-family: var(--font-mono); font-size: 0.78rem; line-height: 1.7; color: #c5d0e8; }
+    pre .c  { color: var(--gray-500); font-style: italic; } /* comment */
+    pre .k  { color: var(--cyan); }   /* keyword/command */
+    pre .s  { color: var(--green); }  /* string/value */
+    pre .n  { color: var(--orange); } /* note */
+    pre .h  { color: #c084fc; }       /* highlight */
+
+    /* KEY TERMS */
+    .terms-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px,1fr)); gap: 10px; margin-bottom: 18px; }
+    .term-card { background: rgba(255,255,255,0.025); border: 1px solid var(--border-2); border-radius: 8px; padding: 14px 16px; }
+    .term-card dt { font-family: var(--font-mono); font-size: 0.78rem; color: var(--cyan); font-weight: 700; margin-bottom: 4px; }
+    .term-card dd { font-size: 0.78rem; color: var(--gray-400); line-height: 1.5; }
+
+    /* CALLOUT */
+    .callout { border-radius: 8px; padding: 14px 18px; margin-bottom: 18px; font-size: 0.84rem; line-height: 1.65; display: flex; gap: 12px; align-items: flex-start; }
+    .callout-tip  { background: rgba(34,197,94,0.07);  border: 1px solid rgba(34,197,94,0.2);  }
+    .callout-warn { background: rgba(249,115,22,0.07); border: 1px solid rgba(249,115,22,0.2); }
+    .callout-info { background: rgba(26,106,255,0.07); border: 1px solid rgba(26,106,255,0.2); }
+    .callout-icon { font-size: 1rem; flex-shrink: 0; line-height: 1.5; }
+    .callout p { color: #c5d0e8; }
+    .callout strong { color: var(--white); }
+
+    /* DIVIDER */
+    .module-divider { border: none; border-top: 1px solid var(--border); margin: 56px 0; }
+
+    /* BACK TO TOP */
+    #back-top { position: fixed; bottom: 24px; right: 24px; background: var(--blue); color: #fff; width: 38px; height: 38px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 16px; text-decoration: none; opacity: 0; pointer-events: none; transition: opacity var(--transition); z-index: 999; box-shadow: 0 0 14px rgba(26,106,255,0.4); }
+    #back-top.visible { opacity: 1; pointer-events: auto; }
+
+    /* FOOTER */
+    footer { background: var(--navy-2); border-top: 1px solid var(--border); padding: 36px 5% 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+    footer p { font-size: 0.78rem; color: var(--gray-500); }
+    .footer-links { display: flex; gap: 20px; flex-wrap: wrap; }
+    .footer-links a { color: var(--gray-500); text-decoration: none; font-size: 0.78rem; transition: color var(--transition); }
+    .footer-links a:hover { color: var(--white); }
+
+    /* ENROLL STICKY CTA */
+    .enroll-sticky { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%); background: var(--blue); color: #fff; padding: 11px 28px; border-radius: 30px; font-size: 0.85rem; font-weight: 700; text-decoration: none; box-shadow: 0 4px 24px rgba(26,106,255,0.5); z-index: 998; white-space: nowrap; transition: background var(--transition), transform var(--transition); }
+    .enroll-sticky:hover { background: #1557d6; transform: translateX(-50%) translateY(-2px); }
+    @media(max-width:480px) { .enroll-sticky { font-size: 0.78rem; padding: 10px 20px; } }
+  
+/* ── LEARN SUB-NAV ── */
+.learn-subnav{
+  position:sticky;top:60px;z-index:90;
+  background:rgba(7,20,40,0.97);backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(26,106,255,0.15);
+  overflow-x:auto;white-space:nowrap;
+  scrollbar-width:none;
+}
+.learn-subnav::-webkit-scrollbar{display:none}
+.learn-subnav-inner{
+  display:inline-flex;align-items:center;gap:2px;
+  padding:0 5%;min-width:100%;
+}
+.learn-subnav a{
+  display:inline-flex;align-items:center;gap:6px;
+  color:rgba(136,153,187,0.85);text-decoration:none;
+  font-size:0.78rem;font-weight:500;
+  padding:10px 12px;border-bottom:2px solid transparent;
+  transition:color 0.18s,border-color 0.18s;
+  white-space:nowrap;flex-shrink:0;
+}
+.learn-subnav a:hover{color:#fff}
+.learn-subnav a.sn-active{
+  color:#00d4ff;border-bottom-color:#00d4ff;font-weight:600;
+}
+.learn-subnav .sn-sep{
+  width:1px;height:16px;background:rgba(255,255,255,0.08);
+  margin:0 4px;flex-shrink:0;
+}
+
+  </style>
+</head>
+<body>
+
+<a href="#" id="back-top">↑</a>
+<a href="https://wa.me/923231450045?text=Hi%20Kamran%2C%20I%20want%20to%20enroll%20in%20the%20OS%20course." class="enroll-sticky">🖥️ Enroll in OS Course →</a>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-brand" href="https://www.devriston.com.pk/index.html">
+    <img src="https://www.devriston.com.pk/assets/logos/dv-logo.png" alt="Devriston" />
+    Devriston
+  </a>
+  <ul class="nav-links"><li><a href="https://www.devriston.com.pk/index.html">Home</a></li><li><a href="https://www.devriston.com.pk/solutions.html">Solutions</a></li><li><a href="https://www.devriston.com.pk/case-studies.html">Engineering</a></li><li><a href="https://www.devriston.com.pk/learn.html">Academy</a></li><li><a href="https://www.devriston.com.pk/blog.html">Resources</a></li><li><a href="https://www.devriston.com.pk/about.html">About</a></li><li><a href="https://www.devriston.com.pk/contact.html" class="nav-cta">Book Consultation</a></li></ul>
+  <button class="nav-mobile-toggle" onclick="document.querySelector('.nav-mobile').classList.toggle('open')">☰</button>
+</nav>
+<div class="nav-mobile">
+  <a href="https://www.devriston.com.pk/index.html">Home</a>
+  <a href="https://www.devriston.com.pk/solutions.html">Solutions</a>
+  <a href="https://www.devriston.com.pk/case-studies.html">Engineering</a>
+  <a href="https://www.devriston.com.pk/learn.html" class="active">Academy</a><a href="https://www.devriston.com.pk/blog.html">Resources</a>
+  <a href="https://www.devriston.com.pk/about.html">About</a>
+  <a href="https://www.devriston.com.pk/contact.html">Contact</a>
+</div>
+
+<!-- SUB-NAV -->
+<nav class="learn-subnav"><div class="learn-subnav-inner"><a href="learn.html">🏠 Hub</a><a href="courses.html">🎓 Courses</a><span class="sn-sep"></span><a href="linux-notes.html">🐧 Linux</a><a href="cloud-notes.html">☁️ Cloud</a><a href="devops-full-notes.html">⚙️ DevOps</a><span class="sn-sep"></span><a href="ai-notes.html">🤖 AI</a><a href="python-notes.html">🐍 Python</a><a href="c-programming.html">💻 C</a><a href="os-notes.html" class="sn-active">🖥️ OS</a><a href="networking-notes.html">🌐 Networking</a><span class="sn-sep"></span><a href="devops-notes.html">📋 Quick Notes</a><a href="interview-guide.html">💼 Interview Guide</a><a href="blog.html">📝 Blog</a></div></nav>
+
+<div class="page-wrap">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sidebar-title">OS Course — All Modules</div>
+    <a href="#m01" class="sidebar-link"><span class="sidebar-num">01</span>Fundamentals &amp; Architecture</a>
+    <a href="#m02" class="sidebar-link"><span class="sidebar-num">02</span>Process &amp; Thread Mgmt</a>
+    <a href="#m03" class="sidebar-link"><span class="sidebar-num">03</span>Memory Management</a>
+    <a href="#m04" class="sidebar-link"><span class="sidebar-num">04</span>File Systems &amp; Storage</a>
+    <a href="#m05" class="sidebar-link"><span class="sidebar-num">05</span>CLI &amp; Administration</a>
+  </aside>
+
+  <!-- MAIN -->
+  <main>
+    <div class="breadcrumb">
+      <a href="https://www.devriston.com.pk/index.html">Home</a><span>›</span>
+      <a href="https://www.devriston.com.pk/courses.html">Courses</a><span>›</span>
+      Operating Systems Lecture Notes
+    </div>
+
+    <div class="page-hero">
+      <div class="page-badge">🖥️ Free Lecture Notes</div>
+      <h1>Operating Systems<br/><em>— Complete DIT Notes</em></h1>
+      <p>All 5 modules — architecture, processes, memory, file systems, and CLI administration — with Windows vs Linux comparisons and every practical lab included. Free to read — no account needed.</p>
+      <div class="hero-pills">
+        <span class="pill pill-free">✓ 100% Free</span>
+        <span class="pill pill-modules">5 Modules</span>
+        <span class="pill pill-compare">6 Practical Labs</span>
+      </div>
+    </div>
+
+    <!-- ═══════ MODULE 01 ═══════ -->
+    <section class="module-section" id="m01">
+      <div class="module-header">
+        <span class="module-num-badge">MODULE 01</span>
+        <div class="module-header-text">
+          <h2>OS Fundamentals &amp; Architecture</h2>
+          <p>What an operating system actually does, how kernels are built, and what happens in the seconds before you see a login screen.</p>
+        </div>
+      </div>
+
+      <div class="concept-block">
+        <h3>What Is an Operating System?</h3>
+        <p>An OS is the software layer that sits between your hardware and every program you run. It allocates CPU time, manages memory, controls storage, and enforces security — so applications never have to talk to hardware directly.</p>
+        <p>OS design evolved through stages: <strong>Batch</strong> (jobs queued, no interaction) → <strong>Multiprogramming</strong> (multiple jobs held in memory, CPU switches between them) → <strong>Time-Sharing</strong> (multiple users, fast switching creates the illusion of simultaneity) → <strong>Real-Time</strong> (guaranteed response times for critical systems like medical devices or industrial control).</p>
+      </div>
+
+      <div class="concept-block">
+        <h3>Kernel Architecture &amp; System Calls</h3>
+        <p>The kernel is the core of the OS — the part that actually talks to hardware. A <strong>Monolithic kernel</strong> (Linux) runs almost everything — drivers, file systems, memory management — in one privileged space for speed. A <strong>Microkernel</strong> (older QNX, parts of Windows NT) keeps only the bare essentials in privileged space and runs the rest as separate services, trading some speed for stability and security.</p>
+        <p>Programs never touch hardware themselves — they ask the kernel through <strong>system calls</strong> (e.g. <code>open()</code>, <code>read()</code>, <code>fork()</code>). This is the boundary between <strong>User Mode</strong> (where your applications run, restricted) and <strong>Kernel Mode</strong> (full hardware access, trusted code only).</p>
+      </div>
+
+      <div class="compare-wrap">
+        <div class="compare-label">Boot Process — Linux vs Windows</div>
+        <table class="compare">
+          <thead><tr><th>Stage</th><th>Linux</th><th>Windows</th></tr></thead>
+          <tbody>
+            <tr><td>Firmware</td><td>BIOS or UEFI initializes hardware</td><td>BIOS or UEFI initializes hardware</td></tr>
+            <tr><td>Partition table</td><td>MBR (legacy) or GPT (UEFI)</td><td>MBR (legacy) or GPT (UEFI)</td></tr>
+            <tr><td>Bootloader</td><td>GRUB2 — shows a kernel selection menu</td><td>Windows Boot Manager (bootmgr)</td></tr>
+            <tr><td>Kernel init</td><td>Kernel loads, mounts root filesystem, starts <code>systemd</code></td><td>ntoskrnl.exe loads, starts Session Manager</td></tr>
+            <tr><td>First process</td><td><code>systemd</code> (PID 1) starts all services</td><td>Services.exe starts Windows services</td></tr>
+            <tr><td>View boot logs</td><td><code>journalctl -b</code> or <code>dmesg</code></td><td>Event Viewer → System log</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="code-wrap">
+        <div class="code-label">Practical — Lab 1: Virtualization &amp; Installation</div>
+        <pre><span class="c"># Install a hypervisor (Oracle VM VirtualBox or VMware Workstation)</span>
+<span class="c"># Then create two VMs for this course:</span>
+
+<span class="k">1.</span> Create VM #1 <span class="c"># Desktop OS — install Windows 10/11</span>
+<span class="k">2.</span> Create VM #2 <span class="c"># Server/CLI OS — install Ubuntu Server or Debian</span>
+
+<span class="c"># Recommended VM specs for both:</span>
+RAM:    2 GB minimum <span class="c"># (4 GB for Windows)</span>
+Disk:   20 GB dynamically allocated
+Network: Bridged or NAT — NAT is simpler for a first install</pre>
+      </div>
+
+      <dl class="terms-grid">
+        <div class="term-card"><dt>Kernel</dt><dd>The core program that manages hardware and grants access to it via system calls.</dd></div>
+        <div class="term-card"><dt>System Call</dt><dd>A controlled request an application makes to the kernel — the only way to touch hardware.</dd></div>
+        <div class="term-card"><dt>BIOS / UEFI</dt><dd>Firmware that initializes hardware and hands control to the bootloader. UEFI is the modern replacement for BIOS.</dd></div>
+        <div class="term-card"><dt>MBR / GPT</dt><dd>Two partition table formats. GPT is newer, supports larger disks and more partitions.</dd></div>
+        <div class="term-card"><dt>Bootloader</dt><dd>The program that loads the kernel into memory — GRUB2 on Linux, Boot Manager on Windows.</dd></div>
+        <div class="term-card"><dt>Real-Time OS</dt><dd>An OS designed to guarantee a task completes within a fixed time window — used in embedded/industrial systems.</dd></div>
+      </dl>
+
+      <div class="callout callout-tip">
+        <span class="callout-icon">💡</span>
+        <p><strong>Try it:</strong> After installing your Linux VM, run <code>systemctl list-units --type=service --state=running</code> to see everything systemd started during boot.</p>
+      </div>
+    </section>
+    <hr class="module-divider"/>
+
+    <!-- ═══════ MODULE 02 ═══════ -->
+    <section class="module-section" id="m02">
+      <div class="module-header">
+        <span class="module-num-badge">MODULE 02</span>
+        <div class="module-header-text">
+          <h2>Process &amp; Thread Management</h2>
+          <p>How the OS tracks every running program, decides who gets the CPU next, and what can go wrong when programs compete for resources.</p>
+        </div>
+      </div>
+
+      <div class="concept-block">
+        <h3>Process Concepts</h3>
+        <p>Every running program is a <strong>process</strong>, tracked by the kernel through a <strong>Process Control Block (PCB)</strong> — a data structure holding its ID, state, register values, memory pointers, and priority.</p>
+        <p>A process moves through five states: <strong>New</strong> (being created) → <strong>Ready</strong> (waiting for CPU) → <strong>Running</strong> (executing) → <strong>Waiting</strong> (blocked on I/O) → <strong>Terminated</strong>. It can bounce between Ready and Running many times before finishing.</p>
+      </div>
+
+      <div class="concept-block">
+        <h3>CPU Scheduling</h3>
+        <p>Since one CPU core can only run one instruction at a time, the OS uses schedulers to decide execution order. The <strong>long-term scheduler</strong> decides which processes enter the Ready queue; the <strong>short-term scheduler</strong> decides which Ready process runs next — this happens constantly, via <strong>context switching</strong> (saving one process's state, loading another's).</p>
+      </div>
+
+      <div class="compare-wrap">
+        <div class="compare-label">CPU Scheduling Algorithms</div>
+        <table class="compare">
+          <thead><tr><th>Algorithm</th><th>How it picks</th><th>Trade-off</th></tr></thead>
+          <tbody>
+            <tr><td>FIFO / FCFS</td><td>First process to arrive runs first</td><td>Simple, but a long job blocks everyone behind it</td></tr>
+            <tr><td>SJF</td><td>Shortest job runs next</td><td>Minimizes average wait time, but needs to know job length in advance</td></tr>
+            <tr><td>Round Robin</td><td>Each process gets a fixed time slice, then goes to the back of the queue</td><td>Fair for interactive systems, more context-switch overhead</td></tr>
+            <tr><td>Priority</td><td>Highest-priority process runs first</td><td>Fast for urgent tasks, risks starving low-priority ones</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="concept-block">
+        <h3>Threads &amp; Concurrency</h3>
+        <p>A <strong>thread</strong> is a lightweight unit of execution inside a process — multiple threads in one process share the same memory space, unlike separate processes which are isolated. A <strong>single-threaded</strong> app does one thing at a time; a <strong>multi-threaded</strong> app (e.g. a web browser) runs several tasks concurrently within the same process. A basic hazard to know: a <strong>deadlock</strong> happens when two processes each hold a resource the other needs, and neither can proceed.</p>
+      </div>
+
+      <div class="code-wrap">
+        <div class="code-label">View &amp; manage processes — Linux vs Windows</div>
+        <pre><span class="c"># Linux</span>
+ps aux                 <span class="c"># list all running processes</span>
+top                     <span class="c"># live process monitor</span>
+kill -9 &lt;PID&gt;           <span class="c"># force-terminate a process</span>
+
+<span class="c"># Windows (CMD/PowerShell — used in Lab 2)</span>
+tasklist                <span class="c"># list all running processes</span>
+taskkill /PID &lt;pid&gt; /F  <span class="c"># force-terminate a process</span></pre>
+      </div>
+
+      <dl class="terms-grid">
+        <div class="term-card"><dt>PCB</dt><dd>Process Control Block — the kernel's record of everything it needs to know about a process.</dd></div>
+        <div class="term-card"><dt>Context Switch</dt><dd>Saving the state of one process and loading another so the CPU can move on.</dd></div>
+        <div class="term-card"><dt>Thread</dt><dd>A lightweight execution unit within a process; threads in the same process share memory.</dd></div>
+        <div class="term-card"><dt>Deadlock</dt><dd>A standstill where two or more processes each wait on a resource the other is holding.</dd></div>
+      </dl>
+
+      <div class="callout callout-info">
+        <span class="callout-icon">ℹ️</span>
+        <p><strong>Windows equivalent of top:</strong> Task Manager's Details tab shows live CPU/memory per process — same information, GUI instead of terminal.</p>
+      </div>
+    </section>
+    <hr class="module-divider"/>
+
+    <!-- ═══════ MODULE 03 ═══════ -->
+    <section class="module-section" id="m03">
+      <div class="module-header">
+        <span class="module-num-badge">MODULE 03</span>
+        <div class="module-header-text">
+          <h2>Memory Management</h2>
+          <p>How the OS gives every process the illusion of having its own private, unlimited memory — with a fixed amount of physical RAM.</p>
+        </div>
+      </div>
+
+      <div class="concept-block">
+        <h3>Address Spaces &amp; Linking</h3>
+        <p>A process works with a <strong>logical (virtual) address space</strong> — addresses it thinks it owns. The Memory Management Unit translates these to <strong>physical addresses</strong> in real RAM. <strong>Dynamic loading</strong> loads a routine into memory only when it's called; <strong>dynamic linking</strong> connects a program to shared libraries at run time instead of baking them in at compile time.</p>
+      </div>
+
+      <div class="concept-block">
+        <h3>Swapping &amp; Fragmentation</h3>
+        <p><strong>Swapping</strong> temporarily moves an inactive process out of RAM to disk to free space for others. With contiguous allocation, memory develops <strong>internal fragmentation</strong> (wasted space inside an allocated block) and <strong>external fragmentation</strong> (free memory scattered in unusable small chunks) — solved by periodic <strong>compaction</strong>, which shuffles processes together to consolidate free space.</p>
+      </div>
+
+      <div class="concept-block">
+        <h3>Paging, Segmentation &amp; Virtual Memory</h3>
+        <p><strong>Paging</strong> splits memory into fixed-size pages, tracked in a per-process <strong>page table</strong>; a <strong>TLB</strong> (Translation Lookaside Buffer) caches recent translations for speed. <strong>Segmentation</strong> instead divides memory by logical unit (code, stack, heap) with variable sizes. <strong>Virtual memory</strong> combines these ideas with <strong>demand paging</strong> — pages load only when actually needed, triggering a <strong>page fault</strong> if a needed page isn't in RAM. When RAM is full, a <strong>page replacement algorithm</strong> decides what to evict.</p>
+      </div>
+
+      <div class="compare-wrap">
+        <div class="compare-label">Page Replacement Algorithms</div>
+        <table class="compare">
+          <thead><tr><th>Algorithm</th><th>Rule</th></tr></thead>
+          <tbody>
+            <tr><td>FIFO</td><td>Evict the page that has been in memory the longest</td></tr>
+            <tr><td>LRU</td><td>Evict the page that hasn't been used for the longest time — usually a better predictor of future use</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="code-wrap">
+        <div class="code-label">Check memory usage — Linux vs Windows</div>
+        <pre><span class="c"># Linux</span>
+free -h                <span class="c"># total/used/free RAM and swap, human-readable</span>
+vmstat 1                <span class="c"># live memory + CPU stats, refresh every second</span>
+
+<span class="c"># Windows</span>
+systeminfo | findstr Memory   <span class="c"># quick memory summary</span>
+<span class="c"># or: Task Manager → Performance tab → Memory</span></pre>
+      </div>
+
+      <dl class="terms-grid">
+        <div class="term-card"><dt>Page Fault</dt><dd>An interrupt raised when a process references a page not currently in physical memory.</dd></div>
+        <div class="term-card"><dt>TLB</dt><dd>A hardware cache that speeds up virtual-to-physical address translation.</dd></div>
+        <div class="term-card"><dt>Thrashing</dt><dd>A state where the system spends more time swapping pages than executing — happens when RAM is badly oversubscribed.</dd></div>
+      </dl>
+
+      <div class="callout callout-warn">
+        <span class="callout-icon">⚠️</span>
+        <p><strong>Watch for:</strong> heavy swap usage on `free -h` output usually means the system doesn't have enough physical RAM for its workload — not a bug to fix in software.</p>
+      </div>
+    </section>
+    <hr class="module-divider"/>
+
+    <!-- ═══════ MODULE 04 ═══════ -->
+    <section class="module-section" id="m04">
+      <div class="module-header">
+        <span class="module-num-badge">MODULE 04</span>
+        <div class="module-header-text">
+          <h2>File Systems &amp; Storage Structure</h2>
+          <p>How data is organized on disk, how directories are structured, and how to partition and format a drive.</p>
+        </div>
+      </div>
+
+      <div class="concept-block">
+        <h3>Files, Attributes &amp; Access Methods</h3>
+        <p>Every file has attributes — name, type, size, permissions, timestamps. Files support operations like create, read, write, delete, and can be accessed <strong>sequentially</strong> (read start to finish, like a tape) or via <strong>direct/random access</strong> (jump straight to any byte, like a disk).</p>
+      </div>
+
+      <div class="concept-block">
+        <h3>Directory Structures</h3>
+        <p>A <strong>single-level</strong> directory holds all files in one flat list (fine for tiny systems, unusable at scale). A <strong>two-level</strong> directory gives each user their own directory. A <strong>tree-structured</strong> directory — what every modern OS uses — allows unlimited nested subdirectories.</p>
+      </div>
+
+      <div class="compare-wrap">
+        <div class="compare-label">File System Types — Linux vs Windows</div>
+        <table class="compare">
+          <thead><tr><th>Aspect</th><th>Linux (ext4)</th><th>Windows (NTFS)</th></tr></thead>
+          <tbody>
+            <tr><td>Allocation method</td><td>Indexed (inode-based)</td><td>Indexed ($MFT — Master File Table)</td></tr>
+            <tr><td>Case sensitivity</td><td>Case-sensitive (File.txt ≠ file.txt)</td><td>Case-preserving but insensitive</td></tr>
+            <tr><td>Path separator</td><td>Forward slash <code>/</code></td><td>Backslash <code>\</code></td></tr>
+            <tr><td>Older FAT32</td><td>Supported for USB drives (4 GB file size limit)</td><td>Still default for USB/SD cards</td></tr>
+            <tr><td>Permissions model</td><td>rwx for owner/group/other</td><td>ACL-based, per-user/group</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="code-wrap">
+        <div class="code-label">Practical — Lab 5: Storage Management &amp; Partitioning</div>
+        <pre><span class="c"># Linux — using fdisk and mkfs on a virtual disk</span>
+sudo fdisk /dev/sdb          <span class="c"># enter partitioning tool for a second disk</span>
+<span class="c"># inside fdisk: n (new partition), w (write changes)</span>
+sudo mkfs.ext4 /dev/sdb1     <span class="c"># format the new partition as ext4</span>
+sudo mount /dev/sdb1 /mnt/data
+
+<span class="c"># Windows — Disk Management (diskmgmt.msc) or DiskPart</span>
+diskpart
+list disk
+select disk 1
+create partition primary
+format fs=ntfs quick
+assign</pre>
+      </div>
+
+      <dl class="terms-grid">
+        <div class="term-card"><dt>Inode</dt><dd>A Linux data structure storing a file's metadata and pointers to its data blocks — not the filename itself.</dd></div>
+        <div class="term-card"><dt>FAT / NTFS / ext4</dt><dd>File system formats — FAT32 is old and universal, NTFS is Windows' modern default, ext4 is Linux's modern default.</dd></div>
+        <div class="term-card"><dt>MBR vs GPT</dt><dd>Partition table styles — GPT supports disks over 2 TB and more than 4 primary partitions.</dd></div>
+      </dl>
+
+      <div class="callout callout-tip">
+        <span class="callout-icon">💡</span>
+        <p><strong>Never format your only disk by mistake:</strong> always double-check the device name (<code>/dev/sdb</code> vs <code>/dev/sda</code>) before running <code>mkfs</code> — sda is usually your main OS disk.</p>
+      </div>
+    </section>
+    <hr class="module-divider"/>
+
+    <!-- ═══════ MODULE 05 ═══════ -->
+    <section class="module-section" id="m05">
+      <div class="module-header">
+        <span class="module-num-badge">MODULE 05</span>
+        <div class="module-header-text">
+          <h2>CLI &amp; Administration</h2>
+          <p>Windows CMD/PowerShell and the Linux Bash shell — file operations, users, permissions, and system monitoring from the command line.</p>
+        </div>
+      </div>
+
+      <div class="concept-block">
+        <h3>Command Line Fundamentals</h3>
+        <p>Windows CLI comes in two flavours — the legacy <strong>Command Prompt (CMD)</strong> and the modern, scriptable <strong>PowerShell</strong>. Linux uses <strong>Bash</strong> almost universally, built around pipelines (<code>|</code>) that feed one command's output into the next, and redirection (<code>&gt;</code>, <code>&gt;&gt;</code>) to send output to a file instead of the screen.</p>
+      </div>
+
+      <div class="compare-wrap">
+        <div class="compare-label">File Operations — Bash vs CMD/PowerShell</div>
+        <table class="compare">
+          <thead><tr><th>Task</th><th>Bash (Linux)</th><th>CMD / PowerShell (Windows)</th></tr></thead>
+          <tbody>
+            <tr><td>List files</td><td><code>ls -la</code></td><td><code>dir</code> / <code>Get-ChildItem</code></td></tr>
+            <tr><td>Change directory</td><td><code>cd /var/log</code></td><td><code>cd C:\Logs</code></td></tr>
+            <tr><td>Create directory</td><td><code>mkdir project</code></td><td><code>mkdir project</code></td></tr>
+            <tr><td>Copy file</td><td><code>cp a.txt b.txt</code></td><td><code>copy a.txt b.txt</code></td></tr>
+            <tr><td>Delete file</td><td><code>rm file.txt</code></td><td><code>del file.txt</code></td></tr>
+            <tr><td>Mirror a folder</td><td><code>rsync -av src/ dst/</code></td><td><code>robocopy src dst /E</code></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="code-wrap">
+        <div class="code-label">Practical — Lab 3: Linux Shell &amp; File Permissions</div>
+        <pre><span class="c"># Navigate and manage the filesystem</span>
+pwd                     <span class="c"># print working directory</span>
+touch notes.txt         <span class="c"># create empty file</span>
+cp notes.txt backup.txt
+
+<span class="c"># Permissions — symbolic and numeric (octal) modes</span>
+chmod u+x script.sh     <span class="c"># symbolic: add execute for owner</span>
+chmod 750 script.sh     <span class="c"># numeric: rwx for owner, r-x for group, --- for others</span>
+chown ahmed:devteam script.sh   <span class="c"># change owner and group</span></pre>
+      </div>
+
+      <div class="code-wrap">
+        <div class="code-label">Practical — Lab 4: User &amp; Group Administration</div>
+        <pre><span class="c"># Linux</span>
+sudo useradd -m ahmed          <span class="c"># create user with home directory</span>
+sudo passwd ahmed              <span class="c"># set password</span>
+sudo groupadd devteam
+sudo usermod -aG devteam ahmed <span class="c"># add ahmed to devteam group</span>
+
+<span class="c"># Windows (CMD)</span>
+net user ahmed Passw0rd! /add
+net localgroup devteam /add
+net localgroup devteam ahmed /add</pre>
+      </div>
+
+      <div class="code-wrap">
+        <div class="code-label">Practical — Labs 2 &amp; 6: CLI Admin + Performance Monitoring</div>
+        <pre><span class="c"># Windows CLI system admin (Lab 2)</span>
+systeminfo              <span class="c"># full system report</span>
+attrib +r file.txt      <span class="c"># set read-only attribute</span>
+chkdsk C: /f             <span class="c"># check and fix disk errors</span>
+
+<span class="c"># Resource monitoring (Lab 6)</span>
+top                      <span class="c"># Linux — live CPU/memory per process</span>
+htop                     <span class="c"># Linux — friendlier top with color and mouse support</span>
+df -h                    <span class="c"># Linux — disk space usage by mount point</span>
+<span class="c"># Windows — Task Manager / Resource Monitor (resmon.exe)</span></pre>
+      </div>
+
+      <dl class="terms-grid">
+        <div class="term-card"><dt>Pipeline (|)</dt><dd>Sends one command's output directly into another command as input.</dd></div>
+        <div class="term-card"><dt>Redirection (&gt;, &gt;&gt;)</dt><dd>Sends command output to a file — overwrite (&gt;) or append (&gt;&gt;).</dd></div>
+        <div class="term-card"><dt>sudo</dt><dd>Runs a single command with administrator (root) privileges on Linux.</dd></div>
+        <div class="term-card"><dt>Octal permissions</dt><dd>A 3-digit shorthand for rwx permissions — e.g. 750 = rwxr-x---.</dd></div>
+      </dl>
+
+      <div class="callout callout-tip">
+        <span class="callout-icon">💡</span>
+        <p><strong>Course uses:</strong> Windows 10/11 and Ubuntu Server side by side in VirtualBox so every command in this module can be run on both, back to back.</p>
+      </div>
+    </section>
+    <hr class="module-divider"/>
+
+    <!-- ENROLL CTA -->
+    <div style="background:linear-gradient(135deg,rgba(26,106,255,0.12),rgba(0,212,255,0.06));border:1px solid rgba(26,106,255,0.25);border-radius:14px;padding:32px 28px;text-align:center;margin-top:20px;">
+      <div style="font-size:2rem;margin-bottom:12px">🖥️</div>
+      <h2 style="font-size:1.3rem;font-weight:800;margin-bottom:8px">Ready to go beyond reading?</h2>
+      <p style="font-size:0.88rem;color:var(--gray-400);max-width:420px;margin:0 auto 20px;line-height:1.7">The live course includes hands-on labs, Q&A sessions, and a final enterprise project for your GitHub portfolio. Same instructor who wrote these notes.</p>
+      <a href="https://wa.me/923231450045?text=Hi%20Kamran%2C%20I%20read%20the%20OS%20notes%20and%20want%20to%20enroll." style="display:inline-flex;align-items:center;gap:8px;background:var(--blue);color:#fff;padding:12px 28px;border-radius:8px;text-decoration:none;font-weight:700;font-size:0.9rem;">💬 Enroll via WhatsApp →</a>
+      <p style="font-size:0.72rem;color:var(--gray-500);margin-top:12px">Batch info &amp; fee on request</p>
+    </div>
+
+  </main>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2026 Devriston · Muhammad Kamran Kabeer · Lahore, Pakistan</p>
+  <div class="footer-links">
+    <a href="https://www.devriston.com.pk/courses.html">All Courses</a>
+    <a href="https://www.devriston.com.pk/devops-notes.html">DevOps Notes</a>
+    <a href="https://www.devriston.com.pk/interview-guide.html">Interview Guide</a>
+    <a href="https://www.devriston.com.pk/blog.html">Blog</a>
+    <a href="https://www.devriston.com.pk/contact.html">Contact</a>
+  </div>
+</footer>
+
+<script>
+  // Back to top
+  const bt = document.getElementById('back-top');
+  window.addEventListener('scroll', () => bt.classList.toggle('visible', scrollY > 400));
+
+  // Sidebar active highlight on scroll
+  const sections = document.querySelectorAll('.module-section');
+  const links = document.querySelectorAll('.sidebar-link');
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        links.forEach(l => l.classList.remove('active'));
+        const link = document.querySelector(`.sidebar-link[href="#${e.target.id}"]`);
+        if (link) link.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-20% 0px -70% 0px' });
+  sections.forEach(s => obs.observe(s));
+
+  // Mobile nav toggle
+  document.querySelector('.nav-mobile-toggle').addEventListener('click', () => {
+    document.querySelector('.nav-mobile').classList.toggle('open');
+  });
+</script>
+</body>
+</html>
