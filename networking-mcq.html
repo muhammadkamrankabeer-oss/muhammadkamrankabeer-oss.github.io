@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Computer Networking MCQ Practice | Devriston — Free Online Quiz</title>
+  <meta name="description" content="Free Computer Networking MCQ practice for DIT Part-I students: 60 multiple-choice questions on communication models, LAN/MAN/WAN, VLAN, VPN and network topologies, with instant answers and score tracking." />
+  <meta name="keywords" content="computer networks MCQs, networking MCQ practice, DIT computer networks quiz, PBTE DIT MCQs, network topology MCQs, LAN MAN WAN MCQs, VLAN VPN MCQs" />
+  <meta name="author" content="Muhammad Kamran Kabeer" />
+  <meta name="robots" content="index,follow" />
+  <link rel="canonical" href="https://www.devriston.com.pk/networking-mcq.html" />
+  <meta property="og:title" content="Computer Networking MCQ Practice | Devriston" />
+  <meta property="og:description" content="60 free Computer Networking multiple-choice questions for DIT Part-I, with instant feedback." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.devriston.com.pk/networking-mcq.html" />
+  <meta property="og:site_name" content="Devriston" />
+
+  <style>
+    :root {
+      --navy:     #040d1c;
+      --navy-2:   #071428;
+      --navy-3:   #0a1d3a;
+      --blue:     #1a6aff;
+      --cyan:     #00d4ff;
+      --white:    #ffffff;
+      --gray-100: #f0f4ff;
+      --gray-400: #8899bb;
+      --gray-500: #5a6a88;
+      --border:   rgba(26,106,255,0.18);
+      --border-2: rgba(0,212,255,0.12);
+      --green:    #22c55e;
+      --orange:   #f97316;
+      --purple:   #a855f7;
+      --font-main: 'Inter', system-ui, -apple-system, sans-serif;
+      --font-mono: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
+      --radius: 10px;
+      --transition: 0.2s ease;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body { background: var(--navy); color: var(--white); font-family: var(--font-main); line-height: 1.7; -webkit-font-smoothing: antialiased; }
+    ::-webkit-scrollbar { width: 6px; } ::-webkit-scrollbar-track { background: var(--navy); } ::-webkit-scrollbar-thumb { background: var(--blue); border-radius: 3px; }
+
+    /* NAV */
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(4,13,28,0.95); backdrop-filter: blur(14px); border-bottom: 1px solid var(--border); padding: 0 5%; display: flex; align-items: center; justify-content: space-between; height: 60px; }
+    .nav-brand { display: flex; align-items: center; gap: 8px; text-decoration: none; color: var(--white); font-weight: 700; font-size: 1rem; }
+    .nav-brand img { height: 28px; }
+    .nav-links { display: flex; gap: 20px; list-style: none; }
+    .nav-links a { color: var(--gray-400); text-decoration: none; font-size: 0.82rem; font-weight: 500; transition: color var(--transition); }
+    .nav-links a:hover { color: var(--white); }
+    .nav-links a.active { color: var(--cyan); }
+    .nav-cta { background: var(--blue) !important; color: #fff !important; padding: 6px 14px; border-radius: 5px; font-size: 0.78rem !important; }
+    .nav-mobile-toggle { display: none; background: none; border: none; color: var(--white); font-size: 1.3rem; cursor: pointer; }
+    .nav-mobile { display: none; position: fixed; top: 60px; left: 0; right: 0; background: var(--navy-2); border-bottom: 1px solid var(--border); padding: 16px 5%; z-index: 99; flex-direction: column; gap: 0; }
+    .nav-mobile.open { display: flex; }
+    .nav-mobile a { color: var(--gray-400); text-decoration: none; font-size: 0.88rem; padding: 10px 0; border-bottom: 1px solid var(--border); display: block; }
+    .nav-mobile a:hover { color: var(--white); }
+    @media(max-width:768px) { .nav-links { display:none; } .nav-mobile-toggle { display:block; } }
+
+    /* BREADCRUMB */
+    .breadcrumb { font-size: 0.75rem; color: var(--gray-500); margin-bottom: 28px; }
+    .breadcrumb a { color: var(--gray-400); text-decoration: none; }
+    .breadcrumb a:hover { color: var(--cyan); }
+    .breadcrumb span { margin: 0 6px; }
+
+    /* PAGE HERO */
+    .page-hero { margin-bottom: 48px; }
+    .page-badge { display: inline-flex; align-items: center; gap: 7px; background: rgba(0,212,255,0.08); border: 1px solid rgba(0,212,255,0.2); color: var(--cyan); border-radius: 16px; padding: 4px 12px; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 16px; }
+    .page-hero h1 { font-size: clamp(1.7rem, 3.5vw, 2.4rem); font-weight: 800; line-height: 1.15; margin-bottom: 12px; }
+    .page-hero h1 em { font-style: normal; background: linear-gradient(135deg, var(--blue), var(--cyan)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .page-hero p { color: var(--gray-400); font-size: 0.95rem; max-width: 560px; line-height: 1.7; margin-bottom: 20px; }
+    .hero-pills { display: flex; flex-wrap: wrap; gap: 8px; }
+    .pill { padding: 4px 10px; border-radius: 4px; font-size: 0.72rem; font-weight: 600; border: 1px solid; }
+    .pill-free { background: rgba(34,197,94,0.1); color: var(--green); border-color: rgba(34,197,94,0.3); }
+    .pill-modules { background: rgba(26,106,255,0.1); color: #7db3ff; border-color: rgba(26,106,255,0.3); }
+    .pill-compare { background: rgba(249,115,22,0.1); color: var(--orange); border-color: rgba(249,115,22,0.3); }
+
+    /* CALLOUT */
+    .callout { border-radius: 8px; padding: 14px 18px; margin-bottom: 18px; font-size: 0.84rem; line-height: 1.65; display: flex; gap: 12px; align-items: flex-start; }
+    .callout-tip  { background: rgba(34,197,94,0.07);  border: 1px solid rgba(34,197,94,0.2);  }
+    .callout-warn { background: rgba(249,115,22,0.07); border: 1px solid rgba(249,115,22,0.2); }
+    .callout-info { background: rgba(26,106,255,0.07); border: 1px solid rgba(26,106,255,0.2); }
+    .callout-icon { font-size: 1rem; flex-shrink: 0; line-height: 1.5; }
+    .callout p { color: #c5d0e8; }
+    .callout strong { color: var(--white); }
+
+    /* BACK TO TOP */
+    #back-top { position: fixed; bottom: 24px; right: 24px; background: var(--blue); color: #fff; width: 38px; height: 38px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 16px; text-decoration: none; opacity: 0; pointer-events: none; transition: opacity var(--transition); z-index: 999; box-shadow: 0 0 14px rgba(26,106,255,0.4); }
+    #back-top.visible { opacity: 1; pointer-events: auto; }
+
+    /* FOOTER */
+    footer { background: var(--navy-2); border-top: 1px solid var(--border); padding: 36px 5% 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+    footer p { font-size: 0.78rem; color: var(--gray-500); }
+    .footer-links { display: flex; gap: 20px; flex-wrap: wrap; }
+    .footer-links a { color: var(--gray-500); text-decoration: none; font-size: 0.78rem; transition: color var(--transition); }
+    .footer-links a:hover { color: var(--white); }
+
+    /* ── LEARN SUB-NAV ── */
+.learn-subnav{
+  position:sticky;top:60px;z-index:90;
+  background:rgba(7,20,40,0.97);backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(26,106,255,0.15);
+  overflow-x:auto;white-space:nowrap;
+  scrollbar-width:none;
+}
+.learn-subnav::-webkit-scrollbar{display:none}
+.learn-subnav-inner{
+  display:inline-flex;align-items:center;gap:2px;
+  padding:0 5%;min-width:100%;
+}
+.learn-subnav a{
+  display:inline-flex;align-items:center;gap:6px;
+  color:rgba(136,153,187,0.85);text-decoration:none;
+  font-size:0.78rem;font-weight:500;
+  padding:10px 12px;border-bottom:2px solid transparent;
+  transition:color 0.18s,border-color 0.18s;
+  white-space:nowrap;flex-shrink:0;
+}
+.learn-subnav a:hover{color:#fff}
+.learn-subnav a.sn-active{
+  color:#00d4ff;border-bottom-color:#00d4ff;font-weight:600;
+}
+.learn-subnav .sn-sep{
+  width:1px;height:16px;background:rgba(255,255,255,0.08);
+  margin:0 4px;flex-shrink:0;
+}
+
+  
+    /* ---- MCQ PAGE ---- */
+    .mcq-wrap { max-width: 860px; margin: 60px auto 0; padding: 40px 24px 80px; }
+    @media(max-width:600px) { .mcq-wrap { padding: 24px 16px 60px; } }
+    .panel { background: rgba(255,255,255,0.025); border: 1px solid var(--border-2); border-radius: 14px; padding: 22px; margin-bottom: 18px; }
+    .panel { scroll-margin-top: 130px; }
+    .panel h3 { font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--cyan); margin-bottom: 14px; }
+    .chap-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 10px; }
+    .chap { text-align: left; background: rgba(255,255,255,0.03); border: 1px solid var(--border); border-radius: 10px; padding: 12px 14px; color: var(--white); cursor: pointer; font-family: inherit; transition: border-color var(--transition), background var(--transition); }
+    .chap:hover { border-color: var(--cyan); }
+    .chap.sel { border-color: var(--cyan); background: rgba(0,212,255,0.08); }
+    .chap .t { font-size: 0.84rem; font-weight: 700; display: block; }
+    .chap .m { font-size: 0.72rem; color: var(--gray-400); display: block; margin-top: 3px; }
+    .chap .best { color: var(--green); font-weight: 600; }
+    .opts-row { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; justify-content: space-between; margin-top: 18px; }
+    .chk { display: flex; gap: 8px; align-items: center; font-size: 0.84rem; color: var(--gray-400); cursor: pointer; }
+    .chk input { accent-color: var(--blue); width: 16px; height: 16px; }
+    .btn { font-family: inherit; font-size: 0.88rem; font-weight: 700; padding: 11px 24px; border-radius: 8px; border: 1px solid var(--blue); background: var(--blue); color: #fff; cursor: pointer; transition: background var(--transition), transform var(--transition); }
+    .btn:hover:not(:disabled) { background: #1557d6; transform: translateY(-1px); }
+    .btn:disabled { opacity: 0.4; cursor: not-allowed; }
+    .btn.ghost { background: transparent; color: var(--gray-400); border-color: var(--border); }
+    .btn.ghost:hover:not(:disabled) { background: rgba(255,255,255,0.04); color: var(--white); }
+    .hide { display: none !important; }
+
+    .q-meta { display: flex; justify-content: space-between; font-size: 0.78rem; color: var(--gray-400); font-family: var(--font-mono); }
+    .q-meta b { color: var(--cyan); font-weight: 700; }
+    .bar { height: 6px; background: rgba(255,255,255,0.07); border-radius: 99px; overflow: hidden; margin: 12px 0 18px; }
+    .bar i { display: block; height: 100%; width: 0; background: linear-gradient(90deg, var(--blue), var(--cyan)); transition: width 0.25s; }
+    .q-tag { display: inline-block; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #7db3ff; background: rgba(26,106,255,0.1); border: 1px solid rgba(26,106,255,0.3); border-radius: 4px; padding: 3px 9px; margin-bottom: 12px; }
+    .q-text { font-size: 1.08rem; font-weight: 700; line-height: 1.5; margin-bottom: 16px; }
+    .opt { display: flex; gap: 12px; align-items: flex-start; width: 100%; text-align: left; font-family: inherit; font-size: 0.9rem; line-height: 1.5; color: #c5d0e8; background: rgba(255,255,255,0.03); border: 1px solid var(--border); border-radius: 10px; padding: 12px 14px; margin-bottom: 9px; cursor: pointer; transition: border-color var(--transition), background var(--transition); }
+    .opt:hover:not(:disabled) { border-color: var(--cyan); background: rgba(0,212,255,0.05); }
+    .opt:disabled { cursor: default; }
+    .opt .k { font-family: var(--font-mono); font-size: 0.74rem; font-weight: 700; color: var(--gray-400); background: rgba(255,255,255,0.06); border-radius: 5px; min-width: 24px; height: 24px; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .opt.ok  { border-color: var(--green); background: rgba(34,197,94,0.1); color: var(--white); }
+    .opt.ok .k  { background: var(--green); color: #04210f; }
+    .opt.bad { border-color: #ef4444; background: rgba(239,68,68,0.1); color: var(--white); }
+    .opt.bad .k { background: #ef4444; color: #fff; }
+    .fb { min-height: 1.5em; margin-top: 6px; font-size: 0.86rem; font-weight: 700; }
+    .fb.ok { color: var(--green); } .fb.bad { color: #f87171; }
+    .q-nav { display: flex; justify-content: space-between; gap: 10px; margin-top: 16px; }
+    .hint { font-size: 0.72rem; color: var(--gray-500); margin-top: 12px; }
+    @media(max-width:700px) { .hint { display: none; } }
+
+    .score-big { font-size: 2.6rem; font-weight: 800; line-height: 1.1; background: linear-gradient(135deg, var(--blue), var(--cyan)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin: 6px 0; }
+    .verdict { color: var(--gray-400); font-size: 0.9rem; margin-bottom: 18px; }
+    .btn-row { display: flex; flex-wrap: wrap; gap: 10px; }
+    .review { margin-top: 22px; border-top: 1px solid var(--border); padding-top: 16px; }
+    .review h4 { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--orange); margin-bottom: 10px; }
+    .rv { background: rgba(255,255,255,0.025); border: 1px solid var(--border-2); border-radius: 8px; padding: 12px 14px; margin-bottom: 10px; font-size: 0.84rem; }
+    .rv .rq { font-weight: 600; margin-bottom: 6px; }
+    .rv .w { color: #f87171; } .rv .a { color: var(--green); }
+
+  </style>
+</head>
+<body>
+
+<a href="#" id="back-top">↑</a>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-brand" href="https://www.devriston.com.pk/index.html">
+    <img src="https://www.devriston.com.pk/assets/logos/dv-logo.png" alt="Devriston" />
+    Devriston
+  </a>
+  <ul class="nav-links"><li><a href="https://www.devriston.com.pk/index.html">Home</a></li><li><a href="https://www.devriston.com.pk/solutions.html">Solutions</a></li><li><a href="https://www.devriston.com.pk/case-studies.html">Engineering</a></li><li><a href="https://www.devriston.com.pk/learn.html">Academy</a></li><li><a href="https://www.devriston.com.pk/blog.html">Resources</a></li><li><a href="https://www.devriston.com.pk/about.html">About</a></li><li><a href="https://www.devriston.com.pk/contact.html" class="nav-cta">Book Consultation</a></li></ul>
+  <button class="nav-mobile-toggle" onclick="document.querySelector('.nav-mobile').classList.toggle('open')">☰</button>
+</nav>
+<div class="nav-mobile">
+  <a href="https://www.devriston.com.pk/index.html">Home</a>
+  <a href="https://www.devriston.com.pk/solutions.html">Solutions</a>
+  <a href="https://www.devriston.com.pk/case-studies.html">Engineering</a>
+  <a href="https://www.devriston.com.pk/learn.html" class="active">Academy</a><a href="https://www.devriston.com.pk/blog.html">Resources</a>
+  <a href="https://www.devriston.com.pk/about.html">About</a>
+  <a href="https://www.devriston.com.pk/contact.html">Contact</a>
+</div>
+
+<!-- SUB-NAV -->
+<nav class="learn-subnav"><div class="learn-subnav-inner"><a href="learn.html">🏠 Hub</a><a href="courses.html">🎓 Courses</a><span class="sn-sep"></span><a href="linux-notes.html">🐧 Linux</a><a href="cloud-notes.html">☁️ Cloud</a><a href="devops-full-notes.html">⚙️ DevOps</a><span class="sn-sep"></span><a href="ai-notes.html">🤖 AI</a><a href="python-notes.html">🐍 Python</a><a href="c-programming.html">💻 C</a><a href="os-notes.html">🖥️ OS</a><a href="networking-notes.html" class="sn-active">🌐 Networking</a><span class="sn-sep"></span><a href="devops-notes.html">📋 Quick Notes</a><a href="interview-guide.html">💼 Interview Guide</a><a href="blog.html">📝 Blog</a></div></nav>
+
+
+<main class="mcq-wrap">
+  <div class="breadcrumb">
+    <a href="https://www.devriston.com.pk/index.html">Home</a><span>›</span>
+    <a href="https://www.devriston.com.pk/courses.html">Courses</a><span>›</span>
+    <a href="https://www.devriston.com.pk/networking-notes.html">Computer Networking</a><span>›</span>
+    MCQ Practice
+  </div>
+
+  <div class="page-hero">
+    <div class="page-badge">📝 Free Practice</div>
+    <h1>Computer Networking<br/><em>— MCQ Practice</em></h1>
+    <p>60 multiple-choice questions from DIT Part-I Chapters 1–2: communication models, network types, VLAN, VPN and topologies. Pick a chapter, answer, and see the correct answer instantly. No account needed.</p>
+    <div class="hero-pills">
+      <span class="pill pill-free">✓ 100% Free</span>
+      <span class="pill pill-modules">2 Chapters</span>
+      <span class="pill pill-compare" id="pill-total">60 Questions</span>
+    </div>
+  </div>
+
+  <section class="panel" id="setup">
+    <h3>Choose what to practice</h3>
+    <div class="chap-grid" id="chapters"></div>
+    <div class="opts-row">
+      <label class="chk"><input type="checkbox" id="shuffle"> Shuffle question order</label>
+      <button class="btn" id="start">Start practice →</button>
+    </div>
+  </section>
+
+  <section class="panel hide" id="quiz" aria-live="polite">
+    <div class="q-meta"><span id="pos"></span><span id="sc"></span></div>
+    <div class="bar"><i id="prog"></i></div>
+    <span class="q-tag" id="tag"></span>
+    <div class="q-text" id="qtext"></div>
+    <div id="opts"></div>
+    <div class="fb" id="fb"></div>
+    <div class="q-nav">
+      <button class="btn ghost" id="quit">End quiz</button>
+      <button class="btn" id="next" disabled>Next →</button>
+    </div>
+    <p class="hint">Keyboard: press A, B, C or D to answer, Enter for next.</p>
+  </section>
+
+  <section class="panel hide" id="result">
+    <h3>Your result</h3>
+    <div class="score-big" id="final"></div>
+    <p class="verdict" id="verdict"></p>
+    <div class="btn-row">
+      <button class="btn" id="again">Practice again</button>
+      <button class="btn ghost" id="wrongOnly">Retry wrong answers</button>
+    </div>
+    <div class="review hide" id="reviewBox">
+      <h4>Questions to review</h4>
+      <div id="review"></div>
+    </div>
+  </section>
+
+  <div class="callout callout-info">
+    <span class="callout-icon">💡</span>
+    <p><strong>Want to study first?</strong> Read the <a href="networking-notes.html" style="color:var(--cyan)">Computer Networking lecture notes</a>, then come back and test yourself.</p>
+  </div>
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2026 Devriston · Muhammad Kamran Kabeer · Lahore, Pakistan</p>
+  <div class="footer-links">
+    <a href="https://www.devriston.com.pk/courses.html">All Courses</a>
+    <a href="https://www.devriston.com.pk/devops-notes.html">DevOps Notes</a>
+    <a href="https://www.devriston.com.pk/interview-guide.html">Interview Guide</a>
+    <a href="https://www.devriston.com.pk/blog.html">Blog</a>
+    <a href="https://www.devriston.com.pk/contact.html">Contact</a>
+  </div>
+</footer>
+
+<script>
+const CHAPTERS = {"1": "Chapter 1: Communication Models & Network Types", "2": "Chapter 2: Topology"};
+const QUESTIONS = [{"id": 1, "chapter": 1, "question": "What is a communication model?", "options": ["A type of computer", "A way to understand how data moves in a network", "A network wire", "A programming language"], "answer": 1}, {"id": 2, "chapter": 1, "question": "From the choices below, what is not part of a communication model?", "options": ["Sender", "Message", "Monitor", "Protocol"], "answer": 2}, {"id": 3, "chapter": 1, "question": "Which device begins the act of sending information?", "options": ["Receiver", "Sender", "Router", "Switch"], "answer": 1}, {"id": 4, "chapter": 1, "question": "What does a transmission medium do?", "options": ["Stores data", "Sends emails", "Moves data from the sender to the receiver", "Deletes data"], "answer": 2}, {"id": 5, "chapter": 1, "question": "From the options below, which one is a wired way to send information?", "options": ["Wi-Fi", "Bluetooth", "Fiber optic cable", "Satellite"], "answer": 2}, {"id": 6, "chapter": 1, "question": "In computer networks, what does a message mean?", "options": ["A network device", "A set of rules", "Information being sent", "A router"], "answer": 2}, {"id": 7, "chapter": 1, "question": "Which of these is not a kind of message?", "options": ["Text", "Image", "Audio", "Switch"], "answer": 3}, {"id": 8, "chapter": 1, "question": "What do protocols tell us?", "options": ["Computer speed", "Rules for communication", "Internet cost", "Hardware size"], "answer": 1}, {"id": 9, "chapter": 1, "question": "What protocol helps us browse websites?", "options": ["FTP", "HTTP/HTTPS", "TCP only", "IP only"], "answer": 1}, {"id": 10, "chapter": 1, "question": "In a communication model, who gets the data?", "options": ["Sender", "Router", "Receiver", "Switch"], "answer": 2}, {"id": 11, "chapter": 1, "question": "What is a computer network?", "options": ["A single computer", "Multiple devices linked together to share things", "A software program", "A CPU"], "answer": 1}, {"id": 12, "chapter": 1, "question": "Which type of network connects devices in a small place, such as a single room or a building?", "options": ["WAN", "MAN", "LAN", "Internet"], "answer": 2}, {"id": 13, "chapter": 1, "question": "What kind of network is used to connect computers across a whole city?", "options": ["LAN", "MAN", "WAN", "PAN"], "answer": 1}, {"id": 14, "chapter": 1, "question": "Among these, which network spreads over the biggest region?", "options": ["LAN", "MAN", "WAN", "Switch"], "answer": 2}, {"id": 15, "chapter": 1, "question": "What do we mean by the Internet?", "options": ["A LAN", "A MAN", "The largest WAN", "A protocol"], "answer": 2}, {"id": 16, "chapter": 1, "question": "What do the letters 'VLAN' stand for?", "options": ["Very Large Area Network", "Virtual Local Area Network", "Video LAN", "Virtual Link Access Network"], "answer": 1}, {"id": 17, "chapter": 1, "question": "What is the primary reason for using a VLAN?", "options": ["Increase cable length", "Divide physical network into logical networks", "Delete data", "Increase CPU speed"], "answer": 1}, {"id": 18, "chapter": 1, "question": "What type of connection does a VPN create?", "options": ["Public network", "Secure private tunnel over internet", "LAN cable", "Router path"], "answer": 1}, {"id": 19, "chapter": 1, "question": "Out of these options, which one is NOT part of how networks usually work?", "options": ["Packetization", "Routing", "Printing", "Encoding"], "answer": 2}, {"id": 20, "chapter": 1, "question": "What does the term 'packetization' mean?", "options": ["Joining computers", "Breaking data into small packets", "Turning off network", "Deleting messages"], "answer": 1}, {"id": 21, "chapter": 2, "question": "What does 'Network Topology' mean?", "options": ["Type of software", "How network devices are arranged", "Internet speed", "Antivirus system"], "answer": 1}, {"id": 22, "chapter": 2, "question": "Network topology tells us about:", "options": ["How devices are placed and how data moves", "Only cables", "Only routers", "Only speed"], "answer": 0}, {"id": 23, "chapter": 2, "question": "What does physical topology mean?", "options": ["The way data travels", "The imaginary path for data", "How hardware and wires are physically set up", "Rules for internet use"], "answer": 2}, {"id": 24, "chapter": 2, "question": "Logical topology shows us:", "options": ["Which kind of cable is used", "The color of network devices", "How much equipment costs", "The way data moves through the network"], "answer": 3}, {"id": 25, "chapter": 2, "question": "A network has these devices:", "options": ["Computers only", "Printers only", "Computers, servers, switches, and printers", "Mobile phones only"], "answer": 2}, {"id": 26, "chapter": 2, "question": "What does wired topology use?", "options": ["Actual connecting wires", "Bluetooth technology", "Signals without wires", "Waves from satellites"], "answer": 0}, {"id": 27, "chapter": 2, "question": "Wireless topology works with:", "options": ["USB connection wires", "Wires made of copper", "Radio waves and their signals", "Fiber optic wires"], "answer": 2}, {"id": 28, "chapter": 2, "question": "The way information travels in wired topology is through:", "options": ["Air around us", "Empty space", "Wires (like fiber or copper)", "Bluetooth connection"], "answer": 2}, {"id": 29, "chapter": 2, "question": "For wireless topology, the information travels using:", "options": ["Fiber optic glass strands", "Air (which carries radio waves)", "Wires made of copper", "Ethernet connecting wire"], "answer": 1}, {"id": 30, "chapter": 2, "question": "Mostly, wired topologies are:", "options": ["Quicker and more reliable", "Not steady", "Less fast compared to wired", "Not connected to the internet"], "answer": 0}, {"id": 31, "chapter": 2, "question": "Wireless topology is commonly:", "options": ["Quick like wired ones", "At the same speed", "Less fast compared to wired", "Rely on physical cables"], "answer": 2}, {"id": 32, "chapter": 2, "question": "Wired topology is known to be more:", "options": ["Always costly", "Safe from threats", "Not strong", "Without wires"], "answer": 1}, {"id": 33, "chapter": 2, "question": "Wireless topologies tend to be:", "options": ["Very safe from all dangers", "Safer than wired ones", "Kept safe by cables", "Not as safe"], "answer": 3}, {"id": 34, "chapter": 2, "question": "Setting up wired computer topologies is usually:", "options": ["Hard and takes much time", "Very quick", "Simple", "Without wires"], "answer": 0}, {"id": 35, "chapter": 2, "question": "Putting in wireless topologies is often:", "options": ["Difficult", "Complicated", "Simple and fast", "Not possible"], "answer": 2}, {"id": 36, "chapter": 2, "question": "What does a Bus topology layout use?", "options": ["A main connecting wire", "A device to direct traffic", "A central connecting device", "A space-based system"], "answer": 0}, {"id": 37, "chapter": 2, "question": "How does information move in a Bus topology?", "options": ["Only in a single way", "In a round shape", "On unpredictable routes", "In two ways on the main wire"], "answer": 3}, {"id": 38, "chapter": 2, "question": "A Bus topology setup is often:", "options": ["Costly", "Hard to understand", "Not expensive and easy", "Without wires"], "answer": 2}, {"id": 39, "chapter": 2, "question": "The biggest problem with a Bus topology layout is:", "options": ["If the main wire breaks, the whole topology stops", "Safety of data", "Fast data transfer", "Simple installation"], "answer": 0}, {"id": 40, "chapter": 2, "question": "What does a Star topology layout use?", "options": ["A main cable", "A main connection box (hub/switch)", "A loop structure", "An orbiting device"], "answer": 1}, {"id": 41, "chapter": 2, "question": "Star topology arrangement is mostly found in:", "options": ["Older computer systems", "Houses and workplaces", "Only for army use", "Systems in outer space"], "answer": 1}, {"id": 42, "chapter": 2, "question": "If one computer stops working in a Star topology:", "options": ["The whole topology breaks down", "Everything stops", "Other computers keep running", "The internet connection fails"], "answer": 2}, {"id": 43, "chapter": 2, "question": "The biggest drawback of a Star topology setup is:", "options": ["If the main hub stops, the topology stops", "High speed", "Low cost", "Problems with no wires"], "answer": 0}, {"id": 44, "chapter": 2, "question": "A Ring topology shape creates a:", "options": ["Star shape", "Complete circle", "Straight path", "Tree-like structure"], "answer": 1}, {"id": 45, "chapter": 2, "question": "In a Ring topology setup, information travels:", "options": ["In any random path", "In two directions", "Not at all", "Only in one specific way"], "answer": 3}, {"id": 46, "chapter": 2, "question": "The Ring topology design is usually:", "options": ["Not common today", "Very fast", "New and updated", "Without cables"], "answer": 0}, {"id": 47, "chapter": 2, "question": "What does a Mesh topology layout mean?", "options": ["Only one link between devices", "No links at all", "Each device links to all other devices", "Only uses no-wire connections"], "answer": 2}, {"id": 48, "chapter": 2, "question": "What does a Full Mesh topology setup mean?", "options": ["Every device is linked to every other device", "There is just one link", "Only some devices are connected", "No devices are linked"], "answer": 0}, {"id": 49, "chapter": 2, "question": "A Mesh topology design is typically:", "options": ["Not costly", "Quite expensive", "Not strong", "Easy to set up"], "answer": 1}, {"id": 50, "chapter": 2, "question": "The Mesh topology setup is known to be very:", "options": ["Not steady", "Not fast", "Trustworthy", "Not connected"], "answer": 2}, {"id": 51, "chapter": 2, "question": "A Hybrid topology layout is defined as:", "options": ["Just one type of topology design", "Uses only connections without wires", "A mix of two or more topology designs", "Only a Bus type topology"], "answer": 2}, {"id": 52, "chapter": 2, "question": "Hybrid topology designs are mostly seen in:", "options": ["Small houses", "Handheld phones", "Big companies and groups", "Only portable computers"], "answer": 2}, {"id": 53, "chapter": 2, "question": "The way Wi-Fi topologies are set up is like:", "options": ["A Bus arrangement", "A Mesh arrangement", "A Ring arrangement", "A Star topology design"], "answer": 1}, {"id": 54, "chapter": 2, "question": "Wi-Fi uses what to make connections?", "options": ["A main strong wire", "Just a topology switch", "Only through space satellites", "A router or an Access Point device"], "answer": 3}, {"id": 55, "chapter": 2, "question": "The Ad-hoc connection method means:", "options": ["Using a main connection box (router)", "A topology that uses wires", "Devices link straight to one another", "A topology using glass wires (fiber)"], "answer": 2}, {"id": 56, "chapter": 2, "question": "In infrastructure mode, what is used?", "options": ["A main router or access point", "No device", "Direct linking", "Only Bluetooth"], "answer": 0}, {"id": 57, "chapter": 2, "question": "Satellite topology finds its use in:", "options": ["LAN connections", "Bluetooth", "USB data movement", "World-wide communication"], "answer": 3}, {"id": 58, "chapter": 2, "question": "Satellite communication involves:", "options": ["Only sending data up", "Only getting data down", "Both sending data up and receiving data down", "Offline way of working"], "answer": 2}, {"id": 59, "chapter": 2, "question": "For radio wave topologies, what is needed?", "options": ["No signal", "A clear path of sight", "Fiber optic wire", "USB"], "answer": 1}, {"id": 60, "chapter": 2, "question": "The benefit of wireless topology is:", "options": ["Easy movement", "No signals", "No movement", "No way to communicate"], "answer": 0}];
+const LET = ["A","B","C","D"];
+const $ = id => document.getElementById(id);
+
+let pool = [], i = 0, score = 0, answered = false, wrong = [], log = [], selChap = 0, current = 0;
+
+/* ---- best scores (per-browser convenience; safe if storage is blocked) ---- */
+function getBest(){ try { return JSON.parse(localStorage.getItem("netmcq_best") || "{}"); } catch(e){ return {}; } }
+function setBest(k, pct){ try { const b = getBest(); if (!(k in b) || pct > b[k]) { b[k] = pct; localStorage.setItem("netmcq_best", JSON.stringify(b)); } } catch(e){} }
+
+function renderChapters(){
+  const best = getBest();
+  const all = [{key:0, title:"All chapters", n:QUESTIONS.length}].concat(
+    Object.keys(CHAPTERS).map(k => ({key:+k, title:CHAPTERS[k], n:QUESTIONS.filter(q => q.chapter == k).length})));
+  $("chapters").innerHTML = "";
+  all.forEach(c => {
+    const b = document.createElement("button");
+    b.type = "button"; b.className = "chap" + (c.key === selChap ? " sel" : "");
+    const bestTxt = (c.key in best) ? ` · <span class="best">Best ${best[c.key]}%</span>` : "";
+    b.innerHTML = `<span class="t"></span><span class="m">${c.n} questions${bestTxt}</span>`;
+    b.querySelector(".t").textContent = c.title;
+    b.onclick = () => { selChap = c.key; renderChapters(); };
+    $("chapters").appendChild(b);
+  });
+}
+
+function shuffle(a){ a = a.slice(); for (let j=a.length-1;j>0;j--){ const k=Math.floor(Math.random()*(j+1)); [a[j],a[k]]=[a[k],a[j]]; } return a; }
+
+function begin(list, isRetry){
+  pool = $("shuffle").checked ? shuffle(list) : list.slice();
+  i = 0; score = 0; wrong = []; log = []; current = isRetry ? -1 : selChap;
+  $("setup").classList.add("hide"); $("result").classList.add("hide"); $("quiz").classList.remove("hide");
+  if (document.activeElement && document.activeElement.blur) document.activeElement.blur();   // drop focus from the hidden Start button
+  show();
+  $("quiz").scrollIntoView({behavior:"smooth", block:"start"});
+}
+
+function show(){
+  const q = pool[i]; answered = false;
+  $("pos").innerHTML = `Question <b>${i+1}</b> of ${pool.length}`;
+  $("sc").textContent = `Score: ${score}`;
+  $("prog").style.width = (i/pool.length*100) + "%";
+  $("tag").textContent = CHAPTERS[q.chapter];
+  $("qtext").textContent = q.question;
+  $("fb").textContent = ""; $("fb").className = "fb";
+  $("next").disabled = true;
+  $("next").textContent = (i === pool.length-1) ? "Finish ✓" : "Next →";
+  $("opts").innerHTML = "";
+  q.options.forEach((t, idx) => {
+    const b = document.createElement("button");
+    b.type = "button"; b.className = "opt";
+    b.innerHTML = `<span class="k">${LET[idx]}</span><span class="tx"></span>`;
+    b.querySelector(".tx").textContent = t;
+    b.onclick = () => pick(idx);
+    $("opts").appendChild(b);
+  });
+}
+
+function pick(idx){
+  if (answered) return; answered = true;
+  const q = pool[i], btns = [...$("opts").children];
+  btns.forEach(b => b.disabled = true);
+  btns[q.answer].classList.add("ok");
+  if (idx === q.answer){ score++; $("fb").textContent = "✓ Correct"; $("fb").className = "fb ok"; }
+  else { btns[idx].classList.add("bad"); wrong.push(q); $("fb").textContent = "✗ Incorrect — correct answer: " + LET[q.answer] + ". " + q.options[q.answer]; $("fb").className = "fb bad"; }
+  log.push({q, idx, right: idx === q.answer});
+  $("sc").textContent = `Score: ${score}`;
+  $("next").disabled = false;
+}
+
+function finish(){
+  $("quiz").classList.add("hide"); $("result").classList.remove("hide");
+  const pct = pool.length ? Math.round(score/pool.length*100) : 0;
+  $("final").textContent = `${score} / ${pool.length}  (${pct}%)`;
+  $("verdict").textContent = pct >= 80 ? "Strong result. You know this material well." : pct >= 50 ? "Decent. Review the questions you missed below and try again." : "Revisit the lecture notes for this chapter, then try again.";
+  if (current !== -1 && log.length === pool.length) setBest(current, pct);
+  $("wrongOnly").disabled = wrong.length === 0;
+  const missed = log.filter(x => !x.right);
+  $("reviewBox").classList.toggle("hide", missed.length === 0);
+  $("review").innerHTML = "";
+  missed.forEach(x => {
+    const d = document.createElement("div"); d.className = "rv";
+    d.innerHTML = '<div class="rq"></div><div class="w"></div><div class="a"></div>';
+    d.children[0].textContent = x.q.question;
+    d.children[1].textContent = "Your answer: " + LET[x.idx] + ". " + x.q.options[x.idx];
+    d.children[2].textContent = "Correct: " + LET[x.q.answer] + ". " + x.q.options[x.q.answer];
+    $("review").appendChild(d);
+  });
+  $("result").scrollIntoView({behavior:"smooth", block:"start"});
+}
+
+$("start").onclick = () => begin(selChap ? QUESTIONS.filter(q => q.chapter === selChap) : QUESTIONS, false);
+$("next").onclick = () => { if (i < pool.length-1){ i++; show(); } else finish(); };
+$("quit").onclick = () => { if (log.length) finish(); else { $("quiz").classList.add("hide"); $("setup").classList.remove("hide"); } };
+$("again").onclick = () => { $("result").classList.add("hide"); $("setup").classList.remove("hide"); renderChapters(); window.scrollTo({top:0, behavior:"smooth"}); };
+$("wrongOnly").onclick = () => begin(wrong.slice(), true);
+
+document.addEventListener("keydown", e => {
+  if ($("quiz").classList.contains("hide")) return;
+  if (e.ctrlKey || e.metaKey || e.altKey) return;            // leave Ctrl+C, Ctrl+A etc. alone
+  const k = e.key.toLowerCase();
+  if ("abcd".includes(k) && k.length === 1) { const idx = "abcd".indexOf(k); if (idx < pool[i].options.length) pick(idx); }
+  else if (e.key === "Enter" && !$("next").disabled) { e.preventDefault(); $("next").click(); }   // preventDefault: stop a focused button from also firing
+});
+
+$("pill-total").textContent = QUESTIONS.length + " Questions";
+renderChapters();
+
+/* ---- site chrome ---- */
+const bt = document.getElementById('back-top');
+window.addEventListener('scroll', () => bt.classList.toggle('visible', scrollY > 400));
+</script>
+</body>
+</html>

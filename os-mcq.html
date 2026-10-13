@@ -314,6 +314,7 @@ function begin(list, isRetry){
   pool = $("shuffle").checked ? shuffle(list) : list.slice();
   i = 0; score = 0; wrong = []; log = []; current = isRetry ? -1 : selChap;
   $("setup").classList.add("hide"); $("result").classList.add("hide"); $("quiz").classList.remove("hide");
+  if (document.activeElement && document.activeElement.blur) document.activeElement.blur();   // drop focus from the hidden Start button
   show();
   $("quiz").scrollIntoView({behavior:"smooth", block:"start"});
 }
@@ -380,9 +381,10 @@ $("wrongOnly").onclick = () => begin(wrong.slice(), true);
 
 document.addEventListener("keydown", e => {
   if ($("quiz").classList.contains("hide")) return;
+  if (e.ctrlKey || e.metaKey || e.altKey) return;            // leave Ctrl+C, Ctrl+A etc. alone
   const k = e.key.toLowerCase();
   if ("abcd".includes(k) && k.length === 1) { const idx = "abcd".indexOf(k); if (idx < pool[i].options.length) pick(idx); }
-  else if (e.key === "Enter" && !$("next").disabled) $("next").click();
+  else if (e.key === "Enter" && !$("next").disabled) { e.preventDefault(); $("next").click(); }   // preventDefault: stop a focused button from also firing
 });
 
 $("pill-total").textContent = QUESTIONS.length + " Questions";
