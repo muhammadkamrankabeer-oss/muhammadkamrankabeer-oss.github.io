@@ -180,6 +180,8 @@
     .cm-badge{font-family:var(--f-mono);font-size:.62rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:3px 8px;border-radius:var(--r-full)}
     .cm-badge.live{background:rgba(34,197,94,.12);color:#4ade80}
     .cm-badge.free{background:rgba(26,106,255,.12);color:var(--blue-l,#5b9dff)}
+    .cm-badge.soon{background:rgba(245,158,11,.12);color:#fbbf24}
+    .cm-badge.plan{background:rgba(148,163,184,.12);color:#94a3b8}
     .cm-name{font-weight:700;font-size:.95rem}
     .cm-desc{font-size:.82rem;color:var(--gray-500);line-height:1.5}
     .cm-footer{margin-top:4px;display:flex;gap:8px}
@@ -320,7 +322,7 @@
 </div>
 
 <!-- LEARN SUB-NAV -->
-<nav class="learn-subnav"><div class="learn-subnav-inner"><a href="learn.html" class="sn-active">🏠 Hub</a><a href="courses.html">🎓 Courses</a><span class="sn-sep"></span><a href="linux-notes.html">🐧 Linux</a><a href="cloud-notes.html">☁️ Cloud</a><a href="devops-full-notes.html">⚙️ DevOps</a><span class="sn-sep"></span><a href="ai-notes.html">🤖 AI</a><a href="python-notes.html">🐍 Python</a><a href="c-programming.html">💻 C</a><a href="os-notes.html">🖥️ OS</a><a href="networking-notes.html">🌐 Networking</a><span class="sn-sep"></span><a href="devops-notes.html">📋 Quick Notes</a><a href="interview-guide.html">💼 Interview Guide</a><a href="blog.html">📝 Blog</a></div></nav>
+<nav class="learn-subnav"><div class="learn-subnav-inner"><a href="learn.html" class="sn-active">🏠 Hub</a><a href="courses.html">🎓 Courses</a><a href="programs.html">🏫 Programs</a><span class="sn-sep"></span><a href="linux-notes.html">🐧 Linux</a><a href="cloud-notes.html">☁️ Cloud</a><a href="devops-full-notes.html">⚙️ DevOps</a><span class="sn-sep"></span><a href="ai-notes.html">🤖 AI</a><a href="python-notes.html">🐍 Python</a><a href="c-programming.html">💻 C</a><a href="os-notes.html">🖥️ OS</a><a href="networking-notes.html">🌐 Networking</a><span class="sn-sep"></span><a href="devops-notes.html">📋 Quick Notes</a><a href="interview-guide.html">💼 Interview Guide</a><a href="blog.html">📝 Blog</a></div></nav>
 
 <!-- ════ HERO ════ -->
 <div class="container hero-wrap">
@@ -508,6 +510,16 @@
     </div>
 
   </div><!-- /foundation-grid -->
+
+  <!-- ════ ACADEMIC PROGRAMS ════ -->
+  <div class="sec-label-row">
+    <h2 class="sec-label">Academic Programs</h2>
+    <span class="sec-sub-label">Free notes &amp; MCQ practice for the subjects I teach · <a href="programs.html" style="color:var(--cyan);text-decoration:none">View all →</a></span>
+  </div>
+
+  <div class="foundation-grid" id="programs-tiles">
+    <noscript><a href="programs.html" class="btn-notes">Browse all academic programs →</a></noscript>
+  </div>
 
   <!-- ════ NOTES + QUICK REF ════ -->
   <div class="two-col" style="margin-bottom:32px">
@@ -708,6 +720,26 @@
 <script>
   const bt = document.getElementById('back-top');
   window.addEventListener('scroll', () => bt.classList.toggle('visible', scrollY > 400));
+</script>
+<script src="assets/js/programs-data.js"></script>
+<script>
+(function () {
+  var P = window.DV_PROGRAMS || [], box = document.getElementById('programs-tiles');
+  if (!box) return;
+  function el(tag, cls, text) { var e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
+  P.forEach(function (p) {
+    var subs = p.subjects || [], live = subs.filter(function (s) { return s.status === 'live'; }).length;
+    var c = el('div', 'course-card-mini'), top = el('div', 'cm-top');
+    top.appendChild(el('span', 'cm-icon', p.icon || '📚'));
+    top.appendChild(live ? el('span', 'cm-badge live', live + ' of ' + subs.length + ' live')
+                         : el('span', 'cm-badge soon', 'In preparation'));
+    c.appendChild(top);
+    c.appendChild(el('div', 'cm-name', p.name));
+    c.appendChild(el('div', 'cm-desc', p.blurb || ''));
+    var f = el('div', 'cm-footer'), a = el('a', 'btn-notes', 'View subjects →'); a.href = 'programs.html#' + p.id;
+    f.appendChild(a); c.appendChild(f); box.appendChild(c);
+  });
+})();
 </script>
 </body>
 </html>
