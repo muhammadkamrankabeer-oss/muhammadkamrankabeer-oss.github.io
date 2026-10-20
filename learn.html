@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>DevOps Courses &amp; Free Notes | Linux, Cloud, AI Training — Devriston</title>
-  <meta name="description" content="Live online DevOps, Linux and Cloud courses in Pakistan — taught by a practicing engineer with 10+ years experience. Free lecture notes for every module. Lahore-based, online delivery."/>
+  <title>Linux, Cloud &amp; DevOps Learning Hub | Courses &amp; Free Notes — Devriston</title>
+  <meta name="description" content="Explore practical Linux, AWS cloud and DevOps training, academic computer science resources, and free technical notes from Devriston. Online learning with hands-on projects."/>
   <meta name="keywords" content="DevOps courses Pakistan, Linux course Lahore, AWS cloud training, AI course for IT professionals, free DevOps notes, RHCSA training, Devriston learning"/>
   <meta name="author" content="Muhammad Kamran Kabeer"/>
   <meta name="robots" content="index,follow"/>
   <link rel="canonical" href="https://www.devriston.com.pk/learn.html"/>
-  <meta property="og:title" content="DevOps Courses &amp; Free Notes | Linux, Cloud, AI Training — Devriston"/>
+  <meta property="og:title" content="Linux, Cloud &amp; DevOps Learning Hub | Devriston"/>
   <meta property="og:description" content="Live online DevOps, Linux, Cloud and AI courses in Pakistan — free lecture notes for every module, interview guide, and blog. Taught by a practicing engineer with 10+ years experience."/>
   <meta property="og:type" content="website"/>
   <meta property="og:url" content="https://www.devriston.com.pk/learn.html"/>
@@ -287,6 +287,25 @@
       .courses-grid{grid-template-columns:1fr}
       .cta-band{padding:28px 20px}
     }
+  
+
+  /* Learning hub enhancements */
+  .learning-routes{margin:30px 0 46px;padding:clamp(20px,3vw,34px);border:1px solid var(--border,rgba(148,163,184,.18));border-radius:20px;background:linear-gradient(135deg,rgba(37,99,235,.07),rgba(0,212,255,.025));}
+  .route-heading{display:flex;justify-content:space-between;gap:24px;align-items:end;margin-bottom:22px}
+  .learning-routes .eyebrow{margin:0 0 8px;color:var(--cyan,#00d4ff);font-size:.72rem;letter-spacing:.14em;font-weight:800}
+  .learning-routes h2{margin:0;font-size:clamp(1.45rem,3vw,2.15rem);line-height:1.2}
+  .route-intro{max-width:680px;margin:10px 0 0;color:var(--gray-400,#94a3b8);line-height:1.7}
+  .route-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+  .route-card{min-width:0;display:flex;flex-direction:column;gap:10px;padding:22px;border:1px solid var(--border,rgba(148,163,184,.18));border-radius:15px;background:rgba(15,23,42,.45);color:inherit;text-decoration:none;transition:transform .2s ease,border-color .2s ease,background .2s ease}
+  .route-card:hover,.route-card:focus-visible{transform:translateY(-3px);border-color:var(--cyan,#00d4ff);background:rgba(15,23,42,.72)}
+  .route-card:focus-visible{outline:3px solid rgba(0,212,255,.35);outline-offset:3px}
+  .route-icon{font-size:1.7rem}.route-kicker{font-size:.68rem;letter-spacing:.1em;font-weight:800;color:var(--cyan,#00d4ff)}
+  .route-card strong{font-size:1.12rem;line-height:1.35}.route-card>span:not(.route-icon):not(.route-kicker):not(.route-link){font-size:.9rem;line-height:1.65;color:var(--gray-400,#94a3b8)}
+  .route-link{display:flex;justify-content:space-between;align-items:center;margin-top:auto;padding-top:8px;font-weight:700;font-size:.86rem;color:var(--cyan,#00d4ff)}
+  #free-resources{scroll-margin-top:100px}
+  @media(max-width:800px){.route-grid{grid-template-columns:1fr 1fr}.route-card:last-child{grid-column:1/-1}}
+  @media(max-width:560px){.learning-routes{padding:18px;margin:24px 0 34px}.route-grid{grid-template-columns:1fr}.route-card:last-child{grid-column:auto}.route-card{padding:18px}.route-heading{margin-bottom:16px}}
+
   </style>
 </head>
 <body>
@@ -333,7 +352,7 @@
     <div class="hero-left">
       <div class="hero-badge">Learning Hub</div>
       <h1>DevOps Courses, Linux Training<br/>&amp; <em>Free Lecture Notes</em></h1>
-      <p class="hero-sub">4 professional courses · free notes for every module · notes and MCQs for DIT, PTB and university.<br/>Taught by a practicing engineer with 10+ years experience.</p>
+      <p class="hero-sub">4 professional courses · free technical notes · academic subject notes and MCQ practice.<br/>Taught by a practicing engineer with 10+ years experience.</p>
     </div>
     <!-- ✅ IMPROVEMENT: Stats with better hierarchy and descriptions -->
     <div class="hero-stats">
@@ -372,6 +391,31 @@
     <span class="path-sep" style="margin-left:4px">·</span>
     <span style="color:var(--gray-500)">Not sure? <a href="https://wa.me/923231450045?text=Hi%20Kamran%2C%20which%20course%20should%20I%20start%20with?" style="color:var(--cyan);text-decoration:none;font-weight:600">Ask on WhatsApp →</a></span>
   </div>
+
+  <!-- LEARNING ROUTES: clear paths for different visitors -->
+  <section class="learning-routes" aria-labelledby="learning-routes-title">
+    <div class="route-heading">
+      <div>
+        <p class="eyebrow">START HERE</p>
+        <h2 id="learning-routes-title">What would you like to learn?</h2>
+        <p class="route-intro">Choose a path that matches your goal. You can explore professional training, academic study resources, or free self-paced notes.</p>
+      </div>
+    </div>
+    <div class="route-grid">
+      <a class="route-card route-career" href="courses.html">
+        <span class="route-icon" aria-hidden="true">🚀</span><span class="route-kicker">CAREER DEVELOPMENT</span>
+        <strong>Professional Courses</strong><span>Linux administration, AWS cloud, DevOps engineering and practical AI.</span><span class="route-link">Compare courses <span aria-hidden="true">→</span></span>
+      </a>
+      <a class="route-card route-academic" href="programs.html">
+        <span class="route-icon" aria-hidden="true">🎓</span><span class="route-kicker">ACADEMIC STUDY</span>
+        <strong>Programs &amp; MCQs</strong><span>Find subject notes and practice questions for supported academic programs.</span><span class="route-link">Browse programs <span aria-hidden="true">→</span></span>
+      </a>
+      <a class="route-card route-free" href="#free-resources">
+        <span class="route-icon" aria-hidden="true">📚</span><span class="route-kicker">SELF-PACED LEARNING</span>
+        <strong>Free Notes &amp; Guides</strong><span>Study Linux, Python, C, networking, operating systems and DevOps references.</span><span class="route-link">Explore resources <span aria-hidden="true">→</span></span>
+      </a>
+    </div>
+  </section>
 
   <!-- ════ CORE COURSES ════ -->
   <div class="sec-label-row">
@@ -478,7 +522,7 @@
 
   <!-- ════ PROGRAMMING FOUNDATIONS ════ -->
   <div class="sec-label-row">
-    <h2 class="sec-label">Programming Foundations</h2>
+    <h2 class="sec-label" id="free-resources">Free Learning Resources</h2>
     <span class="sec-sub-label">Programming fundamentals — free self-paced references, no live batch</span>
   </div>
 
