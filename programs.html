@@ -289,7 +289,9 @@
         <div class="srows">
           <div class="srow"><div class="l"><span class="st live">Available</span><span class="nm">Operating Systems</span><span class="nt">OS fundamentals, processes, memory and file systems.</span></div><div class="lk"><a class="lkb" href="os-notes.html">Notes</a><a class="lkb alt" href="os-mcq.html">MCQs</a></div></div>
           <div class="srow"><div class="l"><span class="st live">Available</span><span class="nm">Computer Networking</span><span class="nt">Network fundamentals, models, protocols and infrastructure.</span></div><div class="lk"><a class="lkb" href="networking-notes.html">Notes</a><a class="lkb alt" href="networking-mcq.html">MCQs</a></div></div>
-          <div class="srow"><div class="l"><span class="st planned">Planned</span><span class="nm">Computer Fundamentals &amp; Office Automation</span><span class="nt">Computer basics, office applications and digital productivity.</span></div></div>
+          <div class="srow"><div class="l"><span class="st live">Available</span><span class="nm">Information &amp; Communication Technology (ICT)</span><span class="nt">DIT Part-I introductory ICT notes and MCQ practice based on the uploaded study material.</span></div><div class="lk"><a class="lkb" href="ict-notes.html">Notes</a><a class="lkb alt" href="ict-mcq.html">MCQs</a></div></div>
+          <div class="srow"><div class="l"><span class="st live">Available</span><span class="nm">MS Office / Office Automation</span><span class="nt">Office automation, MS Word interface and editing, tables, formatting, printing, Urdu typing, and Excel macros.</span></div><div class="lk"><a class="lkb" href="ms-office-notes.html">Notes</a><a class="lkb alt" href="ms-office-mcq.html">MCQs</a></div></div>
+          <div class="srow"><div class="l"><span class="st planned">Planned</span><span class="nm">Computer Fundamentals</span><span class="nt">Computer basics, terminology, data representation and foundational concepts.</span></div></div>
           <div class="srow"><div class="l"><span class="st planned">Planned</span><span class="nm">Programming, Database &amp; Web Basics</span><span class="nt">Programming logic, databases and introductory web development.</span></div></div>
         </div>
       </article>
@@ -386,7 +388,25 @@
 </script>
 <script>
 (function () {
-  var P = window.DV_PROGRAMS || [];
+  var P = (window.DV_PROGRAMS || []).map(function (p) {
+    var copy = Object.assign({}, p);
+    copy.subjects = (p.subjects || []).slice();
+    if (copy.id === "dit" && !copy.subjects.some(function (x) { return /information.*communication.*technology|\bICT\b/i.test(x.name || ""); })) {
+      copy.subjects.splice(2, 0, { name: "Information & Communication Technology (ICT)", status: "live", note: "DIT Part-I Chapters 1–4 MCQ practice based on the study material.", mcq: "ict-mcq.html" });
+    }
+    if (copy.id === "dit") {
+      var officeSubject = copy.subjects.find(function (x) { return /ms\s*office|office automation/i.test(x.name || ""); });
+      if (officeSubject) {
+        officeSubject.status = "live";
+        officeSubject.note = "Office automation, Word interface and editing, tables, printing, Urdu typing, and Excel macros.";
+        officeSubject.notes = "ms-office-notes.html";
+        officeSubject.mcq = "ms-office-mcq.html";
+      } else {
+        copy.subjects.splice(3, 0, { name: "MS Office / Office Automation", status: "live", note: "Office automation, Word interface and editing, tables, printing, Urdu typing, and Excel macros.", notes: "ms-office-notes.html", mcq: "ms-office-mcq.html" });
+      }
+    }
+    return copy;
+  });
   var LABEL = { live: "Notes live", soon: "In preparation", planned: "Planned" };
   var grid = document.getElementById("grid"), chips = document.getElementById("chips");
 
