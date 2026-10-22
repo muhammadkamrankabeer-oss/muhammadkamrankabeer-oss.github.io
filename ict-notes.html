@@ -28,6 +28,10 @@ h1{font-size:clamp(2rem,5vw,3rem);line-height:1.1;margin:12px 0}
 .small{font-size:.88rem;color:var(--n-muted);line-height:1.65}
 @media(max-width:760px){.layout{grid-template-columns:1fr}.toc{position:static}.toc nav{columns:2;column-gap:18px}.hero,.chapter{padding:19px}.toc nav a{break-inside:avoid}}
 @media print{body{background:#fff;color:#111}.notes-wrap{width:100%;margin:0}.hero,.chapter,.toc{background:#fff;border:1px solid #bbb;color:#111;break-inside:avoid}.hero p,.muted,.chapter p,.chapter li,.small,.toc a,td{color:#222}.layout{display:block}.toc{display:none}.chapter{margin-bottom:12px}.footer-links{display:none}h1{font-size:24pt}}
+
+/* Readability fix: keep headings legible against the dark learning-page panels. */
+h1,h2,h3,h4{color:var(--n-text)}
+.chapter h3{color:var(--n-cyan)}
 </style>
 </head>
 <body>
