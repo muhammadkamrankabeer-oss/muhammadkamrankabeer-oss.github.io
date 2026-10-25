@@ -1,72 +1,60 @@
 /* =====================================================================
    DEVRISTON — ACADEMIC PROGRAMS  (edit THIS file only)
-   ---------------------------------------------------------------------
-   The Programs page (programs.html) and the "Academic Programs" section
-   on the hub (learn.html) are both built from this list.
-
-   ADD A SUBJECT   copy one line inside "subjects" and edit it
-   DROP A SUBJECT  delete its line
-   ADD A PROGRAM   copy a whole { ... } block and edit it (keep the commas)
-
-   status:  "live"     notes / MCQs are published   (add notes: and/or mcq:)
-            "soon"     in preparation
-            "planned"  planned for a later semester
-   note:    optional small text shown beside the subject
-   notes:   page of the lecture notes, e.g. "os-notes.html"
-   mcq:     page of the MCQ practice, e.g. "os-mcq.html"
-
-   After editing:   git add -A && git commit -m "Update programs" && git push
+   Feeds the "Academic Programs" tiles on learn.html.
+   programs.html is still written by hand: when you change one, change both.
+   ids MUST match the card ids on programs.html:
+   dit, ptb, olevel, alevel, university
+   status:  "live" = notes/MCQs published (add notes: and/or mcq:)
+            "soon" = in preparation, "planned" = later semester
+   After editing:  git add -A && git commit -m "Update programs" && git push
    ===================================================================== */
 window.DV_PROGRAMS = [
   {
     id: "dit", icon: "🎓", name: "DIT", full: "Diploma in Information Technology",
-    blurb: "Lecture notes and MCQ practice for the DIT subjects.",
+    blurb: "Lecture notes and MCQ practice for DIT Part-I subjects.",
     subjects: [
-      { name: "ICT",                status: "soon" },
-      { name: "MS Office",          status: "soon" },
-      { name: "Operating Systems",  status: "live", notes: "os-notes.html",         mcq: "os-mcq.html" },
-      { name: "Computer Networking",status: "live", notes: "networking-notes.html", mcq: "networking-mcq.html" },
-      { name: "DBMS",               status: "soon" }
+      { name: "ICT",                 status: "live", notes: "ict-notes.html",        mcq: "ict-mcq.html" },
+      { name: "MS Office",           status: "live", notes: "ms-office-notes.html",  mcq: "ms-office-mcq.html" },
+      { name: "Operating Systems",   status: "live", notes: "os-notes.html",         mcq: "os-mcq.html" },
+      { name: "Computer Networking", status: "live", notes: "networking-notes.html", mcq: "networking-mcq.html" }
     ]
   },
   {
-    id: "ptb", icon: "📘", name: "PTB Computer Science", full: "1st Year · 2nd Year · 9th · 10th",
-    blurb: "Computer Science for the PTB classes: notes and MCQ practice.",
+    id: "ptb", icon: "📘", name: "PTB Computer Science", full: "Classes 9, 10, 11 and 12",
+    blurb: "Punjab Board Computer Science: chapter-wise notes and MCQs for every class.",
     subjects: [
-      { name: "1st Year Computer Science",  status: "soon" },
-      { name: "2nd Year Computer Science",  status: "soon" },
-      { name: "9th Computer Science",       status: "planned" },
-      { name: "10th Computer Science",      status: "planned" }
+      { name: "Class 9 Computer Science",  status: "live", notes: "9th-class-computer-science-notes.html",  mcq: "9th-class-computer-science-mcqs.html" },
+      { name: "Class 10 Computer Science", status: "live", notes: "10th-class-computer-science-notes.html", mcq: "10th-class-computer-science-mcqs.html" },
+      { name: "Class 11 Computer Science", status: "live", notes: "11th-class-computer-science-notes.html", mcq: "11th-class-computer-science-mcqs.html" },
+      { name: "Class 12 Computer Science", status: "live", notes: "12th-class-computer-science-notes.html", mcq: "12th-class-computer-science-mcqs.html" }
     ]
   },
   {
-    id: "bscs", icon: "💻", name: "BSCS / ADP CS", full: "Bachelor and Associate Degree, Computer Science",
-    blurb: "University-level subjects for BSCS and ADP CS students.",
+    id: "olevel", icon: "🌍", name: "O Level", full: "Computer Science 2210",
+    blurb: "Concept notes, topic-wise MCQs and a two-paper model assessment.",
     subjects: [
-      { name: "ICT",                   status: "soon" },
-      { name: "DBMS",                  status: "soon" },
-      { name: "Digital Logic Design",  status: "planned", note: "taught previously" },
-      { name: "Embedded Systems",      status: "planned", note: "taught previously" }
+      { name: "Concept notes",  status: "live", notes: "o-level-computer-science-notes.html" },
+      { name: "Topic MCQs",     status: "live", mcq: "o-level-computer-science-mcqs.html" },
+      { name: "Model paper",    status: "live", notes: "o-level-computer-science-model-paper.html" }
     ]
   },
   {
-    id: "bsit", icon: "🖧", name: "BSIT / ADP IT", full: "Bachelor and Associate Degree, Information Technology",
-    blurb: "University-level subjects for BSIT and ADP IT students.",
+    id: "alevel", icon: "🏅", name: "A Level", full: "Computer Science 9618",
+    blurb: "AS and A Level concept notes, topic MCQs and practice for Papers 1–4.",
     subjects: [
-      { name: "ICT",                   status: "soon" },
-      { name: "DBMS",                  status: "soon" },
-      { name: "Digital Logic Design",  status: "planned", note: "taught previously" },
-      { name: "Embedded Systems",      status: "planned", note: "taught previously" }
+      { name: "Concept notes",  status: "live", notes: "a-level-computer-science-notes.html" },
+      { name: "Topic MCQs",     status: "live", mcq: "a-level-computer-science-mcqs.html" },
+      { name: "Model papers",   status: "live", notes: "a-level-computer-science-model-paper.html" }
     ]
   },
   {
-    id: "olevel", icon: "🌍", name: "O Level", full: "",
-    blurb: "Subjects for O Level students will be added here.",
-    subjects: []
-  },
-  {
-    id: "alevel", icon: "🏅", name: "A Level", full: "",
-    blurb: "Subjects for A Level students will be added here.",
-    subjects: []
+    id: "university", icon: "🏛️", name: "BSCS / BSIT / ADP", full: "University Computer Science and IT",
+    blurb: "Shared core subjects are live now. Other subjects on request.",
+    subjects: [
+      { name: "Operating Systems",   status: "live", notes: "os-notes.html",         mcq: "os-mcq.html" },
+      { name: "Computer Networking", status: "live", notes: "networking-notes.html", mcq: "networking-mcq.html" },
+      { name: "Python",              status: "live", notes: "python-notes.html" },
+      { name: "C Programming",       status: "live", notes: "c-programming.html" }
+    ]
   }
 ];
